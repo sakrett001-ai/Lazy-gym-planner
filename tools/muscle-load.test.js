@@ -224,3 +224,23 @@ test('по журналу собирается в любом формате, с 
     }
   }
 });
+
+/* предложение владельцу (отдельный коммит): «Собрать тренировку на сегодня» — по шкале уровня (volScale, 11-planner.js):
+   новичку и в «Бережно» недобор — до 4 подходов за 7 дней, верх — 12; остальным — до 10, верх — 20 */
+test('«today’s workout» uses the level scale: a beginner with 5 chest sets has no shortfall there, an intermediate does', () => {
+  for (const [level, chest] of [['beg', false], ['mid', true]]) {
+    const a = app();
+    a.S.level = level;
+    a.LOG.data = { bbbench: [{ d: a.ago(4), s: sets(5) }] };
+    const pick = a.logPick(a.muscleLoad(), { count: 11 }); /* мест хватает всем группам с недобором */
+    const row = pick.rows.find(r => r.g === 'chest');
+    assert.equal(!!(row && row.need > 0), chest, `${level}: chest 5 sets — shortfall ${row ? row.need : 'none'}`);
+    a.applyLogPick();
+    const html = a.logPickHtml(a.buildPlan());
+    assert.match(html, level === 'beg' ? / из 4 за 7 дней/ : / из 10 за 7 дней/, level);
+  }
+  /* выше верха шкалы группа не берётся: новичку 13 подходов на квадрицепс за 7 дней — уже много */
+  const a = app(); a.S.level = 'beg';
+  a.LOG.data = { legpress: [{ d: a.ago(4), s: sets(13) }] };
+  assert(!a.logPick(a.muscleLoad(), { count: 6 }).rows.some(r => r.g === 'quads'));
+});

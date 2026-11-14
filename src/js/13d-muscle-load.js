@@ -15,8 +15,9 @@
    («восстанавливается»), вечером — 78 ч («готова»), хотя тренировка та же. */
 const LOAD = {
   days:7,        /* окно: сегодня и 6 предыдущих дней */
-  lo:10, hi:20,  /* коридор подходов на группу в неделю: Schoenfeld, Ogborn, Krieger, J Sports Sci 2017; 35(11):1073–1082 —
-                    10 и больше подходов в неделю дают больший прирост, чем меньше; верх 20 — как у графика плана и у Fitbod */
+  lo:10, hi:20,  /* коридор подходов на группу в неделю для «Уже тренируюсь» и опытных: Schoenfeld, Ogborn, Krieger, J Sports Sci
+                    2017; 35(11):1073–1082 — 10 и больше подходов в неделю дают больший прирост, чем меньше; верх 20 — как у
+                    графика плана. Полосы и «тренировка на сегодня» берут коридор по уровню — volScale (11-planner.js) */
   minSets:2,     /* существенная нагрузка — 2 и больше подхода основной работы группы в одной тренировке (в один день) */
   loadedH:48,    /* Morán-Navarro et al., Eur J Appl Physiol 2017; 117(12):2387–2399: без отказа восстановление в основном
                     за 24–48 ч — до 48 ч группа «нагружена», */
@@ -70,21 +71,21 @@ function muscleLoad(data = LOG.data, today = todayKey()) {
 
 /* ---------- тренировка на сегодня ---------- */
 /* Кандидаты — «готовые» и «восстанавливающиеся» группы (у вторых вес вдвое меньше, одно упражнение и на подход меньше);
-   «нагруженные» пропускаются, упражнения, где они основные, отодвигаются. Порядок — по недобору до 10 подходов
-   за 7 дней, умноженному на долю группы в обычном плане (GROUP_W): 6 недостающих подходов спины важнее 6 подходов
+   «нагруженные» пропускаются, упражнения, где они основные, отодвигаются. Порядок — по недобору до нижней границы шкалы
+   по уровню (volScale, 11-planner.js: 10 подходов, новичку и в «Бережно» — 4) за 7 дней, группы выше её верха не берутся, умноженному на долю группы в обычном плане (GROUP_W): 6 недостающих подходов спины важнее 6 подходов
    предплечий, которые и так работают в каждой тяге. Групп — не больше, чем упражнений; при меньше 3 групп с недобором
    добавляются готовые без недобора. Группы без упражнений в этом месте (инвентарь, уровень, бережный режим) не берутся. */
 function logPick(load = muscleLoad(), opt = {}) {
   const count = opt.count || S.count, E = opt.E || effEquip(S.equip), lvlMax = S.level === 'beg' ? 2 : 3;
   const can = g => EX.some(ex => ex.g === g && available(ex, E) && ex.lvl <= lvlMax && (S.format !== 'static' || staticOk(ex)) && fitsBody(ex));
-  const order = g => GROUPS.findIndex(x => x.id === g);
+  const order = g => GROUPS.findIndex(x => x.id === g), sc = volScale();
   const rows = loadGroups().map(g => {
-    const L = load[g], need = Math.max(0, LOAD.lo - L.v);
+    const L = load[g], need = Math.max(0, sc.lo - L.v);
     return {g, v:L.v, st:L.st, age:L.last ? L.last.age : null, sets:L.last ? L.last.sets : 0, need,
-      p:GROUP_W[g] * (need / LOAD.lo + 0.1) * (L.st === 'recovering' ? 0.5 : 1)};
+      p:GROUP_W[g] * (need / sc.lo + 0.1) * (L.st === 'recovering' ? 0.5 : 1)};
   });
   const rest = rows.filter(r => r.st === 'loaded');
-  const cand = rows.filter(r => r.st !== 'loaded' && r.v < LOAD.hi && can(r.g)).sort((a, b) => b.p - a.p || order(a.g) - order(b.g));
+  const cand = rows.filter(r => r.st !== 'loaded' && r.v < sc.hi && can(r.g)).sort((a, b) => b.p - a.p || order(a.g) - order(b.g));
   let chosen = cand.filter(r => r.need > 0).slice(0, count);
   if (chosen.length < 3) chosen = chosen.concat(cand.filter(r => !chosen.includes(r)).slice(0, 3 - chosen.length));
   return {rows:chosen, rest, groups:chosen.map(r => r.g).sort((a, b) => order(a) - order(b))};
@@ -155,14 +156,14 @@ function loadSummaryHtml(load) {
 /* панель в журнале: подходы за 7 дней (полосы как в плане) и статус восстановления */
 function muscleLoadHtml(load = muscleLoad()) {
   const ids = loadGroups(), any = ids.some(g => load[g].v > 0);
-  const max = Math.max(22, ...ids.map(g => load[g].v));
+  const max = Math.max(volScale().hi + 2, ...ids.map(g => load[g].v)), sc = volScale();
   const body = any ? `<ul class="vbars ml-list">${ids.map(g => volRow(g, load[g].v, max, loadStatusHtml(load[g]), 'st-' + load[g].st)).join('')}</ul>
     <p class="ml-legend"><span class="st-loaded"><i></i>нагружена — меньше 48 ч</span><span class="st-recovering"><i></i>восстанавливается — 48–72 ч</span><span class="st-ready"><i></i>готова — от 72 ч</span></p>`
     : `<p class="ml-empty">За 7 дней записей нет — все мышцы отдохнули. Тренировка на сегодня начнётся с крупных групп.</p>`;
   return `<section class="ml" id="ml" aria-labelledby="ml-title">
     <div class="ml-head">
       <div><p class="eyebrow">Загрузка мышц</p><h2 id="ml-title">Подходы за 7 дней и отдых</h2>
-        <p class="ml-sub">Сегодня и 6 предыдущих дней, по записанным подходам. Полоса — ориентир для роста: 10–20 подходов на группу в неделю.</p>
+        <p class="ml-sub">Сегодня и 6 предыдущих дней, по записанным подходам. ${'Полоса — ориентир для роста: {lo}–{hi} подходов на группу в неделю.'.replace('{lo}', sc.lo).replace('{hi}', sc.hi)}</p>
         ${any ? loadSummaryHtml(load) : ''}</div>
       <div class="ml-act"><button type="button" class="btn" data-logpick="journal">Собрать тренировку на сегодня →</button>
         <p class="p-hint ml-msg" id="ml-msg" role="status"></p></div>
@@ -170,9 +171,9 @@ function muscleLoadHtml(load = muscleLoad()) {
     ${body}
     <details class="rule ml-how"><summary>Как считается</summary>
       <p>Подход засчитывается целиком целевой группе упражнения и наполовину остальным работающим — как в графике недели в плане (Pelland и соавт., 2026). Считаются только записанные подходы; «по 10 на каждую сторону» — один подход.</p>
-      <p>Ориентир — 10–20 подходов на группу в неделю: от 10 подходов мышцы растут заметнее (Schoenfeld, Ogborn, Krieger, 2017).</p>
+      <p>Ориентир — 10–20 подходов на группу в неделю: от 10 подходов мышцы растут заметнее (Schoenfeld, Ogborn, Krieger, 2017). Новичку и в бережном режиме — 4–12: 2–4 подхода на группу 2–3 раза в неделю (Garber и соавт., 2011).</p>
       <p>Статус — по последней тренировке, где группа сделала 2 подхода и больше как основная: меньше 48 ч назад — нагружена, 48–72 ч — восстанавливается, от 72 ч — готова. Если подходы не доводить до предела, мышцы восстанавливаются в основном за 24–48 ч, после подходов до предела — до 72 ч (Morán-Navarro и соавт., 2017). Вспомогательная работа и кардио статус не меняют. В журнале только даты, поэтому часы считаются по дням: вчера — 24 ч, позавчера — 48 ч, три дня назад — 72 ч.</p>
-      <p>Тренировка на сегодня: сначала группы с наибольшим недобором до 10 подходов (крупные мышцы — раньше мелких), нагруженные пропускаются, восстанавливающиеся получают одно упражнение и на подход меньше. Инвентарь места, уровень и число упражнений — из параметров плана.</p>
+      <p>Тренировка на сегодня: сначала группы с наибольшим недобором до нижней границы ориентира — 10 подходов, новичку и в бережном режиме 4 (крупные мышцы — раньше мелких), нагруженные пропускаются, восстанавливающиеся получают одно упражнение и на подход меньше. Инвентарь места, уровень и число упражнений — из параметров плана.</p>
     </details>
   </section>`;
 }
@@ -185,7 +186,7 @@ function logPickHtml(p) {
   const rows = lp.pick.rows.slice().sort((a, b) => b.p - a.p || order(a.g) - order(b.g));
   const li = rows.map(r => {
     const today = Math.round((p.gvol[r.g] || 0) * 2) / 2;
-    return `<li><span class="ar-i st-${r.st}" aria-hidden="true"></span><p><b>${GN[r.g]}:</b> ${fmtNum(r.v)} из 10 за 7 дней, ${restText(r)}${r.st === 'recovering' ? ' — восстанавливается, на подход меньше' : ''}<em class="lp-add">${today ? `сегодня +${fmtNum(today)}` : 'сегодня без упражнений'}</em></p></li>`;
+    return `<li><span class="ar-i st-${r.st}" aria-hidden="true"></span><p><b>${GN[r.g]}:</b> ${fmtNum(r.v)} ${'из {n} за 7 дней,'.replace('{n}', volScale().lo)} ${restText(r)}${r.st === 'recovering' ? ' — восстанавливается, на подход меньше' : ''}<em class="lp-add">${today ? `сегодня +${fmtNum(today)}` : 'сегодня без упражнений'}</em></p></li>`;
   }).join('');
   const rest = (lp.pick.rest || []).filter(r => r && GN[r.g]);
   const skip = rest.length ? `<p class="lp-skip">Отдыхают — нагружены меньше 48 ч назад: ${rest.map(r => `${GN[r.g].toLowerCase()} (${agoText(r.age)})`).join(', ')}.</p>` : '';

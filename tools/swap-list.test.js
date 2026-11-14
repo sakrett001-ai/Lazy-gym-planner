@@ -84,7 +84,10 @@ test('a weekly programme: no swap repeats another day; a swap on one day leaves 
       }
     }
     a.S.day = 0; let p = a.render();
-    const slot = p.items[0].slot, next = a.swapOptions(p.items[0].ex, p).close[0].ex.id;
+    /* с 4.104.0 в каждом дне «Всё тело» есть тяга (11-planner.js): дома все тяги на ленте и полотенце уже заняты в неделе,
+       и у первой карточки близкой замены может не быть — берётся первая карточка, у которой она есть */
+    const it0 = p.items.find(it => a.swapOptions(it.ex, p).close.length);
+    const slot = it0.slot, next = a.swapOptions(it0.ex, p).close[0].ex.id;
     p = put(a, slot, next);
     const after = week();
     assert(after[0].includes(next) && !before[0].includes(next), 'the swap is in day 1');
