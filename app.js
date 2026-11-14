@@ -1,4 +1,4 @@
-window.PODHOD_VERSION='4.104.0';window.PODHOD_BUILD='4.104.0-293ee9592e2d';window.PODHOD_RENDER={"skin":"41c62f8b22","skeleton":"040f915bc8","anatomy":"4b15dc31e6"};window.PODHOD_SEARCH={"alt":{"ex":{"pushup":["Push-up"],"diamond":["Close-grip push-up"],"dip":["Dip"],"bbbench":["Barbell bench press"],"dbbench":["Dumbbell bench press"],"dbincline":["Incline dumbbell press"],"smithincline":["Smith machine incline press"],"dbfly":["Dumbbell fly"],"cablefly":["Cable crossover fly"],"pecdeck":["Pec deck fly"],"pullup":["Pull-up"],"bbrow":["Bent-over row"],"dbrow":["One-arm dumbbell row"],"latpull":["Lat pulldown"],"latpullv":["V-handle lat pulldown"],"latpulluh":["Underhand lat pulldown"],"cablerow":["Seated cable row"],"cablerowwide":["Wide-grip seated cable row"],"deadlift":["Deadlift"],"hyper":["Back extension"],"shrug":["Dumbbell shrug"],"bandrow":["Seated band row"],"dbpress":["Seated dumbbell press"],"ohp":["Overhead press"],"latraise":["Dumbbell lateral raise"],"bandlatraise":["Band lateral raise"],"frontraise":["Dumbbell front raise"],"facepull":["Cable face pull"],"pikepush":["Pike push-up"],"bbcurl":["Barbell biceps curl"],"dbcurl":["Dumbbell biceps curl"],"hammer":["Hammer curl"],"cablecurl":["Cable curl"],"ropecurl":["Rope cable curl"],"bandcurl":["Resistance band curl"],"chinup":["Chin-up"],"skull":["Lying triceps extension"],"pushdown":["Cable triceps pushdown"],"ropepushdown":["Rope triceps pushdown"],"bandpushdown":["Resistance band pushdown"],"benchdip":["Bench dip"],"ohext":["Overhead dumbbell triceps extension"],"wristcurl":["Barbell wrist curl"],"farmer":["Farmer’s carry","Kettlebell farmer’s carry"],"hang":["Dead hang"],"crunch":["Crunch"],"plank":["Forearm plank"],"sideplank":["Side plank"],"legraise":["Hanging leg raise"],"lyinglegraise":["Lying leg raise"],"cablecrunch":["Kneeling cable crunch"],"hipthrust":["Barbell hip thrust"],"bridge":["Glute bridge"],"kbswing":["Kettlebell swing"],"kbdeadlift":["Kettlebell deadlift"],"kbswing1":["One-arm kettlebell swing"],"kbclean":["Kettlebell clean"],"kbpress":["One-arm standing kettlebell press"],"kbfrontsquat":["Kettlebell front squat"],"kbrow":["One-arm bent-over kettlebell row"],"kbfloorpress":["Kettlebell floor press"],"kbsnatch":["Kettlebell snatch"],"kbsllift":["Single-leg kettlebell Romanian deadlift"],"kbwindmill":["Kettlebell windmill"],"kbhalo":["Kettlebell halo"],"kbtgu":["Kettlebell Turkish get-up"],"bulgarian":["Bulgarian split squat"],"stepup":["Step-up"],"rdl":["Romanian deadlift","Barbell Romanian deadlift","Dumbbell Romanian deadlift"],"squat":["Barbell squat"],"goblet":["Goblet squat","Kettlebell goblet squat"],"airsquat":["Bodyweight squat"],"lunge":["Split squat"],"legpress":["Leg press"],"legpresshigh":["Leg press, feet high"],"legpresslow":["Leg press, feet low"],"legext":["Leg extension"],"smithsquat":["Smith machine squat"],"legcurl":["Lying leg curl"],"calfraise":["Standing calf raise"],"lpcalf":["Leg press calf raise"],"inclinebb":["Incline barbell bench press"],"declinebb":["Decline barbell bench press"],"closegrip":["Close-grip bench press"],"pullover":["Dumbbell pullover"],"declinepush":["Decline push-up (feet on bench)"],"invrow":["Inverted row"],"straightpull":["Straight-arm cable pullover"],"goodmorning":["Barbell good morning"],"arnold":["Arnold press"],"cablelat":["Cable lateral raise"],"reversefly":["Reverse pec deck fly"],"bandfacepull":["Resistance band face pull"],"cableextrot":["Cable shoulder external rotation"],"bandextrot":["Resistance band shoulder external rotation"],"preacher":["Preacher curl"],"inclinecurl":["Incline dumbbell curl"],"concentration":["Concentration curl"],"kickback":["Dumbbell triceps kickback"],"declinecrunch":["Ab bench crunch"],"captainraise":["Captain’s chair knee raise"],"hangknee":["Hanging knee raise"],"rollout":["Kneeling ab wheel rollout"],"sidebend":["Dumbbell side bend"],"glutekick":["Cable glute kickback"],"bandlatpull":["Kneeling band lat pulldown"],"bandlegext":["Seated band leg extension"],"bandadduct":["Band hip adduction"],"bandabduct":["Standing mini-band hip abduction"],"bandbridge":["Mini-band glute bridge"],"bandfloorpress":["Band floor press"],"bandfly":["Band chest fly at the door"],"sissysquat":["Door-frame assisted sissy squat"],"jumpingjack":["Jumping jack"],"burpee":["Burpee"],"mountain":["Mountain climber"],"jumpsquat":["Jump squat"],"thruster":["Dumbbell thruster"],"wallpush":["Wall push-up"],"inclinepush":["Incline push-up"],"kneepush":["Knee push-up"],"widepush":["Wide push-up"],"archer":["Archer push-up"],"declinepike":["Feet-elevated pike push-up"],"superman":["Superman hold"],"ytw":["Prone Y-T-W raise"],"towelrow":["Door towel row"],"tablerow":["Under-table row"],"reversesnow":["Reverse snow angel"],"wallsit":["Wall sit"],"revlunge":["Reverse lunge"],"sidelunge":["Lateral lunge"],"copenhagen":["Copenhagen plank"],"copenhagenknee":["Short-lever Copenhagen plank"],"pistolbox":["Single-leg box squat"],"sllift":["Single-leg Romanian deadlift"],"glutebridge1":["Single-leg glute bridge"],"nordic":["Nordic curl"],"calf1":["Single-leg calf raise"],"deadbug":["Dead bug"],"birddog":["Bird dog"],"hollow":["Hollow hold"],"bicycle":["Bicycle crunch"],"plankup":["Plank up-down"],"chairdip":["Chair dip"],"towelcurl":["Towel curl"],"chestpressm":["Machine chest press"],"smithbench":["Smith machine bench press"],"cablelowfly":["Low-to-high cable crossover fly"],"leverrowm":["Chest-supported lever row"],"tbarrow":["T-bar row"],"assistpull":["Assisted pull-up"],"chestrowdb":["Chest-supported incline dumbbell row"],"shoulderpressm":["Machine shoulder press"],"smithohp":["Seated Smith machine press"],"assistdip":["Assisted dip"],"cableohext":["Overhead cable rope triceps extension"],"cablewood":["Cable woodchopper"],"pullthrough":["Cable pull-through"],"cablekickback":["Straight-leg cable glute kickback"],"abduction":["Hip abduction machine"],"adduction":["Hip adduction machine"],"cableadduct":["Standing cable hip adduction"],"hacksquat":["Hack squat"],"seatedcalf":["Seated calf raise"],"standcalf":["Standing machine calf raise"],"treadmill":["Treadmill"],"bike":["Stationary bike"],"rower":["Rowing machine"],"elliptical":["Elliptical"],"stairs":["Stair climber"]},"groups":{"chest":["Chest"],"back":["Back"],"shoulders":["Shoulders"],"biceps":["Biceps"],"triceps":["Triceps"],"forearms":["Forearms"],"abs":["Abs"],"glutes":["Glutes"],"quads":["Quads"],"hams":["Hamstrings"],"calves":["Calves"],"cardio":["Cardio"]},"muscles":{"chest":["Chest"],"delt_f":["Front delt"],"delt_s":["Side delt"],"delt_r":["Rear delt"],"biceps":["Biceps"],"triceps":["Triceps"],"forearms":["Forearms"],"abs":["Abs (rectus abdominis)"],"obliques":["Obliques"],"traps":["Traps"],"midback":["Rhomboids & mid-back"],"lats":["Lats"],"lowback":["Lower back (spinal erectors)"],"glutes":["Glutes"],"quads":["Quads"],"hams":["Hamstrings"],"calves":["Calves"],"adductors":["Hip adductors"],"hipflex":["Hip flexors"],"serratus":["Serratus anterior"],"cuff":["Rotator cuff"]}},"syn":{"ex":{"pushup":["press-up"],"diamond":["алмазные отжимания","diamond push-up","triangle push-up"],"dip":["брусья","parallel bar dip","chest dip"],"bbbench":["жим лёжа","бенч","бенч-пресс","bench press","bench","flat bench press"],"dbincline":["наклонный жим гантелей"],"smithincline":["наклонный жим в Смите","incline Smith press"],"inclinebb":["наклонный жим","жим на наклонной","incline bench press","incline bench"],"declinebb":["жим головой вниз","decline bench press","decline bench"],"dbfly":["dumbbell flye"],"pecdeck":["пек-дек","butterfly","machine fly"],"bbrow":["тяга штанги к поясу","barbell row"],"dbrow":["тяга гантели в наклоне","dumbbell row","single-arm dumbbell row"],"latpull":["вертикальная тяга","тяга верхнего блока к груди","lat pull-down"],"cablerow":["горизонтальная тяга","тяга нижнего блока","seated row","cable row","low row"],"hyper":["hyperextension"],"dbpress":["жим гантелей над головой","dumbbell shoulder press"],"ohp":["армейский жим","жим над головой","жим стоя","OHP","military press","standing press"],"latraise":["разведения в стороны","разведения гантелей в стороны","side raise","side lateral raise"],"facepull":["фейс-пул"],"bbcurl":["сгибание рук со штангой"],"dbcurl":["сгибание рук с гантелями"],"hammer":["молотки","хаммер"],"skull":["skull crusher","French press"],"pushdown":["трицепс на блоке","pressdown"],"ohext":["французский жим сидя","французский жим стоя"],"farmer":["фермерская прогулка","farmer’s walk"],"cablecrunch":["молитва"],"hipthrust":["хип-траст"],"kbswing":["свинг"],"kbswing1":["свинг одной рукой"],"kbtgu":["TGU","get-up"],"bulgarian":["болгарские сплит-приседания","Bulgarian squat","rear-foot-elevated split squat","RFESS"],"stepup":["степ-ап"],"rdl":["румынка","RDL"],"squat":["присед","squat","back squat"],"airsquat":["приседания без веса","air squat"],"lunge":["выпады на месте","static lunge"],"legcurl":["hamstring curl"],"invrow":["горизонтальные подтягивания","Australian pull-up","body row"],"straightpull":["straight-arm pulldown"],"goodmorning":["гуд морнинг"],"cablelat":["махи на нижнем блоке","cable side raise"],"reversefly":["обратная бабочка","rear delt fly"],"rollout":["ролик для пресса","ab wheel","ab roller"],"glutekick":["кикбэк"],"cablekickback":["кикбэк","cable kickback"],"jumpingjack":["джампинг джек","star jump"],"burpee":["бурпи"],"mountain":["альпинист"],"superman":["супермен"],"revlunge":["выпады назад"],"sidelunge":["выпады в сторону","side lunge"],"nordic":["нордические сгибания","Nordic hamstring curl"],"chestpressm":["жим в хаммере"],"leverrowm":["тяга в хаммере","machine row"],"cablewood":["wood chop"],"abduction":["абдуктор","abductor machine","hip abductor"],"adduction":["аддуктор","adductor machine","hip adductor"],"hacksquat":["гакк-приседания"],"treadmill":["бег","running"],"rower":["гребля","rowing","erg"],"elliptical":["орбитрек","эллипс","cross trainer"],"stairs":["stepper"]},"groups":{"chest":["грудные","pecs"],"shoulders":["дельты","delts","deltoids"],"forearms":["хват","grip"],"abs":["кор","core"],"glutes":["ягодичные"],"quads":["квадры","передняя поверхность бедра","quadriceps"],"hams":["задняя поверхность бедра"],"calves":["икроножные","calf"]},"muscles":{"obliques":["косые"],"lowback":["поясница"],"midback":["ромбовидные","rhomboids"],"adductors":["приводящие","adductors"],"serratus":["зубчатая","serratus"],"cuff":["ротаторы","ротаторная манжета"]}},"stop":["в","во","на","с","со","и","для","к","ко","по","из","от","у","за","упражнение","упражнения","упражнений","the","a","an","of","on","with","for","and","in","to","at","exercise","exercises"],"words":{"db":["dumbbell"],"bb":["barbell"],"kb":["kettlebell"]},"layout":{"en":"`qwertyuiop[]asdfghjkl;'zxcvbnm,./","ru":"ёйцукенгшщзхъфывапролджэячсмитьбю."}};window.PODHOD_LANG='ru';window.PODHOD_LOCALE={"dec":",","plural":"ru","dates":"ru","units":"kg"};
+window.PODHOD_VERSION='4.105.0';window.PODHOD_BUILD='4.105.0-a5850face5c2';window.PODHOD_RENDER={"skin":"41c62f8b22","skeleton":"040f915bc8","anatomy":"4b15dc31e6"};window.PODHOD_SEARCH={"alt":{"ex":{"pushup":["Push-up"],"diamond":["Close-grip push-up"],"dip":["Dip"],"bbbench":["Barbell bench press"],"dbbench":["Dumbbell bench press"],"dbincline":["Incline dumbbell press"],"smithincline":["Smith machine incline press"],"dbfly":["Dumbbell fly"],"cablefly":["Cable crossover fly"],"pecdeck":["Pec deck fly"],"pullup":["Pull-up"],"bbrow":["Bent-over row"],"dbrow":["One-arm dumbbell row"],"latpull":["Lat pulldown"],"latpullv":["V-handle lat pulldown"],"latpulluh":["Underhand lat pulldown"],"cablerow":["Seated cable row"],"cablerowwide":["Wide-grip seated cable row"],"deadlift":["Deadlift"],"hyper":["Back extension"],"shrug":["Dumbbell shrug"],"bandrow":["Seated band row"],"dbpress":["Seated dumbbell press"],"ohp":["Overhead press"],"latraise":["Dumbbell lateral raise"],"bandlatraise":["Band lateral raise"],"frontraise":["Dumbbell front raise"],"facepull":["Cable face pull"],"pikepush":["Pike push-up"],"bbcurl":["Barbell biceps curl"],"dbcurl":["Dumbbell biceps curl"],"hammer":["Hammer curl"],"cablecurl":["Cable curl"],"ropecurl":["Rope cable curl"],"bandcurl":["Resistance band curl"],"chinup":["Chin-up"],"skull":["Lying triceps extension"],"pushdown":["Cable triceps pushdown"],"ropepushdown":["Rope triceps pushdown"],"bandpushdown":["Resistance band pushdown"],"benchdip":["Bench dip"],"ohext":["Overhead dumbbell triceps extension"],"wristcurl":["Barbell wrist curl"],"farmer":["Farmer’s carry","Kettlebell farmer’s carry"],"hang":["Dead hang"],"crunch":["Crunch"],"plank":["Forearm plank"],"sideplank":["Side plank"],"legraise":["Hanging leg raise"],"lyinglegraise":["Lying leg raise"],"cablecrunch":["Kneeling cable crunch"],"hipthrust":["Barbell hip thrust"],"bridge":["Glute bridge"],"kbswing":["Kettlebell swing"],"kbdeadlift":["Kettlebell deadlift"],"kbswing1":["One-arm kettlebell swing"],"kbclean":["Kettlebell clean"],"kbpress":["One-arm standing kettlebell press"],"kbfrontsquat":["Kettlebell front squat"],"kbrow":["One-arm bent-over kettlebell row"],"kbfloorpress":["Kettlebell floor press"],"kbsnatch":["Kettlebell snatch"],"kbsllift":["Single-leg kettlebell Romanian deadlift"],"kbwindmill":["Kettlebell windmill"],"kbhalo":["Kettlebell halo"],"kbtgu":["Kettlebell Turkish get-up"],"bulgarian":["Bulgarian split squat"],"stepup":["Step-up"],"rdl":["Romanian deadlift","Barbell Romanian deadlift","Dumbbell Romanian deadlift"],"squat":["Barbell squat"],"goblet":["Goblet squat","Kettlebell goblet squat"],"airsquat":["Bodyweight squat"],"lunge":["Split squat"],"legpress":["Leg press"],"legpresshigh":["Leg press, feet high"],"legpresslow":["Leg press, feet low"],"legext":["Leg extension"],"smithsquat":["Smith machine squat"],"legcurl":["Lying leg curl"],"calfraise":["Standing calf raise"],"lpcalf":["Leg press calf raise"],"inclinebb":["Incline barbell bench press"],"declinebb":["Decline barbell bench press"],"closegrip":["Close-grip bench press"],"pullover":["Dumbbell pullover"],"declinepush":["Decline push-up (feet on bench)"],"invrow":["Inverted row"],"straightpull":["Straight-arm cable pullover"],"goodmorning":["Barbell good morning"],"arnold":["Arnold press"],"cablelat":["Cable lateral raise"],"reversefly":["Reverse pec deck fly"],"bandfacepull":["Resistance band face pull"],"cableextrot":["Cable shoulder external rotation"],"bandextrot":["Resistance band shoulder external rotation"],"preacher":["Preacher curl"],"inclinecurl":["Incline dumbbell curl"],"concentration":["Concentration curl"],"kickback":["Dumbbell triceps kickback"],"declinecrunch":["Ab bench crunch"],"captainraise":["Captain’s chair knee raise"],"hangknee":["Hanging knee raise"],"rollout":["Kneeling ab wheel rollout"],"sidebend":["Dumbbell side bend"],"glutekick":["Cable glute kickback"],"bandlatpull":["Kneeling band lat pulldown"],"bandlegext":["Seated band leg extension"],"bandadduct":["Band hip adduction"],"bandabduct":["Standing mini-band hip abduction"],"bandbridge":["Mini-band glute bridge"],"bandfloorpress":["Band floor press"],"bandfly":["Band chest fly at the door"],"sissysquat":["Door-frame assisted sissy squat"],"jumpingjack":["Jumping jack"],"burpee":["Burpee"],"mountain":["Mountain climber"],"jumpsquat":["Jump squat"],"thruster":["Dumbbell thruster"],"wallpush":["Wall push-up"],"inclinepush":["Incline push-up"],"kneepush":["Knee push-up"],"widepush":["Wide push-up"],"archer":["Archer push-up"],"declinepike":["Feet-elevated pike push-up"],"superman":["Superman hold"],"ytw":["Prone Y-T-W raise"],"towelrow":["Door towel row"],"tablerow":["Under-table row"],"reversesnow":["Reverse snow angel"],"wallsit":["Wall sit"],"revlunge":["Reverse lunge"],"sidelunge":["Lateral lunge"],"copenhagen":["Copenhagen plank"],"copenhagenknee":["Short-lever Copenhagen plank"],"pistolbox":["Single-leg box squat"],"sllift":["Single-leg Romanian deadlift"],"glutebridge1":["Single-leg glute bridge"],"nordic":["Nordic curl"],"calf1":["Single-leg calf raise"],"deadbug":["Dead bug"],"birddog":["Bird dog"],"hollow":["Hollow hold"],"bicycle":["Bicycle crunch"],"plankup":["Plank up-down"],"chairdip":["Chair dip"],"towelcurl":["Towel curl"],"chestpressm":["Machine chest press"],"smithbench":["Smith machine bench press"],"cablelowfly":["Low-to-high cable crossover fly"],"leverrowm":["Chest-supported lever row"],"tbarrow":["T-bar row"],"assistpull":["Assisted pull-up"],"chestrowdb":["Chest-supported incline dumbbell row"],"shoulderpressm":["Machine shoulder press"],"smithohp":["Seated Smith machine press"],"assistdip":["Assisted dip"],"cableohext":["Overhead cable rope triceps extension"],"cablewood":["Cable woodchopper"],"pullthrough":["Cable pull-through"],"cablekickback":["Straight-leg cable glute kickback"],"abduction":["Hip abduction machine"],"adduction":["Hip adduction machine"],"cableadduct":["Standing cable hip adduction"],"hacksquat":["Hack squat"],"seatedcalf":["Seated calf raise"],"standcalf":["Standing machine calf raise"],"treadmill":["Treadmill"],"bike":["Stationary bike"],"rower":["Rowing machine"],"elliptical":["Elliptical"],"stairs":["Stair climber"]},"groups":{"chest":["Chest"],"back":["Back"],"shoulders":["Shoulders"],"biceps":["Biceps"],"triceps":["Triceps"],"forearms":["Forearms"],"abs":["Abs"],"glutes":["Glutes"],"quads":["Quads"],"hams":["Hamstrings"],"calves":["Calves"],"cardio":["Cardio"]},"muscles":{"chest":["Chest"],"delt_f":["Front delt"],"delt_s":["Side delt"],"delt_r":["Rear delt"],"biceps":["Biceps"],"triceps":["Triceps"],"forearms":["Forearms"],"abs":["Abs (rectus abdominis)"],"obliques":["Obliques"],"traps":["Traps"],"midback":["Rhomboids & mid-back"],"lats":["Lats"],"lowback":["Lower back (spinal erectors)"],"glutes":["Glutes"],"quads":["Quads"],"hams":["Hamstrings"],"calves":["Calves"],"adductors":["Hip adductors"],"hipflex":["Hip flexors"],"serratus":["Serratus anterior"],"cuff":["Rotator cuff"]}},"syn":{"ex":{"pushup":["press-up"],"diamond":["алмазные отжимания","diamond push-up","triangle push-up"],"dip":["брусья","parallel bar dip","chest dip"],"bbbench":["жим лёжа","бенч","бенч-пресс","bench press","bench","flat bench press"],"dbincline":["наклонный жим гантелей"],"smithincline":["наклонный жим в Смите","incline Smith press"],"inclinebb":["наклонный жим","жим на наклонной","incline bench press","incline bench"],"declinebb":["жим головой вниз","decline bench press","decline bench"],"dbfly":["dumbbell flye"],"pecdeck":["пек-дек","butterfly","machine fly"],"bbrow":["тяга штанги к поясу","barbell row"],"dbrow":["тяга гантели в наклоне","dumbbell row","single-arm dumbbell row"],"latpull":["вертикальная тяга","тяга верхнего блока к груди","lat pull-down"],"cablerow":["горизонтальная тяга","тяга нижнего блока","seated row","cable row","low row"],"hyper":["hyperextension"],"dbpress":["жим гантелей над головой","dumbbell shoulder press"],"ohp":["армейский жим","жим над головой","жим стоя","OHP","military press","standing press"],"latraise":["разведения в стороны","разведения гантелей в стороны","side raise","side lateral raise"],"facepull":["фейс-пул"],"bbcurl":["сгибание рук со штангой"],"dbcurl":["сгибание рук с гантелями"],"hammer":["молотки","хаммер"],"skull":["skull crusher","French press"],"pushdown":["трицепс на блоке","pressdown"],"ohext":["французский жим сидя","французский жим стоя"],"farmer":["фермерская прогулка","farmer’s walk"],"cablecrunch":["молитва"],"hipthrust":["хип-траст"],"kbswing":["свинг"],"kbswing1":["свинг одной рукой"],"kbtgu":["TGU","get-up"],"bulgarian":["болгарские сплит-приседания","Bulgarian squat","rear-foot-elevated split squat","RFESS"],"stepup":["степ-ап"],"rdl":["румынка","RDL"],"squat":["присед","squat","back squat"],"airsquat":["приседания без веса","air squat"],"lunge":["выпады на месте","static lunge"],"legcurl":["hamstring curl"],"invrow":["горизонтальные подтягивания","Australian pull-up","body row"],"straightpull":["straight-arm pulldown"],"goodmorning":["гуд морнинг"],"cablelat":["махи на нижнем блоке","cable side raise"],"reversefly":["обратная бабочка","rear delt fly"],"rollout":["ролик для пресса","ab wheel","ab roller"],"glutekick":["кикбэк"],"cablekickback":["кикбэк","cable kickback"],"jumpingjack":["джампинг джек","star jump"],"burpee":["бурпи"],"mountain":["альпинист"],"superman":["супермен"],"revlunge":["выпады назад"],"sidelunge":["выпады в сторону","side lunge"],"nordic":["нордические сгибания","Nordic hamstring curl"],"chestpressm":["жим в хаммере"],"leverrowm":["тяга в хаммере","machine row"],"cablewood":["wood chop"],"abduction":["абдуктор","abductor machine","hip abductor"],"adduction":["аддуктор","adductor machine","hip adductor"],"hacksquat":["гакк-приседания"],"treadmill":["бег","running"],"rower":["гребля","rowing","erg"],"elliptical":["орбитрек","эллипс","cross trainer"],"stairs":["stepper"]},"groups":{"chest":["грудные","pecs"],"shoulders":["дельты","delts","deltoids"],"forearms":["хват","grip"],"abs":["кор","core"],"glutes":["ягодичные"],"quads":["квадры","передняя поверхность бедра","quadriceps"],"hams":["задняя поверхность бедра"],"calves":["икроножные","calf"]},"muscles":{"obliques":["косые"],"lowback":["поясница"],"midback":["ромбовидные","rhomboids"],"adductors":["приводящие","adductors"],"serratus":["зубчатая","serratus"],"cuff":["ротаторы","ротаторная манжета"]}},"stop":["в","во","на","с","со","и","для","к","ко","по","из","от","у","за","упражнение","упражнения","упражнений","the","a","an","of","on","with","for","and","in","to","at","exercise","exercises"],"words":{"db":["dumbbell"],"bb":["barbell"],"kb":["kettlebell"]},"layout":{"en":"`qwertyuiop[]asdfghjkl;'zxcvbnm,./","ru":"ёйцукенгшщзхъфывапролджэячсмитьбю."}};window.PODHOD_LANG='ru';window.PODHOD_LOCALE={"dec":",","plural":"ru","dates":"ru","units":"kg"};
 /* ===================== SVG-ФИГУРА: общие помощники ===================== */
 const D2R = Math.PI / 180;
 const SVGNS = 'http://www.w3.org/2000/svg';
@@ -598,7 +598,7 @@ const EX = [
  err:['Прогиб в пояснице', 'Упор на носки вместо пяток'],
  breath:'Выдох при подъёме, вдох при опускании.',
  anim:{}},
-{id:'kbswing', name:'Махи гирей', eq:[['kb']], g:'glutes', pri:['glutes', 'hams'], sec:['lowback', 'delt_f', 'forearms', 'lats', 'obliques'], type:'c', lvl:2, imp:1, sides:'both',
+{id:'kbswing', name:'Махи гирей', eq:[['kb']], g:'glutes', pri:['glutes', 'hams'], sec:['lowback', 'delt_f', 'forearms', 'lats', 'obliques'], type:'c', lvl:2, dose:'ballistic', imp:1, sides:'both',
  tech:['Стопы шире плеч, гиря на полу перед вами. Отведите таз назад, возьмите гирю и забросьте её между ног.',
    'Мощно разогните таз — гиря по инерции взлетает вперёд до уровня груди.',
    'Руки только направляют гирю. Наверху тело прямое, ягодицы сжаты.',
@@ -606,7 +606,7 @@ const EX = [
  err:['Приседание вместо наклона', 'Подъём гири руками', 'Округление спины'],
  breath:'Резкий выдох на разгибании, вдох на замахе.',
  anim:{timing:[.7, .08, 1.2, .12]}},
-{id:'kbdeadlift', name:'Становая тяга с гирей', eq:[['kb']], g:'glutes', pri:['glutes', 'hams'], sec:['lowback', 'quads', 'forearms', 'traps', 'lats'], type:'c', lvl:1, imp:1, sides:'both',
+{id:'kbdeadlift', name:'Становая тяга с гирей', eq:[['kb']], g:'glutes', pri:['glutes', 'hams'], sec:['lowback', 'quads', 'forearms', 'traps', 'lats'], type:'c', lvl:1, dose:'mod', imp:1, sides:'both',
  tech:['Стойка «сумо»: стопы заметно шире плеч, носки слегка врозь. Гиря стоит на полу между стоп, под серединой стопы.',
    'Отведите таз назад, спина прямая, плечи выше таза, таз выше коленей. Возьмитесь двумя руками за рукоять.',
    'Упритесь стопами в пол и встаньте, разгибая таз и колени одновременно. Руки прямые, гиря идёт вдоль ног.',
@@ -614,7 +614,7 @@ const EX = [
  err:['Округление спины', 'Приседание вместо наклона от таза', 'Гиря стоит далеко впереди стоп', 'Переразгибание поясницы наверху'],
  breath:'Вдох и напряжение живота внизу, выдох в верхней точке.',
  anim:{}},
-{id:'kbswing1', name:'Махи гирей одной рукой', eq:[['kb']], g:'glutes', pri:['glutes', 'hams'], sec:['lowback', 'delt_f', 'forearms', 'lats', 'obliques'], type:'c', lvl:2, uni:true, imp:1, sides:'one',
+{id:'kbswing1', name:'Махи гирей одной рукой', eq:[['kb']], g:'glutes', pri:['glutes', 'hams'], sec:['lowback', 'delt_f', 'forearms', 'lats', 'obliques'], type:'c', lvl:2, dose:'ballistic', uni:true, imp:1, sides:'one',
  tech:['Стопы шире плеч, гиря на полу перед вами. Отведите таз назад, возьмите гирю одной рукой хватом сверху и забросьте её между ног.',
    'Мощно разогните таз — гиря по инерции взлетает до уровня груди. Рука прямая и только направляет гирю.',
    'Плечи остаются развёрнутыми ровно: гиря не разворачивает корпус. Свободная рука идёт рядом с рабочей.',
@@ -622,7 +622,7 @@ const EX = [
  err:['Разворот плеч вслед за гирей', 'Приседание вместо наклона', 'Подъём гири рукой', 'Округление спины'],
  breath:'Резкий выдох на разгибании, вдох на замахе.',
  anim:{timing:[.7, .08, 1.2, .12]}},
-{id:'kbclean', name:'Взятие гири на грудь', eq:[['kb']], g:'glutes', pri:['glutes', 'hams'], sec:['lowback', 'forearms', 'biceps', 'traps', 'obliques'], type:'c', lvl:2, uni:true, imp:1, sides:'one',
+{id:'kbclean', name:'Взятие гири на грудь', eq:[['kb']], g:'glutes', pri:['glutes', 'hams'], sec:['lowback', 'forearms', 'biceps', 'traps', 'obliques'], type:'c', lvl:2, dose:'ballistic', uni:true, imp:1, sides:'one',
  tech:['Начало — как в махах одной рукой: замах между ног, таз отведён назад, спина прямая.',
    'Разогните таз. Когда гиря поднимется до пояса, согните локоть и держите его у рёбер: гиря идёт вплотную к телу.',
    'Проведите кисть вокруг гири — она мягко ложится на тыл предплечья, а не бьёт по нему.',
@@ -665,7 +665,7 @@ const EX = [
 /* Рывок гири: мышцы — McGill и Marshall, 2012 (JSCR 26(1):16–27, таблица 1, «swing to snatch», пик % MVC): большая ягодичная
    58, разгибатели спины 49–68, внутренняя косая 53, широчайшая 72 (другая сторона — 25), двуглавая бедра 30. Трапецию в этом
    исследовании не измеряли — она в списке по анатомии (подъём и поворот лопатки при выпрямлении руки над головой). */
-{id:'kbsnatch', name:'Рывок гири', eq:[['kb']], g:'glutes', pri:['glutes', 'hams'], sec:['lowback', 'lats', 'delt_f', 'traps', 'forearms', 'obliques'], type:'c', lvl:3, uni:true, imp:1, sides:'one',
+{id:'kbsnatch', name:'Рывок гири', eq:[['kb']], g:'glutes', pri:['glutes', 'hams'], sec:['lowback', 'lats', 'delt_f', 'traps', 'forearms', 'obliques'], type:'c', lvl:3, dose:'ballistic', uni:true, imp:1, sides:'one',
  tech:['Начало — как в махах одной рукой: замах между ног, таз отведён назад, спина прямая.',
    'Мощно разогните таз. Когда гиря поднимется до пояса, ведите локоть вверх и назад: гиря идёт вплотную к телу.',
    'На уровне головы проведите кисть вокруг гири и выпрямите руку вверх — гиря мягко ложится на тыл предплечья.',
@@ -681,7 +681,7 @@ const EX = [
  err:['Раскрытие таза вбок', 'Округление спины', 'Сгибание опорного колена, как в приседе', 'Гиря уходит далеко вперёд от опорной ноги'],
  breath:'Вдох при наклоне, выдох при подъёме.',
  anim:{}},
-{id:'kbwindmill', name:'Мельница с гирей', eq:[['kb']], g:'abs', pri:['obliques'], sec:['glutes', 'hams', 'delt_s', 'cuff', 'lowback'], type:'c', lvl:3, uni:true, imp:1, sides:'one',
+{id:'kbwindmill', name:'Мельница с гирей', eq:[['kb']], g:'abs', pri:['obliques'], sec:['glutes', 'hams', 'delt_s', 'cuff', 'lowback'], type:'c', lvl:3, dose:'ctrl', doseReps:'3–5', repSec:6, uni:true, imp:1, sides:'one',
  tech:['Гиря над головой на прямой руке. Стопы шире плеч, носки развёрнуты на 45° в сторону от гири.',
    'Смотрите на гирю. Отведите таз назад и в сторону гири и наклоняйтесь с прямой спиной к противоположной ноге.',
    'Свободная рука скользит вдоль ноги к голени. Рука с гирей остаётся вертикальной, грудь разворачивается к гире.',
@@ -691,7 +691,7 @@ const EX = [
  anim:{}},
 /* «Гало»: мышцы — StrengthLog «How to Do the Kettlebell Halo» (основные — передняя, средняя и задняя дельтовидные;
    вспомогательные — трапециевидная, трицепс, пресс и косые); техника — StrengthLog и ACE «Halo». */
-{id:'kbhalo', name:'Гало с гирей', eq:[['kb']], g:'shoulders', pri:['delt_f', 'delt_s', 'delt_r'], sec:['traps', 'triceps', 'abs', 'obliques'], type:'c', lvl:2, imp:1, sides:'both',
+{id:'kbhalo', name:'Гало с гирей', eq:[['kb']], g:'shoulders', pri:['delt_f', 'delt_s', 'delt_r'], sec:['traps', 'triceps', 'abs', 'obliques'], type:'c', lvl:2, dose:'ctrl', imp:1, sides:'both',
  tech:['Стопы на ширине плеч. Возьмите гирю за рога дном вверх и держите перед грудью.',
    'Ведите гирю по кругу вокруг головы вплотную к ней: к правому уху, за голову, к левому уху и обратно к груди.',
    'За головой шар опускается к верху спины, локти смотрят вверх. Корпус и голова неподвижны, рёбра не раскрываются.',
@@ -705,7 +705,7 @@ const EX = [
    Mov Ther 23(1):23–31; по реферату — 8 групп мышц плечевого сустава с обеих сторон, наибольшая нагрузка — при выходе на
    локоть и при проведении ноги; мышцы опорной руки работают, пока на неё опираются); корпус и ноги — пересказ ACE
    (McCall: глубокие мышцы корпуса и косые, ягодичные, задняя поверхность бедра, квадрицепс при вставании), не ЭМГ. */
-{id:'kbtgu', name:'Турецкий подъём с гирей', eq:[['kb']], g:'shoulders', pri:['delt_f', 'delt_s', 'cuff'], sec:['triceps', 'traps', 'serratus', 'obliques', 'abs', 'glutes', 'quads'], type:'c', lvl:3, uni:true, imp:1, sides:'one',
+{id:'kbtgu', name:'Турецкий подъём с гирей', eq:[['kb']], g:'shoulders', pri:['delt_f', 'delt_s', 'cuff'], sec:['triceps', 'traps', 'serratus', 'obliques', 'abs', 'glutes', 'quads'], type:'c', lvl:3, dose:'ctrl', doseReps:'1–3', repSec:25, uni:true, imp:1, sides:'one',
  tech:['Лягте на спину, гиря выжата над плечом на прямой руке. Нога со стороны гири согнута, стопа на полу, другая нога прямая — ноги буквой «V». Свободная рука на полу под 45° к корпусу.',
    'Поднимитесь на локоть «диагональным скручиванием»: плечо тянется к противоположному бедру. Выпрямите руку и сядьте на ладонь, кисть чуть разверните назад.',
    'Поднимите таз, проведите прямую ногу назад под себя и поставьте колено на пол, пальцы подогнуты. Выпрямите корпус и оторвите ладонь от пола.',
@@ -747,7 +747,7 @@ const EX = [
  breath:'Вдох и задержка на опускании, выдох после прохождения нижней трети подъёма.',
  note:'Работайте в силовой раме с выставленными страховочными упорами.',
  anim:{}},
-{id:'goblet', name:'Гоблет-приседания', nameV:{kb:'Гоблет-приседания с гирей'}, eq:[['db', 'kb']], g:'quads', pri:['quads', 'glutes'], sec:['abs', 'lowback', 'hams', 'adductors'], type:'c', lvl:1, imp:1, sides:'both',
+{id:'goblet', name:'Гоблет-приседания', nameV:{kb:'Гоблет-приседания с гирей'}, eq:[['db', 'kb']], g:'quads', pri:['quads', 'glutes'], sec:['abs', 'lowback', 'hams', 'adductors'], type:'c', lvl:1, dose:'mod', imp:1, sides:'both',
  tech:['Держите гантель вертикально у груди, ладонями под верхним диском (гирю — за рожки), локти направлены вниз.',
    'Стопы чуть шире плеч. Приседайте, опуская таз между коленями; корпус вертикальный.',
    'Опуститесь как можно ниже с прямой спиной и поднимитесь.'],
@@ -894,7 +894,7 @@ EX.push(
  err:['Сгибание локтей — получается тяга вниз', 'Раскачка корпусом', 'Подъём плеч к ушам'],
  breath:'Выдох при опускании рукояти, вдох при возврате.',
  anim:{}},
-{id:'goodmorning', name:'Наклоны со штангой на плечах', eq:[['bb']], g:'hams', pri:['hams', 'lowback'], sec:['glutes'], type:'c', lvl:2,
+{id:'goodmorning', name:'Наклоны со штангой на плечах', eq:[['bb']], g:'hams', pri:['hams', 'lowback'], sec:['glutes'], type:'c', lvl:2, dose:'mod',
  tech:['Штанга на трапециях, как в приседании. Стопы на ширине таза, колени слегка согнуты.',
    'Отводите таз назад и наклоняйтесь с прямой спиной, пока корпус не станет почти параллелен полу.',
    'Поднимитесь, подавая таз вперёд.'],
@@ -904,7 +904,7 @@ EX.push(
  anim:{}},
 
 /* ===== ПЛЕЧИ ===== */
-{id:'arnold', name:'Жим Арнольда', eq:[['db'], ['incline', 'bench']], g:'shoulders', pri:['delt_f', 'delt_s'], sec:['triceps', 'traps', 'serratus'], type:'c', lvl:2, imp:2, sides:'both',
+{id:'arnold', name:'Жим Арнольда', eq:[['db'], ['incline', 'bench']], g:'shoulders', pri:['delt_f', 'delt_s'], sec:['triceps', 'traps', 'serratus'], type:'c', lvl:2, dose:'mod', imp:2, sides:'both',
  tech:['Сядьте на скамью со спинкой. Гантели у верхней части груди, ладони к себе, локти перед корпусом.',
    'Начиная жим, разводите локти в стороны и разворачивайте кисти ладонями вперёд.',
    'Выжмите гантели над головой. Опустите их, выполняя движение в обратном порядке.'],
@@ -936,7 +936,7 @@ EX.push(
    ЭМГ: в упражнениях на наружную ротацию основную работу делают подостная и малая круглая, помогает задняя дельта
    (Reinold et al., J Orthop Sports Phys Ther 2004; 34(7):385–394; doi:10.2519/jospt.2004.34.7.385 — наружная ротация
    в разных положениях плеча, в том числе стоя с локтем у бока). Работает правая рука (09d, CATALOG_LATERALITY). */
-{id:'cableextrot', name:'Вращение плеча наружу на блоке', eq:[['cable']], g:'shoulders', pri:['cuff'], sec:['delt_r'], type:'i', lvl:1, uni:true,
+{id:'cableextrot', name:'Вращение плеча наружу на блоке', eq:[['cable']], g:'shoulders', pri:['cuff'], sec:['delt_r'], type:'i', lvl:1, dose:'ctrl', uni:true,
  tech:['Блок на высоте локтя. Встаньте боком к стойке, рукоять в дальней от неё руке; между локтем и боком — свёрнутое полотенце.',
    'Локоть согнут под 90° и прижат к валику. Поворачивайте предплечье от живота наружу, как дверь на петле.',
    'Верните медленно. Корпус не поворачивается, кисть — продолжение предплечья. Затем смените сторону.'],
@@ -944,7 +944,7 @@ EX.push(
  breath:'Выдох при повороте наружу, вдох при возврате.',
  note:'Манжета — небольшие мышцы: берите лёгкий вес на 12–20 повторов без боли.',
  anim:{}},
-{id:'bandextrot', name:'Вращение плеча наружу с эспандером', eq:[['band']], g:'shoulders', pri:['cuff'], sec:['delt_r'], type:'i', lvl:1, uni:true,
+{id:'bandextrot', name:'Вращение плеча наружу с эспандером', eq:[['band']], g:'shoulders', pri:['cuff'], sec:['delt_r'], type:'i', lvl:1, dose:'ctrl', uni:true,
  tech:['Закрепите ленту на уровне локтя — в притворе двери или на стойке. Встаньте боком, конец ленты в дальней руке; между локтем и боком — свёрнутое полотенце.',
    'Локоть согнут под 90° и прижат к валику. Поворачивайте предплечье от живота наружу.',
    'Верните медленно, не давая ленте дёрнуть руку. Затем смените сторону.'],
@@ -1012,7 +1012,7 @@ EX.push(
 /* уровень 3: выкатывание с колен — упражнение продвинутого уровня (ACE Exercise Library, «Roll-out», Advanced); сжатие
    позвоночника выше, чем в скручиваниях, при нарушениях со стороны позвоночника может не подходить (Youdas et al. 2008,
    JSCR 22(6):1939–1946). Новичку и в бережном режиме не подбирается */
-{id:'rollout', name:'Выкатывание ролика с колен', eq:[['abwheel']], g:'abs', pri:['abs'], sec:['obliques', 'lats', 'delt_f'], type:'c', lvl:3,
+{id:'rollout', name:'Выкатывание ролика с колен', eq:[['abwheel']], g:'abs', pri:['abs'], sec:['obliques', 'lats', 'delt_f'], type:'c', lvl:3, dose:'ctrl',
  tech:['Встаньте на колени, ролик под плечами на прямых руках. Напрягите пресс и ягодицы, поясница слегка округлена.',
    'Катите ролик вперёд, вытягивая тело, пока поясница остаётся ровной.',
    'Вернитесь в исходное положение усилием пресса, а не рук.'],
@@ -1246,12 +1246,12 @@ EX.push(
  anim:{}},
 
 /* --- спина без турника --- */
-{id:'superman', name:'Лодочка', eq:[], g:'back', pri:['lowback'], sec:['glutes', 'delt_r', 'midback', 'hams'], type:'i', lvl:1,
+{id:'superman', name:'Лодочка', eq:[], g:'back', pri:['lowback'], sec:['glutes', 'delt_r', 'midback', 'hams'], type:'i', lvl:1, dose:'ctrl',
  tech:['Лягте на живот, руки вытянуты вперёд, носки оттянуты.', 'Одновременно поднимите грудь, руки и ноги на несколько сантиметров, взгляд в пол.', 'Задержитесь на 1–2 секунды и опуститесь.'],
  err:['Запрокидывание головы', 'Рывок', 'Задержка дыхания'],
  breath:'Выдох на подъёме, вдох при опускании.',
  anim:{}},
-{id:'ytw', name:'Разведения лёжа «Y-T-W»', eq:[], g:'back', pri:['midback', 'delt_r', 'cuff'], sec:['traps', 'lowback', 'delt_s'], type:'i', lvl:1,
+{id:'ytw', name:'Разведения лёжа «Y-T-W»', eq:[], g:'back', pri:['midback', 'delt_r', 'cuff'], sec:['traps', 'lowback', 'delt_s'], type:'i', lvl:1, dose:'ctrl',
  tech:['Лягте на живот, лоб на полотенце. Поднимите прямые руки вперёд-в стороны буквой Y, большие пальцы вверх.', 'Опустите, затем поднимите руки точно в стороны (T), затем согните локти под 90° и поднимите (W).', 'Три положения — одно повторение. Лопатки сводите в каждом.'],
  err:['Подъём корпуса вместо рук', 'Плечи поднимаются к ушам', 'Рывки'],
  breath:'Выдох на подъёме рук, вдох при опускании.',
@@ -1268,7 +1268,7 @@ EX.push(
  breath:'Выдох при тяге, вдох при опускании.',
  note:'Стол должен выдерживать ваш вес; край — без острых кромок.',
  anim:{}},
-{id:'reversesnow', name:'Обратные «снежные ангелы»', eq:[], g:'shoulders', pri:['delt_r', 'midback'], sec:['traps'], type:'i', lvl:1,
+{id:'reversesnow', name:'Обратные «снежные ангелы»', eq:[], g:'shoulders', pri:['delt_r', 'midback'], sec:['traps'], type:'i', lvl:1, dose:'ctrl',
  tech:['Лягте на живот, руки вдоль тела ладонями вниз, грудь слегка приподнята.', 'Медленно ведите прямые руки по дуге через стороны вверх над головой, не касаясь пола.', 'Верните по той же дуге. Лопатки опущены всё время.'],
  err:['Плечи к ушам', 'Руки касаются пола', 'Подъём корпуса рывком'],
  breath:'Ровное дыхание, без задержек.',
@@ -1298,7 +1298,7 @@ EX.push(
    Scand J Med Sci Sports 2016; 26(11):1334–1342; doi:10.1111/sms.12585). Опора коленом (короткий рычаг) — облегчённые
    ступени программ на приводящие (Polglass et al., BMJ Open Sport Exerc Med 2019; 5(1):e000570; doi:10.1136/bmjsem-2019-000570).
    Приводящие работают на обеих ногах, поэтому без деления по сторонам (09d, CATALOG_LATERALITY); косые — помощники. */
-{id:'copenhagen', name:'Копенгагенская планка', eq:[['bench']], g:'quads', pri:['adductors'], sec:['obliques'], type:'i', lvl:3, uni:true,
+{id:'copenhagen', name:'Копенгагенская планка', eq:[['bench']], g:'quads', pri:['adductors'], sec:['obliques'], type:'i', lvl:3, dose:'ctrl', uni:true,
  tech:['Лягте на бок, упор на предплечье, локоть под плечом. Верхнюю ногу положите на скамью внутренней стороной голеностопа, нижняя — под скамьёй.',
    'Поднимите таз до прямой линии от плеч до стоп и подтяните нижнюю ногу к скамье снизу.',
    'Опустите таз примерно наполовину, пока нижняя стопа не коснётся пола, и снова поднимитесь. Затем смените сторону.'],
@@ -1306,7 +1306,7 @@ EX.push(
  breath:'Выдох при подъёме, вдох при опускании.',
  note:'Опора у голеностопа — длинный рычаг: нагрузка на приводящие и на колено высокая. В первую неделю — 3–5 повторов на сторону, дальше прибавляйте понемногу. Если колено беспокоит или упражнение не получается — опора коленом.',
  anim:{}},
-{id:'copenhagenknee', name:'Копенгагенская планка с опорой коленом', eq:[['bench']], g:'quads', pri:['adductors'], sec:['obliques'], type:'i', lvl:2, uni:true,
+{id:'copenhagenknee', name:'Копенгагенская планка с опорой коленом', eq:[['bench']], g:'quads', pri:['adductors'], sec:['obliques'], type:'i', lvl:2, dose:'ctrl', uni:true,
  tech:['Лягте на бок, упор на предплечье, локоть под плечом. Верхнюю ногу согните и положите на скамью внутренней стороной колена и голени, нижнюю согните так же, колено на полу под скамьёй.',
    'Поднимите таз до прямой линии от плеч до колена и подтяните согнутую нижнюю ногу к скамье снизу.',
    'Опустите таз примерно наполовину, пока нижнее колено не коснётся пола, и снова поднимитесь. Затем смените сторону.'],
@@ -1342,12 +1342,12 @@ EX.push(
  anim:{}},
 
 /* --- пресс --- */
-{id:'deadbug', name:'«Мёртвый жук»', eq:[], g:'abs', pri:['abs'], sec:['obliques'], type:'i', lvl:1,
+{id:'deadbug', name:'«Мёртвый жук»', eq:[], g:'abs', pri:['abs'], sec:['obliques'], type:'i', lvl:1, dose:'ctrl',
  tech:['Лёжа на спине, руки вверх, бёдра вертикально, колени под 90°, поясница прижата.', 'Медленно опустите правую руку за голову и выпрямите левую ногу к полу, не отрывая поясницу.', 'Вернитесь и повторите на другую сторону.'],
  err:['Отрыв поясницы от пола', 'Быстрый темп', 'Задержка дыхания'],
  breath:'Выдох при разгибании, вдох при возврате.',
  anim:{}},
-{id:'birddog', name:'«Птица-собака»', eq:[], g:'abs', pri:['lowback', 'glutes'], sec:['abs', 'delt_f', 'obliques'], type:'i', lvl:1,
+{id:'birddog', name:'«Птица-собака»', eq:[], g:'abs', pri:['lowback', 'glutes'], sec:['abs', 'delt_f', 'obliques'], type:'i', lvl:1, dose:'ctrl',
  tech:['Встаньте на четвереньки, ладони под плечами, колени под тазом.', 'Одновременно вытяните правую руку вперёд и левую ногу назад до линии корпуса.', 'Задержитесь на 2 секунды, вернитесь и смените сторону. Таз не поворачивается.'],
  err:['Прогиб поясницы при подъёме ноги', 'Разворот таза', 'Нога выше корпуса'],
  breath:'Ровное дыхание.',
@@ -1362,7 +1362,7 @@ EX.push(
  err:['Тяга головы руками', 'Слишком быстро — работают сгибатели бедра', 'Поясница отрывается'],
  breath:'Выдох на скручивании.',
  anim:{period:1800}},
-{id:'plankup', name:'Планка с подъёмом на руки', eq:[], g:'abs', pri:['abs', 'triceps'], sec:['delt_f', 'chest'], type:'c', lvl:2,
+{id:'plankup', name:'Планка с подъёмом на руки', eq:[], g:'abs', pri:['abs', 'triceps'], sec:['delt_f', 'chest'], type:'c', lvl:2, dose:'ctrl',
  tech:['Из планки на предплечьях поставьте одну ладонь, затем вторую, выпрямив руки.', 'Опуститесь обратно на предплечья в том же порядке.', 'Таз не раскачивается; меняйте ведущую руку каждое повторение.'],
  err:['Раскачка таза', 'Провисание поясницы', 'Одна ведущая рука всегда'],
  breath:'Ровное дыхание.',
@@ -1494,7 +1494,7 @@ EX.push(
  anim:{}},
 
 /* ===== ЯГОДИЦЫ ===== */
-{id:'pullthrough', name:'Протяжка на блоке между ног', eq:[['cable']], g:'glutes', pri:['glutes', 'hams'], sec:['lowback'], type:'c', lvl:1,
+{id:'pullthrough', name:'Протяжка на блоке между ног', eq:[['cable']], g:'glutes', pri:['glutes', 'hams'], sec:['lowback'], type:'c', lvl:1, dose:'mod',
  tech:['Канат на нижнем блоке. Встаньте спиной к блоку, канат между ног, два шага вперёд.',
    'Наклонитесь, отводя таз назад, колени чуть согнуты, спина прямая — канат уходит назад между ног.',
    'Выпрямитесь движением таза вперёд, сжимая ягодицы в верхней точке.'],
@@ -11192,6 +11192,20 @@ const PROGRESSIONS = [
   ['hang', 'chinup', 'pullup'],
   ['copenhagenknee', 'copenhagen']
 ];
+/* С какой ступени начинает новичок (подбор плана, 11-planner.js). Отчёт тестеров 4.94.0, Марина п. 16: новичку дали
+   отжимания от пола и широкие 2×12–15, хотя есть «с колен» и «с руками на возвышении»; «тяга под столом» (стол может
+   опрокинуться). Вариант подбирают так, чтобы подход укладывался в диапазон повторов из карточки (ACSM, Ratamess et al.,
+   MSSE 2009; 41(3):687–708: нагрузка подбирается под заданное число повторов, новичку — простые и освоенные движения
+   до сложных; NSCA, Haff & Triplett, Essentials of Strength Training and Conditioning, 4-е изд., 2016, гл. 17 — от простого
+   к сложному). Ступени новичка: отжимания от стены, с руками на возвышении и с колен; тяга полотенца и австралийские
+   подтягивания; присед без веса и выпады; мостик; «мёртвый жук», «птица-собака», планка; скручивания и подъём ног лёжа.
+   PROG_BEG_START — эти ступени: новичку их желательность не снижается (EX_W: отжимания с колен — не «вспомогательное»).
+   PROG_BEG_HARD — ступени выше них (и широкая и узкая постановка рук): новичку они идут, только если больше нечего, а
+   дальше подсказка «Следующая ступень» под карточкой сама поведёт вверх. Упражнения с весом и на тренажёрах не трогаются. */
+const PROG_BEG_START = new Set(['inclinepush', 'kneepush', 'towelrow', 'invrow', 'airsquat', 'lunge', 'revlunge', 'bridge', 'calfraise', 'deadbug', 'birddog',
+  'plank', 'crunch', 'bicycle', 'lyinglegraise', 'chairdip', 'benchdip', 'hang', 'copenhagenknee', 'superman', 'ytw', 'reversesnow']);
+const PROG_BEG_HARD = new Set(['pushup', 'widepush', 'diamond', 'archer', 'pikepush', 'declinepike', 'tablerow', 'pullup', 'chinup', 'bulgarian', 'pistolbox',
+  'glutebridge1', 'sllift', 'nordic', 'plankup', 'hollow', 'hangknee', 'legraise', 'dip', 'copenhagen']);
 const PROG_NEXT = {}, PROG_PREV = {}, PROG_CHAIN = {};
 PROGRESSIONS.forEach((chain, ci) => chain.forEach(id => { PROG_CHAIN[id] = ci; }));
 for (const chain of PROGRESSIONS) chain.forEach((id, i) => { if (chain[i + 1]) PROG_NEXT[id] = chain[i + 1]; if (i) PROG_PREV[id] = chain[i - 1]; });
@@ -11227,21 +11241,24 @@ document.addEventListener('click', e => {
 /* load — нагрузка в строке карточки (c — процент от максимума на 1 повтор у базовых с весом, который можно взвесить, —
    его дописывает pctText; i — начало строки у изолирующих); запас повторов к ней дописывает reserveOf (rir — запас по цели
    без цикла; null — без числа: «до последнего чистого повтора», «до сильного жжения в мышце»).
-   about — пояснение цели простыми словами: под переключателем в параметрах и на шаге «Цель» первого запуска (11k-first-run.js) */
+   about — пояснение цели простыми словами: под переключателем в параметрах и на шаге «Цель» первого запуска (11k-first-run.js).
+   Схемы по типу упражнения (schemeOf): mod — многосуставные без тяжёлого максимума в «Силе» (в остальных целях — как
+   многосуставные); ctrl — повторы для подвижности и стабилизации; ball — повторы махов гирей */
 const GOALS = {
   strength:{name:'Сила', hint:'3–6 повт.', about:'Стать сильнее: тяжёлый вес, 3–6 повторов, долгий отдых.', reps:{c:'3–5', i:'6–8'}, sets:{c:5, i:3}, rest:{c:180, i:90}, tempo:'2-0-X-0',
     load:{c:'≈ 80–90%', i:'тяжело'}, rir:[1, 2], rep:3, time:'20–30 с', dist:'20 м',
-    circ:{rounds:4, reps:'6–8', work:20, rest:30, roundRest:180}, ss:{rest:150}},
+    circ:{rounds:4, reps:'6–8', work:20, rest:30, roundRest:180}, ss:{rest:150},
+    mod:{sets:3, reps:'6–8', rest:120}, ctrl:'5–8', ball:'6–8'},
   mass:{name:'Масса', hint:'6–12 повт.', about:'Нарастить мышцы: средний вес, 6–12 повторов.', reps:{c:'6–10', i:'10–12'}, sets:{c:4, i:3}, rest:{c:120, i:75}, tempo:'3-0-1-0',
     load:{c:'≈ 70–80%', i:''}, rir:[1, 2], rep:4, time:'30–45 с', dist:'30 м',
-    circ:{rounds:3, reps:'10–12', work:30, rest:20, roundRest:120}, ss:{rest:90}},
+    circ:{rounds:3, reps:'10–12', work:30, rest:20, roundRest:120}, ss:{rest:90}, ctrl:'8–12', ball:'8–10'},
   cut:{name:'Рельеф', hint:'12–20 повт.', about:'Подтянуть тело и выносливость: лёгкий вес, 12–20 повторов, короткий отдых.', reps:{c:'12–15', i:'15–20'}, sets:{c:3, i:3}, rest:{c:60, i:40}, tempo:'2-0-1-0',
     load:{c:'≈ 55–65%', i:'до сильного жжения в мышце'}, rir:null, rep:3, time:'45–60 с', dist:'40 м',
-    circ:{rounds:4, reps:'15–20', work:40, rest:15, roundRest:90}, ss:{rest:60}},
+    circ:{rounds:4, reps:'15–20', work:40, rest:15, roundRest:90}, ss:{rest:60}, ctrl:'10–15', ball:'10–15'},
   /* бережно: суставы болят или идёт восстановление (11g-gentle.js) — Garber et al., MSSE 2011, 43(7):1334–1359 */
   gentle:{name:'Бережно', hint:'12–15 повт.', about:'Если болят суставы, после травмы или долгого перерыва: лёгкий вес, медленно, без прыжков и рывков.', reps:{c:'12–15', i:'12–15'}, sets:{c:2, i:2}, rest:{c:90, i:60}, tempo:'3-0-2-0',
     load:{c:'≈ 40–60%', i:'лёгкий вес'}, rir:[3, 4], rep:5, time:'20–30 с', dist:'20 м',
-    circ:{rounds:2, reps:'12–15', work:30, rest:30, roundRest:120}, ss:{rest:90}}
+    circ:{rounds:2, reps:'12–15', work:30, rest:30, roundRest:120}, ss:{rest:90}, ctrl:'8–12', ball:'8–10'}
 };
 /* Запас повторов (повторы в запасе) — один источник для строки нагрузки в карточке, подсказки первой записи в журнале,
    описания недели цикла и плашки «Бережно»: число нигде больше не пишется. Без цикла — по цели (GOALS.rir), новичку
@@ -11326,6 +11343,77 @@ const EX_W = {wallpush:0.5, kneepush:0.7, inclinepush:0.8, towelcurl:0.6, towelr
 const EXI = Object.fromEntries(EX.map(e => [e.id, e]));
 const EQN = Object.fromEntries(EQUIP.map(e => [e.id, e.name]));
 const GN = Object.fromEntries(GROUPS.map(g => [g.id, g.name]));
+
+/* ---------- генератор как у тренера (отчёт тестеров 4.94.0: Марина п. 11–16, Дмитрий, Alex п. 25) ---------- */
+/* Жимы и тяги — горизонтальные и вертикальные. В тренировке, где есть и спина, и грудь или плечи, подходов на тяги
+   не меньше, чем на жимы (было: «4 жима, 16 подходов, против 2 тяг, 8», приложение само писало «жимов заметно больше»).
+   Перекос в сторону жимов — одна из причин болей в плече у тех, кто тренируется с отягощениями: Kolber M.J. et al.,
+   J Strength Cond Res 2010; 24(6):1696–1704; баланс мышц-антагонистов при выборе упражнений и чередование жимов
+   и тяг — NSCA, Haff & Triplett, Essentials of Strength Training and Conditioning, 4-е изд., 2016, гл. 17. */
+const PUSH_P = new Set(['hpush', 'ipush', 'dpush', 'vpush']), PULL_P = new Set(['hrow', 'vpull']);
+const sideOf = ex => PUSH_P.has(PATTERN[ex.id]) ? 'push' : PULL_P.has(PATTERN[ex.id]) ? 'pull' : null;
+/* Тяжёлая база с нагрузкой на позвоночник: присед со штангой, в Смите и в гакк-машине, становая и румынская тяги,
+   наклоны со штангой, тяга штанги и Т-грифа в наклоне. В одной тренировке — не больше двух (новичку и в «Бережно» —
+   одна), из них не больше одной тяги с пола или наклона (было: «присед, становая и тяга в наклоне по 5×3–5 в одной
+   тренировке, ≈102 мин»). Основания: это «структурные» упражнения, они нагружают позвоночник и требуют свежих
+   разгибателей спины (NSCA Essentials, 2016, гл. 17: структурные упражнения — первыми, на свежую голову); утомление
+   разгибателей спины снижает их защитную роль (McGill S., Low Back Disorders, 3-е изд., Human Kinetics, 2016); в
+   программах для новичков второе такое упражнение дня — одним-двумя подходами (Rippetoe M., Starting Strength, 3-е изд.,
+   2011: присед 3×5 и становая 1×5). */
+const HEAVY_SPINE = new Set(['squat', 'smithsquat', 'hacksquat', 'deadlift', 'rdl', 'goodmorning', 'bbrow', 'tbarrow']);
+const spineCap = () => S.level === 'beg' || S.goal === 'gentle' ? 1 : 2;
+/* можно ли взвесить снаряд: свободные веса, тренажёры, блок, машина Смита (а не лента, турник, скамья, гравитрон) */
+const WEIGHABLE = new Set(['db', 'bb', 'kb', 'cable', 'smith']);
+const MACH_EQ = new Set(EQUIP.filter(e => e.cat === 'mach').map(e => e.id));
+const weighId = id => id !== 'gravitron' && (WEIGHABLE.has(id) || MACH_EQ.has(id));
+/* Схема подходов по типу упражнения (было: гало с гирей и обратные отжимания 6×3–5 «≈80–90% от максимума», ролик для
+   пресса 5×3–5 с быстрым усилием). Правило:
+   · heavy — тяжёлая база: многосуставное, обеими руками или ногами, со штангой, гантелями, на тренажёре, блоке или в Смите
+     (обязательный снаряд взвешивается, а не только «гантели по желанию»). Только у неё процент от максимума на 1 повтор,
+     и только у неё в «Силе» 3–5 повторов: тяжёлый диапазон и процент — для основных (core) упражнений, вспомогательным —
+     меньшая нагрузка (NSCA Essentials, 2016, гл. 17; ACSM, Ratamess et al., MSSE 2009; 41(3):687–708 — 1–6 повторов при
+     80–100% от максимума для многосуставных);
+   · mod — многосуставное без тяжёлого максимума: вес тела, лента, противовес, одна рука или нога, гиря одной рукой,
+     и dose:'mod' в каталоге — гоблет (вес держат руки), становая с гирей, наклоны со штангой, жим Арнольда, протяжка на
+     блоке. Без процента; в «Силе» — как вспомогательное: 3×6–8, отдых 2 мин (ACSM 2009: 1–2 мин между подходами
+     вспомогательных упражнений), без быстрого усилия;
+   · ballistic — махи, взятие и рывок гири (dose:'ballistic'): взрывно от бёдер, без процента, подход заканчивается, пока
+     скорость не упала (ACSM 2009, тренировка мощности: лёгкая и средняя нагрузка, не до отказа; Tsatsouline P.,
+     Kettlebell Simple & Sinister, 2-е изд., 2019 — махи по 10 повторов в подходе);
+   · ctrl — подвижность и стабилизация (dose:'ctrl'): гало, турецкий подъём, мельница, ролик для пресса, «мёртвый жук»,
+     «птица-собака», Y-T-W, лодочка, копенгагенская планка, вращение плеча. Медленно и под контролем, не до предела,
+     без процента и без быстрого усилия: задача — удержать положение позвоночника и плеча, а не сдвинуть вес
+     (McGill S., Strength Cond J 2010; 32(3):33–46). doseReps — свои повторы при любой цели: турецкий подъём — 1–3
+     на сторону, каждый повтор ≈25 с (repSec; Tsatsouline 2019 — по одному, медленно), мельница — 3–5;
+   · iso — прицельные (type 'i') — как раньше; упражнения на время и дистанцию — по времени и дистанции. */
+function schemeOf(ex) {
+  if (ex.kind) return ex.kind;
+  if (ex.g === 'cardio') return 'cardio';
+  if (ex.dose) return ex.dose;
+  if (ex.type !== 'c') return 'iso';
+  return !ex.uni && !ex.assist && ex.eq.some(g => g.every(weighId)) ? 'heavy' : 'mod';
+}
+/* Новичку в подборе — ступени, с которых начинают (PROG_BEG_HARD, 10-progressions.js). Где есть веса и тренажёры,
+   многосуставные без веса (вес тела, лента) уступают им (было: «зал, средний уровень: гравитрон и отжимания 4×6–10 при
+   полном зале»): отжимания, тяги собственного веса, упор углом, обратные отжимания, выпады без веса — если в этом месте
+   есть то же движение с весом (PATTERN); противовес гравитрона — если есть тяга сверху или жим без него (новичку
+   гравитрон уместен). Подтягивания и брусья — не облегчение, они остаются.
+   Нагрузку легче дозировать весом, чем вариантом упражнения: ACSM 2009 (нагрузка подбирается под диапазон повторов). */
+const BAR_STAPLE = new Set(['pullup', 'chinup', 'dip']);
+/* жимы лёжа, на наклонной и с обратным наклоном — одно движение для выбора «с весом или без» */
+const famOf = p => p === 'ipush' || p === 'dpush' ? 'hpush' : p;
+/* Подъём гантелей перед собой — не в день жимов: передняя дельта и так много работает в жиме лёжа и над головой
+   (Barnett C., Kippers V., Turner P., J Strength Cond Res 1995; 9(4):222–227); для плеч — махи в стороны (Марина п. 16) */
+const FRONT_RAISE = new Set(['frontraise']);
+/* Шкала «мало / в норме / много» подходов на группу за неделю — по уровню (один расчёт для недели в плане и журнала):
+   · новичок и «Бережно»: 4–12 — ACSM, Garber et al., MSSE 2011; 43(7):1334–1359: каждая крупная группа 2–3 раза
+     в неделю по 2–4 подхода (у новичков прирост даёт и один подход);
+   · уже тренируюсь и опытный: 10–20 — Schoenfeld, Ogborn, Krieger, J Sports Sci 2017; 35(11):1073–1082: от 10 подходов
+     в неделю прирост больше; Baz-Valle et al., J Hum Kinet 2022; 81:199–210: у тренированных 12–20 (больше 20 для
+     квадрицепса и бицепса прибавки не дало, для трицепса — дало).
+   Программа на неделю сама попадает в эту шкалу (buildProgram): цель недели — 40% коридора от нижней границы
+   (10–20 → 14, 4–12 → 7), выше «много» — штраф в подборе. */
+function volScale(level = S.level, goal = S.goal) { return level === 'beg' || goal === 'gentle' ? {lo:4, hi:12} : {lo:10, hi:20}; }
 
 function effEquip(list) { const E = new Set(list); for (const id of list) for (const x of EQUIP_IMPLIES[id] || []) E.add(x); return E; }
 /* как назвать оборудование в карточке: если горизонтальная скамья «получена» из регулируемой — так и пишем */
@@ -11424,12 +11512,11 @@ function plural(n, a, b, c) { if (localeOf().plural === 'one') return n === 1 ? 
 /* поиск по названиям упражнений — 11i-search.js */
 const fmtNum = v => Number.isInteger(v) ? String(v) : v.toFixed(1).replace('.', DEC); /* DEC — 13-log.js: в английской сборке точка */
 
-/* можно ли взвесить отягощение: свободные веса, тренажёры, блок, машина Смита (а не лента, турник, скамья или вес тела) */
-const WEIGHABLE = new Set(['db', 'bb', 'kb', 'cable', 'smith']);
+/* можно ли взвесить отягощение: свободные веса, тренажёры, блок, машина Смита (а не лента, турник, скамья или вес тела;
+   weighId — выше, у схем подходов) */
 function weighable(ex, E) {
-  const ok = id => id !== 'gravitron' && (WEIGHABLE.has(id) || (EQUIP.find(e => e.id === id) || {}).cat === 'mach');
   /* необязательные гантели считаются, только если они есть в этом месте */
-  return ex.eq.some(g => g.every(ok)) || (ex.opt || []).some(id => ok(id) && (!E || E.has(id)));
+  return ex.eq.some(g => g.every(weighId)) || (ex.opt || []).some(id => weighId(id) && (!E || E.has(id)));
 }
 function available(ex, E) { return ex.eq.every(grp => grp.some(id => E.has(id))); }
 function chosenEquip(ex, E) {
@@ -11454,12 +11541,19 @@ function equipLine(ex, E) {
   if (!ch.length) return ['Без снаряжения'].concat(opt).join(' · ');
   return ch.concat(opt).join(' · ');
 }
-function groupsOf(ex) { const s = new Set([ex.g]); for (const m of ex.pri) s.add(MUSCLE_GROUP[m]); return s; }
+/* группы упражнения: целевая и группы основных мышц (только для чтения: множество общее, считается один раз) */
+const GROUPS_OF = new Map();
+function groupsOf(ex) { let s = GROUPS_OF.get(ex); if (!s) { s = new Set([ex.g]); for (const m of ex.pri) s.add(MUSCLE_GROUP[m]); GROUPS_OF.set(ex, s); } return s; }
 /* дробный учёт одного подхода: целевая группа упражнения — полный подход, остальные работающие (основные и вспомогательные
    мышцы других групп) — половина; кардио своей группе подходов не даёт. Pelland et al., Sports Med 2026; 56(2):481–505:
    косвенный подход как 0,5 лучше всего предсказывает прирост. Общее правило графика «Подходов на группу за неделю» и
    загрузки мышц по журналу (13d-muscle-load.js) */
+const SHARE = new Map();
 function groupShare(ex) {
+  let c = SHARE.get(ex); if (c) return {...c};
+  c = groupShareOf(ex); SHARE.set(ex, c); return {...c};
+}
+function groupShareOf(ex) {
   const w = {};
   for (const m of ex.pri.concat(ex.sec)) { const g = MUSCLE_GROUP[m]; w[g] = Math.max(w[g] || 0, 0.5); }
   if (ex.g !== 'cardio') w[ex.g] = 1;
@@ -11471,18 +11565,49 @@ function splitFor(days) { return SPLITS[S.split] && SPLITS[S.split].days[days] ?
 /* ---------- подбор ---------- */
 /* opt — только для подбора по журналу (13d-muscle-load.js): weights — доли групп вместо GROUP_W,
    rest — группы, которым нужен отдых (упражнения, где они основные, отодвигаются). Без opt подбор прежний. */
+/* opt.vol — подбор дня недельной программы (buildProgram): have — подходы групп за прошлые дни, aim — сколько у группы
+   должно быть после этого дня, hi — верх шкалы «много», sets(ex) — подходов упражнения в этот день. Упражнение тем
+   желаннее, чем больше закрывает недобора до aim, и уступает, если вывело бы группу (и вспомогательной работой) выше
+   «много». opt.pp — жимы и тяги прошлых дней: день тяги без груди и плеч добирает тяги за день жима. */
 function pickExercises(E, rand, groups, count, avoid, opt) {
   const G = new Set(groups);
   const lvlMax = S.level === 'beg' ? 2 : 3;
-  const pool = EX.filter(ex => available(ex, E) && ex.lvl <= lvlMax && (ex.g !== 'cardio' || G.has('cardio')) && (S.format !== 'static' || staticOk(ex)) && fitsBody(ex));
+  /* в круговой — без медленных навыков со своими повторами (турецкий подъём, мельница): в круге они превращаются в 15–20 повторов */
+  const pool = EX.filter(ex => available(ex, E) && ex.lvl <= lvlMax && (ex.g !== 'cardio' || G.has('cardio')) && (S.format !== 'static' || staticOk(ex)) && (S.format !== 'circuit' || !ex.doseReps) && fitsBody(ex));
+  const beg = S.level === 'beg', PB = typeof PROG_BEG_HARD !== 'undefined' ? PROG_BEG_HARD : null;
+  /* движения, для которых здесь есть вариант с весом: облегчённые без веса им уступают */
+  const loaded = new Set(pool.filter(ex => !ex.assist && weighable(ex, E) && PATTERN[ex.id]).map(ex => famOf(PATTERN[ex.id])));
+  /* подтягивания и брусья — не облегчение, но новичку они тяжелы: при тяге сверху или жиме с весом уступают и они */
+  const lightOf = new Map(), lightAlt = ex => {
+    let v = lightOf.get(ex);
+    if (v === undefined) lightOf.set(ex, v = ex.assist ? !beg && loaded.has(famOf(PATTERN[ex.id])) : (beg || !BAR_STAPLE.has(ex.id)) && ex.type === 'c' && !ex.kind && ex.g !== 'cardio' && !weighable(ex, E) && loaded.has(famOf(PATTERN[ex.id])));
+    return v;
+  };
+  /* жимы и тяги: подходов на тяги не меньше, чем на жимы, — если в тренировке есть спина и грудь или плечи (или день тяги
+     добирает за день жима); счёт — по подходам (opt.sets: подходы упражнения в этой тренировке; в «Силе» у тяжёлой
+     базы их больше, чем у подтягиваний) */
+  const setsOf = opt && opt.sets || (ex => prescribe(ex, null, E).sets), maxS = Math.max(...pool.filter(ex => sideOf(ex)).map(setsOf), 1);
+  const pushDay = G.has('chest') || G.has('shoulders'), carry = opt && opt.pp && !pushDay ? Math.max(0, opt.pp.push - opt.pp.pull) : 0;
+  const ppOn = G.has('back') && (pushDay || carry > 0), pressCap = pushDay && !G.has('back') ? (opt && opt.vol ? 2 : 3) : 0;
+  const cap = spineCap();
+  /* объём недели: подходы групп с прошлых дней и подобранных сегодня (proj) */
+  const vol = opt && opt.vol, shareOf = new Map(), shareSum = new Map(), shareList = ex => { let l = shareOf.get(ex); if (!l) { shareOf.set(ex, l = Object.entries(groupShare(ex))); shareSum.set(ex, l.reduce((t, x) => t + x[1], 0)); } return l; };
+  let pushN, pullN, pressN, spineN, hingeN, proj, quota, picked, usedPat;
+  /* [закрытый недобор, выход за «много», перебор сверх цели дня больше чем на 2 подхода] в подходах: перебор в первые дни
+     недели не оставляет места последним */
+  const volGain = ex => {
+    const sh = shareList(ex), s = vol.sets(ex), hi = vol.hi, aims = vol.aim; let o = 0, f = 0, e = 0;
+    for (let i = 0; i < sh.length; i++) {
+      const g = sh[i][0], v = proj[g] || 0, add = sh[i][1] * s, aim = aims[g];
+      o += Math.max(0, v + add - hi) - Math.max(0, v - hi);
+      if (aim !== undefined) { f += Math.min(add, Math.max(0, aim - v)); e += Math.max(0, v + add - aim - 2) - Math.max(0, v - aim - 2); }
+    }
+    return [f, o, e];
+  };
   /* бережно: при прочих равных — упражнения без пиковой нагрузки на суставы */
   const strain = S.goal === 'gentle' ? new Map(pool.map(ex => [ex, stressIdsOf(ex).length])) : null;
   const GW = opt && opt.weights || GROUP_W, rest = opt && opt.rest && opt.rest.size ? opt.rest : null;
   const totalW = groups.reduce((a, g) => a + GW[g], 0) || 1;
-  const quota = {};
-  for (const g of groups) quota[g] = count * GW[g] / totalW;
-  const picked = [];
-  const usedPat = {};
   /* короткая тренировка (20–30 мин, 11j-duration.js) — базовым упражнениям чуть больше веса: в малое время они нагружают
      больше мышц (Iversen et al., Sports Med 2021; 51(10):2079–2095) */
   const compBonus = {strength:0.7, mass:0.35, cut:0.05, gentle:0.1}[S.goal] + (S.dur === 'short' && S.mode !== 'custom' ? 0.3 : 0);
@@ -11492,17 +11617,46 @@ function pickExercises(E, rand, groups, count, avoid, opt) {
   const focus = S.focus && MUSCLE_NAMES[S.focus] ? S.focus : null;
   const focusNeed = focus && G.has(MUSCLE_GROUP[focus]) ? (S.mode === 'program' ? Math.max(1, Math.round(count / 5)) : Math.ceil(count / 3)) : 0;
   const jitter = pool.map(() => rand());
+  /* strict — второй проход, если жимов вышло больше тяг (тяга так и не нашлась, например спина уже «много»): тогда жим —
+     только после тяги */
+  const run = strict => {
+  pushN = carry; pullN = 0; pressN = 0; spineN = 0; hingeN = 0; proj = vol ? {...vol.have} : null; picked = []; usedPat = {}; quota = {};
+  for (const g of groups) quota[g] = count * GW[g] / totalW;
   while (picked.length < count) {
     let best = null, bestScore = -1e9;
     const focusShort = !!focus && picked.filter(p => p.pri.includes(focus)).length < focusNeed;
+    /* весь недобор до целей дня — верхняя граница плюса за объём у любого упражнения */
+    let defTot = 0; if (vol) for (const g in vol.aim) defTot += Math.max(0, vol.aim[g] - (proj[g] || 0));
     pool.forEach((ex, i) => {
       if (picked.includes(ex)) return;
+      /* тяжёлая база с нагрузкой на позвоночник — не больше cap за тренировку, тяга с пола или наклон — одна */
+      if (HEAVY_SPINE.has(ex.id) && (spineN >= cap || (PATTERN[ex.id] === 'hinge' && hingeN >= 1))) return;
       const gs = groupsOf(ex);
       let gain = 0;
       if (G.has(ex.g)) gain += Math.max(quota[ex.g], 0) * 1.6 + 0.4;
       for (const g of gs) if (g !== ex.g && G.has(g)) gain += Math.max(quota[g], 0) * 0.5;
       if (gain <= 0) return;
-      let sc = gain + (ex.type === 'c' ? compBonus : 0) + jitter[i] * 0.5 + ((EX_W[ex.id] ?? 1) - 1) * 1.4;
+      /* новичку начальные ступени цепочек — без скидки желательности, ступени выше уступают (отжимания с колен — раньше,
+         чем от пола и на брусьях) */
+      const ew = beg && PB && PROG_BEG_START.has(ex.id) ? 1 : EX_W[ex.id] ?? 1;
+      let sc = gain + (ex.type === 'c' ? compBonus : 0) + jitter[i] * 0.5 + (ew - 1) * 1.4;
+      if (beg && PB && PB.has(ex.id)) sc -= 0.9;
+      if (lightAlt(ex)) sc -= ex.assist ? 1.5 : 1.2;
+      if (FRONT_RAISE.has(ex.id) && picked.some(p => sideOf(p) === 'push')) sc -= 1;
+      const side = ppOn ? sideOf(ex) : null;
+      /* жим — только если после него остаётся место, чтобы тяг стало не меньше; тяга, пока их меньше, — с большим плюсом;
+         когда тяг уже больше, ещё одна — с минусом (поровну, а не вдвое) */
+      if (side === 'push' && (strict ? pushN + setsOf(ex) > pullN : pushN + setsOf(ex) - pullN > (count - picked.length - 1) * maxS)) sc -= strict ? 50 : 3;
+      if (side === 'pull') sc += pullN < pushN ? 1 + 0.5 * Math.min(3, (pushN - pullN) / maxS) : pullN > pushN && pushDay ? -0.8 : 0;
+      /* в тренировке со спиной и грудью или плечами от 4 упражнений — хотя бы одна тяга и один жим (основа тренировки всего
+         тела и верха: ноги, жим, тяга — NSCA Essentials, 2016, гл. 17), а не только прицельные на мелкие группы */
+      if (pushDay && count >= 4 && side && !(side === 'pull' ? pullN : pushN) && (side === 'pull' || pullN)) sc += 2.5;
+      /* день жима без спины: в программе (жим / тяга / ноги) — не больше двух жимов, дальше — разводки, махи, трицепс, иначе
+         день тяги не успевает их уравновесить; в отдельной тренировке «Жим» — не больше трёх */
+      if (pressCap && sideOf(ex) === 'push' && pressN >= pressCap) sc -= 2.5;
+      /* тяга в наклоне со штангой или Т-грифом — после приседа или становой лучше на блоке или тренажёре: место тяжёлой
+         базы с нагрузкой на позвоночник — ногам */
+      if (spineN && HEAVY_SPINE.has(ex.id) && PATTERN[ex.id] === 'hrow') sc -= 0.6;
       if (ex.eq.length) sc += 0.25;
       if (strain) sc -= 0.5 * strain.get(ex);
       if (S.goal === 'strength' && ex.eq.some(g => g.includes('bb'))) sc += 0.3;
@@ -11514,24 +11668,55 @@ function pickExercises(E, rand, groups, count, avoid, opt) {
       if (avoid && avoid.has(ex.id)) sc -= 1.1;
       if (focus) sc += ex.pri.includes(focus) ? (focusShort ? 3 : 0.6) + (ex.pri[0] === focus ? 0.3 : 0) : ex.sec.includes(focus) ? 0.35 : 0;
       if (typeof PROG_CHAIN !== 'undefined' && PROG_CHAIN[ex.id] !== undefined && picked.some(p => PROG_CHAIN[p.id] === PROG_CHAIN[ex.id])) sc -= 1.5;
+      /* объём недели — последним: плюс за недобор не больше 0,25 × подходы × доли групп, и если даже с ним упражнение
+         не лучше уже найденного, считать не нужно */
+      if (vol) {
+        shareList(ex);
+        if (sc + 0.25 * Math.min(defTot, vol.sets(ex) * shareSum.get(ex)) <= bestScore) return;
+        const [f, o, e] = volGain(ex); sc += 0.25 * f - 0.6 * o - 0.5 * e;
+      }
       if (sc > bestScore) { bestScore = sc; best = ex; }
     });
     if (!best) break;
     picked.push(best);
+    const bs = sideOf(best); if (ppOn && bs === 'push') pushN += setsOf(best); else if (ppOn && bs === 'pull') pullN += setsOf(best);
+    if (bs === 'push') pressN++;
+    if (HEAVY_SPINE.has(best.id)) { spineN++; if (PATTERN[best.id] === 'hinge') hingeN++; }
+    if (vol) { const s = vol.sets(best); for (const [g, x] of shareList(best)) proj[g] = (proj[g] || 0) + x * s; }
     const bp = PATTERN[best.id] || 'solo:' + best.id; usedPat[bp] = (usedPat[bp] || 0) + 1;
     if (quota[best.g] !== undefined) quota[best.g] -= 1;
     for (const g of groupsOf(best)) if (g !== best.g && quota[g] !== undefined) quota[g] -= 0.45;
   }
+  };
+  run(false);
+  if (ppOn && pushN > pullN) run(true);
   return {picked, pool};
 }
+/* Порядок: многосуставные раньше прицельных, пресс — в конце; ноги и тяга с пола — первыми; жимы и тяги верха
+   чередуются, первым — более сложное из них (тяжёлая база, выше уровень), при равенстве — тяга; внутри группы мышц
+   сложное — раньше. NSCA Essentials, 2016, гл. 17: сначала основные упражнения на крупные мышцы, затем
+   вспомогательные; чередование жимов и тяг. Было: подтягивания обратным хватом (группа «бицепс») стояли после всех
+   жимов (Марина п. 12). */
+const demandOf = ex => (schemeOf(ex) === 'heavy' ? 2 : 0) + ex.lvl;
 function orderClassic(list) {
-  return list.slice().sort((a, b) => {
+  /* многосуставные на ноги (и тяга с пола) — одним рядом, первым — тяжёлое; жимы и тяги верха — следующим рядом */
+  const rank = ex => ex.type !== 'c' ? GROUP_ORDER[ex.g] : sideOf(ex) ? 2.5 : LEG_G.has(ex.g) || LEG_P.has(PATTERN[ex.id]) ? 0 : GROUP_ORDER[ex.g];
+  const out = list.slice().sort((a, b) => {
     const ca = a.g === 'abs' ? 1 : 0, cb = b.g === 'abs' ? 1 : 0;
     if (ca !== cb) return ca - cb;
     const ta = a.type === 'c' ? 0 : 1, tb = b.type === 'c' ? 0 : 1;
     if (ta !== tb) return ta - tb;
-    return GROUP_ORDER[a.g] - GROUP_ORDER[b.g];
+    return rank(a) - rank(b) || (ta ? 0 : demandOf(b) - demandOf(a));
   });
+  /* жимы и тяги верха — на своих местах в списке, но по очереди */
+  const at = out.map((ex, i) => ex.type === 'c' && ex.g !== 'abs' && sideOf(ex) ? i : -1).filter(i => i >= 0);
+  const push = at.map(i => out[i]).filter(ex => sideOf(ex) === 'push'), pull = at.map(i => out[i]).filter(ex => sideOf(ex) === 'pull');
+  let turn = push.length && (!pull.length || demandOf(push[0]) > demandOf(pull[0])) ? 'push' : 'pull';
+  for (const i of at) {
+    const q = turn === 'push' ? (push.length ? push : pull) : (pull.length ? pull : push);
+    out[i] = q.shift(); turn = turn === 'push' ? 'pull' : 'push';
+  }
+  return out;
 }
 function pairSupersets(list) {
   const rest = orderClassic(list);
@@ -11544,6 +11729,9 @@ function pairSupersets(list) {
       let s = 0;
       if (ANTAGONIST[a.g] === b.g) s += 3;
       if (b.g !== a.g) s += 1;
+      /* жим — в пару с тягой: в паре подходов поровну (по большему), так баланс жимов и тяг не сбивается */
+      const sa = sideOf(a), sb = sideOf(b);
+      if (sa && sb && sa !== sb) s += 2; else if (sa !== sb && (sa || sb)) s -= 4;
       const ga = groupsOf(a); for (const g of groupsOf(b)) if (ga.has(g)) s -= 1.2;
       s -= i * 0.15;
       if (s > bs) { bs = s; bi = i; }
@@ -11565,45 +11753,67 @@ function orderCircuit(list) {
 }
 
 /* ---------- дозировка ---------- */
-function prescribe(ex, week, E) {
+/* новичку удержания (планка, стульчик у стены) — 20–30 с при любой цели (было: планка 45–60 с, Марина п. 16): форма
+   держится до конца, время растёт постепенно; короткие удержания с повторами — McGill S., Strength Cond J 2010;
+   32(3):33–46 */
+const BEG_HOLD = '20–30 с';
+/* Новичку в «Силе» тяжёлая база — 6–8 повторов при ≈70–80% от максимума (запас — как у новичка, 2–3 повтора), а не 3–5:
+   ACSM, Ratamess N.A. et al., MSSE 2009; 41(3):687–708 — новичкам 60–70% и 8–12 повторов, к тяжёлым 80–100% и 1–6 — постепенно,
+   с опытом. В цикле — проценты недель «Массы» (65–70 → 75–80%). Прицельные и остальные схемы — как у всех в «Силе» */
+const BEG_STRENGTH = {reps:'6–8', pct:'≈ 70–80%'};
+const begStrength = sch => S.goal === 'strength' && S.level === 'beg' && sch === 'heavy';
+const CTRL_LOAD = 'медленно и под контролем, без рывков, не до предела', BALL_LOAD = 'взрывно, от бёдер, спина ровная; подход заканчивайте, пока мах не замедлился';
+/* extra — подходов сверх обычного или меньше (доводка объёма недели, volTopUp): до недели цикла, не меньше 2 и не больше 6 */
+function prescribe(ex, week, E, extra = 0) {
   const G = GOALS[S.goal];
-  const t = ex.type;
-  let sets = G.sets[t];
+  /* схема по типу упражнения (schemeOf): тяжёлая база, махи и многосуставные вне «Силы» дозируются как многосуставные,
+     подвижность и стабилизация, прицельные и многосуставные без тяжёлого максимума в «Силе» — как вспомогательные */
+  const sch = schemeOf(ex), strongMod = sch === 'mod' && !!G.mod;
+  const t = ex.kind || ex.g === 'cardio' ? ex.type : sch === 'heavy' || sch === 'ballistic' || (sch === 'mod' && !strongMod) ? 'c' : 'i';
+  let sets = strongMod ? G.mod.sets : G.sets[t];
   if (S.level === 'beg') sets = Math.max(2, sets - 1);
   if (S.level === 'adv' && t === 'c') sets = Math.min(6, sets + 1);
-  let reps = G.reps[t], unit = 'повт.';
-  if (ex.kind === 'time') { reps = G.time; unit = ''; }
+  if (extra) sets = Math.max(2, Math.min(6, sets + extra));
+  const bs = begStrength(sch), weekPct = w => w.pct[bs ? 'mass' : S.goal];
+  let reps = sch === 'ctrl' ? ex.doseReps || G.ctrl : sch === 'ballistic' ? G.ball : strongMod ? G.mod.reps : bs ? BEG_STRENGTH.reps : G.reps[t], unit = 'повт.';
+  if (ex.kind === 'time') { reps = S.level === 'beg' && ex.g !== 'cardio' ? BEG_HOLD : G.time; unit = ''; }
   if (ex.kind === 'dist') { reps = G.dist; unit = ''; }
   const bodyweight = !ex.eq.length && !(ex.opt || []).length;
-  /* процент от 1ПМ имеет смысл только для веса, который можно взвесить: штанга, гантели, гиря, тренажёр, блок.
-     Для резины, противовеса и собственного веса — тот же запас повторов, но подбирается натяжение ленты,
-     противовес или вариант упражнения. */
-  const pct = t === 'c' && weighable(ex, E);
+  /* процент от 1ПМ — только у тяжёлой базы (schemeOf: heavy): штанга, гантели, тренажёр, блок обеими руками или ногами.
+     Для резины, противовеса, собственного веса, гири одной рукой и подвижности — запас повторов без процента:
+     подбирается натяжение ленты, противовес, вариант упражнения или вес, с которым держится техника. */
+  const pct = sch === 'heavy';
   const band = ex.eq.length && ex.eq.every(g => g.every(id => id === 'band')), assisted = ex.eq.some(g => g.includes('gravitron'));
-  const how = band ? 'натяжение ленты: ' : assisted ? 'противовес: ' : 'вариант полегче или посложнее: ';
-  const easy = band ? 'натяжение ленты: слабее обычного, не до предела' : assisted ? 'противовес: больше обычного, не до предела' : 'вариант полегче, не до предела';
+  const how = band ? 'натяжение ленты: ' : assisted ? 'противовес: ' : weighable(ex, E) ? '' : 'вариант полегче или посложнее: ';
+  const easy = band ? 'натяжение ленты: слабее обычного, не до предела' : assisted ? 'противовес: больше обычного, не до предела' : weighable(ex, E) ? 'лёгкий вес, не до предела' : 'вариант полегче, не до предела';
   /* запас повторов — из reserveOf (он же в подсказке первой записи и в описании недели); rir — в дозировку.
      Простое правило — первым, процент от максимума на 1 повтор — в скобках, для тех, кто его знает */
   const rir = reserveOf(week);
   const tail = rir ? reserveDo(rir) + (S.goal === 'gentle' ? ', без боли' : '') : NEAR_LIMIT;
   const withPct = (s, p) => `${s} (${pctText(p)})`;
-  let load = t === 'c' ? (pct ? withPct(tail, G.load.c) : how + tail) : !G.rir ? G.load.i : G.load.i ? `${G.load.i}, ${tail}` : tail;
+  const fixed = sch === 'ctrl' ? CTRL_LOAD + (S.goal === 'gentle' ? ', без боли' : '') : sch === 'ballistic' ? BALL_LOAD : '';
+  let load = fixed || (pct ? withPct(tail, bs ? BEG_STRENGTH.pct : G.load.c) : sch === 'mod' ? how + tail : !G.rir ? G.load.i : G.load.i ? `${G.load.i}, ${tail}` : tail);
   if (week) {
     const reserve = rir ? reserveDo(rir) : '';
-    if (week.deload) { sets = Math.max(2, Math.round(sets * 0.6)); load = pct ? withPct('лёгкий вес, не до предела', week.pct[S.goal]) : t === 'c' ? easy : 'лёгкий вес, не до предела'; }
+    if (week.deload) { sets = Math.max(2, Math.round(sets * 0.6)); if (!fixed) load = pct ? withPct('лёгкий вес, не до предела', weekPct(week)) : sch === 'mod' ? easy : 'лёгкий вес, не до предела'; }
     else {
       if (week.add && t === 'c') sets = Math.min(6, sets + week.add);
-      load = pct ? withPct(reserve, week.pct[S.goal]) : t === 'c' ? how + reserve : reserve;
+      if (!fixed) load = pct ? withPct(reserve, weekPct(week)) : sch === 'mod' ? how + reserve : reserve;
     }
   }
   if (ex.kind === 'time') load = ex.g === 'cardio' ? (S.goal === 'gentle' ? 'умеренный темп: можно говорить, не задыхаясь' : 'высокий темп без потери техники') : S.goal === 'strength' ? 'с отягощением или в усложнённом варианте' : 'ровно, без потери формы';
   else if (ex.g === 'cardio') load = S.goal === 'gentle' ? 'плавно, в ровном темпе' : 'взрывно и в ровном темпе';
   if (ex.kind === 'dist') load = S.goal === 'strength' ? 'максимально тяжёлые снаряды' : S.goal === 'gentle' ? 'умеренный вес, ровным шагом' : 'тяжёлые снаряды, без остановок';
   const notes = [];
-  if (bodyweight && ex.kind !== 'time' && S.goal === 'strength') notes.push('Если диапазон даётся легко, добавьте отягощение или замедлите опускание до 4 с.');
-  const rest = G.rest[t];
-  const work = ex.kind === 'time' ? midOf(G.time) : ex.kind === 'dist' ? 30 : midOf(reps) * G.rep * (ex.uni ? 2 : 1);
-  const rx = {sets, reps, unit, rest, load, rir, tempo:ex.kind ? null : G.tempo, notes, work, uni:!!ex.uni};
+  if (bodyweight && sch === 'mod' && S.goal === 'strength') notes.push('Если диапазон даётся легко, добавьте отягощение или замедлите опускание до 4 с.');
+  /* махи гирей — отдых не дольше 2 мин: вес средний, подход короткий */
+  const rest = strongMod ? G.mod.rest : sch === 'ballistic' ? Math.min(120, G.rest[t]) : G.rest[t];
+  /* время подхода: повтор махов ≈2 с, турецкого подъёма ≈25 с (repSec в каталоге), остальное — по цели */
+  const work = ex.kind === 'time' ? midOf(reps) : ex.kind === 'dist' ? 30 : midOf(reps) * (ex.repSec || (sch === 'ballistic' ? 2 : G.rep)) * (ex.uni ? 2 : 1);
+  /* темп: у подвижности, махов и кардио его нет (медленно и под контролем; мах и прыжок — одним движением); быстрое усилие
+     «Силы» — только у тяжёлой базы, у остальных (разводка, махи в стороны, отжимания) — подъём за 1 с */
+  const tempo = ex.kind || sch === 'ctrl' || sch === 'ballistic' || sch === 'cardio' ? null : sch !== 'heavy' && /X/.test(G.tempo) ? '2-0-1-0' : G.tempo;
+  const rx = {sets, reps, unit, rest, load, rir, tempo, notes, work, uni:!!ex.uni, scheme:sch};
   return S.format === 'static' && staticOk(ex) ? staticRx(rx, ex, week, E) : rx;
 }
 
@@ -11615,6 +11825,77 @@ function byOrder(units, order, slotOf) {
   return units.map((u, i) => [u, rank(u), i]).sort((a, b) => a[1] - b[1] || a[2] - b[2]).map(x => x[0]);
 }
 
+/* круговая без штанги: тот же инвентарь места без неё */
+function noBarbell(E) { const o = new Set(E); o.delete('bb'); return o; }
+/* снаряды, к которым в круге нужно перейти: скамьи, турник и стойки, тренажёры (EQUIP.cat); свободные веса — под рукой */
+const FIXED_EQ = new Set(EQUIP.filter(e => e.cat !== 'free').map(e => e.id)), CIRC_MOVE = 30;
+/* подходов упражнения для счёта недели — обычная неделя (без нагрузки, пика и разгрузки), с уступкой по времени; в круговой —
+   круги (как в gvol) */
+function volSets(ex, E, dose, extra = 0) {
+  if (S.format === 'circuit') { const c = GOALS[S.goal].circ; let r = c.rounds + (S.level === 'beg' ? -1 : S.level === 'adv' ? 1 : 0); if (dose && dose.s) r = Math.max(Math.min(2, r), Math.min(DOSE_MAX_ROUNDS, r + dose.s)); return Math.max(2, r); }
+  return applyDose(prescribe(ex, null, E, extra), dose).sets;
+}
+/* Доводка объёма дня недельной программы подходами — как у методиста:
+   · главное многосуставное дня — первое тяжёлое на ноги и первое тяжёлое на верх в порядке тренировки (если тяжёлого
+     нет — первое многосуставное) — не опускается ниже трёх подходов (у кого обычных меньше трёх — не урезается);
+   · недобор: прицельным и упражнениям на ноги групп, которым до цели дня (aim) не хватает подхода, — +1 подход, если ни
+     одна их группа не выйдет выше «много»; если у главного многосуставного меньше трёх подходов — прицельному не больше,
+     чем у него;
+   · перебор (группа выше «много»): подход меньше сначала у прицельных и вспомогательных, потом у второго многосуставного,
+     и только потом у главного — до трёх; внутри одного ряда — у того, что больше нагружает группу; не меньше двух
+     подходов и не больше двух снятых; если так тяг стало меньше жимов — подход меньше и у жима;
+   · прибавка прицельному отменяется, если у главного меньше трёх подходов и стало меньше, чем у прицельного.
+   Жимы и тяги верха в недоборе не трогаются: их баланс подобран по подходам. В классике и суперсетах; в круговой одно
+   число кругов на все станции, в статодинамике серии заданы методом. Счёт — по подбору до замен, обычной недели: в неделях
+   цикла доводка та же. Было (4.104.0, «верх / низ» ×4, «Низ Б»): приседания со штангой и румынская на одной ноге 2×6–10 при
+   икрах 4×10–12. */
+const LEG_G = new Set(['quads', 'glutes', 'hams', 'calves']), LEG_P = new Set(['squat', 'hinge', 'lunge', 'bridge']);
+const isCompound = ex => ex.type === 'c' && ex.g !== 'abs' && ex.g !== 'cardio' && !ex.kind && !['ctrl', 'ballistic'].includes(schemeOf(ex));
+/* главные многосуставные дня: первое тяжёлое на ноги и первое тяжёлое на верх в порядке тренировки */
+function mainCompounds(list) {
+  const order = orderClassic(list).filter(isCompound), lower = ex => LEG_G.has(ex.g) || LEG_P.has(PATTERN[ex.id]);
+  const first = test => order.find(ex => test(ex) && schemeOf(ex) === 'heavy') || order.find(test);
+  return new Set([first(lower), first(ex => !lower(ex))].filter(Boolean));
+}
+function volTopUp(list, vol, E, dose) {
+  const add = list.map(() => 0);
+  if (!vol || S.format === 'circuit' || S.format === 'static') return add;
+  const memo = list.map(() => ({})), sets = (ex, k) => memo[k][add[k]] ?? (memo[k][add[k]] = volSets(ex, E, dose, add[k])), share = list.map(groupShare), proj = {...vol.have};
+  list.forEach((ex, k) => { for (const [g, x] of Object.entries(share[k])) proj[g] = (proj[g] || 0) + x * sets(ex, k); });
+  const mains = mainCompounds(list), isMain = k => mains.has(list[k]);
+  /* ниже скольких подходов не урезать: главное — 3 (или обычное, если оно меньше), остальные — 2 */
+  const base = list.map((ex, k) => volSets(ex, E, dose, 0)), floor = k => isMain(k) ? Math.min(3, base[k]) : 2;
+  const mainMin = () => mains.size ? Math.min(...list.map((ex, k) => isMain(k) ? sets(ex, k) : Infinity)) : Infinity;
+  const step = (k, d) => { const s0 = sets(list[k], k); add[k] += d; const s1 = sets(list[k], k); for (const [h, x] of Object.entries(share[k])) proj[h] = (proj[h] || 0) + x * (s1 - s0); return s1 !== s0; };
+  const free = ex => !sideOf(ex) && !ex.kind && ex.g !== 'cardio';
+  list.forEach((ex, k) => {
+    if (!free(ex)) return;
+    const g = ex.g, s0 = sets(ex, k);
+    if ((proj[g] || 0) > vol.hi && s0 > floor(k)) step(k, -1);
+    else if (vol.aim[g] !== undefined && (proj[g] || 0) <= vol.aim[g] - 1 && s0 < 6 && (ex.type !== 'i' || mainMin() >= 3 || s0 + 1 <= mainMin())
+      && Object.entries(share[k]).every(([h, x]) => (proj[h] || 0) + x <= vol.hi)) step(k, 1);
+  });
+  /* перебор: прицельные и вспомогательные → второе многосуставное → главное */
+  const tier = k => !isCompound(list[k]) ? 0 : isMain(k) ? 2 : 1;
+  const sideSets = sd => list.reduce((a, ex, k) => a + (sideOf(ex) === sd ? sets(ex, k) : 0), 0);
+  const cut = k => !list[k].kind && list[k].g !== 'cardio' && add[k] > -2 && sets(list[k], k) > floor(k);
+  for (let n = 0; n < 8; n++) {
+    const g = Object.keys(proj).filter(h => proj[h] > vol.hi).sort((a, b) => proj[b] - proj[a])[0]; if (!g) break;
+    const pushes = sideSets('push');
+    const k = list.map((ex, i) => i).filter(i => share[i][g] && cut(i) && (pushes || sideOf(list[i]) !== 'pull'))
+      .sort((a, b) => tier(a) - tier(b) || share[b][g] - share[a][g] || sets(list[b], b) - sets(list[a], a))[0];
+    if (k === undefined || !step(k, -1)) break;
+    if (sideOf(list[k]) === 'pull' && sideSets('pull') < sideSets('push')) {
+      const p = list.map((ex, i) => i).filter(i => sideOf(list[i]) === 'push' && cut(i)).sort((a, b) => tier(a) - tier(b) || sets(list[b], b) - sets(list[a], a))[0];
+      if (p === undefined) { step(k, 1); break; }
+      step(p, -1);
+    }
+  }
+  /* у главного меньше трёх подходов — прицельному прибавка не больше, чем у него */
+  const mm = mainMin();
+  if (mm < 3) list.forEach((ex, k) => { if (ex.type === 'i' && add[k] > 0 && sets(ex, k) > mm) step(k, -add[k]); });
+  return add;
+}
 /* ---------- сборка одной тренировки ----------
    buildPlan (11j-duration.js) — с учётом времени на тренировку: подбирает число упражнений и дозировку и собирает план
    здесь. ctx.dose — уступка по времени: s — подходов (кругов, серий) больше или меньше, r — доля отдыха;
@@ -11628,14 +11909,22 @@ function buildPlanAt(ctx = {}) {
   const base = !!ctx.fitBase, dose = ctx.dose || null;
   const groups = ctx.groups || S.groups, count = custom ? custom.items.length : ctx.count || (lp ? lp.count : S.count), week = base ? null : ctx.week || null;
   const sw = custom ? {} : ctx.swaps || {};
-  const E = effEquip(S.equip);
+  /* круговая (кроме своего плана) — без штанги: становая, присед и жим штанги «до последнего чистого повтора» с 15 с на
+     переход — техника разваливается от усталости, а страховать некому (Марина п. 15). В круг — тренажёры, гантели, гиря,
+     лента, вес тела: ACSM, Ratamess et al., MSSE 2009; 41(3):687–708 — круговая для выносливости мышц с лёгкой и средней
+     нагрузкой; NSCA Essentials, 2016, гл. 17 — в круговой станции с коротким отдыхом, тяжёлые основные упражнения —
+     отдельно и со свежими силами. Румынская тяга в круге — с гантелями */
+  const noBar = S.format === 'circuit' && !custom, E = noBar ? noBarbell(effEquip(S.equip)) : effEquip(S.equip);
   const rand = rng((ctx.seed ?? S.seed) * 9973 + count * 31 + groups.length * 7);
   if (custom && !custom.items.length) return {empty:'custom', groups};
   if (!groups.length && !custom) return {empty:'groups'};
   /* программа другого места: подбор под его инвентарь, затем недоступное здесь заменяется аналогами;
      в своём плане так же заменяется то, чего нет в этом месте */
-  const ref = custom ? null : programEquip(), PE = ref ? effEquip(ref) : E;
-  let picked = custom ? custom.items.map(it => EXI[it.id]) : pickExercises(PE, rand, groups, count, ctx.avoid, lp || undefined).picked;
+  const ref = custom ? null : programEquip(), PE = ref ? (noBar ? noBarbell(effEquip(ref)) : effEquip(ref)) : E;
+  /* подбор дня недельной программы: объём недели и жимы/тяги прошлых дней (buildProgram) */
+  const vsets = new Map(), vs = ex => { let n = vsets.get(ex); if (n === undefined) vsets.set(ex, n = volSets(ex, PE, dose)); return n; };
+  const wk = ctx.vol ? {weights:ctx.vol.weights, vol:{have:ctx.vol.have, aim:ctx.vol.aim, hi:ctx.vol.hi, sets:vs}, pp:ctx.pp} : ctx.pp ? {pp:ctx.pp} : null;
+  let picked = custom ? custom.items.map(it => EXI[it.id]) : pickExercises(PE, rand, groups, count, ctx.avoid, {...(lp || wk || {}), sets:vs}).picked;
   /* «можно здесь»: есть инвентарь, и упражнение не нагружает суставы, которые бережём (11g-gentle.js) */
   const usable = ex => available(ex, E) && fitsBody(ex);
   const pool = EX.filter(usable);
@@ -11655,6 +11944,8 @@ function buildPlanAt(ctx = {}) {
   }
   /* подбор до замен: по нему неделя обходит повторы (buildProgram), и замена в одном дне не меняет другие дни */
   const picks = picked.map(ex => ex.id);
+  /* доводка объёма недели подходами — по номеру упражнения (после замены та же) */
+  const extra = !custom && ctx.vol ? volTopUp(picked, ctx.vol, PE, dose) : picked.map(() => 0);
   /* замены записаны по номеру упражнения (slot): в программе другого места часть упражнений может не войти в план */
   for (const [i, id] of Object.entries(sw)) {
     const ex = EXI[id], k = slots.indexOf(+i);
@@ -11663,7 +11954,7 @@ function buildPlanAt(ctx = {}) {
   if (!picked.length) return {empty:'none', pool, groups, lost};
   const G = GOALS[S.goal];
   const items = picked.map((ex, k) => {
-    const slot = slots[k], dosed = applyDose(prescribe(ex, week, E), dose), rx = base ? dosed : applyLight(dosed, ex);
+    const slot = slots[k], dosed = applyDose(prescribe(ex, week, E, extra[k]), dose), rx = base ? dosed : applyLight(dosed, ex);
     if (lp && lp.light.has(ex.g) && !base) easeRx(rx);
     return {ex, slot, rx:custom ? customRx(rx, custom.items[slot], ex) : rx, name:exName(ex, E), eqLine:equipLine(ex, E), eqIds:chosenEquip(ex, E), has:propHas(ex, E), sub:subs.get(ex) || null};
   });
@@ -11689,7 +11980,12 @@ function buildPlanAt(ctx = {}) {
     });
   } else {
     const ord = byOrder((custom ? picked : orderCircuit(picked)).map(ex => bySlot.get(ex)), custom ? null : ctx.order, it => [it.slot]);
-    const c = dose ? {...G.circ, rest:doseRest(G.circ.rest, dose), roundRest:doseRest(G.circ.roundRest, dose)} : G.circ;
+    const c = dose ? {...G.circ, rest:doseRest(G.circ.rest, dose), roundRest:doseRest(G.circ.roundRest, dose)} : {...G.circ};
+    /* переход между станциями — реалистичный: если в круге есть тренажёр, блок, скамья или турник, до них нужно дойти
+       и выставить вес — не меньше 30 с (Alcaraz P.E. et al., J Strength Cond Res 2011; 25(9):2519–2527: круговая из
+       жима лёжа, разгибания ног и подъёма на носки — 35 с между подходами); гантели, гиря, лента, вес тела — под рукой,
+       по цели */
+    if (ord.some(it => it.eqIds.some(id => FIXED_EQ.has(id)))) c.rest = Math.max(c.rest, CIRC_MOVE);
     let rounds = c.rounds + (S.level === 'beg' ? -1 : S.level === 'adv' ? 1 : 0);
     /* время на тренировку: кругов больше или меньше (не меньше двух и не больше шести) */
     if (dose && dose.s) rounds = Math.max(Math.min(2, rounds), Math.min(DOSE_MAX_ROUNDS, rounds + dose.s));
@@ -11700,16 +11996,17 @@ function buildPlanAt(ctx = {}) {
     ord.forEach((it, i) => {
       it.label = String(i + 1);
       it.rounds = rounds;
-      if (!it.ex.kind && !(custom && custom.items[it.slot]?.reps)) it.rx.reps = c.reps;
+      /* подвижность и стабилизация в круге — со своими повторами (ролик для пресса — не 15–20) */
+      if (!it.ex.kind && it.rx.scheme !== 'ctrl' && !(custom && custom.items[it.slot]?.reps)) it.rx.reps = c.reps;
       it.rx.circ = true;
-      it.rx.work = it.ex.kind === 'time' ? c.work : it.ex.kind === 'dist' ? 30 : midOf(it.rx.reps) * G.rep * (it.ex.uni ? 2 : 1);
+      it.rx.work = it.ex.kind === 'time' ? c.work : it.ex.kind === 'dist' ? 30 : midOf(it.rx.reps) * (it.ex.repSec || G.rep) * (it.ex.uni ? 2 : 1);
     });
     blocks = [{kind:'circuit', items:ord, rounds, rest:c.rest, roundRest:c.roundRest}];
     minutes = rounds * (ord.reduce((a, it) => a + it.rx.work, 0) + c.rest * (ord.length - 1)) + (rounds - 1) * c.roundRest;
     totalSets = rounds * ord.length;
   }
   const missing = groups.filter(g => !pool.some(ex => groupsOf(ex).has(g)));
-  const load = {}, gvol = {};
+  const load = {}, gvol = {}, gvolBase = {};
   for (const it of items) {
     const k = S.format === 'circuit' ? blocks[0].rounds : it.rx.sets;
     for (const m of it.ex.pri) load[m] = (load[m] || 0) + k;
@@ -11717,7 +12014,15 @@ function buildPlanAt(ctx = {}) {
     /* дробный учёт: целевая группа — полный подход, остальные работающие — половина */
     for (const [g, x] of Object.entries(groupShare(it.ex))) gvol[g] = (gvol[g] || 0) + k * x;
   }
-  return {blocks, items, minutes:Math.round(minutes / 60), totalSets, missing:custom ? [] : missing, load, gvol, pool, E, groups, count, lost, custom:!!custom, byLog:!!lp, picks};
+  /* объём подбора до замен, обычной недели (без нагрузки, пика и разгрузки): по нему следующие дни программы добирают
+     объём — упражнения не меняются ни от недели к неделе, ни от замены в другом дне */
+  const ppBase = {push:0, pull:0};
+  for (const [k, id] of picks.entries()) {
+    const ex = EXI[id], kb = volSets(ex, E, dose, extra[k]), sd = sideOf(ex);
+    for (const [g, x] of Object.entries(groupShare(ex))) gvolBase[g] = (gvolBase[g] || 0) + kb * x;
+    if (sd) ppBase[sd] += kb;
+  }
+  return {blocks, items, minutes:Math.round(minutes / 60), totalSets, missing:custom ? [] : missing, load, gvol, gvolBase, ppBase, pool, E, groups, count, lost, custom:!!custom, byLog:!!lp, picks};
 }
 
 /* ---------- сборка недели ---------- */
@@ -11727,14 +12032,43 @@ function buildProgram() {
   const week = WEEKS[S.week - 1];
   const avoid = new Set();
   const seen = {};
+  /* день «всё тело» включает мышцу акцента, даже если по шаблону её группы в этот день нет */
+  const fg = S.focus && MUSCLE_GROUP[S.focus];
+  const dayGroups = tid => DAY_T[tid].name === 'Всё тело' && fg && !DAY_T[tid].g.includes(fg) ? DAY_T[tid].g.concat(fg) : DAY_T[tid].g;
+  /* Объём недели попадает в шкалу «мало / в норме / много» по уровню (volScale; Alex п. 25: в своей же программе «Спина 28
+     и Плечи 25,5 — много, Икры 1,5 — мало»). Цель группы на неделю — 40% коридора от нижней границы; каждый день
+     добирает свою долю того, что осталось до цели, поровну на оставшиеся дни с этой группой; доли групп дня — корень из веса
+     группы (GROUP_W: крупные мышцы получают и вспомогательную работу) × недобор к средней доле. Выше «много» — штраф в подборе (в том числе за вспомогательную работу: жимы
+     нагружают плечи и трицепс, тяги — плечи и бицепс). Счёт — по обычной неделе с уступкой по времени (gvolBase):
+     в неделях нагрузки и пика упражнения те же. */
+  const sc = volScale(), aim = sc.lo + (sc.hi - sc.lo) * 0.4, have = {}, pp = {push:0, pull:0};
+  /* в днях «всё тело» подбор идёт по всем группам этих дней, а группы шаблона дня — с упором: иначе икры (только в дне В)
+     или бицепс (только в дне А) набирали бы недельный объём за одну тренировку */
+  const fullT = t => DAY_T[t].name === 'Всё тело', fullAll = [...new Set(tmpl.filter(fullT).flatMap(dayGroups))];
+  const pickGroups = t => fullT(t) ? dayGroups(t).concat(fullAll.filter(x => !dayGroups(t).includes(x))) : dayGroups(t);
   const out = tmpl.map((tid, i) => {
     seen[tid] = (seen[tid] || 0) + 1;
-    /* день «всё тело» включает мышцу акцента, даже если по шаблону её группы в этот день нет */
-    const fg = S.focus && MUSCLE_GROUP[S.focus], g = DAY_T[tid].name === 'Всё тело' && fg && !DAY_T[tid].g.includes(fg) ? DAY_T[tid].g.concat(fg) : DAY_T[tid].g;
+    const own = dayGroups(tid), g = pickGroups(tid);
+    const share = {};
+    for (const x of g) { const left = tmpl.slice(i).filter(t => pickGroups(t).includes(x)).length || 1; share[x] = Math.max(0, aim - (have[x] || 0)) / left; }
+    const avg = g.reduce((a, x) => a + share[x], 0) / (g.length || 1) || 1;
+    const weights = Object.fromEntries(g.map(x => [x, Math.sqrt(GROUP_W[x] || 1) * (own.includes(x) ? 1 : 0.8) * Math.min(2.5, Math.max(0.15, share[x] / avg))]));
     /* время на тренировку задано — число упражнений каждого дня подбирается под него (11j-duration.js) */
-    const p = buildPlan({groups:g, count:durationOf() ? undefined : S.count, seed:S.seed * 131 + i * 977 + 13, avoid:new Set(avoid), week, swaps:swaps['d' + i] || {}, order:swaps.__order?.['d' + i]});
+    const aimDay = Object.fromEntries(g.map(x => [x, (have[x] || 0) + share[x]]));
+    /* новичку с заданным временем — потолок недели: после этого дня у группы не больше её доли верхней границы шкалы
+       (поровну на дни с этой группой; fitDuration, 11j-duration.js) */
+    const cap = S.level === 'beg' && durationOf() ? Object.fromEntries(g.map(x => {
+      const all = tmpl.filter(t => pickGroups(t).includes(x)).length || 1, done = tmpl.slice(0, i + 1).filter(t => pickGroups(t).includes(x)).length;
+      return [x, sc.hi * done / all];
+    })) : null;
+    const p = buildPlan({groups:g, count:durationOf() ? undefined : S.count, seed:S.seed * 131 + i * 977 + 13, avoid:new Set(avoid), week, swaps:swaps['d' + i] || {}, order:swaps.__order?.['d' + i],
+      vol:{have:{...have}, aim:aimDay, hi:sc.hi, weights, cap}, pp:{...pp}});
     /* следующие дни обходят и подобранное, и поставленное заменой: замена в одном дне не меняет остальные */
-    if (p.items) { p.items.forEach(it => avoid.add(it.ex.id)); p.picks.forEach(id => avoid.add(id)); }
+    if (p.items) {
+      p.items.forEach(it => avoid.add(it.ex.id)); p.picks.forEach(id => avoid.add(id));
+      for (const [x, v] of Object.entries(p.gvolBase)) have[x] = (have[x] || 0) + v;
+      pp.push += p.ppBase.push; pp.pull += p.ppBase.pull;
+    }
     return {tid, i, wd:SCHEDULE[days][i], plan:p};
   });
   for (const d of out) {
@@ -11874,19 +12208,28 @@ function loadBars(load) {
   return rows.map(([m, v]) => `<li><span class="lb-n">${MUSCLE_NAMES[m]}</span><span class="lb-t"><i style="width:${Math.max(6, v / max * 100).toFixed(0)}%"></i></span><span class="lb-v">${fmtNum(v)}</span></li>`).join('');
 }
 /* недельный объём по группам с ориентиром 10–20 подходов */
+/* Группы, которых нет ни в одном дне программы (предплечья во «Всё тело»), работают попутно: у них нет оценки «мало» —
+   программа их и не нагружает, а «много» показывается и им */
 function volBars(gvol, groups) {
   const ids = GROUPS.map(g => g.id).filter(g => g !== 'cardio' && (groups.has(g) || (gvol[g] || 0) >= 1));
-  const max = Math.max(22, ...ids.map(g => gvol[g] || 0));
-  return ids.map(g => volRow(g, gvol[g] || 0, max)).join('');
+  const max = Math.max(volScale().hi + 2, ...ids.map(g => gvol[g] || 0));
+  return ids.map(g => volRow(g, gvol[g] || 0, max, '', '', groups.has(g))).join('');
 }
-/* строка полосы «подходов на группу»: коридор 10–20, «мало / в норме / много»; extra — добавка под полосой
-   (статус восстановления в журнале, 13d-muscle-load.js) */
-function volRow(g, val, max, extra = '', cls = '') {
-  const pct = v => (v / max * 100).toFixed(1);
+/* строка полосы «подходов на группу»: коридор по уровню (volScale), «мало / в норме / много», не цель программы —
+   «попутно»; extra — добавка под полосой (статус восстановления в журнале, 13d-muscle-load.js) */
+function volRow(g, val, max, extra = '', cls = '', target = true) {
+  const pct = v => (v / max * 100).toFixed(1), sc = volScale();
   const v = Math.round(val * 2) / 2;
-  const st = v < 10 ? 'lo' : v > 20 ? 'hi' : 'ok';
-  const lab = st === 'lo' ? 'мало' : st === 'hi' ? 'много' : 'в норме';
-  return `<li class="${st}${cls ? ' ' + cls : ''}"${cls ? ` data-lg="${g}"` : ''}><span class="vb-n">${GN[g]}</span><span class="vb-v">${fmtNum(v)}<em>${lab}</em></span><span class="vb-t"><b style="left:${pct(10)}%;width:${pct(10)}%"></b><i style="width:${Math.max(1.5, +pct(v))}%"></i></span>${extra}</li>`;
+  const st = v > sc.hi ? 'hi' : !target ? 'side' : v < sc.lo ? 'lo' : 'ok';
+  const lab = st === 'lo' ? 'мало' : st === 'hi' ? 'много' : st === 'side' ? 'попутно' : 'в норме';
+  return `<li class="${st}${cls ? ' ' + cls : ''}"${cls ? ` data-lg="${g}"` : ''}><span class="vb-n">${GN[g]}</span><span class="vb-v">${fmtNum(v)}<em>${lab}</em></span><span class="vb-t"><b style="left:${pct(sc.lo)}%;width:${pct(sc.hi - sc.lo)}%"></b><i style="width:${Math.max(1.5, +pct(v))}%"></i></span>${extra}</li>`;
+}
+/* «Полоса — ориентир …: 10–20 подходов в неделю» — по уровню; новичку и в «Бережно» — с пояснением */
+function volScaleText() {
+  const sc = volScale(), low = sc.lo < 10;
+  return 'Полоса — ориентир для роста мышц: {lo}–{hi} подходов в неделю.'.replace('{lo}', sc.lo).replace('{hi}', sc.hi)
+    + (!low ? '' : S.goal === 'gentle' ? ' В бережном режиме ориентир ниже, чем для тех, кто уже тренируется: 2–4 подхода на группу 2–3 раза в неделю.'
+      : ' Новичку ориентир ниже, чем тем, кто уже тренируется: 2–4 подхода на группу 2–3 раза в неделю.');
 }
 
 /* вес по плану (свой план или план тренера) — рядом с подходами */
@@ -12017,6 +12360,7 @@ function blocksHtml(p) {
       html += `<section class="block block-c">
         <header class="b-head"><h2><span class="b-letter">${ICON.loop}</span>Круг × ${b.rounds}</h2>
         <p>Выполняйте станции подряд: ${fmtRest(b.rest)} на переход между упражнениями, ${fmtRest(b.roundRest)} отдыха после круга.</p>
+        ${S.mode !== 'custom' && effEquip(S.equip).has('bb') ? '<p class="b-note">Штанга в круговую не входит: становая, присед и жим штанги — в обычных подходах, на свежие силы.</p>' : ''}
         <div class="sets rounds" role="group" aria-label="Отметить пройденные круги">${Array.from({length:b.rounds}, (_, k) => `<button type="button" class="set${rd > k ? ' done' : ''}" data-round="${k}" aria-label="Круг ${k + 1}">${k + 1}</button>`).join('')}<span class="rounds-l">круги</span></div></header>
         <ol class="cards">${b.items.map(card).join('')}</ol></section>`;
     }
@@ -12038,6 +12382,7 @@ function warnHtml(p) {
   if (byEq.length) warn.push(`Без упражнений осталось: ${byEq.map(g => GN[g].toLowerCase()).join(', ')}. Для них нужно другое оборудование.`);
   if (byBody.length) warn.push(`Без упражнений в бережном режиме осталось: ${byBody.map(g => GN[g].toLowerCase()).join(', ')}. Всё, что для этого есть, даёт нагрузку, которую вы бережёте.`);
   const dw = durationWarn(p); if (dw) warn.push(dw);
+  if (S.goal === 'strength' && S.level === 'beg' && p.items.some(it => begStrength(schemeOf(it.ex)))) warn.push('Новичку в «Силе» — 6–8 повторов с запасом: к тяжёлым 3–5 переходите, когда техника устоится, — выберите уровень «Уже тренируюсь».');
   return warn.length ? `<div class="warn">${warn.map(w => `<p>${esc(w)}</p>`).join('')}</div>` : '';
 }
 function headButtons(copyLabel) {
@@ -12154,7 +12499,7 @@ function renderProgram() {
       <figcaption>
         ${loadFoldHead('Подходов на группу за неделю', loadTop(volRows))}
         <ul class="vbars">${volBars(prog.gvol, allGroups)}</ul>
-        <p class="lb-note">Полоса — ориентир для роста мышц: 10–20 подходов в неделю. Подход засчитывается целиком целевой группе и наполовину остальным работающим. ${S.goal === 'strength' ? 'В силовом цикле объём ниже — это нормально.' : S.goal === 'gentle' ? 'В бережном режиме объём ниже намеренно: сначала суставы и техника.' : ''}</p>
+        <p class="lb-note">${volScaleText()} Подход засчитывается целиком целевой группе и наполовину остальным работающим. ${S.goal === 'strength' ? 'В силовом цикле объём ниже — это нормально.' : S.goal === 'gentle' ? 'Сначала суставы и техника.' : ''}</p>
       </figcaption>
     </figure>
   </header>
@@ -13759,7 +14104,10 @@ const doseCounts = () => S.level === 'beg' ? DOSE_COUNTS.filter(c => c <= DOSE_B
 const DOSE_LESS = [{s:-1, r:1}, {s:-1, r:.8}, {s:-2, r:.8}, {s:-3, r:.8}];
 function doseMore() {
   const n = (S.level === 'beg' ? 1 : 2) + (S.format === 'circuit' ? 1 : 0);
-  return [1, 2, 3].slice(0, n).flatMap(s => [{s, r:1}, {s, r:1.25}]);
+  /* новичку, которому подход сверх обычного уже прибавлен, — ещё и отдых в полтора раза дольше (суперсеты из пар «жим —
+     тяга» короче прежних пар из двух жимов): между подходами новичку уместно 1–2 мин, ACSM, Ratamess et al., MSSE 2009;
+     41(3):687–708 */
+  return [1, 2, 3].slice(0, n).flatMap(s => [{s, r:1}, {s, r:1.25}]).concat(S.level === 'beg' ? [{s:1, r:1.5}] : []);
 }
 function ensureDur(s) { if (!DURATIONS[s.dur]) s.dur = null; return s.dur; }
 ensureDur(S);
@@ -13792,35 +14140,56 @@ function buildPlan(ctx = {}) {
   if (p.items) { p.count = p.items.length; p.fit = {dur:S.dur, lo:D.lo, hi:D.hi, est:fit.m, ok:fit.m >= D.lo && fit.m <= D.hi, dose:fit.dose, why:fit.why || null}; }
   return p;
 }
+/* Новичку неделя не выходит за шкалу 4–12 подходов на группу (volScale): при 4–5 тренировках по 45–60 мин подходов
+   набирается больше, чем нужно новичку (ACSM, Garber et al., MSSE 2011; 43(7):1334–1359 — 2–4 подхода на группу 2–3 раза
+   в неделю). buildProgram передаёт ctx.vol.cap — сколько подходов может быть у группы после этого дня (её доля верхней
+   границы недели); из вариантов «число упражнений × подходы» берутся только те, что в неё укладываются. Не дотянули до
+   коридора времени — под планом сказано почему (durationWarn: 'begvol'), как и для «60+». */
+function volOver(p, vol) {
+  if (!vol || !vol.cap) return 0;
+  let o = 0; for (const [g, c] of Object.entries(vol.cap)) o += Math.max(0, (vol.have[g] || 0) + (p.gvolBase[g] || 0) - c);
+  return o;
+}
 /* перебор: число упражнений при обычной дозировке; не вышло — с уступками. Из попавших в коридор — ближе к середине,
-   при равенстве — больше упражнений; не попал никто — ближайший к коридору */
+   при равенстве — больше упражнений; не попал никто — ближайший к коридору. С потолком объёма недели (новичок) —
+   только варианты в его пределах: в коридоре — как обычно, иначе самый длинный из них */
 function fitDuration(ctx, D) {
-  const all = [];
+  const all = [], capped = !!(ctx.vol && ctx.vol.cap);
   const run = dose => {
     const got = [];
     for (const c of doseCounts()) {
       const p = buildPlanAt({...ctx, count:c, dose, fitBase:true});
       if (!p.items) return null;
       /* упражнений меньше, чем просили (всё доступное уже в плане), — та же тренировка, что при меньшем числе */
-      const r = {c, dose, m:p.minutes, n:p.items.length};
+      const r = {c, dose, m:p.minutes, n:p.items.length, over:capped ? volOver(p, ctx.vol) : 0};
       all.push(r); got.push(r);
       if (p.items.length < c) break;
     }
     return got;
   };
-  const inside = r => r.m >= D.lo && r.m <= D.hi;
+  const inside = r => r.m >= D.lo && r.m <= D.hi && !(r.over > 0.2);
   const best = list => list.filter(inside).sort((a, b) => Math.abs(a.m - D.target) - Math.abs(b.m - D.target) || b.n - a.n)[0] || null;
   const first = run({s:0, r:1});
   if (!first) return null;
   let hit = best(first);
   if (hit) return hit;
+  if (capped && first.some(r => r.over > 0.2)) {
+    for (const dose of DOSE_LESS) { const got = run(dose); if (got && (hit = best(got))) return hit; }
+    const fits = all.filter(r => !(r.over > 0.2)).sort((a, b) => b.m - a.m || b.n - a.n);
+    const pick = fits.find(r => r.m <= D.hi) || fits[fits.length - 1] || all.slice().sort((a, b) => a.over - b.over || a.m - b.m)[0];
+    return {...pick, why:pick.m < D.lo ? 'begvol' : null};
+  }
   const under = first.every(r => r.m < D.lo), over = first.every(r => r.m > D.hi);
   for (const dose of under ? doseMore() : over ? DOSE_LESS : DOSE_LESS.concat(doseMore())) { const got = run(dose); if (got && (hit = best(got))) return hit; }
   const gap = r => r.m < D.lo ? D.lo - r.m : r.m > D.hi ? r.m - D.hi : 0;
-  const near = all.sort((a, b) => gap(a) - gap(b) || Math.abs(a.dose.s) - Math.abs(b.dose.s) || b.n - a.n)[0];
-  /* почему не уложились: длиннее — меньше подходов уже некуда; короче — не хватило упражнений или новичку больше не прибавляем */
+  /* с потолком объёма недели — только варианты в его пределах (если такие есть) */
+  const ok = capped ? all.filter(r => !(r.over > 0.2)) : [], from = ok.length ? ok : all;
+  const near = from.sort((a, b) => gap(a) - gap(b) || Math.abs(a.dose.s) - Math.abs(b.dose.s) || b.n - a.n)[0];
+  /* почему не уложились: длиннее — меньше подходов уже некуда; короче — объём недели новичка, не хватило упражнений или
+     новичку больше не прибавляем */
   const counts = doseCounts(), most = counts[counts.length - 1];
-  return {...near, why:near.m > D.hi ? 'long' : S.level === 'beg' && near.n >= most ? 'beg' : 'few'};
+  const volCut = capped && near.m < D.lo && all.some(r => r.over > 0.2 && r.m > near.m);
+  return {...near, why:near.m > D.hi ? 'long' : volCut ? 'begvol' : S.level === 'beg' && near.n >= most ? 'beg' : 'few'};
 }
 /* сколько упражнений показать в «Упражнений»: при заданном времени — сколько подобрано в открытой тренировке */
 function shownCount() {
@@ -13832,7 +14201,8 @@ function shownCount() {
 function durationWarn(p) {
   const f = p && p.fit; if (!f || f.ok) return '';
   const D = DURATIONS[f.dur];
-  return f.why === 'long' ? `Короче ≈${p.minutes} мин с этой целью не получается: в каждом упражнении уже наименьшее число подходов.`
+  return f.why === 'begvol' ? `Новичку больше подходов не прибавляем: тренировка ≈${p.minutes} мин, иначе за неделю мышцам выйдет больше 12 подходов. Остальное время — на разминку, заминку и спокойную ходьбу.`
+    : f.why === 'long' ? `Короче ≈${p.minutes} мин с этой целью не получается: в каждом упражнении уже наименьшее число подходов.`
     : f.why === 'beg' ? `Новичку больше подходов не прибавляем: тренировка ≈${p.minutes} мин. Остальное время — на разминку, заминку и спокойную ходьбу.`
     : `Под ${D.say} не хватает упражнений с этим оборудованием и мышцами: тренировка ≈${p.minutes} мин.`;
 }
@@ -17346,8 +17716,9 @@ function setupGallery() {
    («восстанавливается»), вечером — 78 ч («готова»), хотя тренировка та же. */
 const LOAD = {
   days:7,        /* окно: сегодня и 6 предыдущих дней */
-  lo:10, hi:20,  /* коридор подходов на группу в неделю: Schoenfeld, Ogborn, Krieger, J Sports Sci 2017; 35(11):1073–1082 —
-                    10 и больше подходов в неделю дают больший прирост, чем меньше; верх 20 — как у графика плана и у Fitbod */
+  lo:10, hi:20,  /* коридор подходов на группу в неделю для «Уже тренируюсь» и опытных: Schoenfeld, Ogborn, Krieger, J Sports Sci
+                    2017; 35(11):1073–1082 — 10 и больше подходов в неделю дают больший прирост, чем меньше; верх 20 — как у
+                    графика плана. Полосы и «тренировка на сегодня» берут коридор по уровню — volScale (11-planner.js) */
   minSets:2,     /* существенная нагрузка — 2 и больше подхода основной работы группы в одной тренировке (в один день) */
   loadedH:48,    /* Morán-Navarro et al., Eur J Appl Physiol 2017; 117(12):2387–2399: без отказа восстановление в основном
                     за 24–48 ч — до 48 ч группа «нагружена», */
@@ -17401,21 +17772,21 @@ function muscleLoad(data = LOG.data, today = todayKey()) {
 
 /* ---------- тренировка на сегодня ---------- */
 /* Кандидаты — «готовые» и «восстанавливающиеся» группы (у вторых вес вдвое меньше, одно упражнение и на подход меньше);
-   «нагруженные» пропускаются, упражнения, где они основные, отодвигаются. Порядок — по недобору до 10 подходов
-   за 7 дней, умноженному на долю группы в обычном плане (GROUP_W): 6 недостающих подходов спины важнее 6 подходов
+   «нагруженные» пропускаются, упражнения, где они основные, отодвигаются. Порядок — по недобору до нижней границы шкалы
+   по уровню (volScale, 11-planner.js: 10 подходов, новичку и в «Бережно» — 4) за 7 дней, группы выше её верха не берутся, умноженному на долю группы в обычном плане (GROUP_W): 6 недостающих подходов спины важнее 6 подходов
    предплечий, которые и так работают в каждой тяге. Групп — не больше, чем упражнений; при меньше 3 групп с недобором
    добавляются готовые без недобора. Группы без упражнений в этом месте (инвентарь, уровень, бережный режим) не берутся. */
 function logPick(load = muscleLoad(), opt = {}) {
   const count = opt.count || S.count, E = opt.E || effEquip(S.equip), lvlMax = S.level === 'beg' ? 2 : 3;
   const can = g => EX.some(ex => ex.g === g && available(ex, E) && ex.lvl <= lvlMax && (S.format !== 'static' || staticOk(ex)) && fitsBody(ex));
-  const order = g => GROUPS.findIndex(x => x.id === g);
+  const order = g => GROUPS.findIndex(x => x.id === g), sc = volScale();
   const rows = loadGroups().map(g => {
-    const L = load[g], need = Math.max(0, LOAD.lo - L.v);
+    const L = load[g], need = Math.max(0, sc.lo - L.v);
     return {g, v:L.v, st:L.st, age:L.last ? L.last.age : null, sets:L.last ? L.last.sets : 0, need,
-      p:GROUP_W[g] * (need / LOAD.lo + 0.1) * (L.st === 'recovering' ? 0.5 : 1)};
+      p:GROUP_W[g] * (need / sc.lo + 0.1) * (L.st === 'recovering' ? 0.5 : 1)};
   });
   const rest = rows.filter(r => r.st === 'loaded');
-  const cand = rows.filter(r => r.st !== 'loaded' && r.v < LOAD.hi && can(r.g)).sort((a, b) => b.p - a.p || order(a.g) - order(b.g));
+  const cand = rows.filter(r => r.st !== 'loaded' && r.v < sc.hi && can(r.g)).sort((a, b) => b.p - a.p || order(a.g) - order(b.g));
   let chosen = cand.filter(r => r.need > 0).slice(0, count);
   if (chosen.length < 3) chosen = chosen.concat(cand.filter(r => !chosen.includes(r)).slice(0, 3 - chosen.length));
   return {rows:chosen, rest, groups:chosen.map(r => r.g).sort((a, b) => order(a) - order(b))};
@@ -17486,14 +17857,14 @@ function loadSummaryHtml(load) {
 /* панель в журнале: подходы за 7 дней (полосы как в плане) и статус восстановления */
 function muscleLoadHtml(load = muscleLoad()) {
   const ids = loadGroups(), any = ids.some(g => load[g].v > 0);
-  const max = Math.max(22, ...ids.map(g => load[g].v));
+  const max = Math.max(volScale().hi + 2, ...ids.map(g => load[g].v)), sc = volScale();
   const body = any ? `<ul class="vbars ml-list">${ids.map(g => volRow(g, load[g].v, max, loadStatusHtml(load[g]), 'st-' + load[g].st)).join('')}</ul>
     <p class="ml-legend"><span class="st-loaded"><i></i>нагружена — меньше 48 ч</span><span class="st-recovering"><i></i>восстанавливается — 48–72 ч</span><span class="st-ready"><i></i>готова — от 72 ч</span></p>`
     : `<p class="ml-empty">За 7 дней записей нет — все мышцы отдохнули. Тренировка на сегодня начнётся с крупных групп.</p>`;
   return `<section class="ml" id="ml" aria-labelledby="ml-title">
     <div class="ml-head">
       <div><p class="eyebrow">Загрузка мышц</p><h2 id="ml-title">Подходы за 7 дней и отдых</h2>
-        <p class="ml-sub">Сегодня и 6 предыдущих дней, по записанным подходам. Полоса — ориентир для роста: 10–20 подходов на группу в неделю.</p>
+        <p class="ml-sub">Сегодня и 6 предыдущих дней, по записанным подходам. ${'Полоса — ориентир для роста: {lo}–{hi} подходов на группу в неделю.'.replace('{lo}', sc.lo).replace('{hi}', sc.hi)}</p>
         ${any ? loadSummaryHtml(load) : ''}</div>
       <div class="ml-act"><button type="button" class="btn" data-logpick="journal">Собрать тренировку на сегодня →</button>
         <p class="p-hint ml-msg" id="ml-msg" role="status"></p></div>
@@ -17501,9 +17872,9 @@ function muscleLoadHtml(load = muscleLoad()) {
     ${body}
     <details class="rule ml-how"><summary>Как считается</summary>
       <p>Подход засчитывается целиком целевой группе упражнения и наполовину остальным работающим — как в графике недели в плане (Pelland и соавт., 2026). Считаются только записанные подходы; «по 10 на каждую сторону» — один подход.</p>
-      <p>Ориентир — 10–20 подходов на группу в неделю: от 10 подходов мышцы растут заметнее (Schoenfeld, Ogborn, Krieger, 2017).</p>
+      <p>Ориентир — 10–20 подходов на группу в неделю: от 10 подходов мышцы растут заметнее (Schoenfeld, Ogborn, Krieger, 2017). Новичку и в бережном режиме — 4–12: 2–4 подхода на группу 2–3 раза в неделю (Garber и соавт., 2011).</p>
       <p>Статус — по последней тренировке, где группа сделала 2 подхода и больше как основная: меньше 48 ч назад — нагружена, 48–72 ч — восстанавливается, от 72 ч — готова. Если подходы не доводить до предела, мышцы восстанавливаются в основном за 24–48 ч, после подходов до предела — до 72 ч (Morán-Navarro и соавт., 2017). Вспомогательная работа и кардио статус не меняют. В журнале только даты, поэтому часы считаются по дням: вчера — 24 ч, позавчера — 48 ч, три дня назад — 72 ч.</p>
-      <p>Тренировка на сегодня: сначала группы с наибольшим недобором до 10 подходов (крупные мышцы — раньше мелких), нагруженные пропускаются, восстанавливающиеся получают одно упражнение и на подход меньше. Инвентарь места, уровень и число упражнений — из параметров плана.</p>
+      <p>Тренировка на сегодня: сначала группы с наибольшим недобором до нижней границы ориентира — 10 подходов, новичку и в бережном режиме 4 (крупные мышцы — раньше мелких), нагруженные пропускаются, восстанавливающиеся получают одно упражнение и на подход меньше. Инвентарь места, уровень и число упражнений — из параметров плана.</p>
     </details>
   </section>`;
 }
@@ -17516,7 +17887,7 @@ function logPickHtml(p) {
   const rows = lp.pick.rows.slice().sort((a, b) => b.p - a.p || order(a.g) - order(b.g));
   const li = rows.map(r => {
     const today = Math.round((p.gvol[r.g] || 0) * 2) / 2;
-    return `<li><span class="ar-i st-${r.st}" aria-hidden="true"></span><p><b>${GN[r.g]}:</b> ${fmtNum(r.v)} из 10 за 7 дней, ${restText(r)}${r.st === 'recovering' ? ' — восстанавливается, на подход меньше' : ''}<em class="lp-add">${today ? `сегодня +${fmtNum(today)}` : 'сегодня без упражнений'}</em></p></li>`;
+    return `<li><span class="ar-i st-${r.st}" aria-hidden="true"></span><p><b>${GN[r.g]}:</b> ${fmtNum(r.v)} ${'из {n} за 7 дней,'.replace('{n}', volScale().lo)} ${restText(r)}${r.st === 'recovering' ? ' — восстанавливается, на подход меньше' : ''}<em class="lp-add">${today ? `сегодня +${fmtNum(today)}` : 'сегодня без упражнений'}</em></p></li>`;
   }).join('');
   const rest = (lp.pick.rest || []).filter(r => r && GN[r.g]);
   const skip = rest.length ? `<p class="lp-skip">Отдыхают — нагружены меньше 48 ч назад: ${rest.map(r => `${GN[r.g].toLowerCase()} (${agoText(r.age)})`).join(', ')}.</p>` : '';
