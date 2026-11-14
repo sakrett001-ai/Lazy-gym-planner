@@ -460,7 +460,8 @@ function pickExercises(E, rand, groups, count, avoid, opt) {
    жимов (Марина п. 12). */
 const demandOf = ex => (schemeOf(ex) === 'heavy' ? 2 : 0) + ex.lvl;
 function orderClassic(list) {
-  const rank = ex => ex.type === 'c' && sideOf(ex) ? 2.5 : GROUP_ORDER[ex.g];
+  /* многосуставные на ноги (и тяга с пола) — одним рядом, первым — тяжёлое; жимы и тяги верха — следующим рядом */
+  const rank = ex => ex.type !== 'c' ? GROUP_ORDER[ex.g] : sideOf(ex) ? 2.5 : LEG_G.has(ex.g) || LEG_P.has(PATTERN[ex.id]) ? 0 : GROUP_ORDER[ex.g];
   const out = list.slice().sort((a, b) => {
     const ca = a.g === 'abs' ? 1 : 0, cb = b.g === 'abs' ? 1 : 0;
     if (ca !== cb) return ca - cb;
@@ -589,42 +590,65 @@ function volSets(ex, E, dose, extra = 0) {
   if (S.format === 'circuit') { const c = GOALS[S.goal].circ; let r = c.rounds + (S.level === 'beg' ? -1 : S.level === 'adv' ? 1 : 0); if (dose && dose.s) r = Math.max(Math.min(2, r), Math.min(DOSE_MAX_ROUNDS, r + dose.s)); return Math.max(2, r); }
   return applyDose(prescribe(ex, null, E, extra), dose).sets;
 }
-/* Доводка объёма дня недельной программы подходами: прицельным упражнениям и упражнениям на ноги групп, которым до цели
-   дня (aim) не хватает подхода, — +1 подход, если ни одна их группа не выйдет выше «много»; упражнениям групп, которые уже
-   выше «много», — −1 (не меньше двух). Жимы и тяги верха не трогаются: их баланс подобран по подходам. В классике
-   и суперсетах; в круговой одно число кругов на все станции, в статодинамике серии заданы методом. Счёт — по подбору
-   до замен, обычной недели: в неделях цикла доводка та же. */
+/* Доводка объёма дня недельной программы подходами — как у методиста:
+   · главное многосуставное дня — первое тяжёлое на ноги и первое тяжёлое на верх в порядке тренировки (если тяжёлого
+     нет — первое многосуставное) — не опускается ниже трёх подходов (у кого обычных меньше трёх — не урезается);
+   · недобор: прицельным и упражнениям на ноги групп, которым до цели дня (aim) не хватает подхода, — +1 подход, если ни
+     одна их группа не выйдет выше «много»; если у главного многосуставного меньше трёх подходов — прицельному не больше,
+     чем у него;
+   · перебор (группа выше «много»): подход меньше сначала у прицельных и вспомогательных, потом у второго многосуставного,
+     и только потом у главного — до трёх; внутри одного ряда — у того, что больше нагружает группу; не меньше двух
+     подходов и не больше двух снятых; если так тяг стало меньше жимов — подход меньше и у жима;
+   · прибавка прицельному отменяется, если у главного меньше трёх подходов и стало меньше, чем у прицельного.
+   Жимы и тяги верха в недоборе не трогаются: их баланс подобран по подходам. В классике и суперсетах; в круговой одно
+   число кругов на все станции, в статодинамике серии заданы методом. Счёт — по подбору до замен, обычной недели: в неделях
+   цикла доводка та же. Было (4.104.0, «верх / низ» ×4, «Низ Б»): приседания со штангой и румынская на одной ноге 2×6–10 при
+   икрах 4×10–12. */
+const LEG_G = new Set(['quads', 'glutes', 'hams', 'calves']), LEG_P = new Set(['squat', 'hinge', 'lunge', 'bridge']);
+const isCompound = ex => ex.type === 'c' && ex.g !== 'abs' && ex.g !== 'cardio' && !ex.kind && !['ctrl', 'ballistic'].includes(schemeOf(ex));
+/* главные многосуставные дня: первое тяжёлое на ноги и первое тяжёлое на верх в порядке тренировки */
+function mainCompounds(list) {
+  const order = orderClassic(list).filter(isCompound), lower = ex => LEG_G.has(ex.g) || LEG_P.has(PATTERN[ex.id]);
+  const first = test => order.find(ex => test(ex) && schemeOf(ex) === 'heavy') || order.find(test);
+  return new Set([first(lower), first(ex => !lower(ex))].filter(Boolean));
+}
 function volTopUp(list, vol, E, dose) {
   const add = list.map(() => 0);
   if (!vol || S.format === 'circuit' || S.format === 'static') return add;
   const memo = list.map(() => ({})), sets = (ex, k) => memo[k][add[k]] ?? (memo[k][add[k]] = volSets(ex, E, dose, add[k])), share = list.map(groupShare), proj = {...vol.have};
   list.forEach((ex, k) => { for (const [g, x] of Object.entries(share[k])) proj[g] = (proj[g] || 0) + x * sets(ex, k); });
+  const mains = mainCompounds(list), isMain = k => mains.has(list[k]);
+  /* ниже скольких подходов не урезать: главное — 3 (или обычное, если оно меньше), остальные — 2 */
+  const base = list.map((ex, k) => volSets(ex, E, dose, 0)), floor = k => isMain(k) ? Math.min(3, base[k]) : 2;
+  const mainMin = () => mains.size ? Math.min(...list.map((ex, k) => isMain(k) ? sets(ex, k) : Infinity)) : Infinity;
+  const step = (k, d) => { const s0 = sets(list[k], k); add[k] += d; const s1 = sets(list[k], k); for (const [h, x] of Object.entries(share[k])) proj[h] = (proj[h] || 0) + x * (s1 - s0); return s1 !== s0; };
   const free = ex => !sideOf(ex) && !ex.kind && ex.g !== 'cardio';
   list.forEach((ex, k) => {
     if (!free(ex)) return;
     const g = ex.g, s0 = sets(ex, k);
-    if ((proj[g] || 0) > vol.hi && s0 > 2) add[k] = -1;
-    else if (vol.aim[g] !== undefined && (proj[g] || 0) <= vol.aim[g] - 1 && s0 < 6 && Object.entries(share[k]).every(([h, x]) => (proj[h] || 0) + x <= vol.hi)) add[k] = 1;
-    else return;
-    const s1 = sets(ex, k);
-    for (const [h, x] of Object.entries(share[k])) proj[h] += x * (s1 - s0);
+    if ((proj[g] || 0) > vol.hi && s0 > floor(k)) step(k, -1);
+    else if (vol.aim[g] !== undefined && (proj[g] || 0) <= vol.aim[g] - 1 && s0 < 6 && (ex.type !== 'i' || mainMin() >= 3 || s0 + 1 <= mainMin())
+      && Object.entries(share[k]).every(([h, x]) => (proj[h] || 0) + x <= vol.hi)) step(k, 1);
   });
-  /* группа всё ещё выше «много» (спину и плечи нагружают и жимы, и тяги) — подход меньше у упражнения, которое нагружает её
-     больше всех (не меньше двух подходов, не больше двух снятых); если так тяг стало меньше жимов — подход меньше и у жима */
-  const step = (k, d) => { const s0 = sets(list[k], k); add[k] += d; const s1 = sets(list[k], k); for (const [h, x] of Object.entries(share[k])) proj[h] = (proj[h] || 0) + x * (s1 - s0); return s1 !== s0; };
+  /* перебор: прицельные и вспомогательные → второе многосуставное → главное */
+  const tier = k => !isCompound(list[k]) ? 0 : isMain(k) ? 2 : 1;
   const sideSets = sd => list.reduce((a, ex, k) => a + (sideOf(ex) === sd ? sets(ex, k) : 0), 0);
+  const cut = k => !list[k].kind && list[k].g !== 'cardio' && add[k] > -2 && sets(list[k], k) > floor(k);
   for (let n = 0; n < 8; n++) {
     const g = Object.keys(proj).filter(h => proj[h] > vol.hi).sort((a, b) => proj[b] - proj[a])[0]; if (!g) break;
     const pushes = sideSets('push');
-    const k = list.map((ex, i) => i).filter(i => share[i][g] && !list[i].kind && list[i].g !== 'cardio' && add[i] > -2 && sets(list[i], i) > 2 && (pushes || sideOf(list[i]) !== 'pull'))
-      .sort((a, b) => share[b][g] - share[a][g] || sets(list[b], b) - sets(list[a], a))[0];
+    const k = list.map((ex, i) => i).filter(i => share[i][g] && cut(i) && (pushes || sideOf(list[i]) !== 'pull'))
+      .sort((a, b) => tier(a) - tier(b) || share[b][g] - share[a][g] || sets(list[b], b) - sets(list[a], a))[0];
     if (k === undefined || !step(k, -1)) break;
     if (sideOf(list[k]) === 'pull' && sideSets('pull') < sideSets('push')) {
-      const p = list.map((ex, i) => i).filter(i => sideOf(list[i]) === 'push' && add[i] > -2 && sets(list[i], i) > 2).sort((a, b) => sets(list[b], b) - sets(list[a], a))[0];
+      const p = list.map((ex, i) => i).filter(i => sideOf(list[i]) === 'push' && cut(i)).sort((a, b) => tier(a) - tier(b) || sets(list[b], b) - sets(list[a], a))[0];
       if (p === undefined) { step(k, 1); break; }
       step(p, -1);
     }
   }
+  /* у главного меньше трёх подходов — прицельному прибавка не больше, чем у него */
+  const mm = mainMin();
+  if (mm < 3) list.forEach((ex, k) => { if (ex.type === 'i' && add[k] > 0 && sets(ex, k) > mm) step(k, -add[k]); });
   return add;
 }
 /* ---------- сборка одной тренировки ----------

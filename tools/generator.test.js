@@ -229,8 +229,10 @@ test('tester weeks land on the scale: Full body ×3 (gym), Anna at home, Igor up
 
 /* Общий счёт по сетке: зал и дом × уровень × цель × «всё тело» ×3 и «верх / низ» ×4 × 6 упражнений и 45 минут.
    Было в 4.104.0 до правки: «мало» 153, «много» 224 из 960 групп-недель (по шкале по уровню; со старой шкалой 10–20 для
-   всех — 386 и 114). Стало: 47 и 18. Числа ниже — только убывают. */
-const GRID_LIMIT = { lo: 47, hi: 18 };
+   всех — 386 и 114). Стало: 47 и 18; с защитой главного многосуставного дня (не ниже 3 подходов, прицельным — не больше,
+   чем у главного, если у него меньше трёх) — 50 и 26: перебор больше не срезается с главного упражнения. Числа ниже —
+   только убывают. */
+const GRID_LIMIT = { lo: 50, hi: 26 };
 test('weekly volume across the grid: few groups outside the scale (numbers only go down)', () => {
   let lo = 0, hi = 0, n = 0;
   for (const place of ['gym', 'home']) for (const level of LEVELS) for (const goal of GOALS) for (const [days, split] of [[3, 'full'], [4, 'ul']]) for (const dur of [null, 'mid']) {
@@ -243,6 +245,31 @@ test('weekly volume across the grid: few groups outside the scale (numbers only 
     }
   }
   assert(lo <= GRID_LIMIT.lo && hi <= GRID_LIMIT.hi, `${n} group-weeks: low ${lo} (limit ${GRID_LIMIT.lo}), high ${hi} (limit ${GRID_LIMIT.hi})`);
+});
+
+/* главное многосуставное дня (первое в порядке тренировки) — не меньше 3 подходов, если у прицельных этого дня их больше:
+   доводка недели сначала режет прицельные и вспомогательные, потом второе многосуставное (было: «Низ Б» верх / низ ×4 —
+   приседания со штангой и румынская на одной ноге 2×6–10 при икрах 4×10–12) */
+test('the main compound of a day keeps at least 3 sets when the isolation work of that day has more', () => {
+  const comp = it => it.ex.type === 'c' && it.ex.g !== 'abs' && it.ex.g !== 'cardio' && !it.ex.kind && !['ctrl', 'ballistic'].includes(a.schemeOf(it.ex));
+  let n = 0;
+  const check = (pr, tag) => {
+    for (const d of pr.days) {
+      if (!d.plan.items || circOf(d.plan)) continue;
+      const order = d.plan.blocks.flatMap(b => b.items), first = order.find(comp);
+      if (!first || first.rx.static) continue;
+      const iso = Math.max(0, ...order.filter(it => it.ex.type === 'i').map(it => it.rx.sets)); n++;
+      assert(first.rx.sets >= 3 || first.rx.sets >= iso, `${tag}, ${d.name}: ${first.ex.id} ${first.rx.sets} sets, isolation up to ${iso} — ${order.map(it => it.ex.id + ' ' + it.rx.sets).join(', ')}`);
+    }
+  };
+  for (const w of weeks) check(w.pr, w.tag);
+  for (const place of PLACES) for (const level of LEVELS) for (const goal of GOALS) for (const [days, split] of WEEK_SPLITS) {
+    reset({ place, level, goal, mode: 'program', days, split, dur: 'mid' });
+    check(a.buildProgram(), `${place} ${level} ${goal} ${days}×${split} 45 min`);
+  }
+  assert(n > 2000, 'days checked: ' + n);
+  reset({ mode: 'program', days: 4, split: 'ul' });
+  for (const d of a.buildProgram().days) for (const it of d.plan.items) if (it.ex.id === 'squat') assert(it.rx.sets >= 3, `${d.name}: squat ${it.rx.sets}×`);
 });
 
 test('a swap in one day does not change the other days; loading and deload weeks keep the exercises', () => {
