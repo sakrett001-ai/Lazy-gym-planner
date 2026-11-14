@@ -38,7 +38,8 @@ html.motion-open{overflow:hidden}
 #mv-stage{height:360px;display:grid;place-items:center;padding:34px 14px}
 #mv-stage svg{display:block;width:100%;height:100%}
 .mv-view-label{position:absolute;top:13px;left:15px;color:var(--muted);font-size:.75rem}
-.mv-phase-line{position:absolute;bottom:12px;left:15px;right:15px;display:flex;justify-content:space-between;gap:12px;font-size:.75rem}
+/* при крупном шрифте (200 %, узкий экран) «Опускание · 0% повторения» не помещается в строку — переносится, а не обрезается */
+.mv-phase-line{position:absolute;bottom:12px;left:15px;right:15px;display:flex;flex-wrap:wrap;justify-content:space-between;gap:2px 12px;font-size:.75rem}
 #mv-phase{color:var(--accent);font-weight:600}
 #mv-position{color:var(--muted);font-variant-numeric:tabular-nums}
 .mv-cue{margin:12px 0;background:var(--accent-soft);border-radius:11px;padding:12px 14px;font-size:.9375rem;line-height:1.45;min-height:68px}
