@@ -23,9 +23,10 @@ function staticRx(rx, ex, week, E) {
   let series = STATIC.series[S.level] || 2;
   if (week && week.deload) series = Math.max(1, series - 1);
   const band = ex.eq.length && ex.eq.every(g => g.every(id => id === 'band')), assisted = ex.eq.some(g => g.includes('gravitron'));
-  const load = weighable(ex, E) ? '≈ 40–60% от 1ПМ: к концу подхода сильное жжение, но не отказ'
-    : band ? 'натяжение ленты: к концу подхода сильное жжение, но не отказ'
-    : assisted ? 'противовес: к концу подхода сильное жжение, но не отказ'
+  /* простыми словами (11-planner.js: pctText): «не отказ» — «повторы ещё получаются» */
+  const load = weighable(ex, E) ? `к концу подхода мышца сильно горит, но повторы ещё получаются (${pctText('≈ 40–60%')})`
+    : band ? 'натяжение ленты: к концу подхода мышца сильно горит, но повторы ещё получаются'
+    : assisted ? 'противовес: к концу подхода мышца сильно горит, но повторы ещё получаются'
     : 'вес тела: если жжения нет — медленнее и без отдыха в крайних точках';
   return {...rx, sets:series * STATIC.perSeries, series, reps:STATIC.reps, unit:'повт.', rest:STATIC.rest, seriesRest:STATIC.seriesRest[S.level] || 180,
     tempo:STATIC.tempo, load, work:STATIC.work * (ex.uni ? 2 : 1), static:true, partial:STATIC.partial,

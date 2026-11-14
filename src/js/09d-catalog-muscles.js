@@ -89,14 +89,14 @@ const REGION_FACTORS={
 };
 /* Источники акцентов — к источникам упражнения в разборе (тем, чьи области меняются) */
 const REGION_SOURCES={
- rectus:['Широкие и прямая мышцы бедра в приседаниях и жиме ногами: ЭМГ — Escamilla и др., 1998','https://doi.org/10.1097/00005768-199804000-00014'],
+ rectus:['Широкие и прямая мышцы бедра в приседаниях и жиме ногами: замеры активности мышц — Escamilla и др., 1998','https://doi.org/10.1097/00005768-199804000-00014'],
  hamShort:['Короткая головка двуглавой бедра в разгибании бедра: фМРТ — Bourne и др., 2017','https://doi.org/10.1136/bjsports-2015-095739'],
- shrug:['Трапециевидная в шрагах: ЭМГ — Pizzari и др., 2014','https://doi.org/10.1016/j.clinbiomech.2013.11.011'],
- pull:['Нижняя часть трапециевидной в подтягиваниях: ЭМГ — Youdas и др., 2010','https://doi.org/10.1519/JSC.0b013e3181f1598c'],
- brd:['Плечелучевая в сгибании локтя: ЭМГ — Boland и др., 2008','https://doi.org/10.1016/j.jhsa.2008.07.019'],
- bra:['Плечевая мышца сгибает локоть при любом положении предплечья: ЭМГ — Basmajian и Latif, 1957','https://pubmed.ncbi.nlm.nih.gov/13475410/'],
- grip:['Двуглавая и плечелучевая при хвате снизу, нейтральном и сверху: ЭМГ — Kleiber и др., 2015','https://doi.org/10.3389/fphys.2015.00215'],
- cuff:['Мышцы манжеты и дельтовидная в упражнениях на наружную ротацию: ЭМГ — Reinold и др., 2004','https://doi.org/10.2519/jospt.2004.34.7.385']
+ shrug:['Трапециевидная в шрагах: замеры активности мышц — Pizzari и др., 2014','https://doi.org/10.1016/j.clinbiomech.2013.11.011'],
+ pull:['Нижняя часть трапециевидной в подтягиваниях: замеры активности мышц — Youdas и др., 2010','https://doi.org/10.1519/JSC.0b013e3181f1598c'],
+ brd:['Плечелучевая в сгибании локтя: замеры активности мышц — Boland и др., 2008','https://doi.org/10.1016/j.jhsa.2008.07.019'],
+ bra:['Плечевая мышца сгибает локоть при любом положении предплечья: замеры активности мышц — Basmajian и Latif, 1957','https://pubmed.ncbi.nlm.nih.gov/13475410/'],
+ grip:['Двуглавая и плечелучевая при хвате снизу, нейтральном и сверху: замеры активности мышц — Kleiber и др., 2015','https://doi.org/10.3389/fphys.2015.00215'],
+ cuff:['Мышцы манжеты и дельтовидная в упражнениях на наружную ротацию: замеры активности мышц — Reinold и др., 2004','https://doi.org/10.2519/jospt.2004.34.7.385']
 };
 const regionSources=(id,muscles)=>[
  ...(SQUAT_LIKE.has(id)&&muscles.quads?[REGION_SOURCES.rectus]:[]),...(muscles.hams&&id!=='legcurl'&&id!=='nordic'?[REGION_SOURCES.hamShort]:[]),
@@ -122,7 +122,7 @@ for(const ex of EX){
   MUSCLE_REGIONS[parent].forEach(([id,label,kind],i)=>{regions[id]={parent,label,kind,role:m.role,factor:factors[i],visible:kind!=='deep',profileBasis:basis};});
  }
  const names=ex.pri.map(id=>MUSCLE_NAMES[id]).join(', ');
- const notes=base?base.notes:{concentric:hold?'Удержание: мышцы сохраняют положение.':cyclic?'Циклическое движение: цвет показывает учебное распределение акцентов.':names+' участвуют в рабочей фазе.',eccentric:cyclic?'Продолжение цикла: вовлечённость меняется плавно.':'Мышцы контролируют возврат.',end:'Конечная точка: сохраняйте контроль и опору.',start:'Исходное положение: подготовьтесь к следующему повторению.'};
+ const notes=base?base.notes:{concentric:hold?'Удержание: мышцы сохраняют положение.':cyclic?'Движение по кругу: цвет примерно показывает, какие мышцы работают сильнее.':names+' участвуют в рабочей фазе.',eccentric:cyclic?'Дальше по кругу: участие мышц меняется плавно.':'Мышцы контролируют возврат.',end:'Конечная точка: сохраняйте контроль и опору.',start:'Исходное положение: подготовьтесь к следующему повторению.'};
  ex.anim.catalogProfile={curveBasis:'illustrative',muscles,regions,notes,pair:ex.pri.some(id=>['lats','midback','lowback','glutes','hams','traps'].includes(id))?'back':'above',sources:[...(base?.sources||[]),...regionSources(ex.id,muscles),...REGION_ANATOMY_SOURCES],cyclic,hold,laterality:CATALOG_LATERALITY[ex.id]};
 }
 /* Мышечные зоны на манекене: те же учебные области, но на поверхности нового тела.

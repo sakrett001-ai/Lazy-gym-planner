@@ -42,14 +42,14 @@ test('a static-dynamic workout: series of three slow sets, short rest inside a s
   }
   a.S.level = 'mid';
   const p = a.buildPlan(), text = plain(a.blocksText(p)).join('\n');
-  assert.match(text, /2 × 3 × 5–7 повт\., темп 3-0-3-0 без расслабления, отдых 30 с, между сериями 3 мин/);
+  assert.match(text, /2 × 3 × 5–7 повт\., усилие 3 с, возврат 3 с, без расслабления, отдых 30 с, между сериями 3 мин/);
   const q = plain(a.workoutQueue(p).slice(0, 6).map(s => [s.rest, s.phase]));
   assert.deepEqual(q.map(x => x[0]), [30, 30, 180, 30, 30, 120], 'the workout timer follows the series');
   assert.match(q[3][1], /серия 2 из 2/);
 });
 test('load is described by the burn, not by heavy percentages', () => {
   const a = app(), gym = a.effEquip(a.PLACE_DEFAULTS[0].equip);
-  assert.match(a.prescribe(a.EXI.bbbench, null, gym).load, /40–60% от 1ПМ/);
+  assert.match(a.prescribe(a.EXI.bbbench, null, gym).load, /^к концу подхода мышца сильно горит, но повторы ещё получаются \(≈ 40–60% от максимума на 1 повтор\)$/);
   assert.match(a.prescribe(a.EXI.pushup, null, gym).load, /^вес тела/);
   assert.match(a.prescribe(a.EXI.bandrow, null, a.effEquip(['band'])).load, /^натяжение ленты/);
   a.S.format = 'classic';

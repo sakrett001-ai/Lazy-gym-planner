@@ -92,7 +92,7 @@ function warmupHtml(it, work) {
   const workRow = impl === 'bb' ? `<li class="wu-work"><span class="wu-n">→</span><span class="wu-kg">${fmtKg(work)}<small>${u}</small></span><span class="wu-r">рабочий</span><span class="wu-note"></span><span class="wu-pl">${platesHtml(work)}</span></li>` : '';
   return `<details class="wu"><summary>Разминка к ${fmtKg(work)} ${u}<small>${steps.length} ${plural(steps.length, 'подход', 'подхода', 'подходов')}${impl === 'bb' ? ' · блины на сторону' : ''}</small></summary>
     <ol class="wu-list${impl === 'bb' ? ' wu-bb' : ''}">${rows}${workRow}</ol>
-    <p class="wu-note-f">Отдых между разминочными 30–60 с. ${impl === 'bb' ? `Гриф ${fmtU(g.bar)} ${u}, блины: ${g.plates.map(fmtU).join(' · ')} — <button type="button" class="lk" data-gear="1">настроить</button>.` : impl === 'machine' ? `Шаг стека принят ${fmtU(g.machineStep)} ${u}.` : ''}</p>
+    <p class="wu-note-f">Проценты — от рабочего веса. Отдых между разминочными подходами 30–60 с. ${impl === 'bb' ? `Гриф ${fmtU(g.bar)} ${u}, блины: ${g.plates.map(fmtU).join(' · ')} — <button type="button" class="lk" data-gear="1">настроить</button>.` : impl === 'machine' ? `Шаг стека принят ${fmtU(g.machineStep)} ${u}.` : ''}</p>
   </details>`;
 }
 /* рабочий вес для разминки: из первого введённого поля (неправдоподобный и ещё не подтверждённый — «5000», kgDoubt

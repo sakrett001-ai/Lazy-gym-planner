@@ -2,7 +2,7 @@
    node tools/i18n-audit.mjs [--full] [--json out.json]   — нужен собранный dist/ (npm run build).
    По умолчанию рисунки движений заменены заглушками (текст от них не зависит) — проверка идёт около минуты;
    --full рисует настоящие фигуры и 3D (около 20 минут).
-   Экраны: план (форматы × цели × уровни, разовая и недельная, места и замены), атлас мышц (все мышцы × места),
+   Экраны: мастер первого запуска и время тренировки, план (форматы × цели × уровни, разовая и недельная, места и замены), атлас мышц (все мышцы × места),
    журнал с записями, разбор каждого упражнения в четырёх положениях, режим тренировки, тексты копирования; планы и места,
    созданные в русской версии (имена по умолчанию). */
 import { createRequire } from 'node:module';
@@ -49,6 +49,27 @@ async function scan(state, extra = '', pg = page, inputs = false) {
 }
 const run = js => page.evaluate(js);
 const t0 = Date.now(), step = name => { if (process.env.I18N_AUDIT_VERBOSE) console.error(`${((Date.now() - t0) / 1000).toFixed(1)} с · ${name}`); };
+
+/* 0. мастер первого запуска (11k-first-run.js): все шаги и подписи; после «Показать план» — время тренировки в параметрах
+   и предупреждения, когда время не уложилось; дальше — как раньше, без времени (число упражнений из «Exercises») */
+step('0. первый запуск');
+await scan('first run: where');
+await page.click('[data-fr-place="home"]'); await scan('first run: equipment');
+await page.click('[data-fr-eq="db"]'); await page.click('[data-fr-eq="band"]'); await page.click('[data-fr-eq="abwheel"]'); await scan('first run: nothing checked');
+await page.click('#fr-next'); await scan('first run: goal');
+await page.click('[data-fr-goal="gentle"]'); await page.click('[data-fr-dur="short"]'); await page.click('[data-fr-level="beg"]'); await page.click('[data-fr-protect="knees"]');
+await scan('first run: time and experience');
+await page.click('#fr-next'); await page.waitForTimeout(200);
+await run(`(()=>{setSetupFold(false);})()`); await scan('first run: plan after');
+for (const dur of ['short', 'mid', 'long']) for (const mode of ['single', 'program']) {
+  await run(`(()=>{S.dur='${dur}';S.mode='${mode}';regen();})()`); await scan(`time ${dur} ${mode}`, await run('planText()'));
+}
+await run(`(()=>{setSetupFold(true);S.mode='single';regen();})()`); await scan('time: folded settings');
+/* время не уложилось: не хватило упражнений, новичку больше не прибавляем, короче не получается */
+await run(`(()=>{S.place='street';ensurePlaces(S);Object.assign(S,{groups:['quads','glutes','hams','calves'],protect:['knees','lumbar'],goal:'cut',level:'mid',dur:'long'});regen();})()`); await scan('time: not enough exercises');
+await run(`(()=>{S.place='gym';ensurePlaces(S);Object.assign(S,{groups:['chest','back','shoulders','quads','hams','glutes','abs'],protect:[],goal:'cut',level:'beg',format:'superset',dur:'long'});regen();})()`); await scan('time: beginner cap');
+await scan('time: too long', await run(`durationWarn({minutes:34,fit:{ok:false,dur:'short',why:'long'}})`));
+await run(`(()=>{Object.assign(S,{dur:null,protect:[],format:'classic',groups:['chest','back','shoulders'],count:6});setSetupFold(false);regen();})()`);
 
 /* 1. план: форматы, цели, уровни; разовая тренировка и неделя */
 step('1. план');

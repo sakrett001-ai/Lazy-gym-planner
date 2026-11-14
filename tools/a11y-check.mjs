@@ -14,7 +14,9 @@
    5. «0 из 21 подхода»; «легче · тяжелее» — цели не меньше 24×24 px (WCAG 2.5.8); на экране отдыха при масштабе 150 %
       таймер виден, когда фокус на «Перейти к подходу».
    6. Атлас движений: «+» на плитке — имя «Добавить в план: …», цель 44×44; выбор плана и сообщение «Добавлено в …» —
-      имена, раскладка, контраст (обычный и крупный шрифт, тёмная тема). */
+      имена, раскладка, контраст (обычный и крупный шрифт, тёмная тема).
+   7. Мастер первого запуска: каждый шаг — раскладка при крупном шрифте и масштабе, контраст в обеих темах, имена кнопок,
+      фокус на заголовке шага. */
 import { createRequire } from 'node:module';
 import path from 'node:path';
 import fs from 'node:fs';
@@ -29,7 +31,7 @@ const fails = [], errors = [];
 const check = (ok, what) => { if (!ok) fails.push(what); };
 
 /* страница: рисунки движений — заглушки (проверяется раскладка и текст, а не фигура) */
-async function open({ width, height = Math.round(width * 844 / 390), font = 100, theme = 'light' }) {
+async function open({ width, height = Math.round(width * 844 / 390), font = 100, theme = 'light', firstRun = false }) {
   const ctx = await browser.newContext({ viewport: { width, height }, isMobile: true, hasTouch: true, colorScheme: theme, reducedMotion: 'reduce' });
   /* Web Bluetooth есть (подмена): на экране тренировки и отдыха видна плашка «♥ Пульс» и настройка конца отдыха (14b-heart.js) */
   await ctx.addInitScript(() => { const bt = { async requestDevice() { throw Object.assign(new Error('отмена'), { name: 'NotFoundError' }); }, async getAvailability() { return true; } }; Object.defineProperty(navigator, 'bluetooth', { configurable: true, get: () => bt }); });
@@ -37,11 +39,14 @@ async function open({ width, height = Math.round(width * 844 / 390), font = 100,
   page.on('pageerror', e => errors.push(String(e)));
   await page.goto('file://' + file); await page.waitForTimeout(300);
   if (font !== 100) await page.addStyleTag({ content: `html{font-size:${font}%}` });
+  /* мастер первого запуска (новый контекст — первый запуск): проверяется отдельно (7); для остальных экранов закрывается без ответов */
+  if (firstRun) return { ctx, page };
   await page.evaluate(() => {
+    firstRunClose();
     const fake = () => { const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg'); svg.setAttribute('class', 'fig'); return { svg, camera: 'side', at() {}, setTrace() {}, setVectors() {}, setJoints() {}, setStress() {}, setMuscles() {}, setRegion() {}, dispose() {} }; };
     window.buildFigure = fake; window.createMotionFigure = fake;
     if (window.GymVolume) window.GymVolume.cards = () => null;
-    Object.assign(S, { view: 'plan', mode: 'single', format: 'classic', goal: 'mass', level: 'mid', groups: ['chest', 'back', 'shoulders'], count: 6, seed: 3, fold: null });
+    Object.assign(S, { view: 'plan', mode: 'single', format: 'classic', goal: 'mass', level: 'mid', groups: ['chest', 'back', 'shoulders'], count: 6, seed: 3, fold: null, dur: null });
     LOG.data = {}; regen(); scrollTo(0, 0);
   });
   await page.waitForTimeout(100);
@@ -313,7 +318,31 @@ for (const cfg of [{ width: 390 }, { width: 390, font: 200 }, { width: 390, them
   await ctx.close();
 }
 
+/* 7. Первый запуск (11k-first-run.js): каждый шаг мастера — при шрифте 150 и 200 % (390 и 320 px) и масштабе 150 и 200 %
+   без прокрутки вбок, наложений и обрезки; в светлой и тёмной теме — контраст текста; имена кнопок содержат видимую надпись;
+   после смены шага фокус — на заголовке шага, у заголовка описание «Шаг N из M»; кнопки-варианты не ниже 44 px */
+const FR_WALK = [['где', async () => {}], ['что есть', p => p.click('[data-fr-place="home"]')], ['цель', p => p.click('#fr-next')], ['время и опыт', p => p.click('[data-fr-goal="cut"]')]];
+for (const cfg of [{ width: 390 }, { width: 390, font: 150 }, { width: 390, font: 200 }, { width: 320, font: 150 }, { width: 320, font: 200 }, { width: 260 }, { width: 195 }, { width: 390, theme: 'dark' }, { width: 320, font: 200, theme: 'dark' }]) {
+  const tag = `мастер (${cfg.font ? 'шрифт ' + cfg.font + ' %, ' + cfg.width + ' px' : cfg.width < 320 ? 'масштаб ' + Math.round(390 / cfg.width * 100) + ' %' : cfg.width + ' px'}${cfg.theme === 'dark' ? ', тёмная тема' : ''})`;
+  const { ctx, page } = await open({ ...cfg, firstRun: true });
+  if (cfg.theme) await page.evaluate(t => { document.documentElement.dataset.theme = t; }, cfg.theme);
+  for (const [name, go] of FR_WALK) {
+    await go(page); await page.waitForTimeout(80);
+    await page.evaluate(() => document.querySelector('#first-run').scrollTo(0, 1e5));
+    const bad = await page.evaluate(LAYOUT), names = await page.evaluate(NAMES), { low } = await page.evaluate(CONTRAST);
+    await page.evaluate(() => document.querySelector('#first-run').scrollTo(0, 0));
+    const bad0 = await page.evaluate(LAYOUT);
+    check(!bad.length && !bad0.length, `${tag}, ${name}: ${bad0.concat(bad).join('; ')}`);
+    check(!names.length, `${tag}, ${name}: имя кнопки содержит её видимую надпись: ${names.join('; ')}`);
+    check(!low.length, `${tag}, ${name}: контраст текста: ${low.join('; ')}`);
+    const f = await page.evaluate(() => ({ open: document.querySelector('#first-run').open, focus: document.activeElement.id, desc: document.activeElement.getAttribute('aria-describedby'),
+      count: document.querySelector('#fr-count').textContent, small: [...document.querySelectorAll('#first-run .fr-opt, #first-run .fr-seg button, #first-run .fr-primary, #first-run .fr-link')].filter(b => b.offsetHeight && b.getBoundingClientRect().height < 44).length }));
+    check(f.open && f.focus === 'fr-title' && f.desc === 'fr-count' && /^Шаг \d из \d$/.test(f.count) && !f.small, `${tag}, ${name}: фокус на заголовке шага с «Шаг N из M», цели не ниже 44 px (${JSON.stringify(f)})`);
+  }
+  await ctx.close();
+}
+
 await browser.close();
 if (errors.length) console.error('Ошибки страницы:\n' + [...new Set(errors)].slice(0, 10).join('\n'));
 if (fails.length || errors.length) { console.error(`Проверка доступности: ${fails.length} замечаний`); for (const f of fails) console.error('  ✗ ' + f); process.exit(1); }
-console.log('Доступность: шрифт 150 и 200 % и масштаб 150 и 200 % без прокрутки вбок, наложений и обрезки (план, атлас, журнал, разбор, тренировка, отдых), подписи не мельче 12 px, контраст токенов и текста в светлой и тёмной теме, план без живой области и с коротким объявлением, имена кнопок с видимой надписью и упражнением, «Пиковая нагрузка» раскрывается кнопкой, «из 21 подхода», цели «легче · тяжелее», таймер отдыха при фокусе внизу, «+» на плитках атласа и выбор плана.');
+console.log('Доступность: шрифт 150 и 200 % и масштаб 150 и 200 % без прокрутки вбок, наложений и обрезки (план, атлас, журнал, разбор, тренировка, отдых, шаги мастера первого запуска), подписи не мельче 12 px, контраст токенов и текста в светлой и тёмной теме, план без живой области и с коротким объявлением, имена кнопок с видимой надписью и упражнением, «Пиковая нагрузка» раскрывается кнопкой, «из 21 подхода», цели «легче · тяжелее», таймер отдыха при фокусе внизу, «+» на плитках атласа и выбор плана.');

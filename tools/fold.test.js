@@ -53,7 +53,7 @@ test('cards: compact folds muscles and the set table, keeps the weight hint; a c
 test('folded summaries: settings show what is selected, load shows the top three', () => {
   const a = app();
   const chips = s => [...a.setupSummary().matchAll(/data-sgo="([^"]+)">([^<]+)</g)].map(m => [m[1], m[2]]);
-  assert.deepEqual(chips(), [['#f-mode', 'Тренировка на день'], ['#f-goal', 'Масса · классика · средний'], ['#count-l', '5 упражнений'], ['#f-muscles', 'Грудь, спина и плечи'], ['#e-places', 'Зал']]);
+  assert.deepEqual(chips(), [['#f-mode', 'Тренировка на день'], ['#f-goal', 'Масса · классика · уже тренируюсь'], ['#count-l', '5 упражнений'], ['#f-muscles', 'Грудь, спина и плечи'], ['#e-places', 'Зал']]);
   Object.assign(a.S, { mode: 'program', days: 4 });
   const p = chips();
   assert.equal(p[0][1], 'Программа на неделю'); assert.match(p[1][1], /^4 тренировки · /);

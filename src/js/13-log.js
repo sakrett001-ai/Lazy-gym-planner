@@ -253,20 +253,30 @@ function suggestBase(it) {
     const last = all[all.length - 1], kgs = last ? last.s.filter(Boolean).map(x => x[0]).filter(v => v > 0) : [];
     if (lt === 'kg' && kgs.length) {
       const w = Math.max(...kgs); res.kg = roundTo(w * .6, step);
-      res.text = `Статодинамика: около ${fmtKg(res.kg)} ${wUnit()} — примерно 60% от прошлого рабочего веса (${fmtKg(w)} ${wUnit()}). К концу подхода — сильное жжение, но не отказ.`;
-    } else res.text = lt === 'kg' ? 'Первая запись в статодинамике. Возьмите около половины обычного рабочего веса: к концу подхода — сильное жжение, но не отказ.'
-      : lt === 'assist' ? 'Первая запись в статодинамике. Подберите противовес, при котором к концу подхода сильное жжение, но не отказ.'
+      res.text = `Статодинамика: около ${fmtKg(res.kg)} ${wUnit()} — примерно 60% от прошлого рабочего веса (${fmtKg(w)} ${wUnit()}). К концу подхода мышца сильно горит, но повторы ещё получаются.`;
+    } else res.text = lt === 'kg' ? 'Первая запись в статодинамике. Возьмите около половины обычного рабочего веса: к концу подхода мышца сильно горит, но повторы ещё получаются.'
+      : lt === 'assist' ? 'Первая запись в статодинамике. Подберите противовес, при котором к концу подхода мышца сильно горит, но повторы ещё получаются.'
       : 'Первая запись в статодинамике. Отметьте, сколько медленных повторов получилось в каждом подходе.';
     return res;
   }
   if (!past.length) {
     /* запас — тот же, что в строке нагрузки карточки (rx.rir из prescribe, reserveOf в 11-planner.js) */
     const rir = it.rx.rir !== undefined ? it.rx.rir : reserveOf(week);
-    const how = rir ? '' : week && week.deload ? 'даются без отказа.' : ex.type === 'i' && S.goal === 'cut' ? 'даются до выраженного жжения.' : 'даются почти до отказа.';
-    const range = rp ? rp.join(' / ') : lo === hi ? String(lo) : lo + '–' + hi;
-    res.text = lt === 'assist' ? (rir ? `Первая запись. Подберите противовес, с которым ${range} повторов даются с запасом ${reserveReps(rir)}.` : `Первая запись. Подберите противовес, с которым ${range} повторов ${how}`) : lt === 'kg'
+    /* простыми словами (11-planner.js): запас — «остаются силы ещё на 2», «почти до отказа» — «получаются чисто, а больше —
+       уже нет», «без отказа» — «не до предела»; фразы с {r} и {n} переводятся целиком */
+    const range = rp ? rp.join(' / ') : lo === hi ? String(lo) : lo + '–' + hi, r = range + (unit || ' ' + plural(hi, 'повтор', 'повтора', 'повторов'));
+    const say = (f, n) => f.replace('{r}', r).replace('{n}', n || '');
+    const nr = week && week.deload ? 'deload' : ex.type === 'i' && S.goal === 'cut' ? 'burn' : 'near';
+    res.text = lt === 'assist' ? (rir ? say('Первая запись. Подберите противовес, с которым {r} получаются и остаются силы ещё на {n}.', reserveNum(rir))
+        : nr === 'deload' ? say('Первая запись. Подберите противовес, с которым {r} даются не до предела.')
+        : nr === 'burn' ? say('Первая запись. Подберите противовес, с которым {r} доводят мышцу до сильного жжения.')
+        : say('Первая запись. Подберите противовес, с которым {r} получаются чисто, а больше — уже нет.'))
+      : lt === 'kg'
       ? (ex.kind === 'dist' ? 'Первая запись. Возьмите тяжёлые снаряды, с которыми проходите дистанцию без остановок.'
-        : rir ? `Первая запись. Подберите вес, с которым ${range}${unit} даются с запасом ${reserveReps(rir)}.` : `Первая запись. Подберите вес, с которым ${range}${unit} ${how}`)
+        : rir ? say('Первая запись. Подберите вес, с которым {r} получаются и остаются силы ещё на {n}.', reserveNum(rir))
+        : nr === 'deload' ? say('Первая запись. Подберите вес, с которым {r} даются не до предела.')
+        : nr === 'burn' ? say('Первая запись. Подберите вес, с которым {r} доводят мышцу до сильного жжения.')
+        : say('Первая запись. Подберите вес, с которым {r} получаются чисто, а больше — уже нет.'))
       : `Первая запись. Отметьте, сколько ${ex.kind === 'time' ? 'секунд' : ex.kind === 'dist' ? 'метров' : 'повторов'} получилось в каждом подходе.`;
     return res;
   }
@@ -282,13 +292,13 @@ function suggestBase(it) {
   if (pyr) return pyr;
   if (!week && AR.light && work && (lt === 'kg' || lt === 'assist')) {
     res.tone = 'deload'; res.kg = lt === 'assist' ? Math.max((Math.floor(work / step) + 1) * step, roundTo(work * 1.1, step)) : roundTo(work * .9, step); res.reps = sets.map((x, i) => tgt(i)[0]);
-    res.text = lt === 'assist' ? `Облегчённый режим: противовес ${fmtKg(res.kg)} ${wUnit()} вместо ${fmtKg(work)}, без отказа.` : `Облегчённый режим: ${fmtKg(res.kg)} ${wUnit()} вместо ${fmtKg(work)}, без отказа.`;
+    res.text = lt === 'assist' ? `Облегчённый режим: противовес ${fmtKg(res.kg)} ${wUnit()} вместо ${fmtKg(work)}, не до предела.` : `Облегчённый режим: ${fmtKg(res.kg)} ${wUnit()} вместо ${fmtKg(work)}, не до предела.`;
     return res;
   }
   if (week && week.deload && work) {
     res.tone = 'deload'; res.kg = lt === 'assist' ? Math.max((Math.floor(work / step) + 1) * step, roundTo(work * 1.15, step)) : roundTo(work * .85, step);
     res.reps = sets.map((x, i) => tgt(i)[0]);
-    res.text = lt === 'assist' ? `Разгрузка: противовес ${fmtKg(res.kg)} ${wUnit()} вместо ${fmtKg(work)}, без отказа.` : `Разгрузка: ${fmtKg(res.kg)} ${wUnit()} вместо ${fmtKg(work)}, без отказа.`;
+    res.text = lt === 'assist' ? `Разгрузка: противовес ${fmtKg(res.kg)} ${wUnit()} вместо ${fmtKg(work)}, не до предела.` : `Разгрузка: ${fmtKg(res.kg)} ${wUnit()} вместо ${fmtKg(work)}, не до предела.`;
     return res;
   }
   const required=prev.target || (it.rx.circ ? it.rounds : it.rx.sets) || 1;
@@ -345,7 +355,7 @@ function pyramidAdvice(it, res, sets, past, tgt, step, week, rp) {
   const ease = !week && AR.light ? .9 : week && week.deload ? .85 : 0;
   if (ease) {
     res.tone = 'deload'; res.kgs = pk.map(v => roundTo(v * ease, step)); res.reps = sets.map((x, i) => tgt(i)[0]); res.kg = res.kgs[0];
-    res.text = `${ease === .9 ? 'Облегчённый режим' : 'Разгрузка'}: веса на ${Math.round((1 - ease) * 100)}% меньше прошлых — ${res.kgs.map(fmtKg).join(' / ')} ${wUnit()}, без отказа.`;
+    res.text = `${ease === .9 ? 'Облегчённый режим' : 'Разгрузка'}: веса на ${Math.round((1 - ease) * 100)}% меньше прошлых — ${res.kgs.map(fmtKg).join(' / ')} ${wUnit()}, не до предела.`;
     return res;
   }
   if (top.every(i => sets[i][1] >= tgt(i)[1])) {

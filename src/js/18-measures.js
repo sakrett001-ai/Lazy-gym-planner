@@ -172,6 +172,7 @@ function restoreBackup(obj) {
       if (!GOALS[ok.goal]) delete ok.goal; if (!FORMATS[ok.format]) delete ok.format; if (!LEVELS[ok.level]) delete ok.level;
       if ('lr' in ok) ok.lr = cleanLr(ok.lr);
       if ('units' in ok && ok.units !== 'kg' && ok.units !== 'lb') ok.units = null;
+      if ('dur' in ok && !DURATIONS[ok.dur]) ok.dur = null;
       Object.assign(S, ok); ensurePlaces(S); ensureCustoms(S); saveSettings(); out.settings = true; /* имена по умолчанию — на языке страницы */
     }
     if (obj.gear && typeof obj.gear === 'object') { gearPick(GEAR_UNITS.kg, obj.gear); gearPick(GEAR_UNITS.lb, obj.gear.lb); gearSave(); }

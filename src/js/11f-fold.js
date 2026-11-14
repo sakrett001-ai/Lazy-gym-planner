@@ -14,12 +14,16 @@ function ensureFold(s) {
 ensureFold(S);
 /* После первого плана параметры на телефоне и планшете свёрнуты: при каждом следующем запуске на первом экране —
    план, а не два с половиной экрана параметров (выбранное видно строкой, нажатие ведёт к полю). Самый первый
-   запуск — план ещё не показывался — открывается с раскрытыми параметрами. На компьютере параметры в боковой колонке. */
+   запуск открывает мастер из нескольких вопросов (11k-first-run.js); после него параметры тоже свёрнуты, а отметка
+   «план показан» пишется, только когда мастер пройден или пропущен (FIRST_RUN, 11-planner.js). На компьютере параметры
+   в боковой колонке. */
 const PLAN_SEEN = 'podhod.planSeen.v1';
+const setupFoldsHere = () => typeof matchMedia === 'function' && matchMedia('(max-width:959px)').matches;
 (() => {
+  if (FIRST_RUN) return;
   let seen = false;
   try { seen = !!(localStorage.getItem(PLAN_SEEN) || localStorage.getItem(STORE)); localStorage.setItem(PLAN_SEEN, '1'); } catch (e) {}
-  if (seen && typeof matchMedia === 'function' && matchMedia('(max-width:959px)').matches) S.fold.setup = true;
+  if (seen && setupFoldsHere()) S.fold.setup = true;
 })();
 const FOLD_GROUPS = ['mus', 'log'];
 const cardFold = new Map(); /* «группа:упражнение» → раскрыт ли блок в этой карточке, если человек менял его сам */
@@ -81,7 +85,10 @@ function setupSummary() {
   else if (S.mode === 'custom') { go('#f-mode', 'Свой план'); go('#f-custom', customOf().name); }
   else go('#f-mode', 'Тренировка на день');
   go('#f-goal', `${GOALS[S.goal].name} · ${FORMATS[S.format].name.toLowerCase()} · ${LEVELS[S.level].name.toLowerCase()}`);
-  if (S.mode === 'single') { go('#count-l', `${S.count} ${plural(S.count, 'упражнение', 'упражнения', 'упражнений')}`); go('#f-muscles', S.groups.length ? titleFor() : 'Мышцы не выбраны'); }
+  /* время на тренировку задано — вместо числа упражнений (оно подобрано под время, 11j-duration.js) */
+  const D = typeof durationOf === 'function' ? durationOf() : null;
+  if (D) go('#f-dur', D.say);
+  if (S.mode === 'single') { if (!D) go('#count-l', `${S.count} ${plural(S.count, 'упражнение', 'упражнения', 'упражнений')}`); go('#f-muscles', S.groups.length ? titleFor() : 'Мышцы не выбраны'); }
   if (typeof PROTECT_BY !== 'undefined' && S.protect && S.protect.length) go('#f-joints', 'Бережём ' + hitsText(S.protect.map(id => PROTECT_BY[id])));
   go('#e-places', placeOf().name);
   return out.join('');

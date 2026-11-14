@@ -193,7 +193,7 @@ test('reps per set «10/8/6/5»: parsed like the weight, kept, shown, and the py
 test('reps pyramid in the log, the workout screen and the plan file', () => {
   const a = app(), t = mount(a, 'bbbench');
   assert.deepEqual(t.phR(), ['10', '8', '6', '5'], 'each set’s target in the card');
-  assert.equal(t.sug(), 'Первая запись. Подберите вес, с которым 10 / 8 / 6 / 5 даются с запасом 1–2 повтора.');
+  assert.equal(t.sug(), 'Первая запись. Подберите вес, с которым 10 / 8 / 6 / 5 повторов получаются и остаются силы ещё на 1–2.');
   const d = workoutDoc(a);
   showStep(a, d, 'bbbench', 2);
   assert.equal(d.querySelector('#wv-reps').placeholder, 'цель 6', 'the workout hint is this set’s target, marked as a goal');
@@ -241,28 +241,29 @@ test('after a weight pyramid the advice is about the top set, not «the top weig
   assert.match(sl.text, /^Две тренировки подряд в верхнем подходе не хватило повторов — в следующий раз возьмите в нём 90 кг/);
   /* разгрузка цикла — все веса пирамиды легче */
   const dl = app({ past: { squat: [[60, 10], [80, 8], [90, 6], [100, 5]] }, set: { mode: 'program', week: 4 } }), sd = dl.suggest({ ...dl.previewItem('squat'), eqIds: ['bb', 'rack'] });
-  assert.equal(sd.text, 'Разгрузка: веса на 15% меньше прошлых — 50 / 70 / 75 / 85 кг, без отказа.');
+  assert.equal(sd.text, 'Разгрузка: веса на 15% меньше прошлых — 50 / 70 / 75 / 85 кг, не до предела.');
 });
 
 /* ---------- 5. один запас повторов ---------- */
 test('one reserve number per card: load line, first-entry hint, week note and the «Бережно» box agree', () => {
-  const num = s => { const m = String(s).match(/(\d(?:–\d)?) повтор\S* в запасе|с запасом (\d(?:–\d)?) повтор/); return m ? m[1] || m[2] : null; };
+  /* запас простыми словами (11-planner.js: reserveText): «оставляйте силы ещё на 1–2 повтора», «остаются силы ещё на 1–2» */
+  const num = s => { const m = String(s).match(/силы ещё на (\d(?:–\d)?)(?![\d–])/); return m ? m[1] : null; };
   for (const goal of ['strength', 'mass', 'cut', 'gentle']) for (const level of ['beg', 'mid', 'adv']) for (const week of [0, 1, 2, 3, 4]) {
     const a = app({ set: { goal, level, mode: week ? 'program' : 'custom', week: week || 1 } });
     const it = { ...a.previewItem('squat'), eqIds: ['bb', 'rack'] }, iso = { ...a.previewItem('dbcurl'), eqIds: ['db'] };
     const load = num(it.rx.load), first = num(a.suggest(it).text), wk = week ? num(a.WEEKS[week - 1].note) : null;
     const where = `${goal}/${level}/week ${week}`;
     assert.equal(first, load, `${where}: first entry «${a.suggest(it).text}» vs load «${it.rx.load}»`);
-    if (iso.rx.load.includes('в запасе')) assert.equal(num(a.suggest(iso).text), num(iso.rx.load), `${where}: isolation`);
+    if (iso.rx.load.includes('силы ещё на')) assert.equal(num(a.suggest(iso).text), num(iso.rx.load), `${where}: isolation`);
     if (wk) assert.equal(wk, load, `${where}: week note «${a.WEEKS[week - 1].note}» vs load «${it.rx.load}»`);
-    if (goal === 'gentle') { const g = a.gentleHtml().match(/лёгким весом, (\d(?:–\d)?) в запасе|лёгким весом, без отказа/); assert(g && (g[1] || null) === load, `${where}: gentle box`); }
-    if (load === null) assert.match(a.suggest(it).text, /даются (почти до отказа|без отказа)\.$/, `${where}: no number — no reserve in the hint either`);
+    if (goal === 'gentle') { const g = a.gentleHtml().match(/лёгким весом, оставляя силы ещё на (\d(?:–\d)?) повтор|лёгким весом, не до предела/); assert(g && (g[1] || null) === load, `${where}: gentle box`); }
+    if (load === null) assert.match(a.suggest(it).text, /(получаются чисто, а больше — уже нет|даются не до предела)\.$/, `${where}: no number — no reserve in the hint either`);
   }
   /* замечания тестеров: новичок в первую неделю — 4 везде; «Бережно» без цикла — 3–4, а не 2 */
   const marina = app({ set: { goal: 'mass', level: 'beg', mode: 'program', week: 1 } }), mi = { ...marina.previewItem('squat'), eqIds: ['bb', 'rack'] };
   assert.equal(num(mi.rx.load), '4'); assert.equal(num(marina.WEEKS[0].note), '4');
   const viktor = app({ set: { goal: 'gentle', level: 'beg' } }), vi = { ...viktor.previewItem('legpress'), eqIds: ['legpress'] };
-  assert.match(vi.rx.load, /3–4 повтора в запасе, без боли/); assert.match(viktor.suggest(vi).text, /с запасом 3–4 повтора\.$/);
+  assert.match(vi.rx.load, /оставляйте силы ещё на 3–4 повтора, без боли/); assert.match(viktor.suggest(vi).text, /остаются силы ещё на 3–4\.$/);
   assert.equal(num(app({ set: { goal: 'mass', level: 'beg' } }).previewItem('squat').rx.load), '2–3', 'beginners: one more rep in reserve');
 });
 

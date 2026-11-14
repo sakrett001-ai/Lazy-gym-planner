@@ -8,8 +8,9 @@ const vm = require('node:vm');
 const {LIM} = require('./biomech/validator2.js');
 
 /* Test the model, not a browser projection. No build, DOM package or Playwright needed. */
-function loadModel({root = path.resolve(__dirname, '..'), fullApp = false} = {}) {
-  const storage = new Map();
+/* storage — что уже лежит в localStorage до запуска приложения (первый запуск, данные прежних версий: first-run.test.js) */
+function loadModel({root = path.resolve(__dirname, '..'), fullApp = false, storage:saved = {}} = {}) {
+  const storage = new Map(Object.entries(saved));
   const document = {addEventListener() {}, querySelector() { return null; }, querySelectorAll() { return []; },
     createElement:() => ({style:{}, addEventListener() {}}), body:{appendChild() {}}};
   const context = {console, document, navigator:{}, location:{},

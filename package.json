@@ -1,6 +1,6 @@
 {
   "name": "lazy-gym-planner",
-  "version": "4.103.0",
+  "version": "4.104.0",
   "private": true,
   "description": "Lazy Gym Planner — планировщик тренировок",
   "scripts": {

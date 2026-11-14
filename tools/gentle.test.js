@@ -73,11 +73,11 @@ test('gentle goal: light dosage with reserve, no impact, ballistic or advanced e
   reset({ goal: 'gentle', groups: ['chest', 'back'] });
   const E = a.effEquip(a.S.equip), rx = plain(a.prescribe(a.EXI.dbbench, null, E));
   assert.deepEqual([rx.reps, rx.sets, rx.rest, rx.tempo], ['12–15', 2, 90, '3-0-2-0']);
-  assert.match(rx.load, /40–60% от 1ПМ, 3–4 повтора в запасе, без боли/);
+  assert.equal(rx.load, 'оставляйте силы ещё на 3–4 повтора, без боли (≈ 40–60% от максимума на 1 повтор)');
   assert(!/X/.test(a.GOALS.gentle.tempo), 'no explosive lift');
   for (const w of a.WEEKS) {
     const r = plain(a.prescribe(a.EXI.dbbench, w, E));
-    const rir = +(r.load.match(/(\d) повтор/) || [0, 9])[1];
+    const rir = +(r.load.match(/ещё на (\d)(?:–\d)? повтор/) || [0, 9])[1];
     assert(w.deload ? /лёгкий вес/.test(r.load) : rir >= 3, `${w.name}: ${r.load}`);
   }
   assert.match(plain(a.prescribe(a.EXI.treadmill, null, E)).load, /можно говорить/);

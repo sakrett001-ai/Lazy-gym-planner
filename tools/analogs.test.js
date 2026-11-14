@@ -74,6 +74,7 @@ test('editing equipment changes only the current place', () => {
   assert.deepEqual([...a.placeOf().equip], ['kb']); assert.deepEqual([...a.S.equip], ['kb']);
   assert(a.placeOf(a.S, 'gym').equip.length > 20, 'the gym keeps its equipment');
 });
+/* процент — «от максимума на 1 повтор» (простыми словами, без «1ПМ» в строке карточки) */
 test('percent of 1RM is shown only for loads that can be weighed', () => {
   const a = app(), P = a.m.get('({prescribe,WEEKS})');
   a.S.goal = 'mass'; a.S.level = 'mid';
@@ -81,7 +82,8 @@ test('percent of 1RM is shown only for loads that can be weighed', () => {
     ['bulgarian', ['bench'], false], ['bulgarian', ['bench', 'db'], true], ['bbbench', ['bb', 'bench'], true], ['latpull', ['cable'], true]])
     for (const week of [null, P.WEEKS[1], P.WEEKS[3]]) {
       const load = P.prescribe(a.EXI[id], week, a.effEquip(eq)).load;
-      assert.equal(load.includes('1ПМ'), pct, `${id} with ${eq.join('+') || 'bodyweight'}: ${load}`);
+      assert.equal(load.includes('от максимума на 1 повтор'), pct, `${id} with ${eq.join('+') || 'bodyweight'}: ${load}`);
+      assert(!load.includes('1ПМ'), `${id}: «1ПМ» без расшифровки — ${load}`);
     }
   assert.match(P.prescribe(a.EXI.bandrow, null, a.effEquip(['band'])).load, /натяжение ленты/);
   assert.match(P.prescribe(a.EXI.assistpull, P.WEEKS[3], a.effEquip(['gravitron'])).load, /противовес: больше/);
