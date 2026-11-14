@@ -98,7 +98,7 @@ test('strength scheme (3–5 reps, percent of max) only for heavy basics; bodywe
       if (r.static) continue;
       assert.equal(/от максимума/.test(r.load), sch === 'heavy', `${tag}: percent only for heavy basics — ${r.load}`);
       if (goal === 'strength' && sch !== 'heavy' && sch !== 'cardio' && !ex.doseReps) assert.notEqual(r.reps, '3–5', `${tag}: no 3–5 strength reps`);
-      if (r.tempo && /X/i.test(r.tempo)) assert(sch === 'heavy' || sch === 'iso', `${tag}: fast lifting only with weights — ${r.tempo}`);
+      if (r.tempo && /X/i.test(r.tempo)) assert.equal(sch, 'heavy', `${tag}: fast lifting only for heavy basics — ${r.tempo}`);
       if (sch === 'ctrl') { assert.equal(r.tempo, null, tag); assert(r.load.startsWith(a.CTRL_LOAD), `${tag}: ${r.load}`); assert(!/взрывно/.test(r.load), tag); }
       if (!ex.eq.length && !(ex.opt || []).length) assert(!/от максимума/.test(r.load), `${tag}: bodyweight has no percent`);
     }

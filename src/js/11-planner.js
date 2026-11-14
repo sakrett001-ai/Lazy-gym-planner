@@ -349,7 +349,7 @@ function pickExercises(E, rand, groups, count, avoid, opt) {
      базы их больше, чем у подтягиваний) */
   const setsOf = opt && opt.sets || (ex => prescribe(ex, null, E).sets), maxS = Math.max(...pool.filter(ex => sideOf(ex)).map(setsOf), 1);
   const pushDay = G.has('chest') || G.has('shoulders'), carry = opt && opt.pp && !pushDay ? Math.max(0, opt.pp.push - opt.pp.pull) : 0;
-  const ppOn = G.has('back') && (pushDay || carry > 0), pressCap = pushDay && !G.has('back') ? 2 : 0;
+  const ppOn = G.has('back') && (pushDay || carry > 0), pressCap = pushDay && !G.has('back') ? (opt && opt.vol ? 2 : 3) : 0;
   const cap = spineCap();
   /* объём недели: подходы групп с прошлых дней и подобранных сегодня (proj) */
   const vol = opt && opt.vol, shareOf = new Map(), shareSum = new Map(), shareList = ex => { let l = shareOf.get(ex); if (!l) { shareOf.set(ex, l = Object.entries(groupShare(ex))); shareSum.set(ex, l.reduce((t, x) => t + x[1], 0)); } return l; };
@@ -412,8 +412,8 @@ function pickExercises(E, rand, groups, count, avoid, opt) {
       /* в тренировке со спиной и грудью или плечами от 4 упражнений — хотя бы одна тяга и один жим (основа тренировки всего
          тела и верха: ноги, жим, тяга — NSCA Essentials, 2016, гл. 17), а не только прицельные на мелкие группы */
       if (pushDay && count >= 4 && side && !(side === 'pull' ? pullN : pushN) && (side === 'pull' || pullN)) sc += 2.5;
-      /* день жима без спины (жим / тяга / ноги): не больше двух жимов, дальше — разводки, махи, трицепс; иначе день тяги
-         не успевает их уравновесить */
+      /* день жима без спины: в программе (жим / тяга / ноги) — не больше двух жимов, дальше — разводки, махи, трицепс, иначе
+         день тяги не успевает их уравновесить; в отдельной тренировке «Жим» — не больше трёх */
       if (pressCap && sideOf(ex) === 'push' && pressN >= pressCap) sc -= 2.5;
       /* тяга в наклоне со штангой или Т-грифом — после приседа или становой лучше на блоке или тренажёре: место тяжёлой
          базы с нагрузкой на позвоночник — ногам */
@@ -564,9 +564,9 @@ function prescribe(ex, week, E, extra = 0) {
   const rest = strongMod ? G.mod.rest : sch === 'ballistic' ? Math.min(120, G.rest[t]) : G.rest[t];
   /* время подхода: повтор махов ≈2 с, турецкого подъёма ≈25 с (repSec в каталоге), остальное — по цели */
   const work = ex.kind === 'time' ? midOf(reps) : ex.kind === 'dist' ? 30 : midOf(reps) * (ex.repSec || (sch === 'ballistic' ? 2 : G.rep)) * (ex.uni ? 2 : 1);
-  /* темп: у подвижности, махов и кардио его нет (медленно и под контролем; мах и прыжок — одним движением), у многосуставных
-     без тяжёлого максимума в «Силе» — без быстрого усилия */
-  const tempo = ex.kind || sch === 'ctrl' || sch === 'ballistic' || sch === 'cardio' ? null : strongMod ? '2-0-1-0' : G.tempo;
+  /* темп: у подвижности, махов и кардио его нет (медленно и под контролем; мах и прыжок — одним движением); быстрое усилие
+     «Силы» — только у тяжёлой базы, у остальных (разводка, махи в стороны, отжимания) — подъём за 1 с */
+  const tempo = ex.kind || sch === 'ctrl' || sch === 'ballistic' || sch === 'cardio' ? null : sch !== 'heavy' && /X/.test(G.tempo) ? '2-0-1-0' : G.tempo;
   const rx = {sets, reps, unit, rest, load, rir, tempo, notes, work, uni:!!ex.uni, scheme:sch};
   return S.format === 'static' && staticOk(ex) ? staticRx(rx, ex, week, E) : rx;
 }
