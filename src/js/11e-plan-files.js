@@ -64,17 +64,29 @@ function readPlanFile(text) {
     if (!p || typeof p !== 'object') continue;
     const items = Array.isArray(p.items) ? p.items : [];
     for (const it of items) if (it && !EXI[it.id]) unknown.push(cleanText(it.name, 60) || cleanText(String(it.id || ''), 30) || '?');
-    const c = cleanPlan({...p, items:items.map(it => it && typeof it === 'object' ? {...it, sets:Number.isInteger(it.sets) ? it.sets : undefined, rest:Number.isInteger(it.rest) ? it.rest : undefined} : it)}, '');
+    const prep = items.map(it => it && typeof it === 'object' ? {...it, sets:Number.isInteger(it.sets) ? it.sets : undefined, rest:Number.isInteger(it.rest) ? it.rest : undefined} : it);
+    const c = cleanPlan({...p, items:prep}, '');
+    /* в своём плане — не больше CUSTOM_MAX упражнений: остальные не пропадают молча (Ксения 11) — сказано, сколько войдёт,
+       и можно разбить план на несколько (all — все упражнения плана по порядку) */
+    const ids = new Set(), all = prep.map(cleanCustomItem).filter(it => it && !ids.has(it.id) && ids.add(it.id));
+    if (all.length > CUSTOM_MAX) c.all = all;
     if (from && !c.from) c.from = from;
     plans.push(c);
   }
   if (!plans.length) return {error:'В файле нет планов.'};
   return {plans, from, note:cleanText(o.note, CUSTOM_NOTE, true), unknown:[...new Set(unknown)], newer, cut:raw.length > PLAN_FILE_PLANS};
 }
+/* план больше CUSTOM_MAX упражнений → несколько планов по CUSTOM_MAX: «Тест (1/9)», «Тест (2/9)»… */
+function splitPlan(p) {
+  if (!p.all) return [p];
+  const n = Math.ceil(p.all.length / CUSTOM_MAX), base = String(p.name).slice(0, CUSTOM_NAME - 8), out = [];
+  for (let i = 0; i < n; i++) { const c = {...p, name:`${base} (${i + 1}/${n})`, items:p.all.slice(i * CUSTOM_MAX, (i + 1) * CUSTOM_MAX)}; delete c.all; delete c.auto; out.push(c); }
+  return out;
+}
 /* добавление: всегда новыми планами, занятые имена получают «(2)» */
 function addPlans(plans) {
   const taken = S.customs.map(c => c.name), added = [];
-  for (const p of plans) { const c = {...p, id:newPlanId()}; delete c.auto; Object.assign(c, namedPlan(p.name, p.auto, taken)); taken.push(c.name); S.customs.push(c); added.push(c); }
+  for (const p of plans) { const c = {...p, id:newPlanId()}; delete c.auto; delete c.all; Object.assign(c, namedPlan(p.name, p.auto, taken)); taken.push(c.name); S.customs.push(c); added.push(c); }
   saveSettings(); return added;
 }
 
@@ -158,7 +170,8 @@ function planInHtml() {
       ${r.newer ? '<p class="warn">Файл сделан в более новой версии приложения: то, что эта версия не знает, будет пропущено. Обновите приложение.</p>' : ''}
       ${r.unknown.length ? `<p class="warn">Этой версии приложения неизвестны упражнения: ${esc(r.unknown.join(', '))}. Они будут пропущены.</p>` : ''}
       ${r.cut ? `<p class="warn">В файле больше ${PLAN_FILE_PLANS} планов — загрузятся первые ${PLAN_FILE_PLANS}.</p>` : ''}
-      <fieldset class="po-set"><legend>Планы в файле</legend>${r.plans.map((p, i) => `<label class="po-opt pi-plan"><input type="checkbox" data-pi="${i}" checked><span><b>${esc(p.name)}</b><small>${p.items.length} ${plural(p.items.length, 'упражнение', 'упражнения', 'упражнений')}${setup(p) ? ` — ${setup(p)}` : ''}</small>${!common && p.group ? `<small>программа: ${esc(p.group)}</small>` : ''}</span></label>`).join('')}</fieldset>`;
+      ${r.plans.filter(p => p.all).map(p => { const i = r.plans.indexOf(p), n = Math.ceil(p.all.length / CUSTOM_MAX); return `<div class="warn pi-over"><p>${`В плане «${esc(p.name)}» ${p.all.length} ${plural(p.all.length, 'упражнение', 'упражнения', 'упражнений')}, а в свой план помещается ${CUSTOM_MAX}: войдут первые ${CUSTOM_MAX}, остальные ${p.all.length - CUSTOM_MAX} — нет.`}</p><label class="pi-split"><input type="checkbox" data-pi-split="${i}"> ${`Разбить на ${n} ${plural(n, 'план', 'плана', 'планов')} — войдут все упражнения`}</label></div>`; }).join('')}
+      <fieldset class="po-set"><legend>Планы в файле</legend>${r.plans.map((p, i) => `<label class="po-opt pi-plan"><input type="checkbox" data-pi="${i}" checked><span><b>${esc(p.name)}</b><small>${p.items.length} ${plural(p.items.length, 'упражнение', 'упражнения', 'упражнений')}${p.all ? ` ${'из'} ${p.all.length}` : ''}${setup(p) ? ` — ${setup(p)}` : ''}</small>${!common && p.group ? `<small>программа: ${esc(p.group)}</small>` : ''}</span></label>`).join('')}</fieldset>`;
   }
   return `<form method="dialog" class="gear pi">
     <h2>Загрузить план</h2>
@@ -189,7 +202,8 @@ document.addEventListener('click', e => {
   if (t.id === 'pi-close') { $('#plan-in').close(); return; }
   if (t.id === 'pi-read') { showPlanIn({...readPlanFile($('#pi-text').value), pasted:true}); return; }
   if (t.id === 'pi-add') {
-    const pick = [...document.querySelectorAll('[data-pi]')].filter(x => x.checked).map(x => planIn.plans[+x.dataset.pi]);
+    const split = new Set([...document.querySelectorAll('[data-pi-split]')].filter(x => x.checked).map(x => +x.dataset.piSplit));
+    const pick = [...document.querySelectorAll('[data-pi]')].filter(x => x.checked).flatMap(x => { const p = planIn.plans[+x.dataset.pi]; if (split.has(+x.dataset.pi)) return splitPlan(p); const c = {...p}; delete c.all; return [c]; });
     if (!pick.length) { $('#pi-msg').textContent = 'Отметьте хотя бы один план.'; return; }
     const added = addPlans(pick); $('#plan-in').close(); planIn = null;
     openCustom(added[0].id); regen(); window.scrollTo({top:0});

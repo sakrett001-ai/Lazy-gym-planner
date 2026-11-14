@@ -93,7 +93,8 @@ test('weight question, journal, CSV and body measurements in pounds and inches',
   assert.match(q, /\(135\slb\)\. Log 1350\slb\?$/);
   assert.equal(en.get(`kgDoubt({...previewItem('bbbench'),eqIds:['bb','bench']},[parseKg('185')],0)`), null);
   const csv = en.get('csvText()');
-  assert.match(csv, /Weight, lb/); assert.match(csv, /Total weight per set, lb/); assert.match(csv, /;135;10;/);
+  /* американский Excel делит столбцы запятой (Mike 3): заголовки с запятой — в кавычках */
+  assert.match(csv, /"Weight, lb"/); assert.match(csv, /"Total weight per set, lb"/); assert.match(csv, /,135,10,/);
   assert.match(en.get(`journalVal(EXI.bbbench, LOG.data.bbbench)`), /135<small>lb<\/small> × 10/);
   assert.match(en.get('histHtml(EXI.bbbench)'), /total weight 2,700 lb/);
   assert.match(en.get('unitsHtml()'), /data-units="lb" aria-pressed="true">lb</);
@@ -103,7 +104,7 @@ test('weight question, journal, CSV and body measurements in pounds and inches',
   assert(Math.abs(row.kg - 81.65) < .01 && Math.abs(row.waist - 86.36) < .01, JSON.stringify(row));
   const body = en.get('bodyHtml()');
   assert.match(body, /<b>180<small>lb<\/small><\/b>/); assert.match(body, /Waist<\/span><b>34<small>in<\/small>/); assert.match(body, /Weight, lb<input/); assert.match(body, /Waist, in<input/);
-  assert.match(en.get('bodyCsv()'), /Weight, lb;Waist, in/);
+  assert.match(en.get('bodyCsv()'), /"Weight, lb","Waist, in"/);
   /* русская версия по умолчанию — килограммы и сантиметры, как раньше */
   const ru = loadApp({lang:'ru'});
   ru.get(`(()=>{BODY.rows=[cleanBodyRow({d:'${day(1)}', kg:82.4, waist:88})];})()`);

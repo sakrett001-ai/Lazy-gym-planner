@@ -235,11 +235,84 @@ const STORE = 'podhod.settings.v1';
 const FIRST_RUN = (() => {
   try { return !['podhod.settings.v1', 'podhod.log.v1', 'podhod.workout.v3', 'podhod.planSeen.v1'].some(k => localStorage.getItem(k) != null); } catch (e) { return false; }
 })();
-function loadSettings() {
-  try { const s = JSON.parse(localStorage.getItem(STORE) || 'null'); if (s && s.groups && s.equip) return Object.assign({}, DEFAULTS, s); } catch (e) {}
-  return Object.assign({}, DEFAULTS);
+/* Настройки из хранилища или резервной копии — с проверкой типа каждого поля (Ксения 1, 9, 15): строка вместо списка мышц
+   («groups»: "chest»), строка вместо «Беречь суставы», мусор в местах и планах роняли приложение («groups.map is not a function»)
+   навсегда. Неверное поле — значение по умолчанию, и его имя попадает в bad (сообщение человеку). Здесь — только то, что можно
+   проверить до остального кода (цели, форматы, уровни, мышцы, инвентарь, упражнения); состав планов, мест, суставов, сворачивания —
+   ensureCustoms, ensurePlaces, ensureProtect, ensureFold (они вызываются при запуске и после восстановления). Неизвестные
+   поля (из новых версий) остаются как есть. */
+const SETTINGS_LABEL = {goal:'цель', format:'формат', level:'уровень', count:'число упражнений', groups:'мышцы', equip:'инвентарь',
+  seed:'вариант подбора', mode:'что собрать', days:'тренировок в неделю', split:'сплит', week:'неделя цикла', day:'день недели',
+  view:'раздел', atlasM:'мышца в атласе', focus:'акцент', fav:'избранное', customs:'свои планы', custom:'открытый свой план',
+  gen:'параметры обычных планов', author:'имя автора планов', fold:'свёрнутые блоки', protect:'«Беречь суставы»', cpLast:'последний свой план',
+  lr:'«Л/П отдельно»', units:'единицы веса', dur:'время на тренировку', places:'места', place:'место', placesV:'места', adapt:'«как в другом месте»',
+  swaps:'замены упражнений', logPick:'тренировка по журналу'};
+function cleanSettings(raw) {
+  const s = raw && typeof raw === 'object' && !Array.isArray(raw) ? {...raw} : {}, bad = new Set();
+  if (!raw || typeof raw !== 'object' || Array.isArray(raw)) bad.add('*');
+  const obj = v => v && typeof v === 'object' && !Array.isArray(v);
+  const fix = (k, ok, def = DEFAULTS[k]) => { if (!(k in s)) return; if (!ok(s[k])) { bad.add(k); if (def === undefined) delete s[k]; else s[k] = Array.isArray(def) ? def.slice() : obj(def) ? {...def} : def; } };
+  const int = (lo, hi) => v => Number.isInteger(v) && v >= lo && v <= hi;
+  const ids = (k, list) => { if (!(k in s)) return; if (!Array.isArray(s[k])) { fix(k, () => false); return; }
+    const ok = new Set(list), v = [...new Set(s[k].filter(x => typeof x === 'string' && ok.has(x)))]; if (v.length !== s[k].length) bad.add(k); s[k] = v; };
+  const strOrNull = max => v => v === null || (typeof v === 'string' && v.length <= max);
+  fix('goal', v => typeof v === 'string' && !!GOALS[v]); fix('format', v => typeof v === 'string' && !!FORMATS[v]); fix('level', v => typeof v === 'string' && !!LEVELS[v]);
+  fix('count', int(3, 10)); fix('seed', v => Number.isInteger(v) && Math.abs(v) < 2 ** 31);
+  fix('mode', v => typeof v === 'string' && !!MODES[v]); fix('days', int(2, 5)); fix('split', v => typeof v === 'string' && !!SPLITS[v]);
+  fix('week', int(1, WEEKS.length)); fix('day', int(0, 6)); fix('view', v => ['plan', 'atlas', 'journal'].includes(v));
+  fix('atlasM', v => typeof v === 'string' && v.length <= 40); fix('focus', v => v === null || (typeof v === 'string' && !!MUSCLE_NAMES[v]));
+  ids('groups', GROUPS.map(g => g.id)); ids('equip', EQUIP.map(e => e.id));
+  fix('fav', Array.isArray); fix('customs', Array.isArray); fix('custom', strOrNull(40)); fix('gen', v => v === null || obj(v));
+  fix('author', v => typeof v === 'string'); fix('fold', v => v === null || obj(v)); fix('protect', v => Array.isArray(v) && v.every(x => typeof x === 'string'));
+  fix('cpLast', strOrNull(40)); fix('lr', obj); fix('units', v => v === null || v === 'kg' || v === 'lb'); fix('dur', strOrNull(12));
+  fix('places', v => Array.isArray(v) && v.length > 0 && v.every(p => obj(p) && typeof p.id === 'string')); fix('place', v => typeof v === 'string' && v.length <= 40);
+  fix('placesV', v => Number.isInteger(v) && v >= 0 && v < 1000); fix('adapt', strOrNull(40));
+  fix('swaps', v => obj(v) && Object.values(v).every(x => obj(x) || Array.isArray(x))); fix('logPick', v => v === null || obj(v));
+  /* элементы списков, которые потом чистят ensure*: не объекты — мимо, и это отмечается */
+  if (Array.isArray(s.customs) && s.customs.some(c => !obj(c) || typeof c.id !== 'string')) { s.customs = s.customs.filter(c => obj(c) && typeof c.id === 'string'); bad.add('customs'); }
+  if (Array.isArray(s.fav) && s.fav.some(id => typeof id !== 'string' || !EXI[id])) { s.fav = s.fav.filter(id => typeof id === 'string' && EXI[id]); bad.add('fav'); }
+  return {s:Object.assign({}, DEFAULTS, s), bad:[...bad]};
 }
-function saveSettings() { try { localStorage.setItem(STORE, JSON.stringify(S)); } catch (e) {} }
+/* названия испорченных полей для сообщения: «мышцы, места» */
+function settingsBadText(bad) { return [...new Set(bad.map(k => SETTINGS_LABEL[k] || 'прочие настройки'))].join(', '); }
+/* Две вкладки (или приложение с экрана «Домой» и вкладка браузера): у каждой свои настройки в памяти. settingsBase — текст
+   настроек в хранилище, каким эта вкладка видела его последним. Перед записью и по событию storage (18a-data-keep.js)
+   поле, которое другая вкладка изменила, а эта — нет, берётся из хранилища; изменённое здесь остаётся своим.
+   Вернёт список полей, взятых из хранилища. */
+let settingsBase = null;
+function settingsMerge(diskText = Keep.get(STORE)) {
+  if (diskText == null || settingsBase == null || diskText === settingsBase) return [];
+  let d = null, b = null;
+  try { d = JSON.parse(diskText); } catch (e) { return []; }
+  try { b = JSON.parse(settingsBase); } catch (e) {}
+  const theirs = cleanSettings(d).s, base = cleanSettings(b).s, took = [];
+  for (const k of new Set([...Object.keys(theirs), ...Object.keys(base)])) {
+    const was = JSON.stringify(base[k]), t = JSON.stringify(theirs[k]);
+    if (t !== was && JSON.stringify(S[k]) === was) { if (theirs[k] === undefined) delete S[k]; else S[k] = theirs[k]; took.push(k); }
+  }
+  settingsBase = diskText;
+  return took;
+}
+function loadSettings() {
+  const raw = Keep.get(STORE);
+  settingsBase = raw;
+  if (raw == null) return Object.assign({}, DEFAULTS);
+  let o = null, cut = false;
+  try { o = JSON.parse(raw); } catch (e) { const r = repairJson(raw); if (r) { o = r.value; cut = true; } }
+  const {s, bad} = cleanSettings(o);
+  if (cut || bad.length) {
+    /* исходное — в отложенные, до того как на его место запишется исправленное */
+    Keep.quarantine(STORE, raw, cut ? 'settings: обрезано' : 'settings: ' + bad.join(','));
+    Keep.note('settings', {fields:cut && !bad.length ? ['прочие настройки'] : bad.filter(k => k !== '*'), whole:o == null});
+  }
+  return s;
+}
+/* запись поверх того, что в хранилище сейчас: поля, изменённые здесь, — отсюда, остальные — из хранилища (settingsMerge) */
+function saveSettings() {
+  if (settingsMerge().includes('swaps')) try { swaps = S.swaps && typeof S.swaps === 'object' && !Array.isArray(S.swaps) ? S.swaps : (S.swaps = {}); } catch (e) {}
+  const text = JSON.stringify(S);
+  if (Keep.set(STORE, text)) settingsBase = text;
+}
 
 const S = loadSettings();
 /* замены и порядок упражнений (кнопки «Заменить» и ↑ ↓) хранятся с настройками: после перезапуска приложения

@@ -7,14 +7,39 @@
    (null), а основные поля — слабая сторона. eq — снаряд (гантели, гиря, штанга) у упражнений с гантелями или гирей:
    по нему считается общий вес. Подробно — 13a-sets.js. */
 const LOG_KEY = 'podhod.log.v1';
-const LOG = {mode:'connecting', data:{}, col:null, pending:{}, writing:{}, again:{}, timers:{}, err:'', dl:null, canExport:false};
+/* foreign — записи упражнений, которых нет в этой версии: хранятся и уходят в копию, не показываются (13a-sets.js: checkLog) */
+const LOG = {mode:'connecting', data:{}, foreign:{}, col:null, pending:{}, writing:{}, again:{}, timers:{}, err:'', dl:null, canExport:false, undo:null};
 const WEIGHTED = new Set(['db', 'bb', 'kb', 'cable', 'smith', 'legpress', 'legext', 'legcurl', 'pecdeck', 'hack', 'chestpress', 'shoulderpress', 'leverrow', 'tbar', 'abductor', 'calfseat', 'calfstand']);
 const LOWER_G = new Set(['quads', 'hams', 'glutes', 'calves']);
 const MACHINE = new Set(['cable', 'smith', 'legext', 'legcurl', 'pecdeck', 'chestpress', 'shoulderpress', 'leverrow', 'abductor', 'calfseat', 'calfstand', 'gravitron', 'hack', 'tbar']);
 const MONTHS = ['янв', 'фев', 'мар', 'апр', 'мая', 'июн', 'июл', 'авг', 'сен', 'окт', 'ноя', 'дек'];
 
 function dayKey(d) { return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0'); }
-const todayKey = () => dayKey(new Date());
+/* «Сегодня» журнала (Ксения 13, 14). Обычно — дата на часах телефона. Но тренировка, начатая в 23:50 и законченная в 00:10,
+   — одна тренировка (и через Новый год тоже), а после перелёта Москва → Нью-Йорк подход, записанный 5 минут назад, не
+   «завтрашний». Поэтому день идущей тренировки помнится (podhod.active.v1: день и время последнего подхода, время — по
+   абсолютным часам Date.now, они не зависят от часового пояса): если последний подход был не больше 3 часов назад, а дата
+   на часах ушла на день вперёд или назад, «сегодня» — день тренировки. Часы, переведённые назад сильнее, — обычная дата:
+   записи «из будущего» не теряются, в журнале идут после сегодняшних (recentKey), «прошлым разом» считаются (pastSessions). */
+const ACTIVE_KEY = 'podhod.active.v1', ACTIVE_GAP = 3 * 3600e3;
+let activeMem;
+function activeRead(text) { try { const a = JSON.parse(text || 'null'); return a && typeof a.d === 'string' && /^\d{4}-\d\d-\d\d$/.test(a.d) && Number.isFinite(a.at) ? {d:a.d, at:a.at} : null; } catch (e) { return null; } }
+function activeDay(now = Date.now()) {
+  if (activeMem === undefined) { activeMem = activeRead(Keep.get(ACTIVE_KEY)); Keep.watch(ACTIVE_KEY, v => { activeMem = activeRead(v); }); }
+  const a = activeMem; if (!a) return null;
+  const gap = now - a.at; if (!(gap >= 0 && gap <= ACTIVE_GAP)) return null;
+  const local = dayKey(new Date(now)); if (a.d === local) return null;
+  const ut = k => { const [y, m, d] = k.split('-').map(Number); return Date.UTC(y, m - 1, d); };
+  return Math.abs(Math.round((ut(a.d) - ut(local)) / 864e5)) === 1 ? a.d : null;
+}
+const todayKey = () => activeDay() || dayKey(new Date());
+/* подход записан: день тренировки и время */
+function markActive(d = todayKey()) { activeMem = {d, at:Date.now()}; Keep.set(ACTIVE_KEY, JSON.stringify(activeMem)); if (typeof keepPersistAsk === 'function') keepPersistAsk(); }
+/* порядок «по свежести»: сегодняшние записи — первыми, потом записи «из будущего» (часы переведены назад), потом прошлые */
+function recentKey(d, today = todayKey()) { return (d === today ? '2' : d > today ? '1' : '0') + d; }
+function byRecent(ss, today = todayKey()) {
+  return ss.map(s => [recentKey(s.d, today), s]).sort((a, b) => a[0] < b[0] ? -1 : a[0] > b[0] ? 1 : 0).map(x => x[1]);
+}
 /* день записи: «сегодня», «9 ноя», «9 ноя 2025»; в сборке с датами через Intl (английская) — по языку браузера:
    en-US «Nov 9», en-GB «9 Nov» */
 function fmtDay(k, withYear) {
@@ -68,23 +93,89 @@ const unitRange = (kg, lb) => { const [a, b] = isLb() ? lb : kg; return `${fmtU(
 function validSessions(ss) {
   return Array.isArray(ss) && ss.every(x => x && typeof x.d === 'string' && /^\d{4}-\d\d-\d\d$/.test(x.d) && Array.isArray(x.s));
 }
-function logLoadLocal() {
-  try {
-    const s = JSON.parse(localStorage.getItem(LOG_KEY) || 'null');
-    if (s && typeof s === 'object') for (const [k, v] of Object.entries(s)) if (EXI[k] && validSessions(v)) LOG.data[k] = v;
-  } catch (e) {}
+/* Журнал в хранилище — текст; logBase — каким эта вкладка видела его последним (для слияния вкладок, logMergeDisk).
+   Испорченный журнал не затирается (Ксения 15): исходный текст — в отложенные (Keep.quarantine), уцелевшее читается
+   (обрезанный JSON — repairJson, неверные записи — мимо, checkLog), человек видит сообщение (18a-data-keep.js). */
+let logBase = null;
+function logParse(text) {
+  if (text == null) return {data:{}, foreign:{}, r:logDrops(), cut:false, whole:false};
+  let o = null, cut = false;
+  try { o = JSON.parse(text); } catch (e) { const rep = repairJson(text); if (rep) { o = rep.value; cut = true; } }
+  const c = checkLog(o);
+  return {...c, cut, whole:c.whole || o === null};
 }
-function logSaveLocal() { try { localStorage.setItem(LOG_KEY, JSON.stringify(LOG.data)); } catch (e) {} }
+function logLoadLocal() {
+  const raw = Keep.get(LOG_KEY); logBase = raw;
+  if (raw == null) return;
+  const p = logParse(raw);
+  LOG.data = p.data; LOG.foreign = p.foreign;
+  if (p.cut || p.whole || p.r.sets || p.r.sessions) {
+    Keep.quarantine(LOG_KEY, raw, p.cut ? 'log: обрезан' : 'log: ' + JSON.stringify(p.r.why));
+    Keep.note('log', {cut:p.cut, whole:p.whole && !Object.keys(p.data).length, drops:p.r, kept:Object.values(p.data).reduce((a, ss) => a + ss.length, 0)});
+  }
+}
+const logStoreObject = () => ({...LOG.foreign, ...LOG.data});
+/* Запись журнала. Перед ней — что сейчас в хранилище: другая вкладка (или приложение с экрана «Домой») могла записать свои
+   подходы (Ксения 3, Артём 3) — они сливаются с нашими, а не затираются */
+function logSaveLocal() {
+  const disk = Keep.get(LOG_KEY);
+  if (disk != null && disk !== logBase) logMergeDisk(disk);
+  const text = JSON.stringify(logStoreObject());
+  if (Keep.set(LOG_KEY, text)) logBase = text;
+}
+/* Слияние трёх версий: base — что эта вкладка видела, mine — что у неё сейчас, theirs — что в хранилище. По упражнениям,
+   записям дня и номерам подходов: изменённое одной стороной — от неё; обе добавили разный подход под одним номером — оба
+   остаются (наш — следующим номером); обе правили один подход — наш (последняя правка). Пустое хранилище (очистили
+   данные сайта) не стирает записи вкладки — они запишутся обратно. Вернёт упражнения, которые изменились. */
+function logMergeDisk(diskText) {
+  const changed = [];
+  if (diskText == null) return changed;
+  const theirs = logParse(diskText), base = logParse(logBase);
+  logBase = diskText;
+  const J = v => JSON.stringify(v ?? null);
+  for (const id of new Set([...Object.keys(LOG.data), ...Object.keys(theirs.data), ...Object.keys(base.data)])) {
+    const mine = LOG.data[id] || [], was = base.data[id] || [], th = theirs.data[id] || [];
+    let out;
+    if (J(mine) === J(was)) out = th;
+    else if (J(th) === J(was) || J(th) === J(mine)) out = mine;
+    else out = mergeThree(mine, was, th);
+    if (J(out) !== J(LOG.data[id] || [])) { changed.push(id); if (out.length) LOG.data[id] = out; else delete LOG.data[id]; }
+  }
+  for (const [id, ss] of Object.entries(theirs.foreign)) if (!LOG.foreign[id]) LOG.foreign[id] = ss;
+  return changed;
+}
+function mergeThree(mine, was, th) {
+  const J = v => JSON.stringify(v ?? null), at = (ss, d) => ss.find(x => x.d === d), out = [];
+  for (const d of new Set([...mine, ...was, ...th].map(x => x.d))) {
+    const m = at(mine, d), w = at(was, d), t = at(th, d);
+    if (J(m) === J(w)) { if (t) out.push(t); continue; }
+    if (J(t) === J(w) || J(t) === J(m)) { if (m) out.push(m); continue; }
+    if (!m || !t) { out.push(m || t); continue; } /* одна сторона удалила запись, другая дописала — остаётся дописанное */
+    const s = [], extra = [], wk = k => w && w.s[k] || null;
+    for (let k = 0; k < Math.max(m.s.length, t.s.length); k++) {
+      const a = m.s[k] || null, b = t.s[k] || null, o = wk(k);
+      if (J(a) === J(o)) s[k] = b; else if (J(b) === J(o) || J(a) === J(b)) s[k] = a;
+      else if (!o && a && b) { s[k] = b; extra.push(a); } /* обе вкладки записали подход под этим номером */
+      else s[k] = a;
+    }
+    while (s.length && !s[s.length - 1]) s.pop();
+    s.push(...extra);
+    const o = {...t, ...m, s:s.map(v => v || null)};
+    if (m.target || t.target) o.target = Math.max(m.target || 0, t.target || 0);
+    if (m.at || t.at) o.at = Math.min(...[m.at, t.at].filter(Number.isFinite));
+    out.push(o);
+  }
+  return out.filter(x => x && x.s.some(Boolean)).sort((p, q) => p.d < q.d ? -1 : 1);
+}
 
-/* объединение двух историй: по дате; при совпадении берём запись с большим числом подходов */
+/* Объединение двух историй (аккаунт и браузер, копия и журнал): по дате; запись одного дня — подходы по номерам: где у одной
+   пусто, берётся другая; где обе записаны и различаются — первая (a). Предела числа записей нет (Ксения 5): раньше хранились
+   только 150 последних занятий упражнения, старые молча удалялись — годовой журнал жима занимает ~10 КБ из ~5 МБ хранилища. */
 function mergeSessions(a, b) {
   const by = new Map();
   for (const x of a || []) by.set(x.d, x);
-  for (const x of b || []) {
-    const cur = by.get(x.d);
-    if (!cur || x.s.filter(Boolean).length > cur.s.filter(Boolean).length) by.set(x.d, x);
-  }
-  return [...by.values()].sort((p, q) => p.d < q.d ? -1 : 1).slice(-150);
+  for (const x of b || []) { const cur = by.get(x.d); by.set(x.d, cur ? unionSession(cur, x) : x); }
+  return [...by.values()].sort((p, q) => p.d < q.d ? -1 : 1);
 }
 
 async function logInit() {
@@ -165,14 +256,15 @@ function todaySession(id, create) {
   const d = todayKey();
   let s = ss.find(x => x.d === d);
   if (!s && create) {
-    s = {d, s:[]};
+    /* at — когда начато упражнение: порядок выполнения внутри дня (выгрузка для Excel) */
+    s = {d, s:[], at:Date.now()};
     if (S.mode === 'program') s.wk = S.week;
     ss.push(s); ss.sort((a, b) => a.d < b.d ? -1 : 1);
-    if (ss.length > 150) ss.splice(0, ss.length - 150);
   }
   return s;
 }
-function pastSessions(id) { const d = todayKey(); return (LOG.data[id] || []).filter(x => x.d < d && x.s.some(Boolean)); }
+/* прошлые записи упражнения — все, кроме сегодняшней: запись «из будущего» (часы переведены назад) — тоже прошлый раз */
+function pastSessions(id) { const d = todayKey(); return byRecent((LOG.data[id] || []).filter(x => x.d !== d && x.s.some(Boolean)), d); }
 function cleanToday(id) {
   const ss = LOG.data[id]; if (!ss) return;
   const s = ss.find(x => x.d === todayKey()); if (!s) return;
@@ -713,15 +805,25 @@ function histSets(ex, s) {
   const t = sessionTonnage(ex, s);
   return `${setsText(s.s, ex)}${t > 0 ? `<small class="h-ton">${'общий вес ' + fmtTon(t) + ' ' + wUnit()}</small>` : ''}`;
 }
+/* записи упражнения «по свежести» и, пока не истекло время, место удалённой записи («Удалено · Вернуть») */
+function histList(ex) {
+  const ss = byRecent((LOG.data[ex.id] || []).filter(x => x.s.some(Boolean))), u = undoFor(ex.id);
+  return {ss, list:u ? byRecent(ss.concat({d:u.s.d, s:[], gone:true})) : ss};
+}
+function histRowHtml(ex, s) {
+  if (s.gone) return undoLineHtml(`Удалена запись за ${fmtDay(s.d, true)}.`, `data-hist-undo="${ex.id}"`, `h-gone-${ex.id}`);
+  return `<li><span class="h-d">${fmtDay(s.d, true)}${s.wk ? `<small>нед. ${s.wk}</small>` : ''}${s.fmt === 'static' ? '<small>статодинамика</small>' : ''}</span>
+    <span class="h-s">${histSets(ex, s)}</span>
+    <button type="button" class="h-del" data-del="${ex.id}" data-d="${s.d}" aria-label="Удалить запись за ${fmtDay(s.d, true)}">Удалить</button></li>`;
+}
 function histHtml(ex) {
-  const ss = (LOG.data[ex.id] || []).filter(x => x.s.some(Boolean));
+  const {ss, list} = histList(ex);
+  if (!ss.length && list.length) return `<ul class="h-list">${list.map(s => histRowHtml(ex, s)).join('')}</ul>${variantHistNote(ex)}`;
   if (!ss.length) return `<p class="h-empty">Записей пока нет. Отметьте подходы выше — здесь появится история и график.</p>${variantHistNote(ex)}`;
   const m = histMetric(ex, ss);
   const pts = ss.map(s => ({d:s.d, v:m.f(s)})).filter(p => p.v != null).slice(-24);
   const best = pts.length ? Math.max(...pts.map(p => p.v)) : null;
-  const rows = ss.slice(-6).reverse().map(s => `<li><span class="h-d">${fmtDay(s.d, true)}${s.wk ? `<small>нед. ${s.wk}</small>` : ''}${s.fmt === 'static' ? '<small>статодинамика</small>' : ''}</span>
-    <span class="h-s">${histSets(ex, s)}</span>
-    <button type="button" class="h-del" data-del="${ex.id}" data-d="${s.d}" aria-label="Удалить запись за ${fmtDay(s.d, true)}">Удалить</button></li>`).join('');
+  const rows = list.slice(-6).reverse().map(s => histRowHtml(ex, s)).join('');
   return `<div class="h-chart"><p class="h-cap">${m.name}${m.bare ? '' : ', ' + m.unit}${best != null ? ` · лучший ${metricFmt(m)(best)}` : ''}</p>${sparkSvg(pts, m.unit, metricFmt(m))}</div>
     <ul class="h-list">${rows}</ul>${ss.length > 6 ? `<p class="h-more">Всего записей: ${ss.length}. Полная история — в разделе «Журнал».</p>` : ''}${variantHistNote(ex)}`;
 }
@@ -754,12 +856,19 @@ function logRefresh(ids) {
   if (S.view === 'journal') { if (!$('#plan').contains(document.activeElement) || document.activeElement === document.body) renderJournal(); return; }
   document.querySelectorAll('.card').forEach(c => { if (!ids || ids.includes(c.dataset.ex)) refreshCard(c); });
 }
+/* где хранятся записи; хранилище не принимает записи — так и сказано (Ксения 6, 7); постоянное хранилище и iPhone —
+   storageLineHtml (18a-data-keep.js) */
 function statusHtml() {
-  const m = LOG.mode;
+  const m = LOG.mode, st = Keep.state();
+  if (st !== 'ok' && m !== 'cloud') return `<span class="ls-dot ls-bad" aria-hidden="true"></span><span>${st === 'full' ? 'Записи не сохраняются: хранилище браузера переполнено.' : 'Записи не сохраняются на этом устройстве: браузер запретил сайту хранить данные.'} ${'Сохраните полную копию в файл, пока страница открыта.'}</span>`;
   const t = m === 'cloud' ? 'Записи сохраняются в вашем аккаунте и доступны на любом устройстве, где вы открываете эту страницу.'
     : m === 'connecting' ? 'Подключаю хранилище записей…'
-    : 'Записи хранятся в этом браузере. Делайте резервную копию, чтобы перенести журнал на другое устройство или не потерять его при очистке браузера.';
+    : 'Записи хранятся в этом браузере на этом устройстве.' + (typeof storageLineHtml === 'function' ? storageLineHtml() : '') + ' Делайте резервную копию, чтобы перенести журнал на другое устройство или не потерять его при очистке браузера.';
   return `<span class="ls-dot ls-${m}" aria-hidden="true"></span><span>${LOG.err ? esc(LOG.err) + ' Делайте резервную копию, чтобы не потерять записи.' : t}</span>`;
+}
+/* одна строка о личных данных (Михаил 12): что где хранится и что копия — открытый файл */
+function privacyHtml() {
+  return `<p class="p-hint j-private">${LOG.mode === 'cloud' ? 'Пульс и замеры хранятся в вашем аккаунте и на этом устройстве, отметки о суставах — только на этом устройстве.' : 'Пульс, вес и отметки о суставах хранятся только на этом устройстве — приложение их никуда не отправляет.'} ${'Резервная копия — обычный открытый файл: всё это в нём читается без пароля.'}</p>`;
 }
 function journalDays() { const s = new Set(); for (const ss of Object.values(LOG.data)) for (const x of ss) if (x.s.some(Boolean)) s.add(x.d); return s.size; }
 
@@ -813,17 +922,22 @@ function heatmap(today = new Date(), by = trainingDays()) {
 }
 function renderJournal() {
   stopFigures();
-  const entries = Object.entries(LOG.data).map(([id, ss]) => [id, ss.filter(x => x.s.some(Boolean))]).filter(([id, ss]) => EXI[id] && ss.length);
+  /* записи — «по свежести» (byRecent): сегодняшние первыми, записи «из будущего» (часы переведены назад) — за ними */
+  const today = todayKey();
+  const entries = Object.entries(LOG.data).map(([id, ss]) => [id, byRecent(ss.filter(x => x.s.some(Boolean)), today)]).filter(([id, ss]) => EXI[id] && ss.length);
   const days = journalDays();
   const sets = entries.reduce((a, [, ss]) => a + ss.reduce((b, x) => b + x.s.filter(Boolean).length, 0), 0);
-  const last = entries.reduce((m, [, ss]) => ss[ss.length - 1].d > m ? ss[ss.length - 1].d : m, '');
+  const lastK = entries.reduce((m, [, ss]) => { const k = recentKey(ss[ss.length - 1].d, today); return k > m ? k : m; }, ''), last = lastK.slice(1);
   const byDays = trainingDays();
-  entries.sort((a, b) => a[1][a[1].length - 1].d < b[1][b[1].length - 1].d ? 1 : -1);
+  entries.sort((a, b) => recentKey(a[1][a[1].length - 1].d, today) < recentKey(b[1][b[1].length - 1].d, today) ? 1 : -1);
+  const broken = Keep.broken().length;
   const tools = `<div class="j-tools">
       ${LOG.canExport ? `<button type="button" class="btn btn-2" id="exp-json">Полная копия (JSON)</button><button type="button" class="btn btn-2" id="exp-csv">Журнал для Excel</button><button type="button" class="btn btn-2" id="exp-body">Замеры для Excel</button>` : ''}
       <label class="btn btn-2" for="imp-file">Восстановить из копии</label><input type="file" id="imp-file" accept=".json,application/json" hidden>
-    </div>${unitsHtml()}<p class="p-hint" id="j-msg" role="status"></p>
-    <p class="p-hint">Полная копия — настройки, инвентарь, журнал и замеры одним файлом: перенесёт всё на другой телефон или вернёт после очистки браузера.</p>`;
+      ${broken ? `<button type="button" class="btn btn-2" data-keep="broken">${'Испорченные данные'} (${broken})</button>` : ''}
+    </div>${restorePanelHtml()}${unitsHtml()}<p class="p-hint" id="j-msg" role="status" tabindex="-1">${esc(LOG.msg || '')}</p>
+    <p class="p-hint">Полная копия — настройки, инвентарь, журнал и замеры одним файлом: перенесёт всё на другой телефон или вернёт после очистки браузера.</p>${privacyHtml()}`;
+  LOG.msg = '';
   let html = `<header class="p-head j-head">
     <div class="p-sum">
       <p class="eyebrow">Журнал</p>
@@ -838,19 +952,22 @@ function renderJournal() {
     </div>
     <figure class="j-heat"><figcaption class="lb-h">Активность за 12 недель${last ? ` · последняя тренировка ${fmtDay(last, true)}` : ''}</figcaption>${heatmap(new Date(), byDays)}${daysHtml(byDays)}</figure>
   </header>${entries.length ? muscleLoadHtml() : ''}${bodyHtml()}`;
+  /* упражнение, у которого удалили последнюю запись, остаётся в списке, пока видно «Удалено · Вернуть» */
+  const gone = undoLive(LOG.undo);
+  if (gone && EXI[gone.id] && !entries.some(([id]) => id === gone.id)) entries.unshift([gone.id, []]);
   if (!entries.length) {
     html += `<div class="empty"><h2>Записей пока нет</h2><p>Откройте план и отмечайте подходы в карточках упражнений: вес и повторы сохранятся здесь, а планировщик начнёт подсказывать, когда прибавлять вес.</p><button type="button" class="btn" data-view="plan">Перейти к плану</button></div>`;
   } else {
     html += `<ul class="j-list">${entries.map(([id, ss]) => {
-      const ex = EXI[id];
-      const lastS = ss[ss.length - 1];
+      const ex = EXI[id], list = histList(ex).list;
+      const lastS = ss[ss.length - 1], open = LOG.openId === id;
       return `<li class="j-row">
-        <details>
+        <details data-jex="${id}"${open ? ' open' : ''}>
           <summary>
-            <span class="j-name">${esc(ex.name)}<small>${GN[ex.g]} · ${ss.length} ${plural(ss.length, 'запись', 'записи', 'записей')} · ${fmtDay(lastS.d, true)}</small></span>
-            ${journalVal(ex, ss)}
+            <span class="j-name">${esc(ex.name)}<small>${GN[ex.g]} · ${ss.length} ${plural(ss.length, 'запись', 'записи', 'записей')}${lastS ? ' · ' + fmtDay(lastS.d, true) : ''}</small></span>
+            ${ss.length ? journalVal(ex, ss) : ''}
           </summary>
-          <div class="j-body">${histHtml(ex).replace(/<p class="h-more">.*?<\/p>/, '')}${ss.length > 6 ? `<details class="j-all"><summary>Все записи (${ss.length})</summary><ul class="h-list">${ss.slice(0, -6).reverse().map(s => `<li><span class="h-d">${fmtDay(s.d, true)}</span><span class="h-s">${histSets(ex, s)}</span><button type="button" class="h-del" data-del="${id}" data-d="${s.d}">Удалить</button></li>`).join('')}</ul></details>` : ''}</div>
+          <div class="j-body">${histHtml(ex).replace(/<p class="h-more">.*?<\/p>/, '')}${list.length > 6 ? `<details class="j-all"${open && list.slice(0, -6).some(s => s.gone) ? ' open' : ''}><summary>Все записи (${ss.length})</summary><ul class="h-list">${list.slice(0, -6).reverse().map(s => histRowHtml(ex, s)).join('')}</ul></details>` : ''}</div>
         </details>
       </li>`;
     }).join('')}</ul>
@@ -858,6 +975,7 @@ function renderJournal() {
     <p class="legend">Расчётный максимум — вес, который вы, по формуле Эпли, подняли бы один раз: вес × (1 + повторы / 30). Он растёт и когда прибавляете вес, и когда делаете больше повторов с тем же весом, но повторы сверх 12 в нём не учитываются. Если вес во всех записях один, график показывает повторы с ним.</p>
     <p class="legend">Общий вес — сумма «вес × повторы» по всем снарядам и сторонам: ${tonnageExample()}. Считается только внешний вес: гантели, гири, штанга, тренажёр, доп. вес; вес тела, противовес гравитрона, удержания на время и дистанция не входят. Л/П — подход с левой и правой стороной отдельно: прогресс и рекорды — по слабой стороне.</p>`;
   }
+  LOG.openId = null;
   $('#plan').innerHTML = html;
 }
 /* единицы веса — рядом с копией и выгрузкой: общая настройка приложения (S.units) */
@@ -893,51 +1011,100 @@ async function saveFile(name, text, mime) {
 }
 /* Таблица для Excel: подход — строка. Вес — одного снаряда (как записан); «Левая» и «Правая» — у подходов с Л/П
    («12×10», у удержаний — секунды), основные вес и повторы тогда — слабая сторона; общий вес — последний столбец,
-   у подходов без внешнего веса пусто. */
+   у подходов без внешнего веса пусто. Разделитель — как ждёт Excel языка (Mike 3): где десятичная запятая (русская версия) —
+   точка с запятой, где точка (английская) — запятая. Внутри дня — по порядку выполнения (Дмитрий 22): упражнения — по времени
+   первого подхода (at записи дня), подходы — по номерам; записи прежних версий без времени — первыми, в порядке журнала. */
+const csvSep = () => DEC === ',' ? ';' : ',';
+function csvLine(r, sep = csvSep()) { return r.map(v => { const t = String(v); return t.includes(sep) || /["\n\r]/.test(t) ? `"${t.replace(/"/g, '""')}"` : t; }).join(sep); }
 function csvText() {
   /* вес и общий вес — в выбранных единицах, единица — в заголовке столбца */
   const rows = [['Дата', 'Упражнение', 'Группа мышц', 'Подход', `Вес, ${wUnit()}`, 'Повторы / секунды / метры', 'Неделя цикла', 'Отдых после подхода, с', 'Левая', 'Правая', `Общий вес за подход, ${wUnit()}`]];
   const all = [], side = p => (p[0] != null ? fmtKg(p[0]) + '×' : '') + p[1];
+  let order = 0;
   for (const [id, ss] of Object.entries(LOG.data)) {
-    const ex = EXI[id]; if (!ex) continue;
+    const ex = EXI[id]; order++; if (!ex) continue;
     for (const s of ss) {
-      const impl = sessionImpl(ex, s);
+      const impl = sessionImpl(ex, s), at = Number.isFinite(s.at) ? s.at : -Infinity;
       s.s.forEach((x, k) => {
         if (!x) return;
         const sd = setSides(x, ex), t = setTonnage(ex, x, impl);
-        all.push([s.d, ex.name, GN[ex.g], k + 1, x[0] != null ? fmtKg(x[0]) : '', x[1], s.wk || '', restField(x[2]) ?? '', sd ? side(sd.l) : '', sd ? side(sd.r) : '', t > 0 ? fmtKg(t) : '']);
+        all.push({key:[s.d, at, order, k], row:[s.d, ex.name, GN[ex.g], k + 1, x[0] != null ? fmtKg(x[0]) : '', x[1], s.wk || '', restField(x[2]) ?? '', sd ? side(sd.l) : '', sd ? side(sd.r) : '', t > 0 ? fmtKg(t) : '']});
       });
     }
   }
-  all.sort((a, b) => a[0] < b[0] ? -1 : a[0] > b[0] ? 1 : a[1] < b[1] ? -1 : 1);
-  return '﻿' + rows.concat(all).map(r => r.map(v => /[;"\n]/.test(String(v)) ? `"${String(v).replace(/"/g, '""')}"` : v).join(';')).join('\r\n');
+  all.sort((a, b) => { for (let i = 0; i < 4; i++) if (a.key[i] !== b.key[i]) return a.key[i] < b.key[i] ? -1 : 1; return 0; });
+  const sep = csvSep();
+  return '﻿' + rows.concat(all.map(x => x.row)).map(r => csvLine(r, sep)).join('\r\n');
 }
+/* имя файла копии: в английской версии — backup, в русской — как раньше (Mike 5) */
+const backupStem = () => (typeof window !== 'undefined' && window.PODHOD_LANG === 'en') ? 'lazy-gym-backup' : 'lazy-gym-kopiya';
 async function exportLog(kind) {
   const msg = $('#j-msg'), d = todayKey();
   const r = kind === 'csv' ? await saveFile(`lazy-gym-log-${d}.csv`, csvText(), 'text/csv')
-    : await saveFile(`lazy-gym-kopiya-${d}.json`, JSON.stringify(backupObject()), 'application/json');
-  if (msg) msg.textContent = r === 'ok' ? (kind === 'csv' ? 'Таблица сохранена. Откройте её в Excel: столбцы разделены точкой с запятой.' : 'Полная копия сохранена. Восстановить из неё всё можно здесь же, на любом устройстве.')
+    : await saveFile(`${backupStem()}-${d}.json`, JSON.stringify(backupObject()), 'application/json');
+  if (msg) msg.textContent = r === 'ok' ? (kind === 'csv' ? (csvSep() === ';' ? 'Таблица сохранена. Откройте её в Excel: столбцы разделены точкой с запятой.' : 'Таблица сохранена. Откройте её в Excel: столбцы разделены запятой.') : 'Полная копия сохранена. Восстановить из неё всё можно здесь же, на любом устройстве.')
     : r === 'declined' ? 'Сохранение отменено.' : 'Сохранить файл не удалось.';
 }
+/* ---------- восстановление из копии: сначала — что будет, и выбор для планов и настроек (Ксения 4) ---------- */
+let restorePending = null; /* {obj, cut, log, body, settings, heart, choice} */
 function importLog(file) {
-  const msg = $('#j-msg');
   const rd = new FileReader();
-  rd.onload = () => {
-    let obj; try { obj = JSON.parse(rd.result); } catch (e) { obj = null; }
-    if (!obj || obj.app !== 'podhod' || (!obj.log && !obj.body && !obj.settings)) { if (msg) msg.textContent = 'Это не резервная копия Lazy Gym Planner. Выберите файл lazy-gym-kopiya-….json.'; return; }
-    const r = restoreBackup(obj);
-    renderJournal();
-    const m2 = $('#j-msg');
-    const parts = [];
-    if (r.exercises) parts.push(`записей журнала: ${r.sessions} (упражнений: ${r.exercises})`);
-    if (r.body > 0) parts.push(`замеров: ${r.body}`);
-    if (r.heart > 0) parts.push(`дней с пульсом: ${r.heart}`);
-    if (r.settings) parts.push('настройки');
-    if (m2) m2.textContent = parts.length ? `Восстановлено: ${parts.join(', ')}. Совпадающие даты объединены.` : 'Нового в копии нет — всё из неё уже есть.';
-  };
+  rd.onload = () => restoreRead(String(rd.result || ''));
+  rd.onerror = () => { const m = $('#j-msg'); if (m) m.textContent = 'Файл не читается.'; };
   rd.readAsText(file);
 }
-
+function restoreRead(text) {
+  const r = readBackupText(text);
+  restorePending = null;
+  if (r.error) { LOG.msg = r.error; renderJournalKeep('#j-msg'); return; }
+  const sp = restoreSettingsPlan(r.obj);
+  restorePending = {obj:r.obj, cut:r.cut, log:restoreLogPlan(r.obj), body:restoreBodyPlan(r.obj), settings:sp,
+    heart:r.obj.heart && typeof r.obj.heart === 'object' && r.obj.heart.days && typeof r.obj.heart.days === 'object' ? Object.keys(r.obj.heart.days).length : 0,
+    choice:sp && (sp.fresh || !sp.differs) ? 'copy' : 'mine'};
+  renderJournalKeep('#jr-h');
+}
+/* перерисовать журнал, сохранив прокрутку, и поставить фокус */
+function renderJournalKeep(focusSel) {
+  if (S.view !== 'journal') return;
+  const y = window.scrollY; renderJournal(); window.scrollTo(0, y);
+  const f = focusSel && $(focusSel); if (f) f.focus();
+}
+function restorePanelHtml() {
+  const p = restorePending; if (!p) return '';
+  const L = p.log, when = typeof p.obj.exported === 'string' && realDay(p.obj.exported.slice(0, 10)) ? ` от ${fmtDay(p.obj.exported.slice(0, 10), true)}` : '';
+  const inCopy = [L.added + L.joined + L.same ? `записей журнала — ${L.added + L.joined + L.same}` : '', p.body.added ? `замеров — ${p.body.added}` : '', p.heart ? `дней с пульсом — ${p.heart}` : '', p.settings ? 'планы и настройки' : ''].filter(Boolean).join(', ');
+  const warn = [];
+  if (p.cut) warn.push('Файл обрезан или повреждён (например, при пересылке): восстановится уцелевшая часть.');
+  const drop = logDropText(L.drops); if (drop) warn.push(`Не годятся и будут пропущены: ${drop}.`);
+  if (p.body.dropped) warn.push(`Пропущено значений замеров: ${p.body.dropped} — дата или число не годятся.`);
+  if (L.foreign.length) warn.push(`Записи ${L.foreign.length} ${plural(L.foreign.length, 'упражнения', 'упражнений', 'упражнений')}, которых нет в этой версии, сохранятся, но показываться не будут.`);
+  if (p.settings && p.settings.bad.length) warn.push(`В настройках копии испорчено: ${settingsBadText(p.settings.bad)} — эти поля будут обычными.`);
+  const radio = (v, label, sum) => `<label class="po-opt"><input type="radio" name="jr-set" value="${v}"${p.choice === v ? ' checked' : ''}><span><b>${label}</b>${sum ? `<small>${esc(sum)}</small>` : ''}</span></label>`;
+  const choice = p.settings && p.settings.differs ? `<fieldset class="po-set"><legend>${'Планы и настройки'}</legend>${radio('mine', 'Оставить мои', settingsSummary(S))}${radio('copy', 'Взять из копии', settingsSummary(p.settings.s))}</fieldset>` : '';
+  return `<section class="j-restore" aria-labelledby="jr-h"><h2 id="jr-h" tabindex="-1">${'Восстановить из копии'}${when}</h2>
+    <p>${inCopy ? `В копии: ${inCopy}.` : 'В копии нет записей.'} ${'Журнал и замеры добавятся к записанным здесь — здешнее не сотрётся.'}</p>
+    ${warn.map(w => `<p class="warn">${esc(w)}</p>`).join('')}${choice}
+    <div class="j-restore-b"><button type="button" class="btn" id="jr-go">${'Восстановить'}</button><button type="button" class="btn btn-2" id="jr-cancel">${'Отмена'}</button></div></section>`;
+}
+function restoreApply() {
+  const p = restorePending; if (!p) return;
+  const pick = document.querySelector('input[name="jr-set"]:checked'), choice = pick ? pick.value : p.choice;
+  restorePending = null;
+  const r = restoreBackup(p.obj, {settings:choice});
+  const parts = [];
+  if (r.sessions) parts.push(`записей журнала: ${r.sessions} (новых — ${r.added}${r.joined ? `, дополнено подходами из копии — ${r.joined}` : ''})`);
+  if (r.body > 0) parts.push(`замеров: ${r.body}`);
+  if (r.heart > 0) parts.push(`дней с пульсом: ${r.heart}`);
+  if (r.settings) parts.push('планы и настройки — из копии');
+  let text = parts.length ? `Восстановлено: ${parts.join(', ')}.` : 'Нового в копии нет — всё из неё уже есть.';
+  if (p.obj.v >= 2 && p.settings && choice === 'mine') text += ' Планы и настройки — здешние.';
+  if (r.same) text += ` Уже были здесь: ${r.same} ${plural(r.same, 'запись', 'записи', 'записей')}.`;
+  if (r.conflicts.length) text += ` ${r.conflicts.length === 1 ? 'В один день' : `В ${r.conflicts.length} ${plural(r.conflicts.length, 'день', 'дня', 'дней')}`} подходы в копии отличались от записанных здесь — оставлены здешние (${r.conflicts.slice(0, 5).map(d => fmtDay(d, true)).join(', ')}${r.conflicts.length > 5 ? '…' : ''}).`;
+  const drop = logDropText(r.drops); if (drop) text += ` Пропущено: ${drop}.`;
+  if (r.bodyDropped) text += ` Пропущено значений замеров: ${r.bodyDropped}.`;
+  LOG.msg = text;
+  renderJournalKeep('#j-msg');
+}
 /* ---------- всплывающая подсказка для графиков ---------- */
 const tipEl = document.createElement('div'); tipEl.className = 'tip'; tipEl.hidden = true; document.body.appendChild(tipEl);
 function showTip(text, cx, cy) {
@@ -1012,7 +1179,7 @@ function tickSet(btn, sure) {
   s.s[k] = lr ? makeSidedSet([got[0].kg, got[0].reps], [got[1].kg, got[1].reps], it.ex) : [got[0].kg, got[0].reps];
   s.target=Math.max(s.target||0,it.rx.circ?(it.rounds||it.rx.sets):it.rx.sets);
   if (it.rx.static) s.fmt = 'static';
-  markImpl(s, it);
+  markImpl(s, it); markActive(s.d);
   F.forEach((f, i) => { if (f.kgIn) f.kgIn.value = got[i].kg != null ? fmtKg(got[i].kg) : ''; f.rIn.value = got[i].reps; });
   row.classList.add('done'); btn.setAttribute('aria-pressed', 'true');
   carryKgBox(row.closest('.c-log'));
@@ -1152,21 +1319,52 @@ function refreshHist(id) {
   logBarUpdate(card);
   const tab = document.querySelector('[data-view="journal"] small'); if (tab) tab.textContent = journalDays() || '';
 }
-const delArm = {};
+/* ---------- «Удалить запись» (Галина 3) ----------
+   Первое нажатие — переспрос: и надпись, и имя кнопки для диктора — «Точно удалить запись за 16 ноя?», фокус на месте;
+   через 4 с без ответа — снова «Удалить». Второе — удаляет, и на месте записи на 10 с — «Удалена запись за … · Вернуть»,
+   фокус на «Вернуть». Время вышло — строка уходит, фокус — на заголовок упражнения (в журнале) или «История» (в карточке). */
+const UNDO_MS = 10000, ARM_MS = 4000;
+const undoLive = u => u && u.until > Date.now() ? u : null;
+function undoFor(id) { const u = undoLive(LOG.undo); return u && u.id === id ? u : null; }
+function undoLineHtml(text, attr, id) { return `<li class="sw-gone h-gone"><span id="${id}">${text}</span>${undoBtn(attr, id)}</li>`; }
+function armDelete(btn, ask, label) {
+  btn.classList.add('armed'); btn.textContent = ask; btn.setAttribute('aria-label', ask);
+  setTimeout(() => { if (btn.isConnected && btn.classList.contains('armed')) { btn.classList.remove('armed'); btn.textContent = 'Удалить'; btn.setAttribute('aria-label', label); } }, ARM_MS);
+}
+function focusUndo(sel) { const b = document.querySelector(sel); if (b) b.focus(); }
+function undoExpire(fn) { setTimeout(fn, UNDO_MS + 50); }
+/* строка «Вернуть» уходит без перерисовки; фокус с неё — на fallback */
+function undoRepaint(sel, fallbackSel) {
+  const b = document.querySelector(sel); if (!b) return;
+  const had = document.activeElement === b, li = b.closest('li'); if (li) li.remove();
+  if (had) { const f = document.querySelector(fallbackSel); if (f) f.focus(); }
+}
 function deleteSession(btn) {
-  const id = btn.dataset.del, d = btn.dataset.d, key = id + d;
-  if (!delArm[key]) {
-    delArm[key] = true; btn.textContent = 'Точно удалить?'; btn.classList.add('armed');
-    setTimeout(() => { delArm[key] = false; if (btn.isConnected) { btn.textContent = 'Удалить'; btn.classList.remove('armed'); } }, 3500);
-    return;
-  }
-  delArm[key] = false;
+  const id = btn.dataset.del, d = btn.dataset.d, when = fmtDay(d, true);
+  if (!btn.classList.contains('armed')) { armDelete(btn, `Точно удалить запись за ${when}?`, `Удалить запись за ${when}`); return; }
   const ss = LOG.data[id]; if (!ss) return;
   const i = ss.findIndex(x => x.d === d); if (i < 0) return;
+  const s = ss[i];
   ss.splice(i, 1); if (!ss.length) delete LOG.data[id];
+  LOG.undo = {id, s, until:Date.now() + UNDO_MS};
   logTouch(id, true);
-  if (S.view === 'journal') renderJournal();
-  else { const card = document.querySelector(`.card[data-ex="${id}"]`); if (card) refreshCard(card); }
+  histRepaint(id);
+  focusUndo(`[data-hist-undo="${id}"]`);
+  undoExpire(() => { if (LOG.undo && LOG.undo.s === s) { LOG.undo = null; undoRepaint(`[data-hist-undo="${id}"]`, S.view === 'journal' ? `[data-jex="${id}"] > summary` : `.card[data-ex="${id}"] [data-hist]`); } });
+}
+function histUndo(id) {
+  const u = undoFor(id); if (!u) return;
+  LOG.undo = null;
+  LOG.data[id] = mergeSessions(LOG.data[id] || [], [u.s]);
+  logTouch(id, true);
+  histRepaint(id);
+  focusUndo(`[data-del="${id}"][data-d="${u.s.d}"]`);
+  const m = $('#j-msg'); if (m && S.view === 'journal') m.textContent = `Запись за ${fmtDay(u.s.d, true)} возвращена.`;
+}
+/* история упражнения после удаления или возврата: в журнале — с раскрытым упражнением, в карточке — открытая история */
+function histRepaint(id) {
+  if (S.view === 'journal') { LOG.openId = id; const y = window.scrollY; renderJournal(); window.scrollTo(0, y); return; }
+  const card = document.querySelector(`.card[data-ex="${id}"]`); if (card) refreshCard(card);
 }
 
 document.addEventListener('click', e => {
@@ -1187,6 +1385,9 @@ document.addEventListener('click', e => {
     return;
   }
   if (t.dataset.del) { deleteSession(t); return; }
+  if (t.dataset.histUndo) { histUndo(t.dataset.histUndo); return; }
+  if (t.id === 'jr-go') { restoreApply(); return; }
+  if (t.id === 'jr-cancel') { restorePending = null; LOG.msg = 'Восстановление отменено — ничего не изменилось.'; renderJournalKeep('#j-msg'); return; }
   if (t.dataset.view) { S.view = t.dataset.view; saveSettings(); renderSetup(); renderPlan(); window.scrollTo({top:0}); return; }
   if (t.dataset.units) { S.units = t.dataset.units === 'lb' ? 'lb' : 'kg'; saveSettings(); renderJournal(); const b = document.querySelector(`[data-units="${S.units}"]`); if (b) b.focus(); return; }
   if (t.id === 'exp-csv') { exportLog('csv'); return; }
