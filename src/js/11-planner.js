@@ -170,8 +170,8 @@ const FRONT_RAISE = new Set(['frontraise']);
    · новичок и «Бережно»: 4–12 — ACSM, Garber et al., MSSE 2011; 43(7):1334–1359: каждая крупная группа 2–3 раза
      в неделю по 2–4 подхода (у новичков прирост даёт и один подход);
    · уже тренируюсь и опытный: 10–20 — Schoenfeld, Ogborn, Krieger, J Sports Sci 2017; 35(11):1073–1082: от 10 подходов
-     в неделю прирост больше; Baz-Valle et al., J Hum Kinet 2022; 81:199–210: у тренированных 12–20, больше 20 —
-     без дополнительного прироста.
+     в неделю прирост больше; Baz-Valle et al., J Hum Kinet 2022; 81:199–210: у тренированных 12–20 (больше 20 для
+     квадрицепса и бицепса прибавки не дало, для трицепса — дало).
    Программа на неделю сама попадает в эту шкалу (buildProgram): цель недели — 40% коридора от нижней границы
    (10–20 → 14, 4–12 → 7), выше «много» — штраф в подборе. */
 function volScale(level = S.level, goal = S.goal) { return level === 'beg' || goal === 'gentle' ? {lo:4, hi:12} : {lo:10, hi:20}; }
@@ -713,8 +713,9 @@ function buildPlanAt(ctx = {}) {
     const ord = byOrder((custom ? picked : orderCircuit(picked)).map(ex => bySlot.get(ex)), custom ? null : ctx.order, it => [it.slot]);
     const c = dose ? {...G.circ, rest:doseRest(G.circ.rest, dose), roundRest:doseRest(G.circ.roundRest, dose)} : {...G.circ};
     /* переход между станциями — реалистичный: если в круге есть тренажёр, блок, скамья или турник, до них нужно дойти
-       и выставить вес — не меньше 30 с (Alcaraz P.E. et al., J Strength Cond Res 2011; 25(9):2519–2527: круговая на
-       тренажёрах и свободных весах — 35 с между станциями); гантели, гиря, лента, вес тела — под рукой, по цели */
+       и выставить вес — не меньше 30 с (Alcaraz P.E. et al., J Strength Cond Res 2011; 25(9):2519–2527: круговая из
+       жима лёжа, разгибания ног и подъёма на носки — 35 с между подходами); гантели, гиря, лента, вес тела — под рукой,
+       по цели */
     if (ord.some(it => it.eqIds.some(id => FIXED_EQ.has(id)))) c.rest = Math.max(c.rest, CIRC_MOVE);
     let rounds = c.rounds + (S.level === 'beg' ? -1 : S.level === 'adv' ? 1 : 0);
     /* время на тренировку: кругов больше или меньше (не меньше двух и не больше шести) */
