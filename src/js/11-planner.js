@@ -125,7 +125,8 @@ const HEAVY_SPINE = new Set(['squat', 'smithsquat', 'hacksquat', 'deadlift', 'rd
 const spineCap = () => S.level === 'beg' || S.goal === 'gentle' ? 1 : 2;
 /* можно ли взвесить снаряд: свободные веса, тренажёры, блок, машина Смита (а не лента, турник, скамья, гравитрон) */
 const WEIGHABLE = new Set(['db', 'bb', 'kb', 'cable', 'smith']);
-const weighId = id => id !== 'gravitron' && (WEIGHABLE.has(id) || (EQUIP.find(e => e.id === id) || {}).cat === 'mach');
+const MACH_EQ = new Set(EQUIP.filter(e => e.cat === 'mach').map(e => e.id));
+const weighId = id => id !== 'gravitron' && (WEIGHABLE.has(id) || MACH_EQ.has(id));
 /* Схема подходов по типу упражнения (было: гало с гирей и обратные отжимания 6×3–5 «≈80–90% от максимума», ролик для
    пресса 5×3–5 с быстрым усилием). Правило:
    · heavy — тяжёлая база: многосуставное, обеими руками или ногами, со штангой, гантелями, на тренажёре, блоке или в Смите
@@ -301,12 +302,19 @@ function equipLine(ex, E) {
   if (!ch.length) return ['Без снаряжения'].concat(opt).join(' · ');
   return ch.concat(opt).join(' · ');
 }
-function groupsOf(ex) { const s = new Set([ex.g]); for (const m of ex.pri) s.add(MUSCLE_GROUP[m]); return s; }
+/* группы упражнения: целевая и группы основных мышц (только для чтения: множество общее, считается один раз) */
+const GROUPS_OF = new Map();
+function groupsOf(ex) { let s = GROUPS_OF.get(ex); if (!s) { s = new Set([ex.g]); for (const m of ex.pri) s.add(MUSCLE_GROUP[m]); GROUPS_OF.set(ex, s); } return s; }
 /* дробный учёт одного подхода: целевая группа упражнения — полный подход, остальные работающие (основные и вспомогательные
    мышцы других групп) — половина; кардио своей группе подходов не даёт. Pelland et al., Sports Med 2026; 56(2):481–505:
    косвенный подход как 0,5 лучше всего предсказывает прирост. Общее правило графика «Подходов на группу за неделю» и
    загрузки мышц по журналу (13d-muscle-load.js) */
+const SHARE = new Map();
 function groupShare(ex) {
+  let c = SHARE.get(ex); if (c) return {...c};
+  c = groupShareOf(ex); SHARE.set(ex, c); return {...c};
+}
+function groupShareOf(ex) {
   const w = {};
   for (const m of ex.pri.concat(ex.sec)) { const g = MUSCLE_GROUP[m]; w[g] = Math.max(w[g] || 0, 0.5); }
   if (ex.g !== 'cardio') w[ex.g] = 1;
@@ -331,7 +339,11 @@ function pickExercises(E, rand, groups, count, avoid, opt) {
   /* движения, для которых здесь есть вариант с весом: облегчённые без веса им уступают */
   const loaded = new Set(pool.filter(ex => !ex.assist && weighable(ex, E) && PATTERN[ex.id]).map(ex => famOf(PATTERN[ex.id])));
   /* подтягивания и брусья — не облегчение, но новичку они тяжелы: при тяге сверху или жиме с весом уступают и они */
-  const lightAlt = ex => ex.assist ? !beg && loaded.has(famOf(PATTERN[ex.id])) : (beg || !BAR_STAPLE.has(ex.id)) && ex.type === 'c' && !ex.kind && ex.g !== 'cardio' && !weighable(ex, E) && loaded.has(famOf(PATTERN[ex.id]));
+  const lightOf = new Map(), lightAlt = ex => {
+    let v = lightOf.get(ex);
+    if (v === undefined) lightOf.set(ex, v = ex.assist ? !beg && loaded.has(famOf(PATTERN[ex.id])) : (beg || !BAR_STAPLE.has(ex.id)) && ex.type === 'c' && !ex.kind && ex.g !== 'cardio' && !weighable(ex, E) && loaded.has(famOf(PATTERN[ex.id])));
+    return v;
+  };
   /* жимы и тяги: подходов на тяги не меньше, чем на жимы, — если в тренировке есть спина и грудь или плечи (или день тяги
      добирает за день жима); счёт — по подходам (opt.sets: подходы упражнения в этой тренировке; в «Силе» у тяжёлой
      базы их больше, чем у подтягиваний) */
@@ -340,16 +352,15 @@ function pickExercises(E, rand, groups, count, avoid, opt) {
   const ppOn = G.has('back') && (pushDay || carry > 0), pressCap = pushDay && !G.has('back') ? 2 : 0;
   const cap = spineCap();
   /* объём недели: подходы групп с прошлых дней и подобранных сегодня (proj) */
-  const vol = opt && opt.vol, shareOf = new Map();
+  const vol = opt && opt.vol, shareOf = new Map(), shareSum = new Map(), shareList = ex => { let l = shareOf.get(ex); if (!l) { shareOf.set(ex, l = Object.entries(groupShare(ex))); shareSum.set(ex, l.reduce((t, x) => t + x[1], 0)); } return l; };
   let pushN, pullN, pressN, spineN, hingeN, proj, quota, picked, usedPat;
   /* [закрытый недобор, выход за «много», перебор сверх цели дня больше чем на 2 подхода] в подходах: перебор в первые дни
      недели не оставляет места последним */
   const volGain = ex => {
-    let sh = shareOf.get(ex); if (!sh) shareOf.set(ex, sh = groupShare(ex));
-    const s = vol.sets(ex); let o = 0, f = 0, e = 0;
-    for (const [g, x] of Object.entries(sh)) {
-      const v = proj[g] || 0, add = x * s, aim = vol.aim[g];
-      o += Math.max(0, v + add - vol.hi) - Math.max(0, v - vol.hi);
+    const sh = shareList(ex), s = vol.sets(ex), hi = vol.hi, aims = vol.aim; let o = 0, f = 0, e = 0;
+    for (let i = 0; i < sh.length; i++) {
+      const g = sh[i][0], v = proj[g] || 0, add = sh[i][1] * s, aim = aims[g];
+      o += Math.max(0, v + add - hi) - Math.max(0, v - hi);
       if (aim !== undefined) { f += Math.min(add, Math.max(0, aim - v)); e += Math.max(0, v + add - aim - 2) - Math.max(0, v - aim - 2); }
     }
     return [f, o, e];
@@ -375,6 +386,8 @@ function pickExercises(E, rand, groups, count, avoid, opt) {
   while (picked.length < count) {
     let best = null, bestScore = -1e9;
     const focusShort = !!focus && picked.filter(p => p.pri.includes(focus)).length < focusNeed;
+    /* весь недобор до целей дня — верхняя граница плюса за объём у любого упражнения */
+    let defTot = 0; if (vol) for (const g in vol.aim) defTot += Math.max(0, vol.aim[g] - (proj[g] || 0));
     pool.forEach((ex, i) => {
       if (picked.includes(ex)) return;
       /* тяжёлая база с нагрузкой на позвоночник — не больше cap за тренировку, тяга с пола или наклон — одна */
@@ -402,7 +415,6 @@ function pickExercises(E, rand, groups, count, avoid, opt) {
       /* день жима без спины (жим / тяга / ноги): не больше двух жимов, дальше — разводки, махи, трицепс; иначе день тяги
          не успевает их уравновесить */
       if (pressCap && sideOf(ex) === 'push' && pressN >= pressCap) sc -= 2.5;
-      if (vol) { const [f, o, e] = volGain(ex); sc += 0.25 * f - 0.6 * o - 0.5 * e; }
       /* тяга в наклоне со штангой или Т-грифом — после приседа или становой лучше на блоке или тренажёре: место тяжёлой
          базы с нагрузкой на позвоночник — ногам */
       if (spineN && HEAVY_SPINE.has(ex.id) && PATTERN[ex.id] === 'hrow') sc -= 0.6;
@@ -417,6 +429,13 @@ function pickExercises(E, rand, groups, count, avoid, opt) {
       if (avoid && avoid.has(ex.id)) sc -= 1.1;
       if (focus) sc += ex.pri.includes(focus) ? (focusShort ? 3 : 0.6) + (ex.pri[0] === focus ? 0.3 : 0) : ex.sec.includes(focus) ? 0.35 : 0;
       if (typeof PROG_CHAIN !== 'undefined' && PROG_CHAIN[ex.id] !== undefined && picked.some(p => PROG_CHAIN[p.id] === PROG_CHAIN[ex.id])) sc -= 1.5;
+      /* объём недели — последним: плюс за недобор не больше 0,25 × подходы × доли групп, и если даже с ним упражнение
+         не лучше уже найденного, считать не нужно */
+      if (vol) {
+        shareList(ex);
+        if (sc + 0.25 * Math.min(defTot, vol.sets(ex) * shareSum.get(ex)) <= bestScore) return;
+        const [f, o, e] = volGain(ex); sc += 0.25 * f - 0.6 * o - 0.5 * e;
+      }
       if (sc > bestScore) { bestScore = sc; best = ex; }
     });
     if (!best) break;
@@ -424,7 +443,7 @@ function pickExercises(E, rand, groups, count, avoid, opt) {
     const bs = sideOf(best); if (ppOn && bs === 'push') pushN += setsOf(best); else if (ppOn && bs === 'pull') pullN += setsOf(best);
     if (bs === 'push') pressN++;
     if (HEAVY_SPINE.has(best.id)) { spineN++; if (PATTERN[best.id] === 'hinge') hingeN++; }
-    if (vol) { const s = vol.sets(best); for (const [g, x] of Object.entries(groupShare(best))) proj[g] = (proj[g] || 0) + x * s; }
+    if (vol) { const s = vol.sets(best); for (const [g, x] of shareList(best)) proj[g] = (proj[g] || 0) + x * s; }
     const bp = PATTERN[best.id] || 'solo:' + best.id; usedPat[bp] = (usedPat[bp] || 0) + 1;
     if (quota[best.g] !== undefined) quota[best.g] -= 1;
     for (const g of groupsOf(best)) if (g !== best.g && quota[g] !== undefined) quota[g] -= 0.45;
@@ -578,7 +597,7 @@ function volSets(ex, E, dose, extra = 0) {
 function volTopUp(list, vol, E, dose) {
   const add = list.map(() => 0);
   if (!vol || S.format === 'circuit' || S.format === 'static') return add;
-  const sets = (ex, k) => volSets(ex, E, dose, add[k]), share = list.map(groupShare), proj = {...vol.have};
+  const memo = list.map(() => ({})), sets = (ex, k) => memo[k][add[k]] ?? (memo[k][add[k]] = volSets(ex, E, dose, add[k])), share = list.map(groupShare), proj = {...vol.have};
   list.forEach((ex, k) => { for (const [g, x] of Object.entries(share[k])) proj[g] = (proj[g] || 0) + x * sets(ex, k); });
   const free = ex => !sideOf(ex) && !ex.kind && ex.g !== 'cardio';
   list.forEach((ex, k) => {
