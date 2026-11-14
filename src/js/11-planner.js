@@ -153,12 +153,15 @@ function schemeOf(ex) {
   if (ex.type !== 'c') return 'iso';
   return !ex.uni && !ex.assist && ex.eq.some(g => g.every(weighId)) ? 'heavy' : 'mod';
 }
-/* Новичку в подборе — ступени, с которых начинают (PROG_BEG, 10-progressions.js). Где есть веса и тренажёры, облегчённые
-   варианты без веса уступают им (было: «зал, средний уровень: гравитрон и отжимания 4×6–10 при полном зале»): отжимания
-   и тяги собственного веса, упор углом — если в этом месте есть то же движение с весом; противовес гравитрона — если есть
-   тяга сверху или брусья без него (новичку гравитрон уместен). Подтягивания и брусья — не облегчение, они остаются.
+/* Новичку в подборе — ступени, с которых начинают (PROG_BEG_HARD, 10-progressions.js). Где есть веса и тренажёры,
+   многосуставные без веса (вес тела, лента) уступают им (было: «зал, средний уровень: гравитрон и отжимания 4×6–10 при
+   полном зале»): отжимания, тяги собственного веса, упор углом, обратные отжимания, выпады без веса — если в этом месте
+   есть то же движение с весом (PATTERN); противовес гравитрона — если есть тяга сверху или жим без него (новичку
+   гравитрон уместен). Подтягивания и брусья — не облегчение, они остаются.
    Нагрузку легче дозировать весом, чем вариантом упражнения: ACSM 2009 (нагрузка подбирается под диапазон повторов). */
 const BAR_STAPLE = new Set(['pullup', 'chinup', 'dip']);
+/* жимы лёжа, на наклонной и с обратным наклоном — одно движение для выбора «с весом или без» */
+const famOf = p => p === 'ipush' || p === 'dpush' ? 'hpush' : p;
 /* Подъём гантелей перед собой — не в день жимов: передняя дельта и так много работает в жиме лёжа и над головой
    (Barnett C., Kippers V., Turner P., J Strength Cond Res 1995; 9(4):222–227); для плеч — махи в стороны (Марина п. 16) */
 const FRONT_RAISE = new Set(['frontraise']);
@@ -326,28 +329,30 @@ function pickExercises(E, rand, groups, count, avoid, opt) {
   const pool = EX.filter(ex => available(ex, E) && ex.lvl <= lvlMax && (ex.g !== 'cardio' || G.has('cardio')) && (S.format !== 'static' || staticOk(ex)) && (S.format !== 'circuit' || !ex.doseReps) && fitsBody(ex));
   const beg = S.level === 'beg', PB = typeof PROG_BEG_HARD !== 'undefined' ? PROG_BEG_HARD : null;
   /* движения, для которых здесь есть вариант с весом: облегчённые без веса им уступают */
-  const loaded = new Set(pool.filter(ex => !ex.assist && weighable(ex, E) && sideOf(ex)).map(ex => PATTERN[ex.id]));
-  const lightAlt = ex => ex.assist ? !beg && loaded.has(PATTERN[ex.id]) : !BAR_STAPLE.has(ex.id) && !!sideOf(ex) && !weighable(ex, E) && loaded.has(PATTERN[ex.id]);
+  const loaded = new Set(pool.filter(ex => !ex.assist && weighable(ex, E) && PATTERN[ex.id]).map(ex => famOf(PATTERN[ex.id])));
+  /* подтягивания и брусья — не облегчение, но новичку они тяжелы: при тяге сверху или жиме с весом уступают и они */
+  const lightAlt = ex => ex.assist ? !beg && loaded.has(famOf(PATTERN[ex.id])) : (beg || !BAR_STAPLE.has(ex.id)) && ex.type === 'c' && !ex.kind && ex.g !== 'cardio' && !weighable(ex, E) && loaded.has(famOf(PATTERN[ex.id]));
   /* жимы и тяги: подходов на тяги не меньше, чем на жимы, — если в тренировке есть спина и грудь или плечи (или день тяги
      добирает за день жима); счёт — по подходам (opt.sets: подходы упражнения в этой тренировке; в «Силе» у тяжёлой
      базы их больше, чем у подтягиваний) */
   const setsOf = opt && opt.sets || (ex => prescribe(ex, null, E).sets), maxS = Math.max(...pool.filter(ex => sideOf(ex)).map(setsOf), 1);
   const pushDay = G.has('chest') || G.has('shoulders'), carry = opt && opt.pp && !pushDay ? Math.max(0, opt.pp.push - opt.pp.pull) : 0;
-  const ppOn = G.has('back') && (pushDay || carry > 0), pressCap = pushDay && !G.has('back') ? (beg ? 2 : 3) : 0;
+  const ppOn = G.has('back') && (pushDay || carry > 0), pressCap = pushDay && !G.has('back') ? 2 : 0;
   const cap = spineCap();
   /* объём недели: подходы групп с прошлых дней и подобранных сегодня (proj) */
   const vol = opt && opt.vol, shareOf = new Map();
   let pushN, pullN, pressN, spineN, hingeN, proj, quota, picked, usedPat;
-  /* [закрытый недобор, выход за «много»] в подходах */
+  /* [закрытый недобор, выход за «много», перебор сверх цели дня больше чем на 2 подхода] в подходах: перебор в первые дни
+     недели не оставляет места последним */
   const volGain = ex => {
     let sh = shareOf.get(ex); if (!sh) shareOf.set(ex, sh = groupShare(ex));
-    const s = vol.sets(ex); let o = 0, f = 0;
+    const s = vol.sets(ex); let o = 0, f = 0, e = 0;
     for (const [g, x] of Object.entries(sh)) {
-      const v = proj[g] || 0, add = x * s;
+      const v = proj[g] || 0, add = x * s, aim = vol.aim[g];
       o += Math.max(0, v + add - vol.hi) - Math.max(0, v - vol.hi);
-      if (vol.aim[g] !== undefined) f += Math.min(add, Math.max(0, vol.aim[g] - v));
+      if (aim !== undefined) { f += Math.min(add, Math.max(0, aim - v)); e += Math.max(0, v + add - aim - 2) - Math.max(0, v - aim - 2); }
     }
-    return [f, o];
+    return [f, o, e];
   };
   /* бережно: при прочих равных — упражнения без пиковой нагрузки на суставы */
   const strain = S.goal === 'gentle' ? new Map(pool.map(ex => [ex, stressIdsOf(ex).length])) : null;
@@ -379,20 +384,25 @@ function pickExercises(E, rand, groups, count, avoid, opt) {
       if (G.has(ex.g)) gain += Math.max(quota[ex.g], 0) * 1.6 + 0.4;
       for (const g of gs) if (g !== ex.g && G.has(g)) gain += Math.max(quota[g], 0) * 0.5;
       if (gain <= 0) return;
-      let sc = gain + (ex.type === 'c' ? compBonus : 0) + jitter[i] * 0.5 + ((EX_W[ex.id] ?? 1) - 1) * 1.4;
-      /* новичку ступени цепочек выше начальных уступают (отжимания с колен — раньше, чем от пола) */
+      /* новичку начальные ступени цепочек — без скидки желательности, ступени выше уступают (отжимания с колен — раньше,
+         чем от пола и на брусьях) */
+      const ew = beg && PB && PROG_BEG_START.has(ex.id) ? 1 : EX_W[ex.id] ?? 1;
+      let sc = gain + (ex.type === 'c' ? compBonus : 0) + jitter[i] * 0.5 + (ew - 1) * 1.4;
       if (beg && PB && PB.has(ex.id)) sc -= 0.9;
-      if (lightAlt(ex)) sc -= 0.8;
+      if (lightAlt(ex)) sc -= ex.assist ? 1.5 : 1.2;
       if (FRONT_RAISE.has(ex.id) && picked.some(p => sideOf(p) === 'push')) sc -= 1;
       const side = ppOn ? sideOf(ex) : null;
       /* жим — только если после него остаётся место, чтобы тяг стало не меньше; тяга, пока их меньше, — с большим плюсом;
          когда тяг уже больше, ещё одна — с минусом (поровну, а не вдвое) */
       if (side === 'push' && (strict ? pushN + setsOf(ex) > pullN : pushN + setsOf(ex) - pullN > (count - picked.length - 1) * maxS)) sc -= strict ? 50 : 3;
       if (side === 'pull') sc += pullN < pushN ? 1 + 0.5 * Math.min(3, (pushN - pullN) / maxS) : pullN > pushN && pushDay ? -0.8 : 0;
-      /* день жима без спины (жим / тяга / ноги): не больше 2–3 жимов, дальше — разводки, махи, трицепс; иначе день тяги
+      /* в тренировке со спиной и грудью или плечами от 4 упражнений — хотя бы одна тяга и один жим (основа тренировки всего
+         тела и верха: ноги, жим, тяга — NSCA Essentials, 2016, гл. 17), а не только прицельные на мелкие группы */
+      if (pushDay && count >= 4 && side && !(side === 'pull' ? pullN : pushN) && (side === 'pull' || pullN)) sc += 2.5;
+      /* день жима без спины (жим / тяга / ноги): не больше двух жимов, дальше — разводки, махи, трицепс; иначе день тяги
          не успевает их уравновесить */
       if (pressCap && sideOf(ex) === 'push' && pressN >= pressCap) sc -= 2.5;
-      if (vol) { const [f, o] = volGain(ex); sc += 0.25 * f - 0.6 * o; }
+      if (vol) { const [f, o, e] = volGain(ex); sc += 0.25 * f - 0.6 * o - 0.5 * e; }
       /* тяга в наклоне со штангой или Т-грифом — после приседа или становой лучше на блоке или тренажёре: место тяжёлой
          базы с нагрузкой на позвоночник — ногам */
       if (spineN && HEAVY_SPINE.has(ex.id) && PATTERN[ex.id] === 'hrow') sc -= 0.6;
@@ -460,6 +470,9 @@ function pairSupersets(list) {
       let s = 0;
       if (ANTAGONIST[a.g] === b.g) s += 3;
       if (b.g !== a.g) s += 1;
+      /* жим — в пару с тягой: в паре подходов поровну (по большему), так баланс жимов и тяг не сбивается */
+      const sa = sideOf(a), sb = sideOf(b);
+      if (sa && sb && sa !== sb) s += 2; else if (sa !== sb && (sa || sb)) s -= 4;
       const ga = groupsOf(a); for (const g of groupsOf(b)) if (ga.has(g)) s -= 1.2;
       s -= i * 0.15;
       if (s > bs) { bs = s; bi = i; }
@@ -532,9 +545,9 @@ function prescribe(ex, week, E, extra = 0) {
   const rest = strongMod ? G.mod.rest : sch === 'ballistic' ? Math.min(120, G.rest[t]) : G.rest[t];
   /* время подхода: повтор махов ≈2 с, турецкого подъёма ≈25 с (repSec в каталоге), остальное — по цели */
   const work = ex.kind === 'time' ? midOf(reps) : ex.kind === 'dist' ? 30 : midOf(reps) * (ex.repSec || (sch === 'ballistic' ? 2 : G.rep)) * (ex.uni ? 2 : 1);
-  /* темп: у подвижности и махов его нет (медленно и под контролем; мах — одним движением), у многосуставных без тяжёлого
-     максимума в «Силе» — без быстрого усилия */
-  const tempo = ex.kind || sch === 'ctrl' || sch === 'ballistic' ? null : strongMod ? '2-0-1-0' : G.tempo;
+  /* темп: у подвижности, махов и кардио его нет (медленно и под контролем; мах и прыжок — одним движением), у многосуставных
+     без тяжёлого максимума в «Силе» — без быстрого усилия */
+  const tempo = ex.kind || sch === 'ctrl' || sch === 'ballistic' || sch === 'cardio' ? null : strongMod ? '2-0-1-0' : G.tempo;
   const rx = {sets, reps, unit, rest, load, rir, tempo, notes, work, uni:!!ex.uni, scheme:sch};
   return S.format === 'static' && staticOk(ex) ? staticRx(rx, ex, week, E) : rx;
 }
@@ -900,19 +913,28 @@ function loadBars(load) {
   return rows.map(([m, v]) => `<li><span class="lb-n">${MUSCLE_NAMES[m]}</span><span class="lb-t"><i style="width:${Math.max(6, v / max * 100).toFixed(0)}%"></i></span><span class="lb-v">${fmtNum(v)}</span></li>`).join('');
 }
 /* недельный объём по группам с ориентиром 10–20 подходов */
+/* Группы, которых нет ни в одном дне программы (предплечья во «Всё тело»), работают попутно: у них нет оценки «мало» —
+   программа их и не нагружает, а «много» показывается и им */
 function volBars(gvol, groups) {
   const ids = GROUPS.map(g => g.id).filter(g => g !== 'cardio' && (groups.has(g) || (gvol[g] || 0) >= 1));
-  const max = Math.max(22, ...ids.map(g => gvol[g] || 0));
-  return ids.map(g => volRow(g, gvol[g] || 0, max)).join('');
+  const max = Math.max(volScale().hi + 2, ...ids.map(g => gvol[g] || 0));
+  return ids.map(g => volRow(g, gvol[g] || 0, max, '', '', groups.has(g))).join('');
 }
-/* строка полосы «подходов на группу»: коридор 10–20, «мало / в норме / много»; extra — добавка под полосой
-   (статус восстановления в журнале, 13d-muscle-load.js) */
-function volRow(g, val, max, extra = '', cls = '') {
-  const pct = v => (v / max * 100).toFixed(1);
+/* строка полосы «подходов на группу»: коридор по уровню (volScale), «мало / в норме / много», не цель программы —
+   «попутно»; extra — добавка под полосой (статус восстановления в журнале, 13d-muscle-load.js) */
+function volRow(g, val, max, extra = '', cls = '', target = true) {
+  const pct = v => (v / max * 100).toFixed(1), sc = volScale();
   const v = Math.round(val * 2) / 2;
-  const st = v < 10 ? 'lo' : v > 20 ? 'hi' : 'ok';
-  const lab = st === 'lo' ? 'мало' : st === 'hi' ? 'много' : 'в норме';
-  return `<li class="${st}${cls ? ' ' + cls : ''}"${cls ? ` data-lg="${g}"` : ''}><span class="vb-n">${GN[g]}</span><span class="vb-v">${fmtNum(v)}<em>${lab}</em></span><span class="vb-t"><b style="left:${pct(10)}%;width:${pct(10)}%"></b><i style="width:${Math.max(1.5, +pct(v))}%"></i></span>${extra}</li>`;
+  const st = v > sc.hi ? 'hi' : !target ? 'side' : v < sc.lo ? 'lo' : 'ok';
+  const lab = st === 'lo' ? 'мало' : st === 'hi' ? 'много' : st === 'side' ? 'попутно' : 'в норме';
+  return `<li class="${st}${cls ? ' ' + cls : ''}"${cls ? ` data-lg="${g}"` : ''}><span class="vb-n">${GN[g]}</span><span class="vb-v">${fmtNum(v)}<em>${lab}</em></span><span class="vb-t"><b style="left:${pct(sc.lo)}%;width:${pct(sc.hi - sc.lo)}%"></b><i style="width:${Math.max(1.5, +pct(v))}%"></i></span>${extra}</li>`;
+}
+/* «Полоса — ориентир …: 10–20 подходов в неделю» — по уровню; новичку и в «Бережно» — с пояснением */
+function volScaleText() {
+  const sc = volScale(), low = sc.lo < 10;
+  return 'Полоса — ориентир для роста мышц: {lo}–{hi} подходов в неделю.'.replace('{lo}', sc.lo).replace('{hi}', sc.hi)
+    + (!low ? '' : S.goal === 'gentle' ? ' В бережном режиме ориентир ниже, чем для тех, кто уже тренируется: 2–4 подхода на группу 2–3 раза в неделю.'
+      : ' Новичку ориентир ниже, чем тем, кто уже тренируется: 2–4 подхода на группу 2–3 раза в неделю.');
 }
 
 /* вес по плану (свой план или план тренера) — рядом с подходами */
@@ -1043,6 +1065,7 @@ function blocksHtml(p) {
       html += `<section class="block block-c">
         <header class="b-head"><h2><span class="b-letter">${ICON.loop}</span>Круг × ${b.rounds}</h2>
         <p>Выполняйте станции подряд: ${fmtRest(b.rest)} на переход между упражнениями, ${fmtRest(b.roundRest)} отдыха после круга.</p>
+        ${S.mode !== 'custom' && effEquip(S.equip).has('bb') ? '<p class="b-note">Штанга в круговую не входит: становая, присед и жим штанги — в обычных подходах, на свежие силы.</p>' : ''}
         <div class="sets rounds" role="group" aria-label="Отметить пройденные круги">${Array.from({length:b.rounds}, (_, k) => `<button type="button" class="set${rd > k ? ' done' : ''}" data-round="${k}" aria-label="Круг ${k + 1}">${k + 1}</button>`).join('')}<span class="rounds-l">круги</span></div></header>
         <ol class="cards">${b.items.map(card).join('')}</ol></section>`;
     }
@@ -1180,7 +1203,7 @@ function renderProgram() {
       <figcaption>
         ${loadFoldHead('Подходов на группу за неделю', loadTop(volRows))}
         <ul class="vbars">${volBars(prog.gvol, allGroups)}</ul>
-        <p class="lb-note">Полоса — ориентир для роста мышц: 10–20 подходов в неделю. Подход засчитывается целиком целевой группе и наполовину остальным работающим. ${S.goal === 'strength' ? 'В силовом цикле объём ниже — это нормально.' : S.goal === 'gentle' ? 'В бережном режиме объём ниже намеренно: сначала суставы и техника.' : ''}</p>
+        <p class="lb-note">${volScaleText()} Подход засчитывается целиком целевой группе и наполовину остальным работающим. ${S.goal === 'strength' ? 'В силовом цикле объём ниже — это нормально.' : S.goal === 'gentle' ? 'Сначала суставы и техника.' : ''}</p>
       </figcaption>
     </figure>
   </header>

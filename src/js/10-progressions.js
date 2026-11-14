@@ -21,8 +21,11 @@ const PROGRESSIONS = [
    до сложных; NSCA, Haff & Triplett, Essentials of Strength Training and Conditioning, 4-е изд., 2016, гл. 17 — от простого
    к сложному). Ступени новичка: отжимания от стены, с руками на возвышении и с колен; тяга полотенца и австралийские
    подтягивания; присед без веса и выпады; мостик; «мёртвый жук», «птица-собака», планка; скручивания и подъём ног лёжа.
-   Здесь — ступени выше них (и широкая и узкая постановка рук): новичку они идут, только если больше нечего, а дальше
-   подсказка «Следующая ступень» под карточкой сама поведёт вверх. Упражнения с весом и на тренажёрах не трогаются. */
+   PROG_BEG_START — эти ступени: новичку их желательность не снижается (EX_W: отжимания с колен — не «вспомогательное»).
+   PROG_BEG_HARD — ступени выше них (и широкая и узкая постановка рук): новичку они идут, только если больше нечего, а
+   дальше подсказка «Следующая ступень» под карточкой сама поведёт вверх. Упражнения с весом и на тренажёрах не трогаются. */
+const PROG_BEG_START = new Set(['inclinepush', 'kneepush', 'towelrow', 'invrow', 'airsquat', 'lunge', 'revlunge', 'bridge', 'calfraise', 'deadbug', 'birddog',
+  'plank', 'crunch', 'bicycle', 'lyinglegraise', 'chairdip', 'benchdip', 'hang', 'copenhagenknee', 'superman', 'ytw', 'reversesnow']);
 const PROG_BEG_HARD = new Set(['pushup', 'widepush', 'diamond', 'archer', 'pikepush', 'declinepike', 'tablerow', 'pullup', 'chinup', 'bulgarian', 'pistolbox',
   'glutebridge1', 'sllift', 'nordic', 'plankup', 'hollow', 'hangknee', 'legraise', 'dip', 'copenhagen']);
 const PROG_NEXT = {}, PROG_PREV = {}, PROG_CHAIN = {};
