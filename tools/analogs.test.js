@@ -75,11 +75,13 @@ test('editing equipment changes only the current place', () => {
   assert(a.placeOf(a.S, 'gym').equip.length > 20, 'the gym keeps its equipment');
 });
 /* процент — «от максимума на 1 повтор» (простыми словами, без «1ПМ» в строке карточки) */
+/* с 4.104.0 (генератор как у тренера, 11-planner.js: schemeOf) процент — только у тяжёлой базы обеими руками или ногами:
+   болгарские выпады с гантелями — на одной ноге, максимум на 1 повтор у них не знают, поэтому без процента (раньше — с ним) */
 test('percent of 1RM is shown only for loads that can be weighed', () => {
   const a = app(), P = a.m.get('({prescribe,WEEKS})');
   a.S.goal = 'mass'; a.S.level = 'mid';
   for (const [id, eq, pct] of [['bandrow', ['band'], false], ['pushup', [], false], ['pullup', ['pullup'], false], ['assistpull', ['gravitron'], false],
-    ['bulgarian', ['bench'], false], ['bulgarian', ['bench', 'db'], true], ['bbbench', ['bb', 'bench'], true], ['latpull', ['cable'], true]])
+    ['bulgarian', ['bench'], false], ['bulgarian', ['bench', 'db'], false], ['bbbench', ['bb', 'bench'], true], ['latpull', ['cable'], true]])
     for (const week of [null, P.WEEKS[1], P.WEEKS[3]]) {
       const load = P.prescribe(a.EXI[id], week, a.effEquip(eq)).load;
       assert.equal(load.includes('от максимума на 1 повтор'), pct, `${id} with ${eq.join('+') || 'bodyweight'}: ${load}`);

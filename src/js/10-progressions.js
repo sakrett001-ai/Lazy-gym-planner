@@ -14,6 +14,17 @@ const PROGRESSIONS = [
   ['hang', 'chinup', 'pullup'],
   ['copenhagenknee', 'copenhagen']
 ];
+/* С какой ступени начинает новичок (подбор плана, 11-planner.js). Отчёт тестеров 4.94.0, Марина п. 16: новичку дали
+   отжимания от пола и широкие 2×12–15, хотя есть «с колен» и «с руками на возвышении»; «тяга под столом» (стол может
+   опрокинуться). Вариант подбирают так, чтобы подход укладывался в диапазон повторов из карточки (ACSM, Ratamess et al.,
+   MSSE 2009; 41(3):687–708: нагрузка подбирается под заданное число повторов, новичку — простые и освоенные движения
+   до сложных; NSCA, Haff & Triplett, Essentials of Strength Training and Conditioning, 4-е изд., 2016, гл. 17 — от простого
+   к сложному). Ступени новичка: отжимания от стены, с руками на возвышении и с колен; тяга полотенца и австралийские
+   подтягивания; присед без веса и выпады; мостик; «мёртвый жук», «птица-собака», планка; скручивания и подъём ног лёжа.
+   Здесь — ступени выше них (и широкая и узкая постановка рук): новичку они идут, только если больше нечего, а дальше
+   подсказка «Следующая ступень» под карточкой сама поведёт вверх. Упражнения с весом и на тренажёрах не трогаются. */
+const PROG_BEG_HARD = new Set(['pushup', 'widepush', 'diamond', 'archer', 'pikepush', 'declinepike', 'tablerow', 'pullup', 'chinup', 'bulgarian', 'pistolbox',
+  'glutebridge1', 'sllift', 'nordic', 'plankup', 'hollow', 'hangknee', 'legraise', 'dip', 'copenhagen']);
 const PROG_NEXT = {}, PROG_PREV = {}, PROG_CHAIN = {};
 PROGRESSIONS.forEach((chain, ci) => chain.forEach(id => { PROG_CHAIN[id] = ci; }));
 for (const chain of PROGRESSIONS) chain.forEach((id, i) => { if (chain[i + 1]) PROG_NEXT[id] = chain[i + 1]; if (i) PROG_PREV[id] = chain[i - 1]; });

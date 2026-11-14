@@ -27,7 +27,10 @@ const doseCounts = () => S.level === 'beg' ? DOSE_COUNTS.filter(c => c <= DOSE_B
 const DOSE_LESS = [{s:-1, r:1}, {s:-1, r:.8}, {s:-2, r:.8}, {s:-3, r:.8}];
 function doseMore() {
   const n = (S.level === 'beg' ? 1 : 2) + (S.format === 'circuit' ? 1 : 0);
-  return [1, 2, 3].slice(0, n).flatMap(s => [{s, r:1}, {s, r:1.25}]);
+  /* новичку, которому подход сверх обычного уже прибавлен, — ещё и отдых в полтора раза дольше (суперсеты из пар «жим —
+     тяга» короче прежних пар из двух жимов): между подходами новичку уместно 1–2 мин, ACSM, Ratamess et al., MSSE 2009;
+     41(3):687–708 */
+  return [1, 2, 3].slice(0, n).flatMap(s => [{s, r:1}, {s, r:1.25}]).concat(S.level === 'beg' ? [{s:1, r:1.5}] : []);
 }
 function ensureDur(s) { if (!DURATIONS[s.dur]) s.dur = null; return s.dur; }
 ensureDur(S);
