@@ -116,6 +116,23 @@ test('strength scheme (3–5 reps, percent of max) only for heavy basics; bodywe
   }
 });
 
+/* предложение владельцу (отдельный коммит): новичку в «Силе» тяжёлая база — 6–8 повторов при ≈70–80%, ACSM 2009 */
+test('beginner in «Strength»: heavy basics 6–8 reps at ≈70–80% with 2–3 in reserve; the plan says why', () => {
+  reset({ goal: 'strength', level: 'beg' });
+  const E = a.effEquip(a.PLACE_DEFAULTS[0].equip);
+  for (const id of ['squat', 'bbbench', 'latpull', 'legpress']) {
+    const r = a.prescribe(a.EXI[id], null, E);
+    assert(r.reps === '6–8' && /≈ 70–80% от максимума/.test(r.load) && /2–3 повтора/.test(r.load), `${id}: ${r.reps} · ${r.load}`);
+    for (const [w, pct] of [[0, '65–70'], [2, '75–80'], [3, '55–60']]) assert(a.prescribe(a.EXI[id], a.WEEKS[w], E).load.includes(pct), `${id}, week ${w + 1}`);
+  }
+  assert.equal(a.prescribe(a.EXI.dbcurl, null, E).reps, '6–8', 'isolation as in «Strength»');
+  reset({ goal: 'strength', level: 'mid' });
+  assert.equal(a.prescribe(a.EXI.squat, null, E).reps, '3–5', 'from «I already train» on — 3–5');
+  reset({ goal: 'strength', level: 'beg' });
+  m.get('plan = buildPlan()');
+  assert.match(m.get('warnHtml(plan)'), /Новичку в «Силе» — 6–8 повторов/);
+});
+
 test('Turkish get-up: slow, 1–3 per side, never heavy — and never for a beginner (level 3)', () => {
   const E = a.effEquip(['kb']);
   for (const goal of GOALS) for (const level of LEVELS) {
@@ -230,9 +247,9 @@ test('tester weeks land on the scale: Full body ×3 (gym), Anna at home, Igor up
 /* Общий счёт по сетке: зал и дом × уровень × цель × «всё тело» ×3 и «верх / низ» ×4 × 6 упражнений и 45 минут.
    Было в 4.104.0 до правки: «мало» 153, «много» 224 из 960 групп-недель (по шкале по уровню; со старой шкалой 10–20 для
    всех — 386 и 114). Стало: 47 и 18; с защитой главного многосуставного дня (не ниже 3 подходов, прицельным — не больше,
-   чем у главного, если у него меньше трёх) — 50 и 26: перебор больше не срезается с главного упражнения. Числа ниже —
-   только убывают. */
-const GRID_LIMIT = { lo: 50, hi: 26 };
+   чем у главного, если у него меньше трёх) — 50 и 26: перебор больше не срезается с главного упражнения; новичку в «Силе»
+   6–8 повторов вместо 3–5 — 50 и 28. Числа ниже — только убывают. */
+const GRID_LIMIT = { lo: 50, hi: 28 };
 test('weekly volume across the grid: few groups outside the scale (numbers only go down)', () => {
   let lo = 0, hi = 0, n = 0;
   for (const place of ['gym', 'home']) for (const level of LEVELS) for (const goal of GOALS) for (const [days, split] of [[3, 'full'], [4, 'ul']]) for (const dur of [null, 'mid']) {

@@ -518,6 +518,11 @@ function orderCircuit(list) {
    держится до конца, время растёт постепенно; короткие удержания с повторами — McGill S., Strength Cond J 2010;
    32(3):33–46 */
 const BEG_HOLD = '20–30 с';
+/* Новичку в «Силе» тяжёлая база — 6–8 повторов при ≈70–80% от максимума (запас — как у новичка, 2–3 повтора), а не 3–5:
+   ACSM, Ratamess N.A. et al., MSSE 2009; 41(3):687–708 — новичкам 60–70% и 8–12 повторов, к тяжёлым 80–100% и 1–6 — постепенно,
+   с опытом. В цикле — проценты недель «Массы» (65–70 → 75–80%). Прицельные и остальные схемы — как у всех в «Силе» */
+const BEG_STRENGTH = {reps:'6–8', pct:'≈ 70–80%'};
+const begStrength = sch => S.goal === 'strength' && S.level === 'beg' && sch === 'heavy';
 const CTRL_LOAD = 'медленно и под контролем, без рывков, не до предела', BALL_LOAD = 'взрывно, от бёдер, спина ровная; подход заканчивайте, пока мах не замедлился';
 /* extra — подходов сверх обычного или меньше (доводка объёма недели, volTopUp): до недели цикла, не меньше 2 и не больше 6 */
 function prescribe(ex, week, E, extra = 0) {
@@ -530,7 +535,8 @@ function prescribe(ex, week, E, extra = 0) {
   if (S.level === 'beg') sets = Math.max(2, sets - 1);
   if (S.level === 'adv' && t === 'c') sets = Math.min(6, sets + 1);
   if (extra) sets = Math.max(2, Math.min(6, sets + extra));
-  let reps = sch === 'ctrl' ? ex.doseReps || G.ctrl : sch === 'ballistic' ? G.ball : strongMod ? G.mod.reps : G.reps[t], unit = 'повт.';
+  const bs = begStrength(sch), weekPct = w => w.pct[bs ? 'mass' : S.goal];
+  let reps = sch === 'ctrl' ? ex.doseReps || G.ctrl : sch === 'ballistic' ? G.ball : strongMod ? G.mod.reps : bs ? BEG_STRENGTH.reps : G.reps[t], unit = 'повт.';
   if (ex.kind === 'time') { reps = S.level === 'beg' && ex.g !== 'cardio' ? BEG_HOLD : G.time; unit = ''; }
   if (ex.kind === 'dist') { reps = G.dist; unit = ''; }
   const bodyweight = !ex.eq.length && !(ex.opt || []).length;
@@ -547,13 +553,13 @@ function prescribe(ex, week, E, extra = 0) {
   const tail = rir ? reserveDo(rir) + (S.goal === 'gentle' ? ', без боли' : '') : NEAR_LIMIT;
   const withPct = (s, p) => `${s} (${pctText(p)})`;
   const fixed = sch === 'ctrl' ? CTRL_LOAD + (S.goal === 'gentle' ? ', без боли' : '') : sch === 'ballistic' ? BALL_LOAD : '';
-  let load = fixed || (pct ? withPct(tail, G.load.c) : sch === 'mod' ? how + tail : !G.rir ? G.load.i : G.load.i ? `${G.load.i}, ${tail}` : tail);
+  let load = fixed || (pct ? withPct(tail, bs ? BEG_STRENGTH.pct : G.load.c) : sch === 'mod' ? how + tail : !G.rir ? G.load.i : G.load.i ? `${G.load.i}, ${tail}` : tail);
   if (week) {
     const reserve = rir ? reserveDo(rir) : '';
-    if (week.deload) { sets = Math.max(2, Math.round(sets * 0.6)); if (!fixed) load = pct ? withPct('лёгкий вес, не до предела', week.pct[S.goal]) : sch === 'mod' ? easy : 'лёгкий вес, не до предела'; }
+    if (week.deload) { sets = Math.max(2, Math.round(sets * 0.6)); if (!fixed) load = pct ? withPct('лёгкий вес, не до предела', weekPct(week)) : sch === 'mod' ? easy : 'лёгкий вес, не до предела'; }
     else {
       if (week.add && t === 'c') sets = Math.min(6, sets + week.add);
-      if (!fixed) load = pct ? withPct(reserve, week.pct[S.goal]) : sch === 'mod' ? how + reserve : reserve;
+      if (!fixed) load = pct ? withPct(reserve, weekPct(week)) : sch === 'mod' ? how + reserve : reserve;
     }
   }
   if (ex.kind === 'time') load = ex.g === 'cardio' ? (S.goal === 'gentle' ? 'умеренный темп: можно говорить, не задыхаясь' : 'высокий темп без потери техники') : S.goal === 'strength' ? 'с отягощением или в усложнённом варианте' : 'ровно, без потери формы';
@@ -1131,6 +1137,7 @@ function warnHtml(p) {
   if (byEq.length) warn.push(`Без упражнений осталось: ${byEq.map(g => GN[g].toLowerCase()).join(', ')}. Для них нужно другое оборудование.`);
   if (byBody.length) warn.push(`Без упражнений в бережном режиме осталось: ${byBody.map(g => GN[g].toLowerCase()).join(', ')}. Всё, что для этого есть, даёт нагрузку, которую вы бережёте.`);
   const dw = durationWarn(p); if (dw) warn.push(dw);
+  if (S.goal === 'strength' && S.level === 'beg' && p.items.some(it => begStrength(schemeOf(it.ex)))) warn.push('Новичку в «Силе» — 6–8 повторов с запасом: к тяжёлым 3–5 переходите, когда техника устоится, — выберите уровень «Уже тренируюсь».');
   return warn.length ? `<div class="warn">${warn.map(w => `<p>${esc(w)}</p>`).join('')}</div>` : '';
 }
 function headButtons(copyLabel) {
