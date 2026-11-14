@@ -63,35 +63,56 @@ function buildPlan(ctx = {}) {
   if (p.items) { p.count = p.items.length; p.fit = {dur:S.dur, lo:D.lo, hi:D.hi, est:fit.m, ok:fit.m >= D.lo && fit.m <= D.hi, dose:fit.dose, why:fit.why || null}; }
   return p;
 }
+/* Новичку неделя не выходит за шкалу 4–12 подходов на группу (volScale): при 4–5 тренировках по 45–60 мин подходов
+   набирается больше, чем нужно новичку (ACSM, Garber et al., MSSE 2011; 43(7):1334–1359 — 2–4 подхода на группу 2–3 раза
+   в неделю). buildProgram передаёт ctx.vol.cap — сколько подходов может быть у группы после этого дня (её доля верхней
+   границы недели); из вариантов «число упражнений × подходы» берутся только те, что в неё укладываются. Не дотянули до
+   коридора времени — под планом сказано почему (durationWarn: 'begvol'), как и для «60+». */
+function volOver(p, vol) {
+  if (!vol || !vol.cap) return 0;
+  let o = 0; for (const [g, c] of Object.entries(vol.cap)) o += Math.max(0, (vol.have[g] || 0) + (p.gvolBase[g] || 0) - c);
+  return o;
+}
 /* перебор: число упражнений при обычной дозировке; не вышло — с уступками. Из попавших в коридор — ближе к середине,
-   при равенстве — больше упражнений; не попал никто — ближайший к коридору */
+   при равенстве — больше упражнений; не попал никто — ближайший к коридору. С потолком объёма недели (новичок) —
+   только варианты в его пределах: в коридоре — как обычно, иначе самый длинный из них */
 function fitDuration(ctx, D) {
-  const all = [];
+  const all = [], capped = !!(ctx.vol && ctx.vol.cap);
   const run = dose => {
     const got = [];
     for (const c of doseCounts()) {
       const p = buildPlanAt({...ctx, count:c, dose, fitBase:true});
       if (!p.items) return null;
       /* упражнений меньше, чем просили (всё доступное уже в плане), — та же тренировка, что при меньшем числе */
-      const r = {c, dose, m:p.minutes, n:p.items.length};
+      const r = {c, dose, m:p.minutes, n:p.items.length, over:capped ? volOver(p, ctx.vol) : 0};
       all.push(r); got.push(r);
       if (p.items.length < c) break;
     }
     return got;
   };
-  const inside = r => r.m >= D.lo && r.m <= D.hi;
+  const inside = r => r.m >= D.lo && r.m <= D.hi && !(r.over > 0.2);
   const best = list => list.filter(inside).sort((a, b) => Math.abs(a.m - D.target) - Math.abs(b.m - D.target) || b.n - a.n)[0] || null;
   const first = run({s:0, r:1});
   if (!first) return null;
   let hit = best(first);
   if (hit) return hit;
+  if (capped && first.some(r => r.over > 0.2)) {
+    for (const dose of DOSE_LESS) { const got = run(dose); if (got && (hit = best(got))) return hit; }
+    const fits = all.filter(r => !(r.over > 0.2)).sort((a, b) => b.m - a.m || b.n - a.n);
+    const pick = fits.find(r => r.m <= D.hi) || fits[fits.length - 1] || all.slice().sort((a, b) => a.over - b.over || a.m - b.m)[0];
+    return {...pick, why:pick.m < D.lo ? 'begvol' : null};
+  }
   const under = first.every(r => r.m < D.lo), over = first.every(r => r.m > D.hi);
   for (const dose of under ? doseMore() : over ? DOSE_LESS : DOSE_LESS.concat(doseMore())) { const got = run(dose); if (got && (hit = best(got))) return hit; }
   const gap = r => r.m < D.lo ? D.lo - r.m : r.m > D.hi ? r.m - D.hi : 0;
-  const near = all.sort((a, b) => gap(a) - gap(b) || Math.abs(a.dose.s) - Math.abs(b.dose.s) || b.n - a.n)[0];
-  /* почему не уложились: длиннее — меньше подходов уже некуда; короче — не хватило упражнений или новичку больше не прибавляем */
+  /* с потолком объёма недели — только варианты в его пределах (если такие есть) */
+  const ok = capped ? all.filter(r => !(r.over > 0.2)) : [], from = ok.length ? ok : all;
+  const near = from.sort((a, b) => gap(a) - gap(b) || Math.abs(a.dose.s) - Math.abs(b.dose.s) || b.n - a.n)[0];
+  /* почему не уложились: длиннее — меньше подходов уже некуда; короче — объём недели новичка, не хватило упражнений или
+     новичку больше не прибавляем */
   const counts = doseCounts(), most = counts[counts.length - 1];
-  return {...near, why:near.m > D.hi ? 'long' : S.level === 'beg' && near.n >= most ? 'beg' : 'few'};
+  const volCut = capped && near.m < D.lo && all.some(r => r.over > 0.2 && r.m > near.m);
+  return {...near, why:near.m > D.hi ? 'long' : volCut ? 'begvol' : S.level === 'beg' && near.n >= most ? 'beg' : 'few'};
 }
 /* сколько упражнений показать в «Упражнений»: при заданном времени — сколько подобрано в открытой тренировке */
 function shownCount() {
@@ -103,7 +124,8 @@ function shownCount() {
 function durationWarn(p) {
   const f = p && p.fit; if (!f || f.ok) return '';
   const D = DURATIONS[f.dur];
-  return f.why === 'long' ? `Короче ≈${p.minutes} мин с этой целью не получается: в каждом упражнении уже наименьшее число подходов.`
+  return f.why === 'begvol' ? `Новичку больше подходов не прибавляем: тренировка ≈${p.minutes} мин, иначе за неделю мышцам выйдет больше 12 подходов. Остальное время — на разминку, заминку и спокойную ходьбу.`
+    : f.why === 'long' ? `Короче ≈${p.minutes} мин с этой целью не получается: в каждом упражнении уже наименьшее число подходов.`
     : f.why === 'beg' ? `Новичку больше подходов не прибавляем: тренировка ≈${p.minutes} мин. Остальное время — на разминку, заминку и спокойную ходьбу.`
     : `Под ${D.say} не хватает упражнений с этим оборудованием и мышцами: тренировка ≈${p.minutes} мин.`;
 }

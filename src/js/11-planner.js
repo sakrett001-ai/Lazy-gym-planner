@@ -816,8 +816,14 @@ function buildProgram() {
     const weights = Object.fromEntries(g.map(x => [x, Math.sqrt(GROUP_W[x] || 1) * (own.includes(x) ? 1 : 0.8) * Math.min(2.5, Math.max(0.15, share[x] / avg))]));
     /* время на тренировку задано — число упражнений каждого дня подбирается под него (11j-duration.js) */
     const aimDay = Object.fromEntries(g.map(x => [x, (have[x] || 0) + share[x]]));
+    /* новичку с заданным временем — потолок недели: после этого дня у группы не больше её доли верхней границы шкалы
+       (поровну на дни с этой группой; fitDuration, 11j-duration.js) */
+    const cap = S.level === 'beg' && durationOf() ? Object.fromEntries(g.map(x => {
+      const all = tmpl.filter(t => pickGroups(t).includes(x)).length || 1, done = tmpl.slice(0, i + 1).filter(t => pickGroups(t).includes(x)).length;
+      return [x, sc.hi * done / all];
+    })) : null;
     const p = buildPlan({groups:g, count:durationOf() ? undefined : S.count, seed:S.seed * 131 + i * 977 + 13, avoid:new Set(avoid), week, swaps:swaps['d' + i] || {}, order:swaps.__order?.['d' + i],
-      vol:{have:{...have}, aim:aimDay, hi:sc.hi, weights}, pp:{...pp}});
+      vol:{have:{...have}, aim:aimDay, hi:sc.hi, weights, cap}, pp:{...pp}});
     /* следующие дни обходят и подобранное, и поставленное заменой: замена в одном дне не меняет остальные */
     if (p.items) {
       p.items.forEach(it => avoid.add(it.ex.id)); p.picks.forEach(id => avoid.add(id));

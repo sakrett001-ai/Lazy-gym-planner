@@ -9,7 +9,7 @@ const { loadModel } = require('./biomechanics-audit');
 const m = loadModel({ fullApp: true });
 m.get('renderSetup=()=>{}; logRefresh=()=>{}; LOG.mode="local";');
 const a = m.get(`({S, buildPlan, buildProgram, prescribe, ensurePlaces, PLACE_DEFAULTS, GROUP_PRESETS, ensureCustoms, ensureProtect, ensureDur, EXI, EX, PATTERN,
-  schemeOf, sideOf, HEAVY_SPINE, spineCap, PROG_BEG_HARD, FIXED_EQ, SPLITS, DAY_T, GOALS, WEEKS, volScale, volRow, effEquip, CTRL_LOAD, tempoWords})`);
+  schemeOf, sideOf, HEAVY_SPINE, spineCap, PROG_BEG_HARD, FIXED_EQ, SPLITS, DAY_T, GOALS, WEEKS, volScale, volRow, effEquip, CTRL_LOAD, tempoWords, durationWarn})`);
 const FULL = a.GROUP_PRESETS.find(p => p.id === 'full').g, UPPER = a.GROUP_PRESETS.find(p => p.id === 'upper').g;
 const PLACES = ['gym', 'home', 'street', 'homeband'], LEVELS = ['beg', 'mid', 'adv'], GOALS = ['strength', 'mass', 'cut', 'gentle'], FORMATS = ['classic', 'superset', 'circuit', 'static'];
 function reset(extra = {}) {
@@ -248,8 +248,9 @@ test('tester weeks land on the scale: Full body ×3 (gym), Anna at home, Igor up
    Было в 4.104.0 до правки: «мало» 153, «много» 224 из 960 групп-недель (по шкале по уровню; со старой шкалой 10–20 для
    всех — 386 и 114). Стало: 47 и 18; с защитой главного многосуставного дня (не ниже 3 подходов, прицельным — не больше,
    чем у главного, если у него меньше трёх) — 50 и 26: перебор больше не срезается с главного упражнения; новичку в «Силе»
-   6–8 повторов вместо 3–5 — 50 и 28. Числа ниже — только убывают. */
-const GRID_LIMIT = { lo: 50, hi: 28 };
+   6–8 повторов вместо 3–5 — 50 и 28; новичку неделя не выше 12 при заданном времени — 52 и 11 (короче неделя — у двух
+   групп новичка меньше 4). Числа ниже — только убывают. */
+const GRID_LIMIT = { lo: 52, hi: 11 };
 test('weekly volume across the grid: few groups outside the scale (numbers only go down)', () => {
   let lo = 0, hi = 0, n = 0;
   for (const place of ['gym', 'home']) for (const level of LEVELS) for (const goal of GOALS) for (const [days, split] of [[3, 'full'], [4, 'ul']]) for (const dur of [null, 'mid']) {
@@ -287,6 +288,29 @@ test('the main compound of a day keeps at least 3 sets when the isolation work o
   assert(n > 2000, 'days checked: ' + n);
   reset({ mode: 'program', days: 4, split: 'ul' });
   for (const d of a.buildProgram().days) for (const it of d.plan.items) if (it.ex.id === 'squat') assert(it.rx.sets >= 3, `${d.name}: squat ${it.rx.sets}×`);
+});
+
+/* предложение владельцу (отдельный коммит): новичку при 4–5 тренировках по 45–60 мин неделя не выходит за шкалу 4–12 —
+   подходов и упражнений меньше, под планом сказано почему. На сетке ниже (зал и дом × 4 цели × «всё тело» и «верх / низ» ×4,
+   «жим / тяга / ноги» и «верх / низ» ×5 × 45 и 60+ мин) групп выше 12 было 353 из 656, стало 9 (там и самый короткий вариант
+   чуть выше потолка). Числа — только убывают. */
+test('beginner with 4–5 long workouts: the week stays on the 4–12 scale, and the plan says why it is shorter', () => {
+  const sc = s => s.replace(/\u00a0/g, ' ');
+  let over = 0, n = 0, cut = 0;
+  for (const place of ['gym', 'home']) for (const goal of GOALS) for (const [days, split] of [[4, 'full'], [4, 'ul'], [5, 'ppl'], [5, 'ul']]) for (const dur of ['mid', 'long']) {
+    reset({ place, goal, level: 'beg', mode: 'program', days, split, dur });
+    const pr = a.buildProgram();
+    for (const g of new Set(pr.days.flatMap(d => a.DAY_T[d.tid].g))) { if (g === 'cardio') continue; n++; if (Math.round((pr.gvol[g] || 0) * 2) / 2 > 12) over++; }
+    for (const d of pr.days) if (d.plan.fit && d.plan.fit.why === 'begvol') {
+      cut++;
+      assert.match(sc(a.durationWarn(d.plan)), /^Новичку больше подходов не прибавляем: тренировка ≈\d+ мин, иначе за неделю мышцам выйдет больше 12 подходов\./);
+    }
+  }
+  assert(over <= 9, `${n} group-weeks: ${over} above 12 (limit 9)`);
+  assert(cut > 0, 'some days are shorter because of the weekly volume');
+  /* не новичку — как раньше: потолка нет */
+  reset({ mode: 'program', days: 5, split: 'ul', dur: 'long' });
+  assert(a.buildProgram().days.every(d => !d.plan.fit || d.plan.fit.why !== 'begvol'));
 });
 
 test('a swap in one day does not change the other days; loading and deload weeks keep the exercises', () => {
