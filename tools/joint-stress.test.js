@@ -53,7 +53,9 @@ const EXPECT = {
   elbow: { on: ['skull', 'ohext', 'cableohext'], off: ['dbcurl', 'ohp', 'pushdown', 'closegrip'] },
   /* копенгагенская планка — упор на предплечье, как планка: кисть не нагружена */
   wrist: { on: ['pushup', 'diamond', 'burpee', 'mountain', 'birddog', 'plankup'], off: ['plank', 'wallpush', 'nordic', 'bbbench', 'dbcurl', 'copenhagen', 'copenhagenknee'] },
-  achilles: { on: ['calfraise', 'calf1', 'seatedcalf', 'standcalf'], off: ['squat', 'jumpsquat', 'treadmill', 'lpcalf'] },
+  /* ахилл: тыльное сгибание дальше нейтрали под весом (Jonsson et al. 2008) — и в подъёме на носки в тренажёре для жима ногами
+     (пятки уходят за край платформы на 12°); приседания, прыжки и бег — не подъёмы на носки */
+  achilles: { on: ['calfraise', 'calf1', 'seatedcalf', 'standcalf', 'lpcalf'], off: ['squat', 'jumpsquat', 'treadmill', 'jumpingjack', 'legpress'] },
   landing: { on: ['jumpsquat', 'burpee', 'jumpingjack'], off: ['pullup', 'dip', 'stepup', 'elliptical', 'stairs', 'squat', 'hangknee'] },
   hams: { on: ['rdl', 'sllift', 'goodmorning', 'nordic', 'kbsllift'], off: ['squat', 'legcurl', 'hipthrust', 'lunge'] }
 };
@@ -86,6 +88,17 @@ test('marks follow the phase: bottom of a squat and a bench press, end range of 
   }
   assert(lit >= 3, 'the arc is crossed in several frames');
   assert(at('pullup', 1).includes('neck') && at('pullup', 1).includes('pullTop'), 'pull-up top: neck and shoulders');
+});
+test('Achilles: the mark is on only while the heel is below neutral (dorsiflexion ≥ 5°), at the bottom of a calf raise', () => {
+  for (const id of ['calfraise', 'lpcalf', 'standcalf']) {
+    const e = ex(id); let lit = 0;
+    for (let i = 0; i <= 40; i++) {
+      const J = M.jointAngles(e.anim.catalogRig(i / 40)), on = keysAt(id, 'achilles', i / 40);
+      for (const s of ['L', 'R']) if (on.includes('an' + s)) { lit++; assert(J[s].dorsi >= 4.95, `${id} frame ${i}: dorsiflexion ${J[s].dorsi.toFixed(1)}°`); }
+        else assert(J[s].dorsi < 5.05, `${id} frame ${i}: ${s} dorsiflexion ${J[s].dorsi.toFixed(1)}° is not marked`);
+    }
+    assert(lit > 0, id + ': the bottom is marked');
+  }
 });
 test('bodyweight on both legs: the knee mark needs deep flexion with the knees past the toes (sissy squat), not a deep air squat', () => {
   const ahead = (R, s) => { const fw = M.V.unit([R['toe' + s][0] - R['heel' + s][0], 0, R['toe' + s][2] - R['heel' + s][2]]); return M.V.dot(M.V.sub(R['kn' + s], R['toe' + s]), fw); };
