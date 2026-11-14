@@ -31,16 +31,43 @@ const EXPECT = {
   knee: { on: ['squat', 'goblet', 'smithsquat', 'hacksquat', 'legpress', 'legpresslow', 'lunge', 'revlunge', 'bulgarian', 'stepup', 'pistolbox', 'kbfrontsquat', 'sissysquat'],
     off: ['dbpress', 'latpull', 'deadlift', 'jumpsquat', 'glutebridge1', 'crunch', 'legext', 'calfraise', 'cableadduct', 'copenhagen', 'bandadduct', 'bandabduct', 'bandbridge', 'bandlegext',
       'airsquat', 'wallsit', 'bridge', 'burpee', 'nordic'] }, /* дома с эспандером: колено почти прямое (сведение, отведение) или без нагрузки сверху (мостик, разгибание сидя — как в тренажёре) */
-  kneeOpen: { on: ['legext'], off: ['legcurl', 'squat', 'legpress', 'sissysquat'] },
+  /* разгибание колена в открытой цепи под нагрузкой у голени: тренажёр и манжета эспандера на щиколотке (отчёт Елены, п. 1).
+     Молчит: сгибание ног (нагрузка против сгибания, основная мышца — не квадрицепс), закрытая цепь (стопы на полу или платформе),
+     прямая нога весь подход с манжетой (сведение, отведение), мах ногой назад с тросом */
+  kneeOpen: { on: ['legext', 'bandlegext'], off: ['legcurl', 'squat', 'legpress', 'sissysquat', 'bandadduct', 'cableadduct', 'bandabduct', 'cablekickback', 'glutekick', 'wallsit'] },
+  /* быстрая смена ног с ударом стопы (скалолаз, п. 3). Молчит: бег трусцой на дорожке (скорость задаёт человек, при «беречь
+     колени» — шаг), ходьба с гантелями, прыжки «звёздочкой» (там приземление), кардиотренажёры без удара стопой, велосипед на спине */
+  kneeFast: { on: ['mountain'], off: ['treadmill', 'farmer', 'jumpingjack', 'elliptical', 'stairs', 'bike', 'revlunge', 'bicycle', 'burpee', 'jumpsquat'] },
+  /* сила у щиколотки поперёк почти прямой ноги (п. 8, 9): манжета эспандера и троса в сведении, мини-петля в отведении, опора
+     стопой в копенгагенской планке. Молчит: упор у колена (тренажёры сведения и разведения, копенгагенская с опорой коленом),
+     трос и лента вдоль ноги (разгибание сидя, мах назад) */
+  kneeSide: { on: ['bandadduct', 'cableadduct', 'bandabduct', 'copenhagen'], off: ['copenhagenknee', 'adduction', 'abduction', 'bandlegext', 'legext', 'cablekickback', 'glutekick', 'sidelunge', 'declinepush', 'legcurl'] },
   /* упор на колени: колено стоит на коврике, скамье, подушке гравитрона или валике — передней поверхностью в опору.
      Молчит: колени в валиках сбоку (сведение, разведение), под валиком скамьи для пресса, боком на скамье
      (копенгагенская планка), голени на валиках скамьи с наклоном, выпады без касания пола коленом */
   kneel: { on: ['rollout', 'bandlatpull', 'kneepush', 'birddog', 'cablecrunch', 'dbrow', 'kickback', 'nordic', 'assistpull', 'assistdip', 'kbtgu'],
     off: ['abduction', 'adduction', 'declinecrunch', 'copenhagenknee', 'copenhagen', 'declinebb', 'legext', 'legcurl', 'squat', 'lunge', 'revlunge', 'bulgarian', 'plank', 'pushup', 'bridge', 'mountain', 'burpee'] },
   /* гиря: наклоны от таза и тяга в наклоне без опоры — как со штангой */
-  lumbar: { on: ['deadlift', 'rdl', 'sllift', 'goodmorning', 'bbrow', 'kbswing', 'squat', 'kbdeadlift', 'kbswing1', 'kbclean', 'kbrow', 'kbsnatch', 'kbsllift'], off: ['latpull', 'cablerow', 'dbrow', 'shrug', 'ohp', 'chestrowdb', 'legpress', 'bandlatpull', 'bandbridge'] },
+  /* протяжка на блоке между ног: рукоять троса — нагрузка и в упражнении на ягодичные (п. 2) */
+  lumbar: { on: ['deadlift', 'rdl', 'sllift', 'goodmorning', 'bbrow', 'kbswing', 'squat', 'kbdeadlift', 'kbswing1', 'kbclean', 'kbrow', 'kbsnatch', 'kbsllift', 'pullthrough'], off: ['latpull', 'cablerow', 'dbrow', 'shrug', 'ohp', 'chestrowdb', 'legpress', 'bandlatpull', 'bandbridge'] },
   /* длинный рычаг: руки над головой в упоре при вытянутом теле. Планка, отжимания, скалолаз — кисти под плечами;
      пуловер и «супермен» — туловище лежит на опоре; жимы в упоре согнувшись — таз согнут */
+  /* сгибание позвоночника вперёд или вбок в упражнениях на пресс и косые (п. 2). Молчит: удержания без сгибания (планки,
+     «мёртвый жук», «птица-собака», «лодочка» — у неё длинный рычаг ног), приседы и наклоны (там позвоночник — не цель движения) */
+  lumbarFlex: { on: ['crunch', 'declinecrunch', 'cablecrunch', 'legraise', 'lyinglegraise', 'captainraise', 'hangknee', 'sidebend', 'cablewood'],
+    off: ['plank', 'sideplank', 'deadbug', 'birddog', 'hollow', 'rollout', 'squat', 'airsquat', 'deadlift', 'pistolbox', 'burpee', 'rower', 'bridge', 'copenhagen'] },
+  /* скручивание корпуса (п. 2): велосипед, дровосек, мельница */
+  lumbarTwist: { on: ['bicycle', 'cablewood', 'kbwindmill'], off: ['crunch', 'plank', 'sideplank', 'deadbug', 'birddog', 'farmer', 'treadmill', 'legraise'] },
+  /* корпус на весу на мышцах спины лёжа на животе или на станке (п. 2). Молчит: «птица-собака» (руки и колени на полу),
+     Y-T-W (грудь на коврике), скандинавские сгибания (таз не на опоре), упоры */
+  lumbarExt: { on: ['hyper', 'superman', 'reversesnow'], off: ['birddog', 'ytw', 'plank', 'pushup', 'nordic', 'reversefly', 'pikepush', 'declinepush', 'glutebridge1', 'bridge'] },
+  /* прямые ноги на весу у горизонтали: подъём прямых ног лёжа и в висе, «лодочка». Молчит: ноги согнуты, ноги отвесно в висе,
+     «супермен» лёжа на животе (это разгибание) */
+  lumbarLegs: { on: ['legraise', 'lyinglegraise', 'hollow'], off: ['deadbug', 'hangknee', 'captainraise', 'bicycle', 'superman', 'pullup', 'hang', 'plank', 'burpee', 'copenhagen'] },
+  /* осевая нагрузка стоя (п. 6): штанга и валики на плечах, вес над головой, переноска и шраги. Молчит: сидя с опорой спины,
+     лёжа, гантели в руках в подъёмах на бицепс и махах, гоблет, выпады, жим ногами, тяга троса сверху (трос тянет руки вверх) */
+  axial: { on: ['ohp', 'kbpress', 'farmer', 'shrug', 'smithsquat', 'standcalf', 'hacksquat', 'squat', 'ohext'],
+    off: ['dbpress', 'arnold', 'shoulderpressm', 'seatedcalf', 'lpcalf', 'calfraise', 'dbcurl', 'latraise', 'goblet', 'lunge', 'legpress', 'straightpull', 'bandfacepull', 'jumpingjack', 'deadlift', 'bbbench', 'dbbench'] },
   lumbarLever: { on: ['rollout'], off: ['plank', 'plankup', 'pushup', 'kneepush', 'mountain', 'burpee', 'birddog', 'sideplank', 'pullover', 'superman', 'pikepush', 'declinepike', 'hollow', 'deadbug', 'legraise', 'hangknee', 'kbtgu'] },
   /* вращение плеча наружу: плечо у бока, не уходит за линию корпуса */
   shPress: { on: ['bbbench', 'smithbench', 'inclinebb', 'closegrip', 'dip', 'assistdip', 'benchdip', 'pecdeck'], off: ['ohp', 'pushup', 'latpull', 'bbrow', 'dbcurl', 'cableextrot', 'bandextrot', 'kbfloorpress', 'bandlatpull', 'bandfloorpress'] }, /* жим лёжа на полу (с гирей и с эспандером): пол не пускает локоть ниже корпуса */
@@ -57,7 +84,7 @@ const EXPECT = {
      (пятки уходят за край платформы на 12°); приседания, прыжки и бег — не подъёмы на носки */
   achilles: { on: ['calfraise', 'calf1', 'seatedcalf', 'standcalf', 'lpcalf'], off: ['squat', 'jumpsquat', 'treadmill', 'jumpingjack', 'legpress'] },
   landing: { on: ['jumpsquat', 'burpee', 'jumpingjack'], off: ['pullup', 'dip', 'stepup', 'elliptical', 'stairs', 'squat', 'hangknee'] },
-  hams: { on: ['rdl', 'sllift', 'goodmorning', 'nordic', 'kbsllift'], off: ['squat', 'legcurl', 'hipthrust', 'lunge'] }
+  hams: { on: ['rdl', 'sllift', 'goodmorning', 'nordic', 'kbsllift', 'pullthrough'], off: ['squat', 'legcurl', 'hipthrust', 'lunge'] }
 };
 test('every rule has texts and lights up where the joint is loaded, and only there', () => {
   assert.deepEqual(plain(A.STRESS_RULES.map(r => r.id)).sort(), Object.keys(EXPECT).sort(), 'each rule is covered by this test');
@@ -68,7 +95,8 @@ test('every rule has texts and lights up where the joint is loaded, and only the
   }
 });
 test('marks follow the phase: bottom of a squat and a bench press, end range of a leg extension', () => {
-  assert.deepEqual(at('squat', 0), [], 'standing tall: no mark');
+  assert.deepEqual(at('squat', 0), ['axial'], 'standing tall: only the bar pressing on the spine');
+  assert.deepEqual(at('goblet', 0), [], 'goblet squat standing: no mark');
   assert.deepEqual(keysAt('squat', 'knee', 1).sort(), ['knL', 'knR'], 'bottom: both knees');
   assert(at('squat', 1).includes('lumbar'), 'bottom: lower back too');
   assert(!at('bbbench', 0).includes('shPress') && at('bbbench', 1).includes('shPress'), 'bench: only at the chest');
@@ -88,6 +116,36 @@ test('marks follow the phase: bottom of a squat and a bench press, end range of 
   }
   assert(lit >= 3, 'the arc is crossed in several frames');
   assert(at('pullup', 1).includes('neck') && at('pullup', 1).includes('pullTop'), 'pull-up top: neck and shoulders');
+});
+test('open-chain knee extension with a band: only the cuffed leg, only near a straight knee', () => {
+  const e = ex('bandlegext'), lit = [];
+  for (let i = 0; i <= 40; i++) {
+    const keys = keysAt('bandlegext', 'kneeOpen', i / 40), J = M.jointAngles(e.anim.catalogRig(i / 40));
+    assert(!keys.includes('knR'), 'the foot of the other leg is on the floor');
+    if (keys.includes('knL')) { lit.push(i); assert(J.L.knee <= 30.5, `frame ${i}: knee ${J.L.knee.toFixed(0)}°`); }
+    else assert(J.L.knee > 29.5, `frame ${i}: knee ${J.L.knee.toFixed(0)}° near straight is marked`);
+  }
+  assert(lit.includes(40) && !lit.includes(0), 'straight leg marked, bent start not: ' + lit.join(','));
+});
+test('fast leg changes: the knee mark is on the leg whose foot has just hit the floor', () => {
+  const P = m.get('CATALOG_POSES').mountain, lit = A.jointStress(ex('mountain')).rules.find(r => r.id === 'kneeFast');
+  for (const [i, keys] of lit.f.entries()) for (const k of keys) {
+    const s = k.slice(-1), t = i / 40;
+    assert(P.contacts.some(c => (c.body === 'sole' + s) && c.when && t >= c.when[0] - 1e-6 && t <= c.when[1] + 1e-6), `frame ${i}: ${k} foot is on the mat`);
+  }
+  assert(lit.f.flat().includes('knL') && lit.f.flat().includes('knR'), 'both legs land in a cycle');
+});
+test('side load across the knee: the leg on the bench in the Copenhagen plank, the cuffed leg in band adduction', () => {
+  assert.deepEqual(plain([...new Set(A.jointStress(ex('copenhagen')).rules.find(r => r.id === 'kneeSide').f.flat())]), ['knL'], 'the upper leg on the bench');
+  assert.deepEqual(plain([...new Set(A.jointStress(ex('bandadduct')).rules.find(r => r.id === 'kneeSide').f.flat())]), ['knL'], 'the cuffed leg');
+  assert(!rules('copenhagenknee').has('kneeSide'), 'support at the knee — no lever across it');
+});
+test('lower back: crunch marked in the flexed phase only; overhead press and farmer walk carry the weight on the spine', () => {
+  assert(!at('crunch', 0).includes('lumbarFlex') && at('crunch', 1).includes('lumbarFlex'), 'lying flat: no mark; curled up: marked');
+  const press = A.jointStress(ex('ohp')).rules.find(r => r.id === 'axial'), farmer = A.jointStress(ex('farmer')).rules.find(r => r.id === 'axial');
+  assert(farmer.f.every(k => k.length), 'farmer walk: every frame');
+  assert(press.f.some(k => k.length), 'overhead press: while the bar is overhead');
+  for (const id of ['dbpress', 'arnold']) assert(!rules(id).has('axial'), id + ': seated with the back supported');
 });
 test('Achilles: the mark is on only while the heel is below neutral (dorsiflexion ≥ 5°), at the bottom of a calf raise', () => {
   for (const id of ['calfraise', 'lpcalf', 'standcalf']) {
@@ -218,7 +276,7 @@ test('the SVG figure draws red marks on top at the loaded joints and can hide th
     dom.window.eval(files.map(f => fs.readFileSync(path.join(dir, f), 'utf8')).join('\n') + '\nwindow.api={EX,buildFigure};');
     const { EX, buildFigure } = dom.window.api, squat = EX.find(e => e.id === 'squat');
     const fig = buildFigure(squat.anim, { camera: 'side', t: 0 }), shown = () => [...fig.svg.querySelectorAll('.stress-mark')].filter(n => n.getAttribute('display') !== 'none').map(n => n.dataset.joint).sort();
-    assert.deepEqual(shown(), [], 'standing: nothing');
+    assert.deepEqual(shown(), ['lumbar'], 'standing: the bar on the back loads the spine (axial)');
     fig.at(1, { index: 1 });
     assert.deepEqual(shown(), ['knL', 'knR', 'lumbar'], 'bottom of the squat');
     assert.equal(fig.svg.lastElementChild.getAttribute('class'), 'stress-marks', 'marks are drawn last, above the body');

@@ -96,7 +96,8 @@ test('strength scheme (3–5 reps, percent of max) only for heavy basics; bodywe
     for (const ex of a.EX) for (const week of [null, a.WEEKS[1], a.WEEKS[3]]) {
       const r = a.prescribe(ex, week, E), sch = a.schemeOf(ex), tag = `${goal} ${level} ${ex.id} (${sch})`;
       if (r.static) continue;
-      assert.equal(/от максимума/.test(r.load), sch === 'heavy', `${tag}: percent only for heavy basics — ${r.load}`);
+      /* в «Бережно» — без процента: максимум на 1 повтор человек после травмы не знает (Михаил п. 8) */
+      assert.equal(/от максимума/.test(r.load), sch === 'heavy' && goal !== 'gentle', `${tag}: percent only for heavy basics, never in «Easy» — ${r.load}`);
       if (goal === 'strength' && sch !== 'heavy' && sch !== 'cardio' && !ex.doseReps) assert.notEqual(r.reps, '3–5', `${tag}: no 3–5 strength reps`);
       if (r.tempo && /X/i.test(r.tempo)) assert.equal(sch, 'heavy', `${tag}: fast lifting only for heavy basics — ${r.tempo}`);
       if (sch === 'ctrl') { assert.equal(r.tempo, null, tag); assert(r.load.startsWith(a.CTRL_LOAD), `${tag}: ${r.load}`); assert(!/взрывно/.test(r.load), tag); }
