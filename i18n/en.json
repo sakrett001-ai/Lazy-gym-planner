@@ -3747,7 +3747,7 @@
  "Этот браузер не открывает сжатые ссылки на план. Обновите браузер — или попросите прислать план файлом.": "This browser can’t open compressed plan links. Update the browser — or ask for the plan as a file.",
  "В ссылке нет планов.": "The link has no plans.",
  "Открыть план в Lazy Gym Planner": "Open the plan in Lazy Gym Planner",
- "Скопировано: текст плана и ссылка на него. По ссылке план откроется сразу — можно вставить в заметки или мессенджер.": "Copied: the plan text and a link to it. The link opens the plan right away — paste it into your notes or a messenger.",
+ "Скопировано: текст плана и ссылка на него. По ссылке план откроется сразу — можно вставить в заметки или мессенджер.": "Copied: the plan text and a link to it. The link opens the plan right away — paste it into your notes or a chat.",
  "В тексте нет ссылки на план. Скопируйте план заново («Скопировать план» или «Выгрузить» → «Скопировать текст»): в конце текста будет ссылка. Или выберите файл .json.": "The text has no plan link. Copy the plan again (“Copy plan” or “Export” → “Copy text”): the link will be at the end of the text. Or choose a .json file.",
  "После вопросов откроется план, который вам прислали: «{name}».": "After these questions, the plan you were sent will open: “{name}”.",
  "темп": "tempo",
