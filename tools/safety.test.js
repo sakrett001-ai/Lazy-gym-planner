@@ -123,4 +123,14 @@ test('empty plan names the real reason: gentle mode and protected joints, not th
   if (!p.items) assert.deepEqual(plain(a.emptyBodyGroups()), ['hams']);
   reset({ groups: ['hams'], place: 'street' });
   assert.equal(a.emptyBodyGroups(), null, 'no protection — not a body reason');
+  /* статодинамика: удержаний и кардио в ней нет, все подвижные упражнения на пресс сгибают или скручивают позвоночник —
+     причина та же (отметка), а не оборудование; формат назван */
+  for (const place of ['gym', 'home', 'street', 'homeband']) {
+    reset({ format: 'static', groups: ['cardio', 'abs'], protect: ['lumbar'], place });
+    assert.equal(a.buildPlan().items, undefined, place);
+    assert.deepEqual(plain(a.emptyBodyGroups()), ['abs'], place);
+    assert.match(m.get('emptyWhyHtml()'), /в статодинамике и при отметках: поясница/, place);
+    reset({ format: 'static', groups: ['cardio', 'abs'], place });
+    assert(a.buildPlan().items, `${place}: without protection the plan has exercises`);
+  }
 });

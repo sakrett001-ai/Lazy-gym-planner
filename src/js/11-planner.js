@@ -1202,14 +1202,16 @@ function renderPlan() { renderPlanView(); if ($('#count-v')) renderCount(); anno
 /* пустой план: настоящая причина (отчёт Елены, п. 10) — бережный режим, а не оборудование, если без него упражнения нашлись бы */
 function emptyBodyGroups(groups = S.groups) {
   const E = effEquip(S.equip), lvl = S.level === 'beg' ? 2 : 3;
-  const here = EX.filter(ex => available(ex, E) && ex.lvl <= lvl && groups.some(g => ex.g === g || (g !== 'cardio' && ex.pri.some(m => MUSCLE_GROUP[m] === g))));
+  /* те же условия формата, что и в подборе (buildPlan): в статодинамике нет удержаний и кардио, в круговой — упражнений на дозу */
+  const here = EX.filter(ex => available(ex, E) && ex.lvl <= lvl && (S.format !== 'static' || staticOk(ex)) && (S.format !== 'circuit' || !ex.doseReps)
+    && groups.some(g => ex.g === g || (g !== 'cardio' && ex.pri.some(m => MUSCLE_GROUP[m] === g))));
   return here.length && !here.some(fitsBody) ? groups.filter(g => here.some(ex => ex.g === g)) : null;
 }
 function emptyWhyHtml() {
   const body = emptyBodyGroups();
   if (body) {
     const prot = typeof protectShown === 'function' ? protectShown() : [];
-    const what = [S.goal === 'gentle' ? 'в бережном режиме' : '', prot.length ? 'при отметках: {list}'.replace('{list}', prot.map(p => p.name.toLowerCase()).join(', ')) : ''].filter(Boolean).join(GROUPS_AND);
+    const what = [S.format === 'static' ? 'в статодинамике' : '', S.goal === 'gentle' ? 'в бережном режиме' : '', prot.length ? 'при отметках: {list}'.replace('{list}', prot.map(p => p.name.toLowerCase()).join(', ')) : ''].filter(Boolean).join(GROUPS_AND);
     const why = 'Для этих мышц ({g}) {what} подходящих упражнений с этим оборудованием нет: все дают нагрузку, которую вы бережёте.'.replace('{g}', body.map(g => GN[g].toLowerCase()).join(', ')).replace('{what}', what);
     return `<div class="empty"><h2>Не из чего собрать тренировку</h2><p>${esc(why)}</p><p>Выберите другие мышцы или другое место; отметки можно поменять в параметрах.</p></div>`;
   }

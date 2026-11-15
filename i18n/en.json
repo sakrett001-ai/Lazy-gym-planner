@@ -3460,6 +3460,7 @@
  "Приложение не заменяет врача. При болезнях сердца, повышенном давлении, после травмы или операции, при беременности — сначала посоветуйтесь с врачом.": "The app does not replace a doctor. With a heart condition, high blood pressure, after an injury or surgery, or during pregnancy, talk to your doctor first.",
  "<p class=\"legend\">Максимум на 1 повтор (1ПМ) — вес, который вы можете поднять только один раз. Темп: усилие — подъём веса, возврат — опускание, в секундах. В поле «Темп» своего плана — четыре числа: опускание, пауза внизу, подъём, пауза вверху; X — быстрый подъём.</p><p class=\"legend legend-med\">": "<p class=\"legend\">One-rep max (1RM) is the weight you can lift only once. Tempo: effort is lifting the weight, return is lowering it, in seconds. In the “Tempo” field of your own plan, use four numbers: lowering, pause at the bottom, lifting, pause at the top; X means lift fast.</p><p class=\"legend legend-med\">",
  "в бережном режиме": "in gentle mode",
+ "в статодинамике": "in static-dynamic format",
  "при отметках: {list}": "with these marked: {list}",
  "Для этих мышц ({g}) {what} подходящих упражнений с этим оборудованием нет: все дают нагрузку, которую вы бережёте.": "For these muscles ({g}) {what}, there are no suitable exercises with this equipment: all of them put load on what you protect.",
  "<div class=\"empty\"><h2>Не из чего собрать тренировку</h2><p>": "<div class=\"empty\"><h2>Nothing to build a workout from</h2><p>",
