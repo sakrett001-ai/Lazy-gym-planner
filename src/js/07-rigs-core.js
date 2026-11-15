@@ -173,7 +173,8 @@ function buildSpatialFigure(anim,opts={}){
   const facingCam=f=>{const a=project([0,0,0]),b=project(f.normal);return b[2]-a[2]>.035;};
   const surfaces=!muscles||!withMuscles?[]:mannequinMuscleSurfaces(R,anim.muscleProfile,{coarse:true}).filter(facingCam);
   if(muscles&&withMuscles)for(const zone of muscleContours(surfaces)){
-   const value=sideValues?.[zone.side]?.[zone.id]??muscles.values[zone.id],fill=muscleColor(value);
+   /* нерабочая сторона (значение 0) — без зоны: кожа, как у мышц вне упражнения (09d-catalog-muscles.js, IDLE_SIDE) */
+   const value=sideValues?.[zone.side]?.[zone.id]??muscles.values[zone.id];if(!(value>0))continue;const fill=muscleColor(value);
    queue('path',{d:closedSpline(zone.points.map(p=>project(p).slice(0,2))),fill,class:'muscle-zone','data-muscle':zone.id,'data-side':zone.side,
     'data-role':(anim.muscleProfile.regions?.[zone.id]||anim.muscleProfile.muscles[zone.id]).role,'data-band':muscleBand(value),
     stroke:fill,'stroke-width':.25,'stroke-linejoin':'round','aria-hidden':'true'},zone.points);

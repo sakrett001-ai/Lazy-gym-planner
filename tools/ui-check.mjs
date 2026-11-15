@@ -122,7 +122,7 @@ await page.close();
   const g = await open(1280);
   await g.click('#motion-atlas'); await g.waitForTimeout(150);
   check(await shown(g, '#mv-gallery') && !(await shown(g, '#mv-detail')), 'кнопка атласа открывает витрину, а не разбор');
-  check(await g.evaluate(() => document.querySelectorAll('.mv-tile').length === EX.length && document.querySelectorAll('.mv-gsec').length === GROUPS.filter(x => EX.some(e => e.g === x.id)).length), 'на витрине все упражнения по группам мышц');
+  check(await g.evaluate(() => document.querySelectorAll('.mv-tile').length === EX.length && document.querySelectorAll('.mv-gsec').length === GALLERY_GROUPS.filter(x => EX.some(e => galleryGroup(e) === x.id)).length && !!document.querySelector('#mv-g-adductors')), 'на витрине все упражнения по группам мышц');
   await g.click('[data-gallery-kind="band"]');
   check(await g.evaluate(() => { const t = [...document.querySelectorAll('.mv-tile')]; return t.length > 0 && t.every(b => workKind(EXI[b.dataset.galleryOpen]) === 'band') && document.querySelector('[data-gallery-kind="band"]').getAttribute('aria-pressed') === 'true'; }), 'фильтр «Резинки» оставляет только упражнения с резинкой');
   await g.click('[data-gallery-kind="all"]');
@@ -1744,11 +1744,13 @@ const fakeBluetooth = () => {
   await push(131); await push(152); await push(149);
   s = await hs();
   check(s.st === 'live' && s.val === '149' && s.unit && /^макс\. за подход 152 · Polar H10 · батарея 64 %$/.test(s.meta), `живой пульс крупно, максимум подхода, батарея (${JSON.stringify(s)})`);
+  check(await h.evaluate(() => $('#wv-hr-warn').hidden && !$('#wv-hr-safe').hidden && /^Нет предупреждения — это ещё не значит, что нагрузка безопасна\./.test($('#wv-hr-safe').textContent)), 'пульс без предупреждения — строка «это ещё не значит, что нагрузка безопасна» и стоп-сигналы рядом с пульсом');
+  check(await shown(h, '#wv-hr-safe') && (await rect(h, '#wv-hr')).r <= 390, 'строка о безопасности видна и не выходит за экран');
   await h.fill('#wv-kg', '60'); await h.fill('#wv-reps', '8'); await h.click('#wv-done');
   s = await hs();
   check(JSON.stringify(s.day?.sets) === '{"squat:0":[149,152]}' && s.day.max === 152 && s.day.t >= 2, `подход: пульс в конце и максимум записаны (${JSON.stringify(s.day)})`);
   check(s.rest === '149' && s.rnote === 'В начале отдыха 149' && await shown(h, '#wv-hr-rest') && await shown(h, '#wv-hr-set'), `отдых: пульс крупно, «в начале отдыха», настройка конца отдыха (${JSON.stringify(s)})`);
-  check(await h.evaluate(() => [...document.querySelectorAll('[data-hr-rest]')].map(b => b.textContent + ':' + b.getAttribute('aria-pressed')).join() === 'Время:true,Пульс:false,Пульс или время:false' && $('.wv-hr-thr').hidden && /не медицинское измерение/.test($('#wv-hr-set').textContent)), 'по умолчанию отдых по времени, порога нет, строка «не медицинское измерение»');
+  check(await h.evaluate(() => [...document.querySelectorAll('[data-hr-rest]')].map(b => b.textContent + ':' + b.getAttribute('aria-pressed')).join() === 'Время:true,Пульс:false,Пульс или время:false' && $('.wv-hr-thr').hidden && /не медицинское измерение/.test($('#wv-hr-set').textContent) && /а не безопасный предел для вас/.test($('#wv-hr-set').textContent) && /боль или давление в груди/.test($('#wv-hr-set').textContent)), 'по умолчанию отдых по времени, порога нет, строки «не медицинское измерение», «не безопасный предел» и стоп-сигналы');
   /* «пульс или время»: порог 110 — отдых кончается раньше плана, когда пульс ниже порога два показания подряд, но не раньше
      минимума: минута или план, если он короче (restFloor, 14b-heart.js; de Salles et al. 2009) */
   await h.click('[data-hr-rest="first"]'); await h.fill('#wv-hr-thr', '110');
@@ -1794,7 +1796,7 @@ const fakeBluetooth = () => {
   check(fin.shown && fin.t === `Пульс за тренировку: средний ${fin.sum.avg}, максимальный 152.` && fin.sum.avg > 100 && fin.sum.avg < 152, `итоги тренировки: средний и максимальный пульс (${JSON.stringify(fin)})`);
   /* отключение — с подтверждением */
   await h.click('#wv-hr-btn'); s = await hs();
-  check(s.st === 'armed' && s.val === 'Отключить?' && await h.evaluate(() => Heart.state().client.state === 'live'), 'первое нажатие по плашке — «Отключить?»');
+  check(s.st === 'armed' && s.val === 'Отключить?' && await h.evaluate(() => Heart.state().client.state === 'live' && $('#wv-hr-safe').hidden), 'первое нажатие по плашке — «Отключить?» (строка о безопасности скрыта)');
   await h.click('#wv-hr-btn'); s = await hs();
   check(s.st === 'off' && s.note === 'Пульсометр отключён.' && s.val === 'Пульс', `второе — отключает (${JSON.stringify(s)})`);
   await h.evaluate(() => { closeWorkout(); S.view = 'journal'; renderSetup(); renderPlan(); });

@@ -33,9 +33,9 @@ test('all 3D poses satisfy declared supports, grips, bars and pads', () => {
   assert.equal(r.stats.mannequinPoses,rigs*101);
   assert(rigs > 171, 'equipment variants are checked too');
   assert.equal(r.stats.contactPoses,contactRigs*101);
-  /* три исходных профиля ригов, пять профилей прицельных упражнений на приводящие и манжету и уступающий акцент
-     скандинавских сгибаний (09b-muscle-profiles.js) */
-  assert.equal(r.stats.muscleProfiles,9);
+  /* три исходных профиля ригов, пять профилей прицельных упражнений на приводящие и манжету, уступающий акцент
+     скандинавских сгибаний и махи гирей двумя и одной рукой по ЭМГ (4.110; 09b-muscle-profiles.js) */
+  assert.equal(r.stats.muscleProfiles,11);
   /* области мышц на манекене — у всех 171 упражнений, каждый десятый кадр */
   assert.equal(r.stats.musclePoses,171*11);
   assert.equal(r.stats.cameraChecks,171*5);
