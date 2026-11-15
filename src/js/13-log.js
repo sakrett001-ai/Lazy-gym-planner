@@ -1349,9 +1349,10 @@ function readSetInput(kgRaw, repsRaw, ex) {
   if (reps === null || reps <= 0 || (!ex.kind && !Number.isInteger(reps))) return {bad:'reps', msg:ex.kind ? 'Укажите фактический результат числом больше нуля.' : 'Укажите целое количество выполненных повторов.'};
   return {kg:kg == null ? null : fromU(kg), reps:Math.round(reps * 10) / 10};
 }
-/* значения полей строки (пустое — подсказка в поле, если в ней число); bad — поле с ошибкой, msg — что не так */
+/* значения полей строки (пустое — подсказка в поле, если в ней число; у диапазона «8–12» — нижняя граница, как и раньше:
+   ✓ без ввода записывает её); bad — поле с ошибкой, msg — что не так */
 function readFields({kgIn, rIn}, ex) {
-  const ph = el => el && /\d/.test(el.placeholder || '') ? el.placeholder : '';
+  const ph = el => { const t = el && el.placeholder || '', m = t.match(/^\s*(\d+)\s*[–-]\s*\d+\s*$/); return m ? m[1] : /\d/.test(t) ? t : ''; };
   const r = readSetInput(kgIn ? (kgIn.value !== '' ? kgIn.value : ph(kgIn)) : '', rIn.value !== '' ? rIn.value : ph(rIn), ex);
   return r.bad ? {bad:r.bad === 'kg' ? kgIn : rIn, msg:r.msg} : r;
 }

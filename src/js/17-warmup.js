@@ -39,7 +39,9 @@ function implementOf(it) {
 /* раскладка блинов на одну сторону грифа: target — вес из журнала (кг), раскладка — в блинах выбранных единиц;
    возвращает {side:[блины в единицах показа], total, diff} — total и diff в килограммах */
 function plateSplit(target, g = gearU()) {
-  const t = Math.round(toU(target) * 1000) / 1000, bar = g.bar; /* фунты из килограммов — до тысячных: 225 остаётся 225 */
+  /* фунты из килограммов — до сотых: 225 остаётся 225. Вес своего плана хранится до граммов (cleanKg), 225 фнт — 102,058 кг,
+     а это 224,9993 фнт: до тысячных выходило «= 220, не хватает 5» (4.108) */
+  const t = Math.round(toU(target) * 100) / 100, bar = g.bar;
   let perSide = (t - bar) / 2, side = [];
   if (perSide <= 1e-6) return {side, total:fromU(bar), diff:fromU(t - bar)};
   for (const p of g.plates) while (perSide >= p - 1e-6) { side.push(p); perSide -= p; }
@@ -58,19 +60,23 @@ function roundToGear(target, impl, it) {
   if (impl === 'kb') return at(g.kbStep);
   return at(g.step);
 }
-/* Вес разминки на штанге — ближайший к доле рабочего, гриф и блины не мельче 2,5 кг (5 фнт): на разминке шаг 5 кг (10 фнт),
-   без дисков 1,25 (Руслан 12: «137,5 и 172,5 — с дисками 1,25»; Mike 13: «так никто не грузит»). Блины — из набора
-   «Гриф и блины»; при равном расстоянии — легче */
+/* Вес разминки на штанге — около доли рабочего, гриф и блины не мельче 2,5 кг (5 фнт): на разминке шаг 5 кг (10 фнт), без
+   дисков 1,25 (Руслан 12: «137,5 и 172,5 — с дисками 1,25»). Из весов в пределах ±10 % от доли — тот, что собирается
+   наименьшим числом блинов на сторону, при равенстве — ближайший, потом — легче (Mike 13: «45 → 95 → 135 → 185 → 225,
+   целые блины, как в американском зале»; к 225 фнт теперь 45 → 115 → 155 → 185). Блины — из набора «Гриф и блины» */
 function warmBar(target, g = gearU()) {
   const min = isLb() ? 5 : 2.5, pl = g.plates.filter(p => p >= min - 1e-9);
   const t = toU(target), per = (t - g.bar) / 2;
   if (!pl.length) return plateSplit(target, g).total;
   if (per <= 0) return fromU(g.bar);
-  const q = .25, P = [...new Set(pl.map(p => Math.round(p / q)))], want = per / q, lim = Math.ceil(want) + Math.max(...P), ok = new Uint8Array(lim + 1);
-  ok[0] = 1;
-  for (let v = 0; v <= lim; v++) if (ok[v]) for (const p of P) if (v + p <= lim) ok[v + p] = 1;
-  let best = 0;
-  for (let v = 1; v <= lim; v++) if (ok[v] && Math.abs(v - want) < Math.abs(best - want) - 1e-9) best = v;
+  const q = .25, P = [...new Set(pl.map(p => Math.round(p / q)))], want = per / q, lim = Math.ceil(want * 1.3 + 2 * t * .1 / q) + Math.max(...P);
+  const cnt = new Array(lim + 1).fill(Infinity); cnt[0] = 0;
+  for (let v = 0; v <= lim; v++) if (cnt[v] < Infinity) for (const p of P) if (v + p <= lim && cnt[v] + 1 < cnt[v + p]) cnt[v + p] = cnt[v] + 1;
+  const lo = (t * .9 - g.bar) / 2 / q, hi = (t * 1.1 - g.bar) / 2 / q;
+  let best = -1;
+  const better = (v, b) => b < 0 || cnt[v] < cnt[b] || (cnt[v] === cnt[b] && (Math.abs(v - want) < Math.abs(b - want) - 1e-9 || (Math.abs(Math.abs(v - want) - Math.abs(b - want)) < 1e-9 && v < b)));
+  for (let v = Math.max(1, Math.ceil(lo - 1e-9)); v <= Math.min(lim, Math.floor(hi + 1e-9)); v++) if (cnt[v] < Infinity && better(v, best)) best = v;
+  if (best < 0) { best = 0; for (let v = 1; v <= lim; v++) if (cnt[v] < Infinity && Math.abs(v - want) < Math.abs(best - want) - 1e-9) best = v; }
   return fromU(g.bar + 2 * best * q);
 }
 /* Становая — с пола: гриф на правильной высоте только с блинами стандартного диаметра (Rippetoe M., Starting Strength,

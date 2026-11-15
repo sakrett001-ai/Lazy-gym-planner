@@ -98,7 +98,8 @@ test('one validation for the card table and the workout screen: −20, 0 on a ba
   assert.deepEqual(r('', '45,5', 'plank'), {kg:null, reps:45.5}, 'seconds may be fractional');
   /* таблица карточки: подсказка в поле — только если в ней число («—» у доп. веса — пусто) */
   assert.deepEqual(a.json(`(r=>r.bad?{bad:true,msg:r.msg}:r)(readFields({kgIn:{value:'',placeholder:'—'},rIn:{value:'',placeholder:'8'}},EXI.pullup))`), {kg:null, reps:8});
-  assert.deepEqual(a.json(`(r=>r.bad?{bad:true,msg:r.msg}:r)(readFields({kgIn:{value:'',placeholder:'200'},rIn:{value:'',placeholder:'8–12'}},EXI.squat))`), {bad:true, msg:'Укажите целое количество выполненных повторов.'}, 'a range is not a number of reps');
+  assert.deepEqual(a.json(`(r=>r.bad?{bad:true,msg:r.msg}:r)(readFields({kgIn:{value:'',placeholder:'200'},rIn:{value:'',placeholder:'8–12'}},EXI.squat))`), {kg:200, reps:8}, 'a range hint — its lower end, as before');
+  assert.deepEqual(a.json(`(r=>r.bad?{bad:true,msg:r.msg}:r)(readFields({kgIn:{value:'',placeholder:'200'},rIn:{value:'2,5',placeholder:'8'}},EXI.squat))`), {bad:true, msg:'Укажите целое количество выполненных повторов.'}, 'typed reps are checked');
 });
 test('ask before logging: 300 instead of 200 (last time 202.5), 1000 reps, 100 reps with a weight; ordinary steps pass', () => {
   const a = loadApp({lang:'ru'});
@@ -241,6 +242,9 @@ test('warm-up: the deadlift starts from the floor with standard plates (60 kg / 
   a.get('gearU().plates=[20,10,5]');
   assert(a.json(`warmupPlan(140, 'bb', '3', ${item('bbbench', ['bb', 'bench'])}).map(s=>s.kg)`).every(v => v % 10 === 0));
   const en = loadApp({lang:'en', nav:['en-US']});
+  /* вес своего плана в фунтах хранится до граммов: 225 фнт — 102,058 кг; рабочий вес собирается целиком, без «не хватает 5» */
+  assert.deepEqual(en.json(`(s=>[s.side,fmtKg(s.total)])(plateSplit(Math.round(parseKg('225')*1000)/1000))`), [[45, 45], '225']);
+  assert.doesNotMatch(en.get(`warmupHtml(${item('squat', ['bb', 'rack'])}, Math.round(parseKg('225')*1000)/1000)`), /short by/);
   const lb = en.json(`warmupPlan(parseKg('315'), 'bb', '5', ${item('deadlift', ['bb'])}).map(s=>fmtKg(s.kg))`);
   assert.equal(lb[0], '135'); assert(lb.every(v => Number(v) % 10 === 5), 'bar 45 + pairs of plates of 5 lb and more: ' + lb);
 });

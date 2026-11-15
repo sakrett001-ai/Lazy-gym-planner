@@ -728,7 +728,8 @@ await page.close();
   await seedLog(j);
   check(await shown(j, '#ml') && await j.evaluate(() => document.querySelectorAll('#ml .ml-list li').length === 11), 'журнал с записями: панель загрузки мышц видна, 11 групп');
   check(await st(j, 'back') === 'loaded' && await st(j, 'biceps') === 'recovering' && await st(j, 'chest') === 'ready'
-    && await j.evaluate(() => /вчера, 4 подхода/.test(document.querySelector('#ml [data-lg="back"] .ml-st').textContent)), 'статусы: спина вчера — нагружена, бицепс позавчера — восстанавливается, грудь — готова');
+    /* 4.108: подходы того дня — тем же счётом, что полоса и план (целевая группа — целиком, остальные — половина), а не основные целиком */
+    && await j.evaluate(() => { const L = muscleLoad().back.last, n = fmtNum(Math.round(L.v * 2) / 2); return new RegExp(`вчера, ${n.replace('.', '\\.')} подход`).test(document.querySelector('#ml [data-lg="back"] .ml-st').textContent) && L.v >= 4; }), 'статусы: спина вчера — нагружена, бицепс позавчера — восстанавливается, грудь — готова');
   check(await noSide(j), 'журнал с панелью загрузки (390 px) без прокрутки вбок');
   await j.click('[data-logpick="journal"]'); await j.waitForTimeout(100);
   const built = await j.evaluate(() => ({ view: S.view, mode: S.mode, byLog: !!plan.byLog, groups: S.groups.slice(), lines: document.querySelectorAll('.lp li').length,
@@ -1854,12 +1855,12 @@ const fakeBluetooth = () => {
   const wv = await p.evaluate(() => ({ cap: $('#wv-weight-caption').textContent, hidden: $('#wv-weight-label').hidden }));
   check(wv.hidden || /lb/.test(wv.cap), `экран тренировки: «${wv.cap}»`);
   await p.evaluate(() => closeWorkout());
-  /* журнал: переключатель единиц, 135 lb; кг — и запись та же, 61,23 */
+  /* журнал: переключатель единиц, 135 lb; кг — вес шагом снаряда, а не «61,23», и строкой — вписанное: 135 фунтов (4.108, Mike 1) */
   await p.evaluate(() => { S.view = 'journal'; renderSetup(); renderPlan(); });
   const j = await p.evaluate(() => ({ on: document.querySelector('[data-units="lb"]')?.getAttribute('aria-pressed'), text: document.querySelector('.j-list')?.textContent || '' }));
   await p.click('[data-units="kg"]');
   const jk = await p.evaluate(() => ({ units: S.units, text: document.querySelector('.j-list')?.textContent || '' }));
-  check(j.on === 'true' && /135\s*lb/.test(j.text) && jk.units === 'kg' && /61\.23\s*kg/.test(jk.text), `журнал: единицы lb → kg (${j.text.slice(0, 60)} → ${jk.text.slice(0, 60)})`);
+  check(j.on === 'true' && /135\s*lb/.test(j.text) && jk.units === 'kg' && !/61\.23/.test(jk.text) && /logged in pounds: 135×8/.test(jk.text), `журнал: единицы lb → kg (${j.text.slice(0, 60)} → ${jk.text.slice(0, 60)})`);
   await p.click('[data-units="lb"]');
   /* переключатель RU: выбор запоминается до перехода, корень больше не уводит на английский */
   await p.evaluate(() => { S.view = 'plan'; regen(); });
