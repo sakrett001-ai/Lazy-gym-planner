@@ -1026,8 +1026,9 @@ function stressLead(ex) {
   const prot = typeof protectShown === 'function' ? protectShown() : [];
   if (!prot.length) return STRESS_LEAD;
   const hits = protectHits(ex), strict = strictHit(ex);
-  if (hits.length || strict) return `${'Красная метка на манекене — момент пиковой нагрузки на сустав, связки или сухожилие.'} ${hits.length ? `Вы бережёте ${hitsText(hits)}: это упражнение их нагружает.` : `${STRICT[strict].why} — ${PROTECT_BY[strict].name.toLowerCase()}.`} В план оно не подбирается, в своём плане его заменит похожее.`;
-  return `${'Красная метка на манекене — момент пиковой нагрузки на сустав, связки или сухожилие.'} ${'То, что вы бережёте'} (${hitsText(prot)}), ${'здесь пиково не нагружено; метки — на других суставах, держите технику.'}`;
+  const head = 'Красная метка на манекене — момент пиковой нагрузки на сустав, связки или сухожилие.';
+  if (hits.length || strict) return head + ' ' + (hits.length ? 'Вы бережёте {what}: это упражнение их нагружает.'.replace('{what}', hitsText(hits)) : upFirst(`${STRICT[strict].why} — ${PROTECT_BY[strict].name.toLowerCase()}.`)) + ' ' + 'В план оно не подбирается, в своём плане его заменит похожее.';
+  return head + ' ' + 'То, что вы бережёте ({what}), здесь пиково не нагружено; метки — на других суставах, держите технику.'.replace('{what}', hitsText(prot));
 }
 function jointsLine(ex, idx) {
   const zones = typeof stressZones === 'function' ? stressZones(ex) : [];
@@ -1208,8 +1209,9 @@ function emptyWhyHtml() {
   const body = emptyBodyGroups();
   if (body) {
     const prot = typeof protectShown === 'function' ? protectShown() : [];
-    const what = [S.goal === 'gentle' ? 'в бережном режиме' : '', prot.length ? `при отметках «${prot.map(p => p.name).join('», «')}»` : ''].filter(Boolean).join(' и ');
-    return `<div class="empty"><h2>Не из чего собрать тренировку</h2><p>${esc(`Для этих мышц (${body.map(g => GN[g].toLowerCase()).join(', ')}) ${what} подходящих упражнений с этим оборудованием нет: все дают нагрузку, которую вы бережёте.`)}</p><p>Выберите другие мышцы или другое место; отметки можно поменять в параметрах.</p></div>`;
+    const what = [S.goal === 'gentle' ? 'в бережном режиме' : '', prot.length ? 'при отметках: {list}'.replace('{list}', prot.map(p => p.name.toLowerCase()).join(', ')) : ''].filter(Boolean).join(GROUPS_AND);
+    const why = 'Для этих мышц ({g}) {what} подходящих упражнений с этим оборудованием нет: все дают нагрузку, которую вы бережёте.'.replace('{g}', body.map(g => GN[g].toLowerCase()).join(', ')).replace('{what}', what);
+    return `<div class="empty"><h2>Не из чего собрать тренировку</h2><p>${esc(why)}</p><p>Выберите другие мышцы или другое место; отметки можно поменять в параметрах.</p></div>`;
   }
   return `<div class="empty"><h2>Не из чего собрать тренировку</h2><p>Для выбранных мышц нет упражнений с этим оборудованием и уровнем. Добавьте оборудование или выберите другие группы мышц.</p></div>`;
 }
@@ -1308,7 +1310,7 @@ function renderProgram() {
   <div class="day-head"><h2>${WD_FULL[day.wd]} — ${esc(day.name)}</h2>
     <p>${(plan.groups || DAY_T[day.tid].g).map(g => GN[g].toLowerCase()).join(', ')}${plan.items ? ` · ≈${plan.minutes} мин · ${plan.totalSets} ${plural(plan.totalSets, 'подход', 'подхода', 'подходов')}` : ''}</p></div>`;
   const bodyDay = !plan.items && emptyBodyGroups(plan.groups || DAY_T[day.tid].g);
-  if (!plan.items) html += bodyDay ? `<div class="empty"><h2>Для этого дня нет упражнений</h2><p>${esc(`Для этих мышц (${bodyDay.map(g => GN[g].toLowerCase()).join(', ')}) в бережном режиме подходящих упражнений с этим оборудованием нет: все дают нагрузку, которую вы бережёте.`)}</p><p>Выберите другой сплит или место; отметки можно поменять в параметрах.</p></div>${gentleHtml()}`
+  if (!plan.items) html += bodyDay ? `<div class="empty"><h2>Для этого дня нет упражнений</h2><p>${esc('Для этих мышц ({g}) {what} подходящих упражнений с этим оборудованием нет: все дают нагрузку, которую вы бережёте.'.replace('{g}', bodyDay.map(g => GN[g].toLowerCase()).join(', ')).replace('{what}', 'в бережном режиме'))}</p><p>Выберите другой сплит или место; отметки можно поменять в параметрах.</p></div>${gentleHtml()}`
     : `<div class="empty"><h2>Для этого дня нет упражнений</h2><p>С выбранным оборудованием нечем нагрузить эти мышцы. Добавьте оборудование или выберите другой сплит.</p></div>`;
   else html += autoregHtml() + healthHtml() + gentleHtml() + warnHtml(plan) + blocksHtml(plan);
   html += LEGEND;

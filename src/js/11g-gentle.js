@@ -155,7 +155,7 @@ function gentleOk(ex) { return S.goal !== 'gentle' || (ex.lvl <= 2 && !GENTLE_SK
    человек травмирует колено по нашей рекомендации». Гоблет-присед → присед без веса снимает лишь гантель, сгиб остаётся
    тем же (stressKneeDepth); подходят меньший сгиб или упражнения без опоры на стопы (мостик, сгибания ног) */
 function kneeDeepBlocked(ex) { return ensureProtect(S).includes('knees') && typeof stressKneeDeep === 'function' && stressKneeDeep(ex); }
-function fitsBody(ex) { return gentleOk(ex) && jointOk(ex) && !kneeDeepBlocked(ex) && !painOff(ex); }
+function fitsBody(ex) { return gentleOk(ex) && jointOk(ex) && !kneeDeepBlocked(ex) && !painOff(ex) && (typeof healthOk !== 'function' || healthOk(ex)); }
 /* замена (в своём плане, в программе другого места, кнопкой «Заменить») — по тем же правилам, что подбор */
 function swapFits(ex) { return fitsBody(ex); }
 const joinNames = list => list.length > 1 ? list.slice(0, -1).join(', ') + ' и ' + list[list.length - 1] : list[0] || '';
@@ -172,6 +172,7 @@ function unfitWhy(ex) {
   if (strict) return `${STRICT[strict].why} — ${PROTECT_BY[strict].name.toLowerCase()}`;
   if (kneeDeepBlocked(ex)) return 'глубокий сгиб колена';
   if (painOff(ex)) return 'вы отметили «больно»';
+  if (typeof healthOk === 'function' && !healthOk(ex)) return 'положение вниз головой';
   if (!gentleOk(ex)) return ex.lvl > 2 ? 'сложный вариант' : HEAVY_SPINE.has(ex.id) ? 'тяжёлая штанга на спину и поясницу' : 'ударная или рывковая нагрузка';
   return '';
 }

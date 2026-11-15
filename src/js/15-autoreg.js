@@ -63,8 +63,9 @@ function layoffInfo() {
 function layoffCheck() {
   const L = layoffInfo(); if (!L) return null;
   const long = L.gap >= LAYOFF_STEPS[LAYOFF_STEPS.length - 1].from;
-  return {kind:'layoff', gap:L.gap, pct:L.pct, text:`Последняя запись ${fmtDay(L.last, true)}, перерыв ${L.gap} ${plural(L.gap, 'день', 'дня', 'дней')}. Первую тренировку проведите на весах на ${L.pct}% ниже прежних — они уже подставлены в карточки и на экран тренировки; дальше возвращайтесь по правилу прибавок.`
-    + (long ? ' После полугода сила могла вернуться к той, что была до тренировок: если и этот вес тяжёл, подберите его заново, как в первый раз.' : '')};
+  const text = 'Последняя запись {d}, перерыв {g}. Первую тренировку проведите на весах на {p}% ниже прежних — они уже подставлены в карточки и на экран тренировки; дальше возвращайтесь по правилу прибавок.'
+    .replace('{d}', fmtDay(L.last, true)).replace('{g}', `${L.gap} ${plural(L.gap, 'день', 'дня', 'дней')}`).replace('{p}', L.pct);
+  return {kind:'layoff', gap:L.gap, pct:L.pct, text:text + (long ? ' ' + 'После полугода сила могла вернуться к той, что была до тренировок: если и этот вес тяжёл, подберите его заново, как в первый раз.' : '')};
 }
 function autoreg() {
   if (!plan || !plan.items) return [];

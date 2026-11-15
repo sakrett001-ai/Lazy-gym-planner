@@ -62,6 +62,12 @@ function breathCaveat(ex) {
   return down ? BREATH_MED + ' ' + HEAD_DOWN_MED : BREATH_MED;
 }
 
+/* При отмеченных давлении или сердце, боли в груди, головокружениях и беременности упражнения вниз головой не подбираются
+   (давление в глазу в положении вниз головой — с 17 до 28–29 мм рт. ст., Jasien et al. 2015; при головокружении — риск
+   упасть, вставая): в подборе, в заменах и в своём плане — как с отметками «Что беречь?» */
+const HEALTH_NO_HEAD_DOWN = ['heart', 'chest', 'dizzy', 'pregnant'];
+function healthOk(ex) { return !(ensureHealth(S).some(id => HEALTH_NO_HEAD_DOWN.includes(id)) && headDown(ex)); }
+
 /* ---------- плашка в плане при отмеченном здоровье ---------- */
 const HEALTH_TIPS = {
   pregnant:'Если лёжа на спине становится нехорошо, выполняйте упражнение сидя или на боку.',

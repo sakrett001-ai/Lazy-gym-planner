@@ -49,7 +49,7 @@ function galleryAddBtn(id, name) {
 /* название на плитке: с инвентарём этого места, а если здесь упражнения нет — с полным инвентарём */
 const galleryTileName = (ex, E = effEquip(S.equip), all = effEquip(EQUIP.map(e => e.id))) => exName(ex, available(ex, E) ? E : all);
 /* бережный режим: «нагружает колени — в плане будет замена», как во вкладке «Мышцы» и в «Добавить упражнение» (Елена, п. 5) */
-function galleryUnfit(ex) { const why = unfitWhy(ex); return why ? `<span class="mv-tunfit unfit">${esc(why)} — в плане будет замена</span>` : ''; }
+function galleryUnfit(ex) { const why = unfitWhy(ex); return why ? `<span class="mv-tunfit unfit">${esc('{why} — в плане будет замена'.replace('{why}', why))}</span>` : ''; }
 function galleryTile(ex, E, all) {
   const here = available(ex, E), name = galleryTileName(ex, E, all), fav = isFav(ex.id);
   const sub = here ? equipLine(ex, E) : `Нет в месте «${placeOf().name}», нужно: ${equipLine(ex, all).toLowerCase()}`;

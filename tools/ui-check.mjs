@@ -572,6 +572,18 @@ await page.close();
   check(sk.cur !== skipFrom && /^Пропущено: /.test(sk.line) && sk.focus === 'wv-unskip' && /· пропущено$/.test(sk.opt) && !sk.log && sk.prog === '2 из 6 подходов', `«Пропустить»: дальше следующее, «Пропущено: … Вернуть», в журнале ничего (${JSON.stringify(sk)})`);
   await f.click('#wv-unskip');
   check(await f.evaluate(id => workout.queue[workout.index].it.ex.id === id && !workout.skipped.length && $('#wv-progress-label').textContent === '2 из 8 подходов', skipFrom), '«Вернуть»: пропущенное снова в тренировке');
+  /* двойное быстрое «Пропустить» (отчёт Артёма п. 4) — пропущено одно упражнение, а не два */
+  await f.evaluate(() => { workout.skipAt = 0; }); await f.dblclick('#wv-skip');
+  const dbl = await f.evaluate(() => ({ n: workout.skipped.length, pain: !$('#wv-pain').hidden }));
+  check(dbl.n === 1 && dbl.pain, `двойное «Пропустить» — одно упражнение, рядом «Больно» (${JSON.stringify(dbl)})`);
+  /* «Больно» → «Убрать из плана»: пометка в журнале дня, в подбор вернётся только из параметров (после закрытия тренировки) */
+  await f.click('#wv-pain');
+  const pb = await f.evaluate(() => ({ open: !$('#wv-pain-box').hidden, focus: document.activeElement.id }));
+  check(pb.open && pb.focus === 'wv-pain-swap', `«Больно»: выбор «Заменить» / «Убрать из плана» (${JSON.stringify(pb)})`);
+  await f.click('#wv-pain-off');
+  const po = await f.evaluate(id => ({ pend: S.pain.pend.includes(id), log: S.pain.log.some(x => x.id === id && x.d === todayKey() && x.how === 'removed'), status: $('#wv-save-status').textContent }), skipFrom);
+  check(po.pend && po.log && /^Убрано из плана: /.test(po.status), `«Убрать из плана»: отмечено, пометка в журнале (${JSON.stringify(po)})`);
+  await f.evaluate(id => { S.pain = { off: [], log: [], pend: [] }; saveSettings(); workoutUnskip(id); }, skipFrom);
   /* «Заменить»: тот же список, что в карточке плана; выбор меняет упражнение в плане и в тренировке, записанные подходы остаются */
   await f.evaluate(() => workoutShow(0));
   await f.click('#wv-swap');

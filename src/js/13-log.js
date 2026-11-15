@@ -247,8 +247,9 @@ function suggestBase(it) {
     /* после перерыва — и вес по плану ниже, на то же число (layoffInfo, 15-autoreg.js); противовес — не трогаем */
     const lay = past.length && lt === 'kg' && typeof layoffInfo === 'function' ? layoffInfo() : null;
     if (lay) {
-      res.tone = 'deload'; res.layoff = true; res.kgs = it.rx.kgPlan.map(v => roundTo(v * (1 - lay.pct / 100), step)); res.kg = res.kgs[0];
-      res.text = `${'После перерыва'} ${lay.gap} ${plural(lay.gap, 'день', 'дня', 'дней')}: ${planKgText(res.kgs)} ${wUnit()} ${'вместо'} ${planKgText(it.rx.kgPlan)} ${'по плану'} (${'на'} ${lay.pct}% ${'меньше'}), ${'не до предела.'}`;
+      const fine = isLb() ? 5 * LB_KG : (it.eqIds || []).includes('kb') ? 4 : (it.eqIds || []).includes('db') ? 2 : 2.5;
+      res.tone = 'deload'; res.layoff = true; res.kgs = it.rx.kgPlan.map(v => roundTo(v * (1 - lay.pct / 100), fine)); res.kg = res.kgs[0];
+      res.text = 'После перерыва в {g}: {kg} вместо {was} по плану (примерно на {p}% меньше), не до предела.'.replace(/\{(\w+)\}/g, (_, k) => ({g:`${lay.gap} ${plural(lay.gap, 'день', 'дня', 'дней')}`, kg:planKgText(res.kgs) + ' ' + wUnit(), was:planKgText(it.rx.kgPlan), p:lay.pct})[k]);
     }
     return res;
   }
@@ -297,20 +298,24 @@ function suggestBase(it) {
      у пирамиды — каждый подход; у противовеса — больше; без веса — повторы по нижней границе, не до предела */
   const lay = typeof layoffInfo === 'function' ? layoffInfo() : null;
   if (lay && !ex.kind) {
+    /* шаг округления — мельче шага прибавки (у жима ногами прибавка 10 кг, а сбросить на 10 % от 60 — до 55): блины 2,5 кг
+       (гантели 2, гири 4; в фунтах — 5) — тогда число на экране близко к проценту шкалы */
+    const ids = it.eqIds || [], fine = isLb() ? 5 * LB_KG : ids.includes('kb') ? 4 : ids.includes('db') ? 2 : 2.5;
     const f = 1 - lay.pct / 100, pk = sets.map(x => x[0]), mixed = (lt === 'kg' || lt === 'extra') && pk.length > 1 && pk.every(v => v > 0) && !pk.every(v => v === pk[0]);
-    const gap = `${'После перерыва'} ${lay.gap} ${plural(lay.gap, 'день', 'дня', 'дней')}`;
+    /* фразы с {g} (перерыв), {kg}, {was}, {p} переводятся целиком: в английском слова стоят в другом порядке */
+    const say = (t, o) => t.replace(/\{(\w+)\}/g, (_, k) => o[k] ?? ''), g = `${lay.gap} ${plural(lay.gap, 'день', 'дня', 'дней')}`, u = ' ' + wUnit();
     res.tone = 'deload'; res.reps = sets.map((x, i) => tgt(i)[0]);
     if (lt === 'kg' && work) {
-      if (mixed) { res.kgs = pk.map(v => roundTo(v * f, step)); res.kg = res.kgs[0]; res.text = `${gap}: ${'веса на'} ${lay.pct}% ${'меньше прошлых —'} ${res.kgs.map(fmtKg).join(' / ')} ${wUnit()}, ${'не до предела.'}`; }
-      else { res.kg = roundTo(work * f, step); res.text = `${gap}: ${fmtKg(res.kg)} ${wUnit()} ${'вместо'} ${fmtKg(work)} (${'на'} ${lay.pct}% ${'меньше'}), ${'не до предела.'}`; }
+      if (mixed) { res.kgs = pk.map(v => roundTo(v * f, fine)); res.kg = res.kgs[0]; res.text = say('После перерыва в {g}: веса примерно на {p}% меньше прошлых — {kg}, не до предела.', {g, p:lay.pct, kg:res.kgs.map(fmtKg).join(' / ') + u}); }
+      else { res.kg = roundTo(work * f, fine); res.text = say('После перерыва в {g}: {kg} вместо {was} (примерно на {p}% меньше), не до предела.', {g, p:lay.pct, kg:fmtKg(res.kg) + u, was:fmtKg(work)}); }
       return res;
     }
     if (lt === 'assist' && work) {
-      res.kg = Math.max((Math.floor(work / step) + 1) * step, roundTo(work / f, step));
-      res.text = `${gap}: ${'противовес'} ${fmtKg(res.kg)} ${wUnit()} ${'вместо'} ${fmtKg(work)}, ${'не до предела.'}`;
+      res.kg = Math.max((Math.floor(work / step) + 1) * step, roundTo(work / f, fine));
+      res.text = say('После перерыва в {g}: противовес {kg} вместо {was}, не до предела.', {g, kg:fmtKg(res.kg) + u, was:fmtKg(work)});
       return res;
     }
-    res.kg = work; res.text = `${gap}: ${'повторы по нижней границе плана, не до предела. В прошлый раз:'} ${prevList}.`;
+    res.kg = work; res.text = say('После перерыва в {g}: повторы по нижней границе плана, не до предела. В прошлый раз: {prev}.', {g, prev:prevList});
     return res;
   }
   /* пирамида или сброс (веса подходов в прошлый раз разные): совет — по верхнему подходу, подсказки — по каждому подходу */

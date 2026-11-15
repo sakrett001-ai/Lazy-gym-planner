@@ -316,7 +316,7 @@ function cpPickHtml(id, boxId) {
   }).join('');
   /* бережный режим: предупредить до добавления (отчёт Елены, п. 5) — в своём плане его заменит похожее или оно не войдёт */
   const why = EXI[id] ? unfitWhy(EXI[id]) : '';
-  const warn = why ? `<p class="cp-pick-warn unfit" role="note">${esc(`${upFirst(why)}: в своём плане его заменит похожее упражнение без этой нагрузки, а если замены нет — оно не войдёт в план.`)}</p>` : '';
+  const warn = why ? `<p class="cp-pick-warn unfit" role="note">${esc('{why}: в своём плане его заменит похожее упражнение без этой нагрузки, а если замены нет — оно не войдёт в план.'.replace('{why}', upFirst(why)))}</p>` : '';
   return `<p class="cp-pick-h" id="${boxId}-h">В какой план добавить</p>${warn}${rows}<button type="button" class="place place-add cp-pick-i" data-cp-to="">+ Новый план</button>`;
 }
 /* панель под карточкой своего плана: порядок, подходы, повторы, отдых */

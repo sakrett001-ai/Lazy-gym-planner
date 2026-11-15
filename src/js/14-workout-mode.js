@@ -444,7 +444,7 @@ function painBoxToggle(open){
 function workoutPainOff(){
   const id=$('#wv-pain-box').dataset.id;if(!id||!EXI[id])return;
   painMark(id,'removed',todayKey(),null,true);painBoxToggle(false);$('#wv-pain').hidden=true;
-  $('#wv-save-status').textContent=`${'Убрано из плана:'} ${exNameHere(EXI[id])}. ${'Само оно не вернётся; вернуть — в параметрах, «Беречь суставы».'}`;
+  $('#wv-save-status').textContent='Убрано из плана: {name}. Само оно не вернётся; вернуть — в параметрах, «Беречь суставы».'.replace('{name}',exNameHere(EXI[id]));
   $('#wv-skip').focus();
 }
 function workoutPainSwap(){
