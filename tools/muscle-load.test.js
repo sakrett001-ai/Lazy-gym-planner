@@ -162,7 +162,8 @@ test('пустой журнал и давний перерыв: все гото�
 test('всё нагружено — тренировка не собирается, параметры не меняются', () => {
   const a = app(), t = a.todayKey();
   a.LOG.data = {};
-  for (const id of ['bbbench', 'latpull', 'ohp', 'bbcurl', 'pushdown', 'wristcurl', 'crunch', 'hipthrust', 'legext', 'legcurl', 'calfraise']) a.LOG.data[id] = [{ d: t, s: sets(3) }];
+  /* сведение ног — для группы «Приводящие» (своя группа с 4.109): без него она осталась бы «готова» */
+  for (const id of ['bbbench', 'latpull', 'ohp', 'bbcurl', 'pushdown', 'wristcurl', 'crunch', 'hipthrust', 'legext', 'adduction', 'legcurl', 'calfraise']) a.LOG.data[id] = [{ d: t, s: sets(3) }];
   assert(Object.values(a.muscleLoad()).every(x => x.st === 'loaded'));
   const before = plain(a.S);
   assert.equal(a.applyLogPick(), null);

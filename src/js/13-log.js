@@ -10,7 +10,7 @@ const LOG_KEY = 'podhod.log.v1';
 /* foreign — записи упражнений, которых нет в этой версии: хранятся и уходят в копию, не показываются (13a-sets.js: checkLog) */
 const LOG = {mode:'connecting', data:{}, foreign:{}, col:null, pending:{}, writing:{}, again:{}, timers:{}, err:'', dl:null, canExport:false, undo:null};
 const WEIGHTED = new Set(['db', 'bb', 'kb', 'cable', 'smith', 'legpress', 'legext', 'legcurl', 'pecdeck', 'hack', 'chestpress', 'shoulderpress', 'leverrow', 'tbar', 'abductor', 'calfseat', 'calfstand']);
-const LOWER_G = new Set(['quads', 'hams', 'glutes', 'calves']);
+const LOWER_G = new Set(['quads', 'adductors', 'hams', 'glutes', 'calves']);
 const MACHINE = new Set(['cable', 'smith', 'legext', 'legcurl', 'pecdeck', 'chestpress', 'shoulderpress', 'leverrow', 'abductor', 'calfseat', 'calfstand', 'gravitron', 'hack', 'tbar']);
 const MONTHS = ['янв', 'фев', 'мар', 'апр', 'мая', 'июн', 'июл', 'авг', 'сен', 'окт', 'ноя', 'дек'];
 

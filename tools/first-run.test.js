@@ -14,7 +14,9 @@ function app(storage) {
   a.m = m;
   return a;
 }
-const FULL = ['chest', 'back', 'shoulders', 'quads', 'hams', 'glutes', 'abs'];
+/* 4.109: «Всё тело» — с группой «Приводящие» (решение владельца 15.11.2026: приводящие — своя группа плана, в заготовках
+   «Ноги» и «Всё тело» они есть, как раньше были внутри квадрицепса) */
+const FULL = ['chest', 'back', 'shoulders', 'quads', 'adductors', 'hams', 'glutes', 'abs'];
 const a = app();
 function fresh() {
   a.S.places = a.PLACE_DEFAULTS.map(p => ({ ...p, equip: p.equip.slice() })); a.S.place = 'gym'; a.S.adapt = null; a.ensurePlaces(a.S);
