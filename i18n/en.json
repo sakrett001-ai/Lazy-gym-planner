@@ -2285,7 +2285,6 @@
  "</b></span><button type=\"button\" class=\"link\" data-cp-go=\"1\">Собрать свой план →</button></p>\n  </header>\n  <div class=\"at-grid\">\n    <section class=\"at-pick\" aria-label=\"Мышцы\">\n      <div class=\"at-map\">": "</b></span><button type=\"button\" class=\"link\" data-cp-go=\"1\">Build a custom plan →</button></p>\n  </header>\n  <div class=\"at-grid\">\n    <section class=\"at-pick\" aria-label=\"Muscles\">\n      <div class=\"at-map\">",
  "</div>\n      <p class=\"at-hint\">Оранжевым выделена выбранная мышца: чем ярче цвет, тем сильнее она работает в этот момент повторения.</p>": "</div>\n      <p class=\"at-hint\">The chosen muscle is shown in orange: the brighter the color, the harder it works at that moment of the rep.</p>",
  "Свои планы": "Custom plans",
- "В своём плане мышцы подсказывают, что добавить: по ним собирается список «Добавить упражнение» и проверяется, все ли нагружены.": "In a custom plan the muscles suggest what to add: they drive the “Add an exercise” list and the check that every one is worked.",
  "Добавлено в план:": "Added to plan:",
  "Уже в плане:": "Already in plan:",
  "Только вес тела.": "Bodyweight only.",
@@ -3760,5 +3759,7 @@
  "и ещё {n}": "and {n} more",
  "Картинку нарисовать не получилось.": "Couldn’t draw the picture.",
  "Картинка сохранена: {name}": "Picture saved: {name}",
- "Сохранить картинку не получилось.": "Couldn’t save the picture."
+ "Сохранить картинку не получилось.": "Couldn’t save the picture.",
+ "В своём плане мышцы подсказывают, что добавить: по ним собирается список «Добавить упражнение» и проверяется, все ли нагружены. У каждого своего плана мышцы свои.": "In a custom plan the muscles suggest what to add: they drive the “Add an exercise” list and the check that every one is worked. Each custom plan has its own muscles.",
+ "Свой план открывается в своём месте: выбранное здесь запоминается у этого плана.": "A custom plan opens at its own place: the place chosen here is saved with this plan."
 }

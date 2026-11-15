@@ -1005,6 +1005,8 @@ function renderSetup() {
     + (S.places.length > 1 ? `<button type="button" class="place-del${placeDel ? ' armed' : ''}" data-place-del="1">${placeDel ? 'Точно удалить?' : 'Удалить место'}</button>` : '')
     + (others.length ? `<label class="place-adapt">Программа<select id="place-adapt"><option value="">Своя для этого места</option>${others.map(p => `<option value="${p.id}"${S.adapt === p.id ? ' selected' : ''}>Как в «${esc(p.name)}», с заменами</option>`).join('')}</select></label>
       <p class="f-note">${S.adapt ? `Упражнения подобраны под «${esc(placeOf(S, S.adapt).name)}»; то, чего здесь нет, заменено ближайшим аналогом — по тому же движению и тем же мышцам.` : 'Программа собирается из того, что есть в этом месте.'}</p>` : '')
+    /* место своего плана — его собственное (4.111): выбранное здесь запоминается у открытого плана */
+    + (custom ? `<p class="f-note">${'Свой план открывается в своём месте: выбранное здесь запоминается у этого плана.'}</p>` : '')
     + (typeof placeWeightsHtml === 'function' ? placeWeightsHtml(cur) : '');
   const es = new Set(S.equip);
   $('#e-presets').innerHTML = '<span class="pres-l">Заполнить:</span>' + EQUIP_PRESETS.map(p => {

@@ -4,7 +4,7 @@
    на Android и iPhone), а где его нет (компьютер, встроенное окно без разрешения) — сохраняет картинку файлом. Новых экранов
    нет. На картинке — дата, название тренировки, упражнения с подходами и объёмом, итог: подходы, упражнения, объём (как
    на экране итога). Пульса и веса тела нет — человек этого не выбирал. Похвалы и даты следующей тренировки нет: решение 11
-   владелец не утверждал. Картинка рисуется сразу, когда показан итог: «Поделиться» потом вызывается в том же нажатии, без
+   владелец не утверждал. В списке — сделанные упражнения. Картинка рисуется сразу, когда показан итог: «Поделиться» потом вызывается в том же нажатии, без
    ожидания (Safari отпускает его только сразу после нажатия). Размер — 1080 × 1350 (4:5): целиком видна и в ленте,
    и в историях. Проверки — tools/ui-check.mjs. */
 const CARD_W = 1080, CARD_H = 1350;
@@ -71,16 +71,16 @@ async function shareCardBlob(sum) {
     g.fillStyle = C.good; g.font = `400 ${v.length > 6 ? 64 : 84}px ${DISP}`; g.fillText(cardFit(g, v, tw - 48), tx + 24, ty + 112);
     g.fillStyle = C.ink; g.font = `500 32px ${BODY}`; g.fillText(cardFit(g, l, tw - 48), tx + 24, ty + 164);
   });
-  /* упражнения */
-  const rows = sum.rows, top = 702, rh = 72, fit = Math.floor((1210 - top) / rh), shown = rows.length > fit ? rows.slice(0, fit - 1) : rows;
+  /* упражнения — сделанные (на экране итога видны и пропущенные, на картинке — то, что сделано) */
+  const rows = sum.rows.filter(r => r.n > 0), top = 702, rh = 72, fit = Math.floor((1210 - top) / rh), shown = rows.length > fit ? rows.slice(0, fit - 1) : rows;
   g.strokeStyle = C.line; g.lineWidth = 2;
   shown.forEach((r, i) => {
     const y = top + i * rh;
     g.beginPath(); g.moveTo(X, y - 46); g.lineTo(X + W, y - 46); g.stroke();
-    const right = r.n ? `${r.n} ${plural(r.n, 'подход', 'подхода', 'подходов')}${r.ton > 0 ? ` · ${fmtTon(r.ton)} ${wUnit()}` : ''}` : r.skip ? 'пропущено' : '0';
-    g.font = `500 30px ${MONO}`; const rw = g.measureText(right).width;
-    g.fillStyle = r.n ? C.ink : C.muted; g.textAlign = 'right'; g.fillText(right, X + W, y); g.textAlign = 'left';
-    g.font = `500 36px ${BODY}`; g.fillStyle = r.n ? C.ink : C.muted; g.fillText(cardFit(g, r.name, W - rw - 32), X, y);
+    const right = `${r.n} ${plural(r.n, 'подход', 'подхода', 'подходов')}${r.ton > 0 ? ` · ${fmtTon(r.ton)} ${wUnit()}` : ''}`;
+    g.font = `500 32px ${BODY}`; const rw = g.measureText(right).width;
+    g.fillStyle = C.muted; g.textAlign = 'right'; g.fillText(right, X + W, y); g.textAlign = 'left';
+    g.font = `500 36px ${BODY}`; g.fillStyle = C.ink; g.fillText(cardFit(g, r.name, W - rw - 32), X, y);
   });
   if (shown.length < rows.length) { const y = top + shown.length * rh; g.fillStyle = C.muted; g.font = `500 34px ${BODY}`; g.fillText('и ещё {n}'.replace('{n}', rows.length - shown.length), X, y); }
   g.fillStyle = C.muted; g.font = `500 28px ${MONO}`; g.fillText(CARD_SITE, X, CARD_H - 92);
