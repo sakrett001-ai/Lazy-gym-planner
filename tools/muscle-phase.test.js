@@ -160,23 +160,30 @@ test('muscles light up where EMG and anatomy say they work, and stay quiet where
   assert.equal(M.dbcurl.parts['bra|L'].con, M.dbcurl.parts['biclong|L'].con, 'supinated curl: brachialis as bright as the biceps');
 });
 
-test('one-sided exercises: the other side keeps the rest colour of the profile', async () => {
+/* 4.110 (замечание анатома 1): свободная рука или нога — в цвете покоя, как мышцы вне упражнения (muscleTint отдаёт не
+   число, а цвет покоя — con === null); опорная (support: держит вес тела) — не ярче слабого участия 0,28, и опора есть в
+   контактах позы: ладонь, колено, стопа второй стороны на скамье, полу или стене (09d-catalog-muscles.js, CATALOG_LATERALITY) */
+test('one-sided exercises: the free limb is at rest, a supporting limb (a contact in the pose) — weak at most', async () => {
   const M = await measured(), { m } = P.model(), { motionProfile } = m.get('({motionProfile})'), lower = new Set(['quads', 'hams', 'calves', 'glutes', 'adductors']);
-  let n = 0;
+  const POSES = require('../src/js/09bp-poses.js'), LIMB = { upper: /^(palm|fa|ua|elbow|hand)/, lower: /^(sole|foot|knee|shin|toes|heel)/ };
+  let idle = 0, support = 0;
   for (const ex of m.EX) {
     const lat = motionProfile(ex.anim)?.laterality; if (!lat) continue;
     for (const [part, side] of Object.entries(lat)) {
-      if (part === 'regions') continue;
-      const other = side === 'L' ? 'R' : 'L';
+      if (part !== 'upper' && part !== 'lower') continue;
+      const other = side === 'L' ? 'R' : 'L', sup = lat.support === part;
+      if (sup) assert(POSES[ex.id].contacts.some(c => LIMB[part].test(c.body) && c.body.endsWith(other)),
+        `${ex.id}: the supporting ${part} limb (${other}) has a contact in the pose`);
       for (const q of Object.values(M[ex.id].parts)) {
-        if (q.side !== other || q.con === null || !q.groups.length) continue;
+        if (q.side !== other || !q.roles.length) continue;
         const legs = q.groups.every(g => lower.has(g));
-        if ((part === 'lower') !== legs || q.groups.some(g => ['abs', 'obliques', 'lowback', 'traps', 'hipflex'].includes(g))) continue;
-        assert(q.con <= .28 + 1e-9, `${ex.id} ${q.part} ${q.side}: ${q.con.toFixed(2)} on the idle side`); n++;
+        if ((part === 'lower') !== legs || q.groups.some(g => ['abs', 'obliques', 'lowback', 'traps', 'hipflex', ...(lat.both || [])].includes(g))) continue;
+        if (sup) { assert(q.con !== null && q.con <= .28 + 1e-9, `${ex.id} ${q.part} ${q.side}: ${q.con} on the supporting side`); support++; }
+        else { assert.equal(q.con, null, `${ex.id} ${q.part} ${q.side}: ${q.con} on the free side — must be the rest colour`); idle++; }
       }
     }
   }
-  assert(n > 100, 'idle sides checked: ' + n);
+  assert(idle > 100 && support > 50, `free sides checked: ${idle}, supporting: ${support}`);
 });
 
 test('phase labels and cues follow the working phase: rising after a lowering, the hamstrings lower in the Nordic curl', () => {

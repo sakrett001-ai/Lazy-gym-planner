@@ -45,7 +45,9 @@ export function muscleTint(mu,level,look,color){
    const own=k!==g||look.regions?.[g]?side[k]:undefined,rest=own===undefined?(byParent.get(g)||[]).map(id=>side[id]).filter(Number.isFinite):[];
    v=Math.max(v,own??(rest.length?Math.max(...rest):side[g]??look.values[g]));
   }
-  return any?color(v):MUSCLE_REST;
+  /* нерабочая сторона упражнения на одну сторону и часть с долей 0 (подлопаточная в наружном вращении) — цвет покоя, как
+     у мышц вне упражнения (09d-catalog-muscles.js, IDLE_SIDE) */
+  return any&&v>0?color(v):MUSCLE_REST;
  }
  const v=Math.max(0,...groups.map(g=>level?.[g]||0));return v>=1?color(1):v>0?color(.55):MUSCLE_REST;
 }

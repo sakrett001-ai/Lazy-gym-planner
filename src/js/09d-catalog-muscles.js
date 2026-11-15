@@ -38,15 +38,26 @@ const LOWER_CHEST=new Set(['declinebb','dip','assistdip']);
      Anatomy; OpenStax A&P 2e, 11.4: наружная косая поворачивает корпус в противоположную сторону, внутренняя — в свою);
    - «мельница» с гирей в левой руке: внизу грудь развёрнута влево, к гире; на подъёме корпус разворачивается вправо —
      наружная косая левой стороны и внутренняя правой (то же правило; по длинам мышц они укорачиваются). */
-const CATALOG_LATERALITY={dbrow:{upper:'L'},kbsnatch:{upper:'L'},kbsllift:{lower:'L'},kbwindmill:{upper:'L',regions:{obl_ext:'L',obl_int:'R'}},kbswing1:{upper:'L'},kbclean:{upper:'L'},kbpress:{upper:'L'},kbrow:{upper:'L'},kbfloorpress:{upper:'L'},cablelat:{upper:'R'},concentration:{upper:'L'},kickback:{upper:'L'},archer:{upper:'R'},bulgarian:{lower:'L'},stepup:{lower:'L'},lunge:{lower:'L'},revlunge:{lower:'L'},sidelunge:{lower:'R'},pistolbox:{lower:'L'},sllift:{lower:'L'},glutebridge1:{lower:'L'},glutekick:{lower:'L'},cablekickback:{lower:'L'},calf1:{lower:'L'},cableadduct:{lower:'L'},bandadduct:{lower:'L'},bandlegext:{lower:'L'},cableextrot:{upper:'R'},bandextrot:{upper:'R'},
+const CATALOG_LATERALITY={dbrow:{upper:'L',support:'upper'},kbsnatch:{upper:'L'},kbsllift:{lower:'L'},kbwindmill:{upper:'L',regions:{obl_ext:'L',obl_int:'R'}},kbswing1:{upper:'L',both:['lats']},kbclean:{upper:'L'},kbpress:{upper:'L'},kbrow:{upper:'L'},kbfloorpress:{upper:'L'},cablelat:{upper:'R'},concentration:{upper:'L'},kickback:{upper:'L',support:'upper'},archer:{upper:'R',support:'upper'},bulgarian:{lower:'L',support:'lower'},stepup:{lower:'L',support:'lower'},lunge:{lower:'L',support:'lower'},revlunge:{lower:'L',support:'lower'},sidelunge:{lower:'R',support:'lower'},pistolbox:{lower:'L'},sllift:{lower:'L'},glutebridge1:{lower:'L'},glutekick:{lower:'L',support:'lower'},cablekickback:{lower:'L',support:'lower'},calf1:{lower:'L'},cableadduct:{lower:'L',support:'lower'},bandadduct:{lower:'L',support:'lower'},bandlegext:{lower:'L'},cableextrot:{upper:'R'},bandextrot:{upper:'R'},
  copenhagen:{lower:'L'},copenhagenknee:{lower:'L'},sidebend:{regions:{obl_ext:'L',obl_int:'L'}},cablewood:{regions:{obl_ext:'L',obl_int:'R'}}};
+/* Нерабочая сторона (4.110, замечание анатома 1: «цветом выделена только рабочая сторона, свободная рука нейтральная»):
+   - свободная рука или нога (висит, лежит, поднята над полом) — в покое, как мышцы вне упражнения: значение IDLE_SIDE, цвет
+     покоя (muscleTint, кожа «Манекена»);
+   - вторая рука или нога держит вес тела (support — опора в позе: ладонь и колено на скамье в тяге гантели и разгибании в
+     наклоне, прямая рука в отжиманиях «лучник», вторая нога на полу или скамье в выпадах, зашагиваниях, отведении и сведении
+     ноги стоя) — слабое участие SUPPORT_SIDE: по механике мышцы опорной конечности держат вес, но не делают движения
+     упражнения (опора проверяется по контактам позы — tools/muscle-phase.test.js);
+   - both — группы, которые работают с обеих сторон: в махе гирей одной рукой широчайшая противоположной стороны работает
+     сильнее, чем своей (ЭМГ — McGill и Marshall, 2012, JSCR 26(1):16–27, табл. 1: мах правой рукой — правая 17 %, левая
+     56 % MVC). */
+const IDLE_SIDE=0,SUPPORT_SIDE=.28;
 function catalogSideValues(profile,values){
- const sides={L:{...values},R:{...values}},lower=new Set(['quads','hams','calves','glutes','adductors','hipflex']),lat=profile.laterality||{};
- for(const[part,active]of Object.entries(lat))if(part!=='regions')for(const[id,r]of Object.entries(profile.regions)){
+ const sides={L:{...values},R:{...values}},lower=new Set(['quads','hams','calves','glutes','adductors','hipflex']),lat=profile.laterality||{},both=new Set(lat.both||[]);
+ for(const[part,active]of Object.entries(lat))if(part==='upper'||part==='lower')for(const[id,r]of Object.entries(profile.regions)){
   const applies=part==='lower'?lower.has(r.parent):!lower.has(r.parent)&&!['abs','obliques','lowback','traps'].includes(r.parent);
-  if(applies)sides[active==='L'?'R':'L'][id]=.28;
+  if(applies&&!both.has(r.parent))sides[active==='L'?'R':'L'][id]=lat.support===part?SUPPORT_SIDE:IDLE_SIDE;
  }
- for(const[id,active]of Object.entries(lat.regions||{}))if(profile.regions[id])sides[active==='L'?'R':'L'][id]=.28;
+ for(const[id,active]of Object.entries(lat.regions||{}))if(profile.regions[id])sides[active==='L'?'R':'L'][id]=IDLE_SIDE;
  return sides;
 }
 /* Учебные акценты частей мышц (этап А аудита анатомии 4.53.0: цвет по фазам против длины мышц — tools/muscles/phase.js,
