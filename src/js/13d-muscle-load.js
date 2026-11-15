@@ -61,7 +61,7 @@ function muscleLoad(data = LOG.data, today = todayKey()) {
     for (const [d, day] of Object.entries(days)) {
       if (day.age < LOAD.days) v += day.g[g] || 0;
       const x = day.m[g] || 0;
-      if (x >= LOAD.minSets && (!last || day.age < last.age)) last = {d, age:day.age, sets:x};
+      if (x >= LOAD.minSets && (!last || day.age < last.age)) last = {d, age:day.age, sets:x, v:day.g[g] || 0};
     }
     const h = last ? last.age * 24 : Infinity;
     out[g] = {v, last, h, st:h < LOAD.loadedH ? 'loaded' : h < LOAD.readyH ? 'recovering' : 'ready'};
@@ -141,8 +141,11 @@ function restText(r) {
   if (r.age == null) return r.v > 0 ? 'основной нагрузки не было' : 'нагрузки не было';
   return `отдых ${r.age} ${plural(r.age, 'день', 'дня', 'дней')}`;
 }
+/* подходов в тот день — тем же счётом, что полоса и план (v: целевая группа целиком, остальные — половина), а не основных
+   подходов целиком (Mike 4: «Ягодицы 4 · сегодня, 8 подходов» в одной строке); статус — по основной работе, как раньше */
 function loadStatusHtml(L) {
-  const det = L.last ? `${agoText(L.last.age, L.last.d)}, ${L.last.sets} ${setsWord(L.last.sets)}` : L.v > 0 ? 'основной нагрузки не было' : 'нагрузки не было';
+  const n = L.last ? Math.round((L.last.v ?? L.last.sets) * 2) / 2 : 0;
+  const det = L.last ? `${agoText(L.last.age, L.last.d)}, ${fmtNum(n)} ${setsWord(n)}` : L.v > 0 ? 'основной нагрузки не было' : 'нагрузки не было';
   return `<span class="ml-st"><i aria-hidden="true"></i><b>${LOAD_ST[L.st]}</b><span>${det}</span></span>`;
 }
 
@@ -157,7 +160,7 @@ function loadSummaryHtml(load) {
 function muscleLoadHtml(load = muscleLoad()) {
   const ids = loadGroups(), any = ids.some(g => load[g].v > 0);
   const max = Math.max(volScale().hi + 2, ...ids.map(g => load[g].v)), sc = volScale();
-  const body = any ? `<ul class="vbars ml-list">${ids.map(g => volRow(g, load[g].v, max, loadStatusHtml(load[g]), 'st-' + load[g].st)).join('')}</ul>
+  const body = any ? `<ul class="vbars ml-list">${ids.map(g => volRow(g, load[g].v, max, loadStatusHtml(load[g]), 'st-' + load[g].st, true, true)).join('')}</ul>
     <p class="ml-legend"><span class="st-loaded"><i></i>нагружена — меньше 48 ч</span><span class="st-recovering"><i></i>восстанавливается — 48–72 ч</span><span class="st-ready"><i></i>готова — от 72 ч</span></p>`
     : `<p class="ml-empty">За 7 дней записей нет — все мышцы отдохнули. Тренировка на сегодня начнётся с крупных групп.</p>`;
   return `<section class="ml" id="ml" aria-labelledby="ml-title">
@@ -172,7 +175,8 @@ function muscleLoadHtml(load = muscleLoad()) {
     <details class="rule ml-how"><summary>Как считается</summary>
       <p>Подход засчитывается целиком целевой группе упражнения и наполовину остальным работающим — как в графике недели в плане (Pelland и соавт., 2026). Считаются только записанные подходы; «по 10 на каждую сторону» — один подход.</p>
       <p>Ориентир — 10–20 подходов на группу в неделю: от 10 подходов мышцы растут заметнее (Schoenfeld, Ogborn, Krieger, 2017). Новичку и в бережном режиме — 4–12: 2–4 подхода на группу 2–3 раза в неделю (Garber и соавт., 2011).</p>
-      <p>Статус — по последней тренировке, где группа сделала 2 подхода и больше как основная: меньше 48 ч назад — нагружена, 48–72 ч — восстанавливается, от 72 ч — готова. Если подходы не доводить до предела, мышцы восстанавливаются в основном за 24–48 ч, после подходов до предела — до 72 ч (Morán-Navarro и соавт., 2017). Вспомогательная работа и кардио статус не меняют. В журнале только даты, поэтому часы считаются по дням: вчера — 24 ч, позавчера — 48 ч, три дня назад — 72 ч.</p>
+      <p>Ниже ориентира — сколько подходов осталось до его нижней границы: после первой тренировки недели это обычно почти все группы.</p>
+      <p>Статус — по последней тренировке, где группа сделала 2 подхода и больше как основная (рядом — подходы того дня тем же счётом, что в полосе): меньше 48 ч назад — нагружена, 48–72 ч — восстанавливается, от 72 ч — готова. Если подходы не доводить до предела, мышцы восстанавливаются в основном за 24–48 ч, после подходов до предела — до 72 ч (Morán-Navarro и соавт., 2017). Вспомогательная работа и кардио статус не меняют. В журнале только даты, поэтому часы считаются по дням: вчера — 24 ч, позавчера — 48 ч, три дня назад — 72 ч.</p>
       <p>Тренировка на сегодня: сначала группы с наибольшим недобором до нижней границы ориентира — 10 подходов, новичку и в бережном режиме 4 (крупные мышцы — раньше мелких), нагруженные пропускаются, восстанавливающиеся получают одно упражнение и на подход меньше. Инвентарь места, уровень и число упражнений — из параметров плана.</p>
     </details>
   </section>`;

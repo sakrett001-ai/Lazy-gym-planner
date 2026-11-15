@@ -43,18 +43,20 @@ function exerciseStall(it) {
   if (grew || topReached) return null;
   return {kind:'stall', ex, since:last3[0].d, text:`${ex.name}: три тренировки подряд без роста (${fmtDay(last3[0].d, true)} — ${fmtDay(last3[2].d, true)}). Смените упражнение на 3–4 недели или поработайте в диапазоне ${hi + 2}–${hi + 5} повторов с меньшим весом.`};
 }
+/* «Недобор» — по плану того дня, а не по нынешней программе (Руслан 1: синглы и двойки своего плана сравнивались с 3–5
+   программы; Mike 2: подходы по 5 силовой недели — с 12–15 после смены цели на «Бережно»). У записи дня — rp, повторы плана,
+   по которому её делали (13-log.js: markSession): подход k недобран, если повторов меньше нижней границы своего подхода
+   (у пирамиды «8/5/3/1» — своё число, сингл по плану — не недобор). Записи без rp (прежние версии) не считаются вовсе: с чем
+   их сравнивать, неизвестно, — через 10 дней после обновления в окне останутся только новые. */
 function fatigueCheck(items) {
   const today = todayKey(), cutoff = dayKey(new Date(Date.now() - 10 * 86400000));
   let n = 0, low = 0;
-  const seen = new Set();
   for (const [id, ss] of Object.entries(LOG.data)) {
     const ex = EXI[id]; if (!ex || ex.kind) continue;
-    const it = items.find(x => x.ex.id === id);
-    const [lo] = parseRange(it ? it.rx.reps : GOALS[S.goal].reps[ex.type]);
     for (const s of ss) {
-      if (s.d < cutoff || s.d >= today || !s.s.some(Boolean)) continue;
-      n++; seen.add(s.d);
-      if (s.s.filter(Boolean).some(x => x[1] < lo)) low++;
+      if (s.d < cutoff || s.d >= today || !s.s.some(Boolean) || typeof s.rp !== 'string' || cleanReps(s.rp) !== s.rp) continue;
+      n++;
+      if (s.s.some((x, k) => x && x[1] < parseRange(planReps({reps:s.rp}, k))[0])) low++;
     }
   }
   if (n < 4 || low * 2 < n) return null;

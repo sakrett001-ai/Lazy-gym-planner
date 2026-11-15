@@ -159,6 +159,9 @@ function checkSession(x, ex, {strict = false, maxDay = null} = {}, r = logDrops(
   if (Number.isSafeInteger(+x.target) && +x.target > 0 && +x.target <= 50) o.target = +x.target;
   if (cleanImpl(ex, x.eq)) o.eq = x.eq;
   if (Number.isFinite(x.at) && x.at > 946684800000) o.at = Math.round(x.at); /* время первого подхода (порядок выполнения), с 2000 года */
+  /* 4.108: повторы плана того дня (совет о разгрузке, 15-autoreg.js) и единица, в которой вписаны веса (13-log.js: hereKg) */
+  if (typeof x.rp === 'string' && typeof cleanReps === 'function' && cleanReps(x.rp) === x.rp) o.rp = x.rp;
+  if (x.u === 'kg' || x.u === 'lb' || x.u === 'mix') o.u = x.u;
   o.s = s;
   return o;
 }
@@ -171,6 +174,8 @@ function unionSession(a, b) {
   const o = {...b, ...a, s};
   if (a.target || b.target) o.target = Math.max(a.target || 0, b.target || 0);
   if (a.at || b.at) o.at = Math.min(...[a.at, b.at].filter(Number.isFinite));
+  /* подходы из обеих, а единицы ввода разные (или у одной её нет) — единица каждого веса по числу */
+  if ((a.u || b.u) && a.u !== b.u && b.s.some((v, k) => v && !a.s[k])) o.u = 'mix';
   return o;
 }
 /* весь журнал: {data, foreign, r, whole} — whole: это вообще не журнал (не объект) */
