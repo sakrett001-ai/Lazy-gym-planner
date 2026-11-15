@@ -129,6 +129,9 @@ const EXPECT = [
   ...['cableextrot', 'bandextrot'].map(id => [id, 'R', { on: ['infsp', 'tmin'], off: ['subsc'] }]),
   ...['cableextrot', 'bandextrot'].map(id => [id, 'L', { on: [], off: ['infsp', 'tmin', 'subsc'] }]),
   ['ytw', 'LR', { on: ['infsp', 'tmin', 'supsp'], off: ['subsc'] }],
+  /* тяга к лицу (4.110, замечание анатома 2): горит задняя дельтовидная; трапециевидная — по частям: средняя и нижняя
+     работают (Ekstrom и др., 2003), верхняя вдвое слабее средней (отношение 0,44 — Schory и др., 2016) и молчит */
+  ...['facepull', 'bandfacepull'].map(id => [id, 'LR', { on: ['delt3', 'trapmid', 'trapinf', 'rhomb'], off: ['trapsup'] }]),
   /* наклон в сторону с гантелью в правой руке: косые левой стороны, правая молчит */
   ['sidebend', 'L', { on: ['eo', 'io'], off: [] }], ['sidebend', 'R', { on: [], off: ['eo', 'io'] }],
   /* «дровосек» с поворотом вправо: наружная косая левой стороны и внутренняя правой (OpenStax A&P 2e, 11.4) */

@@ -96,7 +96,9 @@ function paintMusclePanel(prefix,F,m){
  const state=muscleFrame(F.it.ex.anim,m.t,m.index);if(!state)return;
  const note=$('#'+prefix+'-muscle-note');if(note.textContent!==state.note)note.textContent=state.note;
  for(const row of panel.querySelectorAll('[data-muscle-row]')){
-  const v=state.values[row.dataset.muscleRow],level=row.querySelector('.muscle-level'),text=row.dataset.deep==='true'?'Глубже':MUSCLE_BANDS[muscleBand(v)];
+  /* у глубокой части — тоже её участие (4.110, замечание анатома 4: подлопаточная в наружном вращении — «Нейтрально»); что
+     она глубже, говорит её название («· глубже»), а в «Анатомии» она видна среди мышц */
+  const v=state.values[row.dataset.muscleRow],level=row.querySelector('.muscle-level'),text=MUSCLE_BANDS[muscleBand(v)];
   row.querySelector('.muscle-swatch').style.backgroundColor=muscleColor(v);
   if(level.textContent!==text)level.textContent=text;
  }

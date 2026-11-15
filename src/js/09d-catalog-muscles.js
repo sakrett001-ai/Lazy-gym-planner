@@ -65,6 +65,13 @@ function catalogSideValues(profile,values){
 const SQUAT_LIKE=new Set('squat goblet airsquat smithsquat hacksquat legpress legpresshigh legpresslow lunge revlunge bulgarian stepup pistolbox sidelunge wallsit jumpsquat thruster kbfrontsquat'.split(' '));
 const PULL_DOWN=new Set(['latpull','latpullv','latpulluh','bandlatpull','assistpull','pullup','chinup']);
 const EXT_ROT=new Set(['cableextrot','bandextrot']);
+/* тяга к лицу — разведение плеч назад с поворотом наружу при руках на уровне плеч (4.110, замечание анатома 2): средняя часть
+   трапециевидной работает сильнее всего в горизонтальном разгибании плеча с наружной ротацией (ЭМГ — Ekstrom и др., 2003,
+   JOSPT 33(5):247–258, реферат), нижняя — в повороте плеча наружу лёжа при отведении 90° (там же: 79 % MVIC — по McCabe и
+   др., 2007, NAJSPT 2(1):34–43); верхняя в повороте наружу лёжа при отведении 90° работает вдвое слабее средней (там же:
+   отношение верхней части к средней 0,44 — Schory и др., 2016, IJSPT 11(3):321–336, табл. 3). Средняя и нижняя части — доля
+   1, верхняя — 0,44; лопатку здесь не поднимают (подсказка «плечи не поднимать») */
+const FACE_PULL=new Set(['facepull','bandfacepull']);
 const REGION_FACTORS={
  /* прямая бедра в приседаниях, выпадах и жиме ногами работает слабее широких: двусуставная, в разгибании колена с
     разгибанием бедра длина почти не меняется (ЭМГ: Escamilla и др., 1998) */
@@ -75,7 +82,7 @@ const REGION_FACTORS={
  /* шраги поднимают лопатку верхняя часть трапециевидной и поднимающая лопатку, нижняя часть — опускатель (Neumann, 2017;
     ЭМГ — Pizzari и др., 2014); в тягах сверху и подтягиваниях лопатку опускает нижняя часть (ЭМГ — Youdas и др., 2010),
     верхняя при этом удлиняется */
- trap_upper:id=>PULL_DOWN.has(id)?.35:1,
+ trap_upper:id=>PULL_DOWN.has(id)?.35:FACE_PULL.has(id)?.44:1,
  trap_mid:id=>id==='shrug'?.6:PULL_DOWN.has(id)?.8:1,
  trap_lower:id=>id==='shrug'?.25:1,
  lev_scap:id=>id==='shrug'?1:.5,
@@ -91,8 +98,11 @@ const REGION_FACTORS={
  forearm_ext:id=>id==='wristcurl'?.3:id==='hammer'?.6:1,
  brachiorad:id=>id==='wristcurl'?.3:1,
  /* манжета: наружу плечо поворачивают подостная и малая круглая, надостная помогает (ЭМГ — Reinold и др., 2004),
-    подлопаточная — внутренний ротатор (OpenStax A&P 2e, 11.5) и растягивается */
- cuff_int:id=>EXT_ROT.has(id)?.25:id==='ytw'?.3:1,
+    подлопаточная — внутренний ротатор (OpenStax A&P 2e, 11.5; Gray's Anatomy, 20-е изд., 1918: «The Subscapularis rotates
+    the head of the humerus medially»; StatPearls — Aguirre и др., 2023, NBK513344: «The subscapularis is the only rotator
+    cuff muscle that has this function») и растягивается — в наружном вращении не двигатель (4.110, замечание анатома 4):
+    доля 0, цвет покоя */
+ cuff_int:id=>EXT_ROT.has(id)?0:id==='ytw'?.3:1,
  cuff_sup:id=>EXT_ROT.has(id)?.6:id==='ytw'?.9:1,
  /* малая грудная плечо не сгибает — опускает и выводит вперёд лопатку (OpenStax A&P 2e, 11.5): в подъёме рук вперёд
     лопатка поворачивается вверх и малая грудная растягивается; руку поднимает ключичная часть большой грудной */
@@ -107,12 +117,16 @@ const REGION_SOURCES={
  brd:['Плечелучевая в сгибании локтя: замеры активности мышц — Boland и др., 2008','https://doi.org/10.1016/j.jhsa.2008.07.019'],
  bra:['Плечевая мышца сгибает локоть при любом положении предплечья: замеры активности мышц — Basmajian и Latif, 1957','https://pubmed.ncbi.nlm.nih.gov/13475410/'],
  grip:['Двуглавая и плечелучевая при хвате снизу, нейтральном и сверху: замеры активности мышц — Kleiber и др., 2015','https://doi.org/10.3389/fphys.2015.00215'],
- cuff:['Мышцы манжеты и дельтовидная в упражнениях на наружную ротацию: замеры активности мышц — Reinold и др., 2004','https://doi.org/10.2519/jospt.2004.34.7.385']
+ cuff:['Мышцы манжеты и дельтовидная в упражнениях на наружную ротацию: замеры активности мышц — Reinold и др., 2004','https://doi.org/10.2519/jospt.2004.34.7.385'],
+ subsc:['Подлопаточная мышца — внутренний ротатор плеча: StatPearls, Aguirre и др., 2023','https://www.ncbi.nlm.nih.gov/books/NBK513344/'],
+ trap:['Части трапециевидной и передняя зубчатая в упражнениях для лопатки: замеры активности мышц — Ekstrom и др., 2003','https://doi.org/10.2519/jospt.2003.33.5.247'],
+ trapRatio:['Отношения частей трапециевидной в упражнениях для лопатки: обзор — Schory и др., 2016','https://pmc.ncbi.nlm.nih.gov/articles/PMC4886800/']
 };
 const regionSources=(id,muscles)=>[
  ...(SQUAT_LIKE.has(id)&&muscles.quads?[REGION_SOURCES.rectus]:[]),...(muscles.hams&&id!=='legcurl'&&id!=='nordic'?[REGION_SOURCES.hamShort]:[]),
  ...(id==='shrug'?[REGION_SOURCES.shrug]:[]),...(PULL_DOWN.has(id)?[REGION_SOURCES.pull]:[]),...(id==='hammer'?[REGION_SOURCES.brd,REGION_SOURCES.bra,REGION_SOURCES.grip]:[]),
- ...(EXT_ROT.has(id)||id==='ytw'?[REGION_SOURCES.cuff]:[])];
+ ...(EXT_ROT.has(id)||id==='ytw'?[REGION_SOURCES.cuff]:[]),...(EXT_ROT.has(id)?[REGION_SOURCES.subsc]:[]),
+ ...(FACE_PULL.has(id)?[REGION_SOURCES.trap,REGION_SOURCES.trapRatio]:[])];
 /* Группы, которых нет в составе упражнения, но которые по ЭМГ участвуют: нижняя часть трапециевидной опускает лопатку в тягах
    сверху и подтягиваниях (Youdas и др., 2010) — в профиле как вспомогательная, в составе упражнения (pri/sec) не меняется */
 const PROFILE_EXTRA={traps:PULL_DOWN};

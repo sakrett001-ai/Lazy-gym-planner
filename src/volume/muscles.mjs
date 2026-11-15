@@ -31,6 +31,11 @@ function regionsOf(regions){
  REGION_PARENTS.set(regions,m);return m;
 }
 /* цвет мышцы mu: level — уровни групп упражнения (1 — основные), look — {values, sideValues, regions, phases, selected} */
+/* Часть двух групп, у которой своя мышца в упражнении — со своей долей (4.110, замечание анатома 2): средняя часть
+   трапециевидной входит и в трапециевидную, и в межлопаточную группу (ромбовидные — под ней, глубже: StatPearls, «Anatomy,
+   Back, Rhomboid Muscles», PMID 30521277: «found immediately deep to the trapezius»). Если у трапециевидной в упражнении есть своя доля, цвет части —
+   по ней; иначе — по межлопаточной группе, как прежде (тяги к поясу) */
+const OWN_FIRST={trapmid:'traps'};
 export function muscleTint(mu,level,look,color){
  const groups=mu.group||[];if(!groups.length)return MUSCLE_REST;
  const key=g=>{const r=PART_REGION[mu.part];return r&&look?.regions?.[r]?.parent===g?r:g;};
@@ -40,7 +45,8 @@ export function muscleTint(mu,level,look,color){
   /* значения стороны мышцы; у части без своей области — наибольшее из
      областей её группы на этой стороне: в упражнении на одну сторону и они на нерабочей стороне в покое */
   const side=look.sideValues?.[mu.side]||look.values,byParent=regionsOf(look.regions);let v=0,any=false;
-  for(const g of groups){
+  const own1=OWN_FIRST[mu.part],list=own1&&look.values[own1]!==undefined?[own1]:groups;
+  for(const g of list){
    if(look.values[g]===undefined)continue;any=true;const k=key(g);
    const own=k!==g||look.regions?.[g]?side[k]:undefined,rest=own===undefined?(byParent.get(g)||[]).map(id=>side[id]).filter(Number.isFinite):[];
    v=Math.max(v,own??(rest.length?Math.max(...rest):side[g]??look.values[g]));
