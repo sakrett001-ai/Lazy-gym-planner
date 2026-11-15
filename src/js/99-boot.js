@@ -15,7 +15,7 @@ if (!BOOT.failed) {
   BOOT.phase = 'done';
   /* прошлый запуск не удался и прошёл с обычными настройками — сказать об этом (настройки отложены, их можно скачать) */
   try { const f = sessionStorage.getItem(KEEP_SAFE); if (f) { sessionStorage.removeItem(KEEP_SAFE); Keep.note('safe', JSON.parse(f) || {}); } } catch (e) {}
-  keepPaint();
+  Keep.probe(); keepPaint();
   keepPersistRead();
   prefetchStressIds();
   logInit();

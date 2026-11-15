@@ -46,7 +46,7 @@ function bodyLoad() {
   const raw = Keep.get(BODY_KEY); bodyBase = raw;
   if (raw == null) return;
   const p = bodyParse(raw);
-  if (!p) { Keep.quarantine(BODY_KEY, raw, 'body: не читается'); Keep.note('body', {dropped:'все'}); return; }
+  if (!p) { Keep.quarantine(BODY_KEY, raw, 'body: unreadable'); Keep.note('body', {dropped:'все'}); return; }
   BODY.rows = p.rows;
   if (p.dropped || p.cut) { Keep.quarantine(BODY_KEY, raw, 'body'); Keep.note('body', {dropped:p.whole ? 'все' : p.dropped}); }
 }
@@ -340,7 +340,8 @@ function restoreBackup(obj, opts = {}) {
     const sp = restoreSettingsPlan(obj);
     if (sp) {
       const ok = {};
-      for (const k of [...Object.keys(DEFAULTS), 'places', 'place', 'placesV', 'adapt', 'swaps']) if (k in obj.settings && k !== 'view' && k !== 'logPick') ok[k] = sp.s[k];
+      /* испорченное поле копии не затирает здешнее: остаётся как было (в сообщении — «эти поля будут обычными» → здешними) */
+      for (const k of [...Object.keys(DEFAULTS), 'places', 'place', 'placesV', 'adapt', 'swaps']) if (k in obj.settings && k !== 'view' && k !== 'logPick' && !sp.bad.includes(k)) ok[k] = sp.s[k];
       if ('lr' in ok) ok.lr = cleanLr(ok.lr);
       if ('dur' in ok && !DURATIONS[ok.dur]) ok.dur = null;
       Object.assign(S, ok); ensurePlaces(S); ensureCustoms(S); ensureFold(S); ensureProtect(S); /* имена по умолчанию — на языке страницы */

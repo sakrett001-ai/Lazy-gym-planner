@@ -302,7 +302,7 @@ function loadSettings() {
   const {s, bad} = cleanSettings(o);
   if (cut || bad.length) {
     /* исходное — в отложенные, до того как на его место запишется исправленное */
-    Keep.quarantine(STORE, raw, cut ? 'settings: обрезано' : 'settings: ' + bad.join(','));
+    Keep.quarantine(STORE, raw, cut ? 'settings: cut' : 'settings: ' + bad.join(','));
     Keep.note('settings', {fields:cut && !bad.length ? ['прочие настройки'] : bad.filter(k => k !== '*'), whole:o == null});
   }
   return s;

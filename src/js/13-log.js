@@ -110,7 +110,7 @@ function logLoadLocal() {
   const p = logParse(raw);
   LOG.data = p.data; LOG.foreign = p.foreign;
   if (p.cut || p.whole || p.r.sets || p.r.sessions) {
-    Keep.quarantine(LOG_KEY, raw, p.cut ? 'log: обрезан' : 'log: ' + JSON.stringify(p.r.why));
+    Keep.quarantine(LOG_KEY, raw, p.cut ? 'log: cut' : 'log: ' + JSON.stringify(p.r.why));
     Keep.note('log', {cut:p.cut, whole:p.whole && !Object.keys(p.data).length, drops:p.r, kept:Object.values(p.data).reduce((a, ss) => a + ss.length, 0)});
   }
 }
@@ -888,7 +888,7 @@ function trainingDays(data = LOG.data) {
 }
 /* последние тренировки списком: дата, упражнений и подходов, общий вес за день */
 function daysHtml(by = trainingDays(), limit = 5) {
-  const days = Object.values(by).sort((a, b) => a.d < b.d ? 1 : -1).slice(0, limit);
+  const today = todayKey(), days = Object.values(by).sort((a, b) => recentKey(a.d, today) < recentKey(b.d, today) ? 1 : -1).slice(0, limit);
   if (!days.length) return '';
   return `<div class="j-days"><p class="lb-h">${'Последние тренировки · общий вес'}</p><ul>${days.map(x => `<li><span class="j-dd">${fmtDay(x.d, true)}</span><span class="j-dn">${x.ex} ${plural(x.ex, 'упражнение', 'упражнения', 'упражнений')} · ${x.sets} ${plural(x.sets, 'подход', 'подхода', 'подходов')}${heartDayHtml(x.d)}</span><b class="j-dt">${x.t > 0 ? fmtTon(x.t) + `<small>${wUnit()}</small>` : '—'}</b></li>`).join('')}</ul></div>`;
 }
@@ -1071,17 +1071,17 @@ function renderJournalKeep(focusSel) {
 }
 function restorePanelHtml() {
   const p = restorePending; if (!p) return '';
-  const L = p.log, when = typeof p.obj.exported === 'string' && realDay(p.obj.exported.slice(0, 10)) ? ` от ${fmtDay(p.obj.exported.slice(0, 10), true)}` : '';
+  const L = p.log, made = typeof p.obj.exported === 'string' && realDay(p.obj.exported.slice(0, 10)) ? fmtDay(p.obj.exported.slice(0, 10), true) : '';
   const inCopy = [L.added + L.joined + L.same ? `записей журнала — ${L.added + L.joined + L.same}` : '', p.body.added ? `замеров — ${p.body.added}` : '', p.heart ? `дней с пульсом — ${p.heart}` : '', p.settings ? 'планы и настройки' : ''].filter(Boolean).join(', ');
   const warn = [];
   if (p.cut) warn.push('Файл обрезан или повреждён (например, при пересылке): восстановится уцелевшая часть.');
   const drop = logDropText(L.drops); if (drop) warn.push(`Не годятся и будут пропущены: ${drop}.`);
   if (p.body.dropped) warn.push(`Пропущено значений замеров: ${p.body.dropped} — дата или число не годятся.`);
-  if (L.foreign.length) warn.push(`Записи ${L.foreign.length} ${plural(L.foreign.length, 'упражнения', 'упражнений', 'упражнений')}, которых нет в этой версии, сохранятся, но показываться не будут.`);
-  if (p.settings && p.settings.bad.length) warn.push(`В настройках копии испорчено: ${settingsBadText(p.settings.bad)} — эти поля будут обычными.`);
+  if (L.foreign.length) warn.push(`Упражнений, которых нет в этой версии приложения: ${L.foreign.length}. Их записи сохранятся (и попадут в следующую копию), но показываться не будут.`);
+  if (p.settings && p.settings.bad.length) warn.push(`В настройках копии испорчено: ${settingsBadText(p.settings.bad)} — их не возьмём, останутся здешние.`);
   const radio = (v, label, sum) => `<label class="po-opt"><input type="radio" name="jr-set" value="${v}"${p.choice === v ? ' checked' : ''}><span><b>${label}</b>${sum ? `<small>${esc(sum)}</small>` : ''}</span></label>`;
   const choice = p.settings && p.settings.differs ? `<fieldset class="po-set"><legend>${'Планы и настройки'}</legend>${radio('mine', 'Оставить мои', settingsSummary(S))}${radio('copy', 'Взять из копии', settingsSummary(p.settings.s))}</fieldset>` : '';
-  return `<section class="j-restore" aria-labelledby="jr-h"><h2 id="jr-h" tabindex="-1">${'Восстановить из копии'}${when}</h2>
+  return `<section class="j-restore" aria-labelledby="jr-h"><h2 id="jr-h" tabindex="-1">${made ? `${'Восстановить из копии от'} ${made}` : 'Восстановить из копии'}</h2>
     <p>${inCopy ? `В копии: ${inCopy}.` : 'В копии нет записей.'} ${'Журнал и замеры добавятся к записанным здесь — здешнее не сотрётся.'}</p>
     ${warn.map(w => `<p class="warn">${esc(w)}</p>`).join('')}${choice}
     <div class="j-restore-b"><button type="button" class="btn" id="jr-go">${'Восстановить'}</button><button type="button" class="btn btn-2" id="jr-cancel">${'Отмена'}</button></div></section>`;
@@ -1092,16 +1092,17 @@ function restoreApply() {
   restorePending = null;
   const r = restoreBackup(p.obj, {settings:choice});
   const parts = [];
-  if (r.sessions) parts.push(`записей журнала: ${r.sessions} (новых — ${r.added}${r.joined ? `, дополнено подходами из копии — ${r.joined}` : ''})`);
-  if (r.body > 0) parts.push(`замеров: ${r.body}`);
-  if (r.heart > 0) parts.push(`дней с пульсом: ${r.heart}`);
+  if (r.added) parts.push(`${'новых записей журнала —'} ${r.added}`);
+  if (r.joined) parts.push(`${'записей, дополненных подходами из копии, —'} ${r.joined}`);
+  if (r.body > 0) parts.push(`${'замеров —'} ${r.body}`);
+  if (r.heart > 0) parts.push(`${'дней с пульсом —'} ${r.heart}`);
   if (r.settings) parts.push('планы и настройки — из копии');
-  let text = parts.length ? `Восстановлено: ${parts.join(', ')}.` : 'Нового в копии нет — всё из неё уже есть.';
-  if (p.obj.v >= 2 && p.settings && choice === 'mine') text += ' Планы и настройки — здешние.';
-  if (r.same) text += ` Уже были здесь: ${r.same} ${plural(r.same, 'запись', 'записи', 'записей')}.`;
-  if (r.conflicts.length) text += ` ${r.conflicts.length === 1 ? 'В один день' : `В ${r.conflicts.length} ${plural(r.conflicts.length, 'день', 'дня', 'дней')}`} подходы в копии отличались от записанных здесь — оставлены здешние (${r.conflicts.slice(0, 5).map(d => fmtDay(d, true)).join(', ')}${r.conflicts.length > 5 ? '…' : ''}).`;
-  const drop = logDropText(r.drops); if (drop) text += ` Пропущено: ${drop}.`;
-  if (r.bodyDropped) text += ` Пропущено значений замеров: ${r.bodyDropped}.`;
+  let text = parts.length ? `${'Восстановлено:'} ${parts.join(', ')}.` : 'Нового в копии нет — всё из неё уже есть.';
+  if (p.obj.v >= 2 && p.settings && choice === 'mine') text += ' ' + 'Планы и настройки — здешние.';
+  if (r.same) text += ` ${'Уже были здесь, без изменений:'} ${r.same}.`;
+  if (r.conflicts.length) text += ` ${'Подходы в копии отличались от записанных здесь'} (${r.conflicts.length} ${plural(r.conflicts.length, 'день', 'дня', 'дней')}: ${r.conflicts.slice(0, 5).map(d => fmtDay(d, true)).join(', ')}${r.conflicts.length > 5 ? '…' : ''}) ${'— оставлены здешние.'}`;
+  const drop = logDropText(r.drops); if (drop) text += ` ${'Пропущено:'} ${drop}.`;
+  if (r.bodyDropped) text += ` ${'Пропущено значений замеров:'} ${r.bodyDropped}.`;
   LOG.msg = text;
   renderJournalKeep('#j-msg');
 }
@@ -1151,12 +1152,16 @@ function readFields({kgIn, rIn}, lt) {
 }
 /* sure — вес уже подтвердили («Записать» в вопросе о весе) */
 function tickSet(btn, sure) {
-  const id = btn.dataset.tick, k = +btn.dataset.k;
-  const row = btn.closest('.lt-r');
+  const id = btn.dataset.tick, row = btn.closest('.lt-r');
+  let k = +btn.dataset.k;
   const it = plan.items.find(x => x.ex.id === id);
   const lt = loadType(it.ex), lr = row.classList.contains('lt-lr');
   const F = (lr ? ['l', 'r'] : [null]).map(side => rowFields(row, side));
   const s = todaySession(id, true);
+  /* строка пустая, а подход под этим номером уже записан — другой вкладкой (Ксения 3): не снимать его, а записать этот
+     следующим номером */
+  const other = s.s[k] && !row.classList.contains('done');
+  if (other) { while (s.s[k]) k++; }
   if (s.s[k]) {
     if (kgAsk[id] && kgAsk[id].k === k) dropKgAsk(id, row.closest('.c-log'));
     s.s[k] = null; cleanToday(id);
@@ -1184,6 +1189,7 @@ function tickSet(btn, sure) {
   row.classList.add('done'); btn.setAttribute('aria-pressed', 'true');
   carryKgBox(row.closest('.c-log'));
   logTouch(id); refreshHist(id); refreshSug(row.closest('.c-log'), it);
+  if (other) { const card = row.closest('.card'); if (card) refreshCard(card); }
   const total = it.rx.circ ? 0 : it.rx.sets;
   const doneN = s.s.filter(Boolean).length;
   if (!it.rx.circ) {

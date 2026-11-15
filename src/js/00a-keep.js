@@ -49,7 +49,9 @@ const Keep = (() => {
       if (kind === 'full') { for (const c of KEEP_CACHES) if (c !== k) try { st.removeItem(c); } catch (er) {} try { st.setItem(k, v); ok = true; } catch (er) { kind = kindOf(er); } }
       if (!ok) { failed.set(k, kind); if (state() !== before) emit(); return false; }
     }
-    if (failed.delete(k) && state() !== before) emit();
+    /* запись прошла: этот ключ и пробная запись при запуске — снова в порядке */
+    const was = failed.delete(k), probed = failed.delete('podhod.probe');
+    if ((was || probed) && state() !== before) emit();
     return true;
   }
   function remove(k) { const st = ls(); if (st) try { st.removeItem(k); } catch (e) {} failed.delete(k); }
@@ -87,7 +89,9 @@ const Keep = (() => {
     const keys = e.key == null ? [...watchers.keys()] : [e.key];
     for (const k of keys) for (const fn of watchers.get(k) || []) try { fn(e.key == null ? get(k) : e.newValue); } catch (er) {}
   });
-  return {get, set, remove, state, broken, quarantine, clearBroken, note, notes:() => notes, usage, watch, on:f => listeners.add(f), kindOf};
+  /* при запуске: принимает ли браузер записи вообще (Safari в приватном окне прежних версий, запрет данных сайтов) */
+  function probe() { if (set('podhod.probe', '1')) remove('podhod.probe'); return state(); }
+  return {get, set, remove, state, broken, quarantine, clearBroken, note, notes:() => notes, usage, watch, on:f => listeners.add(f), kindOf, probe};
 })();
 
 /* Обрезанный JSON: проход со стеком скобок; после каждого законченного элемента массива или поля объекта запоминается место

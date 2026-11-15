@@ -221,6 +221,6 @@ function storageLineHtml() {
   if (KEEP_STORE.persisted === true) parts.push('Браузер обещал не стирать их сам.');
   else if (KEEP_STORE.persisted === false) parts.push('Браузер может стереть их сам, если на устройстве кончится место.');
   if (isIOS() && !isStandalone()) parts.push('На iPhone и iPad Safari стирает данные сайта, если его не открывать 7 дней, — добавьте приложение на экран «Домой» («Поделиться» → «На экран „Домой“») и делайте копию.');
-  const big = Keep.usage(); if (big > 3.5e6) parts.push(`Журнал занимает ${(big / 1e6).toFixed(1).replace('.', DEC)} из примерно 5 млн знаков, которые браузер даёт сайту, — сохраните полную копию в файл.`);
+  const big = Keep.usage(); if (big > 3.5e6) parts.push(`Данные приложения занимают ${(big / 1e6).toFixed(1).replace('.', DEC)} млн знаков из примерно 5 млн, которые браузер даёт сайту, — сохраните полную копию в файл.`);
   return parts.length ? ' ' + parts.join(' ') : '';
 }
