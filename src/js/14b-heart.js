@@ -35,7 +35,7 @@
    · Лекарства, снижающие пульс: бета-блокаторы уменьшают пульс в покое и при нагрузке; у здоровых при той же нагрузке пульс
      ниже на 16–19 % (Levinger I., Bronks R., Cody D.V., Linton I., Davie A., J Sports Sci Med 2004, 3(YISI 1):23–27 —
      со ссылкой на Sjöberg, Frankenhaeuser 1979); пульс при них не отражает нагрузку — строка в настройке отдыха.
-   · Отдых «до пульса» не короче минимума (restFloor, 14-workout-mode.js): обычно не короче минуты (или плана, если он короче) —
+   · Отдых «до пульса» не короче минимума (restFloor ниже): обычно не короче минуты (или плана, если он короче) —
      самый короткий отдых в исследованиях для массы — 30–60 с, для силы 3–5 мин (de Salles B.F. et al., Sports Med 2009,
      39(9):765–777); ACSM: 1–2 мин во вспомогательных, 2–3 мин в базовых (Ratamess et al., MSSE 2009, 41(3):687–708).
      В «Бережно» пульс отдых только продлевает, не сокращает.
@@ -475,7 +475,8 @@ const Heart = (() => {
     show('#wv-hr-rest', on && resting);
     if (!on || !resting) return;
     text('#wv-hr-rest-val', bpm != null ? String(bpm) : '—');
-    const from = cur.rest && cur.rest.from > 0 ? cur.rest.from : null, thr = P.thr, why = cur.why;
+    /* пульс упал раньше минимума отдыха: до минимума — «отдохните ещё немного», после — «можно к подходу» */
+    const from = cur.rest && cur.rest.from > 0 ? cur.rest.from : null, thr = P.thr, why = cur.why === 'floor' && workout.restUntil <= now ? 'below' : cur.why;
     const start = from ? `${'в начале отдыха'} ${from}` : '';
     let lead = '';
     if (P.rest !== 'time') {

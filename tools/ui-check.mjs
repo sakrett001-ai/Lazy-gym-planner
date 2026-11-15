@@ -1657,15 +1657,22 @@ const fakeBluetooth = () => {
   check(JSON.stringify(s.day?.sets) === '{"squat:0":[149,152]}' && s.day.max === 152 && s.day.t >= 2, `подход: пульс в конце и максимум записаны (${JSON.stringify(s.day)})`);
   check(s.rest === '149' && s.rnote === 'В начале отдыха 149' && await shown(h, '#wv-hr-rest') && await shown(h, '#wv-hr-set'), `отдых: пульс крупно, «в начале отдыха», настройка конца отдыха (${JSON.stringify(s)})`);
   check(await h.evaluate(() => [...document.querySelectorAll('[data-hr-rest]')].map(b => b.textContent + ':' + b.getAttribute('aria-pressed')).join() === 'Время:true,Пульс:false,Пульс или время:false' && $('.wv-hr-thr').hidden && /не медицинское измерение/.test($('#wv-hr-set').textContent)), 'по умолчанию отдых по времени, порога нет, строка «не медицинское измерение»');
-  /* «пульс или время»: порог 110 — отдых кончается раньше плана, когда пульс ниже порога два показания подряд */
+  /* «пульс или время»: порог 110 — отдых кончается раньше плана, когда пульс ниже порога два показания подряд, но не раньше
+     минимума: минута или план, если он короче (restFloor, 14b-heart.js; de Salles et al. 2009) */
   await h.click('[data-hr-rest="first"]'); await h.fill('#wv-hr-thr', '110');
-  check(await h.evaluate(() => JSON.stringify(Heart.prefs()) === '{"rest":"first","thr":110}' && JSON.parse(localStorage.getItem('podhod.heart.prefs.v1')).thr === 110), 'выбор «Пульс или время» и порог запоминаются');
+  check(await h.evaluate(() => JSON.stringify(Heart.prefs()) === '{"rest":"first","thr":110,"age":null}' && JSON.parse(localStorage.getItem('podhod.heart.prefs.v1')).thr === 110), 'выбор «Пульс или время» и порог запоминаются, возраст не задан');
   await push(126); s = await hs();
   check(s.rnote === 'Отдых до пульса ниже 110 · в начале отдыха 149' && await h.evaluate(() => !$('#workout-view').classList.contains('rest-over')), `отдых до пульса: подпись (${s.rnote})`);
   await push(108); await push(104); await h.evaluate(() => { window.__dt += 300; workoutTick(); });
   s = await hs();
-  const r1 = await h.evaluate(() => ({ h: $('#wv-rest-heading').textContent, red: $('#workout-view').classList.contains('rest-over'), done: !$('#wv-rest-done').hidden, end: RestAlarm.state().end, left: workout.restUntil - Date.now() }));
-  check(r1.h === 'Можно продолжать' && !r1.red && r1.done && r1.left <= 0 && s.rnote === 'Пульс ниже 110 — можно к подходу · в начале отдыха 149', `пульс ниже порога — отдых кончился раньше плана (${JSON.stringify(r1)}, ${s.rnote})`);
+  const restNow = () => h.evaluate(() => ({ h: $('#wv-rest-heading').textContent, red: $('#workout-view').classList.contains('rest-over'), done: !$('#wv-rest-done').hidden, end: RestAlarm.state().end, left: workout.restUntil - Date.now() }));
+  const r0 = await restNow();
+  check(r0.h === 'Отдых' && !r0.done && !r0.red && r0.left > 50000 && r0.left <= 60000, `пульс ниже порога в начале отдыха — отдых не короче минуты (${JSON.stringify(r0)})`);
+  check(s.rnote === 'Пульс ниже 110 — отдохните ещё немного: отдых не короче минимума · в начале отдыха 149', `до минимума — «отдохните ещё немного» (${s.rnote})`);
+  await h.evaluate(() => { window.__dt += workout.restUntil - Date.now() + 200; window.__hr.push(104); workoutTick(); });
+  s = await hs();
+  const r1 = await restNow();
+  check(r1.h === 'Можно продолжать' && !r1.red && r1.done && r1.left <= 0 && s.rnote === 'Пульс ниже 110 — можно к подходу · в начале отдыха 149', `пульс ниже порога — отдых кончился на минимуме, раньше плана (${JSON.stringify(r1)}, ${s.rnote})`);
   await h.click('#wv-continue');
   s = await hs();
   check(JSON.stringify(s.day.rests) === '{"squat:0":[149,104]}', `отдых: пульс в начале и в конце записан (${JSON.stringify(s.day.rests)})`);
