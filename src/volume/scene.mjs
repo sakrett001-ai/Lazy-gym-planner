@@ -20,7 +20,7 @@ export const CAMERA_SETTINGS={above:[35,-55],angle:[55,-15],side:[90,0],front:[0
    меньше половины) — прежние ракурсы */
 export function facingYaw(pose){
  const n=pose?.chestN;if(!n)return 0;const h=Math.hypot(n[0],n[2]);if(h<.5)return 0;
- const yaw=Math.atan2(-n[0],n[2])*180/Math.PI,q=Math.round(yaw/90)*90;return q===-180?180:q===-0?0:q;
+ const yaw=Math.atan2(-n[0],n[2])*180/Math.PI,q=Math.round(yaw/90)*90;return q===-180?180:q||0;
 }
 export function cameraSettings(yaw=0){
  if(!yaw)return CAMERA_SETTINGS;
