@@ -1436,6 +1436,93 @@ await page.close();
   await G.close();
 }
 
+/* данные без потерь (4.107, телефон 390×844; 00a-keep.js, 13-log.js, 18-measures.js, 18a-data-keep.js): «Удалить запись» —
+   переспрос и в имени кнопки для диктора, «Удалено · Вернуть» на месте записи, фокус не теряется (Галина 3); замер «5000» —
+   отказ с причиной у поля, «270» — «Записать?» (Ксения 8); восстановление копии — сначала что будет и выбор «оставить мои /
+   взять из копии» (Ксения 4); строка о личных данных (Михаил 12); испорченные настройки при запуске — сообщение, приложение
+   работает (Ксения 1); ошибка при запуске — перезапуск с обычными настройками, не помогло — экран спасения; хранилище
+   запрещено — предупреждение и на экране тренировки (Ксения 6). Расчёты — tools/data-keep.test.js */
+{
+  const K = await open(390, 844);
+  await K.evaluate(() => { const d = n => dayKey(new Date(Date.now() - n * 864e5)); LOG.data = { dbcurl: [{ d: d(9), s: [[5, 12]] }, { d: d(5), s: [[5, 13]] }, { d: d(2), s: [[5, 15]] }] }; logSaveLocal(); S.view = 'journal'; renderSetup(); renderPlan(); });
+  await K.click('[data-jex="dbcurl"] > summary');
+  const first = await K.evaluate(() => document.querySelector('[data-jex="dbcurl"] [data-del]').dataset.d), delSel = `[data-del="dbcurl"][data-d="${first}"]`;
+  await K.click(delSel);
+  let r = await K.evaluate(s => { const b = document.querySelector(s); return { text: b.textContent, label: b.getAttribute('aria-label'), focus: document.activeElement === b, log: LOG.data.dbcurl.length }; }, delSel);
+  check(r.text === 'Точно удалить?' && /^Точно удалить запись за .+\?$/.test(r.label) && r.focus && r.log === 3, `«Удалить»: переспрос в надписи и полным вопросом в имени кнопки для диктора, фокус на месте, ничего не удалено (${JSON.stringify(r)})`);
+  await K.click(delSel);
+  r = await K.evaluate(() => { const u = document.querySelector('[data-hist-undo="dbcurl"]'), ae = document.activeElement; return { focus: !!u && ae === u, line: u?.closest('li').textContent.replace(/\s+/g, ' ').trim(), desc: u && document.getElementById(u.getAttribute('aria-describedby'))?.textContent, log: LOG.data.dbcurl.length, stored: JSON.parse(localStorage.getItem('podhod.log.v1')).dbcurl.length, open: document.querySelector('[data-jex="dbcurl"]').open, wide: document.documentElement.scrollWidth > innerWidth + 1 }; });
+  check(r.focus && /^Удалена запись за .+\.\s*Вернуть$/.test(r.line) && /^Удалена запись за/.test(r.desc) && r.log === 2 && r.stored === 2 && r.open && !r.wide, `второе нажатие удаляет; на месте записи — «Удалена запись за … · Вернуть», фокус на «Вернуть» (${JSON.stringify(r)})`);
+  await K.click('[data-hist-undo="dbcurl"]');
+  r = await K.evaluate(d => ({ log: LOG.data.dbcurl.length, stored: JSON.parse(localStorage.getItem('podhod.log.v1')).dbcurl.length, focus: document.activeElement?.dataset.del === 'dbcurl' && document.activeElement.dataset.d === d, msg: $('#j-msg').textContent }), first);
+  check(r.log === 3 && r.stored === 3 && r.focus && /возвращена/.test(r.msg), `«Вернуть» возвращает запись, фокус на её «Удалить» (${JSON.stringify(r)})`);
+  /* время вышло: строка уходит, фокус — на заголовок упражнения */
+  await K.click(delSel); await K.click(delSel);
+  r = await K.evaluate(id => { LOG.undo.until = 0; undoRepaint(`[data-hist-undo="${id}"]`, `[data-jex="${id}"] > summary`); return { gone: !document.querySelector('[data-hist-undo]'), focus: document.activeElement === document.querySelector('[data-jex="dbcurl"] > summary') }; }, 'dbcurl');
+  check(r.gone && r.focus, `через 10 с «Вернуть» уходит, фокус — на заголовок упражнения (${JSON.stringify(r)})`);
+  /* замер: «5000» — отказ с причиной, ничего не записано; «270» — вопрос; «Записать» — записано и сказано, что именно */
+  const kg = '#b-form [data-bf="kg"]';
+  await K.fill(kg, '5000'); await K.click('#b-form [type="submit"]');
+  r = await K.evaluate(() => ({ msg: $('#b-msg').textContent, rows: BODY.rows.length, invalid: $('#b-form [data-bf="kg"]').getAttribute('aria-invalid'), desc: $('#b-form [data-bf="kg"]').getAttribute('aria-describedby'), focus: document.activeElement?.dataset.bf, j: $('#j-msg').textContent }));
+  check(/^Вес 5000 кг — так не бывает/.test(r.msg) && r.rows === 0 && r.invalid === 'true' && r.desc === 'b-msg' && r.focus === 'kg' && !/записан/.test(r.j), `замер «5000»: отказ с причиной у поля, ничего не записано, «записан» не сказано (${JSON.stringify(r)})`);
+  await K.fill(kg, '270'); await K.click('#b-form [type="submit"]');
+  r = await K.evaluate(() => ({ ask: $('#b-msg .b-ask')?.textContent.replace(/\s+/g, ' '), focus: document.activeElement?.dataset.bask, rows: BODY.rows.length }));
+  check(/^Необычное значение: вес 270 кг\. Записать\?/.test(r.ask || '') && r.focus === 'fix' && r.rows === 0, `замер «270»: вопрос «Записать?», фокус на «Исправить» (${JSON.stringify(r)})`);
+  await K.click('[data-bask="yes"]');
+  r = await K.evaluate(() => ({ rows: BODY.rows.length, msg: $('#b-msg').textContent }));
+  check(r.rows === 1 && /^Замер за сегодня записан: вес 270 кг\.$/.test(r.msg), `«Записать» — замер записан, сказано что (${JSON.stringify(r)})`);
+  /* строка о личных данных */
+  check(await K.evaluate(() => /Пульс, вес и отметки о суставах хранятся только на этом устройстве.*открытый файл/.test($('.j-private')?.textContent || '')), 'в журнале сказано, где хранятся пульс, вес и отметки о суставах и что копия — открытый файл');
+  /* восстановление: сначала что будет и выбор; «оставить мои» — свой план и цель остаются, журнал добавлен */
+  await K.evaluate(() => { S.customs = [{ id: 'c9', name: 'Сегодняшний план', items: [{ id: 'squat' }] }]; S.custom = 'c9'; S.goal = 'gentle'; ensureCustoms(S); saveSettings(); });
+  const copy = await K.evaluate(() => { const b = backupObject(); b.settings = { ...b.settings, goal: 'strength', customs: [{ id: 'c1', name: 'Из копии', items: [{ id: 'bbbench' }] }], custom: 'c1' }; b.log = { bbbench: [{ d: '2026-11-02', s: [[60, 8]] }] }; return JSON.stringify(b); });
+  await K.evaluate(t => restoreRead(t), copy);
+  r = await K.evaluate(() => ({ h: document.activeElement?.id, mine: document.querySelector('input[name="jr-set"][value="mine"]')?.checked, copy: !!document.querySelector('input[name="jr-set"][value="copy"]'), text: $('.j-restore')?.textContent.replace(/\s+/g, ' '), customs: S.customs[0].name, log: !!LOG.data.bbbench, wide: document.documentElement.scrollWidth > innerWidth + 1 }));
+  check(r.h === 'jr-h' && r.mine && r.copy && /Журнал и замеры добавятся/.test(r.text) && /Оставить мои.*цель — Бережно.*Взять из копии.*цель — Сила/.test(r.text) && r.customs === 'Сегодняшний план' && !r.log && !r.wide,
+    `восстановление: сначала — что будет, «Оставить мои» выбрано, ничего ещё не изменилось (${JSON.stringify(r)})`);
+  await K.click('#jr-go');
+  r = await K.evaluate(() => ({ customs: S.customs[0].name, goal: S.goal, log: LOG.data.bbbench?.length, msg: $('#j-msg').textContent, focus: document.activeElement?.id }));
+  check(r.customs === 'Сегодняшний план' && r.goal === 'gentle' && r.log === 1 && /Восстановлено: новых записей журнала — 1\. Планы и настройки — здешние\./.test(r.msg) && r.focus === 'j-msg',
+    `«Восстановить» с «Оставить мои»: свой план и цель на месте, журнал добавлен, итог — как было сделано (${JSON.stringify(r)})`);
+  await K.close();
+  /* испорченные настройки в хранилище при запуске: приложение работает, сообщение и «Скачать испорченное» */
+  const seed = (store, extra) => { const c = browser.newContext({ viewport: { width: 390, height: 844 } }); return c.then(async ctx => { await ctx.addInitScript(([s, x]) => { if (!sessionStorage.getItem('seeded')) { for (const [k, v] of Object.entries(s)) localStorage.setItem(k, v); sessionStorage.setItem('seeded', '1'); } if (x) (0, eval)(x); }, [store, extra || '']); const pg = await ctx.newPage(); pg.on('pageerror', e => errors.push(String(e))); pg.on('close', () => ctx.close().catch(() => {})); return pg; }); };
+  const B = await seed({ 'podhod.settings.v1': JSON.stringify({ goal: 'mass', groups: 'chest', equip: ['db'], protect: 'knees' }), 'podhod.log.v1': JSON.stringify({ dbcurl: [{ d: '2026-11-02', s: [[5, 12]] }] }) });
+  await B.goto('file://' + file); await B.waitForTimeout(600);
+  r = await B.evaluate(() => ({ note: $('#keep-notes')?.textContent.replace(/\s+/g, ' ') || '', groups: Array.isArray(S.groups), protect: Array.isArray(S.protect), plan: !!document.querySelector('#plan').children.length, broken: JSON.parse(localStorage.getItem('podhod.broken.v1') || '[]').map(x => x.key) }));
+  check(/Часть сохранённых настроек была испорчена и заменена обычными: мышцы, «Беречь суставы»/.test(r.note) && /Скачать испорченное/.test(r.note) && r.groups && r.protect && r.plan && r.broken.includes('podhod.settings.v1'),
+    `испорченные настройки при запуске: приложение работает, сообщение, исходное отложено (${JSON.stringify(r)})`);
+  await B.close();
+  /* ошибка при запуске, которую не поймала проверка (здесь — подменённое начало app.js): перезапуск с обычными настройками и
+     сообщение; ошибка и после этого — экран спасения с «Сохранить все данные в файл», журнал не тронут */
+  const errsBefore = errors.length;
+  const boom = flag => `Object.defineProperty(window, 'PODHOD_LOCALE', { configurable: true, set(v) { this.__loc = v; }, get() { if (${flag}) throw new Error('boom'); return this.__loc; } });`;
+  const C = await seed({ 'podhod.settings.v1': JSON.stringify({ goal: 'cut', author: '__boom__' }), 'podhod.log.v1': JSON.stringify({ dbcurl: [{ d: '2026-11-02', s: [[5, 12]] }] }) }, boom(`(localStorage.getItem('podhod.settings.v1') || '').includes('__boom__')`));
+  await C.goto('file://' + file); await C.waitForTimeout(1500);
+  r = await C.evaluate(() => ({ note: $('#keep-notes')?.textContent || '', goal: S.goal, log: !!JSON.parse(localStorage.getItem('podhod.log.v1')).dbcurl, broken: JSON.parse(localStorage.getItem('podhod.broken.v1') || '[]').map(x => x.key + ':' + x.why.slice(0, 4)) }));
+  check(/запущено с обычными/.test(r.note) && r.goal === 'mass' && r.log && r.broken.includes('podhod.settings.v1:boot'), `ошибка при запуске: перезапуск с обычными настройками, журнал на месте, настройки отложены (${JSON.stringify(r)})`);
+  await C.close();
+  const D = await seed({ 'podhod.log.v1': JSON.stringify({ dbcurl: [{ d: '2026-11-02', s: [[5, 12]] }] }) }, boom('true'));
+  await D.goto('file://' + file); await D.waitForTimeout(1500);
+  r = await D.evaluate(() => ({ title: document.querySelector('.rescue h1')?.textContent, btns: [...document.querySelectorAll('.rescue button')].map(b => b.textContent), focus: document.activeElement?.dataset.rescue, log: localStorage.getItem('podhod.log.v1') }));
+  check(r.title === 'Приложение не открылось' && r.btns.join('|') === 'Сохранить все данные в файл|Открыть без сохранённых данных' && r.focus === 'save' && /dbcurl/.test(r.log), `ошибка и после перезапуска — экран спасения, журнал не тронут (${JSON.stringify(r)})`);
+  const [dl] = await Promise.all([D.waitForEvent('download'), D.click('[data-rescue="save"]')]);
+  const saved = JSON.parse(fs.readFileSync(await dl.path(), 'utf8'));
+  check(saved.app === 'podhod' && saved.log?.dbcurl?.length === 1 && saved.raw['podhod.log.v1'], 'файл «все данные» — в виде резервной копии, с журналом и исходными текстами');
+  await D.close();
+  errors.splice(errsBefore); /* ошибки подменённого запуска — нарочно */
+  /* хранилище запрещено: предупреждение на странице и на экране тренировки */
+  const E = await seed({}, `Object.defineProperty(window, 'localStorage', { get() { throw new DOMException('insecure', 'SecurityError'); } });`);
+  await E.goto('file://' + file); await E.waitForTimeout(600);
+  await fakeFigures(E);
+  r = await E.evaluate(() => ({ bad: $('#keep-notes .keep-bad')?.getAttribute('role'), text: $('#keep-notes')?.textContent || '' }));
+  check(r.bad === 'alert' && /Записи не сохраняются на этом устройстве/.test(r.text) && /Сохранить копию в файл/.test(r.text), `хранилище запрещено: заметное предупреждение (${JSON.stringify(r)})`);
+  await E.evaluate(() => { if (typeof firstRunClose === 'function') try { firstRunClose(); } catch (e) {} });
+  await E.evaluate(() => startWorkout()); await E.waitForTimeout(200);
+  check(await E.evaluate(() => /Записи не сохраняются/.test($('#keep-notes-wv')?.textContent || '') && $('#workout-view').open), 'и на экране тренировки');
+  await E.close();
+}
+
 /* «+ В свой план» (телефон): в атласе мышц и в разборе кнопка раскрывает под собой список своих планов и «+ Новый план».
    Выбор добавляет в выбранный план и не открывает его; повторное нажатие и Esc сворачивают список, фокус — на кнопку;
    последний выбранный — первым. На странице своего плана кнопка, как раньше, добавляет в открытый план. */

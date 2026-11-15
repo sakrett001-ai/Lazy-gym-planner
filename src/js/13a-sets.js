@@ -113,6 +113,90 @@ function cleanSet(v, ex) {
   return o;
 }
 
+/* ---------- проверка записей журнала (Ксения 9, 15) ----------
+   Из хранилища — мягко (strict false): то, что записало само приложение, не теряется; отбрасывается только то, что не читается:
+   подход — не массив, повторы — не число больше нуля, вес — не пусто и не число не меньше нуля, дата — не настоящая (2026-13-45).
+   Из копии — строго: ещё дата не раньше 2000 года и не позже maxDay (день копии или завтра), вес до 2000 кг, повторы до 1000
+   (секунды — до 10 ч, метры — до 200 км), поля записи — только верные. Отброшенный подход оставляет пустое место (номера
+   подходов не съезжают). Что не прошло — не молча: r.sets, r.sessions и причины r.why для сообщения (logDropText).
+   Упражнения, которых нет в этой версии (новые версии, переименование), не теряются: foreign — хранятся и уходят в копию. */
+const LOG_DAY_MIN = '2000-01-01', LOG_KG_MAX = 2000, LOG_REPS_MAX = {reps:1000, time:36000, dist:200000};
+function realDay(d) {
+  if (typeof d !== 'string' || !/^\d{4}-\d\d-\d\d$/.test(d)) return false;
+  const [y, m, n] = d.split('-').map(Number), t = new Date(Date.UTC(y, m - 1, n));
+  return t.getUTCFullYear() === y && t.getUTCMonth() === m - 1 && t.getUTCDate() === n;
+}
+const logDrops = () => ({sets:0, sessions:0, why:{}});
+const dropWhy = (r, why) => { r.why[why] = (r.why[why] || 0) + 1; };
+const numOf = v => typeof v === 'number' ? v : typeof v === 'string' && v.trim() !== '' ? Number(v.replace(',', '.')) : NaN;
+function checkSet(v, ex, strict, r) {
+  if (v == null) return null;
+  let why = '', out = null;
+  if (!Array.isArray(v)) why = 'set';
+  else if (strict) {
+    const kg = v[0] == null || v[0] === '' ? null : numOf(v[0]), reps = numOf(v[1]);
+    const max = LOG_REPS_MAX[ex.kind === 'time' ? 'time' : ex.kind === 'dist' ? 'dist' : 'reps'];
+    if (kg !== null && !(Number.isFinite(kg) && kg >= 0 && kg <= LOG_KG_MAX)) why = 'kg';
+    else if (!(Number.isFinite(reps) && reps > 0 && reps <= max)) why = 'reps';
+    else out = cleanSet([kg, reps, v[2], v[3]], ex);
+  } else if (!(typeof v[1] === 'number' && Number.isFinite(v[1]) && v[1] > 0)) why = 'reps';
+  else if (!(v[0] == null || (typeof v[0] === 'number' && Number.isFinite(v[0]) && v[0] >= 0))) why = 'kg';
+  else out = v;
+  if (why) { r.sets++; dropWhy(r, why); }
+  return out;
+}
+/* запись дня: null — отброшена (причина в r) или в ней нет ни одного подхода */
+function checkSession(x, ex, {strict = false, maxDay = null} = {}, r = logDrops()) {
+  if (!x || typeof x !== 'object' || Array.isArray(x) || !Array.isArray(x.s)) { r.sessions++; dropWhy(r, 'shape'); return null; }
+  const bad = !realDay(x.d) ? 'date' : strict && x.d < LOG_DAY_MIN ? 'old' : strict && maxDay && x.d > maxDay ? 'future' : null;
+  if (bad) { r.sessions++; dropWhy(r, bad); return null; }
+  const s = x.s.map(v => checkSet(v, ex, strict, r));
+  if (!s.some(Boolean)) return null;
+  if (!strict) return {...x, s};
+  const o = {d:x.d};
+  if (Number.isInteger(+x.wk) && +x.wk >= 1 && +x.wk <= 4) o.wk = +x.wk;
+  if (x.fmt === 'static') o.fmt = 'static';
+  if (Number.isSafeInteger(+x.target) && +x.target > 0 && +x.target <= 50) o.target = +x.target;
+  if (cleanImpl(ex, x.eq)) o.eq = x.eq;
+  if (Number.isFinite(x.at) && x.at > 946684800000) o.at = Math.round(x.at); /* время первого подхода (порядок выполнения), с 2000 года */
+  o.s = s;
+  return o;
+}
+/* две записи одного дня: подходы по номерам — первая, где у неё пусто, вторая; поля — первой, цель — бо́льшая */
+function unionSession(a, b) {
+  /* вторая ничего не добавляет — первая как есть */
+  if (b.s.every((v, k) => !v || a.s[k]) && (b.target || 0) <= (a.target || 0)) return a;
+  const s = [];
+  for (let k = 0; k < Math.max(a.s.length, b.s.length); k++) s.push(a.s[k] || b.s[k] || null);
+  const o = {...b, ...a, s};
+  if (a.target || b.target) o.target = Math.max(a.target || 0, b.target || 0);
+  if (a.at || b.at) o.at = Math.min(...[a.at, b.at].filter(Number.isFinite));
+  return o;
+}
+/* весь журнал: {data, foreign, r, whole} — whole: это вообще не журнал (не объект) */
+function checkLog(obj, opts = {}) {
+  const r = logDrops(), data = {}, foreign = {};
+  if (!obj || typeof obj !== 'object' || Array.isArray(obj)) return {data, foreign, r, whole:obj != null};
+  for (const [id, ss] of Object.entries(obj)) {
+    if (!EXI[id]) { if (Array.isArray(ss) && ss.length) foreign[id] = ss; continue; }
+    if (!Array.isArray(ss)) { r.sessions++; dropWhy(r, 'shape'); continue; }
+    const by = new Map();
+    for (const x of ss) { const c = checkSession(x, EXI[id], opts, r); if (c) by.set(c.d, by.has(c.d) ? unionSession(by.get(c.d), c) : c); }
+    if (by.size) data[id] = [...by.values()].sort((a, b) => a.d < b.d ? -1 : 1);
+  }
+  return {data, foreign, r, whole:false};
+}
+/* «7 подходов (вес не число, меньше нуля или больше 2000 кг — 5; …), 3 записи (нет такой даты — 1; …)» */
+function logDropText(r) {
+  const W = {kg:'вес не число, меньше нуля или больше 2000 кг', reps:'повторы не число, не больше нуля или слишком много', set:'подход не в том виде',
+    date:'нет такой даты', old:'дата раньше 2000 года', future:'дата позже дня, когда сделана копия', shape:'запись не в том виде'};
+  const list = keys => keys.filter(k => r.why[k]).map(k => `${W[k]} — ${r.why[k]}`).join('; ');
+  const parts = [];
+  if (r.sets) parts.push(`${r.sets} ${plural(r.sets, 'подход', 'подхода', 'подходов')} (${list(['kg', 'reps', 'set'])})`);
+  if (r.sessions) parts.push(`${r.sessions} ${plural(r.sessions, 'запись', 'записи', 'записей')} (${list(['date', 'old', 'future', 'shape'])})`);
+  return parts.join(', ');
+}
+
 /* ---------- общий вес (тоннаж) ---------- */
 /* Общий вес подхода, кг = вес одного снаряда × повторы × снарядов в повторе × сторон.
    both — × снарядов: жим гантелей 2 × 20 кг × 10 = 400 кг, гоблет 24 кг × 10 = 240 кг;

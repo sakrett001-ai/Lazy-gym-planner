@@ -52,13 +52,14 @@ function workoutSpent(now=Date.now()){return workout.spent+(workout.openAt?Math.
 function saveWorkout(){
   if(!workout)return;
   const now=Date.now(),c=workoutCount();workout.savedAt=now;
-  try{localStorage.setItem(WORKOUT_STORE,JSON.stringify({stamp:workout.stamp,day:workout.days[0],days:workout.days,index:workout.index,started:workout.started,spent:workoutSpent(now),restUntil:workout.restUntil,restTotal:workout.restTotal,restFrom:workout.restFrom,restPaused:workout.restPaused,next:workout.next,last:workout.last,drafts:workout.drafts,skipped:workout.skipped,gone:workout.gone,ended:workout.ended,done:c.done,total:c.total}));}catch(e){}
+  Keep.set(WORKOUT_STORE,JSON.stringify({stamp:workout.stamp,day:workout.days[0],days:workout.days,index:workout.index,started:workout.started,spent:workoutSpent(now),restUntil:workout.restUntil,restTotal:workout.restTotal,restFrom:workout.restFrom,restPaused:workout.restPaused,next:workout.next,last:workout.last,drafts:workout.drafts,skipped:workout.skipped,gone:workout.gone,ended:workout.ended,done:c.done,total:c.total,snap:workoutSnap(workout.queue)}));
 }
 function workoutLoad(){let o=null;try{o=JSON.parse(localStorage.getItem(WORKOUT_STORE)||'null');}catch(e){}return wkNormalize(o,Date.now(),todayKey());}
 /* план: «Начать тренировку →», «Продолжить тренировку →» со сделанным или вопрос о тренировке прошлого дня */
 function workoutPlanState(){
   if(!plan?.items?.length)return{kind:'start'};
-  return wkPlanState(workoutLoad(),{today:todayKey(),queue:workoutQueue(plan),data:LOG.data});
+  const saved=workoutLoad();
+  return wkPlanState(saved,{today:todayKey(),queue:workoutQueueNow(saved),data:LOG.data});
 }
 function yesterdayKey(){const d=new Date();d.setDate(d.getDate()-1);return dayKey(d);}
 const doneOfText=(n,total)=>`${n} ${'из'} ${total} ${plural(total,'подхода','подходов','подходов')}`;
@@ -82,7 +83,7 @@ function paintStartButtons(){
 /* «Закончить её»: тренировка прошлого дня закрыта, её подходы остаются в журнале */
 function workoutEndSaved(){
   const o=workoutLoad();if(!o)return;o.ended=true;
-  try{localStorage.setItem(WORKOUT_STORE,JSON.stringify(o));}catch(e){}
+  Keep.set(WORKOUT_STORE,JSON.stringify(o));
 }
 /* введённое в полях подхода: общее (kg, reps) и по сторонам (kl, rl — левая, kr, rr — правая) */
 function workoutInputs(){return{kg:$('#wv-kg').value,reps:$('#wv-reps').value,kl:$('#wv-kg-l').value,rl:$('#wv-reps-l').value,kr:$('#wv-kg-r').value,rr:$('#wv-reps-r').value};}
@@ -95,7 +96,9 @@ function workoutCapture(){
 function startWorkout(id,opts={}){
   if(!plan?.items?.length)return;
   workoutReturn=document.activeElement;
-  const queue=workoutQueue(plan),stamp=workoutStamp(queue),today=todayKey(),old=workoutLoad(),now=Date.now();
+  /* начатая тренировка идёт по своему списку упражнений, даже если план с тех пор собрался иначе (новая версия приложения):
+     workoutQueueNow, 18a-data-keep.js (Ксения 12) */
+  const old=workoutLoad(),queue=workoutQueueNow(old,{cont:!!opts.cont}),stamp=workoutStamp(queue),today=todayKey(),now=Date.now();
   const oldDays=old?wkDaysWith(old.days,today):[today],done=old?wkCount(queue,s=>wkSet(LOG.data,s.it.ex.id,s.k,oldDays),old).done:0;
   const how=wkResume(old,{today,stamp,cont:!!opts.cont,done}),keep=how!=='new',same=how==='same'&&old.stamp===stamp;
   workout={queue,stamp,index:0,days:keep?oldDays:[today],started:keep&&Number.isFinite(old.started)?old.started:now,spent:keep?old.spent:0,openAt:now,
@@ -140,6 +143,7 @@ function workoutShow(index){
   if(!workout)return;
   workout.index=Math.max(0,Math.min(workout.queue.length-1,index));workout.restUntil=0;workout.restFrom=0;workout.restPaused=0;workout.next=-1;workout.sideNote='';workout.holdPair=null;RestAlarm.cancel();paintRestPhase(false);workoutAskHide();
   const s=workout.queue[workout.index],it=s.it,ex=it.ex,stored=workoutValue(s),sg=suggest(it),hold=isHold(ex);
+  workout.shown=JSON.stringify(stored||null); /* что было записано у подхода, когда его показали (запись из другой вкладки — workoutTaken) */
   const prev=sg.prev?.s[s.k]||sg.prev?.s.filter(Boolean).slice(-1)[0];
   $('#wv-active').hidden=false;$('#wv-rest').hidden=true;$('#wv-finish').hidden=true;
   $('#wv-title').textContent=it.name;$('#wv-exercise').value=ex.id;paintExerciseTools();
@@ -246,8 +250,13 @@ function commitWorkout(e,sure){
   workoutAskHide();
   /* отдых, уже записанный у этого подхода (третье поле), при исправлении сохраняется; правка подхода — в его же дне журнала,
      новый подход — сегодняшним днём */
+  /* подход под этим номером записала другая вкладка, пока здесь он был пустым (Артём 3, Ксения 3): здешний — следующим номером,
+     ни один не затирается (workoutTaken, 18a-data-keep.js) */
+  const taken=workoutTaken(step);
+  if(taken)return workoutCommitTaken(step,got,taken);
   const already=!!workoutValue(step),session=workoutSession(step,true),rest=already?restField(session.s[step.k][2]):null;
   if(!already&&!workout.days.includes(session.d))workout.days.push(session.d);
+  if(!already)markActive(session.d);
   /* записали пропущенное упражнение — оно снова в тренировке */
   if(workout.skipped.includes(ex.id)){workout.skipped=workout.skipped.filter(x=>x!==ex.id);workoutOptions();}
   while(session.s.length<step.k)session.s.push(null);
