@@ -241,6 +241,10 @@ test('«Swap» changes one exercise, not the whole plan; the assisted machine is
     assert(after.includes(to), `${goal} ${dur}: the swap is applied — ${after}`);
     assert.equal(after.length, before.length, `${goal} ${dur}: ${before} → ${after}`);
     assert.equal(after.filter((id, i) => id !== before[i]).length, 1, `${goal} ${dur}: ${before} → ${after}`);
+    /* у остальных упражнений дозировка та же: роль тяжёлого не переходит к другому (было: присед → гоблет, и ягодичный мост
+       из 3 × 6–8 становился 4 × 3–5) */
+    const dose = (pl, id) => { const it = pl.items.find(x => x.ex.id === id); return it ? `${it.rx.sets}×${it.rx.reps}` : null; };
+    for (const id of before) if (after.includes(id) && id !== to) assert.equal(dose(q, id), dose(p, id), `${goal} ${dur}: ${id}`);
   }
   reset({ groups: UPPER.slice(), dur: 'long' });
   m.get('plan = buildPlan()');

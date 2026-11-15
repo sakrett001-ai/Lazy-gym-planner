@@ -1034,14 +1034,20 @@ function buildPlanAt(ctx = {}) {
   /* доводка объёма недели подходами — по номеру упражнения (после замены та же) */
   const extra = !custom && ctx.vol ? volTopUp(picked, ctx.vol, PE, dose, demPick) : picked.map(() => 0);
   /* замены записаны по номеру упражнения (slot): в программе другого места часть упражнений может не войти в план */
+  const swappedK = new Set();
   for (const [i, id] of Object.entries(sw)) {
     const ex = EXI[id], k = slots.indexOf(+i);
-    if (k >= 0 && picked[k] && ex && usable(ex) && !picked.includes(ex)) picked[k] = ex;
+    if (k >= 0 && picked[k] && ex && usable(ex) && !picked.includes(ex)) { picked[k] = ex; swappedK.add(k); }
   }
+  /* «Заменить» в классике: у остальных упражнений подходы те же, что в плане до замены (без неё — тот же подбор); потолок
+     тренировки срезает только у замены. Было: тягу заменили приседом с гирей — и у жима лёжа стало 2 подхода вместо 4
+     (баланс жимов и тяг считался заново) */
+  const base0 = !custom && swappedK.size && S.format === 'classic' && !ctx.noSwapBase ? buildPlanAt({...ctx, swaps:{}, noSwapBase:true}) : null;
   if (!picked.length) return {empty:'none', pool, groups, lost};
   const G = GOALS[S.goal];
-  /* не больше двух тяжёлых упражнений за тренировку (heavyDemote); разгрузка — 60% подходов первой недели (deloadSets) */
-  const dem = custom ? new Set() : heavyDemote(picked);
+  /* не больше двух тяжёлых упражнений за тренировку (heavyDemote); разгрузка — 60% подходов первой недели (deloadSets).
+     После «Заменить» тяжёлые — те же, что до замены (heavySwap) */
+  const dem = custom ? new Set() : heavySwap(picked, picks.map(id => EXI[id]), demPick);
   const dlNorm = week && week.deload && !custom && S.format !== 'circuit' && S.format !== 'static'
     ? picked.map((ex, k) => applyDose(prescribe(ex, WEEKS[0], E, extra[k], {assist:dem.has(ex)}), dose).sets) : null, dl = dlNorm && deloadSets(dlNorm);
   const items = picked.map((ex, k) => {
@@ -1063,8 +1069,13 @@ function buildPlanAt(ctx = {}) {
     const ord = byOrder((custom ? picked : orderClassic(picked)).map(ex => bySlot.get(ex)), custom ? null : ctx.order, it => [it.slot]);
     ord.forEach((it, i) => { it.label = String(i + 1); });
     blocks = [{kind:'list', items:ord}];
-    if (!custom && S.format === 'classic') { const us = ord.map(it => ({items:[it]})); trimmed = capTrim(us, groups); ppBalance(us, groups); }
-    if (dl) deloadRefit(blocks);
+    if (!custom && S.format === 'classic' && base0 && base0.items) {
+      const by = new Map(base0.items.map(it => [it.slot, it])), same = it => by.get(it.slot) && by.get(it.slot).ex === it.ex;
+      for (const it of ord) if (same(it)) { const b = by.get(it.slot).rx; it.rx.sets = b.sets; it.rx.sets0 = b.sets0; if (b.setsW1 != null) it.rx.setsW1 = b.setsW1; }
+      const us = ord.map(it => ({items:[it]}));
+      trimmed = capTrim(us, groups, new Set(us.filter(u => !same(u.items[0]))));
+    } else if (!custom && S.format === 'classic') { const us = ord.map(it => ({items:[it]})); trimmed = capTrim(us, groups); ppBalance(us, groups); }
+    if (dl && !base0) deloadRefit(blocks);
     for (const it of ord) { minutes += it.rx.static ? staticSeconds(it.rx) : it.rx.sets * (it.rx.work + it.rx.rest) + 60; totalSets += it.rx.sets; }
   } else if (S.format === 'superset') {
     /* в своём плане пары — соседние упражнения по порядку человека, и подходов у каждого — свои (было: в паре с тягой на 5
@@ -1152,6 +1163,17 @@ function heavyDemote(list) {
   for (const ex of heavy) if (!keep.has(ex)) out.add(ex);
   return out;
 }
+/* «Заменить» меняет одно упражнение: у остальных роль та же, что до замены (тяжёлое остаётся тяжёлым, вспомогательное —
+   вспомогательным); новое тяжёлое — тяжёлым на месте тяжёлого и пока их не больше двух. Было: замена приседа на гоблет
+   делала тяжёлым ягодичный мост (3 × 6–8 → 4 × 3–5) */
+function heavySwap(list, before, demBefore) {
+  const out = new Set();
+  if (S.goal !== 'strength' || S.level === 'beg' || S.format === 'circuit' || S.format === 'static') return out;
+  let kept = 0;
+  list.forEach((ex, k) => { if (ex === before[k]) { if (demBefore.has(ex)) out.add(ex); else if (schemeOf(ex) === 'heavy') kept++; } });
+  list.forEach((ex, k) => { if (ex !== before[k] && schemeOf(ex) === 'heavy') { if (demBefore.has(before[k]) || kept >= 2) out.add(ex); else kept++; } });
+  return out;
+}
 /* подходы разгрузки: 60% от первой недели на всю тренировку (не меньше подхода на упражнение), остаток — тем, у кого
    больше дробная часть (так «примерно на 40% меньше» и выходит; было: от 0 до 50%, в «Бережно» по 2 подхода — без изменений) */
 function deloadSets(norm) {
@@ -1174,7 +1196,7 @@ function deloadRefit(blocks) {
    суперсета), которое её нагружает: сначала то, где она целевая, среди них прицельные, потом больше подходов; не меньше двух
    подходов; если так тяг стало меньше, чем жимов, — подход меньше и у жима. Счёт — по подходам обычной недели (sets0), правка
    та же во всех неделях цикла. Вернёт true, если потолок что-то срезал или упёрся (тогда под планом — почему). */
-function capTrim(units, groups) {
+function capTrim(units, groups, only = null) {
   const cap = sessionCap(), sets = u => u.items[0].rx.sets0, gv = () => { const v = {}; for (const u of units) for (const it of u.items) for (const [g, x] of Object.entries(groupShare(it.ex))) if (g !== 'cardio') v[g] = (v[g] || 0) + x * it.rx.sets0; return v; };
   const G = new Set(groups), pp = G.has('back') && (G.has('chest') || G.has('shoulders'));
   const side = sd => units.reduce((a, u) => a + u.items.filter(it => sideOf(it.ex) === sd).reduce((b, it) => b + it.rx.sets0, 0), 0);
@@ -1188,17 +1210,17 @@ function capTrim(units, groups) {
     const v = gv(), g = Object.keys(v).filter(h => v[h] > cap + 0.01 && !stuck.has(h)).sort((a, b) => v[b] - v[a])[0]; if (!g) break;
     const sh = u => Math.max(...u.items.map(it => groupShare(it.ex)[g] || 0));
     /* сначала те, у кого это целевая группа, среди них — прицельные, потом больше подходов */
-    const u = units.filter(x => sh(x) > 0 && can(x) && !blocked.has(x)).sort((a, b) => ((sh(b) >= 1) - (sh(a) >= 1)) || (iso(b) - iso(a)) || sets(b) - sets(a))[0];
+    const u = units.filter(x => sh(x) > 0 && can(x) && !blocked.has(x) && (!only || only.has(x))).sort((a, b) => ((sh(b) >= 1) - (sh(a) >= 1)) || (iso(b) - iso(a)) || sets(b) - sets(a))[0];
     if (!u) { stuck.add(g); continue; }
     setsStep(u, -1); cut = true;
-    if (pp && side('pull') < side('push')) {
+    if (pp && !only && side('pull') < side('push')) {
       const pushOnly = x => x.items.some(it => sideOf(it.ex) === 'push') && !x.items.some(it => sideOf(it.ex) === 'pull');
       const p = units.filter(x => x !== u && can(x) && pushOnly(x)).sort((a, b) => iso(b) - iso(a) || sets(b) - sets(a))[0];
       if (!p) { setsStep(u, 1); blocked.add(u); continue; }
       setsStep(p, -1);
     }
   }
-  if (cut) {
+  if (cut && !only) {
     const mm = Math.min(...units.filter(u => u.items.some(it => mains.has(it.ex))).map(sets));
     if (mm < 3) for (const u of units) if (iso(u) && sets(u) > mm) setsStep(u, mm - sets(u));
   }
