@@ -10,7 +10,7 @@
 .muscle-panel{border:1px solid var(--line);border-radius:13px;background:var(--surface);padding:14px;margin:12px 0}
 .muscle-panel h3{font:600 .875rem/1.4 var(--f-body);margin:0 0 9px;color:var(--ink)}
 .muscle-scale{display:flex;align-items:center;gap:9px;font-size:.75rem;color:var(--muted)}
-.muscle-scale-gradient{height:7px;border-radius:4px;flex:1;max-width:180px;background:linear-gradient(90deg,#aeb8c8 0%,#cecbb2 15%,#f0c85a 45%,#f49624 72%,#ea6a0e 100%)}
+.muscle-scale-gradient{height:7px;border-radius:4px;flex:1;max-width:180px;background:linear-gradient(90deg,#aeb8c8 0%,#c6c6bc 15%,#eac876 45%,#f49624 72%,#ea6a0e 100%)}
 .muscle-explanation{font-size:.75rem;line-height:1.55;color:var(--muted);margin:8px 0 0}
 .muscle-phase-note{font-size:.75rem;line-height:1.55;color:var(--ink);margin:10px 0}
 .muscle-list{list-style:none;padding:0;margin:0;display:grid;gap:7px}
