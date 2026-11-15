@@ -123,7 +123,7 @@ test('the plan weight editor: a field per set with the numeric keyboard; 5000, �
   const it = `(()=>{const i=${item('squat', ['bb', 'rack'])};i.slot=0;i.rx={...i.rx,sets:3,kgPlan:[200],kgU:'kg'};return i;})()`;
   const html = a.get(`cpKgFieldsHtml(${it}, 'Вес, кг')`);
   assert.equal((html.match(/inputmode="decimal"/g) || []).length, 3, 'three sets — three fields');
-  assert.match(html, /value="200"/); assert.match(html, /Вписан только первый — тот же вес во всех подходах/);
+  assert.match(html, /value="200"/); assert.match(html, /Пустое поле — тот же вес, что в подходе перед ним/);
   /* разбор полей: пустое — вес подхода выше, разные — пирамида; неверное — сообщение */
   const read = vals => a.json(`(()=>{const ins=${JSON.stringify(vals)}.map((v,k)=>({value:v,dataset:{k}}));document.querySelectorAll=()=>ins;plan={items:[${it}]};const r=cpKgRead(0);return r.bad?{msg:r.msg}:r;})()`);
   assert.deepEqual(read(['200', '', '']), {kg:[200]});
@@ -164,7 +164,7 @@ test('available dumbbells: «add weight» only up to what the place has, then re
   /* Ольга 1: дома только гантели 5 кг */
   a.get(`(()=>{const p=placeOf();p.equip=[...new Set(p.equip.concat('db'))];p.dw={db:{u:'kg',v:[5]}};LOG.data={dbrow:[{d:'${day(3)}',target:3,s:[[5,12],[5,12],[5,12]]}]};})()`);
   const s5 = sg();
-  assert.equal(s5.kg, 5); assert.match(s5.text, /^Тяжелее 5\s*кг гантелей в «.+» нет — прибавляйте повторы/); assert.deepEqual(s5.reps, [13, 13, 13]);
+  assert.equal(s5.kg, 5); assert.match(s5.text, /^В месте «.+» нет гантелей тяжелее 5\s*кг — прибавляйте повторы/); assert.deepEqual(s5.reps, [13, 13, 13]);
   assert.equal(a.get(`warmupHtml(${item('dbrow', ['db', 'bench'])}, 5)`), '', 'no warm-up to 7 kg that is not there');
   /* набор зала: 52,5 → 55 → 57,5 */
   a.get(`(()=>{placeOf().dw={db:{u:'kg',v:[50,52.5,55,57.5]}};LOG.data={dbrow:[{d:'${day(3)}',target:3,s:[[52.5,12],[52.5,12],[52.5,12]]}]};})()`);
@@ -196,7 +196,7 @@ test('workout screen: reps come from the task, the hint under the weight says wh
   assert.equal(hint('up'), 'Вес прибавлен: в прошлый раз все подходы были на верхней границе. Уточните его и введите результат.');
   assert.equal(hint('carried'), 'Вес — как в прошлом подходе. Уточните его и введите результат.');
   assert.equal(hint('deload'), 'Вес снижен по подсказке выше. Уточните его и введите результат.', 'the 4.107 text stays');
-  assert.match(hint('same', '{prev:{conv:true}}'), /Прошлая запись — в фунтах: вес пересчитан в килограммы до шага снаряда\.$/);
+  assert.equal(hint('same', '{prev:{conv:true}}'), 'Вес — как в прошлый раз. Прошлая запись — в фунтах: вес пересчитан в килограммы до шага снаряда. Уточните его и введите результат.');
 });
 test('the advice weight is the weight in the field: «add to 12 kg» and 12 in the field (Дмитрий 11, Ольга 1)', () => {
   const a = loadApp({lang:'ru'});
@@ -254,9 +254,9 @@ test('one set count: the plan bars, the journal 7 days and «today, N sets» agr
   assert.equal(r.journal, r.gvol);
   assert.match(strip(r.status), new RegExp(`сегодня, ${String(r.gvol).replace('.', ',')} подход`));
   assert.match(strip(r.bars), new RegExp(`Ягодицы ${String(r.gvol).replace('.', ',')}`));
-  /* ниже ориентира в журнале — «ещё N до 10», а не «мало» */
+  /* ниже ориентира в журнале — «ещё N» (до нижней границы), а не «мало» */
   const row = a.get(`volRow('chest', 4, 22, '', 'st-ready', true, true)`);
-  assert.match(row, /ещё 6 до 10/); assert.doesNotMatch(row, /мало/);
+  assert.match(row, /ещё 6/); assert.doesNotMatch(row, /мало/);
   assert.match(a.get(`volRow('chest', 4, 22)`), /мало/, 'the plan keeps «мало»');
 });
 

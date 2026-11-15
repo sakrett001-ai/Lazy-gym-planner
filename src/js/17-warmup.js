@@ -92,7 +92,7 @@ function warmupPlan(work, impl, reps, it) {
   if (floor) {
     /* рабочий вес не тяжелее стартового — разминаться с пола нечем легче: разминки нет */
     if (work <= floor + 1e-6) return [];
-    steps.push({kg:floor, reps:5, note:`${Math.round(floor / work * 100)}%`, floor:true});
+    const r0 = floor / work; steps.push({kg:floor, reps:r0 < 0.55 ? 8 : r0 < 0.72 ? 5 : 3, note:`${Math.round(r0 * 100)}%`, floor:true});
   } else if (impl === 'bb') {
     if (work <= bar * 1.6) return [{kg:bar, reps:Math.max(8, lo + 4), note:'пустой гриф'}];
     steps.push({kg:bar, reps:10, note:'пустой гриф'});

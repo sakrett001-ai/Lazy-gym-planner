@@ -359,7 +359,7 @@ function cpKgFieldsHtml(it, kgLabel) {
     return `<input type="text" inputmode="decimal" autocomplete="off" maxlength="7" data-cp-kg="${slot}" data-k="${k}" value="${esc(shown)}" placeholder="${esc(ph)}" aria-label="${esc(kgLabel)}, ${'подход'} ${k + 1}"${k ? ' aria-describedby="cp-kg-h-' + slot + '"' : ''}>`; };
   return `<div class="cp-f cp-kg" role="group" aria-labelledby="cp-kg-l-${slot}"><span id="cp-kg-l-${slot}">${kgLabel}${n > 1 ? ` · ${'по подходам'}` : ''}</span>`
     + `<div class="cp-kgs">${Array.from({length:n}, (_, k) => box(k)).join('')}</div>`
-    + (n > 1 ? `<small class="cp-kg-h" id="cp-kg-h-${slot}">${'Вписан только первый — тот же вес во всех подходах.'}</small>` : '')
+    + (n > 1 ? `<small class="cp-kg-h" id="cp-kg-h-${slot}">${'Пустое поле — тот же вес, что в подходе перед ним.'}</small>` : '')
     + `<p class="cp-err" id="cp-kg-e-${slot}" role="alert" hidden></p></div>`;
 }
 /* поля веса карточки → {kg:[…] в кг} | {clear:true} | {bad, msg}; пустое поле подхода — вес подхода выше */

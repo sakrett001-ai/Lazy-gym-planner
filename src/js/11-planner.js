@@ -1078,7 +1078,7 @@ function volRow(g, val, max, extra = '', cls = '', target = true, soft = false) 
   const pct = v => (v / max * 100).toFixed(1), sc = volScale();
   const v = Math.round(val * 2) / 2;
   const st = v > sc.hi ? 'hi' : !target ? 'side' : v < sc.lo ? 'lo' : 'ok';
-  const lab = st === 'lo' ? (soft ? 'ещё {n} до {lo}'.replace('{n}', fmtNum(Math.round((sc.lo - v) * 2) / 2)).replace('{lo}', sc.lo) : 'мало') : st === 'hi' ? 'много' : st === 'side' ? 'попутно' : 'в норме';
+  const lab = st === 'lo' ? (soft ? 'ещё {n}'.replace('{n}', fmtNum(Math.round((sc.lo - v) * 2) / 2)) : 'мало') : st === 'hi' ? 'много' : st === 'side' ? 'попутно' : 'в норме';
   return `<li class="${st}${cls ? ' ' + cls : ''}"${cls ? ` data-lg="${g}"` : ''}><span class="vb-n">${GN[g]}</span><span class="vb-v">${fmtNum(v)}<em>${lab}</em></span><span class="vb-t"><b style="left:${pct(sc.lo)}%;width:${pct(sc.hi - sc.lo)}%"></b><i style="width:${Math.max(1.5, +pct(v))}%"></i></span>${extra}</li>`;
 }
 /* «Полоса — ориентир …: 10–20 подходов в неделю» — по уровню; новичку и в «Бережно» — с пояснением */

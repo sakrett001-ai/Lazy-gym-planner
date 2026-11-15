@@ -516,8 +516,8 @@ function suggestBase(it) {
     res.tone = 'same'; res.kg = work; res.noHeavier = true;
     const capped = sets.every(x => x[1] >= REPS_CAP);
     res.reps = sets.map(x => Math.min(REPS_CAP, x[1] + 1));
-    res.text = (capped ? 'Тяжелее {w} {what} в «{place}» нет, а повторов уже {n}: замедлите опускание до 3–4 с или возьмите упражнение тяжелее.'
-      : 'Тяжелее {w} {what} в «{place}» нет — прибавляйте повторы: в следующий раз на 1 больше в каждом подходе. В прошлый раз: {prev}.')
+    res.text = (capped ? 'В месте «{place}» нет {what} тяжелее {w}, а повторов уже {n}: замедлите опускание до 3–4 с или возьмите упражнение тяжелее.'
+      : 'В месте «{place}» нет {what} тяжелее {w} — прибавляйте повторы: в следующий раз на 1 больше в каждом подходе. В прошлый раз: {prev}.')
       .replace(/\{(\w+)\}/g, (_, k) => ({w:fmtKg(work) + ' ' + wUnit(), what:name, place, n:REPS_CAP, prev:prevList})[k]);
     return res;
   }
