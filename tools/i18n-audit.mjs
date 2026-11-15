@@ -172,6 +172,9 @@ await readPasted(JSON.stringify({ format: 'lazy-gym-planner/plans', version: 9, 
   { name: 'Upper', group: 'Block B', for: 'Sam', goal: 'strength', format: 'superset', level: 'adv', items: [{ id: 'bbbench', sets: 4, reps: '5', kg: 80 }, { id: 'teleport', name: 'Teleport' }] },
   ...Array.from({ length: 51 }, (_, i) => ({ name: 'P' + i, items: [{ id: 'squat' }] }))] }));
 await scan('import preview with warnings');
+/* план больше 12 упражнений: сколько войдёт и «Разбить» (4.107) */
+await readPasted(JSON.stringify({ format: 'lazy-gym-planner/plans', version: 1, plans: [{ name: 'Big', items: (await run('EX.slice(0, 30).map(e => e.id)')).map(id => ({ id })) }] }));
+await scan('import preview: plan over the limit');
 await run(`(()=>{document.querySelectorAll('[data-pi]').forEach(x=>x.checked=false);document.querySelector('#pi-add').click();})()`);
 await scan('import nothing picked');
 for (const bad of ['', '{"plans":[', JSON.stringify(await run('backupObject()')), '{"format":"other","plans":[]}', '{"plans":[]}', ' '.repeat(300 * 1024)]) { await readPasted(bad); await scan('import error'); }
@@ -221,6 +224,42 @@ await run(`(()=>{const d=n=>{const x=new Date();x.setDate(x.getDate()-n);return 
 await scan('journal');
 await run(`(()=>{document.querySelectorAll('details').forEach(d=>d.open=true);})()`);
 await scan('journal expanded');
+/* 4а. данные без потерь (4.107): восстановление копии — что будет, выбор, пропущенное, итог; «Удалить» — переспрос и «Вернуть»;
+   замер — отказ, вопрос, «записан»; сообщения о спасённых данных и о хранилище; строка о хранении (iPhone); экран спасения;
+   подход из другой вкладки на экране тренировки */
+step('4а. данные без потерь');
+await run(`(()=>{const b=backupObject();b.settings={...b.settings,goal:'strength',groups:'chest',customs:[{id:'c1',name:'Copy',items:[{id:'bbbench'}]}],custom:'c1'};
+  b.log={...b.log,bbbench:[{d:'2026-11-01',s:[['abc',5],[60,8],[60,-1]]},{d:'2026-13-45',s:[[70,5]]},{d:'1970-01-01',s:[[20,5]]},{d:'2038-01-19',s:[[80,5]]}],nope_ex:[{d:'2026-11-02',s:[[1,1]]}]};
+  b.body=[{d:'2026-11-01',kg:5000,waist:80},{d:'2026-11-02',kg:'abc'}];S.customs[0].items=[{id:'squat'}];
+  restoreRead(JSON.stringify(b).slice(0,-40));})()`);
+await scan('restore: panel with warnings and choice');
+await run(`document.querySelector('#jr-go').click()`); await scan('restore: result');
+await run(`(()=>{restoreRead('');})()`); await scan('restore: empty file');
+await run(`(()=>{restoreRead(JSON.stringify(backupObject()).slice(0,30));})()`); await scan('restore: damaged file');
+await run(`(()=>{restoreRead('{"format":"lazy-gym-planner/plans","version":1,"plans":[]}');})()`); await scan('restore: plan file');
+await run(`(()=>{restoreRead(JSON.stringify(backupObject()));document.querySelector('#jr-cancel').click();})()`); await scan('restore: cancelled');
+await run(`(()=>{document.querySelectorAll('.j-row details').forEach(d=>d.open=true);const b=document.querySelector('.j-row [data-del]');b.click();})()`); await scan('delete armed');
+await run(`(()=>{const b=document.querySelector('.j-row [data-del].armed');b.click();})()`); await scan('deleted, undo line');
+await run(`(()=>{document.querySelector('[data-hist-undo]').click();})()`); await scan('undo done');
+await run(`(()=>{const k=document.querySelector('#b-form [data-bf="kg"]');k.value='5000';document.querySelector('#b-form [type="submit"]').click();})()`); await scan('body: refused');
+await run(`(()=>{const k=document.querySelector('#b-form [data-bf="kg"]');k.value='abc';document.querySelector('#b-form [type="submit"]').click();})()`); await scan('body: not a number');
+await run(`(()=>{const k=document.querySelector('#b-form [data-bf="waist"]');document.querySelector('#b-form [data-bf="kg"]').value='';k.value='-3';document.querySelector('#b-form [type="submit"]').click();})()`); await scan('body: negative');
+await run(`(()=>{document.querySelector('#b-form [data-bf="waist"]').value='';document.querySelector('#b-form [type="submit"]').click();})()`); await scan('body: empty');
+await run(`(()=>{const k=document.querySelector('#b-form [data-bf="kg"]');k.value='600';document.querySelector('#b-form [type="submit"]').click();})()`); await scan('body: ask');
+await run(`document.querySelector('[data-bask="yes"]').click()`); await scan('body: saved');
+await run(`(()=>{const b=document.querySelector('[data-bdel]');b.click();b.click();})()`); await scan('body: deleted, undo line');
+await run(`(()=>{Keep.note('settings',{fields:['groups','protect','places','customs','fav','count','dur','*'],whole:false});Keep.note('log',{cut:false,whole:false,drops:{sets:2,sessions:1,why:{kg:1,reps:1,date:1}},kept:3});Keep.note('body',{dropped:2});Keep.note('safe',{});keepPaint();})()`);
+await scan('kept data notes');
+await run(`(()=>{Keep.note('log',{cut:true,kept:3});Keep.note('settings',{whole:true,fields:[]});keepPaint();})()`); await scan('kept data notes: cut log, unreadable settings');
+await run(`(()=>{window.__set=Storage.prototype.setItem;Storage.prototype.setItem=function(){throw new DOMException('full','QuotaExceededError');};Keep.set('podhod.log.v1','{}');keepPaint();renderPlan();})()`);
+await scan('storage full');
+await run(`(()=>{Storage.prototype.setItem=function(){throw new DOMException('no','SecurityError');};Keep.set('podhod.log.v1','{}');keepPaint();renderPlan();})()`);
+await scan('storage disabled');
+await run(`(()=>{Storage.prototype.setItem=window.__set;Keep.set('podhod.log.v1',JSON.stringify(logStoreObject()));Keep.set('podhod.settings.v1',JSON.stringify(S));Keep.note('settings',null);Keep.note('log',null);Keep.note('body',null);Keep.note('safe',null);keepPaint();
+  Object.defineProperty(navigator,'userAgent',{configurable:true,get:()=>'Mozilla/5.0 (iPhone; CPU iPhone OS 18_0 like Mac OS X)'});KEEP_STORE.persisted=false;renderPlan();})()`);
+await scan('journal storage line: iPhone, not persisted');
+await run(`(()=>{rescueScreen('boom');})()`); await scan('rescue screen');
+await run(`(()=>{document.querySelector('.rescue').remove();})()`);
 /* 4б. загрузка мышц по журналу: «сегодня / вчера / позавчера», тренировка на сегодня с объяснением, всё нагружено, пустая неделя */
 step('4б. загрузка мышц');
 await run(`(()=>{const d=n=>{const x=new Date();x.setHours(12,0,0,0);x.setDate(x.getDate()-n);return dayKey(x);};window.__log=JSON.parse(JSON.stringify(LOG.data));
@@ -371,6 +410,9 @@ await scan('workout: pyramid target');
 await page.fill('#wv-kg', '5000'); await page.fill('#wv-reps', '10'); await page.click('#wv-done'); await scan('workout: weight question');
 await page.click('#wv-kg-fix');
 await run(`(()=>{const i=workout.queue.findIndex(s=>s.it.ex.id==='dbbench'&&s.k===1);workoutShow(i);})()`); await scan('workout: today, no last time');
+/* подход, который записала другая вкладка (4.107): переход к следующему и строка об этом; записанный поверх — следующим номером */
+await run(`(()=>{const st=workout.queue[workout.index];todaySession(st.it.ex.id,true).s[st.k]=[20,9];workoutOtherTab();})()`); await scan('workout: set logged in another tab');
+await run(`(()=>{const st=workout.queue[workout.index];workout.shown='null';todaySession(st.it.ex.id,true).s[st.k]=[20,9];workoutCommitTaken(st,[{kg:20,reps:8}],[20,9]);})()`); await scan('workout: set kept as the next one');
 await run(`(()=>{closeWorkout();S.view='journal';renderSetup();renderPlan();document.querySelectorAll('details').forEach(x=>x.open=true);})()`);
 await scan('journal: weight × reps, reps chart');
 await run(`(()=>{LOG.data={};S.customs=S.customs.filter(c=>c.id!=='i18n-pyr');ensureCustoms(S);S.view='plan';S.mode='single';regen();})()`);
