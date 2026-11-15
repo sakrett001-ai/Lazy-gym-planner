@@ -12,6 +12,8 @@
 /* строгие отметки «Что беречь?»: «После операции на колене», «Грыжа диска» */
 .chip-strict { border-style:dashed; }
 .chip-strict.on { border-style:solid; }
+/* длинные пункты «Здоровья» переносятся — строки по левому краю, как текст */
+#h-chips .chip, [aria-labelledby="fr-q-health"] .chip { text-align:left; }
 /* «Больно» в журнале (14-workout-mode.js → 11g-gentle.js: painDayHtml) */
 .j-pain { margin:4px 0 0; font-size:.8125rem; color:color-mix(in srgb, var(--hot) 70%, var(--ink)); }
 /* пометка «нагружает колени» в атласе и предупреждение перед «+ В свой план» */
