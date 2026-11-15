@@ -45,7 +45,11 @@ function motionFrame(F, clock=F.clock) {
   if (F.it.ex.id === 'kbhalo') labels=['Вокруг головы вправо','За головой','Вокруг головы влево','Перед грудью'];
   if (F.it.ex.id === 'kbclean') labels=['Взятие на грудь','Стойка','Сброс в замах','Замах'];
   if (F.it.ex.id === 'deadlift' || F.it.ex.id === 'kbdeadlift') labels=['Подъём','Верхняя точка','Опускание','Исходное положение'];
-  return {t,index,label:a.hold?'Удержание':labels[index],cue:a.hold?a.cues[0]:a.cues[(index<2)!==!!a.eccFirst?0:1],progress:((clock%total)+total)%total/total,total};
+  /* точка разворота без паузы (4.110, замечание анатома 13): у приседа нижняя точка — граница двух фаз, и подпись прыгала —
+     «Опускание» у ползунка, «Подъём» у кнопки «Конечная точка». Последние и первые 8 % фазы рядом с разворотом, где пауза
+     короче 250 мс, подписаны самой точкой разворота */
+  const turn=!a.hold&&!a.loop&&(index===0||index===2)?(q>=.92&&d[index+1]<250?index+1:q<=.08&&d[(index+3)%4]<250?(index+3)%4:index):index;
+  return {t,index,label:a.hold?'Удержание':labels[turn],cue:a.hold?a.cues[0]:a.cues[(index<2)!==!!a.eccFirst?0:1],progress:((clock%total)+total)%total/total,total};
 }
 /* Часы рисунка карточки — по сетке ≈30 кадров в секунду, целое число кадров на повторение: каждый круг проходит те же
    фазы, и готовые кадры берутся из памяти (FIGURE_FRAMES, 07-rigs-core.js). Кадр отстаёт от точного времени
@@ -96,7 +100,9 @@ function paintMusclePanel(prefix,F,m){
  const state=muscleFrame(F.it.ex.anim,m.t,m.index);if(!state)return;
  const note=$('#'+prefix+'-muscle-note');if(note.textContent!==state.note)note.textContent=state.note;
  for(const row of panel.querySelectorAll('[data-muscle-row]')){
-  const v=state.values[row.dataset.muscleRow],level=row.querySelector('.muscle-level'),text=row.dataset.deep==='true'?'Глубже':MUSCLE_BANDS[muscleBand(v)];
+  /* у глубокой части — тоже её участие (4.110, замечание анатома 4: подлопаточная в наружном вращении — «Нейтрально»); что
+     она глубже, говорит её название («· глубже»), а в «Анатомии» она видна среди мышц */
+  const v=state.values[row.dataset.muscleRow],level=row.querySelector('.muscle-level'),text=MUSCLE_BANDS[muscleBand(v)];
   row.querySelector('.muscle-swatch').style.backgroundColor=muscleColor(v);
   if(level.textContent!==text)level.textContent=text;
  }
@@ -416,7 +422,7 @@ function selectMotion(it, clock=0) {
   $('#mv-tools').innerHTML=cpKeepHtml(it.ex.id,'mv');
   $('#mv-view').textContent=CAMERA3[motionCamera(it.ex)].label;
   $('#mv-speed').value=String(motionPrefs.speed);$('#mv-joints').checked=!!motionPrefs.joints;$('#mv-trace').checked=!!motionPrefs.trace;$('#mv-vectors').checked=!!motionPrefs.vectors;
-  $('#mv-tempo').textContent=it.ex.anim.hold?'Удерживайте положение и дышите ровно.':it.ex.anim.timing||it.ex.g==='cardio'||it.ex.kind?'Ритм показан схематично. Замедление помогает разобрать движение.':it.rx.static?`Статодинамика: ${tempoWords(it.rx.tempo)}, без пауз; показана рабочая часть амплитуды — без выпрямления до конца и без расслабления внизу.`:`Темп по плану: ${tempoWords(it.rx.tempo)}. Скорость просмотра темп не меняет.`;
+  $('#mv-tempo').textContent=it.ex.anim.hold?'Удерживайте положение и дышите ровно.':it.ex.anim.timing||it.ex.g==='cardio'||it.ex.kind?'Ритм показан схематично. Замедление помогает разобрать движение.':it.rx.static?`Статодинамика: ${tempoWords(it.rx.tempo)}, без пауз; показана рабочая часть амплитуды — без выпрямления до конца и без расслабления внизу.`:tempoWords(it.rx.tempo)?`Темп по плану: ${tempoWords(it.rx.tempo)}. Скорость просмотра темп не меняет.`:'Темп — плавно, без рывков. Скорость просмотра темп не меняет.';
   const level={};it.ex.pri.forEach(m=>level[m]=1);it.ex.sec.forEach(m=>{if(!level[m])level[m]=.38;});
   $('#mv-muscles').innerHTML=muscleMapSvg(level,{labels:true,aria:'Основные и вспомогательные мышцы'});
   $('#mv-primary').textContent=it.ex.pri.map(m=>MUSCLE_NAMES[m]).join(', ');
@@ -505,7 +511,8 @@ function closeMotion(fromBack) {
 }
 function setupMotionViewer() {
   window.addEventListener('resize',()=>{pickActiveCards();for(const F of figs)if(F.av)F.av.size=null;if(cardAnatomy.view!=='mannequin')queueCardStills();},{passive:true});
-  $('#mv-exercise').innerHTML=GROUPS.map(g=>`<optgroup label="${esc(g.name)}">${EX.filter(ex=>ex.g===g.id).map(ex=>`<option value="${ex.id}">${esc(exNameHere(ex))}</option>`).join('')}</optgroup>`).join('');
+  /* разделы списка — как у витрины атласа: приводящие своим разделом (13c-gallery.js, GALLERY_GROUPS) */
+  $('#mv-exercise').innerHTML=GALLERY_GROUPS.map(g=>`<optgroup label="${esc(g.name)}">${EX.filter(ex=>galleryGroup(ex)===g.id).map(ex=>`<option value="${ex.id}">${esc(exNameHere(ex))}</option>`).join('')}</optgroup>`).join('');
 
   document.addEventListener('click',e=>{
     const t=e.target.closest('button');if(!t)return;

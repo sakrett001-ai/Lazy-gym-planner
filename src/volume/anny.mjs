@@ -215,7 +215,8 @@ export function createAnnyLayer(parent,skin){
   const tint=[];let key='';
   for(const id of ids)for(const side of ['L','R']){
    const r=look.regions?.[id],vis=!!r?.visible,active=vis&&(!look.selected||look.selected==='all'||look.selected===id||look.selected===r.parent);
-   const c=active?look.color(look.sideValues?.[side]?.[id]??look.values?.[id]??.28):null;tint.push(c);key+=(c||'-')+'|';
+   /* значение 0 — нерабочая сторона или часть с долей 0: цвет кожи, как у мышц вне упражнения */
+   const v=look.sideValues?.[side]?.[id]??look.values?.[id]??.28,c=active&&v>0?look.color(v):null;tint.push(c);key+=(c||'-')+'|';
   }
   if(key===lastColors)return;lastColors=key;
   /* в атрибуте — sRGB (8 бит без полос в тенях), в шейдере — в линейные, как у цвета материала областей манекена */

@@ -129,6 +129,9 @@ const EXPECT = [
   ...['cableextrot', 'bandextrot'].map(id => [id, 'R', { on: ['infsp', 'tmin'], off: ['subsc'] }]),
   ...['cableextrot', 'bandextrot'].map(id => [id, 'L', { on: [], off: ['infsp', 'tmin', 'subsc'] }]),
   ['ytw', 'LR', { on: ['infsp', 'tmin', 'supsp'], off: ['subsc'] }],
+  /* тяга к лицу (4.110, замечание анатома 2): горит задняя дельтовидная; трапециевидная — по частям: средняя и нижняя
+     работают (Ekstrom и др., 2003), верхняя вдвое слабее средней (отношение 0,44 — Schory и др., 2016) и молчит */
+  ...['facepull', 'bandfacepull'].map(id => [id, 'LR', { on: ['delt3', 'trapmid', 'trapinf', 'rhomb'], off: ['trapsup'] }]),
   /* наклон в сторону с гантелью в правой руке: косые левой стороны, правая молчит */
   ['sidebend', 'L', { on: ['eo', 'io'], off: [] }], ['sidebend', 'R', { on: [], off: ['eo', 'io'] }],
   /* «дровосек» с поворотом вправо: наружная косая левой стороны и внутренняя правой (OpenStax A&P 2e, 11.4) */
@@ -160,23 +163,30 @@ test('muscles light up where EMG and anatomy say they work, and stay quiet where
   assert.equal(M.dbcurl.parts['bra|L'].con, M.dbcurl.parts['biclong|L'].con, 'supinated curl: brachialis as bright as the biceps');
 });
 
-test('one-sided exercises: the other side keeps the rest colour of the profile', async () => {
+/* 4.110 (замечание анатома 1): свободная рука или нога — в цвете покоя, как мышцы вне упражнения (muscleTint отдаёт не
+   число, а цвет покоя — con === null); опорная (support: держит вес тела) — не ярче слабого участия 0,28, и опора есть в
+   контактах позы: ладонь, колено, стопа второй стороны на скамье, полу или стене (09d-catalog-muscles.js, CATALOG_LATERALITY) */
+test('one-sided exercises: the free limb is at rest, a supporting limb (a contact in the pose) — weak at most', async () => {
   const M = await measured(), { m } = P.model(), { motionProfile } = m.get('({motionProfile})'), lower = new Set(['quads', 'hams', 'calves', 'glutes', 'adductors']);
-  let n = 0;
+  const POSES = require('../src/js/09bp-poses.js'), LIMB = { upper: /^(palm|fa|ua|elbow|hand)/, lower: /^(sole|foot|knee|shin|toes|heel)/ };
+  let idle = 0, support = 0;
   for (const ex of m.EX) {
     const lat = motionProfile(ex.anim)?.laterality; if (!lat) continue;
     for (const [part, side] of Object.entries(lat)) {
-      if (part === 'regions') continue;
-      const other = side === 'L' ? 'R' : 'L';
+      if (part !== 'upper' && part !== 'lower') continue;
+      const other = side === 'L' ? 'R' : 'L', sup = lat.support === part;
+      if (sup) assert(POSES[ex.id].contacts.some(c => LIMB[part].test(c.body) && c.body.endsWith(other)),
+        `${ex.id}: the supporting ${part} limb (${other}) has a contact in the pose`);
       for (const q of Object.values(M[ex.id].parts)) {
-        if (q.side !== other || q.con === null || !q.groups.length) continue;
+        if (q.side !== other || !q.roles.length) continue;
         const legs = q.groups.every(g => lower.has(g));
-        if ((part === 'lower') !== legs || q.groups.some(g => ['abs', 'obliques', 'lowback', 'traps', 'hipflex'].includes(g))) continue;
-        assert(q.con <= .28 + 1e-9, `${ex.id} ${q.part} ${q.side}: ${q.con.toFixed(2)} on the idle side`); n++;
+        if ((part === 'lower') !== legs || q.groups.some(g => ['abs', 'obliques', 'lowback', 'traps', 'hipflex', ...(lat.both || [])].includes(g))) continue;
+        if (sup) { assert(q.con !== null && q.con <= .28 + 1e-9, `${ex.id} ${q.part} ${q.side}: ${q.con} on the supporting side`); support++; }
+        else { assert.equal(q.con, null, `${ex.id} ${q.part} ${q.side}: ${q.con} on the free side — must be the rest colour`); idle++; }
       }
     }
   }
-  assert(n > 100, 'idle sides checked: ' + n);
+  assert(idle > 100 && support > 50, `free sides checked: ${idle}, supporting: ${support}`);
 });
 
 test('phase labels and cues follow the working phase: rising after a lowering, the hamstrings lower in the Nordic curl', () => {
@@ -191,4 +201,19 @@ test('phase labels and cues follow the working phase: rising after a lowering, t
   const up = at('nordic', 500), down = at('nordic', 1500);
   assert.equal(up.label, 'Подъём'); assert.equal(down.label, 'Опускание');
   assert.match(down.cue, /Опускайтесь медленно/);
+});
+/* точка разворота без паузы (4.110, замечание анатома 13): нижняя точка приседа подписана одинаково — у кнопки «Конечная
+   точка» (часы на границе фаз) и у ползунка рядом с ней; середины фаз — прежние «Опускание» и «Подъём» */
+test('the bottom of a squat is labelled as the bottom both from the button and from the slider', () => {
+  const { m } = P.model(), { motionFrame } = m.get('({motionFrame})'), ex = id => m.EX.find(e => e.id === id);
+  for (const id of ['goblet', 'kbfrontsquat', 'squat']) {
+    const at = clock => motionFrame({ it: { ex: ex(id) }, durations: [1000, 0, 1000, 0], clock }).label;
+    assert.equal(ex(id).anim.eccFirst, true, id);
+    for (const c of [960, 1000, 1040]) assert.equal(at(c), 'Нижняя точка', `${id} at ${c}`);
+    assert.equal(at(500), 'Опускание'); assert.equal(at(1500), 'Подъём');
+    assert.equal(at(0), 'Верхняя точка');
+  }
+  /* с паузой в нижней точке подпись паузы — как прежде, разворот без паузы не дописывается */
+  const paused = clock => motionFrame({ it: { ex: ex('goblet') }, durations: [1000, 400, 1000, 400], clock }).label;
+  assert.equal(paused(980), 'Опускание'); assert.equal(paused(1200), 'Нижняя точка');
 });

@@ -39,6 +39,11 @@
      самый короткий отдых в исследованиях для массы — 30–60 с, для силы 3–5 мин (de Salles B.F. et al., Sports Med 2009,
      39(9):765–777); ACSM: 1–2 мин во вспомогательных, 2–3 мин в базовых (Ratamess et al., MSSE 2009, 41(3):687–708).
      В «Бережно» пульс отдых только продлевает, не сокращает.
+   · Нет предупреждения — ещё не «безопасно» (замечание владельца, 15.11.2026): формула даёт средний максимум для возраста
+     (разброс у разных людей около ±10 уд/мин, Tanaka 2001), а не безопасный предел для конкретного человека; AHA о целевом
+     пульсе (heart.org, Target Heart Rates): цифры — средние, общий ориентир (пересказ, дословно не сверено). Поэтому рядом
+     с живым пульсом, пока предупреждения нет, — строка об этом и стоп-сигналы; в настройке отдыха — стоп-сигналы целиком
+     (HEART_STOP, 11g-gentle.js: памятка ACSM, Riebe et al. 2015).
    · Порог — до 190 (было до 250): порог выше расчётного максимума молодого взрослого значит «почти без отдыха». */
 
 /* Технические, а не физиологические числа: попытки переподключения (мс), пульс старше 5 с — уже не «живой», шаг продления
@@ -405,6 +410,7 @@ const Heart = (() => {
       `<button type="button" id="wv-hr-btn" class="wv-hr-btn" aria-describedby="wv-hr-note wv-hr-meta"><span class="wv-hr-heart" aria-hidden="true">♥</span><span id="wv-hr-val" class="wv-hr-val">${'Пульс'}</span><small id="wv-hr-unit" class="wv-hr-unit" hidden>${'уд/мин'}</small></button>`
       + `<div class="wv-hr-text"><p id="wv-hr-note" class="wv-hr-note" role="status"></p><p id="wv-hr-meta" class="wv-hr-meta"></p></div>`
       + `<p id="wv-hr-warn" class="wv-hr-warn" role="alert" hidden></p>`
+      + `<p id="wv-hr-safe" class="wv-hr-safe" hidden>${'Нет предупреждения — это ещё не значит, что нагрузка безопасна. При боли в груди, головокружении, необычной одышке — остановитесь.'}</p>`
       + `<p id="wv-hr-line" class="wv-hr-line" hidden><span class="wv-hr-heart" aria-hidden="true">♥</span> <span id="wv-hr-line-t"></span></p>`
       + `<p id="wv-hr-help" class="wv-hr-help" hidden>${'Часов нет в списке? Включите на них трансляцию пульса: на Galaxy Watch — приложение, которое транслирует пульс как датчик.'} <button type="button" id="wv-hr-all" class="wv-hr-all">${'Показать все устройства'}</button></p>`);
     prog.after(row);
@@ -419,8 +425,9 @@ const Heart = (() => {
       + `<p id="wv-hr-thr-note" class="wv-signal-note">${'Порог задаёте вы: общего числа для отдыха между подходами в исследованиях нет.'}</p>`
       + `<p class="wv-signal-note wv-hr-med">${'Пульс с часов и датчиков — ориентир, а не медицинское измерение.'}</p>`
       + `<label class="wv-hr-age" for="wv-hr-age"><span>${'Возраст'}</span><input id="wv-hr-age" type="text" inputmode="numeric" autocomplete="off" maxlength="3" aria-describedby="wv-hr-age-note"><span>${'лет'}</span></label>`
-      + `<p id="wv-hr-age-note" class="wv-signal-note">${'По желанию: тогда предупреждение о слишком высоком пульсе — по вашему возрасту (расчётный максимум 208 − 0,7 × возраст, у разных людей ±10 уд/мин).'}</p>`
-      + `<p class="wv-signal-note wv-hr-med">${'Если вы принимаете лекарства, которые снижают пульс (например, бета-блокаторы), пульс не показывает нагрузку — ориентируйтесь на дыхание и самочувствие.'}</p>`));
+      + `<p id="wv-hr-age-note" class="wv-signal-note">${'По желанию: тогда предупреждение о слишком высоком пульсе — по вашему возрасту (расчётный максимум 208 − 0,7 × возраст, у разных людей ±10 уд/мин). Это средняя оценка, а не безопасный предел для вас.'}</p>`
+      + `<p class="wv-signal-note wv-hr-med">${'Если вы принимаете лекарства, которые снижают пульс (например, бета-блокаторы), пульс не показывает нагрузку — ориентируйтесь на дыхание и самочувствие.'}</p>`
+      + (typeof HEART_STOP === 'string' ? `<p class="wv-signal-note wv-hr-med">${HEART_STOP}</p>` : '')));
     const fin = q('#wv-finish-text');
     if (fin) fin.after(el('p', {id:'wv-hr-finish', class:'wv-hr-finish', hidden:''}, `<span class="wv-hr-heart" aria-hidden="true">♥</span> <span id="wv-hr-finish-t"></span>`));
     mounted = true; paintPrefs(); return true;
@@ -467,6 +474,8 @@ const Heart = (() => {
     text('#wv-hr-warn', !high ? '' : mx ? 'Пульс выше расчётного максимума для вашего возраста (≈ {n}). Снизьте темп и отдохните; если стало плохо — остановитесь.'.replace('{n}', mx)
       : 'Очень высокий пульс. Снизьте темп и отдохните; если стало плохо — остановитесь. Укажите возраст в настройке отдыха — предупреждение будет точнее.');
     show('#wv-hr-warn', high);
+    /* без предупреждения — строка «это ещё не значит, что безопасно» (шапка: формула — средняя, не предел для человека) */
+    show('#wv-hr-safe', view === 'live' && !high && !(armed && on));
     paintRest(now, bpm, on);
   }
   function paintRest(now, bpm, on) {
