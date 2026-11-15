@@ -376,10 +376,12 @@ export function createVolumeFigure(options){
  if(skeleton||anatomy)warmAnny();
  /* закрыта, не нарисовав ни кадра: материалы прежней фигуры отпускаются вместе с её — после первого кадра следующей */
  function dispose(){if(disposed)return;disposed=true;for(const v of views)v.close();canvas.removeEventListener('webglcontextrestored',restore);
-  /* прозрачные копии материалов: детали — со своими материалами (их отпустит сцена), копии — сразу */
-  scene.scene.traverse(o=>{if(o.userData?.fadeOrig){o.material=o.userData.fadeOrig;delete o.userData.fadeOrig;}});for(const f of fadeMats.values())f.dispose();fadeMats.clear();
+  /* прозрачные копии материалов: детали — снова со своими материалами; копии отпускаются вместе с материалами сцены (после
+     первого кадра следующей фигуры — их программы тоже ей пригодятся) */
+  scene.scene.traverse(o=>{if(o.userData?.fadeOrig){o.material=o.userData.fadeOrig;delete o.userData.fadeOrig;}});const fades=[...fadeMats.values()];fadeMats.clear();
+  const releaseOwn=()=>{scene.disposeMaterials();for(const f of fades)f.dispose();};
   scene.disposeGeometry();
-  slot.release=firstDrawn||!releasePrevious?scene.disposeMaterials:()=>{try{releasePrevious();}catch(e){}scene.disposeMaterials();};spareRenderer(slot);}
+  slot.release=firstDrawn||!releasePrevious?releaseOwn:()=>{try{releasePrevious();}catch(e){}releaseOwn();};spareRenderer(slot);}
  /* фигура ракурса: первая (main) или связанная (linkView). У связанной at и настройки вида — общие с первой: тот же кадр
     и те же значения — без работы (приложение вызывает их у обеих фигур) */
  function figure(v,linked){
