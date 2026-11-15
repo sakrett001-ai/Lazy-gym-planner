@@ -752,7 +752,8 @@ function buildPlanAt(ctx = {}) {
   /* тренировка на сегодня по журналу: группы уже в S.groups, отсюда — доли групп, отдых и облегчение (13d-muscle-load.js) */
   const lp = !custom && !ctx.groups && S.mode === 'single' ? logPickCtx() : null;
   const base = !!ctx.fitBase, dose = ctx.dose || null;
-  const groups = ctx.groups || S.groups, count = custom ? custom.items.length : ctx.count || (lp ? lp.count : S.count), week = base ? null : ctx.week || null;
+  /* неделя цикла своего плана — та, из которой он сохранён (Марина 3): запас и процент в строке нагрузки — как в программе */
+  const groups = ctx.groups || S.groups, count = custom ? custom.items.length : ctx.count || (lp ? lp.count : S.count), week = base ? null : ctx.week || (custom && custom.week ? WEEKS[custom.week - 1] || null : null);
   const sw = custom ? {} : ctx.swaps || {};
   /* круговая (кроме своего плана) — без штанги: становая, присед и жим штанги «до последнего чистого повтора» с 15 с на
      переход — техника разваливается от усталости, а страховать некому (Марина п. 15). В круг — тренажёры, гантели, гиря,
@@ -811,8 +812,9 @@ function buildPlanAt(ctx = {}) {
     blocks = [{kind:'list', items:ord}];
     for (const it of ord) { minutes += it.rx.static ? staticSeconds(it.rx) : it.rx.sets * (it.rx.work + it.rx.rest) + 60; totalSets += it.rx.sets; }
   } else if (S.format === 'superset') {
-    /* в своём плане пары — соседние упражнения по порядку человека */
-    const pairs = custom ? picked.reduce((a, ex, i) => (i % 2 ? a[a.length - 1].push(ex) : a.push([ex]), a), []) : byOrder(pairSupersets(picked), ctx.order, pr => pr.map(ex => bySlot.get(ex).slot));
+    /* в своём плане пары — соседние упражнения по порядку человека; «не в паре со следующим» (ss: false) — отдельное
+       упражнение со своим отдыхом (customPairs, 11d-custom.js) */
+    const pairs = custom ? customPairs(picked, k => custom.items[slots[k]]) : byOrder(pairSupersets(picked), ctx.order, pr => pr.map(ex => bySlot.get(ex).slot));
     pairs.forEach((pr, pi) => {
       const L = String.fromCharCode(65 + pi);
       const its = pr.map((ex, j) => { const it = bySlot.get(ex); it.label = pr.length > 1 ? L + (j + 1) : L; return it; });
@@ -1244,7 +1246,7 @@ const DOCTOR_LINE = 'Приложение не заменяет врача. Пр
 const LEGEND = `<p class="legend">Максимум на 1 повтор (1ПМ) — вес, который вы можете поднять только один раз. Темп: усилие — подъём веса, возврат — опускание, в секундах. В поле «Темп» своего плана — четыре числа: опускание, пауза внизу, подъём, пауза вверху; X — быстрый подъём.</p><p class="legend legend-med">${DOCTOR_LINE}</p>`;
 function warnHtml(p) {
   const warn = [];
-  const gentle = S.goal === 'gentle' || S.protect.length > 0;
+  const gentle = S.goal === 'gentle' || protectOn(S).length > 0;
   if (p.items.length < p.count) warn.push(`Подобрано ${p.items.length} ${plural(p.items.length, 'упражнение', 'упражнения', 'упражнений')} из ${p.count}: ${gentle ? 'других вариантов для этих мышц и оборудования в бережном режиме нет.' : 'других вариантов для этих мышц и оборудования нет.'}`);
   if (p.lost && p.lost.length) warn.push(`Здесь нечем заменить: ${p.lost.map(ex => ex.name).join(', ')}. ${p.lost.length > 1 ? 'Их' : 'Его'} можно сделать здесь: ${placeOf(S, S.adapt).name}.`);
   /* мышца без упражнений: не хватает инвентаря — или всё, что есть, нагружает суставы, которые бережём */

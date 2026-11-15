@@ -41,7 +41,7 @@ function firstRunApply(A = {}, s = S) {
   const goal = health.length ? 'gentle' : GOALS[A.goal] ? A.goal : FIRST_DEFAULTS.goal, level = LEVELS[A.level] ? A.level : FIRST_DEFAULTS.level;
   Object.assign(s, {mode:'single', view:'plan', goal, level, format:'classic', dur:DURATIONS[A.dur] ? A.dur : FIRST_DEFAULTS.dur,
     protect:Array.isArray(A.protect) ? A.protect.slice() : FIRST_DEFAULTS.protect.slice(), health, groups:FIRST_GROUPS(), focus:null, day:0});
-  s.gen = {...(s.gen || {}), goal, format:'classic', level};
+  s.gen = {...(s.gen || {}), goal, format:'classic', level, groups:s.groups.slice(), place:s.place};
   ensureProtect(s); ensureDur(s); ensureHealth(s);
   return s;
 }
@@ -95,7 +95,9 @@ function frRender(focus = true) {
   const id = steps[FR.i], st = FR_STEP[id], last = FR.i === steps.length - 1;
   $('#fr-count').textContent = `Шаг ${FR.i + 1} из ${steps.length}`;
   $('#fr-title').textContent = st.title;
-  $('#fr-lead').textContent = st.lead; $('#fr-lead').hidden = !st.lead;
+  /* прислали ссылку на план — в первом шаге сказано, что он откроется после вопросов (11m-plan-link.js) */
+  const note = FR.i === 0 && typeof planLinkNote === 'function' ? planLinkNote() : '';
+  $('#fr-lead').textContent = st.lead + (note ? ' ' + note : ''); $('#fr-lead').hidden = !st.lead && !note;
   $('#fr-body').innerHTML = st.body();
   $('#fr-back').hidden = FR.i === 0; $('#fr-skip').hidden = last;
   $('#fr-next').hidden = !st.next; $('#fr-next').textContent = st.next || '';
@@ -129,6 +131,8 @@ function frFinish(skip) {
   /* фокус — на название плана: диктор начинает с него */
   const h = $('#plan .p-title, #plan .empty h2'); if (h) { h.setAttribute('tabindex', '-1'); h.focus({preventScroll:true}); }
   FR.skipped = !!skip;
+  /* план по ссылке, открытой в первый запуск, — после вопросов */
+  if (typeof planLinkShow === 'function') planLinkShow();
 }
 function openFirstRun() {
   const d = $('#first-run');
@@ -147,6 +151,7 @@ function firstRunClose() {
   const d = $('#first-run'); FR.closing = true; if (d && d.open) d.close(); FR.closing = false;
   document.documentElement.classList.remove('first-run');
   if (S.view === 'plan') renderPlanView();
+  if (typeof planLinkShow === 'function') planLinkShow();
 }
 function setupFirstRun() {
   const d = $('#first-run'); if (!d) return;

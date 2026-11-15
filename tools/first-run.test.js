@@ -43,7 +43,8 @@ test('«Skip»: beginner defaults, not «Hypertrophy»; full body, straight sets
   const s = a.firstRunApply({}, fresh());
   assert.deepEqual(plain({ goal: s.goal, level: s.level, dur: s.dur, format: s.format, mode: s.mode, protect: s.protect, groups: s.groups, place: s.place }),
     { goal: 'gentle', level: 'beg', dur: 'mid', format: 'classic', mode: 'single', protect: [], groups: FULL, place: 'gym' });
-  assert.deepEqual(plain(s.gen), { goal: 'gentle', format: 'classic', level: 'beg' }, 'the generated-plan settings follow');
+  /* 4.111: обычные планы держат в S.gen и мышцы с местом (у своих планов они свои, 11d-custom.js: PLAN_OWN) */
+  assert.deepEqual(plain(s.gen), { goal: 'gentle', format: 'classic', level: 'beg', groups: FULL, place: 'gym' }, 'the generated-plan settings follow');
   const p = a.buildPlan();
   assert(p.minutes >= a.DURATIONS.mid.lo && p.minutes <= a.DURATIONS.mid.hi, `≈${p.minutes} min`);
 });

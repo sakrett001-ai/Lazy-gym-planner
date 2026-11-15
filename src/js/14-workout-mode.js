@@ -381,6 +381,9 @@ function workoutFinish(){
   $('#wv-finish-text').textContent=`Выполнено ${n} ${plural(n,'подход','подхода','подходов')} в ${worked} ${plural(worked,'упражнении','упражнениях','упражнениях')}.`+(total>0?` Объём — ${fmtTon(total)} ${wUnit()}.`:'');
   Heart.finish();
   $('#wv-summary').innerHTML=rows.map((r,i)=>`<p><span>${esc(r.name)}${r.swapped?` <small>${'заменено'}</small>`:''}</span><strong>${tons[i]>0?`<small>${fmtTon(tons[i])+' '+wUnit()}</small>`:''}${!r.n&&r.skip?`<small>${'пропущено'}</small>`:r.n+' ✓'}</strong></p>`).join('');saveWorkout();workoutTick();
+  /* картинка итога для «Поделиться» (14c-share-card.js): дата, название, упражнения, подходы, объём — без пульса и веса тела */
+  const wd=workout.days.length?workout.days[workout.days.length-1]:todayKey(),title=S.mode==='program'&&prog&&prog.days[S.day]?prog.days[S.day].name:titleFor();
+  shareSummarySet({day:wd,title,n,worked,total,rows:rows.map((r,i)=>({name:r.name,n:r.n,ton:tons[i],skip:!r.n&&!!r.skip}))});
 }
 function workoutTick(){
   if(!workout)return;
