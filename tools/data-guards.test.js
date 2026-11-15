@@ -72,12 +72,15 @@ function showStep(a, d, id, k) {
 }
 
 /* ---------- 1. неправдоподобный вес ---------- */
-test('2× last time or more (and at least 5 kg more) asks; without history — the implement’s limit', () => {
+/* 4.108 (Руслан 4: 300 вместо 202,5 записывалось молча): с прошлой тренировкой — больше её веса на четверть (ACSM: прибавка
+   2–10 %) и хотя бы на 5 кг; сегодняшние подходы — по-прежнему вдвое (пирамида) */
+test('a quarter more than last time (and at least 5 kg more) asks; without history — the implement’s limit', () => {
   const a = app({ past: { squat: [[52.5, 8], [52.5, 8]], dbbench: [[2, 12]] } });
   const doubt = (id, kg, k = 0) => a.kgDoubt(a.item(id), [kg], k);
   assert.equal(doubt('squat', 5000).text, 'Это намного больше, чем в прошлый раз (52,5\u00a0кг). Записать 5000\u00a0кг?');
-  assert.equal(doubt('squat', 104), null, 'less than twice — no question');
-  assert.ok(doubt('squat', 105), 'exactly twice — a question');
+  assert.equal(doubt('squat', 65), null, 'up to a quarter more — no question');
+  assert.ok(doubt('squat', 66), 'more than a quarter (and 13.5 kg) — a question');
+  assert.ok(doubt('squat', 104), 'twice — a question');
   assert.equal(doubt('dbbench', 4), null, '2 → 4 kg dumbbells: an ordinary step, not a typo');
   assert.ok(doubt('dbbench', 7), '2 → 7 kg: twice and 5 kg more');
   assert.equal(doubt('squat', 0), null); assert.equal(a.kgDoubt(a.item('squat'), [null], 0), null, 'no weight — nothing to ask');
@@ -277,7 +280,10 @@ test('journal: working weight × best reps large, estimated 1RM small and labell
   assert.match(html, /<em class="pos">\+3 повт\.<\/em>/); assert(!/%/.test(html), 'no «0 %» when reps grow');
   assert.match(a.journalVal(ex, [ss[0], { d: '2026-11-20', s: [[7, 8]] }]), /<em class="pos">\+2 кг<\/em>/, 'heavier — the weight change');
   assert.match(a.journalVal(ex, [{ d: '2026-11-20', s: [[7, 8]] }, ss[0]]), /<em class="neg">−2 кг<\/em>/);
-  assert(!/<em/.test(a.journalVal(ex, [ss[0], ss[0]])), 'no change — no badge');
+  /* 4.108, Mike 16: «0 %» читалось как «ноль прогресса» — при том же весе и повторах «без изменений» */
+  assert.match(a.journalVal(ex, [ss[0], ss[0]]), /<em class="j-same">без изменений<\/em>/, 'no change — said so');
+  assert.match(a.journalVal(a.EXI.pushup, [{ d: '2026-11-12', s: [[null, 8]] }, { d: '2026-11-14', s: [[null, 8]] }]), /<em class="j-same">без изменений<\/em>/);
+  assert(!/%/.test(a.journalVal(a.EXI.pushup, [{ d: '2026-11-12', s: [[null, 8]] }, { d: '2026-11-14', s: [[null, 8]] }])), 'no «0%»');
   assert(!/<em/.test(a.journalVal(ex, [ss[2]])), 'one entry — no badge');
   /* статодинамика в сводку не входит; упражнение без веса — как раньше */
   assert.match(a.journalVal(ex, [...ss, { d: '2026-11-19', s: [[3, 20]], fmt: 'static' }]), /5<small>кг<\/small> × 15/);

@@ -127,6 +127,10 @@ h1, h2, h3, h4 { text-wrap:balance; margin:0; }
 .place-name { flex:1 1 9.375rem; }
 .place-adapt { flex:1 1 100%; }
 .place-name input, .place-adapt select { min-height:40px; border:1px solid var(--line); border-radius:9px; background:var(--surface); color:var(--ink); padding:7px 10px; font:inherit; font-size:.875rem; min-width:0; max-width:100%; }
+/* гантели и гири, которые есть в месте (4.108) */
+.place-w { display:grid; gap:4px; font-size:.75rem; color:var(--muted); min-width:0; flex:1 1 100%; }
+.place-w input { min-height:40px; border:1px solid var(--line); border-radius:9px; background:var(--surface); color:var(--ink); padding:7px 10px; font:inherit; font-size:.875rem; min-width:0; max-width:100%; }
+.place-w input[aria-invalid="true"] { border-color:var(--hot); }
 .place-del { border:0; background:transparent; color:var(--muted); font-size:.8125rem; padding:10px 2px; }
 .place-del.armed { color:var(--hot); font-weight:600; }
 .pres-l { font-size:.78125rem; color:var(--faint); align-self:center; }
@@ -219,6 +223,7 @@ h1, h2, h3, h4 { text-wrap:balance; margin:0; }
 /* подтверждение в строке заполненного подхода: строка подсвечена, под полями — вопрос и две кнопки */
 .lt-r.lt-arm { background:var(--hot-soft); border-radius:10px; box-shadow:0 0 0 5px var(--hot-soft); }
 .lt-cf, .lt-kq { grid-column:1 / -1; display:flex; flex-wrap:wrap; align-items:center; gap:6px 8px; font-size:.8125rem; line-height:1.3; color:var(--ink); }
+.lt-err { grid-column:1 / -1; margin:2px 0 0; font-size:.8125rem; line-height:1.3; color:var(--hot); font-weight:600; }
 .lt-cft { flex:1 0 100%; font-weight:600; padding-top:2px; }
 .lt-cfy, .lt-cfn { min-height:38px; min-width:104px; padding:0 14px; border-radius:9px; background:var(--surface); font:600 .84375rem var(--f-body); cursor:pointer; }
 .lt-cfy { border:1.5px solid var(--hot); color:var(--hot); }
@@ -347,6 +352,7 @@ h1, h2, h3, h4 { text-wrap:balance; margin:0; }
 .j-val { font:600 1.25rem/1 var(--f-mono); font-variant-numeric:tabular-nums; text-align:right; display:grid; justify-items:end; gap:3px; }
 .j-val small { font:500 .75rem var(--f-body); color:var(--muted); }
 .j-val em { font:600 .75rem var(--f-mono); font-style:normal; color:var(--muted); }
+.j-val em.j-same { font-family:var(--f-body); font-weight:500; }
 .j-val em.pos { color:var(--good); } .j-val em.neg { color:var(--hot); }
 /* с весом: «5 кг × 15» крупно, расчётный максимум мелко с подписью */
 .j-big { white-space:nowrap; }

@@ -87,7 +87,7 @@ function workoutCommitTaken(step, got, taken) {
   const days = workoutDays(), used = k => !!s.s[k] || !!wkSet(LOG.data, ex.id, k, days);
   let k = step.k + 1; while (used(k)) k++;
   while (s.s.length < k) s.s.push(null);
-  s.s[k] = rec; s.target = Math.max(s.target || 0, step.n); if (step.it.rx.static) s.fmt = 'static'; markImpl(s, step.it); markActive(s.d);
+  s.s[k] = rec; markSession(s, step.it, step.n, k); markActive(s.d);
   if (!workout.days.includes(s.d)) workout.days.push(s.d);
   delete workout.drafts[workoutDraftKey(step)];
   logTouch(ex.id); logRefresh([ex.id]);

@@ -43,7 +43,8 @@ function workoutValue(step){return wkSet(LOG.data,step.it.ex.id,step.k,workoutDa
 /* запись дня, где лежит подход (правка вчерашнего подхода — во вчерашней записи), или сегодняшняя для нового */
 function workoutSession(step,create){return wkSession(LOG.data,step.it.ex.id,step.k,workoutDays())||todaySession(step.it.ex.id,!!create);}
 /* подходы упражнения во всех днях тренировки по номерам (сегодняшние — поверх вчерашних): как запись дня в карточке */
-function workoutSetsOf(id){const days=workoutDays(),out=[];for(let i=days.length-1;i>=0;i--){const x=(LOG.data[id]||[]).find(v=>v.d===days[i]);if(x)x.s.forEach((v,k)=>{if(v&&!out[k])out[k]=v;});}return out;}
+/* it — в выбранной единице (hereSet, 13-log.js: подход, вписанный вчера в фунтах, сегодня в килограммах — шагом снаряда) */
+function workoutSetsOf(id,it){const days=workoutDays(),out=[];for(let i=days.length-1;i>=0;i--){const x=(LOG.data[id]||[]).find(v=>v.d===days[i]);if(x)x.s.forEach((v,k)=>{if(v&&!out[k])out[k]=it?hereSet(v,x.u,it):v;});}return out;}
 function workoutFirstOpen(q,after=-1){return wkFirstOpen(q,after,workoutValue,workout?.skipped);}
 function workoutCount(){return workout?wkCount(workout.queue,workoutValue,workout,(id,k)=>wkSet(LOG.data,id,k,workoutDays())):{done:0,total:0};}
 function workoutDraftKey(step){return step.it.ex.id+':'+step.k;}
@@ -180,31 +181,72 @@ function workoutFill(s,sg,prev){
   $('#wv-weight-label').hidden=lt==='none';$('#wv-weight-caption').textContent=wl?wl.full:`Вес, ${wUnit()}`;$('#wv-rep-caption').textContent=side&&!ex.kind?'Повторы на каждую сторону':repLabel(ex);
   $('#wv-lr-fields').classList.toggle('wv-lr-nokg',lt==='none');$('#wv-lr-kg-cap').textContent=wl?wl.full:`Вес, ${wUnit()}`;$('#wv-lr-rep-cap').textContent=repLabel(ex);
   for(const id of ['wv-reps','wv-reps-l','wv-reps-r'])$('#'+id).setAttribute('inputmode',ex.kind==='dist'?'decimal':'numeric');
-  /* подходы упражнения в этой тренировке (продолженной — и вчерашние): по ним вес на следующие подходы */
-  const draft=workout.drafts[workoutDraftKey(s)],today=workoutSetsOf(ex.id);
+  /* подходы упражнения в этой тренировке (продолженной — и вчерашние), в выбранной единице: по ним вес на следующие подходы */
+  const draft=workout.drafts[workoutDraftKey(s)],today=workoutSetsOf(ex.id,it),ses=stored?workoutSession(s):null,here=stored?hereSet(stored,ses&&ses.u,it):null;
   /* вес: записанный сегодня в подходе выше (carriedKg — то же правило, что в карточке: свой вес подхода по плану или
-     по пирамиде прошлого раза не перетирается), иначе свой вес подхода, иначе из прошлой тренировки */
+     по пирамиде прошлого раза не перетирается), иначе свой вес подхода, иначе вес подсказки — тот же, что в «Подсказке по
+     нагрузке» и в таблице карточки (Дмитрий 11, Ольга 1: «Прибавьте до 12 кг», а в поле было 10), иначе из прошлой тренировки */
   const own=ownKgs(it,sg.prev?sg.prev.s.filter(Boolean):[],sg),planned=own(s.k),kgText=v=>v!=null?fmtKg(v):'',carried=carriedKg(it,today,s.k,null,own);
-  /* совет снизить вес (после перерыва, облегчённый режим, разгрузка — tone 'deload') — в поле его вес, а не прошлый (Михаил п. 1) */
-  const ease=sg.tone==='deload'&&sg.kg!=null?sg.kg:null;
-  $('#wv-kg').value=draft?draft.kg:stored?kgText(stored[0]):carried!=null?fmtKg(carried):planned!=null?fmtKg(planned):ease!=null?fmtKg(ease):prev?.[0]!=null?fmtKg(prev[0]):'';
-  /* в поле — сниженный вес: подсказка под полем говорит почему, а не «из последней записи» (замечание к 4.106) */
-  const eased=ease!=null&&$('#wv-kg').value===fmtKg(ease),easeHint=eased?(typeof layoffInfo==='function'&&layoffInfo()?'Вес снижен после перерыва. Уточните его и введите результат.':'Вес снижен по подсказке выше. Уточните его и введите результат.'):'';
-  /* подсказка повторов — цель подхода со словом «цель»: серое «12–15» без него выглядело введённым */
-  const goal='цель '+planReps(it.rx,s.k);
-  $('#wv-reps').value=draft?draft.reps:stored?String(stored[1]):'';$('#wv-reps').placeholder=goal;
+  const tip=sg.kg!=null&&sg.kg>0?sg.kg:null;
+  /* откуда вес в поле — о том и подпись под ним (workoutKgHint): Руслан 16 — «из последней записи», а подставлен вес плана */
+  const from=draft?'draft':here?'stored':carried!=null?'carried':planned!=null?(it.rx.kgPlan?(sg.layoff?'deload':'plan'):['deload','up','down'].includes(sg.tone)?sg.tone:'pyramid'):tip!=null?sg.tone:prev?.[0]!=null?'same':'none';
+  $('#wv-kg').value=draft?draft.kg:here?kgText(here[0]):carried!=null?fmtKg(carried):planned!=null?fmtKg(planned):tip!=null?fmtKg(tip):prev?.[0]!=null?fmtKg(prev[0]):'';
+  /* подсказка повторов — цель подхода со словом «цель»: серое «12–15» без него выглядело введённым. Цель — одно число (задание
+     своего плана, пирамида, цель подсказки «на 1 повтор больше») — она и в поле (Руслан 9: 5×3 по 200 — «3» вписывать каждый раз);
+     диапазон без истории — поле пустое: впишите, сколько сделали. Удержание — секунды пишет таймер */
+  const goal='цель '+planReps(it.rx,s.k),aim=workoutRepsAim(it,sg,s.k);
+  $('#wv-reps').value=draft?draft.reps:here?String(here[1]):aim;$('#wv-reps').placeholder=goal;
   /* Л/П: записанные стороны, иначе — общий вес; вес стороны по умолчанию — из подхода выше по своей стороне, из прошлых
-     сторон, если они были */
-  const ssd=stored&&setSides(stored,ex),psd=prev&&setSides(prev,ex);
+     сторон, если они были; правая сторона идёт за левой, пока её не правили (workout.rFollow — Руслан 2: одна гантель
+     записалась как Л 52,5 / П 50) */
+  const ssd=here&&setSides(here,ex),psd=prev&&setSides(prev,ex);
   for(const k of ['l','r']){
-    const ck=carriedKg(it,today,s.k,k,own),kgDef=ck!=null?fmtKg(ck):planned!=null?fmtKg(planned):psd?kgText(psd[k][0]):prev?.[0]!=null?fmtKg(prev[0]):'';
-    $('#wv-kg-'+k).value=draft&&draft['k'+k]!==undefined?draft['k'+k]:ssd?kgText(ssd[k][0]):stored?kgText(stored[0]):kgDef;
-    $('#wv-reps-'+k).value=draft&&draft['r'+k]!==undefined?draft['r'+k]:ssd?String(ssd[k][1]):stored?String(stored[1]):'';$('#wv-reps-'+k).placeholder=goal;
+    const ck=carriedKg(it,today,s.k,k,own),kgDef=ck!=null?fmtKg(ck):planned!=null?fmtKg(planned):psd?kgText(psd[k][0]):tip!=null?fmtKg(tip):prev?.[0]!=null?fmtKg(prev[0]):'';
+    $('#wv-kg-'+k).value=draft&&draft['k'+k]!==undefined?draft['k'+k]:ssd?kgText(ssd[k][0]):here?kgText(here[0]):kgDef;
+    $('#wv-reps-'+k).value=draft&&draft['r'+k]!==undefined?draft['r'+k]:ssd?String(ssd[k][1]):here?String(here[1]):aim;$('#wv-reps-'+k).placeholder=goal;
   }
+  workout.rFollow=$('#wv-kg-r').value===$('#wv-kg-l').value;
   workoutPairTotal();
   $('#wv-input-hint').textContent=hold?(lt==='extra'?'Доп. вес можно оставить пустым. ':'')+'«Стоп» запишет секунды и начнёт отдых. Секунды можно ввести и вручную.'
-    :lt==='extra'?(wl.impl==='db'?'Без гантелей оставьте вес пустым. Введите фактический результат.':'Дополнительный вес можно оставить пустым. Введите фактический результат.'):lt==='none'?'Укажите фактический результат подхода.':easeHint||'Вес подставлен из последней записи, если она есть. Уточните его и введите результат.';
+    :lt==='extra'?(wl.impl==='db'?'Без гантелей оставьте вес пустым. Введите фактический результат.':'Дополнительный вес можно оставить пустым. Введите фактический результат.'):lt==='none'?'Укажите фактический результат подхода.':workoutKgHint(from,it,sg,prev);
+  workoutWarmup(s,from==='stored'||from==='draft'&&stored?null:parseKg($('#wv-kg').value));
   $('#wv-error').textContent='';for(const id of ['wv-kg','wv-reps','wv-kg-l','wv-reps-l','wv-kg-r','wv-reps-r'])$('#'+id).removeAttribute('aria-invalid');
+}
+/* повторы в поле: цель подхода, если это одно число — цель подсказки (sg.reps), у пирамиды и задания своего плана — число
+   подхода; диапазон без истории, удержание, секунды и метры — пусто */
+function workoutRepsAim(it,sg,k){
+  if(it.ex.kind)return '';
+  const r=sg.reps&&sg.reps.length?sg.reps[Math.min(k,sg.reps.length-1)]:null;
+  if(Number.isInteger(r)&&r>0)return String(r);
+  const p=planReps(it.rx,k);return /^\d+$/.test(p)?p:'';
+}
+/* подпись под весом — откуда он в поле (Руслан 16): по плану, как в прошлом подходе, с прибавкой по подсказке, снижен после
+   перерыва (как в 4.107), как в прошлый раз; прошлая запись в другой единице — сказано, что вес пересчитан */
+function workoutKgHint(from,it,sg,prev){
+  const tail=' Уточните его и введите результат.';
+  let t=from==='stored'?'Подход уже записан: исправьте вес или повторы и сохраните.'
+    :from==='draft'?'Уточните вес и введите результат.'
+    :from==='carried'?'Вес — как в прошлом подходе.'+tail
+    :from==='deload'?(typeof layoffInfo==='function'&&layoffInfo()?'Вес снижен после перерыва. Уточните его и введите результат.':'Вес снижен по подсказке выше. Уточните его и введите результат.')
+    :from==='up'?'Вес прибавлен: в прошлый раз все подходы были на верхней границе.'+tail
+    :from==='down'?'Вес снижен: две тренировки подряд не хватило повторов.'+tail
+    :from==='pyramid'?'Вес подхода — как в прошлый раз.'+tail
+    :from==='plan'?'Вес — по плану.'+tail
+    :from==='same'||from==='today'?(sg.noHeavier?'Вес — как в прошлый раз: тяжелее здесь нет, прибавляйте повторы.':'Вес — как в прошлый раз.'+tail)
+    :'Впишите вес, с которым делаете подход, и результат.';
+  /* в своём плане вес задан, а в прошлый раз работали тяжелее — где его обновить (Руслан 10) */
+  if(from==='plan'&&typeof planUpOf==='function'&&planUpOf(it,sg))t+=' '+'В прошлый раз было тяжелее плана — вес плана можно обновить в карточке упражнения.';
+  if(sg.prev&&sg.prev.conv&&!['stored','draft','carried'].includes(from))t+=' '+(isLb()?'Прошлая запись — в килограммах: вес пересчитан в фунты до шага снаряда.':'Прошлая запись — в фунтах: вес пересчитан в килограммы до шага снаряда.');
+  return t;
+}
+/* разминка и на экране тренировки (Руслан 21): перед первым подходом упражнения — та же лесенка, что в карточке (17-warmup.js),
+   к весу в поле; вписали другой вес — лесенка пересчитывается */
+function workoutWarmup(s,work){
+  const box=$('#wv-warm');if(!box)return;
+  const html=s&&s.k===0&&work>0&&typeof warmupHtml==='function'?warmupHtml(s.it,work):'';
+  const open=!!box.querySelector('details[open]');
+  box.innerHTML=html;box.hidden=!html;
+  if(open&&html){const d=box.querySelector('details');if(d)d.open=true;}
 }
 /* «×2 = 40 кг» под весом одной гантели, когда их две */
 function workoutPairTotal(){
@@ -230,28 +272,24 @@ function workoutLrToggle(){
 function paintWorkoutMotion(){if(!workout?.motion)return;const F=workout.motion,m=motionFrame(F,workoutAnatomyLive()?cardClock(F):F.clock);F.f.at(m.t,m);if($('#wv-cue').textContent!==m.cue)$('#wv-cue').textContent=m.cue;paintMusclePanel('wv',F,m);paintStressPanel('wv',F,m);}
 /* вопрос о весе под полями подхода: «Записать» записывает как есть, «Исправить» (и Esc) — фокус в поле веса; пока вопрос
    открыт, «Подход выполнен» скрыта — ответ один из двух; правка веса закрывает вопрос */
-function workoutAsk(q,side){const b=$('#wv-kg-ask');$('#wv-kg-ask-t').textContent=q.text;b.dataset.side=side||'';b.hidden=false;$('#wv-done').hidden=true;$('#wv-kg-fix').focus();}
+function workoutAsk(q,side){const b=$('#wv-kg-ask');$('#wv-kg-ask-t').textContent=q.text;b.dataset.side=side||'';b.dataset.f=q.f==='reps'?'reps':'kg';b.hidden=false;$('#wv-done').hidden=true;$('#wv-kg-fix').focus();}
 function workoutAskHide(){const b=$('#wv-kg-ask');if(!b||b.hidden)return false;b.hidden=true;$('#wv-done').hidden=false;return true;}
-function workoutAskFix(){const side=$('#wv-kg-ask').dataset.side;workoutAskHide();const inp=$(side?'#wv-kg-'+side:'#wv-kg');inp.focus();inp.select();}
+function workoutAskFix(){const b=$('#wv-kg-ask'),side=b.dataset.side,f=b.dataset.f==='reps'?'reps':'kg';workoutAskHide();const inp=$(side?`#wv-${f}-${side}`:`#wv-${f}`);inp.focus();inp.select();}
 function strictWorkoutNumber(value){const s=String(value).trim().replace(',','.');return /^\d+(\.\d+)?$/.test(s)?Number(s):null;}
 /* sure — вес уже подтвердили («Записать» в вопросе о весе) */
 function commitWorkout(e,sure){
   if(e)e.preventDefault();if(!workout||$('#wv-active').hidden)return;
   const step=workout.queue[workout.index],ex=step.it.ex,lt=loadType(ex),lr=lrOn(ex);
   /* одна пара «вес × повторы» или две — левая и правая */
-  const read=(kgEl,repsEl)=>{
-    const kgRaw=kgEl.value.trim(),reps=strictWorkoutNumber(repsEl.value),kg=lt==='none'?null:kgRaw?strictWorkoutNumber(kgRaw):null;
-    if(lt!=='none'&&kgRaw&&kg===null)return{bad:kgEl,msg:'Введите вес числом, например 12,5.'};
-    if(lt==='kg'&&(kg===null||kg<=0))return{bad:kgEl,msg:'Укажите фактический вес снаряда.'};
-    if(reps===null||reps<=0||(!ex.kind&&!Number.isInteger(reps)))return{bad:repsEl,msg:ex.kind?'Укажите фактический результат числом больше нуля.':'Укажите целое количество выполненных повторов.'};
-    return{kg:kg==null?null:fromU(kg),reps:Math.round(reps*10)/10}; /* вписано в выбранных единицах, хранится в килограммах */
-  };
+  /* те же правила, что у таблицы в карточке (readSetInput, 13-log.js): вписано в выбранных единицах, хранится в килограммах */
+  const read=(kgEl,repsEl)=>{const r=readSetInput(lt==='none'?'':kgEl.value,repsEl.value,ex);return r.bad?{bad:r.bad==='kg'?kgEl:repsEl,msg:r.msg}:r;};
   const got=lr?[read($('#wv-kg-l'),$('#wv-reps-l')),read($('#wv-kg-r'),$('#wv-reps-r'))]:[read($('#wv-kg'),$('#wv-reps'))],bad=got.find(g=>g.bad),pair=workout.holdPair;
   workout.holdPair=null;
   if(bad){$('#wv-error').textContent=bad.msg;bad.bad.setAttribute('aria-invalid','true');bad.bad.focus();return;}
-  /* неправдоподобный вес («5000» вместо «50») — не записывать, переспросить под полями: «Записать» / «Исправить» (kgDoubt, 13-log.js) */
-  const q=!sure&&kgDoubt(step.it,got.map(g=>g.kg),step.k);
-  if(q){workout.holdPair=pair;workoutAsk(q,lr?(got[1].kg>got[0].kg?'r':'l'):'');return;}
+  /* неправдоподобный вес («5000» вместо «50») или повторы («1000») — не записывать, переспросить под полями:
+     «Записать» / «Исправить» (setDoubt, 13-log.js) */
+  const q=!sure&&setDoubt(step.it,got.map(g=>g.kg),got.map(g=>g.reps),step.k);
+  if(q){workout.holdPair=pair;workoutAsk(q,lr?(q.f==='reps'?(got[1].reps>got[0].reps?'r':'l'):got[1].kg>got[0].kg?'r':'l'):'');return;}
   workoutAskHide();
   /* отдых, уже записанный у этого подхода (третье поле), при исправлении сохраняется; правка подхода — в его же дне журнала,
      новый подход — сегодняшним днём */
@@ -269,7 +307,7 @@ function commitWorkout(e,sure){
   if(lr)rec=makeSidedSet([got[0].kg,got[0].reps],[got[1].kg,got[1].reps],ex,rest);
   else if(pair)rec=makeSidedSet([got[0].kg,pair[0]],[got[0].kg,pair[1]],ex,rest); /* таймер боковой планки: обе стороны, основное — слабая */
   if(!rec){rec=[got[0].kg,got[0].reps];if(rest)rec.push(rest);}
-  session.s[step.k]=rec;session.target=Math.max(session.target||0,step.n);if(step.it.rx.static)session.fmt='static';markImpl(session,step.it);delete workout.drafts[workoutDraftKey(step)];
+  session.s[step.k]=rec;markSession(session,step.it,step.n,step.k);delete workout.drafts[workoutDraftKey(step)];
   logTouch(ex.id);logRefresh([ex.id]);workout.last=workout.index;
   if(already){workoutShow(workout.index);$('#wv-save-status').textContent='Изменения сохранены.';return;}
   Heart.setDone(step);
@@ -301,7 +339,7 @@ function restNote(){
   const step=workout.queue[workout.last],x=step&&workoutValue(step);
   if(!x)return 'Результат сохранён. Переходите дальше, когда будете готовы.';
   const ex=step.it.ex,t=setTonnage(ex,x,sessionImpl(ex,workoutSession(step))),w=weakSideNote(ex,{s:[x]});
-  return (t>0?`Результат сохранён: общий вес подхода ${fmtTon(t)} ${wUnit()}.`:'Результат сохранён.')+(w?' '+w:'')+' Переходите дальше, когда будете готовы.';
+  return (t>0?`Результат сохранён: объём подхода ${fmtTon(t)} ${wUnit()}.`:'Результат сохранён.')+(w?' '+w:'')+' Переходите дальше, когда будете готовы.';
 }
 /* общий вес упражнения за тренировку (продолженной — за все её дни) */
 function workoutTonnage(ex){return workoutDays().reduce((a,d)=>a+sessionTonnage(ex,(LOG.data[ex.id]||[]).find(x=>x.d===d)),0);}
@@ -336,7 +374,7 @@ function workoutFinish(){
   const inQ=new Set(its.map(it=>it.ex.id)),days=workoutDays(),gone=workout.gone.filter(g=>!inQ.has(g.id)&&EXI[g.id]).map(g=>({ex:EXI[g.id],name:g.name||EXI[g.id].name,n:g.ks.filter(k=>wkSet(LOG.data,g.id,k,days)).length})).filter(g=>g.n);
   const rows=its.map(it=>({ex:it.ex,name:it.name,n:doneOf(it.ex.id),skip:skip.has(it.ex.id)})).concat(gone.map(g=>({...g,swapped:true})));
   const n=rows.reduce((a,r)=>a+r.n,0),worked=rows.filter(r=>r.n).length,tons=rows.map(r=>r.n?workoutTonnage(r.ex):0),total=tons.reduce((a,b)=>a+b,0);
-  $('#wv-finish-text').textContent=`Выполнено ${n} ${plural(n,'подход','подхода','подходов')} в ${worked} ${plural(worked,'упражнении','упражнениях','упражнениях')}.`+(total>0?` Общий вес — ${fmtTon(total)} ${wUnit()}.`:'');
+  $('#wv-finish-text').textContent=`Выполнено ${n} ${plural(n,'подход','подхода','подходов')} в ${worked} ${plural(worked,'упражнении','упражнениях','упражнениях')}.`+(total>0?` Объём — ${fmtTon(total)} ${wUnit()}.`:'');
   Heart.finish();
   $('#wv-summary').innerHTML=rows.map((r,i)=>`<p><span>${esc(r.name)}${r.swapped?` <small>${'заменено'}</small>`:''}</span><strong>${tons[i]>0?`<small>${fmtTon(tons[i])+' '+wUnit()}</small>`:''}${!r.n&&r.skip?`<small>${'пропущено'}</small>`:r.n+' ✓'}</strong></p>`).join('');saveWorkout();workoutTick();
 }
@@ -500,7 +538,13 @@ function workoutSwap(nextId){
 }
 function setupWorkout(){
   $('#wv-form').addEventListener('submit',commitWorkout);
-  for(const id of ['wv-kg','wv-reps','wv-kg-l','wv-reps-l','wv-kg-r','wv-reps-r'])$('#'+id).addEventListener('input',()=>{workoutCapture();$('#wv-error').textContent='';$('#'+id).removeAttribute('aria-invalid');if(id==='wv-kg')workoutPairTotal();if(id.startsWith('wv-kg'))workoutAskHide();});
+  for(const id of ['wv-kg','wv-reps','wv-kg-l','wv-reps-l','wv-kg-r','wv-reps-r'])$('#'+id).addEventListener('input',()=>{
+    /* Л/П: одна гантель — вписали вес левой, правая (пока её не правили) берёт его же */
+    if(id==='wv-kg-l'&&workout?.rFollow)$('#wv-kg-r').value=$('#wv-kg-l').value;
+    if(id==='wv-kg-r')workout.rFollow=false;
+    workoutCapture();$('#wv-error').textContent='';$('#'+id).removeAttribute('aria-invalid');workoutAskHide();
+    if(id==='wv-kg'){workoutPairTotal();clearTimeout(workout.warmT);workout.warmT=setTimeout(()=>{const st=workout?.queue[workout.index];if(st&&!workoutValue(st))workoutWarmup(st,parseKg($('#wv-kg').value));},400);}
+  });
   $('#wv-exercise').addEventListener('change',e=>{workoutCapture();const i=workout.queue.findIndex(s=>s.it.ex.id===e.target.value&&!workoutValue(s));workoutShow(i>=0?i:workout.queue.findIndex(s=>s.it.ex.id===e.target.value));});
   /* Esc: открыт вопрос о весе — он закрывается («Исправить»), открыт список замен — сворачивается, тренировка остаётся */
   $('#workout-view').addEventListener('cancel',e=>{e.preventDefault();if(!$('#wv-kg-ask').hidden){workoutAskFix();return;}if($('#wv-swap').getAttribute('aria-expanded')==='true'){workoutSwapToggle(false);$('#wv-swap').focus();return;}closeWorkout();});

@@ -54,6 +54,8 @@ function cleanCustomItem(it) {
   const reps = cleanReps(it.reps); if (reps) o.reps = reps;
   if (Number.isInteger(it.rest) && it.rest >= 0 && it.rest <= 600) o.rest = it.rest;
   const kg = it.kg != null ? cleanKg(it.kg) : null; if (kg) o.kg = kg;
+  /* единица, в которой вписан вес (4.108): 'kg' | 'lb'; без неё (прежние версии и файлы) — килограммы */
+  if (kg && (it.ku === 'kg' || it.ku === 'lb')) o.ku = it.ku;
   if (typeof it.tempo === 'string' && CUSTOM_TEMPO.test(it.tempo.trim().toUpperCase())) o.tempo = it.tempo.trim().toUpperCase();
   const note = cleanText(it.note, ITEM_NOTE, true); if (note) o.note = note;
   return o;
@@ -209,7 +211,7 @@ function customRx(rx, o, ex) {
     if (o.tempo && !ex.kind) r.tempo = o.tempo;
   }
   /* вес и заметка тренера — и в статодинамике */
-  if (o.kg) r.kgPlan = o.kg;
+  if (o.kg) { r.kgPlan = o.kg; r.kgU = o.ku || 'kg'; }
   if (o.note) r.coachNote = o.note;
   r.edited = r.sets !== rx.sets || r.reps !== rx.reps || r.rest !== rx.rest || r.tempo !== rx.tempo || !!o.kg || !!o.note;
   return r;
@@ -217,6 +219,8 @@ function customRx(rx, o, ex) {
 /* вес по плану для подхода k (с нуля): список короче подходов — последний вес повторяется */
 const planKg = (rx, k) => rx && rx.kgPlan ? rx.kgPlan[Math.min(k, rx.kgPlan.length - 1)] : null;
 function planKgText(list) { return list.every(v => v === list[0]) ? fmtKg(list[0]) : list.map(fmtKg).join(' / '); }
+/* вес по плану — в выбранной единице: вписанный в другой — ближайший шаг снаряда (13-log.js: hereKg), 200 кг в фунтах — 440 */
+function planKgsHere(it) { return it.rx.kgPlan.map(v => hereKg(v, it.rx.kgU || 'kg', it)); }
 
 /* подсказки по составу: выбранные мышцы без упражнений и заметный перекос жимов и тяг, передней и задней поверхности бедра */
 function customHints(p) {
@@ -334,7 +338,7 @@ function customToolsHtml(it) {
       </div>`;
   const lt = loadType(it.ex), u = wUnit(), kgLabel = lt === 'assist' ? `Противовес, ${u}` : lt === 'extra' ? `Доп. вес, ${u}` : `Вес, ${u}`;
   const extra = `<div class="cp-fields">
-      ${lt === 'none' ? '' : `<label class="cp-f cp-kg"><span>${kgLabel}</span><input type="text" maxlength="60" data-cp-kg="${slot}" value="${o.kg ? esc(o.kg.map(fmtKg).join(' / ')) : ''}" placeholder="${isLb() ? '135 или 135 / 140 / 145' : '60 или 60 / 62,5 / 65'}" aria-label="${kgLabel}: одно число на все подходы или по подходам через «/»" autocomplete="off"></label>`}
+      ${lt === 'none' ? '' : cpKgFieldsHtml(it, kgLabel)}
       <label class="cp-f cp-note"><span>Заметка к упражнению</span><textarea rows="2" maxlength="${ITEM_NOTE}" data-cp-note="${slot}" placeholder="Например: пауза 1 с на груди">${esc(o.note || '')}</textarea></label>
     </div>`;
   return `<div class="cp-tools">
@@ -343,6 +347,37 @@ function customToolsHtml(it) {
     <button type="button" class="btn-ghost${r.edited ? ' cp-edited' : ''}" data-cp-edit="${slot}" aria-expanded="${open}">Подходы, вес, заметка${r.edited ? '<i class="cp-dot" aria-label="изменено"></i>' : ''}</button>
     <button type="button" class="btn-ghost cp-rm" data-cp-rm="${slot}">Убрать</button>
   </div>${open ? `<div class="cp-edit">${edit}${extra}</div>` : ''}`;
+}
+/* Вес по подходам — поле на подход с цифровой клавиатурой (Дмитрий 24, Руслан 13: «60 / 62,5 / 65» в одном поле требовало
+   обычной клавиатуры, а «5000», «−20», «абв» молча оставляли прежний вес). Вписан только первый — тот же вес во всех
+   подходах (в пустых полях он подсказкой); разные — пирамида. Вес — в выбранной единице (ku — она же). */
+function cpKgFieldsHtml(it, kgLabel) {
+  const r = it.rx, slot = it.slot, n = r.circ || r.static ? 1 : Math.max(1, Math.min(10, r.sets)), list = r.kgPlan ? planKgsHere(it) : null;
+  const at = k => list ? list[Math.min(k, list.length - 1)] : null, one = !list || list.every(v => v === list[0]);
+  const box = k => { const v = at(k), shown = list && (k === 0 || !one) ? fmtKg(v) : '';
+    const ph = k === 0 ? (isLb() ? '135' : '60') : list ? fmtKg(at(k - 1 < 0 ? 0 : k - 1)) : '';
+    return `<input type="text" inputmode="decimal" autocomplete="off" maxlength="7" data-cp-kg="${slot}" data-k="${k}" value="${esc(shown)}" placeholder="${esc(ph)}" aria-label="${esc(kgLabel)}, ${'подход'} ${k + 1}"${k ? ' aria-describedby="cp-kg-h-' + slot + '"' : ''}>`; };
+  return `<div class="cp-f cp-kg" role="group" aria-labelledby="cp-kg-l-${slot}"><span id="cp-kg-l-${slot}">${kgLabel}${n > 1 ? ` · ${'по подходам'}` : ''}</span>`
+    + `<div class="cp-kgs">${Array.from({length:n}, (_, k) => box(k)).join('')}</div>`
+    + (n > 1 ? `<small class="cp-kg-h" id="cp-kg-h-${slot}">${'Вписан только первый — тот же вес во всех подходах.'}</small>` : '')
+    + `<p class="cp-err" id="cp-kg-e-${slot}" role="alert" hidden></p></div>`;
+}
+/* поля веса карточки → {kg:[…] в кг} | {clear:true} | {bad, msg}; пустое поле подхода — вес подхода выше */
+function cpKgRead(slot) {
+  const ins = [...document.querySelectorAll(`[data-cp-kg="${slot}"]`)].sort((a, b) => a.dataset.k - b.dataset.k);
+  const it = plan && plan.items && plan.items.find(x => x.slot === slot), lt = it ? loadType(it.ex) : 'kg', max = isLb() ? Math.floor(500 / LB_KG) : 500;
+  if (ins.every(i => i.value.trim() === '')) return {clear:true};
+  const out = [];
+  for (const inp of ins) {
+    const raw = inp.value.trim();
+    if (raw === '') { if (!out.length) return {bad:inp, msg:'Впишите вес первого подхода.'}; out.push(out[out.length - 1]); continue; }
+    const v = strictNum(raw);
+    if (v === null) return {bad:inp, msg:/^[−–-]\s*\d/.test(raw) ? 'Вес не может быть меньше нуля.' : 'Введите вес числом, например 62,5.'};
+    if (v > max) return {bad:inp, msg:`${'Вес не принят: в плане — до'} ${max} ${wUnit()}.`};
+    if (lt === 'kg' && v <= 0) return {bad:inp, msg:'Укажите вес больше нуля.'};
+    out.push(fromU(v));
+  }
+  return {kg:out.every(v => v === out[0]) ? [out[0]] : out};
 }
 function customEmptyHtml() {
   return `<div class="empty cp-empty"><h2>План пока пустой</h2><p>Добавьте упражнения из избранного или из списка по выбранным мышцам. Подходы, повторы и отдых подставятся по цели и формату — их можно поправить в карточке.</p><p><button type="button" class="btn btn-2" data-cp-import="1">${ICON.load}<span>Загрузить план из файла</span></button></p></div>`;
@@ -480,9 +515,14 @@ document.addEventListener('change', e => {
   }
   if (t.dataset.cpRest !== undefined) { const s = +t.dataset.cpRest; customSet(s, 'rest', +t.value); return customRerender(`[data-cp-rest="${s}"]`); }
   if (t.dataset.cpKg !== undefined) {
-    const s = +t.dataset.cpKg, v = t.value.trim(), kg = v ? parseKgInput(v) : null;
-    if (v && !kg) { t.setAttribute('aria-invalid', 'true'); return; }
-    customSet(s, 'kg', kg); return customRerender(`[data-cp-kg="${s}"]`);
+    const s = +t.dataset.cpKg, r = cpKgRead(s), err = document.getElementById('cp-kg-e-' + s);
+    document.querySelectorAll(`[data-cp-kg="${s}"]`).forEach(i => i.removeAttribute('aria-invalid'));
+    if (r.bad) { r.bad.setAttribute('aria-invalid', 'true'); if (err) { err.textContent = r.msg; err.hidden = false; } return; }
+    const items = customOf().items, cur = items[s]; if (!cur) return;
+    const next = {...cur}; if (r.clear) { delete next.kg; delete next.ku; } else { next.kg = r.kg.map(v => Math.round(v * 1e5) / 1e5); next.ku = wu(); }
+    const ok = cleanCustomItem(next); if (!ok) return;
+    items[s] = ok; planUndo = null;
+    return customRerender(`[data-cp-kg="${s}"][data-k="${t.dataset.k || 0}"]`);
   }
   if (t.dataset.cpTempo !== undefined) {
     const s = +t.dataset.cpTempo, v = t.value.trim().toUpperCase().replace(/[–—]/g, '-');
