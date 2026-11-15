@@ -112,8 +112,9 @@ for (const [lang, L] of Object.entries(LANGS)) {
   /* язык, версия и локаль — до кода приложения: первая отрисовка (99-boot.js) уже с точкой, английским множественным числом и датами.
      Данные поиска (i18n/search-data.js) — после перевода: названия на другом языке и русские синонимы остаются как есть */
   const search = searchData(lang, jsSrc, JSON.parse(read(path.join(__dirname, 'i18n', 'en.json'))));
-  const head = `window.PODHOD_VERSION='${VERSION}';window.PODHOD_BUILD='${ASSET_VERSION}';window.PODHOD_RENDER=${JSON.stringify(RENDER)};window.PODHOD_SEARCH=${JSON.stringify(search)};window.PODHOD_LANG='${lang}';window.PODHOD_LOCALE=${JSON.stringify(L.locale)};\n`, code = js;
-  js = head + code;
+  const code = js; /* переведённый код без строки версии — для офлайн-файла (ниже) */
+  js = `window.PODHOD_VERSION='${VERSION}';window.PODHOD_BUILD='${ASSET_VERSION}';window.PODHOD_RENDER=${JSON.stringify(RENDER)};window.PODHOD_SEARCH=${JSON.stringify(search)};window.PODHOD_LANG='${lang}';window.PODHOD_LOCALE=${JSON.stringify(L.locale)};\n` + js;
+  const head = js.slice(0, js.length - code.length);
   body = body.replace(/__VERSION__/g, VERSION).replace(/__LANG_CODE__/g, L.other.lang).replace(/__LANG_HREF__/g, L.other.href).replace(/__LANG_LABEL__/g, L.other.label).replace(/__LANG_TITLE__/g, L.other.title);
   const manifest = {...manifestSrc, name:L.manifestName, description:L.manifestDesc, lang, scope:up || './', icons:manifestSrc.icons.map(i => ({...i, src:up + iconUrl[i.src]}))};
 
