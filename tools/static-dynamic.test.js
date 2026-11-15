@@ -27,7 +27,11 @@ test('a static-dynamic workout: series of three slow sets, short rest inside a s
   for (const [level, series] of [['beg', 1], ['mid', 2], ['adv', 3]]) {
     a.S.level = level;
     const p = a.buildPlan();
-    assert.equal(p.items.length, 6);
+    /* 4.109: одно упражнение на группу мышц (Tanimoto et al., J Strength Cond Res 2008 — пять упражнений на всё тело, по одному
+       на группу; было: «грудь + трицепс» — 6 упражнений, 54 подхода, грудным 45, Игорь 4): грудь, спина, плечи — три */
+    assert.equal(p.items.length, 3);
+    assert.equal(new Set(p.items.map(it => it.ex.g)).size, 3, 'one exercise per muscle group');
+    assert(p.capped, 'the plan says why there are fewer exercises');
     for (const it of p.items) {
       assert(a.staticOk(it.ex), it.ex.id + ' is eligible');
       assert.equal(it.rx.static, true);

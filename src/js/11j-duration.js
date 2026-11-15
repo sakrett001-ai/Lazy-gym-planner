@@ -49,7 +49,8 @@ function applyDose(rx, dose) {
     const series = Math.max(Math.min(1, rx.series), Math.min(DOSE_MAX_SERIES, rx.series + dose.s));
     return {...rx, series, sets:series * STATIC.perSeries, seriesRest:doseRest(rx.seriesRest, dose)};
   }
-  return {...rx, sets:Math.max(Math.min(DOSE_MIN_SETS, rx.sets), Math.min(DOSE_MAX_SETS, rx.sets + dose.s)), rest:doseRest(rx.rest, dose)};
+  /* у тяжёлой базы — не выше потолка таблицы Прилепина (setsMax, 11-planner.js) */
+  return {...rx, sets:Math.max(Math.min(DOSE_MIN_SETS, rx.sets), Math.min(DOSE_MAX_SETS, rx.setsMax || DOSE_MAX_SETS, rx.sets + dose.s)), rest:doseRest(rx.rest, dose)};
 }
 
 /* Тренировка с учётом времени. Не задано, свой план или число упражнений передано явно — как раньше. */
@@ -81,10 +82,12 @@ function fitDuration(ctx, D) {
   const run = dose => {
     const got = [];
     for (const c of doseCounts()) {
-      const p = buildPlanAt({...ctx, count:c, dose, fitBase:true});
+      /* подбор по времени — без замен и своего порядка: «Заменить» меняет одно упражнение, а не число упражнений и подходы
+         всего плана (было: замена приседа на гоблет в «Сила · 60+» перестроила план из 5 упражнений в 6, Игорь 12) */
+      const p = buildPlanAt({...ctx, swaps:{}, order:null, count:c, dose, fitBase:true});
       if (!p.items) return null;
       /* упражнений меньше, чем просили (всё доступное уже в плане), — та же тренировка, что при меньшем числе */
-      const r = {c, dose, m:p.minutes, n:p.items.length, over:capped ? volOver(p, ctx.vol) : 0};
+      const r = {c, dose, m:p.minutes, n:p.items.length, over:capped ? volOver(p, ctx.vol) : 0, cap:p.capped || p.trimmed};
       all.push(r); got.push(r);
       if (p.items.length < c) break;
     }
@@ -112,7 +115,8 @@ function fitDuration(ctx, D) {
      новичку больше не прибавляем */
   const counts = doseCounts(), most = counts[counts.length - 1];
   const volCut = capped && near.m < D.lo && all.some(r => r.over > 0.2 && r.m > near.m);
-  return {...near, why:near.m > D.hi ? 'long' : volCut ? 'begvol' : S.level === 'beg' && near.n >= most ? 'beg' : 'few'};
+  /* потолок подходов на группу за тренировку (sessionCap, 11-planner.js): упражнений и подходов больше не прибавляем */
+  return {...near, why:near.m > D.hi ? 'long' : volCut ? 'begvol' : near.cap || all.some(r => r.cap) ? 'cap' : S.level === 'beg' && near.n >= most ? 'beg' : 'few'};
 }
 /* сколько упражнений показать в «Упражнений»: при заданном времени — сколько подобрано в открытой тренировке */
 function shownCount() {
@@ -120,11 +124,20 @@ function shownCount() {
   const p = S.mode === 'program' && prog ? prog.days[S.day] && prog.days[S.day].plan : plan;
   return p && p.items ? p.items.length : S.count;
 }
+/* потолок подходов на группу (sessionCap): почему тренировка короче заданного времени или упражнений меньше. Фразы с {n}
+   переводятся целиком (i18n/en.json) */
+function capWhy(minutes) {
+  if (S.format === 'static') return 'В статодинамике — одно упражнение на группу мышц: тренировка ≈{n} мин.'.replace('{n}', minutes);
+  return (sessionCap() < 11 ? 'Больше подходов на эти мышцы за одну тренировку не прибавляем: тренировка ≈{n} мин. Новичку и в бережном режиме — до 6 подходов на группу за раз, остальное время — на разминку и заминку.'
+    : 'Больше подходов на эти мышцы за одну тренировку не прибавляем: тренировка ≈{n} мин. После 11 подходов на группу за раз мышцы растут уже не заметнее — лучше ещё одна тренировка в неделю.').replace('{n}', minutes);
+}
 /* строка под планом, если время не уложилось в коридор: не хватило упражнений или короче не получается */
 function durationWarn(p) {
   const f = p && p.fit; if (!f || f.ok) return '';
   const D = DURATIONS[f.dur];
   return f.why === 'begvol' ? `Новичку больше подходов не прибавляем: тренировка ≈${p.minutes} мин, иначе за неделю мышцам выйдет больше 12 подходов. Остальное время — на разминку, заминку и спокойную ходьбу.`
+    : f.why === 'cap' ? capWhy(p.minutes)
+    : f.why === 'week' ? 'Больше подходов за неделю этим мышцам не нужно: тренировка ≈{n} мин. Остальное время — на разминку и заминку.'.replace('{n}', p.minutes)
     : f.why === 'long' ? `Короче ≈${p.minutes} мин с этой целью не получается: в каждом упражнении уже наименьшее число подходов.`
     : f.why === 'beg' ? `Новичку больше подходов не прибавляем: тренировка ≈${p.minutes} мин. Остальное время — на разминку, заминку и спокойную ходьбу.`
     : `Под ${D.say} не хватает упражнений с этим оборудованием и мышцами: тренировка ≈${p.minutes} мин.`;
