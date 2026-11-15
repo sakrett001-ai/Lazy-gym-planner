@@ -15,16 +15,39 @@
                  На гребном тренажёре колено нагружено только в толчке: ноги толкают из полного сжатия, пик силы — когда
                  колено проходит 90° (British Rowing Plus, 2024, «Applying biomechanics: an analysis of the rowing stroke»);
                  в возврате маховик идёт по инерции, сопротивления нет — метка горит в толчке и молчит в возврате;
-   колено      — разгибание в открытой цепи ближе 30° к прямой ноге: Escamilla et al. 1998, MSSE 30(4):556–569;
+   колено      — разгибание в открытой цепи ближе 30° к прямой ноги под внешней нагрузкой у голени: тренажёр (голень под
+                 валиком), манжета эспандера или троса на щиколотке. Стопа этой ноги ни на что не опирается, нагрузка
+                 приложена ниже колена, колено проходит не меньше 30° (разгибание, а не прямая нога весь подход), основная
+                 мышца — квадрицепс. Escamilla et al. 1998, MSSE 30(4):556–569 (натяжение ПКС — только в открытой цепи и
+                 у прямой ноги); Escamilla, MacLeod, Wilk, Paulos, Andrews 2012, JOSPT, PubMed 22387600 (обзор): без опоры
+                 стопой ПКС нагружена больше, чем с опорой; сильнее всего — при сгибе колена 10–50°, пик — 10–30°; чем ниже
+                 по голени упор сопротивления, тем больше сила на ПКС (манжета на щиколотке — самый низкий упор). После
+                 пластики ПКС открытую цепь начинают с 4-й недели в диапазоне 90–45° сгиба, к 8-й неделе — до полной
+                 амплитуды: van Melick et al. 2016, Br J Sports Med 50:1506–1515 (клиническое руководство);
+   колени, быстро — ритмичная смена ног, при которой стопа с ходу бьёт в пол (скалолаз): пиковая угловая скорость колена
+                 ≥ 600°/с, стопа касается пола или коврика кадрами (контакт с окном времени). После пластики ПКС бег —
+                 только после критериев (полное разгибание, нет отёка, сила квадрицепса не меньше 80 % здоровой ноги,
+                 безболезненные прыжки на месте), прыжки и ловкость — после ещё более строгих: Aspetar, «Clinical Practice
+                 Guideline on Rehabilitation after ACLR» (aspetar.com/acl-recommendations). Числа скорости в руководствах нет;
+                 600°/с — порог по самому каталогу: скалолаз — 834°/с, бег трусцой на дорожке — 427°/с, ходьба с
+                 гантелями — 346°/с (на дорожке скорость задаёт человек, при «беречь колени» в ней — шаг без бега);
+   колени, сбоку — сила приложена ниже колена поперёк ноги (вдоль оси сгибания колена, угол с ней ≤ 60°) при почти прямом
+                 колене (≤ 30°): манжета или мини-петля у щиколотки в сведении и отведении ноги, опора стопой на скамью
+                 в копенгагенской планке. Колено — середина рычага «таз — щиколотка», его связки держат боковой изгиб.
+                 Моменты, сгибающие колено вбок, повышают силу на ПКС: варус (голень внутрь) — у прямой ноги, вальгус (голень наружу) —
+                 у согнутой: Markolf et al. 1995, J Orthop Res 13(6):930–935 (препараты). Упор у колена (тренажёр сведения,
+                 копенгагенская планка с опорой коленом) — рычага через колено нет, метка молчит;
    упор на колени — колено стоит на опоре и несёт вес тела: передняя поверхность колена смотрит в опору (вниз —
                  не дальше 53° от вертикали, косинус ≥ 0,6). Стоя на коленях при сгибе 90° на переднюю поверхность колена
                  приходится в среднем 97 % веса тела, давление — на надколенник и бугристость большеберцовой кости, после
                  эндопротеза давление в надколенниково-бедренном суставе растёт сильнее: Lee 2014, Clin Orthop Surg 6(2):117–126
-                 (обзор, данные Hassaballa et al.). Стоять на коленях — то, что хуже всего восстанавливается после эндопротеза:
-                 через 5 лет 67 % с большим трудом или не могут — Shah et al. 2023, Arthroplasty 5:32 (систематический обзор);
-                 после пластики ПКС сухожилием надколенника сильные трудности — у 21,3 % через 2 года — Rahardja et al. 2023,
-                 AJSM 51(13):3464–3472. Не упор: колено в валиках тренажёра сбоку (сведение, разведение), под валиком скамьи
-                 для пресса (передняя поверхность смотрит вверх), боком на скамье в копенгагенской планке;
+                 (обзор, данные Hassaballa et al.). Стоять на коленях — то, что меньше всего улучшается после эндопротеза
+                 («kneeling remains the activity least improved»): Shah et al. 2023, Arthroplasty 5:32 (систематический обзор
+                 о протезировании надколенника; в нём же — когорта Wylde et al. 2017: через 5 лет 67 % с большим трудом или
+                 не могут стоять на коленях); после пластики ПКС сухожилием надколенника сильные трудности — у 21,3 % через
+                 2 года — Rahardja et al. 2023, AJSM 51(13):3464–3472. Не упор: колено в валиках тренажёра сбоку (сведение,
+                 разведение), под валиком скамьи для пресса (передняя поверхность смотрит вверх), боком на скамье
+                 в копенгагенской планке;
    поясница    — наклон корпуса ≥40° без опоры с весом: McGill 1997, J Biomech 30(5):465–475;
    поясница, длинный рычаг — упор руками далеко впереди при вытянутом теле (выкатывание ролика): плечо поднято ≥120°,
                  корпус почти горизонтален (наклон 50–110°), таз раскрыт (сгибание бедра ≤30°), туловище ничем не подпёрто.
@@ -34,24 +57,66 @@
                  позвоночника — Youdas et al. 2008, JSCR 22(6):1939–1946 (Ab-Slide); упражнения передней цепи с длинным
                  рычагом (выход из упора лёжа, «пила») — 2400–2700 Н сжатия L4/L5, выполнить их могли только тренированные —
                  McGill, Andersen, Cannon 2015, J Sports Sci 33(4):419–426;
+   поясница, сгибание — упражнения на пресс и косые, в которых позвоночник сгибается вперёд или вбок под весом тела или
+                 снаряда: сгибание поясничного и грудного отделов за повторение меняется на ≥15° (вбок — на ≥15°), метка —
+                 в согнутой фазе (на 10° дальше исходного). Повторные сгибания-разгибания под сжатием ≈1500 Н — грыжа диска
+                 у 15 из 26 препаратов за 86 400 циклов: Callaghan, McGill 2001, Clin Biomech 16:28–37 (по таблице обзора
+                 Contreras, Schoenfeld 2011, Strength Cond J 33(4):8–18); скручивания — около 2000 Н сжатия (Axler, McGill
+                 1997, MSSE 29:804–811, по тому же обзору). Противопоказания к сгибаниям позвоночника — при грыже диска или
+                 непереносимости сгибания (Contreras, Schoenfeld 2011); «если боль вызывает сгибание, его нужно избегать» —
+                 McGill S., «Spine flexion exercise: myths, truths and issues affecting health and performance» (backfitpro.com);
+   поясница, скручивание — корпус скручивается в поясничном и грудном отделах на ≥20° за повторение (дровосек, велосипед),
+                 метка — где скручен больше чем на 10°. Скручивание вместе с повторным сгибанием — расслоение фиброзного
+                 кольца у 67,5 % препаратов, одно скручивание грыжу не вызывало: Marshall, McGill 2010, Clin Biomech
+                 25(1):6–9;
+   поясница, разгибание — корпус на весу держат мышцы спины лёжа на животе или на станке: таз или бёдра на опоре, грудь
+                 и руки ничем не подпёрты, грудь смотрит вниз, корпус наклонён ≥45° от вертикали (гиперэкстензия, «лодочка»).
+                 Разгибание корпуса лёжа (и вместе с ногами) — «очень высокая активность мышц и значительная нагрузка на
+                 суставы: применять неразумно»; подъём одной ноги на четвереньках — наименьшая нагрузка, рука и нога
+                 («птица-собака») — на ≈1000 Н больше: Callaghan, Gunning, McGill 1998, Phys Ther 78(1):8–18;
+   поясница, прямые ноги — обе ноги на весу прямые (колени ≤25°) и ближе 37° к горизонтали (подъём прямых ног лёжа и в висе,
+                 «лодочка» на спине): мышцы-сгибатели бедра тянут поясницу, длинный рычаг передней цепи — как в «пиле»
+                 и выходе из упора лёжа (McGill, Andersen, Cannon 2015, см. выше). С согнутыми коленями («мёртвый жук»,
+                 подъём коленей) рычаг короче — метки нет;
+   поясница, осевая нагрузка — стоя (стопы на полу, корпус ничем не подпёрт, наклон меньше 40°) вес давит на позвоночник
+                 сверху: штанга или валики тренажёра на плечах, свободный вес над головой (кисти на 10 см выше центра головы)
+                 или в опущенных руках в переноске и шрагах. Давление в диске L4–5: стоя 0,5 МПа, стоя с 20 кг у тела
+                 1,1 МПа, бег трусцой — до 0,95 МПа: Wilke et al. 1999, Spine 24(8):755–762;
    плечи       — плечо за линией корпуса ≥20° в жимах и брусьях, длинный рычаг в разведениях:
-                 Fees et al. 1998, AJSM 26(5):732–742; брусья — McKenzie et al. 2022, IJERPH 19(21):14390;
+                 Fees et al. 1998, AJSM 26(5):732–742 (обзор: хват, ширина рук, траектория, исходное и конечное положение
+                 в жимах при болях в плече); брусья — McKenzie et al. 2022, IJERPH 19(21):14390;
    плечи вверх — жим над головой: плечо поднято на 90–120° под весом — подакромиальное пространство здесь самое узкое
-                 (при работе мышц — уже всего около 90°): Graichen et al. 1999, AJR 172(4):1081–1086; жимы над головой —
-                 среди упражнений, на которые чаще жалуются при боли в плече: Kolber et al. 2010, JSCR 24(6):1696–1704;
+                 (при работе мышц — уже всего около 90°): Graichen et al. 1999, AJR 172(4):1081–1086; жалобы на плечо
+                 у тех, кто тренируется с отягощениями: болезненными названы жим и тяга из-за головы, жим широким хватом,
+                 жим на наклонной (серия 20 случаев, Gross et al.) — Kolber et al. 2010, JSCR 24(6):1696–1704 (обзор);
    локти       — сгибание ≥100° с весом над головой в изолирующих упражнениях на трицепс (практическое правило);
-   запястья    — разгибание кисти ≥60° под весом тела: J Wrist Surg 2017, 6(4):276–279;
-   ахилл       — тыльное сгибание ≥15° с весом в подъёмах на носки: Weinert-Aplin et al. 2015, JSSM 14:459–465;
+   запястья    — разгибание кисти ≥60° под весом тела. Все 24 бытовых действия у 40 человек укладываются в 60° разгибания
+                 кисти, большинство — в 40°: Ryu et al. 1991, J Hand Surg Am 16(3):409–419; опора всем весом тела на кисть,
+                 разогнутую дальше, — за пределами бытовой амплитуды. Боль у тех, кто опирается на разогнутую кисть
+                 (отжимания, планка, йога) — Nance et al. 2017, J Wrist Surg 6(4):276–279 (МРТ; порога угла в работе нет);
+   ахилл       — тыльное сгибание ≥5° (дальше нейтрали, 5° — допуск измерения стопы манекена) с весом в подъёмах на носки.
+                 При вставочной тендинопатии ахилла эксцентрика «без нагрузки в тыльное сгибание» (на полу, не со ступеньки)
+                 помогла 67 % больных, а с полной амплитудой тыльного сгибания — 32 %: Jonsson, Alfredson, Sunding,
+                 Fahlström, Cook 2008, Br J Sports Med 42(9):746–749. Прежний порог 15° ссылался на Weinert-Aplin et al.
+                 2015 (JSSM 14:459–465), но в той работе порога нет: она о том, как сгиб колена меняет опускание пятки;
    приземление — кадры после полётной фазы, пока таз опускается;
-   бёдра сзади — колено ≤40° при сгибании бедра ≥70° с весом; скандинавские сгибания — наклон ≥40°:
-                 Opar et al. 2012, Sports Med 42(3):209–226;
+   бёдра сзади — колено ≤40° при сгибании бедра ≥70° с весом; скандинавские сгибания — наклон ≥40°: задняя поверхность
+                 бедра травмируется, работая в удлинённом положении (конец переноса ноги в беге, мах ногой при сгибании
+                 бедра с разгибанием колена) — Opar, Williams, Shield 2012, Sports Med 42(3):209–226;
    вис, верх подтягивания, шея — по просьбе владельца: здесь чаще всего травмируют плечи и шейный отдел. */
 const STRESS_RULES = [
   {id:'knee', parts:['колени'], zone:'Колени', what:'Глубокий сгиб под весом — пик нагрузки на надколенник и связки колена.', tip:'Колени по линии стоп, не проваливайтесь и не расслабляйтесь внизу.'},
-  {id:'kneeOpen', parts:['колени'], zone:'Колени', what:'Последние 30° до прямой ноги — сильнее всего натянута передняя крестообразная связка.', tip:'Разгибайте без рывка и удара в конце.'},
+  {id:'kneeOpen', parts:['колени'], zone:'Колени', what:'Последние 30° до прямой ноги под нагрузкой у голени — сильнее всего натянута передняя крестообразная связка.', tip:'Разгибайте плавно, без рывка и удара в конце. Если колено беспокоит или после операции — выберите другое упражнение.'},
+  {id:'kneeFast', parts:['колени'], zone:'Колени', what:'Быстрый темп: колено резко сгибается и разгибается, стопа с ходу бьёт в пол.', tip:'Если колено беспокоит — медленно, шагом, без удара стопой, или выберите другое упражнение.'},
+  {id:'kneeSide', parts:['колени'], zone:'Колени', what:'Сила приложена у щиколотки поперёк ноги — колено нагружено сбоку, на его связки.', tip:'Опора или манжета у колена снимает эту нагрузку; если колено беспокоит, выберите такой вариант.'},
   {id:'kneel', parts:['колени'], zone:'Колени', what:'Упор на колени: вес тела давит на надколенник и бугристость большеберцовой кости.', tip:'Подложите мягкий коврик; если стоять на коленях больно, выберите вариант стоя или сидя.'},
   {id:'lumbar', parts:['поясница'], zone:'Поясница', what:'Наклон корпуса с весом без опоры — пик нагрузки на поясницу.', tip:'Спина нейтральная, движение от таза, вес ближе к ногам.'},
   {id:'lumbarLever', parts:['поясница'], zone:'Поясница', what:'Длинный рычаг: руки далеко впереди, тело вытянуто — пресс держит поясницу от прогиба, нагрузка на поясничный отдел самая большая.', tip:'Уходите вперёд, только пока поясница не прогибается; при боли в спине — короче амплитуда или планка.'},
+  {id:'lumbarFlex', parts:['поясница'], zone:'Поясница', what:'Позвоночник сгибается под весом тела или снаряда — межпозвонковые диски сжаты и нагружены сгибанием.', tip:'При боли в спине или грыже диска — планка, боковая планка или «птица-собака»: корпус ровный, двигаются руки и ноги.'},
+  {id:'lumbarTwist', parts:['поясница'], zone:'Поясница', what:'Корпус скручивается под нагрузкой — диски поясницы нагружены скручиванием.', tip:'Поворачивайтесь всем телом от стоп, поясница не скручивается; при боли в спине — планка вместо скручиваний.'},
+  {id:'lumbarExt', parts:['поясница'], zone:'Поясница', what:'Корпус на весу держат мышцы спины — сжатие поясницы одно из самых больших.', tip:'При боли в спине — «птица-собака»: рука и противоположная нога, корпус не поднимается.'},
+  {id:'lumbarLegs', parts:['поясница'], zone:'Поясница', what:'Длинный рычаг: прямые ноги на весу — мышцы бедра тянут поясницу, она стремится прогнуться.', tip:'Согните колени — рычаг станет короче; при боли в спине — «мёртвый жук» с согнутыми ногами.'},
+  {id:'axial', parts:['поясница'], zone:'Поясница', what:'Осевая нагрузка: вес давит на позвоночник сверху, диски поясницы сжаты сильнее, чем без груза.', tip:'При боли в спине или грыже диска — сидя с опорой спины или лёжа, вес легче.'},
   {id:'shPress', parts:['плечи'], zone:'Плечи', what:'Плечо ушло за линию корпуса под весом — нагрузка на переднюю часть сустава.', tip:'Опускайтесь до комфортной глубины, лопатки сведены и прижаты.'},
   {id:'shLever', parts:['плечи'], zone:'Плечи', what:'Длинный рычаг: вес далеко от плеча.', tip:'Локти слегка согнуты, без провала в нижней точке.'},
   {id:'shOverhead', parts:['плечи'], zone:'Плечи', what:'Рука проходит дугу 90–120° под весом — пространство под акромионом самое узкое, сухожилия плеча сдавлены сильнее всего.', tip:'Жмите перед головой, не из-за головы, локти чуть впереди корпуса; при боли — остановитесь ниже или замените упражнение.'},
@@ -79,10 +144,19 @@ const STRESS_FRAMES = 40;
 const STRESS_CACHE = new Map();
 /* глубокий сгиб колена под весом — порог правила «колени» (Escamilla 2001); на одной ноге — раньше */
 const STRESS_KNEE_DEEP = 85, STRESS_KNEE_DEEP_UNI = 80;
+/* тыльное сгибание под весом в подъёмах на носки — порог правила «ахилл» (Jonsson et al. 2008): дальше нейтрали, 5° — допуск */
+const STRESS_DORSI = 5;
 /* наклоны от таза, если таблица движений планировщика ещё не загружена (проверка рисунков без приложения) */
 const STRESS_HINGE = new Set(['deadlift', 'rdl', 'sllift', 'goodmorning', 'kbswing', 'hyper', 'pullthrough', 'kbdeadlift', 'kbswing1', 'kbclean', 'kbsnatch', 'kbsllift']);
 /* жимы вверх — так же, на случай проверки без таблицы движений */
 const STRESS_VPUSH = new Set(['dbpress', 'ohp', 'pikepush', 'arnold', 'declinepike', 'shoulderpressm', 'smithohp', 'kbpress']);
+/* переноска и шраги (тяжёлый вес в опущенных руках стоя) — так же */
+const STRESS_CARRY = new Set(['farmer', 'shrug', 'hang', 'wristcurl']);
+/* пороги новых правил (обоснования — в шапке файла):
+   KNEE_FAST — пиковая угловая скорость колена, °/с; SIDE — доля силы вдоль оси сгибания колена (cos 60°);
+   FLEX, TWIST — размах сгибания и скручивания позвоночника за повторение, °; LEGS — доля бедра по вертикали
+   (sin 37°: ближе 37° к горизонтали); OVERHEAD — кисти выше центра головы, см */
+const STRESS_KNEE_FAST = 600, STRESS_SIDE = .5, STRESS_FLEX = 15, STRESS_TWIST = 20, STRESS_LEGS = .6, STRESS_OVERHEAD = 10;
 
 /* что держит и на что опирается тело — по контактам спецификации */
 function stressContacts(ex) {
@@ -97,8 +171,45 @@ function stressContacts(ex) {
   /* свободный вес: гриф, гантель, гиря; ладони на диске гантели (пуловер, разгибание из-за головы) */
   const free = has(/^grip[LR]?>(bar|db[LR]?|kb[LR]?|tbar|\w+:horn[LR])$/) || has(/^(hand|palm[LR]?)>\w+:top$/);
   const machine = !legs && has(/^grip[LR]?>(cab[LR]?|pec[LR]|\w+:(handle[LR]?|grab[LR]|pull[LR]|pec[LR]))$/);
+  /* рукоять троса блока — нагрузка и в упражнениях на ноги (протяжка между ног), в отличие от поручней рамы */
+  const cable = has(/^grip[LR]?>cab[LR]?$/);
+  const at = (c, t) => stressIn(c, t), side = (c, re, s) => re.test(c.body) && (!s || c.body.endsWith(s) || !/[LR]$/.test(c.body));
+  /* нагрузка у голени: валик тренажёра на голени, манжета эспандера или троса на щиколотке, мини-петля на голенях —
+     со стороны s; anchor — куда тянет (кольцо крепления ленты, блок троса), other — петля тянет к другой ноге */
+  const distal = {L:[], R:[]};
+  for (const c of K) { const m = c.body.match(/^shin([LR])?$/); if (m && /:roller$/.test(c.prop)) for (const s of m[1] ? [m[1]] : ['L', 'R']) distal[s].push({kind:'roller'}); }
+  for (const e of P.equipment || []) {
+    if (e.type === 'band' && Array.isArray(e.route)) {
+      const ring = e.route.find(r => r.ring), cuffs = e.route.filter(r => r.cuff), loop = e.route.filter(r => r.limb === 'sk');
+      for (const c of cuffs) if (distal[c.cuff]) distal[c.cuff].push({kind:'cuff', anchor:ring ? ring.ring : null});
+      if (loop.length === 2) for (const r of loop) if (distal[r.side]) distal[r.side].push({kind:'loop', other:r.side === 'L' ? 'R' : 'L'});
+    }
+    if (e.type === 'g3cable' && e.attach === 'ankle' && distal[e.foot]) distal[e.foot].push({kind:'cable', anchor:e.swivel || e.from || null});
+  }
+  /* стопа (подошва, передний отдел) на опоре со стороны s в кадре t */
+  const footOn = (s, t) => K.some(c => side(c, /^(sole|foot)[LR]?$/, s) && at(c, t));
+  /* опора стопой или голенью на возвышении (скамья), без окна времени, при этом ни одна подошва не стоит на полу — тело висит
+     между этой опорой и руками (копенгагенская планка с опорой стопой) */
+  const standing = K.some(c => /^sole[LR]?$/.test(c.body) && /^(floor|mat)$/.test(c.prop) && !c.when);
+  const raised = s => !standing && K.some(c => side(c, /^(sole|foot|shin)[LR]?$/, s) && !c.when && !/^(floor|mat)$/.test(c.prop));
+  /* стопа касается пола кадрами: окна времени контакта подошвы или переднего отдела с полом или ковриком */
+  const strikes = s => K.filter(c => side(c, /^(sole|foot)[LR]?$/, s) && c.when && /^(floor|mat)$/.test(c.prop));
   return {
-    loaded: free || machine,
+    loaded: free || machine || cable,
+    free,
+    /* валики тренажёра на плечах (стоячий подъём на носки, гакк-машина) — вес давит на плечи сверху */
+    shoulderPads: has(/^upperBack>\w+:(sh|pad)[LR]$/),
+    /* стоит без опоры корпусом и руками: штанга на спине и ладони на диске гантели — не опора */
+    standFree: !has(/^(buttocks|back|chest|belly|front|upperBack|headBack|th[LR]?|thighsBack|knee[LR]?|fa[LR]?)>(?!bar$)/) && !has(/^palm[LR]?>(?!\w+:top$)/),
+    distal: s => distal[s],
+    footFree: (s, t) => !footOn(s, t),
+    raised,
+    strikes,
+    /* таз или бёдра на опоре в кадре t; верх корпуса, голова или руки на опоре в кадре t */
+    pelvisOn: t => K.some(c => /^(belly|buttocks|th[LR]?|thighsBack)$/.test(c.body) && at(c, t)),
+    upperOn: t => K.some(c => /^(chest|front|forehead|head|headBack|upperBack|back|palm[LR]?|fa[LR]?|hand[LR]?|grip[LR]?)$/.test(c.body) && at(c, t)),
+    /* ноги ни на что не опираются в кадре t */
+    legsFree: t => !K.some(c => /^(sole|foot|heel|toe|shin|sk|knee|th|thighsBack)[LR]?$/.test(c.body) && at(c, t)),
     backBar: has(/^back>bar$/),
     sole: s => has(new RegExp(s ? '^sole(' + s + ')?>' : '^sole[LR]?>')),
     /* стопа стоит на опоре: подошвой или передним отделом (на носках) */
@@ -128,9 +239,18 @@ function stressContacts(ex) {
   };
 }
 /* углы и вспомогательные величины кадра */
-function stressFrame(R, t = null) {
+function stressFrame(R, t = null, k = null) {
   const A = Mannequin.jointAngles(R), V = Mannequin.V;
   const up = V.unit(V.sub(R.sh, R.hip)), trunk = Math.acos(Math.max(-1, Math.min(1, -up[1]))) * 180 / Math.PI;
+  /* сила у голени поперёк ноги: доля её направления вдоль оси сгибания колена (ось — поперёк голени и стопы) */
+  const sideLoad = s => {
+    if (!k || !R['kn' + s] || !R['an' + s] || !R['toe' + s] || !R['heel' + s]) return 0;
+    const axis = V.unit(V.cross(V.unit(V.sub(R['an' + s], R['kn' + s])), V.unit(V.sub(R['toe' + s], R['heel' + s]))));
+    const dirs = k.distal(s).map(d => d.anchor ? V.unit(V.sub(d.anchor, R['an' + s])) : d.other ? V.unit(V.sub(R['an' + d.other], R['an' + s])) : null).filter(Boolean);
+    /* опора снизу (ось y каталога — вниз): реакция направлена вверх */
+    if (k.raised(s)) dirs.push([0, -1, 0]);
+    return dirs.reduce((m, d) => Math.max(m, Math.abs(V.dot(d, axis))), 0);
+  };
   const side = s => { const a = A[s], h = R['grip' + s] && R['sh' + s] ? Math.hypot(R['grip' + s][0] - R['sh' + s][0], R['grip' + s][2] - R['sh' + s][2]) : 0;
     /* центр колена впереди носка (см) — по горизонтали вдоль стопы от пятки к носку */
     const toe = R['toe' + s], heel = R['heel' + s], fw = toe && heel ? V.unit([toe[0] - heel[0], 0, toe[2] - heel[2]]) : null;
@@ -141,11 +261,17 @@ function stressFrame(R, t = null) {
     const hip = R['hip' + s], kn = R['kn' + s], an = R['an' + s];
     let kneeDown = 0;
     if (hip && kn && an) { const d = V.sub(V.unit(V.sub(kn, hip)), V.unit(V.sub(an, kn))), n = Math.hypot(...d); if (n > .35) kneeDown = d[1] / n; }
-    return {...a, behind:a.posterior > 0 ? Math.asin(Math.min(1, a.posterior)) * 180 / Math.PI : 0, beta:Math.abs(Math.atan2(a.lat, -a.up) * 180 / Math.PI), reach:h, kneeAhead, kneeDown}; };
-  return {A, t, trunk, L:side('L'), R:side('R')};
+    /* бедро: доля его направления по вертикали (0 — горизонтально, 1 — отвесно) */
+    const thighLevel = hip && kn ? Math.abs(V.unit(V.sub(kn, hip))[1]) : 1;
+    return {...a, behind:a.posterior > 0 ? Math.asin(Math.min(1, a.posterior)) * 180 / Math.PI : 0, beta:Math.abs(Math.atan2(a.lat, -a.up) * 180 / Math.PI), reach:h, kneeAhead, kneeDown, thighLevel, sideLoad:sideLoad(s)}; };
+  /* позвоночник — поясничный и грудной отделы вместе: сгибание вперёд, наклон вбок, скручивание */
+  const spine = i => (A.lumbar ? A.lumbar[i] : 0) + (A.thoracic ? A.thoracic[i] : 0);
+  /* лёжа грудью вниз: нормаль груди смотрит вниз; кисти над головой */
+  const prone = R.chestN ? R.chestN[1] : 0, wristsUp = R.head && R.wrL && R.wrR ? Math.min(R.wrL[1], R.wrR[1]) < R.head[1] - STRESS_OVERHEAD : false;
+  return {A, t, trunk, flex:spine(0), lat:spine(1), twist:spine(2), prone, wristsUp, L:side('L'), R:side('R')};
 }
 /* правила кадра: возвращают ключи меток (суставы со стороной или центральные точки) */
-function stressRulesAt(ex, k, f) {
+function stressRulesAt(ex, k, f, X = {}) {
   const out = {}, add = (id, keys) => { if (keys.length) out[id] = keys; }, both = (fn, key) => ['L', 'R'].filter(fn).map(s => key + s);
   /* в наклоне от таза (становая, румынская) колени согнуты, но пик нагрузки — на поясницу и заднюю поверхность бедра */
   const hinge = typeof PATTERN !== 'undefined' ? PATTERN[ex.id] === 'hinge' : STRESS_HINGE.has(ex.id), legsG = ['quads', 'glutes', 'hams'].includes(ex.g);
@@ -155,12 +281,31 @@ function stressRulesAt(ex, k, f) {
     /* без отягощения на двух ногах, руки не держат вес: глубокий сгиб с коленями за носками (сисси-присед) */
     else if (legsG && !ex.uni && k.upright && !k.handsBear) add('knee', both(s => k.feet(s) && f[s].knee >= STRESS_KNEE_DEEP && f[s].kneeAhead > 0, 'kn'));
   }
-  if (k.shin) add('kneeOpen', both(s => f[s].knee <= 30, 'kn'));
+  /* разгибание колена в открытой цепи: нагрузка у голени, стопа этой ноги свободна, колено проходит ≥30° и подходит к прямой */
+  if (ex.pri.includes('quads')) add('kneeOpen', both(s => k.distal(s).length && k.footFree(s, f.t) && (X.kneeSpan ? X.kneeSpan[s] >= 30 : true) && f[s].knee <= 30, 'kn'));
+  /* быстрая смена ног: стопа с ходу бьёт в пол — кадры приземления стопы (X.strike) */
+  if (X.strike) add('kneeFast', both(s => X.strike[s] && X.strike[s][Math.round(f.t * STRESS_FRAMES)], 'kn'));
+  /* сила у голени поперёк почти прямой ноги */
+  add('kneeSide', both(s => f[s].knee <= 30 && f[s].sideLoad >= STRESS_SIDE, 'kn'));
   /* упор на колени: колено на опоре передней поверхностью */
   add('kneel', both(s => k.kneeOn(s, f.t) && f[s].kneeDown >= .6, 'kn'));
   if (k.sole('') && !k.seated && (k.loaded || k.backBar) && f.trunk >= 40) add('lumbar', ['lumbar']);
   /* длинный рычаг: тело вытянуто между упором рук далеко впереди и коленями или стопами */
   if (k.trunkFree && k.leverHands(f.t) && f.trunk >= 50 && f.trunk <= 110 && Math.max(f.L.hipFlex, f.R.hipFlex) <= 30 && Math.max(f.L.elevation, f.R.elevation) >= 120) add('lumbarLever', ['lumbar']);
+  /* сгибание позвоночника вперёд или вбок в упражнениях на пресс и косые: согнутая фаза */
+  const core = ex.pri.includes('abs') || ex.pri.includes('obliques');
+  if (core && X.flex && ((X.flex.range >= STRESS_FLEX && f.flex >= X.flex.min + 10) || (X.lat.range >= STRESS_FLEX && Math.abs(f.lat - X.lat.zero) >= 10))) add('lumbarFlex', ['lumbar']);
+  /* скручивание корпуса: пресс и косые или с нагрузкой */
+  if ((core || k.loaded) && X.twist && X.twist.range >= STRESS_TWIST && Math.abs(f.twist - X.twist.zero) >= 10) add('lumbarTwist', ['lumbar']);
+  /* разгибание: грудь вниз, таз или бёдра на опоре, верх корпуса и руки на весу, корпус ближе к горизонтали */
+  if (f.prone >= .5 && k.pelvisOn(f.t) && !k.upperOn(f.t) && f.trunk >= 45) add('lumbarExt', ['lumbar']);
+  /* прямые ноги на весу, ближе 37° к горизонтали */
+  /* лёжа на спине или в висе: лёжа на животе ноги поднимают разгибатели — это «разгибание» */
+  if (f.prone < .5 && k.legsFree(f.t) && f.L.knee <= 25 && f.R.knee <= 25 && f.L.thighLevel <= STRESS_LEGS && f.R.thighLevel <= STRESS_LEGS) add('lumbarLegs', ['lumbar']);
+  /* осевая нагрузка стоя: штанга или валики на плечах, свободный вес над головой или в опущенных руках в переноске и шрагах */
+  const carry = typeof PATTERN !== 'undefined' ? ['grip', 'shrug'].includes(PATTERN[ex.id]) : STRESS_CARRY.has(ex.id);
+  /* валики на плечах — при любом наклоне спины (гакк-машина: спина на упоре, вес давит вдоль позвоночника) */
+  if (k.sole('') && (k.shoulderPads || (f.trunk < 40 && k.standFree && (k.backBar || (k.free && (f.wristsUp || carry)))))) add('axial', ['lumbar']);
   const push = ['chest', 'triceps', 'shoulders'].includes(ex.g);
   if (push && (k.loaded || k.handsBear)) add('shPress', both(s => f[s].behind >= 20, 'sh'));
   /* жим вверх: плечо в дуге 90–120° — только в жимах, а не в тяге к лицу или махах (там другая задача и малый вес) */
@@ -175,7 +320,7 @@ function stressRulesAt(ex, k, f) {
   }
   if (ex.pri[0] === 'triceps' && ex.type !== 'c' && k.loaded) add('elbow', both(s => f[s].elbow >= 100 && f[s].elevation >= 80, 'el'));
   if (!k.kneelAnchored) add('wrist', both(s => ((k.palmBear(s) && f.trunk >= 45) || k.palmTop) && f[s].wristFlex <= -60, 'wr'));
-  if (ex.pri[0] === 'calves' && ex.type !== 'c' && ex.g !== 'cardio') add('achilles', both(s => f[s].dorsi >= 15, 'an'));
+  if (ex.pri[0] === 'calves' && ex.type !== 'c' && ex.g !== 'cardio') add('achilles', both(s => f[s].dorsi >= STRESS_DORSI, 'an'));
   if (k.sole('') && !k.seated && (k.loaded || k.backBar)) add('hams', both(s => f[s].knee <= 40 && f[s].hipFlex >= 70, 'th'));
   if (k.kneelAnchored && f.trunk >= 40) add('hams', ['thL', 'thR']);
   return out;
@@ -186,15 +331,35 @@ function jointStress(ex) {
   let result = {rules:[]};
   const rig = ex.anim.catalogRig;
   if (rig && typeof CATALOG_POSES !== 'undefined' && CATALOG_POSES[ex.id]) {
-    const k = stressContacts(ex), frames = [], clear = [], hip = [], legsG = ['quads', 'glutes', 'hams'].includes(ex.g);
+    const k = stressContacts(ex), frames = [], clear = [], hip = [], legsG = ['quads', 'glutes', 'hams'].includes(ex.g), F = [];
     let kneeDepth = 0;
     for (let i = 0; i <= STRESS_FRAMES; i++) {
       const t = i / STRESS_FRAMES, R = rig(t);
-      if (!R.frames) { frames.length = 0; break; }
-      const f = stressFrame(R, t);
-      frames.push(stressRulesAt(ex, k, f));
+      if (!R.frames) { F.length = 0; break; }
+      const f = stressFrame(R, t, k);
+      F.push(f);
       clear.push(Math.max(R.heelL[1], R.toeL[1], R.heelR[1], R.toeR[1])); hip.push(R.hip[1]);
       if (legsG && !k.restOn(t, f.trunk) && f.trunk <= 60) for (const s of ['L', 'R']) if (k.feet(s)) kneeDepth = Math.max(kneeDepth, f[s].knee);
+    }
+    /* величины всего повторения: размах колена, сгибания, наклона вбок и скручивания позвоночника (zero — положение, ближайшее
+       к нейтрали), кадры приземления стопы при быстрой смене ног (скорость колена — по периоду анимации: у замкнутого цикла
+       0→1 — весь период, иначе туда и обратно) */
+    if (F.length) {
+      const range = vals => ({min:Math.min(...vals), range:Math.max(...vals) - Math.min(...vals), zero:vals.reduce((z, v) => Math.abs(v) < Math.abs(z) ? v : z, vals[0])});
+      const X = {kneeSpan:{}, flex:range(F.map(f => f.flex)), lat:range(F.map(f => f.lat)), twist:range(F.map(f => f.twist)), strike:null};
+      const dt = ex.anim.period ? ex.anim.period / (ex.anim.loop ? STRESS_FRAMES : 2 * STRESS_FRAMES) / 1000 : 0;
+      for (const s of ['L', 'R']) {
+        const kn = F.map(f => f[s].knee); X.kneeSpan[s] = Math.max(...kn) - Math.min(...kn);
+        let v = 0; for (let i = 1; i < kn.length; i++) v = Math.max(v, Math.abs(kn[i] - kn[i - 1]));
+        const W = k.strikes(s);
+        if (dt && W.length && v / dt >= STRESS_KNEE_FAST) {
+          /* приземление: контакт начался в этом кадре (не было в прошлом; у цикла — по кругу) и два следующих кадра */
+          const on = F.map(f => W.some(c => stressIn(c, f.t))), hit = on.map(() => false), n = on.length;
+          for (let i = 0; i < n; i++) { const prev = i ? on[i - 1] : ex.anim.loop ? on[n - 2] : on[0]; if (on[i] && !prev) for (let j = 0; j < 3 && i + j < n; j++) if (on[i + j]) hit[i + j] = true; }
+          (X.strike = X.strike || {})[s] = hit;
+        }
+      }
+      for (const f of F) frames.push(stressRulesAt(ex, k, f, X));
     }
     result.kneeDepth = frames.length ? kneeDepth : 0;
     if (frames.length) {
@@ -222,12 +387,48 @@ function jointStress(ex) {
    спина у стены — тоже стоя), в градусах.
    Для замен при «Беречь колени» (11g-gentle.js): присед или выпад с весом тела до того же сгиба нагружает колено
    почти как с гантелью. Момент на колене задаёт прежде всего вес тела над коленом и плечо до него: гантель в 10–16 кг —
-   это 13–20 % веса тела; в приседе с ¼ и ½ веса тела момент на колене при сгибе 60° больше, чем без веса, лишь на 10
-   и 14 % (Lorenzetti et al., ISB 2009, предварительные данные одного испытуемого; полная работа — JSCR 2012,
-   26(10):2829–2836: в нижней точке колено 86° с барьером у носков и 106° без него). А снижают момент меньшее сгибание
-   и колени за линией носков (Fry 2003). Поэтому замена при «Беречь колени» не уходит стоя глубже порога правила. */
+   это 13–20 % веса тела. Снижают момент меньшее сгибание и колени за линией носков: без барьера у носков момент на колене
+   при сгибе 60° с ¼ и ½ веса тела на 10 и 14 % больше, чем с барьером, а без веса — одинаковый (Lorenzetti et al., тезисы
+   ISB 2009, предварительные данные одного испытуемого; полная работа — JSCR 2012, 26(10):2829–2836: в нижней точке колено
+   86° с барьером у носков и 106° без него); в приседе со штангой — Fry 2003. Поэтому замена при «Беречь колени» не уходит
+   стоя глубже порога правила. */
 function stressKneeDepth(ex) { return ['quads', 'glutes', 'hams'].includes(ex.g) ? jointStress(ex).kneeDepth || 0 : 0; }
 function stressKneeDeep(ex) { return stressKneeDepth(ex) >= (ex.uni ? STRESS_KNEE_DEEP_UNI : STRESS_KNEE_DEEP); }
+/* Поворот корпуса на опорной ноге — для отметки «После операции на колене» (11g-gentle.js): насколько поворачивается таз
+   (линия тазобедренных суставов, вокруг вертикали), пока стопа стоит на полу весь подход (контакт без окна времени).
+   Поворот на опорной ноге под нагрузкой закручивает голень относительно бедра: внутренний поворот голени вместе с силой,
+   сдвигающей её вперёд, дал наибольшую силу на ПКС, больше всего — у прямой ноги (Markolf et al. 1995, J Orthop Res
+   13(6):930–935); смена направления и повороты после пластики ПКС — последний этап, после критериев (Aspetar, «Clinical
+   Practice Guideline on Rehabilitation after ACLR»). Порог отметки — 20° (STRESS_PIVOT): у дровосека с поворотом таза — 36°,
+   у мельницы — 30°, у приседов, выпадов и жимов стоя — меньше 10°. */
+const STRESS_PIVOT = 20, STRESS_PIVOT_CACHE = new Map();
+function stressPivot(ex) {
+  if (STRESS_PIVOT_CACHE.has(ex.id)) return STRESS_PIVOT_CACHE.get(ex.id);
+  let deg = 0;
+  const P = typeof CATALOG_POSES !== 'undefined' && CATALOG_POSES[ex.id], rig = ex.anim && ex.anim.catalogRig;
+  if (P && rig && (P.contacts || []).some(c => /^(sole|foot)[LR]?$/.test(c.body) && /^(floor|mat)$/.test(c.prop) && !c.when)) {
+    const V = Mannequin.V, yaw = [];
+    for (let i = 0; i <= STRESS_FRAMES; i++) {
+      const R = rig(i / STRESS_FRAMES); if (!R.frames || !R.hipL || !R.hipR) break;
+      const d = V.sub(R.hipL, R.hipR); let a = Math.atan2(d[2], d[0]) * 180 / Math.PI;
+      /* без скачка через ±180° */
+      if (yaw.length) { const prev = yaw[yaw.length - 1]; while (a - prev > 180) a -= 360; while (a - prev < -180) a += 360; }
+      yaw.push(a);
+    }
+    if (yaw.length) deg = Math.max(...yaw) - Math.min(...yaw);
+  }
+  STRESS_PIVOT_CACHE.set(ex.id, deg);
+  return deg;
+}
+/* фаза полёта в беге: обе стопы над опорой, а тело ничем больше не опирается (дорожка — бег, а не шаг); прыжки — с метками
+   приземления, здесь — только кардио на время (беговая дорожка) */
+function stressFlight(ex) {
+  const P = typeof CATALOG_POSES !== 'undefined' && CATALOG_POSES[ex.id], K = P && P.contacts || [];
+  if (ex.kind !== 'time' || ex.g !== 'cardio' || !K.length || K.some(c => !c.when) || !K.every(c => /^(sole|foot)[LR]?$/.test(c.body))) return false;
+  if (jointStress(ex).rules.some(r => r.id === 'landing')) return false;
+  for (let i = 0; i <= STRESS_FRAMES; i++) { const t = i / STRESS_FRAMES; if (!K.some(c => stressIn(c, t))) return true; }
+  return false;
+}
 function stressExercise(anim) { return anim.catalogId ? (typeof EXI !== 'undefined' ? EXI[anim.catalogId] : EX.find(e => e.id === anim.catalogId)) : null; }
 /* активные правила в положении t; index 2 и 3 — обратный ход (кроме замкнутых циклов) */
 function jointStressAt(ex, t, index = 0) {

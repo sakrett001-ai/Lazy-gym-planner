@@ -244,6 +244,13 @@ function suggestBase(it) {
     res.tone = 'plan'; res.kgs = it.rx.kgPlan; res.kg = it.rx.kgPlan[0]; res.prev = prev;
     const what = lt === 'assist' ? 'Противовес по плану' : lt === 'extra' ? 'Доп. вес по плану' : 'Вес по плану';
     res.text = `${what}: ${planKgText(it.rx.kgPlan)} ${wUnit()}.` + (rp ? ` Повторы по плану: ${rp.join(' / ')}.` : '') + (ps.length ? ` В прошлый раз: ${ps.map(x => (x[0] ? fmtKg(x[0]) + '×' : '') + x[1]).join(', ')}.` : '');
+    /* после перерыва — и вес по плану ниже, на то же число (layoffInfo, 15-autoreg.js); противовес — не трогаем */
+    const lay = past.length && lt === 'kg' && typeof layoffInfo === 'function' ? layoffInfo() : null;
+    if (lay) {
+      const fine = isLb() ? 5 * LB_KG : (it.eqIds || []).includes('kb') ? 4 : (it.eqIds || []).includes('db') ? 2 : 2.5;
+      res.tone = 'deload'; res.layoff = true; res.kgs = it.rx.kgPlan.map(v => roundTo(v * (1 - lay.pct / 100), fine)); res.kg = res.kgs[0];
+      res.text = 'После перерыва в {g}: {kg} вместо {was} по плану (примерно на {p}% меньше), не до предела.'.replace(/\{(\w+)\}/g, (_, k) => ({g:`${lay.gap} ${plural(lay.gap, 'день', 'дня', 'дней')}`, kg:planKgText(res.kgs) + ' ' + wUnit(), was:planKgText(it.rx.kgPlan), p:lay.pct})[k]);
+    }
     return res;
   }
   /* прошлых тренировок нет, а сегодня подходы уже записаны — не «Первая запись», а сколько сделано и что дальше */
@@ -287,6 +294,30 @@ function suggestBase(it) {
   const work = kgs.length ? Math.max(...kgs) : null;
   const prevList = sets.map(x => (x[0] ? fmtKg(x[0]) + '×' : '') + x[1]).join(', ');
   if (ex.kind === 'dist') { res.tone = 'same'; res.kg = work; res.text = work ? `В прошлый раз — ${fmtKg(work)} ${wUnit()}. Попробуйте пройти дальше или взять тяжелее.` : `В прошлый раз: ${prevList} м.`; return res; }
+  /* после перерыва (layoffInfo, 15-autoreg.js): вес ниже прежнего по шкале — то же число, что в плашке «По вашему журналу»;
+     у пирамиды — каждый подход; у противовеса — больше; без веса — повторы по нижней границе, не до предела */
+  const lay = typeof layoffInfo === 'function' ? layoffInfo() : null;
+  if (lay && !ex.kind) {
+    /* шаг округления — мельче шага прибавки (у жима ногами прибавка 10 кг, а сбросить на 10 % от 60 — до 55): блины 2,5 кг
+       (гантели 2, гири 4; в фунтах — 5) — тогда число на экране близко к проценту шкалы */
+    const ids = it.eqIds || [], fine = isLb() ? 5 * LB_KG : ids.includes('kb') ? 4 : ids.includes('db') ? 2 : 2.5;
+    const f = 1 - lay.pct / 100, pk = sets.map(x => x[0]), mixed = (lt === 'kg' || lt === 'extra') && pk.length > 1 && pk.every(v => v > 0) && !pk.every(v => v === pk[0]);
+    /* фразы с {g} (перерыв), {kg}, {was}, {p} переводятся целиком: в английском слова стоят в другом порядке */
+    const say = (t, o) => t.replace(/\{(\w+)\}/g, (_, k) => o[k] ?? ''), g = `${lay.gap} ${plural(lay.gap, 'день', 'дня', 'дней')}`, u = ' ' + wUnit();
+    res.tone = 'deload'; res.reps = sets.map((x, i) => tgt(i)[0]);
+    if (lt === 'kg' && work) {
+      if (mixed) { res.kgs = pk.map(v => roundTo(v * f, fine)); res.kg = res.kgs[0]; res.text = say('После перерыва в {g}: веса примерно на {p}% меньше прошлых — {kg}, не до предела.', {g, p:lay.pct, kg:res.kgs.map(fmtKg).join(' / ') + u}); }
+      else { res.kg = roundTo(work * f, fine); res.text = say('После перерыва в {g}: {kg} вместо {was} (примерно на {p}% меньше), не до предела.', {g, p:lay.pct, kg:fmtKg(res.kg) + u, was:fmtKg(work)}); }
+      return res;
+    }
+    if (lt === 'assist' && work) {
+      res.kg = Math.max((Math.floor(work / step) + 1) * step, roundTo(work / f, fine));
+      res.text = say('После перерыва в {g}: противовес {kg} вместо {was}, не до предела.', {g, kg:fmtKg(res.kg) + u, was:fmtKg(work)});
+      return res;
+    }
+    res.kg = work; res.text = say('После перерыва в {g}: повторы по нижней границе плана, не до предела. В прошлый раз: {prev}.', {g, prev:prevList});
+    return res;
+  }
   /* пирамида или сброс (веса подходов в прошлый раз разные): совет — по верхнему подходу, подсказки — по каждому подходу */
   const pyr = !ex.kind && (lt === 'kg' || lt === 'extra') && pyramidAdvice(it, res, sets, past, tgt, step, week, rp);
   if (pyr) return pyr;
@@ -499,7 +530,8 @@ function firstKg(tset, sg, own) {
    подходов в ней разные (пирамида, сброс); иначе null — один вес на все подходы (подсказка — по прогрессии, sg.kg).
    prevSets — записанные подходы прошлой тренировки */
 function ownKgs(it, prevSets, sg) {
-  if (it.rx.kgPlan) return k => planKg(it.rx, k);
+  /* вес по плану; после перерыва — сниженный (suggestBase: sg.layoff) */
+  if (it.rx.kgPlan) return sg && sg.layoff && Array.isArray(sg.kgs) ? k => sg.kgs[Math.min(k, sg.kgs.length - 1)] : k => planKg(it.rx, k);
   /* пирамида прошлого раза с советом по верхнему подходу (pyramidAdvice): вес каждого подхода — из совета */
   if (sg && Array.isArray(sg.kgs) && sg.kgs.length) return k => sg.kgs[Math.min(k, sg.kgs.length - 1)];
   const kgs = prevSets.map(x => x[0]);
@@ -779,9 +811,12 @@ function trainingDays(data = LOG.data) {
 }
 /* последние тренировки списком: дата, упражнений и подходов, общий вес за день */
 function daysHtml(by = trainingDays(), limit = 5) {
-  const days = Object.values(by).sort((a, b) => a.d < b.d ? 1 : -1).slice(0, limit);
+  /* дни с пометкой «Больно» (11g-gentle.js: «Пропустить → больно» на экране тренировки) — и без записанных подходов */
+  const pain = typeof painDayHtml === 'function' ? painDayHtml : () => '', all = {...by};
+  if (typeof ensurePain === 'function') for (const x of ensurePain(S).log) if (!all[x.d]) all[x.d] = {d:x.d, ex:0, sets:0, t:0};
+  const days = Object.values(all).sort((a, b) => a.d < b.d ? 1 : -1).slice(0, limit);
   if (!days.length) return '';
-  return `<div class="j-days"><p class="lb-h">${'Последние тренировки · общий вес'}</p><ul>${days.map(x => `<li><span class="j-dd">${fmtDay(x.d, true)}</span><span class="j-dn">${x.ex} ${plural(x.ex, 'упражнение', 'упражнения', 'упражнений')} · ${x.sets} ${plural(x.sets, 'подход', 'подхода', 'подходов')}${heartDayHtml(x.d)}</span><b class="j-dt">${x.t > 0 ? fmtTon(x.t) + `<small>${wUnit()}</small>` : '—'}</b></li>`).join('')}</ul></div>`;
+  return `<div class="j-days"><p class="lb-h">${'Последние тренировки · общий вес'}</p><ul>${days.map(x => `<li><span class="j-dd">${fmtDay(x.d, true)}</span><span class="j-dn">${x.sets ? `${x.ex} ${plural(x.ex, 'упражнение', 'упражнения', 'упражнений')} · ${x.sets} ${plural(x.sets, 'подход', 'подхода', 'подходов')}${heartDayHtml(x.d)}` : ''}${pain(x.d)}</span><b class="j-dt">${x.t > 0 ? fmtTon(x.t) + `<small>${wUnit()}</small>` : '—'}</b></li>`).join('')}</ul></div>`;
 }
 function heatmap(today = new Date(), by = trainingDays()) {
   const byDay = {};

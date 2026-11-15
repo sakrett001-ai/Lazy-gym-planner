@@ -165,9 +165,11 @@ test('log accepts sets with and without the rest field; backup keeps a valid res
 });
 test('suggestions ignore the rest field, CSV gets a rest column', () => {
   const a = appModel(), item = {...a.previewItem('bbbench'), eqIds:['bb']};
-  a.LOG.data = {bbbench:[{d:'2000-01-01', target:4, s:[[60, 10], [60, 10], [60, 10], [60, 10]]}]};
+  /* вчерашняя запись: после долгого перерыва совет — сниженный вес (layoffInfo, 15-autoreg.js), здесь проверяется поле отдыха */
+  const y = new Date(Date.now() - 864e5), yd = `${y.getFullYear()}-${String(y.getMonth() + 1).padStart(2, '0')}-${String(y.getDate()).padStart(2, '0')}`;
+  a.LOG.data = {bbbench:[{d:yd, target:4, s:[[60, 10], [60, 10], [60, 10], [60, 10]]}]};
   const advice = () => { const {prev, ...rest} = plain(a.suggest(item)); return rest; }, before = advice();
-  a.LOG.data = {bbbench:[{d:'2000-01-01', target:4, s:[[60, 10, 90], [60, 10, 95], [60, 10, 100], [60, 10]]}]};
+  a.LOG.data = {bbbench:[{d:yd, target:4, s:[[60, 10, 90], [60, 10, 95], [60, 10, 100], [60, 10]]}]};
   assert.equal(before.tone, 'up'); assert.deepEqual(advice(), before);
   const rows = a.csvText().replace(/^﻿/, '').split('\r\n').map(r => r.split(';'));
   const rest = rows[0].indexOf('Отдых после подхода, с');

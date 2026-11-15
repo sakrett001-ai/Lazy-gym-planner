@@ -256,7 +256,7 @@ test('one reserve number per card: load line, first-entry hint, week note and th
     assert.equal(first, load, `${where}: first entry «${a.suggest(it).text}» vs load «${it.rx.load}»`);
     if (iso.rx.load.includes('силы ещё на')) assert.equal(num(a.suggest(iso).text), num(iso.rx.load), `${where}: isolation`);
     if (wk) assert.equal(wk, load, `${where}: week note «${a.WEEKS[week - 1].note}» vs load «${it.rx.load}»`);
-    if (goal === 'gentle') { const g = a.gentleHtml().match(/лёгким весом, оставляя силы ещё на (\d(?:–\d)?) повтор|лёгким весом, не до предела/); assert(g && (g[1] || null) === load, `${where}: gentle box`); }
+    if (goal === 'gentle') { const g = a.gentleHtml().match(/все повторы даются спокойно и остаются силы ещё на (\d(?:–\d)?) повтор|все повторы даются спокойно, не до предела/); assert(g && (g[1] || null) === load, `${where}: gentle box`); }
     if (load === null) assert.match(a.suggest(it).text, /(получаются чисто, а больше — уже нет|даются не до предела)\.$/, `${where}: no number — no reserve in the hint either`);
   }
   /* замечания тестеров: новичок в первую неделю — 4 везде; «Бережно» без цикла — 3–4, а не 2 */

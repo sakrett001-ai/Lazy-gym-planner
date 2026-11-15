@@ -18,9 +18,9 @@ function app() {
 
 test('fold settings: compact cards by default, garbage replaced, kept in the backup', () => {
   const a = app();
-  assert.deepEqual(plain(a.S.fold), { setup: false, load: false, cards: 'compact', gentle: false });
+  assert.deepEqual(plain(a.S.fold), { setup: false, load: false, cards: 'compact', gentle: false, health: false });
   a.S.fold = { setup: 'yes', load: true, cards: 'tiny', extra: 1 };
-  assert.deepEqual(plain(a.ensureFold(a.S)), { setup: false, load: true, cards: 'compact', gentle: false }, 'only known values survive');
+  assert.deepEqual(plain(a.ensureFold(a.S)), { setup: false, load: true, cards: 'compact', gentle: false, health: false }, 'only known values survive');
   a.S.fold = 'broken'; a.ensureFold(a.S);
   assert.equal(a.S.fold.cards, 'compact');
   a.S.fold = { setup: true, load: true, cards: 'full', gentle: true };

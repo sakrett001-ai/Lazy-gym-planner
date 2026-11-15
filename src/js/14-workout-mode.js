@@ -130,6 +130,8 @@ function closeWorkout(fromBack){
   const d=$('#workout-view');if(d.open)d.close();document.documentElement.classList.remove('workout-open');d.classList.remove('rest-over');workout.restOver=null;
   if(fromBack!==true)OverlayBack.closed('workout');
   /* кнопка, с которой открыли, могла пересобраться вместе с планом (замена в тренировке) — тогда фокус на «Продолжить тренировку» */
+  /* «Больно» посреди тренировки — теперь вне подбора: план пересобирается без этих упражнений */
+  if(painFlush())renderPlan();
   logRefresh(null);paintStartButtons();(workoutReturn?.isConnected?workoutReturn:$('#start-workout'))?.focus();workoutReturn=null;
   /* вид фигуры мог смениться на экране тренировки — карточки плана берут его же */
   if(figs.some(F=>F.card))applyCardsView();
@@ -176,7 +178,9 @@ function workoutFill(s,sg,prev){
   /* вес: записанный сегодня в подходе выше (carriedKg — то же правило, что в карточке: свой вес подхода по плану или
      по пирамиде прошлого раза не перетирается), иначе свой вес подхода, иначе из прошлой тренировки */
   const own=ownKgs(it,sg.prev?sg.prev.s.filter(Boolean):[],sg),planned=own(s.k),kgText=v=>v!=null?fmtKg(v):'',carried=carriedKg(it,today,s.k,null,own);
-  $('#wv-kg').value=draft?draft.kg:stored?kgText(stored[0]):carried!=null?fmtKg(carried):planned!=null?fmtKg(planned):prev?.[0]!=null?fmtKg(prev[0]):'';
+  /* совет снизить вес (после перерыва, облегчённый режим, разгрузка — tone 'deload') — в поле его вес, а не прошлый (Михаил п. 1) */
+  const ease=sg.tone==='deload'&&sg.kg!=null?sg.kg:null;
+  $('#wv-kg').value=draft?draft.kg:stored?kgText(stored[0]):carried!=null?fmtKg(carried):planned!=null?fmtKg(planned):ease!=null?fmtKg(ease):prev?.[0]!=null?fmtKg(prev[0]):'';
   /* подсказка повторов — цель подхода со словом «цель»: серое «12–15» без него выглядело введённым */
   const goal='цель '+planReps(it.rx,s.k);
   $('#wv-reps').value=draft?draft.reps:stored?String(stored[1]):'';$('#wv-reps').placeholder=goal;
@@ -407,14 +411,20 @@ function holdStop(){if(workout?.hold){workout.hold.h=null;workout.hold.last=null
    считаются в прогрессе и итогах тренировки (workout.gone). */
 function paintExerciseTools(){
   const s=workout.queue[workout.index],id=s.it.ex.id,self=workout.skipped.includes(id),u=workout.skipUndo;
-  workout.skipUndo=null;workoutSwapToggle(false);
+  workout.skipUndo=null;workoutSwapToggle(false);painBoxToggle(false);
   const line=self?{id,text:'Упражнение пропущено.'}:u&&workout.skipped.includes(u.id)?{id:u.id,text:`${'Пропущено:'} ${u.name}.`}:null;
   $('#wv-skip').hidden=self;$('#wv-skip-line').hidden=!line;
-  if(line){$('#wv-skip-t').textContent=line.text;$('#wv-unskip').dataset.id=line.id;}
+  /* «Больно» — у пропущенного, пока оно не отмечено (11g-gentle.js: painMark) */
+  const marked=line&&ensurePain(S).log.some(x=>x.id===line.id&&x.d===todayKey());
+  if(line){$('#wv-skip-t').textContent=line.text;$('#wv-unskip').dataset.id=line.id;$('#wv-pain').dataset.id=line.id;$('#wv-pain').hidden=!!marked;}
   /* название целиком над выбором: у <select> текст не переносится */
   const o=$('#wv-exercise').selectedOptions?.[0];$('#wv-exercise-text').textContent=o?o.textContent:s.it.label+'. '+s.it.name;
 }
+/* «Пропустить» дважды подряд по ошибке (двойное касание, отчёт Артёма п. 4): второе нажатие в течение 0,7 с после первого
+   не пропускает следующее упражнение — как «Подход выполнен», которое после записи сразу уводит на экран отдыха */
+const WV_SKIP_GUARD=700;
 function workoutSkip(){
+  const now=Date.now();if(now-(workout.skipAt||0)<WV_SKIP_GUARD)return;workout.skipAt=now;
   workoutCapture();
   const s=workout.queue[workout.index],id=s.it.ex.id;
   if(!workout.skipped.includes(id))workout.skipped.push(id);
@@ -422,6 +432,25 @@ function workoutSkip(){
   const next=workoutFirstOpen(workout.queue,workout.index);
   if(next<0){workoutFinish();$('#wv-finish-close').focus();return;}
   workout.skipUndo={id,name:s.it.name};workoutShow(next);$('#wv-unskip').focus();
+}
+/* «Пропустить → больно» (отчёт Елены п. 12): выбор «Заменить» или «Убрать из плана»; пометка в журнале дня, упражнение
+   само в план не возвращается (S.pain, 11g-gentle.js), вернуть — в параметрах, «Беречь суставы» */
+function painBoxToggle(open){
+  const b=$('#wv-pain'),box=$('#wv-pain-box');if(!b||!box)return;
+  if(open===undefined)open=b.getAttribute('aria-expanded')!=='true';
+  b.setAttribute('aria-expanded',String(open));box.hidden=!open;
+  if(open){box.dataset.id=b.dataset.id||'';$('#wv-pain-swap').focus({preventScroll:true});box.scrollIntoView({block:'nearest',behavior:reduceMotion?'auto':'smooth'});}
+}
+function workoutPainOff(){
+  const id=$('#wv-pain-box').dataset.id;if(!id||!EXI[id])return;
+  painMark(id,'removed',todayKey(),null,true);painBoxToggle(false);$('#wv-pain').hidden=true;
+  $('#wv-save-status').textContent='Убрано из плана: {name}. Само оно не вернётся; вернуть — в параметрах, «Беречь суставы».'.replace('{name}',exNameHere(EXI[id]));
+  $('#wv-skip').focus();
+}
+function workoutPainSwap(){
+  const id=$('#wv-pain-box').dataset.id;if(!id)return;
+  const i=workout.queue.findIndex(x=>x.it.ex.id===id&&!workoutValue(x)),j=i>=0?i:workout.queue.findIndex(x=>x.it.ex.id===id);if(j<0)return;
+  painBoxToggle(false);workout.painFrom=id;workoutShow(j);workoutSwapToggle(true);
 }
 function workoutUnskip(id){
   if(!id)return;
@@ -441,6 +470,9 @@ function workoutSwapToggle(open){
 function workoutSwap(nextId){
   const it=workout.queue[workout.index].it,from=it.ex.id;
   workoutCapture();
+  /* замена после «Больно»: пометка в журнале и прежнее упражнение — вне подбора */
+  const pain=workout.painFrom===from;workout.painFrom=null;
+  if(pain)painMark(from,'swapped',todayKey(),nextId,true);
   if(!swapSet(it.slot,nextId))return;
   /* план за окном тренировки: в карточке — «Заменено: … → … Вернуть»; тренировка при этом не закрывается (stopFigures) */
   workoutReplanning=true;try{renderPlan();}finally{workoutReplanning=false;}
@@ -485,6 +517,9 @@ function setupWorkout(){
     if(t.id==='wv-hold-reset'){holdStop();paintHold();return;}
     if(t.id==='wv-skip'){workoutSkip();return;}
     if(t.id==='wv-unskip'){workoutUnskip(t.dataset.id);return;}
+    if(t.id==='wv-pain'){painBoxToggle();return;}
+    if(t.id==='wv-pain-off'){workoutPainOff();return;}
+    if(t.id==='wv-pain-swap'){workoutPainSwap();return;}
     if(t.id==='wv-swap'){workoutSwapToggle();return;}
     if(t.dataset.wvSwap){workoutSwap(t.dataset.wvSwap);return;}
     if(t.id==='wv-rest-pause'){workoutRestPause();return;}
