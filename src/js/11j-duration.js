@@ -78,7 +78,8 @@ function volOver(p, vol) {
    при равенстве — больше упражнений; не попал никто — ближайший к коридору. С потолком объёма недели (новичок) —
    только варианты в его пределах: в коридоре — как обычно, иначе самый длинный из них */
 function fitDuration(ctx, D) {
-  const all = [], capped = !!(ctx.vol && ctx.vol.cap);
+  const all = [], capped = !!(ctx.vol && ctx.vol.cap), baseN = new Map();
+  let lostStations = false;
   const run = dose => {
     const got = [];
     for (const c of doseCounts()) {
@@ -88,6 +89,10 @@ function fitDuration(ctx, D) {
       if (!p.items) return null;
       /* упражнений меньше, чем просили (всё доступное уже в плане), — та же тренировка, что при меньшем числе */
       const r = {c, dose, m:p.minutes, n:p.items.length, over:capped ? volOver(p, ctx.vol) : 0, cap:p.capped || p.trimmed};
+      if (!dose.s && dose.r === 1) baseN.set(c, r.n);
+      /* круговая: лишний круг не ценой станций — при потолке подходов за тренировку (sessionCap, 11-planner.js) каждый круг
+         добавляет подход всем группам, и вместо круга из четырёх станций выходили две станции по шесть кругов */
+      if (S.format === 'circuit' && dose.s > 0 && r.n < (baseN.get(c) ?? 0)) { lostStations = true; if (p.items.length < c) break; continue; }
       all.push(r); got.push(r);
       if (p.items.length < c) break;
     }
@@ -116,7 +121,7 @@ function fitDuration(ctx, D) {
   const counts = doseCounts(), most = counts[counts.length - 1];
   const volCut = capped && near.m < D.lo && all.some(r => r.over > 0.2 && r.m > near.m);
   /* потолок подходов на группу за тренировку (sessionCap, 11-planner.js): упражнений и подходов больше не прибавляем */
-  return {...near, why:near.m > D.hi ? 'long' : volCut ? 'begvol' : near.cap || all.some(r => r.cap) ? 'cap' : S.level === 'beg' && near.n >= most ? 'beg' : 'few'};
+  return {...near, why:near.m > D.hi ? 'long' : volCut ? 'begvol' : near.cap || lostStations || all.some(r => r.cap) ? 'cap' : S.level === 'beg' && near.n >= most ? 'beg' : 'few'};
 }
 /* сколько упражнений показать в «Упражнений»: при заданном времени — сколько подобрано в открытой тренировке */
 function shownCount() {

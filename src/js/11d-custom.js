@@ -209,7 +209,8 @@ function customRx(rx, o, ex) {
   const r = {...rx};
   if (!rx.static) {
     if (o.sets) r.sets = o.sets;
-    if (o.reps && !ex.kind) { r.reps = o.reps; r.work = midOf(o.reps) * GOALS[S.goal].rep * (ex.uni ? 2 : 1); }
+    /* процент от максимума — по своим повторам плана (Руслан 14; пирамида — от меньшего до большего, loadAt, 11-planner.js) */
+    if (o.reps && !ex.kind) { r.reps = o.reps; r.work = midOf(o.reps) * GOALS[S.goal].rep * (ex.uni ? 2 : 1); if (rx.loadAt) r.load = rx.loadAt(o.reps); }
     if (o.rest !== undefined) r.rest = o.rest;
     if (o.tempo && !ex.kind) r.tempo = o.tempo;
   }

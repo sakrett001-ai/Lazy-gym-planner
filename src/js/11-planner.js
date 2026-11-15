@@ -61,7 +61,12 @@ const pctText = p => '{p} от максимума на 1 повтор'.replace('
    «≈80–90%», на деле ≈75–81% (Игорь 9). «До последнего чистого повтора» — запас 0–1. Разгрузка — на 10–15% ниже первой
    недели цикла (WEEKS[3].note; DELOAD_PCT). */
 const epleyPct = n => 100 / (1 + n / 30);
-function repRange(r) { const m = String(r).match(/(\d+)\D+(\d+)/); if (m) return [+m[1], +m[2]]; const n = parseInt(r, 10) || 0; return [n, n]; }
+function repRange(r) {
+  const s = String(r);
+  /* пирамида своего плана «8/5/3/1» — от меньшего до большего */
+  if (s.includes('/')) { const l = s.split('/').map(Number).filter(v => v > 0); if (l.length) return [Math.min(...l), Math.max(...l)]; }
+  const m = s.match(/(\d+)\D+(\d+)/); if (m) return [+m[1], +m[2]]; const n = parseInt(s, 10) || 0; return [n, n];
+}
 /* [нижний, верхний] процент: больше повторов и запаса — меньше процент */
 function pctNums(reps, rir) { const [lo, hi] = repRange(reps), r = rir || {lo:0, hi:1}; return [Math.round(epleyPct(hi + r.hi)), Math.round(epleyPct(lo + r.lo))]; }
 const pctStr = ([a, b]) => a === b ? `≈ ${a}%` : `≈ ${a}–${b}%`;
@@ -565,7 +570,9 @@ function pickExercises(E, rand, groups, count, avoid, opt) {
       /* запас сверх потолка — то, что потом срежет capTrim: в классике по подходу у двух упражнений, в паре суперсета — один
          (подходы пары общие), в круговой — нисколько (круги одни на все станции) */
       if (staticOne ? picked.some(p => p.g === ex.g) : G.has(ex.g) && (sess[ex.g] || 0) + setsOf(ex) > sCap + ({circuit:0, superset:1}[S.format] ?? 2)) { capSkip = skipNow = true; return; }
-      if (!staticOne && S.format !== 'circuit' && shareList(ex).some(([g, x]) => G.has(g) && (sessMin[g] || 0) + x * minSets(ex) > sCap + 0.5)) { capSkip = skipNow = true; return; }
+      /* попутные группы: в классике и суперсетах — по наименьшему числу подходов (лишнее срежет capTrim), в круговой — по
+         кругам (они одни на все станции и не срезаются) */
+      if (!staticOne && shareList(ex).some(([g, x]) => G.has(g) && (S.format === 'circuit' ? (sess[g] || 0) + x * setsOf(ex) : (sessMin[g] || 0) + x * minSets(ex)) > sCap + 0.5)) { capSkip = skipNow = true; return; }
       const gs = groupsOf(ex);
       let gain = 0;
       if (G.has(ex.g)) gain += Math.max(quota[ex.g], 0) * 1.6 + 0.4;
@@ -748,9 +755,11 @@ function pairSupersets(list) {
      минус, общие группы мышц — минус, дальние по порядку — чуть хуже */
   const score = (i, j) => {
     const a = ord[i], b = ord[j]; let s = 0;
-    if (PATTERN[a.id] && PATTERN[a.id] === PATTERN[b.id]) s -= 8;
+    if (PATTERN[a.id] && PATTERN[a.id] === PATTERN[b.id]) s -= 14;
+    /* «нога + нога» во всём теле — без плюса антагонистам (выпад и скандинавские сгибания — квадрицепс и бицепс бедра, а пара
+       всё равно ножная) */
     if (mixed && legOf(a) && legOf(b)) s -= 12;
-    if (ANTAGONIST[a.g] === b.g || ANTAGONIST[b.g] === a.g) s += 3;
+    else if (ANTAGONIST[a.g] === b.g || ANTAGONIST[b.g] === a.g) s += 3;
     if (b.g !== a.g) s += 1;
     /* жим — в пару с тягой: в паре подходов поровну (по большему), так баланс жимов и тяг не сбивается */
     const sa = sideOf(a), sb = sideOf(b);
@@ -764,7 +773,12 @@ function pairSupersets(list) {
   const go = (left, acc, s) => {
     if (!left.length) { if (s > bestS) { bestS = s; best = acc.slice(); } return; }
     const [i, ...rest] = left;
-    if (!rest.length || (n % 2 && acc.every(p => p.length === 2) && left.length % 2)) { acc.push([i]); go(rest, acc, s); acc.pop(); if (!rest.length) return; }
+    /* нечётное число — одно упражнение без пары, при прочих равных последним (как раньше). Ещё одно без пары — за 4,5 очка:
+       дешевле, чем пара из одного движения или «нога + нога» во всём теле, но дороже любой обычной пары (было: дома без
+       инвентаря «грудь + трицепс» — четыре вида отжиманий, и два из них в одной паре) */
+    const odd = n % 2 && acc.every(p => p.length === 2);
+    acc.push([i]); go(rest, acc, s - (odd ? 0 : 4.5) - 0.3 * rest.length); acc.pop();
+    if (!rest.length) return;
     rest.forEach((j, k) => { acc.push([i, j]); go(rest.filter((_, x) => x !== k), acc, s + score(i, j)); acc.pop(); });
   };
   if (n <= 10) go(ord.map((_, i) => i), [], 0);
@@ -1666,6 +1680,11 @@ function movePlanItem(slot, d) {
   swaps.__order = swaps.__order || {}; swaps.__order[swapKey()] = units.flat();
   return true;
 }
+/* в паре своего плана подходов у упражнений может быть разное число (Руслан 6): « · A1 — 4 подхода» */
+function pairShort(b) {
+  const short = b.items.filter(it => it.rx.sets < b.sets);
+  return short.map(it => ' · {label} — {n}'.replace('{label}', it.label).replace('{n}', `${it.rx.sets} ${plural(it.rx.sets, 'подход', 'подхода', 'подходов')}`)).join('');
+}
 function blocksHtml(p) {
   MOVE_UNITS = S.mode === 'custom' ? [] : planUnits(p);
   let html = `<p class="phase"><b>Разминка, 8–10 мин.</b> Лёгкое кардио до тёплого пота, суставная гимнастика, затем 1–2 разминочных подхода с лёгким весом в первом упражнении.</p>`;
@@ -1685,7 +1704,7 @@ function blocksHtml(p) {
       const many = b.items.length > 1;
       html += `<section class="block">
         <header class="b-head"><h2><span class="b-letter">${b.letter}</span>${many ? 'Суперсет' : 'Отдельное упражнение'}</h2>
-        <p>${many ? `${b.sets} ${plural(b.sets, 'круг', 'круга', 'кругов')}: ${b.items.map(it => it.label).join(' → ')} без паузы, затем отдых ${fmtRest(b.rest)}` : `${b.sets} ${plural(b.sets, 'подход', 'подхода', 'подходов')}, отдых ${fmtRest(b.rest)}`}</p></header>
+        <p>${many ? `${b.sets} ${plural(b.sets, 'круг', 'круга', 'кругов')}: ${b.items.map(it => it.label).join(' → ')} без паузы, затем отдых ${fmtRest(b.rest)}${pairShort(b)}` : `${b.sets} ${plural(b.sets, 'подход', 'подхода', 'подходов')}, отдых ${fmtRest(b.rest)}`}</p></header>
         <ol class="cards">${b.items.map(card).join('')}</ol></section>`;
     } else {
       const rd = done.__rounds || 0;
