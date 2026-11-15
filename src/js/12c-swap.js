@@ -24,8 +24,17 @@ function swapPool(cur, p) {
   const taken = swapTaken(p), lvlMax = S.level === 'beg' || S.goal === 'gentle' ? 2 : 3, pat = PATTERN[cur.id];
   for (const x of variantsFor(cur, p.E, taken)) taken.add(x.ex.id);
   taken.add(cur.id);
+  /* уже тренирующемуся и опытному облегчённые варианты (гравитрон, отжимания и тяги без веса там, где есть то же движение
+     с весом) — после вариантов с весом, как в подборе плана (lightAlt, 11-planner.js). Было: для тяги верхнего блока V первым
+     стоял гравитрон, для жима узким — брусья в гравитроне (Игорь 15) */
+  const lightLast = S.level !== 'beg' ? swapLight(p.E) : () => false;
   return EX.filter(ex => !taken.has(ex.id) && available(ex, p.E) && ex.lvl <= lvlMax && (ex.g === cur.g || (!!pat && PATTERN[ex.id] === pat)) && (S.format !== 'static' || staticOk(ex)))
-    .map(ex => ({ex, score:analogScore(cur, ex)})).sort((a, b) => b.score - a.score);
+    .map(ex => ({ex, score:analogScore(cur, ex) - (lightLast(ex) ? 0.25 : 0)})).sort((a, b) => b.score - a.score);
+}
+/* облегчённое там, где есть то же движение с весом: противовес гравитрона, многосуставное без веса */
+function swapLight(E) {
+  const loaded = new Set(EX.filter(ex => !ex.assist && available(ex, E) && weighable(ex, E) && PATTERN[ex.id]).map(ex => famOf(PATTERN[ex.id])));
+  return ex => !!PATTERN[ex.id] && loaded.has(famOf(PATTERN[ex.id])) && (ex.assist || (ex.type === 'c' && !ex.kind && ex.g !== 'cardio' && !weighable(ex, E) && !BAR_STAPLE.has(ex.id)));
 }
 /* все замены, которые можно предложить, от самых похожих (проверка бережного режима — tools/gentle.test.js) */
 function swapCandidates(cur, p) { return swapPool(cur, p).filter(r => swapFits(r.ex)).map(r => r.ex); }
@@ -212,4 +221,64 @@ document.addEventListener('keydown', e => {
   const card = e.target.closest('.card'), btn = card && card.querySelector('[data-swap][aria-expanded="true"]');
   if (!btn) return;
   e.preventDefault(); swapToggle(btn, false); btn.focus();
+});
+
+/* ---------- «Другой вариант» (Елена 11, Галина 4, Виктор 22) ----------
+   Новый вариант подбора — до 8 попыток, пока не поменяется набор упражнений (в программе — хотя бы в одном дне). Не поменялся —
+   «Других вариантов нет», подбор остаётся прежним (порядок не перемешивается, замены не теряются). Поменялся — строка над
+   планом «Другой вариант: A → B» и «Вернуть» (прежний подбор с прежними заменами); диктору — то же. Строка держится до
+   следующего изменения плана (regen) или перезагрузки. Было: «Другой вариант» менял порядок тех же упражнений или молча менял
+   планку на «снежных ангелов», вернуть было нечем, диктор слышал «План обновлён: 4 упражнения». */
+let rerollMsg = null;
+const REROLL_TRIES = 8;
+function rerollIds() {
+  if (S.mode === 'program') return buildProgram().days.map(d => (d.plan.items || []).map(it => it.ex.id));
+  const p = buildPlan({swaps:swaps.s || {}, order:swaps.__order?.s});
+  return [(p.items || []).map(it => it.ex.id)];
+}
+function rerollDiff(a, b) {
+  const out = [];
+  a.forEach((ids, d) => { const now = b[d] || [], gone = ids.filter(id => !now.includes(id)), came = now.filter(id => !ids.includes(id)); if (gone.length || came.length) out.push({d, gone, came}); });
+  return out.length ? out : null;
+}
+/* вернёт true, если подбор поменялся */
+function rerollPlan() {
+  const before = rerollIds(), seed0 = S.seed, sw0 = JSON.parse(JSON.stringify(swaps || {}));
+  let diff = null;
+  for (let i = 0; i < REROLL_TRIES && !diff; i++) {
+    S.seed = (S.seed * 48271 + 11) % 2147483647; swaps = S.swaps = {};
+    diff = rerollDiff(before, rerollIds());
+  }
+  if (!diff) { S.seed = seed0; swaps = S.swaps = sw0; }
+  rerollMsg = diff ? {diff, seed:seed0, swaps:sw0, now:S.seed, mode:S.mode} : {none:true, now:S.seed, mode:S.mode};
+  done = {}; planUndo = null; saveSettings(); renderSetup();
+  planNote = rerollText(); renderPlan();
+  return !!diff;
+}
+function rerollBack() {
+  const u = rerollMsg; if (!u || !u.diff || u.now !== S.seed) return false;
+  S.seed = u.seed; swaps = S.swaps = u.swaps; rerollMsg = null;
+  done = {}; planUndo = null; saveSettings(); renderSetup();
+  planNote = 'Вернули прежний вариант.'; renderPlan();
+  return true;
+}
+const rerollName = id => EXI[id] ? exNameHere(EXI[id]) : id;
+/* «Другой вариант: Планка на предплечьях → Обратные «снежные ангелы».» — по дню, открытому сейчас; в программе — и сколько
+   поменялось в других днях */
+function rerollText() {
+  const u = rerollMsg; if (!u || u.now !== S.seed || u.mode !== S.mode) return '';
+  if (u.none) return 'Других вариантов нет: для этих мышц, места и отметок подбираются те же упражнения.';
+  const day = S.mode === 'program' ? S.day : 0, here = u.diff.find(x => x.d === day), other = u.diff.filter(x => x.d !== day).length;
+  const pair = here ? `${here.gone.map(rerollName).join(', ') || '—'} → ${here.came.map(rerollName).join(', ') || '—'}` : '';
+  const first = here ? 'Другой вариант: {list}.'.replace('{list}', pair) : 'Другой вариант: в этом дне упражнения те же.';
+  return first + (other ? ' ' + 'Поменялись и другие дни недели: {n}.'.replace('{n}', other) : '');
+}
+function rerollHtml() {
+  const t = rerollText(); if (!t) return '';
+  const back = rerollMsg.diff ? `<button type="button" class="sw-undo" data-reroll-undo="1" aria-describedby="reroll-t">${'Вернуть'}</button>` : '';
+  return `<p class="p-hint reroll-msg"><span id="reroll-t">${esc(t)}</span>${back}</p>`;
+}
+document.addEventListener('click', e => {
+  const t = e.target.closest('button'); if (!t || t.dataset.rerollUndo === undefined) return;
+  if (rerollBack()) { const b = document.getElementById('reroll'); if (b) b.focus({preventScroll:true}); }
 });

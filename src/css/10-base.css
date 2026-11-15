@@ -382,6 +382,13 @@ h1, h2, h3, h4 { text-wrap:balance; margin:0; }
 .wk button.on { border-color:var(--accent); background:var(--accent-soft); }
 .wk button.on b { color:var(--accent); }
 .wk-note { margin:0; font-size:.875rem; max-width:70ch; }
+/* неделя цикла переключается сама (weekSync, 11-planner.js) */
+.wk-auto { margin:0; font-size:.8125rem; color:var(--muted); max-width:70ch; }
+/* виды движения за неделю под полосами (kindsHtml); чего нет — заметнее */
+.kinds-note { color:var(--muted); }
+.kinds-note.kinds-miss { color:var(--ink); }
+/* «Сегодня лучше отдых» над планом (restTodayHtml, 13d-muscle-load.js) */
+.rest-today p { margin:0; font-size:.875rem; line-height:1.45; max-width:70ch; }
 .rule { margin:0; font-size:.84375rem; color:var(--muted); border-top:1px solid var(--line); padding-top:10px; max-width:70ch; }
 .rule b { color:var(--ink); font-weight:600; }
 .days { display:flex; gap:6px; overflow-x:auto; padding-bottom:2px; scrollbar-width:thin; }

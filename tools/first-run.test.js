@@ -32,7 +32,10 @@ test('a fresh browser is a first run; anything saved before — settings, log, w
   /* настройки 4.103.0 (без времени тренировки): план собирается как раньше — 8 упражнений, цель и уровень те же */
   const b = app({ 'podhod.settings.v1': JSON.stringify(old) });
   assert.equal(b.S.dur, null); assert.equal(b.S.goal, 'strength'); assert.equal(b.S.level, 'adv');
-  assert.equal(b.buildPlan().items.length, 8);
+  /* 4.109: число упражнений — то же (8), но потолок 11 подходов на группу за тренировку (sessionCap) на грудь, спину и плечи
+     в «Силе» у опытного оставляет меньше — и под планом сказано почему (p.capped) */
+  const bp = b.buildPlan();
+  assert.equal(bp.count, 8); assert(bp.items.length === 8 || (bp.capped && bp.items.length >= 5), `${bp.items.length} exercises`);
   assert.equal(b.m.get("localStorage.getItem('podhod.planSeen.v1')"), '1', 'returning person: «plan seen» is written as before');
   /* первый запуск: отметка «план показан» — только когда мастер пройден или пропущен */
   assert.equal(a.m.get("localStorage.getItem('podhod.planSeen.v1')"), null);

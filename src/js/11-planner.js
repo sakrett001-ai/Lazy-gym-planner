@@ -258,12 +258,29 @@ const WEEKS = [
     note:'Подходов примерно на 40% меньше, чем в первую неделю, вес на 10–15% ниже. Это восстановление перед новым циклом, а не пропуск: мышцы растут, когда успевают восстановиться.'}
 ];
 
+/* Неделя цикла переключается сама (Руслан 15: «всё ещё 1 из 4 — переключается только руками»): S.weekFrom — понедельник первой
+   недели цикла, каждый понедельник — следующая неделя, после разгрузки — снова «Вход». Неделю выбрали руками — счёт пойдёт от
+   неё (weekPick). Настройки прежних версий (weekFrom нет) — открытая неделя считается этой. Даты — ключи 'YYYY-MM-DD'
+   (todayKey, 13-log.js), без часовых поясов */
+function mondayKey(key) { const [y, m, d] = key.split('-').map(Number), t = new Date(Date.UTC(y, m - 1, d)); t.setUTCDate(t.getUTCDate() - (t.getUTCDay() + 6) % 7); return t.toISOString().slice(0, 10); }
+function shiftKey(key, days) { const [y, m, d] = key.split('-').map(Number); return new Date(Date.UTC(y, m - 1, d + days)).toISOString().slice(0, 10); }
+/* вернёт true, если неделя сменилась */
+function weekSync(today = todayKey()) {
+  const mon = mondayKey(today);
+  if (!S.weekFrom) { S.weekFrom = shiftKey(mon, -(S.week - 1) * 7); return false; }
+  const n = Math.floor(Math.round((Date.parse(mon) - Date.parse(S.weekFrom)) / 864e5) / 7), w = ((n % WEEKS.length) + WEEKS.length) % WEEKS.length + 1;
+  if (w === S.week) return false;
+  S.week = w; return true;
+}
+function weekPick(w, today = todayKey()) { S.week = w; S.weekFrom = shiftKey(mondayKey(today), -(w - 1) * 7); }
+
 const DEFAULTS = {goal:'mass', format:'classic', level:'mid', count:6, groups:['chest', 'back', 'shoulders'], equip:EQUIP.map(e => e.id), seed:7,
   mode:'single', days:3, split:'full', week:1, day:0, view:'plan', atlasM:'chest', focus:null, fav:[], customs:[], custom:null, gen:null, author:'', fold:null, protect:[],
   cpLast:null /* свой план, куда последним добавляли из атласа или разбора (11d-custom.js) */,
   lr:{} /* «Л/П отдельно» по упражнениям: {exId:true} (13a-sets.js) */,
   units:null /* единицы веса: 'kg' | 'lb'; null — по языку и региону браузера (13-log.js: wu) */,
-  dur:null /* время на тренировку: 'short' | 'mid' | 'long' (11j-duration.js); null — число упражнений из «Упражнений» (count) */};
+  dur:null /* время на тренировку: 'short' | 'mid' | 'long' (11j-duration.js); null — число упражнений из «Упражнений» (count) */,
+  weekFrom:null /* понедельник первой недели цикла 'YYYY-MM-DD' (weekSync): неделя цикла переключается сама */};
 const STORE = 'podhod.settings.v1';
 /* Самый первый запуск: в этом браузере ещё нет ни настроек, ни журнала, ни начатой тренировки, ни отметки «план показан»
    (11f-fold.js). Тогда вместо параметров — короткий мастер из нескольких вопросов (11k-first-run.js). Проверяется до того,
@@ -282,7 +299,7 @@ const SETTINGS_LABEL = {goal:'цель', format:'формат', level:'уров�
   seed:'вариант подбора', mode:'что собрать', days:'тренировок в неделю', split:'сплит', week:'неделя цикла', day:'день недели',
   view:'раздел', atlasM:'мышца в атласе', focus:'акцент', fav:'избранное', customs:'свои планы', custom:'открытый свой план',
   gen:'параметры обычных планов', author:'имя автора планов', fold:'свёрнутые блоки', protect:'«Беречь суставы»', cpLast:'последний свой план',
-  lr:'«Л/П отдельно»', units:'единицы веса', dur:'время на тренировку', places:'места', place:'место', placesV:'места', adapt:'«как в другом месте»',
+  lr:'«Л/П отдельно»', units:'единицы веса', dur:'время на тренировку', weekFrom:'начало цикла', places:'места', place:'место', placesV:'места', adapt:'«как в другом месте»',
   swaps:'замены упражнений', logPick:'тренировка по журналу', health:'«Здоровье»', pain:'упражнения с пометкой «больно»'};
 function cleanSettings(raw) {
   const s = raw && typeof raw === 'object' && !Array.isArray(raw) ? {...raw} : {}, bad = new Set();
@@ -304,6 +321,7 @@ function cleanSettings(raw) {
   /* 4.106: ответы о здоровье и пометки «больно» (11l-health.js, 11g-gentle.js — ensureHealth, ensurePain дочищают по спискам) */
   fix('health', v => Array.isArray(v) && v.every(x => typeof x === 'string')); fix('pain', v => v === null || obj(v));
   fix('cpLast', strOrNull(40)); fix('lr', obj); fix('units', v => v === null || v === 'kg' || v === 'lb'); fix('dur', strOrNull(12));
+  fix('weekFrom', v => v === null || (typeof v === 'string' && /^\d{4}-\d\d-\d\d$/.test(v)));
   fix('places', Array.isArray); fix('place', v => typeof v === 'string' && v.length <= 40);
   fix('placesV', v => Number.isInteger(v) && v >= 0 && v < 1000); fix('adapt', strOrNull(40));
   fix('swaps', v => obj(v) && Object.values(v).every(x => obj(x) || Array.isArray(x))); fix('logPick', v => v === null || obj(v));
@@ -411,10 +429,15 @@ function propHas(ex, E) {
   const ch = new Set(chosenEquip(ex, E));
   return id => ch.has(id) || ((ex.opt || []).includes(id) && E.has(id));
 }
+/* Подручные предметы, без которых упражнение без снаряжения не сделать, — в строке инвентаря карточки, а не «Без снаряжения»
+   (Галина 20: в плане «Без снаряжения» — «Тяга полотенца у двери»). Отдельного «своего инвентаря» (стул, бутылки) нет —
+   решение владельца 8: отложить */
+const HOUSEHOLD = {towelrow:'полотенце и закрытая дверь', towelcurl:'полотенце', tablerow:'прочный стол', chairdip:'устойчивый стул',
+  sissysquat:'дверной косяк для опоры', nordic:'опора для стоп или помощник'};
 function equipLine(ex, E) {
   const ch = [...new Set(chosenEquip(ex, E).map(eqName))];
   const opt = (ex.opt || []).filter(id => E.has(id)).map(id => eqName(id).toLowerCase() + ' по желанию');
-  if (!ch.length) return ['Без снаряжения'].concat(opt).join(' · ');
+  if (!ch.length) return [HOUSEHOLD[ex.id] ? 'Нужно: {what}'.replace('{what}', HOUSEHOLD[ex.id]) : 'Без снаряжения'].concat(opt).join(' · ');
   return ch.concat(opt).join(' · ');
 }
 /* группы упражнения: целевая и группы основных мышц (только для чтения: множество общее, считается один раз) */
@@ -504,7 +527,7 @@ function pickExercises(E, rand, groups, count, avoid, opt) {
   const needs = (opt && opt.need ? opt.need : !vol && !(opt && opt.weights) ? singleNeeds(G, count, pool, E) : []).filter(k => pool.some(KIND_TEST[k]));
   /* день со спиной и грудью или плечами от 4 упражнений — хотя бы одна тяга и один жим, даже когда группа за неделю уже
      набрала своё (было: дом, опытный, 5 дней — день «Верх» без жима и тяги, одни прицельные) */
-  if (ppOn && count >= 4) for (const k of ['pull', 'push']) if (!needs.includes(k) && pool.some(KIND_TEST[k])) needs.push(k);
+  if (ppOn && count >= 3) for (const k of ['pull', 'push']) if (!needs.includes(k) && pool.some(KIND_TEST[k])) needs.push(k);
   /* тяги разного рисунка: вторая тяга того же рисунка (две тяги сверху) уступает, если есть другая (Игорь 20) */
   const pullPats = new Set(pool.filter(ex => sideOf(ex) === 'pull' && !lightAlt(ex)).map(ex => PATTERN[ex.id]));
   /* новичку там, где есть тренажёры: тренажёры и блок — раньше, гиря, штанга второго уровня и стойка на одной ноге с весом
@@ -519,11 +542,14 @@ function pickExercises(E, rand, groups, count, avoid, opt) {
      при потолке подходов в тренировку входит одно упражнение на группу, и это должна быть ступень полегче */
   const easyFam = new Set(beg && PB ? pool.filter(ex => !PB.has(ex.id) && PATTERN[ex.id]).map(ex => famOf(PATTERN[ex.id])) : []);
   let capSkip = false;
+  /* сколько дало бы упражнение, урезанное до двух подходов (capTrim не режет ниже): если и так какая-то из выбранных групп
+     выше потолка больше чем на полподхода — упражнение не берётся (вспомогательная работа многих упражнений) */
+  const minSets = ex => Math.min(2, setsOf(ex));
   /* strict — второй проход, если жимов вышло больше тяг (тяга так и не нашлась, например спина уже «много»): тогда жим —
      только после тяги */
   const run = strict => {
   pushN = carry; pullN = 0; pressN = 0; spineN = 0; hingeN = 0; proj = vol ? {...vol.have} : null; picked = []; usedPat = {}; quota = {};
-  const sess = {}, met = new Set(), pullUsed = new Set(); capSkip = false;
+  const sess = {}, sessMin = {}, met = new Set(), pullUsed = new Set(); capSkip = false;
   for (const g of groups) quota[g] = count * GW[g] / totalW;
   while (picked.length < count) {
     let best = null, bestScore = -1e9;
@@ -536,7 +562,10 @@ function pickExercises(E, rand, groups, count, avoid, opt) {
       if (picked.includes(ex)) return;
       /* тяжёлая база с нагрузкой на позвоночник — не больше cap за тренировку, тяга с пола или наклон — одна */
       if (HEAVY_SPINE.has(ex.id) && (spineN >= cap || (PATTERN[ex.id] === 'hinge' && hingeN >= 1))) return;
-      if (staticOne ? picked.some(p => p.g === ex.g) : G.has(ex.g) && (sess[ex.g] || 0) + setsOf(ex) > sCap + 2) { capSkip = skipNow = true; return; }
+      /* запас сверх потолка — то, что потом срежет capTrim: в классике по подходу у двух упражнений, в паре суперсета — один
+         (подходы пары общие), в круговой — нисколько (круги одни на все станции) */
+      if (staticOne ? picked.some(p => p.g === ex.g) : G.has(ex.g) && (sess[ex.g] || 0) + setsOf(ex) > sCap + ({circuit:0, superset:1}[S.format] ?? 2)) { capSkip = skipNow = true; return; }
+      if (!staticOne && S.format !== 'circuit' && shareList(ex).some(([g, x]) => G.has(g) && (sessMin[g] || 0) + x * minSets(ex) > sCap + 0.5)) { capSkip = skipNow = true; return; }
       const gs = groupsOf(ex);
       let gain = 0;
       if (G.has(ex.g)) gain += Math.max(quota[ex.g], 0) * 1.6 + 0.4;
@@ -546,15 +575,22 @@ function pickExercises(E, rand, groups, count, avoid, opt) {
          чем от пола и на брусьях) */
       const ew = beg && PB && PROG_BEG_START.has(ex.id) ? 1 : EX_W[ex.id] ?? 1;
       let sc = gain + (ex.type === 'c' ? compBonus : 0) + jitter[i] * 0.5 + (ew - 1) * 1.4;
-      if (beg && PB && PB.has(ex.id)) sc -= 0.9 + (easyFam.has(famOf(PATTERN[ex.id])) && !picked.some(p => !PB.has(p.id) && famOf(PATTERN[p.id]) === famOf(PATTERN[ex.id])) ? 1.5 : 0);
+      /* новичку ступень цепочки выше той, что уже стоит в этой тренировке или неделе, — нет (было: дома без инвентаря в одном
+         дне отжимания с колен и широкие, Марина 16) */
+      if (beg && PB && PB.has(ex.id) && typeof PROG_CHAIN !== 'undefined' && PROG_CHAIN[ex.id] !== undefined
+        && (picked.some(p => PROG_CHAIN[p.id] === PROG_CHAIN[ex.id] && !PB.has(p.id)) || (chainUsed && chainUsed.has(PROG_CHAIN[ex.id]) && !PB.has(chainUsed.get(PROG_CHAIN[ex.id]))))) return;
+      /* есть ступень полегче того же движения — тяжёлая ступень новичку не подбирается (дальше поведёт подсказка «Следующая
+         ступень» под карточкой) */
+      if (beg && PB && PB.has(ex.id) && easyFam.has(famOf(PATTERN[ex.id]))) return;
+      if (beg && PB && PB.has(ex.id)) sc -= 0.9;
       if (lightAlt(ex)) sc -= ex.assist ? 1.5 : 1.2;
       if (FRONT_RAISE.has(ex.id) && picked.some(p => sideOf(p) === 'push')) sc -= 1;
       const side = ppOn ? sideOf(ex) : null;
       /* жим — только если после него остаётся место, чтобы тяг стало не меньше; тяга, пока их меньше, — с большим плюсом;
          когда тяг уже больше, ещё одна — с минусом (поровну, а не вдвое) */
-      /* второй проход: жим, после которого тяг станет меньше, не берётся вовсе — лучше упражнением меньше (статодинамика: одно
-         упражнение на группу, тяг мало) */
-      if (side === 'push' && strict && pushN + setsOf(ex) > pullN) return;
+      /* второй проход: жим, после которого тяг станет меньше, — только если больше нечего; в статодинамике (одно упражнение на
+         группу, тяг мало) не берётся вовсе — лучше упражнением меньше */
+      if (side === 'push' && strict && pushN + setsOf(ex) > pullN) { if (staticOne) return; sc -= 50; }
       if (side === 'push' && !strict && pushN + setsOf(ex) - pullN > (count - picked.length - 1) * maxS) sc -= 3;
       if (side === 'pull') sc += pullN < pushN ? 1 + 0.5 * Math.min(3, (pushN - pullN) / maxS) : pullN > pushN && pushDay ? -0.8 : 0;
       /* в тренировке со спиной и грудью или плечами от 4 упражнений — хотя бы одна тяга и один жим (основа тренировки всего
@@ -581,9 +617,9 @@ function pickExercises(E, rand, groups, count, avoid, opt) {
       if (chain !== undefined && picked.some(p => PROG_CHAIN[p.id] === chain)) sc -= 1.5;
       /* вид движения, которого дню ещё не хватает, — с большим плюсом за каждый (тяга к поясу закрывает и «тягу», и «тягу к
          поясу» — она раньше тяги сверху) */
-      if (open.length) sc += 6 * open.filter(k => KIND_TEST[k](ex)).length;
+      if (open.length) sc += 10 * open.filter(k => KIND_TEST[k](ex)).length;
       if (sideOf(ex) === 'pull' && pullUsed.has(PATTERN[ex.id]) && [...pullPats].some(p => !pullUsed.has(p))) sc -= 2;
-      if (begGym) sc += machineLike(ex) ? 0.5 : begHard(ex) ? -1.2 : 0;
+      if (begGym) sc += begHard(ex) ? -1.2 : machineLike(ex) ? 0.5 : 0;
       /* сверх потолка подходов группы за тренировку — вспомогательной работой */
       { const s0 = setsOf(ex); let o = 0; for (const [g, x] of shareList(ex)) { const v = sess[g] || 0; o += Math.max(0, v + x * s0 - sCap) - Math.max(0, v - sCap); } sc -= 0.4 * o; }
       /* объём недели — последним: плюс за недобор не больше 0,25 × подходы × доли групп, и если даже с ним упражнение
@@ -601,7 +637,7 @@ function pickExercises(E, rand, groups, count, avoid, opt) {
        «Верх» — планка с подъёмом на руки и прогулка фермера) */
     if (skipNow && !inG && !G.has(best.g)) break;
     picked.push(best);
-    { const s0 = setsOf(best); for (const [g, x] of shareList(best)) sess[g] = (sess[g] || 0) + x * s0; }
+    { const s0 = setsOf(best), m0 = minSets(best); for (const [g, x] of shareList(best)) { sess[g] = (sess[g] || 0) + x * s0; sessMin[g] = (sessMin[g] || 0) + x * m0; } }
     for (const k of needs) if (KIND_TEST[k](best)) met.add(k);
     const bs = sideOf(best); if (ppOn && bs === 'push') pushN += setsOf(best); else if (ppOn && bs === 'pull') pullN += setsOf(best);
     if (bs === 'pull') pullUsed.add(PATTERN[best.id]);
@@ -614,7 +650,9 @@ function pickExercises(E, rand, groups, count, avoid, opt) {
   }
   };
   run(false);
-  if (ppOn && pushN > pullN) run(true);
+  /* жимов вышло больше, чем тяг: в классике небольшой перевес выравнивают подходы (ppBalance, buildPlanAt), большой — второй
+     проход; в суперсетах, круговой и статодинамике подходы общие для пар и кругов — второй проход всегда */
+  if (ppOn && pushN > pullN && (!pullN || pushN > pullN * 1.5 || S.format !== 'classic')) run(true);
   /* меньше упражнений, чем просили, из-за потолка подходов на группу — причина в предупреждении (warnHtml) */
   return {picked, pool, capped:capSkip && picked.length < count};
 }
@@ -702,28 +740,36 @@ function orderClassic(list) {
    Игорь 6): пары — из мышц-антагонистов или верх + низ (NSCA Essentials, 2016, гл. 17: суперсет — два упражнения на
    противоположные группы мышц) */
 function pairSupersets(list) {
-  const rest = orderClassic(list);
-  const pairs = [], legOf = ex => LEG_G.has(ex.g) || LEG_P.has(PATTERN[ex.id]), mixed = list.some(ex => !legOf(ex) && ex.g !== 'abs');
-  while (rest.length) {
-    const a = rest.shift();
-    if (!rest.length) { pairs.push([a]); break; }
-    let bi = 0, bs = -1e9;
-    rest.forEach((b, i) => {
-      let s = 0;
-      if (PATTERN[a.id] && PATTERN[a.id] === PATTERN[b.id]) s -= 8;
-      if (mixed && legOf(a) && legOf(b)) s -= 5;
-      if (ANTAGONIST[a.g] === b.g) s += 3;
-      if (b.g !== a.g) s += 1;
-      /* жим — в пару с тягой: в паре подходов поровну (по большему), так баланс жимов и тяг не сбивается */
-      const sa = sideOf(a), sb = sideOf(b);
-      if (sa && sb && sa !== sb) s += 2; else if (sa !== sb && (sa || sb)) s -= 4;
-      const ga = groupsOf(a); for (const g of groupsOf(b)) if (ga.has(g)) s -= 1.2;
-      s -= i * 0.15;
-      if (s > bs) { bs = s; bi = i; }
-    });
-    pairs.push([a, rest.splice(bi, 1)[0]]);
-  }
-  return pairs;
+  const ord = orderClassic(list), n = ord.length;
+  const legOf = ex => LEG_G.has(ex.g) || LEG_P.has(PATTERN[ex.id]), mixed = list.some(ex => !legOf(ex) && ex.g !== 'abs');
+  /* жим и тяга в одной тренировке — тогда «жим + не тяга» сбивает их баланс (подходы пары общие) */
+  const both = list.some(ex => sideOf(ex) === 'push') && list.some(ex => sideOf(ex) === 'pull');
+  /* оценка пары i < j (по порядку тренировки): антагонисты и «жим + тяга» — плюс, одно движение и «нога + нога» — большой
+     минус, общие группы мышц — минус, дальние по порядку — чуть хуже */
+  const score = (i, j) => {
+    const a = ord[i], b = ord[j]; let s = 0;
+    if (PATTERN[a.id] && PATTERN[a.id] === PATTERN[b.id]) s -= 8;
+    if (mixed && legOf(a) && legOf(b)) s -= 12;
+    if (ANTAGONIST[a.g] === b.g || ANTAGONIST[b.g] === a.g) s += 3;
+    if (b.g !== a.g) s += 1;
+    /* жим — в пару с тягой: в паре подходов поровну (по большему), так баланс жимов и тяг не сбивается */
+    const sa = sideOf(a), sb = sideOf(b);
+    if (sa && sb && sa !== sb) s += 2; else if (both && sa !== sb && (sa || sb)) s -= legOf(sa ? b : a) ? 2 : 4;
+    const ga = groupsOf(a); for (const g of groupsOf(b)) if (ga.has(g)) s -= 1.2;
+    return s - (j - i - 1) * 0.15;
+  };
+  /* лучшее разбиение на пары целиком (до 10 упражнений — перебором): жадный выбор оставлял в конце пару из двух сгибаний на
+     бицепс или двух подъёмов на носки, хотя их можно было развести по разным парам */
+  let best = null, bestS = -1e9;
+  const go = (left, acc, s) => {
+    if (!left.length) { if (s > bestS) { bestS = s; best = acc.slice(); } return; }
+    const [i, ...rest] = left;
+    if (!rest.length || (n % 2 && acc.every(p => p.length === 2) && left.length % 2)) { acc.push([i]); go(rest, acc, s); acc.pop(); if (!rest.length) return; }
+    rest.forEach((j, k) => { acc.push([i, j]); go(rest.filter((_, x) => x !== k), acc, s + score(i, j)); acc.pop(); });
+  };
+  if (n <= 10) go(ord.map((_, i) => i), [], 0);
+  else { best = []; for (let i = 0; i < n; i += 2) best.push(i + 1 < n ? [i, i + 1] : [i]); }
+  return best.sort((x, y) => x[0] - y[0]).map(p => p.map(i => ord[i]));
 }
 function orderCircuit(list) {
   const by = {low:[], push:[], pull:[], core:[], cardio:[]};
@@ -986,7 +1032,7 @@ function buildPlanAt(ctx = {}) {
     const ord = byOrder((custom ? picked : orderClassic(picked)).map(ex => bySlot.get(ex)), custom ? null : ctx.order, it => [it.slot]);
     ord.forEach((it, i) => { it.label = String(i + 1); });
     blocks = [{kind:'list', items:ord}];
-    if (!custom && S.format === 'classic') trimmed = capTrim(ord.map(it => ({items:[it]})), groups);
+    if (!custom && S.format === 'classic') { const us = ord.map(it => ({items:[it]})); trimmed = capTrim(us, groups); ppBalance(us, groups); }
     for (const it of ord) { minutes += it.rx.static ? staticSeconds(it.rx) : it.rx.sets * (it.rx.work + it.rx.rest) + 60; totalSets += it.rx.sets; }
   } else if (S.format === 'superset') {
     /* в своём плане пары — соседние упражнения по порядку человека, и подходов у каждого — свои (было: в паре с тягой на 5
@@ -1002,7 +1048,7 @@ function buildPlanAt(ctx = {}) {
       its.forEach(it => { if (!custom) { it.rx.sets = sets; it.rx.sets0 = sets0; } it.rx.restShown = pr.length > 1 ? (it === its[its.length - 1] ? rest : 0) : rest; });
       blocks.push({kind:'pair', letter:L, items:its, sets, rest});
     });
-    if (!custom) trimmed = capTrim(blocks.map(b => ({items:b.items, block:b})), groups);
+    if (!custom) { const us = blocks.map(b => ({items:b.items, block:b})); trimmed = capTrim(us, groups); ppBalance(us, groups); }
     for (const b of blocks) {
       for (let k = 0; k < b.sets; k++) { const on = b.items.filter(it => k < it.rx.sets); minutes += on.reduce((a, it) => a + it.rx.work, 0) + 15 + b.rest; }
       minutes += 60; totalSets += b.items.reduce((a, it) => a + Math.min(it.rx.sets, b.sets), 0);
@@ -1090,18 +1136,18 @@ function capTrim(units, groups) {
      само главное — не меньше трёх (у тяжёлой базы «Силы» первая неделя на подход короче, setsMax) */
   const mains = mainCompounds(units.flatMap(u => u.items.map(it => it.ex)));
   const can = u => u.items.every(it => !it.rx.static && it.ex.g !== 'cardio' && it.rx.sets0 - (it.rx.setsMax ? 1 : 0) > (mains.has(it.ex) ? 3 : 2));
-  let cut = false; const stuck = new Set();
-  for (let n = 0; n < 40; n++) {
+  let cut = false; const stuck = new Set(), blocked = new Set();
+  for (let n = 0; n < 60; n++) {
     const v = gv(), g = Object.keys(v).filter(h => v[h] > cap + 0.01 && !stuck.has(h)).sort((a, b) => v[b] - v[a])[0]; if (!g) break;
     const sh = u => Math.max(...u.items.map(it => groupShare(it.ex)[g] || 0));
     /* сначала те, у кого это целевая группа, среди них — прицельные, потом больше подходов */
-    const u = units.filter(x => sh(x) > 0 && can(x)).sort((a, b) => ((sh(b) >= 1) - (sh(a) >= 1)) || (iso(b) - iso(a)) || sets(b) - sets(a))[0];
+    const u = units.filter(x => sh(x) > 0 && can(x) && !blocked.has(x)).sort((a, b) => ((sh(b) >= 1) - (sh(a) >= 1)) || (iso(b) - iso(a)) || sets(b) - sets(a))[0];
     if (!u) { stuck.add(g); continue; }
     setsStep(u, -1); cut = true;
     if (pp && side('pull') < side('push')) {
       const pushOnly = x => x.items.some(it => sideOf(it.ex) === 'push') && !x.items.some(it => sideOf(it.ex) === 'pull');
       const p = units.filter(x => x !== u && can(x) && pushOnly(x)).sort((a, b) => iso(b) - iso(a) || sets(b) - sets(a))[0];
-      if (!p) { setsStep(u, 1); stuck.add(g); continue; }
+      if (!p) { setsStep(u, 1); blocked.add(u); continue; }
       setsStep(p, -1);
     }
   }
@@ -1110,6 +1156,23 @@ function capTrim(units, groups) {
     if (mm < 3) for (const u of units) if (iso(u) && sets(u) > mm) setsStep(u, mm - sets(u));
   }
   return cut || stuck.size > 0;
+}
+/* Тяг не меньше, чем жимов (в тренировке со спиной и грудью или плечами): небольшой перевес жимов после подбора — подход тягам
+   (до 6, не выше потолка тренировки и таблицы Прилепина), иначе подход меньше у жимов (не меньше двух). Было: второй проход
+   подбора выбрасывал жим целиком, если у тяжёлой тяги на подход меньше, — день без жима над головой (4.109, квота недели) */
+function ppBalance(units, groups) {
+  const G = new Set(groups); if (!G.has('back') || !(G.has('chest') || G.has('shoulders'))) return;
+  const side = sd => units.reduce((a, u) => a + u.items.filter(it => sideOf(it.ex) === sd).reduce((b, it) => b + it.rx.sets0, 0), 0);
+  const only = (u, sd) => u.items.some(it => sideOf(it.ex) === sd) && !u.items.some(it => sideOf(it.ex) && sideOf(it.ex) !== sd);
+  const cap = sessionCap(), gv = g => units.reduce((a, u) => a + u.items.reduce((b, it) => b + (groupShare(it.ex)[g] || 0) * it.rx.sets0, 0), 0);
+  for (let n = 0; n < 12 && side('push') > side('pull'); n++) {
+    const up = units.filter(u => only(u, 'pull') && u.items.every(it => it.rx.sets0 < (it.rx.setsMax || 6) && it.rx.sets < (it.rx.setsMax || 6) && !it.rx.static)
+      && u.items.every(it => Object.entries(groupShare(it.ex)).every(([g, x]) => gv(g) + x <= cap + 0.01))).sort((a, b) => a.items[0].rx.sets0 - b.items[0].rx.sets0)[0];
+    if (up) { setsStep(up, 1); continue; }
+    const dn = units.filter(u => only(u, 'push') && u.items.every(it => it.rx.sets0 > 2 && !it.rx.static)).sort((a, b) => b.items[0].rx.sets0 - a.items[0].rx.sets0)[0];
+    if (!dn) break;
+    setsStep(dn, -1);
+  }
 }
 /* подходы упражнения или пары на d: обычной недели (sets0) и этой (не меньше одного) */
 function setsStep(u, d) {
@@ -1211,18 +1274,20 @@ function weekTrim(days, hi) {
   /* счёт — по подходам обычной недели (sets0): правка одна на все недели цикла */
   const setsU = u => u.items[0].rx.sets0, gv = () => { const v = {}; for (const u of units) for (const it of u.items) for (const [g, x] of Object.entries(groupShare(it.ex))) if (g !== 'cardio') v[g] = (v[g] || 0) + x * it.rx.sets0; return v; };
   const dayG = (p, g) => p.items.reduce((a, it) => a + (groupShare(it.ex)[g] || 0) * it.rx.sets0, 0);
-  /* у тяжёлой базы «Силы» первая неделя цикла на подход короче обычной (setsMax, таблица Прилепина) — порог и для неё */
-  const can = u => u.items.every(it => !it.rx.static && it.ex.g !== 'cardio' && it.rx.sets0 - (it.rx.setsMax ? 1 : 0) > (u.main ? 3 : 2));
+  /* у тяжёлой базы «Силы» первая неделя цикла на подход короче обычной (setsMax, таблица Прилепина) — порог и для неё;
+     новичку и в «Бережно» главное многосуставное — до двух подходов (ACSM 2009: новичку 1–3 подхода на упражнение) */
+  const mainFloor = S.level === 'beg' || S.goal === 'gentle' ? 2 : 3;
+  const can = u => u.items.every(it => !it.rx.static && it.ex.g !== 'cardio' && it.rx.sets0 - (it.rx.setsMax ? 1 : 0) > (u.main ? mainFloor : 2));
   const iso = u => u.items.every(it => it.ex.type !== 'c');
   const side = (p, sd) => p.items.reduce((a, it) => a + (sideOf(it.ex) === sd ? it.rx.sets0 : 0), 0), wkSide = sd => units.reduce((a, u) => a + u.items.reduce((b, it) => b + (sideOf(it.ex) === sd ? it.rx.sets0 : 0), 0), 0);
   const both = p => { const G = new Set(p.groups || []); return G.has('back') && (G.has('chest') || G.has('shoulders')); };
-  const stuck = new Set();
-  for (let n = 0; n < 60; n++) {
+  const stuck = new Set(), blocked = new Set();
+  for (let n = 0; n < 80; n++) {
     const v = gv(), g = Object.keys(v).filter(h => Math.round(v[h] * 2) / 2 > hi && !stuck.has(h)).sort((a, b) => v[b] - v[a])[0]; if (!g) break;
     const sh = u => Math.max(...u.items.map(it => groupShare(it.ex)[g] || 0));
     /* заданное время дня: сначала там, где день и после этого остаётся в своём коридоре */
     const keepsTime = x => !x.p.fit || !DURATIONS[x.p.fit.dur] || baseMin(x.p) - stepSec(x) / 60 >= DURATIONS[x.p.fit.dur].lo;
-    const u = units.filter(x => sh(x) > 0 && can(x)).sort((a, b) => (keepsTime(b) - keepsTime(a)) || ((sh(b) >= 1) - (sh(a) >= 1)) || (iso(b) - iso(a)) || dayG(b.p, g) - dayG(a.p, g) || setsU(b) - setsU(a))[0];
+    const u = units.filter(x => sh(x) > 0 && can(x) && !blocked.has(x)).sort((a, b) => (keepsTime(b) - keepsTime(a)) || ((sh(b) >= 1) - (sh(a) >= 1)) || (iso(b) - iso(a)) || dayG(b.p, g) - dayG(a.p, g) || setsU(b) - setsU(a))[0];
     if (!u) { stuck.add(g); continue; }
     /* жимы и тяги: в дне со спиной и грудью или плечами — тяг не меньше; за неделю перевес жимов не растёт */
     const gap0 = wkSide('pull') - wkSide('push');
@@ -1231,10 +1296,16 @@ function weekTrim(days, hi) {
     if (dayBad || weekBad) {
       const pushOnly = x => (!dayBad || x.p === u.p) && x !== u && can(x) && x.items.some(it => sideOf(it.ex) === 'push') && !x.items.some(it => sideOf(it.ex) === 'pull');
       const q = units.filter(pushOnly).sort((a, b) => iso(b) - iso(a) || setsU(b) - setsU(a))[0];
-      if (q) { setsStep(q, -1); q.p.wtrim = true; } else { setsStep(u, 1); stuck.add(g); }
+      /* жим урезать нельзя — это упражнение остаётся, пробуем другое */
+      if (q) { setsStep(q, -1); q.p.wtrim = true; } else { setsStep(u, 1); blocked.add(u); }
     }
   }
-  for (const d of days) if (d.plan.wtrim) planTotals(d.plan);
+  /* у главного меньше трёх подходов — прицельным дня не больше, чем у него (как volTopUp, capTrim) */
+  for (const d of days) if (d.plan.wtrim) {
+    const us = units.filter(u => u.p === d.plan), mm = Math.min(...us.filter(u => u.main).map(setsU));
+    if (mm < 3) for (const u of us) if (iso(u) && setsU(u) > mm) setsStep(u, mm - setsU(u));
+    planTotals(d.plan);
+  }
 }
 /* сколько секунд даёт один подход (круг пары) упражнения или пары; минуты дня по подходам обычной недели */
 const stepSec = u => u.block ? u.items.reduce((a, it) => a + it.rx.work, 0) + 15 + u.block.rest : u.items.reduce((a, it) => a + it.rx.work + it.rx.rest, 0);
@@ -1257,14 +1328,15 @@ function weekFill(days, sc) {
   for (const d of days) {
     const p = d.plan; if (!p.items || p.custom) continue;
     const mains = mainCompounds(p.items.map(it => it.ex)), mm = () => Math.min(...p.items.filter(it => mains.has(it.ex)).map(it => it.rx.sets0));
-    for (const b of p.blocks) if (b.kind === 'list') for (const it of b.items) if (!sideOf(it.ex) && !it.rx.static && it.ex.g !== 'cardio' && !mains.has(it.ex) && schemeOf(it.ex) !== 'ecc') units.push({p, items:[it], it, mm});
+    /* своя доза — махи и взятия гири, подвижность, скандинавские сгибания — не добирается подходами */
+    for (const b of p.blocks) if (b.kind === 'list') for (const it of b.items) if (!sideOf(it.ex) && !it.rx.static && it.ex.g !== 'cardio' && !mains.has(it.ex) && !['ecc', 'ctrl', 'ballistic'].includes(schemeOf(it.ex))) units.push({p, items:[it], it, mm});
   }
   const cap = sessionCap(), wk = () => { const v = {}; for (const d of days) for (const it of d.plan.items || []) for (const [g, x] of Object.entries(groupShare(it.ex))) v[g] = (v[g] || 0) + x * it.rx.sets0; return v; };
   const dayG = (p, g) => p.items.reduce((a, it) => a + (groupShare(it.ex)[g] || 0) * it.rx.sets0, 0), stuck = new Set();
   const targets = new Set(days.flatMap(d => DAY_T[d.tid].g));
   for (let n = 0; n < 40; n++) {
     const v = wk(), g = [...targets].filter(h => h !== 'cardio' && (v[h] || 0) < sc.lo && !stuck.has(h)).sort((a, b) => (v[a] || 0) - (v[b] || 0))[0]; if (!g) break;
-    const ok = u => u.it.ex.g === g && u.it.rx.sets0 < 6 && dayG(u.p, g) + 1 <= cap && (u.it.ex.type !== 'i' || u.mm() >= 3 || u.it.rx.sets0 + 1 <= u.mm())
+    const ok = u => u.it.ex.g === g && u.it.rx.sets0 < (u.it.rx.setsMax || 6) && u.it.rx.sets < (u.it.rx.setsMax || 6) && dayG(u.p, g) + 1 <= cap && (u.it.ex.type !== 'i' || u.mm() >= 3 || u.it.rx.sets0 + 1 <= u.mm())
       && Object.entries(groupShare(u.it.ex)).every(([h, x]) => (v[h] || 0) + x <= sc.hi);
     /* заданное время дня — подход не выводит день за верх коридора */
     const fits = x => !x.p.fit || !DURATIONS[x.p.fit.dur] || baseMin(x.p) + (x.it.rx.work + x.it.rx.rest) / 60 <= DURATIONS[x.p.fit.dur].hi;
@@ -1312,9 +1384,12 @@ function weekKinds(tmpl, dayG) {
     if (!byEq.some(fitsBody)) { off.push({k, why:unfitWhy(byEq[0])}); continue; }
     on.push(k);
   }
-  const load = tmpl.map(() => 0), assign = tmpl.map(() => []);
+  /* жимы (жим лёжа, над головой) — по разным дням, если можно: два жима в одном дне требуют двух тяг, и короткий день теряет
+     один из них (было: «всё тело» ×2 у новичка без жима над головой) */
+  const SIDE = {hrow:'pull', vpush:'push', bench:'push'}, load = tmpl.map(() => 0), assign = tmpl.map(() => []);
+  const same = (d, k) => assign[d].filter(x => SIDE[x] && SIDE[x] === SIDE[k]).length;
   for (const k of on.slice().sort((a, b) => elig(a).length - elig(b).length)) {
-    const d = elig(k).sort((a, b) => load[a] - load[b] || a - b)[0]; assign[d].push(k); load[d]++;
+    const d = elig(k).sort((a, b) => same(a, k) - same(b, k) || load[a] - load[b] || a - b)[0]; assign[d].push(k); load[d]++;
   }
   return {on, off, assign, elig};
 }
@@ -1653,6 +1728,7 @@ function headButtons(copyLabel) {
           : `<button type="button" class="btn btn-2" id="save-plan">${ICON.save}<span>${S.mode === 'program' ? 'Сохранить неделю' : 'Сохранить как свой план'}</span></button>`}
       </div>
       ${w.own ? `<p class="p-hint wk-own">${'Тренировка идёт по списку, с которого её начали.'}</p>` : ''}
+      ${typeof rerollHtml === 'function' ? rerollHtml() : ''}
       <p class="p-hint" id="copy-msg" role="status"></p>
       <p class="p-hint" id="save-msg" role="status"></p>`;
 }
@@ -1666,10 +1742,13 @@ function norm(load) { const mx = Math.max(1, ...Object.values(load)); const o = 
 /* диктор: #plan не живая область (весь план зачитывался при каждом нажатии, отчёт тестера п. 10) — после пересборки
    коротко: «План обновлён: 6 упражнений, ≈33 мин» (#plan-status, role="status"); при первом показе — молча */
 let planSaid = null;
+/* planNote — что сказать вместо «План обновлён» один раз («Другой вариант: A → B», 12c-swap.js) */
+let planNote = '';
 function announcePlan() {
   const box = $('#plan-status'); if (!box || S.view !== 'plan') return;
   const n = plan && plan.items ? plan.items.length : 0, empty = $('#plan .empty h2');
-  const text = n ? `План обновлён: ${n} ${plural(n, 'упражнение', 'упражнения', 'упражнений')}, ≈${plan.minutes} мин` : empty ? empty.textContent : '';
+  const text = planNote || (n ? `План обновлён: ${n} ${plural(n, 'упражнение', 'упражнения', 'упражнений')}, ≈${plan.minutes} мин` : empty ? empty.textContent : '');
+  planNote = '';
   if (planSaid === null) { planSaid = text; return; }
   planSaid = text; box.textContent = ''; /* то же сообщение подряд тоже объявляется: сначала очистить, затем вписать */
   clearTimeout(announcePlan.t); announcePlan.t = setTimeout(() => { box.textContent = text; }, 80);
@@ -1741,14 +1820,35 @@ function renderPlanView() {
   </header>`;
   if (plan.custom) {
     const hints = customHints(plan), lost = lostMessages(plan.lost, plan.E);
-    html += autoregHtml() + healthHtml() + gentleHtml() + (lost.length ? `<div class="warn">${lost.map(w => `<p>${esc(w)}</p>`).join('')}</div>` : '')
+    html += restTodayHtml(plan) + autoregHtml() + healthHtml() + gentleHtml() + (lost.length ? `<div class="warn">${lost.map(w => `<p>${esc(w)}</p>`).join('')}</div>` : '')
       + (hints.length ? `<div class="cp-hints">${hints.map(w => `<p>${esc(w)}</p>`).join('')}</div>` : '') + blocksHtml(plan) + customAddHtml() + LEGEND;
-  } else html += logPickHtml(plan) + autoregHtml() + healthHtml() + gentleHtml() + warnHtml(plan) + blocksHtml(plan) + LEGEND;
+  } else html += logPickHtml(plan) + restTodayHtml(plan) + autoregHtml() + healthHtml() + gentleHtml() + warnHtml(plan) + blocksHtml(plan) + LEGEND;
   root.innerHTML = html;
   mountFigures();
 }
 
+/* Виды движения за неделю — под полосами подходов (Игорь 1: счётчик «в норме» не видел, что горизонтальной тяги нет):
+   что есть, чего нет и почему квота не действует (weekKinds.off — отметки суставов, бережный режим) */
+function kindsHtml(k) {
+  if (!k || (!k.on.length && !k.off.length)) return '';
+  const name = id => KINDS[id].name, have = k.on.filter(id => k.have.has(id)), miss = k.on.filter(id => !k.have.has(id));
+  const parts = [];
+  if (have.length) parts.push('За неделю есть: {list}.'.replace('{list}', have.map(name).join(', ')));
+  if (miss.length) parts.push('Нет: {list} — не хватило места в тренировках; добавьте упражнение или ещё один день.'.replace('{list}', miss.map(name).join(', ')));
+  for (const o of k.off) parts.push('{kind} не подбирается: {why}.'.replace('{kind}', name(o.k).charAt(0).toUpperCase() + name(o.k).slice(1)).replace('{why}', o.why || 'не подходит бережному режиму'));
+  return `<p class="lb-note kinds-note${miss.length ? ' kinds-miss' : ''}">${esc(parts.join(' '))}</p>`;
+}
+/* Новичку больше трёх тренировок в неделю — с предупреждением (Игорь 19): ACSM, Ratamess et al., MSSE 2009; 41(3):687–708
+   (аннотация и с. 693) — новичкам 2–3 тренировки в неделю на всё тело */
+/* то же в «Бережно»: каждой крупной группе мышц — 2–3 раза в неделю по 2–4 подхода (Garber et al., MSSE 2011; 43(7):1334–1359) */
+function begDaysHtml() {
+  if ((S.level !== 'beg' && S.goal !== 'gentle') || S.days <= 3) return '';
+  const t = S.level === 'beg' ? 'Новичку обычно хватает 2–3 тренировок в неделю на всё тело: мышцам и суставам нужно время привыкнуть к нагрузке. При {n} тренировках следите за самочувствием, а если устаёте — выберите 3 дня.'
+    : 'В бережном режиме обычно хватает 2–3 тренировок в неделю: каждой группе мышц — 2–3 раза по 2–4 подхода. При {n} тренировках следите за самочувствием, а если устаёте — выберите 3 дня.';
+  return `<div class="warn"><p>${esc(t.replace('{n}', S.days))}</p></div>`;
+}
 function renderProgram() {
+  if (weekSync()) saveSettings();
   prog = buildProgram();
   if (S.day >= prog.days.length) S.day = 0;
   const day = prog.days[S.day];
@@ -1774,6 +1874,7 @@ function renderProgram() {
       <figcaption>
         ${loadFoldHead('Подходов на группу за неделю', loadTop(volRows))}
         <ul class="vbars">${volBars(prog.gvol, allGroups)}</ul>
+        ${kindsHtml(prog.kinds)}
         <p class="lb-note">${volScaleText()} Подход засчитывается целиком целевой группе и наполовину остальным работающим. ${S.goal === 'strength' ? 'В силовом цикле объём ниже — это нормально.' : S.goal === 'gentle' ? 'Сначала суставы и техника.' : ''}</p>
       </figcaption>
     </figure>
@@ -1782,15 +1883,17 @@ function renderProgram() {
     <h2>Цикл из 4 недель</h2>
     <div class="wk" role="group" aria-label="Неделя цикла">${WEEKS.map((w, i) => `<button type="button" class="${i + 1 === S.week ? 'on' : ''}" data-week="${i + 1}" aria-pressed="${i + 1 === S.week}"><b>${i + 1}</b><small>${w.name}</small></button>`).join('')}</div>
     <p class="wk-note"><b>${wk.name}.</b> ${esc(wk.note)}</p>
+    <p class="wk-auto">${'Неделя цикла переключается сама каждый понедельник. Выберите другую — счёт пойдёт от неё.'}</p>
     <details class="rule"><summary>Как добавлять вес</summary><p>Работайте в диапазоне повторов из карточки. Когда во всех подходах сделали верхнюю границу, в следующий раз добавьте вес — ${unitRange([1, 2.5], [2.5, 5])} для верха тела, ${unitRange([2.5, 5], [5, 10])} для ног — и начните с нижней границы. Если записывать подходы в карточках, планировщик сам подскажет, когда прибавлять. После разгрузки повторите цикл с новыми весами.</p></details>
   </section>
+  ${begDaysHtml()}
   <nav class="days" role="tablist" aria-label="Дни недели">${prog.days.map((d, i) => `<button type="button" role="tab" class="${i === S.day ? 'on' : ''}" data-day="${i}" aria-selected="${i === S.day}"><b>${WD[d.wd]}</b><span>${esc(d.name)}</span><small>${d.plan.items ? `≈${d.plan.minutes} мин` : 'нет упражнений'}</small></button>`).join('')}</nav>
   <div class="day-head"><h2>${WD_FULL[day.wd]} — ${esc(day.name)}</h2>
     <p>${(plan.groups || DAY_T[day.tid].g).map(g => GN[g].toLowerCase()).join(', ')}${plan.items ? ` · ≈${plan.minutes} мин · ${plan.totalSets} ${plural(plan.totalSets, 'подход', 'подхода', 'подходов')}` : ''}</p></div>`;
   const bodyDay = !plan.items && emptyBodyGroups(plan.groups || DAY_T[day.tid].g);
   if (!plan.items) html += bodyDay ? `<div class="empty"><h2>Для этого дня нет упражнений</h2><p>${esc('Для этих мышц ({g}) {what} подходящих упражнений с этим оборудованием нет: все дают нагрузку, которую вы бережёте.'.replace('{g}', bodyDay.map(g => GN[g].toLowerCase()).join(', ')).replace('{what}', 'в бережном режиме'))}</p><p>Выберите другой сплит или место; отметки можно поменять в параметрах.</p></div>${gentleHtml()}`
     : `<div class="empty"><h2>Для этого дня нет упражнений</h2><p>С выбранным оборудованием нечем нагрузить эти мышцы. Добавьте оборудование или выберите другой сплит.</p></div>`;
-  else html += autoregHtml() + healthHtml() + gentleHtml() + warnHtml(plan) + blocksHtml(plan);
+  else html += restTodayHtml(plan) + autoregHtml() + healthHtml() + gentleHtml() + warnHtml(plan) + blocksHtml(plan);
   html += LEGEND;
   $('#plan').innerHTML = html;
   if (plan.items) mountFigures();

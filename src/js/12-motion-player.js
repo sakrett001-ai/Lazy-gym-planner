@@ -622,7 +622,7 @@ document.addEventListener('change', e => {
   if (e.target.id === 'place-adapt') { S.adapt = e.target.value || null; ensurePlaces(S); return regen(); }
 });
 const swapKey = () => S.mode === 'program' ? 'd' + S.day : 's';
-function regen(resetSwaps = true) { if (resetSwaps) swaps = S.swaps = {}; done = {}; planUndo = null; saveSettings(); renderSetup(); renderPlan(); }
+function regen(resetSwaps = true) { if (resetSwaps) swaps = S.swaps = {}; done = {}; planUndo = null; rerollMsg = null; saveSettings(); renderSetup(); renderPlan(); }
 document.addEventListener('click', e => {
   const t = e.target.closest('button, summary');
   if (!t) return;
@@ -633,7 +633,8 @@ document.addEventListener('click', e => {
   }
   if (t.dataset.days) { S.days = +t.dataset.days; S.split = DEFAULT_SPLIT[S.days]; S.day = 0; return regen(); }
   if (t.dataset.split) { S.split = t.dataset.split; S.day = 0; return regen(); }
-  if (t.dataset.week) { S.week = +t.dataset.week; done = {}; saveSettings(); renderPlan(); return; }
+  /* неделя цикла руками — дальше счёт от неё (weekPick, 11-planner.js) */
+  if (t.dataset.week) { weekPick(+t.dataset.week); done = {}; saveSettings(); renderPlan(); return; }
   if (t.dataset.day !== undefined) {
     S.day = +t.dataset.day; done = {}; saveSettings(); renderPlan();
     const dh = $('.day-head'); if (dh) dh.scrollIntoView({block:'nearest', behavior:reduceMotion ? 'auto' : 'smooth'});
@@ -661,7 +662,12 @@ document.addEventListener('click', e => {
     if (!placeDel) { placeDel = true; return renderSetup(); }
     S.places = S.places.filter(p => p.id !== S.place); placeDel = false; ensurePlaces(S); return regen();
   }
-  if (t.id === 'reroll') { S.seed = (S.seed * 48271 + 11) % 2147483647; regen(); $('#plan').scrollIntoView({behavior:reduceMotion ? 'auto' : 'smooth', block:'start'}); return; }
+  /* «Другой вариант» — что поменялось и «Вернуть» (rerollPlan, 12c-swap.js); фокус — на «Вернуть», иначе на самой кнопке */
+  if (t.id === 'reroll') {
+    rerollPlan(); $('#plan').scrollIntoView({behavior:reduceMotion ? 'auto' : 'smooth', block:'start'});
+    const f = document.querySelector('[data-reroll-undo]') || document.getElementById('reroll'); if (f) f.focus({preventScroll:true});
+    return;
+  }
   if (t.id === 'copy') {
     const txt = planText(), msg = $('#copy-msg');
     const fallback = () => { msg.innerHTML = 'Скопировать автоматически не удалось. Выделите текст:<textarea readonly rows="6"></textarea>'; const ta = msg.querySelector('textarea'); ta.value = txt; ta.focus(); ta.select(); };

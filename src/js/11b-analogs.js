@@ -17,11 +17,15 @@ const LOAD_KIND_NOTE = {
   machine:'тренажёр ведёт траекторию: меньше стабилизации',
   cable:'блок: нагрузка ровнее по всей амплитуде'
 };
+/* Вес тела на опоре — «вес тела», даже если опора — гриф тренажёра: австралийские подтягивания под грифом машины Смита
+   (было: «тренажёр ведёт траекторию: меньше стабилизации» — а это вес тела на перекладине; Игорь 16, Mike 9). Тренажёр —
+   только там, где сопротивление даёт он сам (стек, противовес гравитрона, кардиотренажёр) */
 function loadKind(ex, E) {
   const ids = E ? chosenEquip(ex, E) : ex.eq.map(g => g[0]);
   const cat = id => (EQUIP.find(e => e.id === id) || {}).cat;
   if (ids.some(id => id === 'cable')) return 'cable';
-  if (ids.some(id => cat(id) === 'mach' || cat(id) === 'cardio')) return 'machine';
+  const onBar = !ex.assist && ex.g !== 'cardio' && !weighable(ex, E) && !ids.some(id => id === 'band');
+  if (!onBar && ids.some(id => cat(id) === 'mach' || cat(id) === 'cardio')) return 'machine';
   if (ids.some(id => id === 'band')) return 'band';
   if (ids.some(id => ['db', 'bb', 'kb'].includes(id)) || (E && (ex.opt || []).some(id => ['db', 'kb'].includes(id) && E.has(id)))) return 'free';
   return 'body';
