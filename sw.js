@@ -3,7 +3,7 @@
    отметкам «язык открыт» за последние 30 дней (их присылает pwa.js). Второй язык скачивается целиком, когда его откроют
    с сетью; без сети вместо пустой страницы браузера — подсказка (здесь и в pwa.js). Общие файлы (объём, шрифты, иконки)
    кешируются всегда. Если о языках ничего не известно — оба, как раньше. */
-const VERSION = '4.105.0-a5850face5c2';
+const VERSION = '4.107.0-8a830f93f2c1';
 const SCOPE = self.registration.scope;
 const CACHE_PREFIX = 'podhod@' + SCOPE + ':';
 const CACHE = CACHE_PREFIX + VERSION;
@@ -57,7 +57,7 @@ async function useLang(lang) {
   await noteLangs([lang]).catch(() => {});
   const c = await caches.open(CACHE), missing = [];
   for (const f of LANG_FILES[lang]) if (!await c.match(f)) missing.push(f);
-  if (missing.length) await c.addAll(missing);
+  if (missing.length) await c.addAll(fresh(missing));
 }
 /* без сети и без скачанной версии этого языка: подсказка на обоих языках со ссылкой на скачанную версию. В ссылке —
    ?lang=: это явный выбор языка (src/lang.js), корень сайта не вернёт на нескачанный язык по прежнему выбору */
@@ -70,6 +70,10 @@ function notDownloaded(lang) {
 <p><a href="${ru[2]}">Открыть ${ru[1]}</a></p><hr><p lang="en">No connection. ${en[0]} is not downloaded on this device yet. Open it once while online — after that it works offline too. <a href="${ru[2]}">Open ${en[1]}</a></p></main></body></html>`;
   return new Response(html, {status:503, headers:{'Content-Type':'text/html; charset=utf-8', 'Cache-Control':'no-store'}});
 }
+/* Файлы оболочки — из сети, мимо HTTP-кеша браузера (cache: 'reload'). Иначе новая версия могла положить в свой кеш старые
+   «/», «/index.html», «/en/» из кеша браузера (сервер без Cache-Control или max-age=600 у GitHub Pages) и навсегда остаться на
+   старом app.js: полоса «Обновить» больше не появлялась (Ксения 2). Адреса в кеше — прежние (без параметров запроса). */
+const fresh = files => typeof Request === 'function' ? files.map(f => new Request(new URL(f, SCOPE).href, {cache:'reload'})) : files;
 /* оболочка в новый кеш: иконки — из кеша прежней версии, если там есть тот же адрес (тот же хэш — тот же файл), остальное — из сети */
 async function fillShell(files) {
   const c = await caches.open(CACHE), old = (await caches.keys()).filter(k => k.startsWith(CACHE_PREFIX) && k !== CACHE), net = [];
@@ -78,7 +82,7 @@ async function fillShell(files) {
     if (ICONS.includes(f)) for (const k of old) { hit = await (await caches.open(k)).match(f); if (hit) break; }
     if (hit) await c.put(f, hit); else net.push(f);
   }
-  await c.addAll(net);
+  await c.addAll(fresh(net));
 }
 self.addEventListener('install', e => { e.waitUntil(wantedLangs().then(langs => fillShell(shellFor(langs)))); });
 self.addEventListener('activate', e => { e.waitUntil(caches.keys().then(ks => Promise.all(ks.filter(k => (k.startsWith(CACHE_PREFIX) && k !== CACHE) || k.startsWith(THUMBS_LEGACY)).map(k => caches.delete(k)))).then(() => self.clients.claim())); });

@@ -1,4 +1,4 @@
-window.PODHOD_VERSION='4.105.0';window.PODHOD_BUILD='4.105.0-a5850face5c2';window.PODHOD_RENDER={"skin":"41c62f8b22","skeleton":"040f915bc8","anatomy":"4b15dc31e6"};window.PODHOD_SEARCH={"alt":{"ex":{"pushup":["Отжимания от пола"],"diamond":["Отжимания узким хватом"],"dip":["Отжимания на брусьях"],"bbbench":["Жим штанги лёжа"],"dbbench":["Жим гантелей лёжа"],"dbincline":["Жим гантелей на наклонной скамье"],"smithincline":["Жим в машине Смита на наклонной скамье"],"dbfly":["Разводка гантелей лёжа"],"cablefly":["Сведение рук в кроссовере"],"pecdeck":["Сведение рук в тренажёре «бабочка»"],"pullup":["Подтягивания"],"bbrow":["Тяга штанги в наклоне"],"dbrow":["Тяга гантели одной рукой"],"latpull":["Тяга верхнего блока"],"latpullv":["Тяга верхнего блока V-рукоятью"],"latpulluh":["Тяга верхнего блока обратным хватом"],"cablerow":["Тяга горизонтального блока"],"cablerowwide":["Тяга горизонтального блока широким хватом"],"deadlift":["Становая тяга"],"hyper":["Гиперэкстензия"],"shrug":["Шраги с гантелями"],"bandrow":["Тяга эспандера к поясу сидя"],"dbpress":["Жим гантелей сидя"],"ohp":["Жим штанги стоя"],"latraise":["Махи гантелями в стороны"],"bandlatraise":["Махи с эспандером в стороны"],"frontraise":["Подъём гантелей перед собой"],"facepull":["Тяга каната к лицу"],"pikepush":["Отжимания в упоре углом"],"bbcurl":["Подъём штанги на бицепс"],"dbcurl":["Подъём гантелей на бицепс"],"hammer":["Молотковые сгибания"],"cablecurl":["Сгибание рук на нижнем блоке"],"ropecurl":["Сгибание рук на нижнем блоке с канатом"],"bandcurl":["Сгибание рук с эспандером"],"chinup":["Подтягивания обратным хватом"],"skull":["Французский жим лёжа"],"pushdown":["Разгибание рук на верхнем блоке"],"ropepushdown":["Разгибание рук на верхнем блоке с канатом"],"bandpushdown":["Разгибание рук с эспандером"],"benchdip":["Обратные отжимания от скамьи"],"ohext":["Разгибание гантели из-за головы"],"wristcurl":["Сгибание запястий со штангой"],"farmer":["Прогулка фермера","Прогулка фермера с гирями"],"hang":["Вис на турнике"],"crunch":["Скручивания"],"plank":["Планка на предплечьях"],"sideplank":["Боковая планка"],"legraise":["Подъём ног в висе"],"lyinglegraise":["Подъём ног лёжа"],"cablecrunch":["Скручивания на блоке стоя на коленях"],"hipthrust":["Ягодичный мост со штангой"],"bridge":["Ягодичный мостик"],"kbswing":["Махи гирей"],"kbdeadlift":["Становая тяга с гирей"],"kbswing1":["Махи гирей одной рукой"],"kbclean":["Взятие гири на грудь"],"kbpress":["Жим гири стоя одной рукой"],"kbfrontsquat":["Фронтальные приседания с гирей"],"kbrow":["Тяга гири в наклоне одной рукой"],"kbfloorpress":["Жим гири лёжа на полу"],"kbsnatch":["Рывок гири"],"kbsllift":["Румынская тяга на одной ноге с гирей"],"kbwindmill":["Мельница с гирей"],"kbhalo":["Гало с гирей"],"kbtgu":["Турецкий подъём с гирей"],"bulgarian":["Болгарские выпады"],"stepup":["Зашагивания на скамью"],"rdl":["Румынская тяга","Румынская тяга со штангой","Румынская тяга с гантелями"],"squat":["Приседания со штангой"],"goblet":["Гоблет-приседания","Гоблет-приседания с гирей"],"airsquat":["Приседания с собственным весом"],"lunge":["Сплит-приседания"],"legpress":["Жим ногами"],"legpresshigh":["Жим ногами с высокой постановкой стоп"],"legpresslow":["Жим ногами с низкой постановкой стоп"],"legext":["Разгибание ног в тренажёре"],"smithsquat":["Приседания в машине Смита"],"legcurl":["Сгибание ног лёжа в тренажёре"],"calfraise":["Подъём на носки стоя"],"lpcalf":["Подъём на носки в тренажёре для жима ногами"],"inclinebb":["Жим штанги на наклонной скамье"],"declinebb":["Жим штанги на скамье с обратным наклоном"],"closegrip":["Жим лёжа узким хватом"],"pullover":["Пуловер с гантелью"],"declinepush":["Отжимания с ногами на скамье"],"invrow":["Австралийские подтягивания"],"straightpull":["Пуловер на блоке прямыми руками"],"goodmorning":["Наклоны со штангой на плечах"],"arnold":["Жим Арнольда"],"cablelat":["Отведение руки на нижнем блоке"],"reversefly":["Обратные разведения в «бабочке»"],"bandfacepull":["Тяга эспандера к лицу"],"cableextrot":["Вращение плеча наружу на блоке"],"bandextrot":["Вращение плеча наружу с эспандером"],"preacher":["Сгибание рук на скамье Скотта"],"inclinecurl":["Сгибание рук на наклонной скамье"],"concentration":["Концентрированный подъём на бицепс"],"kickback":["Разгибание руки с гантелью в наклоне"],"declinecrunch":["Скручивания на скамье для пресса"],"captainraise":["Подъём коленей в упоре на локтях"],"hangknee":["Подъём коленей в висе"],"rollout":["Выкатывание ролика с колен"],"sidebend":["Наклоны в сторону с гантелью"],"glutekick":["Отведение ноги назад на нижнем блоке"],"bandlatpull":["Тяга эспандера сверху на коленях"],"bandlegext":["Разгибание ноги сидя с эспандером"],"bandadduct":["Сведение ноги с эспандером"],"bandabduct":["Отведение ноги с мини-петлёй стоя"],"bandbridge":["Ягодичный мостик с мини-петлёй"],"bandfloorpress":["Жим лёжа на полу с эспандером"],"bandfly":["Сведение рук с эспандером у двери"],"sissysquat":["Сисси-присед с опорой о дверной косяк"],"jumpingjack":["Прыжки «ноги врозь»"],"burpee":["Бёрпи"],"mountain":["Скалолаз"],"jumpsquat":["Приседания с выпрыгиванием"],"thruster":["Трастеры с гантелями"],"wallpush":["Отжимания от стены"],"inclinepush":["Отжимания с руками на возвышении"],"kneepush":["Отжимания с колен"],"widepush":["Отжимания широким хватом"],"archer":["Отжимания «лучник»"],"declinepike":["Отжимания в упоре углом с ногами на возвышении"],"superman":["Лодочка"],"ytw":["Разведения лёжа «Y-T-W»"],"towelrow":["Тяга полотенца у двери"],"tablerow":["Тяга под столом"],"reversesnow":["Обратные «снежные ангелы»"],"wallsit":["Стульчик у стены"],"revlunge":["Обратные выпады"],"sidelunge":["Боковые выпады"],"copenhagen":["Копенгагенская планка"],"copenhagenknee":["Копенгагенская планка с опорой коленом"],"pistolbox":["Приседания на одной ноге на скамью"],"sllift":["Румынская тяга на одной ноге"],"glutebridge1":["Ягодичный мостик на одной ноге"],"nordic":["Скандинавские сгибания"],"calf1":["Подъём на носок на одной ноге"],"deadbug":["«Мёртвый жук»"],"birddog":["«Птица-собака»"],"hollow":["Удержание «лодочки» на спине"],"bicycle":["«Велосипед»"],"plankup":["Планка с подъёмом на руки"],"chairdip":["Отжимания от стула"],"towelcurl":["Сгибание рук с полотенцем"],"chestpressm":["Жим от груди в тренажёре"],"smithbench":["Жим лёжа в машине Смита"],"cablelowfly":["Сведение рук в кроссовере снизу"],"leverrowm":["Рычажная тяга к поясу"],"tbarrow":["Тяга Т-грифа в наклоне"],"assistpull":["Подтягивания в гравитроне"],"chestrowdb":["Тяга гантелей лёжа на наклонной скамье"],"shoulderpressm":["Жим сидя в тренажёре"],"smithohp":["Жим сидя в машине Смита"],"assistdip":["Отжимания на брусьях в гравитроне"],"cableohext":["Разгибание рук с канатом над головой"],"cablewood":["«Дровосек» на блоке"],"pullthrough":["Протяжка на блоке между ног"],"cablekickback":["Отведение ноги назад на блоке"],"abduction":["Разведение ног в тренажёре"],"adduction":["Сведение ног в тренажёре"],"cableadduct":["Сведение ноги на нижнем блоке"],"hacksquat":["Приседания в гакк-машине"],"seatedcalf":["Подъём на носки сидя"],"standcalf":["Подъём на носки стоя в тренажёре"],"treadmill":["Беговая дорожка"],"bike":["Велотренажёр"],"rower":["Гребной тренажёр"],"elliptical":["Эллиптический тренажёр"],"stairs":["Степпер / лестница"]},"groups":{"chest":["Грудь"],"back":["Спина"],"shoulders":["Плечи"],"biceps":["Бицепс"],"triceps":["Трицепс"],"forearms":["Предплечья"],"abs":["Пресс"],"glutes":["Ягодицы"],"quads":["Квадрицепс"],"hams":["Бицепс бедра"],"calves":["Икры"],"cardio":["Кардио"]},"muscles":{"chest":["Грудные"],"delt_f":["Передняя дельта"],"delt_s":["Средняя дельта"],"delt_r":["Задняя дельта"],"biceps":["Бицепс"],"triceps":["Трицепс"],"forearms":["Предплечья"],"abs":["Прямая мышца живота"],"obliques":["Косые мышцы живота"],"traps":["Трапеции"],"midback":["Ромбовидные и середина спины"],"lats":["Широчайшие"],"lowback":["Разгибатели спины"],"glutes":["Ягодичные"],"quads":["Квадрицепс"],"hams":["Бицепс бедра"],"calves":["Икры"],"adductors":["Приводящие бедра"],"hipflex":["Сгибатели бедра"],"serratus":["Передняя зубчатая"],"cuff":["Вращательная манжета"]}},"syn":{"ex":{"pushup":["press-up"],"diamond":["алмазные отжимания","diamond push-up","triangle push-up"],"dip":["брусья","parallel bar dip","chest dip"],"bbbench":["жим лёжа","бенч","бенч-пресс","bench press","bench","flat bench press"],"dbincline":["наклонный жим гантелей"],"smithincline":["наклонный жим в Смите","incline Smith press"],"inclinebb":["наклонный жим","жим на наклонной","incline bench press","incline bench"],"declinebb":["жим головой вниз","decline bench press","decline bench"],"dbfly":["dumbbell flye"],"pecdeck":["пек-дек","butterfly","machine fly"],"bbrow":["тяга штанги к поясу","barbell row"],"dbrow":["тяга гантели в наклоне","dumbbell row","single-arm dumbbell row"],"latpull":["вертикальная тяга","тяга верхнего блока к груди","lat pull-down"],"cablerow":["горизонтальная тяга","тяга нижнего блока","seated row","cable row","low row"],"hyper":["hyperextension"],"dbpress":["жим гантелей над головой","dumbbell shoulder press"],"ohp":["армейский жим","жим над головой","жим стоя","OHP","military press","standing press"],"latraise":["разведения в стороны","разведения гантелей в стороны","side raise","side lateral raise"],"facepull":["фейс-пул"],"bbcurl":["сгибание рук со штангой"],"dbcurl":["сгибание рук с гантелями"],"hammer":["молотки","хаммер"],"skull":["skull crusher","French press"],"pushdown":["трицепс на блоке","pressdown"],"ohext":["французский жим сидя","французский жим стоя"],"farmer":["фермерская прогулка","farmer’s walk"],"cablecrunch":["молитва"],"hipthrust":["хип-траст"],"kbswing":["свинг"],"kbswing1":["свинг одной рукой"],"kbtgu":["TGU","get-up"],"bulgarian":["болгарские сплит-приседания","Bulgarian squat","rear-foot-elevated split squat","RFESS"],"stepup":["степ-ап"],"rdl":["румынка","RDL"],"squat":["присед","squat","back squat"],"airsquat":["приседания без веса","air squat"],"lunge":["выпады на месте","static lunge"],"legcurl":["hamstring curl"],"invrow":["горизонтальные подтягивания","Australian pull-up","body row"],"straightpull":["straight-arm pulldown"],"goodmorning":["гуд морнинг"],"cablelat":["махи на нижнем блоке","cable side raise"],"reversefly":["обратная бабочка","rear delt fly"],"rollout":["ролик для пресса","ab wheel","ab roller"],"glutekick":["кикбэк"],"cablekickback":["кикбэк","cable kickback"],"jumpingjack":["джампинг джек","star jump"],"burpee":["бурпи"],"mountain":["альпинист"],"superman":["супермен"],"revlunge":["выпады назад"],"sidelunge":["выпады в сторону","side lunge"],"nordic":["нордические сгибания","Nordic hamstring curl"],"chestpressm":["жим в хаммере"],"leverrowm":["тяга в хаммере","machine row"],"cablewood":["wood chop"],"abduction":["абдуктор","abductor machine","hip abductor"],"adduction":["аддуктор","adductor machine","hip adductor"],"hacksquat":["гакк-приседания"],"treadmill":["бег","running"],"rower":["гребля","rowing","erg"],"elliptical":["орбитрек","эллипс","cross trainer"],"stairs":["stepper"]},"groups":{"chest":["грудные","pecs"],"shoulders":["дельты","delts","deltoids"],"forearms":["хват","grip"],"abs":["кор","core"],"glutes":["ягодичные"],"quads":["квадры","передняя поверхность бедра","quadriceps"],"hams":["задняя поверхность бедра"],"calves":["икроножные","calf"]},"muscles":{"obliques":["косые"],"lowback":["поясница"],"midback":["ромбовидные","rhomboids"],"adductors":["приводящие","adductors"],"serratus":["зубчатая","serratus"],"cuff":["ротаторы","ротаторная манжета"]}},"stop":["в","во","на","с","со","и","для","к","ко","по","из","от","у","за","упражнение","упражнения","упражнений","the","a","an","of","on","with","for","and","in","to","at","exercise","exercises"],"words":{"db":["dumbbell"],"bb":["barbell"],"kb":["kettlebell"]},"layout":{"en":"`qwertyuiop[]asdfghjkl;'zxcvbnm,./","ru":"ёйцукенгшщзхъфывапролджэячсмитьбю."}};window.PODHOD_LANG='en';window.PODHOD_LOCALE={"dec":".","plural":"one","dates":"intl","units":"region"};
+window.PODHOD_VERSION='4.107.0';window.PODHOD_BUILD='4.107.0-8a830f93f2c1';window.PODHOD_RENDER={"skin":"41c62f8b22","skeleton":"040f915bc8","anatomy":"4b15dc31e6"};window.PODHOD_SEARCH={"alt":{"ex":{"pushup":["Отжимания от пола"],"diamond":["Отжимания узким хватом"],"dip":["Отжимания на брусьях"],"bbbench":["Жим штанги лёжа"],"dbbench":["Жим гантелей лёжа"],"dbincline":["Жим гантелей на наклонной скамье"],"smithincline":["Жим в машине Смита на наклонной скамье"],"dbfly":["Разводка гантелей лёжа"],"cablefly":["Сведение рук в кроссовере"],"pecdeck":["Сведение рук в тренажёре «бабочка»"],"pullup":["Подтягивания"],"bbrow":["Тяга штанги в наклоне"],"dbrow":["Тяга гантели одной рукой"],"latpull":["Тяга верхнего блока"],"latpullv":["Тяга верхнего блока V-рукоятью"],"latpulluh":["Тяга верхнего блока обратным хватом"],"cablerow":["Тяга горизонтального блока"],"cablerowwide":["Тяга горизонтального блока широким хватом"],"deadlift":["Становая тяга"],"hyper":["Гиперэкстензия"],"shrug":["Шраги с гантелями"],"bandrow":["Тяга эспандера к поясу сидя"],"dbpress":["Жим гантелей сидя"],"ohp":["Жим штанги стоя"],"latraise":["Махи гантелями в стороны"],"bandlatraise":["Махи с эспандером в стороны"],"frontraise":["Подъём гантелей перед собой"],"facepull":["Тяга каната к лицу"],"pikepush":["Отжимания в упоре углом"],"bbcurl":["Подъём штанги на бицепс"],"dbcurl":["Подъём гантелей на бицепс"],"hammer":["Молотковые сгибания"],"cablecurl":["Сгибание рук на нижнем блоке"],"ropecurl":["Сгибание рук на нижнем блоке с канатом"],"bandcurl":["Сгибание рук с эспандером"],"chinup":["Подтягивания обратным хватом"],"skull":["Французский жим лёжа"],"pushdown":["Разгибание рук на верхнем блоке"],"ropepushdown":["Разгибание рук на верхнем блоке с канатом"],"bandpushdown":["Разгибание рук с эспандером"],"benchdip":["Обратные отжимания от скамьи"],"ohext":["Разгибание гантели из-за головы"],"wristcurl":["Сгибание запястий со штангой"],"farmer":["Прогулка фермера","Прогулка фермера с гирями"],"hang":["Вис на турнике"],"crunch":["Скручивания"],"plank":["Планка на предплечьях"],"sideplank":["Боковая планка"],"legraise":["Подъём ног в висе"],"lyinglegraise":["Подъём ног лёжа"],"cablecrunch":["Скручивания на блоке стоя на коленях"],"hipthrust":["Ягодичный мост со штангой"],"bridge":["Ягодичный мостик"],"kbswing":["Махи гирей"],"kbdeadlift":["Становая тяга с гирей"],"kbswing1":["Махи гирей одной рукой"],"kbclean":["Взятие гири на грудь"],"kbpress":["Жим гири стоя одной рукой"],"kbfrontsquat":["Фронтальные приседания с гирей"],"kbrow":["Тяга гири в наклоне одной рукой"],"kbfloorpress":["Жим гири лёжа на полу"],"kbsnatch":["Рывок гири"],"kbsllift":["Румынская тяга на одной ноге с гирей"],"kbwindmill":["Мельница с гирей"],"kbhalo":["Гало с гирей"],"kbtgu":["Турецкий подъём с гирей"],"bulgarian":["Болгарские выпады"],"stepup":["Зашагивания на скамью"],"rdl":["Румынская тяга","Румынская тяга со штангой","Румынская тяга с гантелями"],"squat":["Приседания со штангой"],"goblet":["Гоблет-приседания","Гоблет-приседания с гирей"],"airsquat":["Приседания с собственным весом"],"lunge":["Сплит-приседания"],"legpress":["Жим ногами"],"legpresshigh":["Жим ногами с высокой постановкой стоп"],"legpresslow":["Жим ногами с низкой постановкой стоп"],"legext":["Разгибание ног в тренажёре"],"smithsquat":["Приседания в машине Смита"],"legcurl":["Сгибание ног лёжа в тренажёре"],"calfraise":["Подъём на носки стоя"],"lpcalf":["Подъём на носки в тренажёре для жима ногами"],"inclinebb":["Жим штанги на наклонной скамье"],"declinebb":["Жим штанги на скамье с обратным наклоном"],"closegrip":["Жим лёжа узким хватом"],"pullover":["Пуловер с гантелью"],"declinepush":["Отжимания с ногами на скамье"],"invrow":["Австралийские подтягивания"],"straightpull":["Пуловер на блоке прямыми руками"],"goodmorning":["Наклоны со штангой на плечах"],"arnold":["Жим Арнольда"],"cablelat":["Отведение руки на нижнем блоке"],"reversefly":["Обратные разведения в «бабочке»"],"bandfacepull":["Тяга эспандера к лицу"],"cableextrot":["Вращение плеча наружу на блоке"],"bandextrot":["Вращение плеча наружу с эспандером"],"preacher":["Сгибание рук на скамье Скотта"],"inclinecurl":["Сгибание рук на наклонной скамье"],"concentration":["Концентрированный подъём на бицепс"],"kickback":["Разгибание руки с гантелью в наклоне"],"declinecrunch":["Скручивания на скамье для пресса"],"captainraise":["Подъём коленей в упоре на локтях"],"hangknee":["Подъём коленей в висе"],"rollout":["Выкатывание ролика с колен"],"sidebend":["Наклоны в сторону с гантелью"],"glutekick":["Отведение ноги назад на нижнем блоке"],"bandlatpull":["Тяга эспандера сверху на коленях"],"bandlegext":["Разгибание ноги сидя с эспандером"],"bandadduct":["Сведение ноги с эспандером"],"bandabduct":["Отведение ноги с мини-петлёй стоя"],"bandbridge":["Ягодичный мостик с мини-петлёй"],"bandfloorpress":["Жим лёжа на полу с эспандером"],"bandfly":["Сведение рук с эспандером у двери"],"sissysquat":["Сисси-присед с опорой о дверной косяк"],"jumpingjack":["Прыжки «ноги врозь»"],"burpee":["Бёрпи"],"mountain":["Скалолаз"],"jumpsquat":["Приседания с выпрыгиванием"],"thruster":["Трастеры с гантелями"],"wallpush":["Отжимания от стены"],"inclinepush":["Отжимания с руками на возвышении"],"kneepush":["Отжимания с колен"],"widepush":["Отжимания широким хватом"],"archer":["Отжимания «лучник»"],"declinepike":["Отжимания в упоре углом с ногами на возвышении"],"superman":["Лодочка"],"ytw":["Разведения лёжа «Y-T-W»"],"towelrow":["Тяга полотенца у двери"],"tablerow":["Тяга под столом"],"reversesnow":["Обратные «снежные ангелы»"],"wallsit":["Стульчик у стены"],"revlunge":["Обратные выпады"],"sidelunge":["Боковые выпады"],"copenhagen":["Копенгагенская планка"],"copenhagenknee":["Копенгагенская планка с опорой коленом"],"pistolbox":["Приседания на одной ноге на скамью"],"sllift":["Румынская тяга на одной ноге"],"glutebridge1":["Ягодичный мостик на одной ноге"],"nordic":["Скандинавские сгибания"],"calf1":["Подъём на носок на одной ноге"],"deadbug":["«Мёртвый жук»"],"birddog":["«Птица-собака»"],"hollow":["Удержание «лодочки» на спине"],"bicycle":["«Велосипед»"],"plankup":["Планка с подъёмом на руки"],"chairdip":["Отжимания от стула"],"towelcurl":["Сгибание рук с полотенцем"],"chestpressm":["Жим от груди в тренажёре"],"smithbench":["Жим лёжа в машине Смита"],"cablelowfly":["Сведение рук в кроссовере снизу"],"leverrowm":["Рычажная тяга к поясу"],"tbarrow":["Тяга Т-грифа в наклоне"],"assistpull":["Подтягивания в гравитроне"],"chestrowdb":["Тяга гантелей лёжа на наклонной скамье"],"shoulderpressm":["Жим сидя в тренажёре"],"smithohp":["Жим сидя в машине Смита"],"assistdip":["Отжимания на брусьях в гравитроне"],"cableohext":["Разгибание рук с канатом над головой"],"cablewood":["«Дровосек» на блоке"],"pullthrough":["Протяжка на блоке между ног"],"cablekickback":["Отведение ноги назад на блоке"],"abduction":["Разведение ног в тренажёре"],"adduction":["Сведение ног в тренажёре"],"cableadduct":["Сведение ноги на нижнем блоке"],"hacksquat":["Приседания в гакк-машине"],"seatedcalf":["Подъём на носки сидя"],"standcalf":["Подъём на носки стоя в тренажёре"],"treadmill":["Беговая дорожка"],"bike":["Велотренажёр"],"rower":["Гребной тренажёр"],"elliptical":["Эллиптический тренажёр"],"stairs":["Степпер / лестница"]},"groups":{"chest":["Грудь"],"back":["Спина"],"shoulders":["Плечи"],"biceps":["Бицепс"],"triceps":["Трицепс"],"forearms":["Предплечья"],"abs":["Пресс"],"glutes":["Ягодицы"],"quads":["Квадрицепс"],"hams":["Бицепс бедра"],"calves":["Икры"],"cardio":["Кардио"]},"muscles":{"chest":["Грудные"],"delt_f":["Передняя дельта"],"delt_s":["Средняя дельта"],"delt_r":["Задняя дельта"],"biceps":["Бицепс"],"triceps":["Трицепс"],"forearms":["Предплечья"],"abs":["Прямая мышца живота"],"obliques":["Косые мышцы живота"],"traps":["Трапеции"],"midback":["Ромбовидные и середина спины"],"lats":["Широчайшие"],"lowback":["Разгибатели спины"],"glutes":["Ягодичные"],"quads":["Квадрицепс"],"hams":["Бицепс бедра"],"calves":["Икры"],"adductors":["Приводящие бедра"],"hipflex":["Сгибатели бедра"],"serratus":["Передняя зубчатая"],"cuff":["Вращательная манжета"]}},"syn":{"ex":{"pushup":["press-up"],"diamond":["алмазные отжимания","diamond push-up","triangle push-up"],"dip":["брусья","parallel bar dip","chest dip"],"bbbench":["жим лёжа","бенч","бенч-пресс","bench press","bench","flat bench press"],"dbincline":["наклонный жим гантелей"],"smithincline":["наклонный жим в Смите","incline Smith press"],"inclinebb":["наклонный жим","жим на наклонной","incline bench press","incline bench"],"declinebb":["жим головой вниз","decline bench press","decline bench"],"dbfly":["dumbbell flye"],"pecdeck":["пек-дек","butterfly","machine fly"],"bbrow":["тяга штанги к поясу","barbell row"],"dbrow":["тяга гантели в наклоне","dumbbell row","single-arm dumbbell row"],"latpull":["вертикальная тяга","тяга верхнего блока к груди","lat pull-down"],"cablerow":["горизонтальная тяга","тяга нижнего блока","seated row","cable row","low row"],"hyper":["hyperextension"],"dbpress":["жим гантелей над головой","dumbbell shoulder press"],"ohp":["армейский жим","жим над головой","жим стоя","OHP","military press","standing press"],"latraise":["разведения в стороны","разведения гантелей в стороны","side raise","side lateral raise"],"facepull":["фейс-пул"],"bbcurl":["сгибание рук со штангой"],"dbcurl":["сгибание рук с гантелями"],"hammer":["молотки","хаммер"],"skull":["skull crusher","French press"],"pushdown":["трицепс на блоке","pressdown"],"ohext":["французский жим сидя","французский жим стоя"],"farmer":["фермерская прогулка","farmer’s walk"],"cablecrunch":["молитва"],"hipthrust":["хип-траст"],"kbswing":["свинг"],"kbswing1":["свинг одной рукой"],"kbtgu":["TGU","get-up"],"bulgarian":["болгарские сплит-приседания","Bulgarian squat","rear-foot-elevated split squat","RFESS"],"stepup":["степ-ап"],"rdl":["румынка","RDL"],"squat":["присед","squat","back squat"],"airsquat":["приседания без веса","air squat"],"lunge":["выпады на месте","static lunge"],"legcurl":["hamstring curl"],"invrow":["горизонтальные подтягивания","Australian pull-up","body row"],"straightpull":["straight-arm pulldown"],"goodmorning":["гуд морнинг"],"cablelat":["махи на нижнем блоке","cable side raise"],"reversefly":["обратная бабочка","rear delt fly"],"rollout":["ролик для пресса","ab wheel","ab roller"],"glutekick":["кикбэк"],"cablekickback":["кикбэк","cable kickback"],"jumpingjack":["джампинг джек","star jump"],"burpee":["бурпи"],"mountain":["альпинист"],"superman":["супермен"],"revlunge":["выпады назад"],"sidelunge":["выпады в сторону","side lunge"],"nordic":["нордические сгибания","Nordic hamstring curl"],"chestpressm":["жим в хаммере"],"leverrowm":["тяга в хаммере","machine row"],"cablewood":["wood chop"],"abduction":["абдуктор","abductor machine","hip abductor"],"adduction":["аддуктор","adductor machine","hip adductor"],"hacksquat":["гакк-приседания"],"treadmill":["бег","running"],"rower":["гребля","rowing","erg"],"elliptical":["орбитрек","эллипс","cross trainer"],"stairs":["stepper"]},"groups":{"chest":["грудные","pecs"],"shoulders":["дельты","delts","deltoids"],"forearms":["хват","grip"],"abs":["кор","core"],"glutes":["ягодичные"],"quads":["квадры","передняя поверхность бедра","quadriceps"],"hams":["задняя поверхность бедра"],"calves":["икроножные","calf"]},"muscles":{"obliques":["косые"],"lowback":["поясница"],"midback":["ромбовидные","rhomboids"],"adductors":["приводящие","adductors"],"serratus":["зубчатая","serratus"],"cuff":["ротаторы","ротаторная манжета"]}},"stop":["в","во","на","с","со","и","для","к","ко","по","из","от","у","за","упражнение","упражнения","упражнений","the","a","an","of","on","with","for","and","in","to","at","exercise","exercises"],"words":{"db":["dumbbell"],"bb":["barbell"],"kb":["kettlebell"]},"layout":{"en":"`qwertyuiop[]asdfghjkl;'zxcvbnm,./","ru":"ёйцукенгшщзхъфывапролджэячсмитьбю."}};window.PODHOD_LANG='en';window.PODHOD_LOCALE={"dec":".","plural":"one","dates":"intl","units":"region"};
 /* ===================== SVG-ФИГУРА: общие помощники ===================== */
 const D2R = Math.PI / 180;
 const SVGNS = 'http://www.w3.org/2000/svg';
@@ -125,6 +125,184 @@ function muscleMapSvg(level, opts = {}) {
   };
   const H = opts.labels ? 222 : 207;
   return `<svg viewBox="0 0 206 ${H}" class="mmap" role="img" aria-label="${opts.aria || 'Muscle map'}">${view(MAP_FRONT, 0, 'front')}${view(MAP_BACK, 106, 'back')}</svg>`;
+}
+
+/* ===================== ДАННЫЕ БЕЗ ТИХИХ ПОТЕРЬ: хранилище браузера =====================
+   Главное правило: записи человека не пропадают молча. Либо сохраняем, либо ясно говорим, что не сохранилось, и даём выход.
+   · Keep.get / Keep.set — чтение и запись localStorage. Запись, которую браузер не принял, не теряется молча: Keep.state()
+     становится 'off' (браузер запретил сайту хранить данные) или 'full' (хранилище переполнено), и приложение показывает
+     заметное предупреждение (18a-data-keep.js). При переполнении сначала освобождается место от служебных копий, которые
+     приложение умеет пересчитать (кадры фигур, суставы упражнений), и запись повторяется.
+   · Keep.quarantine — испорченное значение из хранилища не затирается: до того как приложение запишет на его место исправленное,
+     исходный текст откладывается в podhod.broken.v1 (у каждого ключа до 3 последних, одинаковые — один раз). Отложенное можно
+     скачать файлом в журнале.
+   · repairJson — обрезанный текст JSON (копия, переданная не до конца; журнал, записанный наполовину): всё, что уцелело до
+     места обрыва.
+   · Безопасный запуск: если при запуске что-то падает (BOOT), приложение один раз перезапускается с обычными настройками —
+     журнал, замеры и пульс на месте, прежние настройки отложены; если падает и так — экран спасения без кода приложения:
+     «Сохранить все данные в файл» и «Открыть без сохранённых данных» (данные остаются отложенными, их можно восстановить из
+     файла в журнале).
+   · Keep.watch — изменения из другой вкладки (событие storage): журнал и настройки сливаются, а не затираются (13-log.js,
+     18a-data-keep.js).
+   Проверки — tools/data-keep.test.js, в браузере — tools/ui-check.mjs. */
+const KEEP_BROKEN = 'podhod.broken.v1', KEEP_SAFE = 'podhod.safe', KEEP_BROKEN_MAX = 3;
+/* служебные копии, которые приложение пересчитает само: при переполнении хранилища удаляются первыми */
+const KEEP_CACHES = ['podhod.frames.v1', 'podhod.stress.v1'];
+/* ключи данных человека: их отражает экран спасения и файл «все данные» */
+const KEEP_DATA = ['podhod.settings.v1', 'podhod.log.v1', 'podhod.body.v1', 'podhod.heart.v1', 'podhod.heart.prefs.v1', 'podhod.workout.v3',
+  'podhod.gear.v1', 'podhod.autoreg.v1', 'podhod.ics.v1', 'podhod.motion.v2', 'podhod.planSeen.v1', 'podhod.active.v1'];
+const Keep = (() => {
+  const failed = new Map(); /* ключ → 'off' | 'full': запись, которую браузер не принял */
+  const listeners = new Set(), notes = new Map(), watchers = new Map();
+  let lostInMemory = []; /* отложенное, которое не удалось записать в хранилище (оно полно): только до перезагрузки */
+  const ls = () => { try { return typeof localStorage === 'undefined' ? null : localStorage; } catch (e) { return null; } };
+  /* QuotaExceededError (Chrome, Safari), NS_ERROR_DOM_QUOTA_REACHED (Firefox), коды 22 и 1014 */
+  const kindOf = e => e && (e.name === 'QuotaExceededError' || e.name === 'NS_ERROR_DOM_QUOTA_REACHED' || e.code === 22 || e.code === 1014) ? 'full' : 'off';
+  const emit = () => { for (const f of listeners) try { f(); } catch (e) {} };
+  function state() {
+    if (!ls()) return 'off';
+    let s = 'ok'; for (const v of failed.values()) if (v === 'off' || s === 'ok') s = v;
+    return s;
+  }
+  function get(k) {
+    const st = ls(); if (!st) return null;
+    try { return st.getItem(k); } catch (e) { return null; }
+  }
+  /* запись; при переполнении — служебные копии вон и ещё раз. Вернёт true, если браузер принял запись */
+  function set(k, v) {
+    const st = ls(), before = state();
+    if (!st) { failed.set(k, 'off'); if (before !== 'off') emit(); return false; }
+    try { st.setItem(k, v); }
+    catch (e) {
+      let kind = kindOf(e), ok = false;
+      if (kind === 'full') { for (const c of KEEP_CACHES) if (c !== k) try { st.removeItem(c); } catch (er) {} try { st.setItem(k, v); ok = true; } catch (er) { kind = kindOf(er); } }
+      if (!ok) { failed.set(k, kind); if (state() !== before) emit(); return false; }
+    }
+    /* запись прошла: этот ключ и пробная запись при запуске — снова в порядке */
+    const was = failed.delete(k), probed = failed.delete('podhod.probe');
+    if ((was || probed) && state() !== before) emit();
+    return true;
+  }
+  function remove(k) { const st = ls(); if (st) try { st.removeItem(k); } catch (e) {} failed.delete(k); }
+  /* отложенные испорченные значения: [{key, at, why, raw}] — самые свежие в конце */
+  function broken() {
+    let list = [];
+    try { const v = JSON.parse(get(KEEP_BROKEN) || '[]'); if (Array.isArray(v)) list = v.filter(x => x && typeof x.key === 'string' && typeof x.raw === 'string'); } catch (e) {}
+    return list.concat(lostInMemory);
+  }
+  function quarantine(key, raw, why) {
+    if (typeof raw !== 'string' || !raw) return true;
+    const list = broken().filter(x => !lostInMemory.includes(x));
+    if (list.some(x => x.key === key && x.raw === raw)) return true;
+    const item = {key, at:new Date().toISOString(), why:String(why || ''), raw};
+    list.push(item);
+    /* у каждого ключа — не больше KEEP_BROKEN_MAX последних */
+    for (let n = list.filter(x => x.key === key).length; n > KEEP_BROKEN_MAX; n--) list.splice(list.findIndex(x => x.key === key), 1);
+    const st = ls();
+    try { if (!st) throw new Error('no storage'); st.setItem(KEEP_BROKEN, JSON.stringify(list)); return true; }
+    catch (e) { lostInMemory.push(item); return false; }
+  }
+  function clearBroken() { remove(KEEP_BROKEN); lostInMemory = []; }
+  /* сообщения о спасённых данных: id → {…}; рисует их 18a-data-keep.js */
+  function note(id, data) { if (data) notes.set(id, data); else notes.delete(id); emit(); }
+  /* объём данных приложения в хранилище, символы (браузеры дают около 5 млн символов на сайт) */
+  function usage() {
+    const st = ls(); let n = 0; if (!st || typeof st.length !== 'number') return 0;
+    try { for (let i = 0; i < st.length; i++) { const k = st.key(i); if (k && k.startsWith('podhod.')) n += k.length + (st.getItem(k) || '').length; } } catch (e) {}
+    return n;
+  }
+  /* другая вкладка изменила ключ: fn(новое значение) */
+  function watch(key, fn) { if (!watchers.has(key)) watchers.set(key, new Set()); watchers.get(key).add(fn); }
+  if (typeof window !== 'undefined' && typeof window.addEventListener === 'function') window.addEventListener('storage', e => {
+    if (!e || (e.storageArea && e.storageArea !== ls())) return;
+    const keys = e.key == null ? [...watchers.keys()] : [e.key];
+    for (const k of keys) for (const fn of watchers.get(k) || []) try { fn(e.key == null ? get(k) : e.newValue); } catch (er) {}
+  });
+  /* при запуске: принимает ли браузер записи вообще (Safari в приватном окне прежних версий, запрет данных сайтов) */
+  function probe() { if (set('podhod.probe', '1')) remove('podhod.probe'); return state(); }
+  return {get, set, remove, state, broken, quarantine, clearBroken, note, notes:() => notes, usage, watch, on:f => listeners.add(f), kindOf, probe};
+})();
+
+/* Обрезанный JSON: проход со стеком скобок; после каждого законченного элемента массива или поля объекта запоминается место
+   обрезки (последние 64); с самого позднего — текст до этого места и закрывающие скобки. Вернёт {value, cut} (cut — текст
+   читался не целиком) или null, если уцелевшего нет. */
+function repairJson(text) {
+  if (typeof text !== 'string' || !text.trim()) return null;
+  try { return {value:JSON.parse(text), cut:false}; } catch (e) {}
+  const st = [], cuts = [];
+  let str = false, bs = false;
+  const mark = at => { cuts.push([at, st.join('')]); if (cuts.length > 64) cuts.shift(); };
+  for (let i = 0; i < text.length; i++) {
+    const c = text[i];
+    if (str) { if (bs) bs = false; else if (c === '\\') bs = true; else if (c === '"') str = false; continue; }
+    if (c === '"') str = true;
+    else if (c === '{' || c === '[') st.push(c);
+    else if (c === '}' || c === ']') { st.pop(); if (st.length) mark(i + 1); else { try { return {value:JSON.parse(text.slice(0, i + 1)), cut:true}; } catch (e) {} } }
+    else if (c === ',' && st.length) mark(i);
+  }
+  for (let j = cuts.length - 1; j >= 0; j--) {
+    const [at, open] = cuts[j], tail = [...open].reverse().map(b => b === '{' ? '}' : ']').join('');
+    try { return {value:JSON.parse(text.slice(0, at) + tail), cut:true}; } catch (e) {}
+  }
+  return null;
+}
+
+/* ---------- безопасный запуск ----------
+   BOOT.phase 'loading' — с начала app.js до конца 99-boot.js. Скрипт выполняется подряд, поэтому ошибка, пойманная в это время,
+   — ошибка запуска самого приложения. Первая — отложить настройки и начатую тренировку и перезапуститься (sessionStorage
+   помнит, что попытка была); вторая — экран спасения. */
+const BOOT = {phase:'loading', failed:false};
+function bootFailed(err) {
+  if (BOOT.failed) return; BOOT.failed = true;
+  const msg = String(err && (err.message || err) || '').slice(0, 300);
+  let tried = true;
+  try { tried = !!sessionStorage.getItem(KEEP_SAFE); } catch (e) {}
+  if (!tried) {
+    for (const k of ['podhod.settings.v1', 'podhod.workout.v3']) { const v = Keep.get(k); if (v != null && Keep.quarantine(k, v, 'boot: ' + msg)) Keep.remove(k); }
+    try { sessionStorage.setItem(KEEP_SAFE, JSON.stringify({at:Date.now(), err:msg})); location.reload(); return; } catch (e) {}
+  }
+  const show = () => rescueScreen(msg);
+  if (typeof document !== 'undefined' && document.body) show(); else if (typeof addEventListener === 'function') addEventListener('DOMContentLoaded', show);
+}
+if (typeof window !== 'undefined' && typeof window.addEventListener === 'function') window.addEventListener('error', e => { if (BOOT.phase === 'loading') bootFailed(e && (e.error || e.message)); });
+/* все данные приложения одним файлом в формате резервной копии (её можно восстановить в журнале) и с исходными текстами */
+function rescueObject() {
+  const parse = k => { try { return JSON.parse(Keep.get(k) || 'null'); } catch (e) { const r = repairJson(Keep.get(k) || ''); return r ? r.value : null; } };
+  const raw = {};
+  for (const k of KEEP_DATA) { const v = Keep.get(k); if (v != null) raw[k] = v; }
+  const s = parse('podhod.settings.v1'), heart = parse('podhod.heart.v1'), body = parse('podhod.body.v1');
+  return {app:'podhod', v:2, rescue:true, exported:new Date().toISOString(), version:(typeof window !== 'undefined' && window.PODHOD_VERSION) || '',
+    settings:s && typeof s === 'object' ? s : undefined, log:parse('podhod.log.v1') || undefined, body:body && Array.isArray(body.rows) ? body.rows : undefined,
+    heart:heart && typeof heart === 'object' ? {days:heart.days} : undefined, raw, broken:Keep.broken()};
+}
+function rescueDownload(name) {
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(new Blob([JSON.stringify(rescueObject())], {type:'application/json'}));
+  a.download = name || 'lazy-gym-rescue.json'; document.body.appendChild(a); a.click();
+  setTimeout(() => { URL.revokeObjectURL(a.href); a.remove(); }, 1500);
+}
+/* экран спасения: без функций приложения (они могли не загрузиться) */
+function rescueScreen(msg) {
+  try {
+    const box = document.createElement('section');
+    box.className = 'rescue'; box.setAttribute('role', 'alert');
+    box.innerHTML = `<h1>${'The app didn\'t open'}</h1>
+      <p>${'The data saved on this device has not been erased. First save it to a file, then open the app without it and restore the file in “Log” → “Restore from backup”.'}</p>
+      <p class="rescue-err"></p>
+      <div class="rescue-b"><button type="button" class="btn" data-rescue="save">${'Save all data to a file'}</button>
+      <button type="button" class="btn btn-2" data-rescue="clean">${'Open without saved data'}</button></div>`;
+    box.querySelector('.rescue-err').textContent = msg ? 'Error: ' + msg : '';
+    box.addEventListener('click', e => {
+      const b = e.target.closest && e.target.closest('[data-rescue]'); if (!b) return;
+      if (b.dataset.rescue === 'save') { rescueDownload('lazy-gym-rescue-' + new Date().toISOString().slice(0, 10) + '.json'); return; }
+      /* данные откладываются, а не стираются: файл «все данные» уже можно было сохранить, отложенное видно в журнале */
+      for (const k of KEEP_DATA) { const v = Keep.get(k); if (v != null && Keep.quarantine(k, v, 'rescue')) Keep.remove(k); }
+      try { sessionStorage.removeItem(KEEP_SAFE); } catch (er) {}
+      location.reload();
+    });
+    document.body.prepend(box);
+    const f = box.querySelector('button'); if (f) f.focus();
+  } catch (e) {}
 }
 
 /* ===================== БАЗА УПРАЖНЕНИЙ ===================== */
@@ -770,7 +948,7 @@ const EX = [
  anim:{}},
 {id:'legpress', name:'Leg press', eq:[['legpress']], g:'quads', pri:['quads', 'glutes'], sec:['hams', 'adductors'], type:'c', lvl:1,
  tech:['Sit down and press your lower back into the pad. Feet on the platform, shoulder-width apart.',
-   'Release the safety stops and lower the platform, bending your knees to about 90°.',
+   'Release the safety stops and lower the platform until your knees reach a right angle.',
    'Press the platform away without snapping your knees into lockout.'],
  err:['Hips lifting off the seat at the bottom', 'Knees caving in', 'Locking out the knees at the top'],
  breath:'Inhale as you lower, exhale as you press.',
@@ -778,7 +956,7 @@ const EX = [
 /* тот же жим ногами со стопами выше и ниже на платформе; объёмные позы — tools/mannequin/exercises/g4-machines.js */
 {id:'legpresshigh', name:'Leg press, feet high', eq:[['legpress']], g:'quads', pri:['glutes', 'quads'], sec:['hams', 'adductors'], type:'c', lvl:1,
  tech:['Sit down and press your lower back into the pad. Feet in the upper part of the platform, shoulder-width apart, toes near the top edge.',
-   'Release the safeties and lower the platform as long as your hips stay on the seat — usually to about 80° at the knees.',
+   'Release the safeties and lower the platform as long as your hips stay on the seat — no deeper than a right angle at the knee.',
    'Press the platform through your whole foot without snapping your knees straight.'],
  err:['Hips lifting off the seat, lower back rounding', 'Knees caving in', 'Locking out the knees at the top'],
  breath:'Inhale as you lower, exhale as you press.',
@@ -786,7 +964,7 @@ const EX = [
  anim:{}},
 {id:'legpresslow', name:'Leg press, feet low', eq:[['legpress']], g:'quads', pri:['quads'], sec:['glutes', 'adductors'], type:'c', lvl:1,
  tech:['Sit down and press your lower back into the pad. Feet in the lower part of the platform, shoulder-width apart, heels near the edge but fully on the platform.',
-   'Release the safeties and lower the platform as long as your heels stay down — usually to about 95° at the knees.',
+   'Release the safeties and lower the platform as long as your heels stay down — slightly past a right angle at the knee. If your knees bother you, go no deeper than a right angle.',
    'Press the platform away without snapping your knees into lockout.'],
  err:['Heels lifting off the platform', 'Hips lifting off the seat at the bottom', 'Locking out the knees at the top'],
  breath:'Inhale as you lower, exhale as you press.',
@@ -1065,7 +1243,7 @@ EX.push(
 {id:'bandlegext', name:'Seated band leg extension', eq:[['band']], g:'quads', pri:['quads'], sec:[], type:'i', lvl:1, uni:true,
  tech:['Anchor the middle of the band at the bottom of the door and clip both ends to an ankle strap. Sit on a chair with your back to the door, far enough for the band to be taut with the knee bent.',
    'Back against the backrest, hands holding the edges of the seat, thigh resting on the seat.',
-   'Straighten the knee fully and hold for a second.',
+   'Straighten the leg almost fully — smoothly, without a pause or a snap at the end.',
    'Slowly bend the knee back to a right angle without letting the band jerk the leg. Then switch sides.'],
  err:['Thigh lifting off the seat', 'Jerking and dropping the leg', 'Leaning the torso forward'],
  breath:'Exhale as you straighten, inhale as you bend.',
@@ -1720,7 +1898,7 @@ const CUES_ALL = {
   bridge:['Raise your hips, squeezing your glutes.','Lower your hips with control.'],
   bandbridge:['Lift your hips, keeping your knees pushed out into the loop.','Lower your hips under control, knees over your feet.'],
   bandabduct:['Take the straight leg out to the side, torso level.','Return the leg slowly without putting the foot down.'],
-  bandlegext:['Straighten the leg fully, thigh on the seat.','Bend the knee slowly to a right angle, band taut.'],
+  bandlegext:['Straighten the leg almost fully, no snap at the end; thigh stays on the seat.','Bend the knee slowly to a right angle, band taut.'],
   bandadduct:['Bring the leg to your standing leg and a little past it, torso still.','Return the leg out to the side slowly, band taut.'],
   bandlatpull:['Pull the handles to your upper chest, elbows down to your sides.','Return your arms up slowly, band taut.'],
   bandfloorpress:['Press the handles up to straight arms above your shoulders.','Lower your arms slowly until the upper arms touch the floor, forearms vertical.'],
@@ -1748,9 +1926,9 @@ const CUES_ALL = {
   goblet:['Stand up, torso upright, elbows down.','Sink your hips between your knees.'],
   airsquat:['Rise to full extension.','Lower until your thighs are parallel to the floor.'],
   smithsquat:['Rise without lifting your heels.','Lower to parallel, feet in front of the bar.'],
-  legpress:['Press the platform away without locking your knees.','Lower the platform until your knees reach 90°, hips pressed down.'],
-  legpresshigh:['Press through your whole foot; don’t lock your knees.','Lower only as far as your hips stay on the seat.'],
-  legpresslow:['Press the platform, heels down.','Lower to 90–100° at the knees without lifting your heels or hips.'],
+  legpress:['Press the platform away without locking your knees.','Lower the platform until your knees reach a right angle, hips pressed down.'],
+  legpresshigh:['Press through your whole foot; don’t lock your knees.','Lower no deeper than a right angle at the knee, hips pressed into the seat.'],
+  legpresslow:['Press the platform, heels down.','Lower slightly past a right angle at the knees, heels and hips down.'],
   legext:['Extend your legs until nearly straight and hold.','Lower slowly, without dropping.'],
   legcurl:['Pull your heels toward your glutes, hips pressed down.','Straighten your legs smoothly.'],
   calfraise:['Rise onto your toes as high as you can.','Lower slowly, stretching your calves.'],
@@ -10934,16 +11112,39 @@ function selectMuscleRegion(prefix,id){
                  На гребном тренажёре колено нагружено только в толчке: ноги толкают из полного сжатия, пик силы — когда
                  колено проходит 90° (British Rowing Plus, 2024, «Applying biomechanics: an analysis of the rowing stroke»);
                  в возврате маховик идёт по инерции, сопротивления нет — метка горит в толчке и молчит в возврате;
-   колено      — разгибание в открытой цепи ближе 30° к прямой ноге: Escamilla et al. 1998, MSSE 30(4):556–569;
+   колено      — разгибание в открытой цепи ближе 30° к прямой ноги под внешней нагрузкой у голени: тренажёр (голень под
+                 валиком), манжета эспандера или троса на щиколотке. Стопа этой ноги ни на что не опирается, нагрузка
+                 приложена ниже колена, колено проходит не меньше 30° (разгибание, а не прямая нога весь подход), основная
+                 мышца — квадрицепс. Escamilla et al. 1998, MSSE 30(4):556–569 (натяжение ПКС — только в открытой цепи и
+                 у прямой ноги); Escamilla, MacLeod, Wilk, Paulos, Andrews 2012, JOSPT, PubMed 22387600 (обзор): без опоры
+                 стопой ПКС нагружена больше, чем с опорой; сильнее всего — при сгибе колена 10–50°, пик — 10–30°; чем ниже
+                 по голени упор сопротивления, тем больше сила на ПКС (манжета на щиколотке — самый низкий упор). После
+                 пластики ПКС открытую цепь начинают с 4-й недели в диапазоне 90–45° сгиба, к 8-й неделе — до полной
+                 амплитуды: van Melick et al. 2016, Br J Sports Med 50:1506–1515 (клиническое руководство);
+   колени, быстро — ритмичная смена ног, при которой стопа с ходу бьёт в пол (скалолаз): пиковая угловая скорость колена
+                 ≥ 600°/с, стопа касается пола или коврика кадрами (контакт с окном времени). После пластики ПКС бег —
+                 только после критериев (полное разгибание, нет отёка, сила квадрицепса не меньше 80 % здоровой ноги,
+                 безболезненные прыжки на месте), прыжки и ловкость — после ещё более строгих: Aspetar, «Clinical Practice
+                 Guideline on Rehabilitation after ACLR» (aspetar.com/acl-recommendations). Числа скорости в руководствах нет;
+                 600°/с — порог по самому каталогу: скалолаз — 834°/с, бег трусцой на дорожке — 427°/с, ходьба с
+                 гантелями — 346°/с (на дорожке скорость задаёт человек, при «беречь колени» в ней — шаг без бега);
+   колени, сбоку — сила приложена ниже колена поперёк ноги (вдоль оси сгибания колена, угол с ней ≤ 60°) при почти прямом
+                 колене (≤ 30°): манжета или мини-петля у щиколотки в сведении и отведении ноги, опора стопой на скамью
+                 в копенгагенской планке. Колено — середина рычага «таз — щиколотка», его связки держат боковой изгиб.
+                 Моменты, сгибающие колено вбок, повышают силу на ПКС: варус (голень внутрь) — у прямой ноги, вальгус (голень наружу) —
+                 у согнутой: Markolf et al. 1995, J Orthop Res 13(6):930–935 (препараты). Упор у колена (тренажёр сведения,
+                 копенгагенская планка с опорой коленом) — рычага через колено нет, метка молчит;
    упор на колени — колено стоит на опоре и несёт вес тела: передняя поверхность колена смотрит в опору (вниз —
                  не дальше 53° от вертикали, косинус ≥ 0,6). Стоя на коленях при сгибе 90° на переднюю поверхность колена
                  приходится в среднем 97 % веса тела, давление — на надколенник и бугристость большеберцовой кости, после
                  эндопротеза давление в надколенниково-бедренном суставе растёт сильнее: Lee 2014, Clin Orthop Surg 6(2):117–126
-                 (обзор, данные Hassaballa et al.). Стоять на коленях — то, что хуже всего восстанавливается после эндопротеза:
-                 через 5 лет 67 % с большим трудом или не могут — Shah et al. 2023, Arthroplasty 5:32 (систематический обзор);
-                 после пластики ПКС сухожилием надколенника сильные трудности — у 21,3 % через 2 года — Rahardja et al. 2023,
-                 AJSM 51(13):3464–3472. Не упор: колено в валиках тренажёра сбоку (сведение, разведение), под валиком скамьи
-                 для пресса (передняя поверхность смотрит вверх), боком на скамье в копенгагенской планке;
+                 (обзор, данные Hassaballa et al.). Стоять на коленях — то, что меньше всего улучшается после эндопротеза
+                 («kneeling remains the activity least improved»): Shah et al. 2023, Arthroplasty 5:32 (систематический обзор
+                 о протезировании надколенника; в нём же — когорта Wylde et al. 2017: через 5 лет 67 % с большим трудом или
+                 не могут стоять на коленях); после пластики ПКС сухожилием надколенника сильные трудности — у 21,3 % через
+                 2 года — Rahardja et al. 2023, AJSM 51(13):3464–3472. Не упор: колено в валиках тренажёра сбоку (сведение,
+                 разведение), под валиком скамьи для пресса (передняя поверхность смотрит вверх), боком на скамье
+                 в копенгагенской планке;
    поясница    — наклон корпуса ≥40° без опоры с весом: McGill 1997, J Biomech 30(5):465–475;
    поясница, длинный рычаг — упор руками далеко впереди при вытянутом теле (выкатывание ролика): плечо поднято ≥120°,
                  корпус почти горизонтален (наклон 50–110°), таз раскрыт (сгибание бедра ≤30°), туловище ничем не подпёрто.
@@ -10953,24 +11154,66 @@ function selectMuscleRegion(prefix,id){
                  позвоночника — Youdas et al. 2008, JSCR 22(6):1939–1946 (Ab-Slide); упражнения передней цепи с длинным
                  рычагом (выход из упора лёжа, «пила») — 2400–2700 Н сжатия L4/L5, выполнить их могли только тренированные —
                  McGill, Andersen, Cannon 2015, J Sports Sci 33(4):419–426;
+   поясница, сгибание — упражнения на пресс и косые, в которых позвоночник сгибается вперёд или вбок под весом тела или
+                 снаряда: сгибание поясничного и грудного отделов за повторение меняется на ≥15° (вбок — на ≥15°), метка —
+                 в согнутой фазе (на 10° дальше исходного). Повторные сгибания-разгибания под сжатием ≈1500 Н — грыжа диска
+                 у 15 из 26 препаратов за 86 400 циклов: Callaghan, McGill 2001, Clin Biomech 16:28–37 (по таблице обзора
+                 Contreras, Schoenfeld 2011, Strength Cond J 33(4):8–18); скручивания — около 2000 Н сжатия (Axler, McGill
+                 1997, MSSE 29:804–811, по тому же обзору). Противопоказания к сгибаниям позвоночника — при грыже диска или
+                 непереносимости сгибания (Contreras, Schoenfeld 2011); «если боль вызывает сгибание, его нужно избегать» —
+                 McGill S., «Spine flexion exercise: myths, truths and issues affecting health and performance» (backfitpro.com);
+   поясница, скручивание — корпус скручивается в поясничном и грудном отделах на ≥20° за повторение (дровосек, велосипед),
+                 метка — где скручен больше чем на 10°. Скручивание вместе с повторным сгибанием — расслоение фиброзного
+                 кольца у 67,5 % препаратов, одно скручивание грыжу не вызывало: Marshall, McGill 2010, Clin Biomech
+                 25(1):6–9;
+   поясница, разгибание — корпус на весу держат мышцы спины лёжа на животе или на станке: таз или бёдра на опоре, грудь
+                 и руки ничем не подпёрты, грудь смотрит вниз, корпус наклонён ≥45° от вертикали (гиперэкстензия, «лодочка»).
+                 Разгибание корпуса лёжа (и вместе с ногами) — «очень высокая активность мышц и значительная нагрузка на
+                 суставы: применять неразумно»; подъём одной ноги на четвереньках — наименьшая нагрузка, рука и нога
+                 («птица-собака») — на ≈1000 Н больше: Callaghan, Gunning, McGill 1998, Phys Ther 78(1):8–18;
+   поясница, прямые ноги — обе ноги на весу прямые (колени ≤25°) и ближе 37° к горизонтали (подъём прямых ног лёжа и в висе,
+                 «лодочка» на спине): мышцы-сгибатели бедра тянут поясницу, длинный рычаг передней цепи — как в «пиле»
+                 и выходе из упора лёжа (McGill, Andersen, Cannon 2015, см. выше). С согнутыми коленями («мёртвый жук»,
+                 подъём коленей) рычаг короче — метки нет;
+   поясница, осевая нагрузка — стоя (стопы на полу, корпус ничем не подпёрт, наклон меньше 40°) вес давит на позвоночник
+                 сверху: штанга или валики тренажёра на плечах, свободный вес над головой (кисти на 10 см выше центра головы)
+                 или в опущенных руках в переноске и шрагах. Давление в диске L4–5: стоя 0,5 МПа, стоя с 20 кг у тела
+                 1,1 МПа, бег трусцой — до 0,95 МПа: Wilke et al. 1999, Spine 24(8):755–762;
    плечи       — плечо за линией корпуса ≥20° в жимах и брусьях, длинный рычаг в разведениях:
-                 Fees et al. 1998, AJSM 26(5):732–742; брусья — McKenzie et al. 2022, IJERPH 19(21):14390;
+                 Fees et al. 1998, AJSM 26(5):732–742 (обзор: хват, ширина рук, траектория, исходное и конечное положение
+                 в жимах при болях в плече); брусья — McKenzie et al. 2022, IJERPH 19(21):14390;
    плечи вверх — жим над головой: плечо поднято на 90–120° под весом — подакромиальное пространство здесь самое узкое
-                 (при работе мышц — уже всего около 90°): Graichen et al. 1999, AJR 172(4):1081–1086; жимы над головой —
-                 среди упражнений, на которые чаще жалуются при боли в плече: Kolber et al. 2010, JSCR 24(6):1696–1704;
+                 (при работе мышц — уже всего около 90°): Graichen et al. 1999, AJR 172(4):1081–1086; жалобы на плечо
+                 у тех, кто тренируется с отягощениями: болезненными названы жим и тяга из-за головы, жим широким хватом,
+                 жим на наклонной (серия 20 случаев, Gross et al.) — Kolber et al. 2010, JSCR 24(6):1696–1704 (обзор);
    локти       — сгибание ≥100° с весом над головой в изолирующих упражнениях на трицепс (практическое правило);
-   запястья    — разгибание кисти ≥60° под весом тела: J Wrist Surg 2017, 6(4):276–279;
-   ахилл       — тыльное сгибание ≥15° с весом в подъёмах на носки: Weinert-Aplin et al. 2015, JSSM 14:459–465;
+   запястья    — разгибание кисти ≥60° под весом тела. Все 24 бытовых действия у 40 человек укладываются в 60° разгибания
+                 кисти, большинство — в 40°: Ryu et al. 1991, J Hand Surg Am 16(3):409–419; опора всем весом тела на кисть,
+                 разогнутую дальше, — за пределами бытовой амплитуды. Боль у тех, кто опирается на разогнутую кисть
+                 (отжимания, планка, йога) — Nance et al. 2017, J Wrist Surg 6(4):276–279 (МРТ; порога угла в работе нет);
+   ахилл       — тыльное сгибание ≥5° (дальше нейтрали, 5° — допуск измерения стопы манекена) с весом в подъёмах на носки.
+                 При вставочной тендинопатии ахилла эксцентрика «без нагрузки в тыльное сгибание» (на полу, не со ступеньки)
+                 помогла 67 % больных, а с полной амплитудой тыльного сгибания — 32 %: Jonsson, Alfredson, Sunding,
+                 Fahlström, Cook 2008, Br J Sports Med 42(9):746–749. Прежний порог 15° ссылался на Weinert-Aplin et al.
+                 2015 (JSSM 14:459–465), но в той работе порога нет: она о том, как сгиб колена меняет опускание пятки;
    приземление — кадры после полётной фазы, пока таз опускается;
-   бёдра сзади — колено ≤40° при сгибании бедра ≥70° с весом; скандинавские сгибания — наклон ≥40°:
-                 Opar et al. 2012, Sports Med 42(3):209–226;
+   бёдра сзади — колено ≤40° при сгибании бедра ≥70° с весом; скандинавские сгибания — наклон ≥40°: задняя поверхность
+                 бедра травмируется, работая в удлинённом положении (конец переноса ноги в беге, мах ногой при сгибании
+                 бедра с разгибанием колена) — Opar, Williams, Shield 2012, Sports Med 42(3):209–226;
    вис, верх подтягивания, шея — по просьбе владельца: здесь чаще всего травмируют плечи и шейный отдел. */
 const STRESS_RULES = [
   {id:'knee', parts:['knees'], zone:'Knees', what:'Deep bend under load — peak load on the kneecap and knee ligaments.', tip:'Keep knees in line with your feet; don’t drop or relax at the bottom.'},
-  {id:'kneeOpen', parts:['knees'], zone:'Knees', what:'The last 30° before a straight leg put the most tension on the ACL.', tip:'Extend without jerking or slamming at the end.'},
+  {id:'kneeOpen', parts:['knees'], zone:'Knees', what:'The last 30° to a straight leg with the load at the shin — the anterior cruciate ligament is under the most tension.', tip:'Extend smoothly, no jerk or snap at the end. If your knee bothers you or after surgery, choose another exercise.'},
+  {id:'kneeFast', parts:['knees'], zone:'Knees', what:'Fast pace: the knee bends and straightens sharply, the foot hits the floor on the move.', tip:'If your knee bothers you, go slowly, step instead of jumping the foot in, or choose another exercise.'},
+  {id:'kneeSide', parts:['knees'], zone:'Knees', what:'The force acts at the ankle across the leg — the knee is loaded from the side, on its ligaments.', tip:'Support or a cuff at the knee removes this load; if your knee bothers you, choose that version.'},
   {id:'kneel', parts:['knees'], zone:'Knees', what:'Kneeling: body weight presses on the kneecap and the tibial tuberosity.', tip:'Use a soft mat; if kneeling hurts, choose a standing or seated option.'},
   {id:'lumbar', parts:['lower back'], zone:'Lower back', what:'Leaning forward with a load and no support — peak load on the lower back.', tip:'Keep a neutral back, hinge at the hips, keep the weight close to your legs.'},
   {id:'lumbarLever', parts:['lower back'], zone:'Lower back', what:'Long lever: arms far ahead, body extended — the abs keep the lower back from sagging, the load on the lumbar spine is at its highest.', tip:'Roll out only as far as your lower back stays flat; with back pain, shorten the range or do a plank instead.'},
+  {id:'lumbarFlex', parts:['lower back'], zone:'Lower back', what:'The spine bends under body weight or a load — the discs are compressed and loaded in flexion.', tip:'With back pain or a herniated disc, do a plank, side plank or bird dog instead: torso still, arms and legs move.'},
+  {id:'lumbarTwist', parts:['lower back'], zone:'Lower back', what:'The torso twists under load — the lower-back discs are loaded in rotation.', tip:'Turn your whole body from the feet, without twisting at the lower back; with back pain, do a plank instead of twists.'},
+  {id:'lumbarExt', parts:['lower back'], zone:'Lower back', what:'The back muscles hold the unsupported torso — lower-back compression is among the highest.', tip:'With back pain, do a bird dog instead: one arm and the opposite leg, torso stays down.'},
+  {id:'lumbarLegs', parts:['lower back'], zone:'Lower back', what:'Long lever: straight legs held in the air — the hip muscles pull on the lower back and it tends to arch.', tip:'Bend your knees to shorten the lever; with back pain, do a dead bug with bent legs.'},
+  {id:'axial', parts:['lower back'], zone:'Lower back', what:'Axial load: the weight presses down on the spine, the lower-back discs are compressed more than without it.', tip:'With back pain or a herniated disc, work seated with back support or lying down, with a lighter weight.'},
   {id:'shPress', parts:['shoulders'], zone:'Shoulders', what:'The upper arm goes behind the torso under load — stress on the front of the shoulder joint.', tip:'Lower only to a comfortable depth, shoulder blades squeezed and set.'},
   {id:'shLever', parts:['shoulders'], zone:'Shoulders', what:'Long lever: the weight is far from the shoulder.', tip:'Keep elbows slightly bent, don’t sink at the bottom.'},
   {id:'shOverhead', parts:['shoulders'], zone:'Shoulders', what:'The arm passes through the 90–120° arc under load — the space under the acromion is narrowest and the shoulder tendons are squeezed the most.', tip:'Press in front of the head, never behind it, elbows slightly in front of the torso; if it hurts, stop lower or swap the exercise.'},
@@ -10998,10 +11241,23 @@ const STRESS_FRAMES = 40;
 const STRESS_CACHE = new Map();
 /* глубокий сгиб колена под весом — порог правила «колени» (Escamilla 2001); на одной ноге — раньше */
 const STRESS_KNEE_DEEP = 85, STRESS_KNEE_DEEP_UNI = 80;
+/* тыльное сгибание под весом в подъёмах на носки — порог правила «ахилл» (Jonsson et al. 2008): дальше нейтрали, 5° — допуск */
+const STRESS_DORSI = 5;
 /* наклоны от таза, если таблица движений планировщика ещё не загружена (проверка рисунков без приложения) */
 const STRESS_HINGE = new Set(['deadlift', 'rdl', 'sllift', 'goodmorning', 'kbswing', 'hyper', 'pullthrough', 'kbdeadlift', 'kbswing1', 'kbclean', 'kbsnatch', 'kbsllift']);
 /* жимы вверх — так же, на случай проверки без таблицы движений */
 const STRESS_VPUSH = new Set(['dbpress', 'ohp', 'pikepush', 'arnold', 'declinepike', 'shoulderpressm', 'smithohp', 'kbpress']);
+/* переноска и шраги (тяжёлый вес в опущенных руках стоя) — так же */
+const STRESS_CARRY = new Set(['farmer', 'shrug', 'hang', 'wristcurl']);
+/* пороги новых правил (обоснования — в шапке файла):
+   KNEE_FAST — пиковая угловая скорость колена, °/с; SIDE — доля силы вдоль оси сгибания колена (cos 60°);
+   FLEX, TWIST — размах сгибания и скручивания позвоночника за повторение, °; LEGS — доля бедра по вертикали
+   (sin 37°: ближе 37° к горизонтали); OVERHEAD — кисти выше центра головы, см.
+   Числа этих порогов (и STRESS_PIVOT — 20° поворота на опорной ноге, 5 см «вниз головой» в 11l-health.js) в литературе
+   не найдены: источники подтверждают опасность самой нагрузки, а число — определение по механике, проверенное по каталогу
+   (tools/joint-stress.test.js: где метка обязана гореть и где молчать). Принято владельцем по 4.106 (вопрос 10); найдётся
+   число в источнике — менять отдельным коммитом с повторной проверкой всех упражнений. */
+const STRESS_KNEE_FAST = 600, STRESS_SIDE = .5, STRESS_FLEX = 15, STRESS_TWIST = 20, STRESS_LEGS = .6, STRESS_OVERHEAD = 10;
 
 /* что держит и на что опирается тело — по контактам спецификации */
 function stressContacts(ex) {
@@ -11016,8 +11272,45 @@ function stressContacts(ex) {
   /* свободный вес: гриф, гантель, гиря; ладони на диске гантели (пуловер, разгибание из-за головы) */
   const free = has(/^grip[LR]?>(bar|db[LR]?|kb[LR]?|tbar|\w+:horn[LR])$/) || has(/^(hand|palm[LR]?)>\w+:top$/);
   const machine = !legs && has(/^grip[LR]?>(cab[LR]?|pec[LR]|\w+:(handle[LR]?|grab[LR]|pull[LR]|pec[LR]))$/);
+  /* рукоять троса блока — нагрузка и в упражнениях на ноги (протяжка между ног), в отличие от поручней рамы */
+  const cable = has(/^grip[LR]?>cab[LR]?$/);
+  const at = (c, t) => stressIn(c, t), side = (c, re, s) => re.test(c.body) && (!s || c.body.endsWith(s) || !/[LR]$/.test(c.body));
+  /* нагрузка у голени: валик тренажёра на голени, манжета эспандера или троса на щиколотке, мини-петля на голенях —
+     со стороны s; anchor — куда тянет (кольцо крепления ленты, блок троса), other — петля тянет к другой ноге */
+  const distal = {L:[], R:[]};
+  for (const c of K) { const m = c.body.match(/^shin([LR])?$/); if (m && /:roller$/.test(c.prop)) for (const s of m[1] ? [m[1]] : ['L', 'R']) distal[s].push({kind:'roller'}); }
+  for (const e of P.equipment || []) {
+    if (e.type === 'band' && Array.isArray(e.route)) {
+      const ring = e.route.find(r => r.ring), cuffs = e.route.filter(r => r.cuff), loop = e.route.filter(r => r.limb === 'sk');
+      for (const c of cuffs) if (distal[c.cuff]) distal[c.cuff].push({kind:'cuff', anchor:ring ? ring.ring : null});
+      if (loop.length === 2) for (const r of loop) if (distal[r.side]) distal[r.side].push({kind:'loop', other:r.side === 'L' ? 'R' : 'L'});
+    }
+    if (e.type === 'g3cable' && e.attach === 'ankle' && distal[e.foot]) distal[e.foot].push({kind:'cable', anchor:e.swivel || e.from || null});
+  }
+  /* стопа (подошва, передний отдел) на опоре со стороны s в кадре t */
+  const footOn = (s, t) => K.some(c => side(c, /^(sole|foot)[LR]?$/, s) && at(c, t));
+  /* опора стопой или голенью на возвышении (скамья), без окна времени, при этом ни одна подошва не стоит на полу — тело висит
+     между этой опорой и руками (копенгагенская планка с опорой стопой) */
+  const standing = K.some(c => /^sole[LR]?$/.test(c.body) && /^(floor|mat)$/.test(c.prop) && !c.when);
+  const raised = s => !standing && K.some(c => side(c, /^(sole|foot|shin)[LR]?$/, s) && !c.when && !/^(floor|mat)$/.test(c.prop));
+  /* стопа касается пола кадрами: окна времени контакта подошвы или переднего отдела с полом или ковриком */
+  const strikes = s => K.filter(c => side(c, /^(sole|foot)[LR]?$/, s) && c.when && /^(floor|mat)$/.test(c.prop));
   return {
-    loaded: free || machine,
+    loaded: free || machine || cable,
+    free,
+    /* валики тренажёра на плечах (стоячий подъём на носки, гакк-машина) — вес давит на плечи сверху */
+    shoulderPads: has(/^upperBack>\w+:(sh|pad)[LR]$/),
+    /* стоит без опоры корпусом и руками: штанга на спине и ладони на диске гантели — не опора */
+    standFree: !has(/^(buttocks|back|chest|belly|front|upperBack|headBack|th[LR]?|thighsBack|knee[LR]?|fa[LR]?)>(?!bar$)/) && !has(/^palm[LR]?>(?!\w+:top$)/),
+    distal: s => distal[s],
+    footFree: (s, t) => !footOn(s, t),
+    raised,
+    strikes,
+    /* таз или бёдра на опоре в кадре t; верх корпуса, голова или руки на опоре в кадре t */
+    pelvisOn: t => K.some(c => /^(belly|buttocks|th[LR]?|thighsBack)$/.test(c.body) && at(c, t)),
+    upperOn: t => K.some(c => /^(chest|front|forehead|head|headBack|upperBack|back|palm[LR]?|fa[LR]?|hand[LR]?|grip[LR]?)$/.test(c.body) && at(c, t)),
+    /* ноги ни на что не опираются в кадре t */
+    legsFree: t => !K.some(c => /^(sole|foot|heel|toe|shin|sk|knee|th|thighsBack)[LR]?$/.test(c.body) && at(c, t)),
     backBar: has(/^back>bar$/),
     sole: s => has(new RegExp(s ? '^sole(' + s + ')?>' : '^sole[LR]?>')),
     /* стопа стоит на опоре: подошвой или передним отделом (на носках) */
@@ -11047,9 +11340,18 @@ function stressContacts(ex) {
   };
 }
 /* углы и вспомогательные величины кадра */
-function stressFrame(R, t = null) {
+function stressFrame(R, t = null, k = null) {
   const A = Mannequin.jointAngles(R), V = Mannequin.V;
   const up = V.unit(V.sub(R.sh, R.hip)), trunk = Math.acos(Math.max(-1, Math.min(1, -up[1]))) * 180 / Math.PI;
+  /* сила у голени поперёк ноги: доля её направления вдоль оси сгибания колена (ось — поперёк голени и стопы) */
+  const sideLoad = s => {
+    if (!k || !R['kn' + s] || !R['an' + s] || !R['toe' + s] || !R['heel' + s]) return 0;
+    const axis = V.unit(V.cross(V.unit(V.sub(R['an' + s], R['kn' + s])), V.unit(V.sub(R['toe' + s], R['heel' + s]))));
+    const dirs = k.distal(s).map(d => d.anchor ? V.unit(V.sub(d.anchor, R['an' + s])) : d.other ? V.unit(V.sub(R['an' + d.other], R['an' + s])) : null).filter(Boolean);
+    /* опора снизу (ось y каталога — вниз): реакция направлена вверх */
+    if (k.raised(s)) dirs.push([0, -1, 0]);
+    return dirs.reduce((m, d) => Math.max(m, Math.abs(V.dot(d, axis))), 0);
+  };
   const side = s => { const a = A[s], h = R['grip' + s] && R['sh' + s] ? Math.hypot(R['grip' + s][0] - R['sh' + s][0], R['grip' + s][2] - R['sh' + s][2]) : 0;
     /* центр колена впереди носка (см) — по горизонтали вдоль стопы от пятки к носку */
     const toe = R['toe' + s], heel = R['heel' + s], fw = toe && heel ? V.unit([toe[0] - heel[0], 0, toe[2] - heel[2]]) : null;
@@ -11060,11 +11362,17 @@ function stressFrame(R, t = null) {
     const hip = R['hip' + s], kn = R['kn' + s], an = R['an' + s];
     let kneeDown = 0;
     if (hip && kn && an) { const d = V.sub(V.unit(V.sub(kn, hip)), V.unit(V.sub(an, kn))), n = Math.hypot(...d); if (n > .35) kneeDown = d[1] / n; }
-    return {...a, behind:a.posterior > 0 ? Math.asin(Math.min(1, a.posterior)) * 180 / Math.PI : 0, beta:Math.abs(Math.atan2(a.lat, -a.up) * 180 / Math.PI), reach:h, kneeAhead, kneeDown}; };
-  return {A, t, trunk, L:side('L'), R:side('R')};
+    /* бедро: доля его направления по вертикали (0 — горизонтально, 1 — отвесно) */
+    const thighLevel = hip && kn ? Math.abs(V.unit(V.sub(kn, hip))[1]) : 1;
+    return {...a, behind:a.posterior > 0 ? Math.asin(Math.min(1, a.posterior)) * 180 / Math.PI : 0, beta:Math.abs(Math.atan2(a.lat, -a.up) * 180 / Math.PI), reach:h, kneeAhead, kneeDown, thighLevel, sideLoad:sideLoad(s)}; };
+  /* позвоночник — поясничный и грудной отделы вместе: сгибание вперёд, наклон вбок, скручивание */
+  const spine = i => (A.lumbar ? A.lumbar[i] : 0) + (A.thoracic ? A.thoracic[i] : 0);
+  /* лёжа грудью вниз: нормаль груди смотрит вниз; кисти над головой */
+  const prone = R.chestN ? R.chestN[1] : 0, wristsUp = R.head && R.wrL && R.wrR ? Math.min(R.wrL[1], R.wrR[1]) < R.head[1] - STRESS_OVERHEAD : false;
+  return {A, t, trunk, flex:spine(0), lat:spine(1), twist:spine(2), prone, wristsUp, L:side('L'), R:side('R')};
 }
 /* правила кадра: возвращают ключи меток (суставы со стороной или центральные точки) */
-function stressRulesAt(ex, k, f) {
+function stressRulesAt(ex, k, f, X = {}) {
   const out = {}, add = (id, keys) => { if (keys.length) out[id] = keys; }, both = (fn, key) => ['L', 'R'].filter(fn).map(s => key + s);
   /* в наклоне от таза (становая, румынская) колени согнуты, но пик нагрузки — на поясницу и заднюю поверхность бедра */
   const hinge = typeof PATTERN !== 'undefined' ? PATTERN[ex.id] === 'hinge' : STRESS_HINGE.has(ex.id), legsG = ['quads', 'glutes', 'hams'].includes(ex.g);
@@ -11074,12 +11382,31 @@ function stressRulesAt(ex, k, f) {
     /* без отягощения на двух ногах, руки не держат вес: глубокий сгиб с коленями за носками (сисси-присед) */
     else if (legsG && !ex.uni && k.upright && !k.handsBear) add('knee', both(s => k.feet(s) && f[s].knee >= STRESS_KNEE_DEEP && f[s].kneeAhead > 0, 'kn'));
   }
-  if (k.shin) add('kneeOpen', both(s => f[s].knee <= 30, 'kn'));
+  /* разгибание колена в открытой цепи: нагрузка у голени, стопа этой ноги свободна, колено проходит ≥30° и подходит к прямой */
+  if (ex.pri.includes('quads')) add('kneeOpen', both(s => k.distal(s).length && k.footFree(s, f.t) && (X.kneeSpan ? X.kneeSpan[s] >= 30 : true) && f[s].knee <= 30, 'kn'));
+  /* быстрая смена ног: стопа с ходу бьёт в пол — кадры приземления стопы (X.strike) */
+  if (X.strike) add('kneeFast', both(s => X.strike[s] && X.strike[s][Math.round(f.t * STRESS_FRAMES)], 'kn'));
+  /* сила у голени поперёк почти прямой ноги */
+  add('kneeSide', both(s => f[s].knee <= 30 && f[s].sideLoad >= STRESS_SIDE, 'kn'));
   /* упор на колени: колено на опоре передней поверхностью */
   add('kneel', both(s => k.kneeOn(s, f.t) && f[s].kneeDown >= .6, 'kn'));
   if (k.sole('') && !k.seated && (k.loaded || k.backBar) && f.trunk >= 40) add('lumbar', ['lumbar']);
   /* длинный рычаг: тело вытянуто между упором рук далеко впереди и коленями или стопами */
   if (k.trunkFree && k.leverHands(f.t) && f.trunk >= 50 && f.trunk <= 110 && Math.max(f.L.hipFlex, f.R.hipFlex) <= 30 && Math.max(f.L.elevation, f.R.elevation) >= 120) add('lumbarLever', ['lumbar']);
+  /* сгибание позвоночника вперёд или вбок в упражнениях на пресс и косые: согнутая фаза */
+  const core = ex.pri.includes('abs') || ex.pri.includes('obliques');
+  if (core && X.flex && ((X.flex.range >= STRESS_FLEX && f.flex >= X.flex.min + 10) || (X.lat.range >= STRESS_FLEX && Math.abs(f.lat - X.lat.zero) >= 10))) add('lumbarFlex', ['lumbar']);
+  /* скручивание корпуса: пресс и косые или с нагрузкой */
+  if ((core || k.loaded) && X.twist && X.twist.range >= STRESS_TWIST && Math.abs(f.twist - X.twist.zero) >= 10) add('lumbarTwist', ['lumbar']);
+  /* разгибание: грудь вниз, таз или бёдра на опоре, верх корпуса и руки на весу, корпус ближе к горизонтали */
+  if (f.prone >= .5 && k.pelvisOn(f.t) && !k.upperOn(f.t) && f.trunk >= 45) add('lumbarExt', ['lumbar']);
+  /* прямые ноги на весу, ближе 37° к горизонтали */
+  /* лёжа на спине или в висе: лёжа на животе ноги поднимают разгибатели — это «разгибание» */
+  if (f.prone < .5 && k.legsFree(f.t) && f.L.knee <= 25 && f.R.knee <= 25 && f.L.thighLevel <= STRESS_LEGS && f.R.thighLevel <= STRESS_LEGS) add('lumbarLegs', ['lumbar']);
+  /* осевая нагрузка стоя: штанга или валики на плечах, свободный вес над головой или в опущенных руках в переноске и шрагах */
+  const carry = typeof PATTERN !== 'undefined' ? ['grip', 'shrug'].includes(PATTERN[ex.id]) : STRESS_CARRY.has(ex.id);
+  /* валики на плечах — при любом наклоне спины (гакк-машина: спина на упоре, вес давит вдоль позвоночника) */
+  if (k.sole('') && (k.shoulderPads || (f.trunk < 40 && k.standFree && (k.backBar || (k.free && (f.wristsUp || carry)))))) add('axial', ['lumbar']);
   const push = ['chest', 'triceps', 'shoulders'].includes(ex.g);
   if (push && (k.loaded || k.handsBear)) add('shPress', both(s => f[s].behind >= 20, 'sh'));
   /* жим вверх: плечо в дуге 90–120° — только в жимах, а не в тяге к лицу или махах (там другая задача и малый вес) */
@@ -11094,7 +11421,7 @@ function stressRulesAt(ex, k, f) {
   }
   if (ex.pri[0] === 'triceps' && ex.type !== 'c' && k.loaded) add('elbow', both(s => f[s].elbow >= 100 && f[s].elevation >= 80, 'el'));
   if (!k.kneelAnchored) add('wrist', both(s => ((k.palmBear(s) && f.trunk >= 45) || k.palmTop) && f[s].wristFlex <= -60, 'wr'));
-  if (ex.pri[0] === 'calves' && ex.type !== 'c' && ex.g !== 'cardio') add('achilles', both(s => f[s].dorsi >= 15, 'an'));
+  if (ex.pri[0] === 'calves' && ex.type !== 'c' && ex.g !== 'cardio') add('achilles', both(s => f[s].dorsi >= STRESS_DORSI, 'an'));
   if (k.sole('') && !k.seated && (k.loaded || k.backBar)) add('hams', both(s => f[s].knee <= 40 && f[s].hipFlex >= 70, 'th'));
   if (k.kneelAnchored && f.trunk >= 40) add('hams', ['thL', 'thR']);
   return out;
@@ -11105,15 +11432,35 @@ function jointStress(ex) {
   let result = {rules:[]};
   const rig = ex.anim.catalogRig;
   if (rig && typeof CATALOG_POSES !== 'undefined' && CATALOG_POSES[ex.id]) {
-    const k = stressContacts(ex), frames = [], clear = [], hip = [], legsG = ['quads', 'glutes', 'hams'].includes(ex.g);
+    const k = stressContacts(ex), frames = [], clear = [], hip = [], legsG = ['quads', 'glutes', 'hams'].includes(ex.g), F = [];
     let kneeDepth = 0;
     for (let i = 0; i <= STRESS_FRAMES; i++) {
       const t = i / STRESS_FRAMES, R = rig(t);
-      if (!R.frames) { frames.length = 0; break; }
-      const f = stressFrame(R, t);
-      frames.push(stressRulesAt(ex, k, f));
+      if (!R.frames) { F.length = 0; break; }
+      const f = stressFrame(R, t, k);
+      F.push(f);
       clear.push(Math.max(R.heelL[1], R.toeL[1], R.heelR[1], R.toeR[1])); hip.push(R.hip[1]);
       if (legsG && !k.restOn(t, f.trunk) && f.trunk <= 60) for (const s of ['L', 'R']) if (k.feet(s)) kneeDepth = Math.max(kneeDepth, f[s].knee);
+    }
+    /* величины всего повторения: размах колена, сгибания, наклона вбок и скручивания позвоночника (zero — положение, ближайшее
+       к нейтрали), кадры приземления стопы при быстрой смене ног (скорость колена — по периоду анимации: у замкнутого цикла
+       0→1 — весь период, иначе туда и обратно) */
+    if (F.length) {
+      const range = vals => ({min:Math.min(...vals), range:Math.max(...vals) - Math.min(...vals), zero:vals.reduce((z, v) => Math.abs(v) < Math.abs(z) ? v : z, vals[0])});
+      const X = {kneeSpan:{}, flex:range(F.map(f => f.flex)), lat:range(F.map(f => f.lat)), twist:range(F.map(f => f.twist)), strike:null};
+      const dt = ex.anim.period ? ex.anim.period / (ex.anim.loop ? STRESS_FRAMES : 2 * STRESS_FRAMES) / 1000 : 0;
+      for (const s of ['L', 'R']) {
+        const kn = F.map(f => f[s].knee); X.kneeSpan[s] = Math.max(...kn) - Math.min(...kn);
+        let v = 0; for (let i = 1; i < kn.length; i++) v = Math.max(v, Math.abs(kn[i] - kn[i - 1]));
+        const W = k.strikes(s);
+        if (dt && W.length && v / dt >= STRESS_KNEE_FAST) {
+          /* приземление: контакт начался в этом кадре (не было в прошлом; у цикла — по кругу) и два следующих кадра */
+          const on = F.map(f => W.some(c => stressIn(c, f.t))), hit = on.map(() => false), n = on.length;
+          for (let i = 0; i < n; i++) { const prev = i ? on[i - 1] : ex.anim.loop ? on[n - 2] : on[0]; if (on[i] && !prev) for (let j = 0; j < 3 && i + j < n; j++) if (on[i + j]) hit[i + j] = true; }
+          (X.strike = X.strike || {})[s] = hit;
+        }
+      }
+      for (const f of F) frames.push(stressRulesAt(ex, k, f, X));
     }
     result.kneeDepth = frames.length ? kneeDepth : 0;
     if (frames.length) {
@@ -11141,12 +11488,48 @@ function jointStress(ex) {
    спина у стены — тоже стоя), в градусах.
    Для замен при «Беречь колени» (11g-gentle.js): присед или выпад с весом тела до того же сгиба нагружает колено
    почти как с гантелью. Момент на колене задаёт прежде всего вес тела над коленом и плечо до него: гантель в 10–16 кг —
-   это 13–20 % веса тела; в приседе с ¼ и ½ веса тела момент на колене при сгибе 60° больше, чем без веса, лишь на 10
-   и 14 % (Lorenzetti et al., ISB 2009, предварительные данные одного испытуемого; полная работа — JSCR 2012,
-   26(10):2829–2836: в нижней точке колено 86° с барьером у носков и 106° без него). А снижают момент меньшее сгибание
-   и колени за линией носков (Fry 2003). Поэтому замена при «Беречь колени» не уходит стоя глубже порога правила. */
+   это 13–20 % веса тела. Снижают момент меньшее сгибание и колени за линией носков: без барьера у носков момент на колене
+   при сгибе 60° с ¼ и ½ веса тела на 10 и 14 % больше, чем с барьером, а без веса — одинаковый (Lorenzetti et al., тезисы
+   ISB 2009, предварительные данные одного испытуемого; полная работа — JSCR 2012, 26(10):2829–2836: в нижней точке колено
+   86° с барьером у носков и 106° без него); в приседе со штангой — Fry 2003. Поэтому замена при «Беречь колени» не уходит
+   стоя глубже порога правила. */
 function stressKneeDepth(ex) { return ['quads', 'glutes', 'hams'].includes(ex.g) ? jointStress(ex).kneeDepth || 0 : 0; }
 function stressKneeDeep(ex) { return stressKneeDepth(ex) >= (ex.uni ? STRESS_KNEE_DEEP_UNI : STRESS_KNEE_DEEP); }
+/* Поворот корпуса на опорной ноге — для отметки «После операции на колене» (11g-gentle.js): насколько поворачивается таз
+   (линия тазобедренных суставов, вокруг вертикали), пока стопа стоит на полу весь подход (контакт без окна времени).
+   Поворот на опорной ноге под нагрузкой закручивает голень относительно бедра: внутренний поворот голени вместе с силой,
+   сдвигающей её вперёд, дал наибольшую силу на ПКС, больше всего — у прямой ноги (Markolf et al. 1995, J Orthop Res
+   13(6):930–935); смена направления и повороты после пластики ПКС — последний этап, после критериев (Aspetar, «Clinical
+   Practice Guideline on Rehabilitation after ACLR»). Порог отметки — 20° (STRESS_PIVOT): у дровосека с поворотом таза — 36°,
+   у мельницы — 30°, у приседов, выпадов и жимов стоя — меньше 10°. */
+const STRESS_PIVOT = 20, STRESS_PIVOT_CACHE = new Map();
+function stressPivot(ex) {
+  if (STRESS_PIVOT_CACHE.has(ex.id)) return STRESS_PIVOT_CACHE.get(ex.id);
+  let deg = 0;
+  const P = typeof CATALOG_POSES !== 'undefined' && CATALOG_POSES[ex.id], rig = ex.anim && ex.anim.catalogRig;
+  if (P && rig && (P.contacts || []).some(c => /^(sole|foot)[LR]?$/.test(c.body) && /^(floor|mat)$/.test(c.prop) && !c.when)) {
+    const V = Mannequin.V, yaw = [];
+    for (let i = 0; i <= STRESS_FRAMES; i++) {
+      const R = rig(i / STRESS_FRAMES); if (!R.frames || !R.hipL || !R.hipR) break;
+      const d = V.sub(R.hipL, R.hipR); let a = Math.atan2(d[2], d[0]) * 180 / Math.PI;
+      /* без скачка через ±180° */
+      if (yaw.length) { const prev = yaw[yaw.length - 1]; while (a - prev > 180) a -= 360; while (a - prev < -180) a += 360; }
+      yaw.push(a);
+    }
+    if (yaw.length) deg = Math.max(...yaw) - Math.min(...yaw);
+  }
+  STRESS_PIVOT_CACHE.set(ex.id, deg);
+  return deg;
+}
+/* фаза полёта в беге: обе стопы над опорой, а тело ничем больше не опирается (дорожка — бег, а не шаг); прыжки — с метками
+   приземления, здесь — только кардио на время (беговая дорожка) */
+function stressFlight(ex) {
+  const P = typeof CATALOG_POSES !== 'undefined' && CATALOG_POSES[ex.id], K = P && P.contacts || [];
+  if (ex.kind !== 'time' || ex.g !== 'cardio' || !K.length || K.some(c => !c.when) || !K.every(c => /^(sole|foot)[LR]?$/.test(c.body))) return false;
+  if (jointStress(ex).rules.some(r => r.id === 'landing')) return false;
+  for (let i = 0; i <= STRESS_FRAMES; i++) { const t = i / STRESS_FRAMES; if (!K.some(c => stressIn(c, t))) return true; }
+  return false;
+}
 function stressExercise(anim) { return anim.catalogId ? (typeof EXI !== 'undefined' ? EXI[anim.catalogId] : EX.find(e => e.id === anim.catalogId)) : null; }
 /* активные правила в положении t; index 2 и 3 — обратный ход (кроме замкнутых циклов) */
 function jointStressAt(ex, t, index = 0) {
@@ -11255,9 +11638,10 @@ const GOALS = {
   cut:{name:'Muscular endurance', hint:'12–20 reps', about:'Tone up and build endurance: light weight, 12–20 reps, short rest.', reps:{c:'12–15', i:'15–20'}, sets:{c:3, i:3}, rest:{c:60, i:40}, tempo:'2-0-1-0',
     load:{c:'≈ 55–65%', i:'until the muscle burns'}, rir:null, rep:3, time:'45–60 s', dist:'40 m',
     circ:{rounds:4, reps:'15–20', work:40, rest:15, roundRest:90}, ss:{rest:60}, ctrl:'10–15', ball:'10–15'},
-  /* бережно: суставы болят или идёт восстановление (11g-gentle.js) — Garber et al., MSSE 2011, 43(7):1334–1359 */
-  gentle:{name:'Easy', hint:'12–15 reps', about:'For sore joints, after an injury or a long break: light weight, slow, no jumps or jerks.', reps:{c:'12–15', i:'12–15'}, sets:{c:2, i:2}, rest:{c:90, i:60}, tempo:'3-0-2-0',
-    load:{c:'≈ 40–60%', i:'light weight'}, rir:[3, 4], rep:5, time:'20–30 s', dist:'20 m',
+  /* бережно: суставы болят или идёт восстановление (11g-gentle.js) — Garber et al., MSSE 2011, 43(7):1334–1359 (рекомендации
+     для практически здоровых взрослых); нагрузка — словами, без процента от максимума на 1 повтор (load.c — как у прицельных) */
+  gentle:{name:'Easy', hint:'12–15 reps', about:'For sore joints or after a long break: light weight, slow, no jumps or jerks. After an injury or surgery, see a doctor first.', reps:{c:'12–15', i:'12–15'}, sets:{c:2, i:2}, rest:{c:90, i:60}, tempo:'3-0-2-0',
+    load:{c:'light weight: every rep feels easy', i:'light weight: every rep feels easy'}, rir:[3, 4], rep:5, time:'20–30 s', dist:'20 m',
     circ:{rounds:2, reps:'12–15', work:30, rest:30, roundRest:120}, ss:{rest:90}, ctrl:'8–12', ball:'8–10'}
 };
 /* Запас повторов (повторы в запасе) — один источник для строки нагрузки в карточке, подсказки первой записи в журнале,
@@ -11347,9 +11731,12 @@ const GN = Object.fromEntries(GROUPS.map(g => [g.id, g.name]));
 /* ---------- генератор как у тренера (отчёт тестеров 4.94.0: Марина п. 11–16, Дмитрий, Alex п. 25) ---------- */
 /* Жимы и тяги — горизонтальные и вертикальные. В тренировке, где есть и спина, и грудь или плечи, подходов на тяги
    не меньше, чем на жимы (было: «4 жима, 16 подходов, против 2 тяг, 8», приложение само писало «жимов заметно больше»).
-   Перекос в сторону жимов — одна из причин болей в плече у тех, кто тренируется с отягощениями: Kolber M.J. et al.,
-   J Strength Cond Res 2010; 24(6):1696–1704; баланс мышц-антагонистов при выборе упражнений и чередование жимов
-   и тяг — NSCA, Haff & Triplett, Essentials of Strength Training and Conditioning, 4-е изд., 2016, гл. 17. */
+   Основание — правило методики: баланс мышц-антагонистов при выборе упражнений и чередование жимов и тяг — NSCA, Haff &
+   Triplett, Essentials of Strength Training and Conditioning, 4-е изд., 2016, гл. 17. Исследования именно о том, что
+   жимов больше, чем тяг, — причина боли в плече, не нашёл (11.2026). Близкое — обзор Kolber M.J. et al., J Strength Cond
+   Res 2010; 24(6):1696–1704: у тех, кто тренируется с отягощениями, программы перегружены крупными мышцами (грудные,
+   дельты, верх трапеций), а вращатели плеча и мышцы лопатки забыты; найден перекос «дельты — наружные вращатели» и «верх —
+   низ трапеции» (с. 1698). Перекос «жимы — тяги» в обзоре так не называется. */
 const PUSH_P = new Set(['hpush', 'ipush', 'dpush', 'vpush']), PULL_P = new Set(['hrow', 'vpull']);
 const sideOf = ex => PUSH_P.has(PATTERN[ex.id]) ? 'push' : PULL_P.has(PATTERN[ex.id]) ? 'pull' : null;
 /* Тяжёлая база с нагрузкой на позвоночник: присед со штангой, в Смите и в гакк-машине, становая и румынская тяги,
@@ -11474,11 +11861,89 @@ const STORE = 'podhod.settings.v1';
 const FIRST_RUN = (() => {
   try { return !['podhod.settings.v1', 'podhod.log.v1', 'podhod.workout.v3', 'podhod.planSeen.v1'].some(k => localStorage.getItem(k) != null); } catch (e) { return false; }
 })();
-function loadSettings() {
-  try { const s = JSON.parse(localStorage.getItem(STORE) || 'null'); if (s && s.groups && s.equip) return Object.assign({}, DEFAULTS, s); } catch (e) {}
-  return Object.assign({}, DEFAULTS);
+/* Настройки из хранилища или резервной копии — с проверкой типа каждого поля (Ксения 1, 9, 15): строка вместо списка мышц
+   («groups»: "chest»), строка вместо «Беречь суставы», мусор в местах и планах роняли приложение («groups.map is not a function»)
+   навсегда. Неверное поле — значение по умолчанию, и его имя попадает в bad (сообщение человеку). Здесь — только то, что можно
+   проверить до остального кода (цели, форматы, уровни, мышцы, инвентарь, упражнения); состав планов, мест, суставов, сворачивания —
+   ensureCustoms, ensurePlaces, ensureProtect, ensureFold (они вызываются при запуске и после восстановления). Неизвестные
+   поля (из новых версий) остаются как есть. */
+const SETTINGS_LABEL = {goal:'goal', format:'format', level:'level', count:'number of exercises', groups:'muscles', equip:'equipment',
+  seed:'selection variant', mode:'what to build', days:'workouts per week', split:'split', week:'cycle week', day:'day of the week',
+  view:'section', atlasM:'muscle in the atlas', focus:'focus', fav:'favorites', customs:'custom plans', custom:'open custom plan',
+  gen:'settings of regular plans', author:'plan author name', fold:'collapsed blocks', protect:'“Protect joints”', cpLast:'last custom plan',
+  lr:'“L/R separately”', units:'weight units', dur:'workout time', places:'places', place:'place', placesV:'places', adapt:'“like another place”',
+  swaps:'exercise swaps', logPick:'workout from the log', health:'“Health”', pain:'exercises marked as painful'};
+function cleanSettings(raw) {
+  const s = raw && typeof raw === 'object' && !Array.isArray(raw) ? {...raw} : {}, bad = new Set();
+  if (!raw || typeof raw !== 'object' || Array.isArray(raw)) bad.add('*');
+  const obj = v => v && typeof v === 'object' && !Array.isArray(v);
+  const fix = (k, ok, def = DEFAULTS[k]) => { if (!(k in s)) return; if (!ok(s[k])) { bad.add(k); if (def === undefined) delete s[k]; else s[k] = Array.isArray(def) ? def.slice() : obj(def) ? {...def} : def; } };
+  const int = (lo, hi) => v => Number.isInteger(v) && v >= lo && v <= hi;
+  const ids = (k, list) => { if (!(k in s)) return; if (!Array.isArray(s[k])) { fix(k, () => false); return; }
+    const ok = new Set(list), v = [...new Set(s[k].filter(x => typeof x === 'string' && ok.has(x)))]; if (v.length !== s[k].length) bad.add(k); s[k] = v; };
+  const strOrNull = max => v => v === null || (typeof v === 'string' && v.length <= max);
+  fix('goal', v => typeof v === 'string' && !!GOALS[v]); fix('format', v => typeof v === 'string' && !!FORMATS[v]); fix('level', v => typeof v === 'string' && !!LEVELS[v]);
+  fix('count', int(3, 10)); fix('seed', v => Number.isInteger(v) && Math.abs(v) < 2 ** 31);
+  fix('mode', v => typeof v === 'string' && !!MODES[v]); fix('days', int(2, 5)); fix('split', v => typeof v === 'string' && !!SPLITS[v]);
+  fix('week', int(1, WEEKS.length)); fix('day', int(0, 6)); fix('view', v => ['plan', 'atlas', 'journal'].includes(v));
+  fix('atlasM', v => typeof v === 'string' && v.length <= 40); fix('focus', v => v === null || (typeof v === 'string' && !!MUSCLE_NAMES[v]));
+  ids('groups', GROUPS.map(g => g.id)); ids('equip', EQUIP.map(e => e.id));
+  fix('fav', Array.isArray); fix('customs', Array.isArray); fix('custom', strOrNull(40)); fix('gen', v => v === null || obj(v));
+  fix('author', v => typeof v === 'string'); fix('fold', v => v === null || obj(v)); fix('protect', v => Array.isArray(v) && v.every(x => typeof x === 'string'));
+  /* 4.106: ответы о здоровье и пометки «больно» (11l-health.js, 11g-gentle.js — ensureHealth, ensurePain дочищают по спискам) */
+  fix('health', v => Array.isArray(v) && v.every(x => typeof x === 'string')); fix('pain', v => v === null || obj(v));
+  fix('cpLast', strOrNull(40)); fix('lr', obj); fix('units', v => v === null || v === 'kg' || v === 'lb'); fix('dur', strOrNull(12));
+  fix('places', Array.isArray); fix('place', v => typeof v === 'string' && v.length <= 40);
+  fix('placesV', v => Number.isInteger(v) && v >= 0 && v < 1000); fix('adapt', strOrNull(40));
+  fix('swaps', v => obj(v) && Object.values(v).every(x => obj(x) || Array.isArray(x))); fix('logPick', v => v === null || obj(v));
+  /* элементы списков, которые потом чистят ensure*: не объекты — мимо, и это отмечается */
+  if (Array.isArray(s.customs) && s.customs.some(c => !obj(c) || typeof c.id !== 'string')) { s.customs = s.customs.filter(c => obj(c) && typeof c.id === 'string'); bad.add('customs'); }
+  if (Array.isArray(s.fav) && s.fav.some(id => typeof id !== 'string' || !EXI[id])) { s.fav = s.fav.filter(id => typeof id === 'string' && EXI[id]); bad.add('fav'); }
+  if (Array.isArray(s.places) && s.places.some(p => !obj(p) || typeof p.id !== 'string')) { s.places = s.places.filter(p => obj(p) && typeof p.id === 'string'); bad.add('places'); }
+  if (Array.isArray(s.places) && !s.places.length) delete s.places;
+  return {s:Object.assign({}, DEFAULTS, s), bad:[...bad]};
 }
-function saveSettings() { try { localStorage.setItem(STORE, JSON.stringify(S)); } catch (e) {} }
+/* названия испорченных полей для сообщения: «мышцы, места» */
+function settingsBadText(bad) { return [...new Set(bad.map(k => SETTINGS_LABEL[k] || 'other settings'))].join(', '); }
+/* Две вкладки (или приложение с экрана «Домой» и вкладка браузера): у каждой свои настройки в памяти. settingsBase — текст
+   настроек в хранилище, каким эта вкладка видела его последним. Перед записью и по событию storage (18a-data-keep.js)
+   поле, которое другая вкладка изменила, а эта — нет, берётся из хранилища; изменённое здесь остаётся своим.
+   Вернёт список полей, взятых из хранилища. */
+let settingsBase = null;
+function settingsMerge(diskText = Keep.get(STORE)) {
+  if (diskText == null || diskText === settingsBase) return [];
+  let d = null, b = null;
+  try { d = JSON.parse(diskText); } catch (e) { return []; }
+  /* настроек не было, когда эта вкладка открылась (первый запуск) — основа — обычные */
+  try { b = settingsBase == null ? null : JSON.parse(settingsBase); } catch (e) {}
+  const theirs = cleanSettings(d).s, base = cleanSettings(b).s, took = [];
+  for (const k of new Set([...Object.keys(theirs), ...Object.keys(base)])) {
+    const was = JSON.stringify(base[k]), t = JSON.stringify(theirs[k]);
+    if (t !== was && JSON.stringify(S[k]) === was) { if (theirs[k] === undefined) delete S[k]; else S[k] = theirs[k]; took.push(k); }
+  }
+  settingsBase = diskText;
+  return took;
+}
+function loadSettings() {
+  const raw = Keep.get(STORE);
+  settingsBase = raw;
+  if (raw == null) return Object.assign({}, DEFAULTS);
+  let o = null, cut = false;
+  try { o = JSON.parse(raw); } catch (e) { const r = repairJson(raw); if (r) { o = r.value; cut = true; } }
+  const {s, bad} = cleanSettings(o);
+  if (cut || bad.length) {
+    /* исходное — в отложенные, до того как на его место запишется исправленное */
+    Keep.quarantine(STORE, raw, cut ? 'settings: cut' : 'settings: ' + bad.join(','));
+    Keep.note('settings', {fields:cut && !bad.length ? ['other settings'] : bad.filter(k => k !== '*'), whole:o == null});
+  }
+  return s;
+}
+/* запись поверх того, что в хранилище сейчас: поля, изменённые здесь, — отсюда, остальные — из хранилища (settingsMerge) */
+function saveSettings() {
+  if (settingsMerge().includes('swaps')) try { swaps = S.swaps && typeof S.swaps === 'object' && !Array.isArray(S.swaps) ? S.swaps : (S.swaps = {}); } catch (e) {}
+  const text = JSON.stringify(S);
+  if (Keep.set(STORE, text)) settingsBase = text;
+}
 
 const S = loadSettings();
 /* замены и порядок упражнений (кнопки «Заменить» и ↑ ↓) хранятся с настройками: после перезапуска приложения
@@ -11782,7 +12247,7 @@ function prescribe(ex, week, E, extra = 0) {
   /* процент от 1ПМ — только у тяжёлой базы (schemeOf: heavy): штанга, гантели, тренажёр, блок обеими руками или ногами.
      Для резины, противовеса, собственного веса, гири одной рукой и подвижности — запас повторов без процента:
      подбирается натяжение ленты, противовес, вариант упражнения или вес, с которым держится техника. */
-  const pct = sch === 'heavy';
+  const pct = sch === 'heavy' && S.goal !== 'gentle';
   const band = ex.eq.length && ex.eq.every(g => g.every(id => id === 'band')), assisted = ex.eq.some(g => g.includes('gravitron'));
   const how = band ? 'band tension: ' : assisted ? 'counterweight: ' : weighable(ex, E) ? '' : 'easier or harder variation: ';
   const easy = band ? 'band tension: lighter than usual, not to your limit' : assisted ? 'counterweight: more than usual, not to your limit' : weighable(ex, E) ? 'light weight, not to your limit' : 'an easier variation, not to your limit';
@@ -11803,6 +12268,8 @@ function prescribe(ex, week, E, extra = 0) {
   }
   if (ex.kind === 'time') load = ex.g === 'cardio' ? (S.goal === 'gentle' ? 'moderate pace: you can talk without gasping' : 'fast pace without losing technique') : S.goal === 'strength' ? 'weighted or with a harder variation' : 'steady, without losing form';
   else if (ex.g === 'cardio') load = S.goal === 'gentle' ? 'smoothly, at an even pace' : 'explosively and at an even pace';
+  /* дорожка при «Коленях» и «Грыже диска» — шаг без бега (treadmillWalk, 11g-gentle.js) */
+  if (typeof treadmillWalk === 'function' && treadmillWalk(ex)) load = 'brisk walking, no running: you can talk without gasping';
   if (ex.kind === 'dist') load = S.goal === 'strength' ? 'heaviest implements possible' : S.goal === 'gentle' ? 'moderate weight, steady steps' : 'heavy implements, no stops';
   const notes = [];
   if (bodyweight && sch === 'mod' && S.goal === 'strength') notes.push('If the range feels easy, add weight or slow the lowering to 4 s.');
@@ -12136,6 +12603,7 @@ function renderSetup() {
   $('#f-format').innerHTML = seg('format', FORMATS, S.format);
   $('#f-level').innerHTML = seg('level', LEVELS, S.level);
   renderProtect();
+  if (typeof renderHealth === 'function') renderHealth();
   /* время на тренировку (11j-duration.js): в своём плане упражнения и подходы задал человек — поля нет */
   $('#f-dur').hidden = custom;
   const dur = S.dur || '';
@@ -12251,12 +12719,23 @@ function rxHtml(it) {
 /* суставы под пиковой нагрузкой — короткая строка в карточке. Пояснение раскрывается нажатием на строку (касанием и
    с клавиатуры, а не только в подсказке мыши): тот же текст, что в панели «Нагрузка на суставы» внизу разбора движения */
 const PEAK_OPEN = new Set();
+/* пояснение к меткам: «напоминание, а не запрет» — только тем, кто суставы не отмечал (Елена, п. 5); отмеченным — правда
+   про это упражнение и их суставы */
+const STRESS_LEAD = 'A red mark on the mannequin is a moment of peak load on a joint, ligament or tendon. It is a reminder to keep good form, not a ban.';
+function stressLead(ex) {
+  const prot = typeof protectShown === 'function' ? protectShown() : [];
+  if (!prot.length) return STRESS_LEAD;
+  const hits = protectHits(ex), strict = strictHit(ex);
+  const head = 'A red mark on the mannequin is a moment of peak load on a joint, ligament or tendon.';
+  if (hits.length || strict) return head + ' ' + (hits.length ? 'You are protecting your {what}: this exercise loads them.'.replace('{what}', hitsText(hits)) : upFirst(`${STRICT[strict].why} — ${PROTECT_BY[strict].name.toLowerCase()}.`)) + ' ' + 'It is not picked for your plan, and in your own plan a similar exercise replaces it.';
+  return head + ' ' + 'What you protect ({what}) gets no peak load here; the marks are on other joints — keep good form.'.replace('{what}', hitsText(prot));
+}
 function jointsLine(ex, idx) {
   const zones = typeof stressZones === 'function' ? stressZones(ex) : [];
   if (!zones.length) return '';
   const on = typeof motionPrefs === 'undefined' || motionPrefs.stress !== false, open = PEAK_OPEN.has(ex.id);
   const rules = typeof jointStress === 'function' ? jointStress(ex).rules : [];
-  const lead = document.querySelector('#mv-stress-panel .stress-explanation')?.textContent || 'A red mark on the mannequin is a moment of peak load on a joint, ligament or tendon. It is a reminder to keep good form, not a ban.';
+  const lead = stressLead(ex);
   return `<div class="c-joints"${on ? '' : ' hidden'}><button type="button" class="c-joints-b" data-peak="${ex.id}" aria-expanded="${open}" aria-controls="peak-${idx}"><span class="stress-dot" aria-hidden="true"></span><span>Peak load: ${esc(zones.join(', '))}</span><i class="cg-chev" aria-hidden="true"></i></button>`
     + `<div class="c-joints-x" id="peak-${idx}"${open ? '' : ' hidden'}><p class="stress-explanation">${esc(lead)}</p><ul class="stress-list">${rules.map(r => `<li><span class="stress-dot" aria-hidden="true"></span><span><b>${esc(r.zone)}.</b> ${esc(r.what)} <em>${esc(r.tip)}</em></span></li>`).join('')}</ul></div></div>`;
 }
@@ -12314,7 +12793,7 @@ function cardHtml(it, idx) {
     <ol class="t-steps">${ex.tech.map(s => `<li>${esc(s)}</li>`).join('')}</ol>
     <div class="t-cols">
       <div><h4>Common mistakes</h4><ul class="t-err">${ex.err.map(s => `<li>${esc(s)}</li>`).join('')}</ul></div>
-      <div><h4>Breathing</h4><p>${esc(ex.breath)}</p>${ex.note ? `<h4>Important</h4><p>${esc(ex.note)}</p>` : ''}${r.notes.map(n => `<p class="t-tip">${esc(n)}</p>`).join('')}</div>
+      <div><h4>Breathing</h4><p>${esc(ex.breath)}</p>${breathCaveat(ex) ? `<p class="t-tip t-med">${esc(breathCaveat(ex))}</p>` : ''}${ex.note ? `<h4>Important</h4><p>${esc(ex.note)}</p>` : ''}${r.notes.map(n => `<p class="t-tip">${esc(n)}</p>`).join('')}</div>
     </div>
   </details>
 </li>`;
@@ -12371,7 +12850,9 @@ function blocksHtml(p) {
   return html;
 }
 /* расшифровка для тех, кто знает обозначения: на карточках они уже сказаны словами */
-const LEGEND = `<p class="legend">One-rep max (1RM) is the weight you can lift only once. Tempo: effort is lifting the weight, return is lowering it, in seconds. In the “Tempo” field of your own plan, use four numbers: lowering, pause at the bottom, lifting, pause at the top; X means lift fast.</p>`;
+/* «Не заменяет врача» — всем, под каждым планом, одной спокойной строкой (замечание кардиолога, Михаил п. 3) */
+const DOCTOR_LINE = 'The app does not replace a doctor. With a heart condition, high blood pressure, after an injury or surgery, or during pregnancy, talk to your doctor first.';
+const LEGEND = `<p class="legend">One-rep max (1RM) is the weight you can lift only once. Tempo: effort is lifting the weight, return is lowering it, in seconds. In the “Tempo” field of your own plan, use four numbers: lowering, pause at the bottom, lifting, pause at the top; X means lift fast.</p><p class="legend legend-med">${DOCTOR_LINE}</p>`;
 function warnHtml(p) {
   const warn = [];
   const gentle = S.goal === 'gentle' || S.protect.length > 0;
@@ -12396,6 +12877,7 @@ function headButtons(copyLabel) {
         ${S.mode === 'custom' ? `<button type="button" class="btn btn-2" id="plan-export">${ICON.share}<span>Export</span></button>`
           : `<button type="button" class="btn btn-2" id="save-plan">${ICON.save}<span>${S.mode === 'program' ? 'Save the week' : 'Save as custom plan'}</span></button>`}
       </div>
+      ${w.own ? `<p class="p-hint wk-own">${'The workout follows the list it was started with.'}</p>` : ''}
       <p class="p-hint" id="copy-msg" role="status"></p>
       <p class="p-hint" id="save-msg" role="status"></p>`;
 }
@@ -12418,6 +12900,24 @@ function announcePlan() {
   clearTimeout(announcePlan.t); announcePlan.t = setTimeout(() => { box.textContent = text; }, 80);
 }
 function renderPlan() { renderPlanView(); if ($('#count-v')) renderCount(); announcePlan(); }
+/* пустой план: настоящая причина (отчёт Елены, п. 10) — бережный режим, а не оборудование, если без него упражнения нашлись бы */
+function emptyBodyGroups(groups = S.groups) {
+  const E = effEquip(S.equip), lvl = S.level === 'beg' ? 2 : 3;
+  /* те же условия формата, что и в подборе (buildPlan): в статодинамике нет удержаний и кардио, в круговой — упражнений на дозу */
+  const here = EX.filter(ex => available(ex, E) && ex.lvl <= lvl && (S.format !== 'static' || staticOk(ex)) && (S.format !== 'circuit' || !ex.doseReps)
+    && groups.some(g => ex.g === g || (g !== 'cardio' && ex.pri.some(m => MUSCLE_GROUP[m] === g))));
+  return here.length && !here.some(fitsBody) ? groups.filter(g => here.some(ex => ex.g === g)) : null;
+}
+function emptyWhyHtml() {
+  const body = emptyBodyGroups();
+  if (body) {
+    const prot = typeof protectShown === 'function' ? protectShown() : [];
+    const what = [S.format === 'static' ? 'in static-dynamic format' : '', S.goal === 'gentle' ? 'in gentle mode' : '', prot.length ? 'with these marked: {list}'.replace('{list}', prot.map(p => p.name.toLowerCase()).join(', ')) : ''].filter(Boolean).join(GROUPS_AND);
+    const why = 'For these muscles ({g}) {what}, there are no suitable exercises with this equipment: all of them put load on what you protect.'.replace('{g}', body.map(g => GN[g].toLowerCase()).join(', ')).replace('{what}', what);
+    return `<div class="empty"><h2>Nothing to build a workout from</h2><p>${esc(why)}</p><p>Choose other muscles or another place; you can change what you protect in the settings.</p></div>`;
+  }
+  return `<div class="empty"><h2>Nothing to build a workout from</h2><p>There are no exercises for the selected muscles with this equipment and level. Add equipment or pick other muscle groups.</p></div>`;
+}
 function renderPlanView() {
   stopFigures();
   if (S.view === 'journal') { prog = null; plan = null; return renderJournal(); }
@@ -12437,7 +12937,7 @@ function renderPlanView() {
   if (plan.empty === 'none') {
     root.innerHTML = S.mode === 'custom'
       ? rmGoneHtml('div') + `<div class="empty"><h2>Nothing here to do this plan with</h2>${lostMessages(plan.lost, effEquip(S.equip)).map(m => `<p>${esc(m)}</p>`).join('')}<p>Choose another place or add exercises.</p></div>` + customAddHtml()
-      : `<div class="empty"><h2>Nothing to build a workout from</h2><p>There are no exercises for the selected muscles with this equipment and level. Add equipment or pick other muscle groups.</p></div>`;
+      : emptyWhyHtml();
     return;
   }
   const G = GOALS[S.goal];
@@ -12466,9 +12966,9 @@ function renderPlanView() {
   </header>`;
   if (plan.custom) {
     const hints = customHints(plan), lost = lostMessages(plan.lost, plan.E);
-    html += autoregHtml() + gentleHtml() + (lost.length ? `<div class="warn">${lost.map(w => `<p>${esc(w)}</p>`).join('')}</div>` : '')
+    html += autoregHtml() + healthHtml() + gentleHtml() + (lost.length ? `<div class="warn">${lost.map(w => `<p>${esc(w)}</p>`).join('')}</div>` : '')
       + (hints.length ? `<div class="cp-hints">${hints.map(w => `<p>${esc(w)}</p>`).join('')}</div>` : '') + blocksHtml(plan) + customAddHtml() + LEGEND;
-  } else html += logPickHtml(plan) + autoregHtml() + gentleHtml() + warnHtml(plan) + blocksHtml(plan) + LEGEND;
+  } else html += logPickHtml(plan) + autoregHtml() + healthHtml() + gentleHtml() + warnHtml(plan) + blocksHtml(plan) + LEGEND;
   root.innerHTML = html;
   mountFigures();
 }
@@ -12512,8 +13012,10 @@ function renderProgram() {
   <nav class="days" role="tablist" aria-label="Days of the week">${prog.days.map((d, i) => `<button type="button" role="tab" class="${i === S.day ? 'on' : ''}" data-day="${i}" aria-selected="${i === S.day}"><b>${WD[d.wd]}</b><span>${esc(d.name)}</span><small>${d.plan.items ? `≈${d.plan.minutes} min` : 'no exercises'}</small></button>`).join('')}</nav>
   <div class="day-head"><h2>${WD_FULL[day.wd]} — ${esc(day.name)}</h2>
     <p>${(plan.groups || DAY_T[day.tid].g).map(g => GN[g].toLowerCase()).join(', ')}${plan.items ? ` · ≈${plan.minutes} min · ${plan.totalSets} ${plural(plan.totalSets, 'set', 'sets', 'sets')}` : ''}</p></div>`;
-  if (!plan.items) html += `<div class="empty"><h2>No exercises for this day</h2><p>The selected equipment has nothing to load these muscles. Add equipment or pick a different split.</p></div>`;
-  else html += autoregHtml() + gentleHtml() + warnHtml(plan) + blocksHtml(plan);
+  const bodyDay = !plan.items && emptyBodyGroups(plan.groups || DAY_T[day.tid].g);
+  if (!plan.items) html += bodyDay ? `<div class="empty"><h2>No exercises for this day</h2><p>${esc('For these muscles ({g}) {what}, there are no suitable exercises with this equipment: all of them put load on what you protect.'.replace('{g}', bodyDay.map(g => GN[g].toLowerCase()).join(', ')).replace('{what}', 'in gentle mode'))}</p><p>Choose another split or place; you can change what you protect in the settings.</p></div>${gentleHtml()}`
+    : `<div class="empty"><h2>No exercises for this day</h2><p>The selected equipment has nothing to load these muscles. Add equipment or pick a different split.</p></div>`;
+  else html += autoregHtml() + healthHtml() + gentleHtml() + warnHtml(plan) + blocksHtml(plan);
   html += LEGEND;
   $('#plan').innerHTML = html;
   if (plan.items) mountFigures();
@@ -12725,6 +13227,12 @@ const PLACE_DEFAULTS = [
    пользователем потом не возвращается */
 const PLACE_ADDED = [[1, 'homeband']];
 function ensurePlaces(s) {
+  /* места из хранилища или копии: только объекты с кодом, именем-строкой и списком известного инвентаря (мусор — мимо) */
+  if (Array.isArray(s.places)) {
+    const seen = new Set(), known = new Set(EQUIP.map(e => e.id));
+    s.places = s.places.filter(p => p && typeof p === 'object' && typeof p.id === 'string' && /^[\w-]{1,40}$/.test(p.id) && !seen.has(p.id) && seen.add(p.id))
+      .map(p => ({...p, name:typeof p.name === 'string' && p.name.trim() ? p.name.slice(0, 40) : 'Place', equip:Array.isArray(p.equip) ? [...new Set(p.equip.filter(id => known.has(id)))] : []}));
+  }
   if (!Array.isArray(s.places) || !s.places.length) {
     s.places = PLACE_DEFAULTS.map(p => ({...p, auto:p.id, equip:p.equip.slice()}));
     /* перенос старой настройки: инвентарь, который уже был выбран, становится инвентарём подходящего места */
@@ -13112,7 +13620,10 @@ function cpPickHtml(id, boxId) {
     const state = has ? `<span class="cp-pick-st in">✓ already in plan</span>` : full ? `<span class="cp-pick-st">full</span>` : '';
     return `<button type="button" class="place cp-pick-i" data-cp-to="${p.id}"${has || full ? ' aria-disabled="true"' : ''}><span class="cp-pick-n"><b>${esc(p.name)}</b><small>${p.group ? esc(p.group) + ' · ' : ''}${count}</small></span>${state}</button>`;
   }).join('');
-  return `<p class="cp-pick-h" id="${boxId}-h">Choose a plan</p>${rows}<button type="button" class="place place-add cp-pick-i" data-cp-to="">+ New plan</button>`;
+  /* бережный режим: предупредить до добавления (отчёт Елены, п. 5) — в своём плане его заменит похожее или оно не войдёт */
+  const why = EXI[id] ? unfitWhy(EXI[id]) : '';
+  const warn = why ? `<p class="cp-pick-warn unfit" role="note">${esc('{why}: in your own plan a similar exercise without this load replaces it, and if there is none, it will be left out.'.replace('{why}', upFirst(why)))}</p>` : '';
+  return `<p class="cp-pick-h" id="${boxId}-h">Choose a plan</p>${warn}${rows}<button type="button" class="place place-add cp-pick-i" data-cp-to="">+ New plan</button>`;
 }
 /* панель под карточкой своего плана: порядок, подходы, повторы, отдых */
 function customToolsHtml(it) {
@@ -13366,17 +13877,29 @@ function readPlanFile(text) {
     if (!p || typeof p !== 'object') continue;
     const items = Array.isArray(p.items) ? p.items : [];
     for (const it of items) if (it && !EXI[it.id]) unknown.push(cleanText(it.name, 60) || cleanText(String(it.id || ''), 30) || '?');
-    const c = cleanPlan({...p, items:items.map(it => it && typeof it === 'object' ? {...it, sets:Number.isInteger(it.sets) ? it.sets : undefined, rest:Number.isInteger(it.rest) ? it.rest : undefined} : it)}, '');
+    const prep = items.map(it => it && typeof it === 'object' ? {...it, sets:Number.isInteger(it.sets) ? it.sets : undefined, rest:Number.isInteger(it.rest) ? it.rest : undefined} : it);
+    const c = cleanPlan({...p, items:prep}, '');
+    /* в своём плане — не больше CUSTOM_MAX упражнений: остальные не пропадают молча (Ксения 11) — сказано, сколько войдёт,
+       и можно разбить план на несколько (all — все упражнения плана по порядку) */
+    const ids = new Set(), all = prep.map(cleanCustomItem).filter(it => it && !ids.has(it.id) && ids.add(it.id));
+    if (all.length > CUSTOM_MAX) c.all = all;
     if (from && !c.from) c.from = from;
     plans.push(c);
   }
   if (!plans.length) return {error:'The file contains no plans.'};
   return {plans, from, note:cleanText(o.note, CUSTOM_NOTE, true), unknown:[...new Set(unknown)], newer, cut:raw.length > PLAN_FILE_PLANS};
 }
+/* план больше CUSTOM_MAX упражнений → несколько планов по CUSTOM_MAX: «Тест (1/9)», «Тест (2/9)»… */
+function splitPlan(p) {
+  if (!p.all) return [p];
+  const n = Math.ceil(p.all.length / CUSTOM_MAX), base = String(p.name).slice(0, CUSTOM_NAME - 8), out = [];
+  for (let i = 0; i < n; i++) { const c = {...p, name:`${base} (${i + 1}/${n})`, items:p.all.slice(i * CUSTOM_MAX, (i + 1) * CUSTOM_MAX)}; delete c.all; delete c.auto; out.push(c); }
+  return out;
+}
 /* добавление: всегда новыми планами, занятые имена получают «(2)» */
 function addPlans(plans) {
   const taken = S.customs.map(c => c.name), added = [];
-  for (const p of plans) { const c = {...p, id:newPlanId()}; delete c.auto; Object.assign(c, namedPlan(p.name, p.auto, taken)); taken.push(c.name); S.customs.push(c); added.push(c); }
+  for (const p of plans) { const c = {...p, id:newPlanId()}; delete c.auto; delete c.all; Object.assign(c, namedPlan(p.name, p.auto, taken)); taken.push(c.name); S.customs.push(c); added.push(c); }
   saveSettings(); return added;
 }
 
@@ -13460,7 +13983,8 @@ function planInHtml() {
       ${r.newer ? '<p class="warn">The file was made in a newer version of the app: anything this version doesn’t know will be skipped. Update the app.</p>' : ''}
       ${r.unknown.length ? `<p class="warn">This version of the app doesn’t know these exercises: ${esc(r.unknown.join(', '))}. They will be skipped.</p>` : ''}
       ${r.cut ? `<p class="warn">The file has more than ${PLAN_FILE_PLANS} plans — the first ones will be imported: ${PLAN_FILE_PLANS}.</p>` : ''}
-      <fieldset class="po-set"><legend>Plans in the file</legend>${r.plans.map((p, i) => `<label class="po-opt pi-plan"><input type="checkbox" data-pi="${i}" checked><span><b>${esc(p.name)}</b><small>${p.items.length} ${plural(p.items.length, 'exercise', 'exercises', 'exercises')}${setup(p) ? ` — ${setup(p)}` : ''}</small>${!common && p.group ? `<small>program: ${esc(p.group)}</small>` : ''}</span></label>`).join('')}</fieldset>`;
+      ${r.plans.filter(p => p.all).map(p => { const i = r.plans.indexOf(p), n = Math.ceil(p.all.length / CUSTOM_MAX); return `<div class="warn pi-over"><p>${`The plan “${esc(p.name)}” — ${p.all.length} ${plural(p.all.length, 'exercise', 'exercises', 'exercises')}, but one custom plan holds ${CUSTOM_MAX}: the first ${CUSTOM_MAX}will be added, the other ${p.all.length - CUSTOM_MAX} won't.`}</p><label class="pi-split"><input type="checkbox" data-pi-split="${i}"> ${`Split into ${n} ${plural(n, 'plan', 'plans', 'plans')} — all exercises will be added`}</label></div>`; }).join('')}
+      <fieldset class="po-set"><legend>Plans in the file</legend>${r.plans.map((p, i) => `<label class="po-opt pi-plan"><input type="checkbox" data-pi="${i}" checked><span><b>${esc(p.name)}</b><small>${p.items.length} ${plural(p.items.length, 'exercise', 'exercises', 'exercises')}${p.all ? ` ${'of'} ${p.all.length}` : ''}${setup(p) ? ` — ${setup(p)}` : ''}</small>${!common && p.group ? `<small>program: ${esc(p.group)}</small>` : ''}</span></label>`).join('')}</fieldset>`;
   }
   return `<form method="dialog" class="gear pi">
     <h2>Import plan</h2>
@@ -13491,7 +14015,8 @@ document.addEventListener('click', e => {
   if (t.id === 'pi-close') { $('#plan-in').close(); return; }
   if (t.id === 'pi-read') { showPlanIn({...readPlanFile($('#pi-text').value), pasted:true}); return; }
   if (t.id === 'pi-add') {
-    const pick = [...document.querySelectorAll('[data-pi]')].filter(x => x.checked).map(x => planIn.plans[+x.dataset.pi]);
+    const split = new Set([...document.querySelectorAll('[data-pi-split]')].filter(x => x.checked).map(x => +x.dataset.piSplit));
+    const pick = [...document.querySelectorAll('[data-pi]')].filter(x => x.checked).flatMap(x => { const p = planIn.plans[+x.dataset.pi]; if (split.has(+x.dataset.pi)) return splitPlan(p); const c = {...p}; delete c.all; return [c]; });
     if (!pick.length) { $('#pi-msg').textContent = 'Select at least one plan.'; return; }
     const added = addPlans(pick); $('#plan-in').close(); planIn = null;
     openCustom(added[0].id); regen(); window.scrollTo({top:0});
@@ -13518,7 +14043,7 @@ document.addEventListener('change', e => {
 const FOLD_CARDS = ['compact', 'full'];
 function ensureFold(s) {
   const f = s.fold && typeof s.fold === 'object' ? s.fold : {};
-  s.fold = {setup:f.setup === true, load:f.load === true, cards:FOLD_CARDS.includes(f.cards) ? f.cards : 'compact', gentle:f.gentle === true};
+  s.fold = {setup:f.setup === true, load:f.load === true, cards:FOLD_CARDS.includes(f.cards) ? f.cards : 'compact', gentle:f.gentle === true, health:f.health === true};
   return s.fold;
 }
 ensureFold(S);
@@ -13540,6 +14065,7 @@ const cardFold = new Map(); /* «группа:упражнение» → рас�
 function cardOpen(g, id) { const k = g + ':' + id; return cardFold.has(k) ? cardFold.get(k) : ensureFold(S).cards === 'full'; }
 function cardFoldClass(id) { return FOLD_GROUPS.filter(g => cardOpen(g, id)).map(g => ' open-' + g).join(''); }
 const lowFirst = s => s ? s.charAt(0).toLowerCase() + s.slice(1) : s;
+const upFirst = s => s ? s.charAt(0).toUpperCase() + s.slice(1) : s;
 const chev = '<i class="cg-chev" aria-hidden="true"></i>';
 
 /* ---------- карточка: мышцы и запись подходов ---------- */
@@ -13652,28 +14178,99 @@ document.addEventListener('click', e => {
      при подборе предпочтение упражнениям без пиковой нагрузки на суставы.
      Основание дозировки: Garber C.E. et al. ACSM Position Stand, MSSE 2011, 43(7):1334–1359 — 10–15 повторов
      и 40–50% от 1ПМ для начинающих и старших, 60–70% для новичков; одна-две серии.
-   • Правило боли — модель контроля боли: Silbernagel K.G., Thomeé R. et al., Am J Sports Med 2007, 35(6):897–906:
-     боль во время нагрузки до 5 из 10, к утру проходит, от недели к неделе не нарастает. */
+     Это рекомендации для практически здоровых взрослых («apparently healthy adults»): при хронических болезнях — только
+     после осмотра и совета специалиста (из аннотации). Поэтому в пояснении цели и в плашке: после травмы или операции —
+     сначала к врачу; нагрузка — словами («лёгкий вес, все повторы спокойно»), а не в процентах от максимума на 1 повтор,
+     которого человек после травмы не знает и проверять не должен (замечание кардиолога, Михаил п. 8).
+   • Правило боли — модель контроля боли: Silbernagel K.G., Thomeé R., Eriksson B.I., Karlsson J., Am J Sports Med 2007,
+     35(6):897–906 — РКИ на 38 больных тендинопатией ахиллова сухожилия (аннотация, PEDro); правила в пересказе
+     (physicaltherapyfirst.com): во время нагрузки боль ниже 5 из 10, после — до 5, к утру проходит, боль и скованность
+     от недели к неделе не нарастают. Проверено на ахилле — в плашке это сказано прямо.
+   • Стоп-сигналы сердца: при боли или давлении в груди, боли в шее, челюсти или руке, одышке, необычной усталости,
+     перебоях в сердце, головокружении «прекратите занятие и сразу обратитесь к врачу» — памятка ACSM «Who needs a stress
+     test before exercising» (acsm.org; источник в ней — Riebe et al., MSSE 2015, 47(11):2473–2479).
+   • Тяжёлая база со штангой (HEAVY_SPINE: присед, становая, наклоны и тяги в наклоне со штангой) в «Бережно» не
+     подбирается (отчёт Mike, п. 8: «Бережно» + колени — первой стояла становая 2 × 12–15). Наклон с весом нагружает диски
+     поясницы сильнее всего: давление в диске стоя 0,5 МПа, подъём 20 кг с согнутой спиной — 2,3 МПа, с согнутыми коленями —
+     1,7 МПа (Wilke et al. 1999, Spine 24(8):755–762), а в долгом подходе 12–15 повторов разгибатели спины устают и хуже её
+     защищают (McGill S., Low Back Disorders, 3-е изд., 2016 — см. HEAVY_SPINE, 11-planner.js). */
 /* acc — «нагрузка на что»: шею, поясницу, заднюю поверхность бедра */
+/* Строгие отметки (решение владельца 15.11.2026, отчёт Елены п. 13): «После операции на колене» и «Грыжа диска» включают
+   обычные «Колени» и «Поясницу» (base) и добавляют свои правила (STRICT ниже); собственных меток у них нет — rules пустой.
+   В файле состояния — тот же список S.protect: прежние версии незнакомые отметки отбрасывают, а base в списке остаётся. */
 const PROTECT = [
   {id:'neck', name:'Neck', acc:'neck', part:'neck'},
   {id:'shoulders', name:'Shoulders', acc:'shoulders', part:'shoulders'},
   {id:'elbows', name:'Elbows', acc:'elbows', part:'elbows'},
   {id:'wrists', name:'Wrists', acc:'wrists', part:'wrists'},
   {id:'lumbar', name:'Lower back', acc:'lower back', part:'lower back'},
+  {id:'disc', name:'Herniated disc (lower back)', acc:'lower back with a herniated disc', part:'lower back', base:'lumbar'},
   {id:'knees', name:'Knees', acc:'knees', part:'knees'},
+  {id:'kneeOp', name:'After knee surgery', acc:'knee after surgery', part:'knees', base:'knees'},
   {id:'achilles', name:'Achilles tendons', acc:'Achilles tendons', part:'Achilles tendons'},
   {id:'hams', name:'Hamstring tendons', acc:'hamstring tendons', part:'hamstring tendons'}
-].map(p => ({...p, rules:STRESS_RULES.filter(r => r.parts.includes(p.part)).map(r => r.id)}));
+].map(p => ({...p, rules:p.base ? [] : STRESS_RULES.filter(r => r.parts.includes(p.part)).map(r => r.id)}));
 const PROTECT_BY = Object.fromEntries(PROTECT.map(p => [p.id, p]));
 /* ударные и рывковые движения: пиковая нагрузка на суставы в несколько раз больше веса тела */
 const GENTLE_SKIP_PATTERNS = new Set(['jump', 'burpee', 'climb']), GENTLE_SKIP = new Set(['kbswing', 'kbswing1', 'kbclean', 'kbsnatch']);
+/* Строже обычных отметок — правила, которых нет в метках (метка видна всем, а это — только для отмеченного):
+   · kneeOp — без поворота корпуса на опорной ноге (stressPivot ≥ STRESS_PIVOT, 09f-joint-stress.js: Markolf et al. 1995 —
+     внутренний поворот голени вместе с силой вперёд даёт наибольшую силу на ПКС; Aspetar, руководство по реабилитации после
+     пластики ПКС: смена направления и повороты — после критериев). Разгибание в открытой цепи до прямой ноги, прыжки,
+     быстрая смена ног, боковая нагрузка, упор на колени и глубокий сгиб стоя — уже в «Коленях»;
+   · disc — без ударной нагрузки (метка «приземление»: прыжки): давление в диске L4–5 при беге трусцой — до 0,95 МПа против
+     0,5 стоя (Wilke et al. 1999, Spine 24(8):755–762). Сгибание, скручивание, разгибание корпуса на весу, длинный рычаг
+     и осевая нагрузка стоя — уже в «Пояснице». На беговой дорожке при обеих отметках — шаг без бега (treadmillWalk). */
+const STRICT = {
+  kneeOp:{why:'turning the body over the standing leg', test:ex => typeof stressPivot === 'function' && stressPivot(ex) >= STRESS_PIVOT},
+  disc:{why:'impact load on the spine', test:ex => stressIdsOf(ex).includes('landing')}
+};
 
 function ensureProtect(s) {
-  s.protect = Array.isArray(s.protect) ? PROTECT.map(p => p.id).filter(id => s.protect.includes(id)) : [];
+  const list = Array.isArray(s.protect) ? s.protect : [];
+  /* строгая отметка включает обычную */
+  const on = new Set(list.filter(id => PROTECT_BY[id])); for (const id of [...on]) if (PROTECT_BY[id].base) on.add(PROTECT_BY[id].base);
+  s.protect = PROTECT.map(p => p.id).filter(id => on.has(id));
   return s.protect;
 }
-ensureProtect(S);
+/* что показать словами: строгая отметка вместо своей обычной («колено после операции», а не «колени и колено…») */
+function protectShown(list = ensureProtect(S)) { const strict = new Set(list.map(id => PROTECT_BY[id].base).filter(Boolean)); return list.filter(id => !strict.has(id)).map(id => PROTECT_BY[id]); }
+
+/* ---------- «Пропустить → больно» (14-workout-mode.js): упражнение не возвращается в план само ----------
+   S.pain = {off: [id] — убраны из подбора и замен до «Вернуть», log: [{d, id, how: 'removed' | 'swapped', to}] — пометки
+   в журнале (последние 200), pend: [id] — отмечены посреди тренировки: в подбор не идут только после её закрытия, чтобы
+   оставшиеся упражнения открытой тренировки не пересобрались (painFlush)}. Хранится в параметрах — значит, и в копии. */
+const PAIN_LOG_MAX = 200;
+function ensurePain(s) {
+  const p = s.pain && typeof s.pain === 'object' ? s.pain : {};
+  const off = Array.isArray(p.off) ? [...new Set(p.off.filter(id => typeof id === 'string' && EXI[id]))] : [];
+  const log = Array.isArray(p.log) ? p.log.filter(x => x && typeof x.id === 'string' && /^\d{4}-\d\d-\d\d$/.test(x.d || '') && ['removed', 'swapped'].includes(x.how))
+    .map(x => ({d:x.d, id:x.id, how:x.how, ...(typeof x.to === 'string' && EXI[x.to] ? {to:x.to} : {})})).slice(-PAIN_LOG_MAX) : [];
+  const pend = Array.isArray(p.pend) ? [...new Set(p.pend.filter(id => typeof id === 'string' && EXI[id] && !off.includes(id)))] : [];
+  s.pain = {off, log, pend};
+  return s.pain;
+}
+function painOff(ex) { return ensurePain(S).off.includes(ex.id); }
+/* отметить «больно»: убрать из подбора (посреди тренировки — после её закрытия), записать в журнал дня d */
+function painMark(id, how, d, to, pending = false) {
+  const p = ensurePain(S);
+  if (!EXI[id]) return;
+  if (pending) { if (!p.off.includes(id) && !p.pend.includes(id)) p.pend.push(id); }
+  else if (!p.off.includes(id)) p.off.push(id);
+  p.log = p.log.filter(x => !(x.d === d && x.id === id)).concat({d, id, how, ...(to && EXI[to] ? {to} : {})}).slice(-PAIN_LOG_MAX);
+  saveSettings();
+}
+function painReturn(id) { const p = ensurePain(S); p.off = p.off.filter(x => x !== id); p.pend = p.pend.filter(x => x !== id); saveSettings(); }
+function painFlush() { const p = ensurePain(S); if (!p.pend.length) return false; p.off = [...new Set(p.off.concat(p.pend))]; p.pend = []; saveSettings(); return true; }
+/* пометка в журнале за день (13-log.js) */
+function painDayHtml(d) {
+  const marks = ensurePain(S).log.filter(x => x.d === d && EXI[x.id]);
+  if (!marks.length) return '';
+  return marks.map(x => `<p class="j-pain"><b>${'Painful:'}</b> ${esc(exNameHere(EXI[x.id]))} — ${x.how === 'swapped' && x.to ? `${'replaced with'} ${esc(exNameHere(EXI[x.to]))}` : 'removed from the plan'}</p>`).join('');
+}
+ensureProtect(S); ensurePain(S);
+/* отмеченное посреди прошлой тренировки, если приложение закрыли, не закрыв её */
+if (S.pain.pend.length) { S.pain.off = [...new Set(S.pain.off.concat(S.pain.pend))]; S.pain.pend = []; }
 
 /* ---------- какие суставы нагружает упражнение: считается по 41 положению манекена один раз за сборку ---------- */
 const STRESS_IDS = new Map(), STRESS_IDS_KEY = 'podhod.stress.v1';
@@ -13718,25 +14315,35 @@ function protectHits(ex) {
   const ids = stressIdsOf(ex);
   return S.protect.map(id => PROTECT_BY[id]).filter(p => p.rules.some(r => ids.includes(r)));
 }
-function jointOk(ex) { return !protectHits(ex).length; }
-function gentleOk(ex) { return S.goal !== 'gentle' || (ex.lvl <= 2 && !GENTLE_SKIP.has(ex.id) && !GENTLE_SKIP_PATTERNS.has(PATTERN[ex.id])); }
+/* строгая отметка, правило которой нарушает упражнение (первая) */
+function strictHit(ex) { for (const id of ensureProtect(S)) if (STRICT[id] && STRICT[id].test(ex)) return id; return null; }
+function jointOk(ex) { return !protectHits(ex).length && !strictHit(ex); }
+function gentleOk(ex) { return S.goal !== 'gentle' || (ex.lvl <= 2 && !GENTLE_SKIP.has(ex.id) && !GENTLE_SKIP_PATTERNS.has(PATTERN[ex.id]) && !HEAVY_SPINE.has(ex.id)); }
 /* «Беречь колени»: кроме меток — никакого приседа и выпада стоя глубже порога правила колен (85°, на одной ноге 80°;
    Fry et al. 2003, Lorenzetti et al. 2012 — 09f-joint-stress.js), даже с весом тела и с коленями за носками: ни в подборе,
    ни в замене, ни в своём плане. Решение владельца 12.11.2026: «по коленям надо максимально застраховаться от того, что
    человек травмирует колено по нашей рекомендации». Гоблет-присед → присед без веса снимает лишь гантель, сгиб остаётся
    тем же (stressKneeDepth); подходят меньший сгиб или упражнения без опоры на стопы (мостик, сгибания ног) */
 function kneeDeepBlocked(ex) { return ensureProtect(S).includes('knees') && typeof stressKneeDeep === 'function' && stressKneeDeep(ex); }
-function fitsBody(ex) { return gentleOk(ex) && jointOk(ex) && !kneeDeepBlocked(ex); }
+function fitsBody(ex) { return gentleOk(ex) && jointOk(ex) && !kneeDeepBlocked(ex) && !painOff(ex) && (typeof healthOk !== 'function' || healthOk(ex)); }
 /* замена (в своём плане, в программе другого места, кнопкой «Заменить») — по тем же правилам, что подбор */
 function swapFits(ex) { return fitsBody(ex); }
 const joinNames = list => list.length > 1 ? list.slice(0, -1).join(', ') + ' and ' + list[list.length - 1] : list[0] || '';
-function hitsText(hits) { return joinNames(hits.map(p => p.acc)); }
+function hitsText(hits) {
+  /* строгая отметка вместо своей обычной: «колено после операции», а не «колени и колено после операции» */
+  const strict = new Set(hits.filter(p => p.base).map(p => p.base));
+  return joinNames(hits.filter(p => !strict.has(p.id)).map(p => p.acc));
+}
 /* почему упражнение не подходит — для замены и для списка «нечем заменить» */
 function unfitWhy(ex) {
   const hits = protectHits(ex);
   if (hits.length) return `loads ${hitsText(hits)}`;
+  const strict = strictHit(ex);
+  if (strict) return `${STRICT[strict].why} — ${PROTECT_BY[strict].name.toLowerCase()}`;
   if (kneeDeepBlocked(ex)) return 'deep knee bend';
-  if (!gentleOk(ex)) return ex.lvl > 2 ? 'advanced variant' : 'impact or ballistic load';
+  if (painOff(ex)) return 'you marked it as painful';
+  if (typeof healthOk === 'function' && !healthOk(ex)) return 'head-down position';
+  if (!gentleOk(ex)) return ex.lvl > 2 ? 'advanced variant' : HEAVY_SPINE.has(ex.id) ? 'heavy barbell load on the back' : 'impact or ballistic load';
   return '';
 }
 
@@ -13756,30 +14363,54 @@ function lostMessages(lost, E) {
 /* ---------- настройки: «Беречь суставы» ---------- */
 function renderProtect() {
   const on = new Set(ensureProtect(S));
-  $('#j-chips').innerHTML = PROTECT.map(p => `<button type="button" class="chip${on.has(p.id) ? ' on' : ''}" data-protect="${p.id}" aria-pressed="${on.has(p.id)}">${ICON.check}<span>${p.name}</span></button>`).join('');
+  $('#j-chips').innerHTML = PROTECT.map(p => `<button type="button" class="chip${p.base ? ' chip-strict' : ''}${on.has(p.id) ? ' on' : ''}" data-protect="${p.id}" aria-pressed="${on.has(p.id)}">${ICON.check}<span>${p.name}</span></button>`).join('');
+  const strict = [...on].filter(id => PROTECT_BY[id].base);
   $('#j-note').textContent = on.size
     ? `Exercises with peak load on ${hitsText(S.protect.map(id => PROTECT_BY[id]))} are not picked; in a custom plan they are replaced with similar ones.`
+      + (strict.length ? ' ' + strict.map(id => STRICT_NOTE[id]).join(' ') : '')
     : 'Mark the joints that hurt or are recovering: the plan will avoid exercises with peak load on them — by the same rules as the red marks on the mannequin.';
+  const box = $('#j-pain'); if (box) box.innerHTML = painListHtml();
+}
+/* что добавляют строгие отметки — простыми словами */
+const STRICT_NOTE = {
+  kneeOp:'After knee surgery — also no turning over the standing leg; on the treadmill, walk, don’t run. Agree on the load and timing with your doctor or physical therapist.',
+  disc:'With a herniated disc — also no jumping; on the treadmill, walk, don’t run. Agree on the load with your doctor.'
+};
+/* убранные «Пропустить → больно»: вернуть в подбор */
+function painListHtml() {
+  const off = [...ensurePain(S).off, ...S.pain.pend].filter(id => EXI[id]);
+  if (!off.length) return '';
+  return `<p class="f-note">${'Removed because they hurt:'}</p><div class="chips">${off.map(id => `<button type="button" class="chip on" data-pain-back="${id}" aria-label="${esc('Bring back: ' + exNameHere(EXI[id]))}">${esc(exNameHere(EXI[id]))} <span aria-hidden="true">×</span></button>`).join('')}</div>`;
 }
 
-/* ---------- плашка в плане: дозировка, правило боли, когда к врачу ---------- */
+/* ---------- плашка в плане: дозировка, правило боли, стоп-сигналы, когда к врачу ---------- */
+/* стоп-сигналы сердца — одна строка для плашки и вопроса о здоровье (11k-first-run.js; памятка ACSM, см. шапку) */
+const HEART_STOP = 'Stop and see a doctor if you feel chest pain or pressure, pain in the neck, jaw or arm, unusual shortness of breath, dizziness, or an irregular heartbeat.';
 function gentleHtml() {
-  const gentle = S.goal === 'gentle', prot = ensureProtect(S).map(id => PROTECT_BY[id]);
+  const gentle = S.goal === 'gentle', prot = protectShown();
   if (!gentle && !prot.length) return '';
   /* запас — тот же, что в строке нагрузки карточек (reserveOf: неделя цикла, уровень) */
   const rir = gentle ? reserveOf(S.mode === 'program' ? WEEKS[S.week - 1] : null) : null;
   const lead = gentle
-    ? `<p><b>Gentle.</b> 12–15 reps with a light weight, ${rir ? 'leaving {n} in the tank'.replace('{n}', reserveReps(rir)) : NOT_LIMIT}, slowly and without jerking. Jumps, ballistic and advanced exercises are not picked.${prot.length ? ` No peak load on ${hitsText(prot)}.` : ''}</p>`
+    ? `<p><b>Gentle.</b> 12–15 reps with a light weight — one that lets every rep feel easy${rir ? ' and ' + '{n} still in the tank'.replace('{n}', reserveReps(rir)) : `, ${NOT_LIMIT}`}; slow, no jerks. Jumps, ballistic and advanced exercises, heavy barbell work on the back and head-down exercises are not picked.${prot.length ? ` No peak load on ${hitsText(prot)}.` : ''}</p>`
     : `<p><b>No peak load on ${hitsText(prot)}.</b> Such exercises are not picked, and in a custom plan they are replaced with similar ones.</p>`;
-  return `<details class="gentle-box"${ensureFold(S).gentle ? '' : ' open'}><summary>Gentle mode: the pain rule</summary>${lead}
-    <p><b>Pain during an exercise</b> on a 0–10 scale: up to 2 — keep going; 3–5 — acceptable if it is gone by the next morning and does not build up from week to week; above 5 — stop, reduce the weight or range of motion, or swap the exercise.</p>
-    <p class="gentle-warn">This does not replace a doctor. Acute pain, swelling, numbness, a joint that feels unstable, a recent injury or surgery — see a doctor or physiotherapist first.</p></details>`;
+  return `<details class="gentle-box"${ensureFold(S).gentle ? '' : ' open'}><summary>Gentle mode: the pain rule and when to stop</summary>${lead}
+    <p><b>Joint pain during an exercise</b> on a 0–10 scale: up to 2 — keep going; 3–5 — acceptable if it is gone by the next morning and does not build up from week to week; above 5 — stop, reduce the weight or range of motion, or swap the exercise.</p>
+    <p class="gentle-stop">${HEART_STOP}</p>
+    <p class="gentle-warn">The pain rule comes from treating Achilles tendon pain, and the load from guidelines for healthy adults: it is a guide, not a treatment. After an injury or surgery, or with sharp pain, swelling, numbness or a joint that feels unstable, see a doctor or physical therapist first.</p></details>`;
 }
+/* беговая дорожка при «Коленях» и «Грыже диска»: шаг без бега (отчёт Елены, п. 14) — у бега есть фаза полёта и удар стопы:
+   давление в диске при беге трусцой до 0,95 МПа против 0,5 стоя (Wilke et al. 1999); после пластики ПКС бег — только после
+   критериев (Aspetar, см. 09f-joint-stress.js). На дорожке скорость задаёт человек, поэтому упражнение остаётся — шагом */
+function treadmillWalk(ex) { const on = ensureProtect(S); return (on.includes('knees') || on.includes('disc')) && typeof stressFlight === 'function' && stressFlight(ex); }
 
 document.addEventListener('click', e => {
-  const t = e.target.closest('button'); if (!t || !t.dataset.protect) return;
+  const t = e.target.closest('button'); if (!t) return;
+  if (t.dataset.painBack) { painReturn(t.dataset.painBack); regen(); return; }
+  if (!t.dataset.protect) return;
   const id = t.dataset.protect; if (!PROTECT_BY[id]) return;
-  S.protect = S.protect.includes(id) ? S.protect.filter(x => x !== id) : S.protect.concat(id);
+  /* снять обычную отметку — снять и строгую, которая её включает */
+  S.protect = S.protect.includes(id) ? S.protect.filter(x => x !== id && (PROTECT_BY[x].base !== id)) : S.protect.concat(id);
   ensureProtect(S); regen();
 });
 document.addEventListener('toggle', e => {
@@ -14215,7 +14846,8 @@ function durationWarn(p) {
      1. где тренируетесь — места тренировок (11b-analogs.js);
      2. что есть под рукой — инвентарь этого места; в зале всё есть, шага нет;
      3. цель — с пояснением простыми словами (GOALS.about), без выбора по умолчанию;
-     4. время на тренировку (11j-duration.js), опыт и необязательные отметки «что беречь» (11g-gentle.js).
+     4. время на тренировку (11j-duration.js), опыт, необязательные отметки «что беречь» (11g-gentle.js) и необязательный
+        вопрос о здоровье по образцу PAR-Q+ (11l-health.js): при любом «да» — цель «Бережно» и плашка «Здоровье» над планом.
    Вопрос с одним ответом ведёт дальше сразу по нажатию. «Назад» — кнопкой, системной «Назад» телефона (запись в истории
    на каждый шаг, 12d-back.js) и Esc — на предыдущий шаг; с первого шага системная «Назад» уводит, как и раньше.
    «Пропустить» — на оставшиеся вопросы ответы по умолчанию для новичка (FIRST_DEFAULTS). Потом — план сверху,
@@ -14230,7 +14862,7 @@ const FIRST_EQUIP = ['db', 'kb', 'band', 'pullup', 'dipbars', 'bench', 'incline'
 /* короткие пояснения на шаге «Что есть под рукой?»: какие резинки считаются и что регулируемая скамья даёт и горизонтальную */
 const FIRST_EQUIP_HINT = {band:'tube with handles, loops, door anchor', incline:'tilting back rest; works as a flat bench too'};
 /* суставы: чаще всего берегут колени, поясницу и плечи — они первыми */
-const FIRST_PROTECT = ['knees', 'lumbar', 'shoulders', 'neck', 'elbows', 'wrists', 'achilles', 'hams'];
+const FIRST_PROTECT = ['knees', 'kneeOp', 'lumbar', 'disc', 'shoulders', 'neck', 'elbows', 'wrists', 'achilles', 'hams'];
 const FIRST_GROUPS = () => GROUP_PRESETS.find(p => p.id === 'full').g.slice();
 
 /* все снаряды места — «как в зале»: спрашивать не о чем */
@@ -14244,11 +14876,13 @@ function firstRunApply(A = {}, s = S) {
     const list = EQUIP.map(e => e.id).filter(id => A.equip.includes(id));
     placeOf(s, place).equip = list.slice(); s.equip = list.slice();
   }
-  const goal = GOALS[A.goal] ? A.goal : FIRST_DEFAULTS.goal, level = LEVELS[A.level] ? A.level : FIRST_DEFAULTS.level;
+  /* здоровье: хоть одно «да» — «Бережно», даже если выбрана другая цель (её можно сменить; плашка над планом это говорит) */
+  const health = Array.isArray(A.health) ? A.health.filter(id => HEALTH_BY[id]) : [];
+  const goal = health.length ? 'gentle' : GOALS[A.goal] ? A.goal : FIRST_DEFAULTS.goal, level = LEVELS[A.level] ? A.level : FIRST_DEFAULTS.level;
   Object.assign(s, {mode:'single', view:'plan', goal, level, format:'classic', dur:DURATIONS[A.dur] ? A.dur : FIRST_DEFAULTS.dur,
-    protect:Array.isArray(A.protect) ? A.protect.slice() : FIRST_DEFAULTS.protect.slice(), groups:FIRST_GROUPS(), focus:null, day:0});
+    protect:Array.isArray(A.protect) ? A.protect.slice() : FIRST_DEFAULTS.protect.slice(), health, groups:FIRST_GROUPS(), focus:null, day:0});
   s.gen = {...(s.gen || {}), goal, format:'classic', level};
-  ensureProtect(s); ensureDur(s);
+  ensureProtect(s); ensureDur(s); ensureHealth(s);
   return s;
 }
 
@@ -14287,7 +14921,10 @@ const FR_STEP = {
         + frQ('fr-q-lvl', 'Your experience', `<div class="fr-opts">${Object.entries(LEVELS).map(([k, l]) => frOpt(`data-fr-level="${k}"`, FR.A.level === k, l.ask, l.about)).join('')}</div>`)
         + frQ('fr-q-joint', `${'Anything to protect?'} <em>${'Optional'}</em>`,
           `<div class="chips">${FIRST_PROTECT.map(id => PROTECT_BY[id]).map(p => `<button type="button" class="chip${on.has(p.id) ? ' on' : ''}" data-fr-protect="${p.id}" aria-pressed="${on.has(p.id)}">${ICON.check}<span>${p.name}</span></button>`).join('')}</div>`,
-          'Check what hurts or is recovering: exercises that load those areas heavily won’t be in the plan.');
+          'Check what hurts or is recovering: exercises that load those areas heavily won’t be in the plan.')
+        + frQ('fr-q-health', `${'Health'} <em>${'Optional'}</em>`,
+          `<div class="chips">${HEALTH.map(h => `<button type="button" class="chip${(FR.A.health || []).includes(h.id) ? ' on' : ''}" data-fr-health="${h.id}" aria-pressed="${(FR.A.health || []).includes(h.id)}">${ICON.check}<span>${esc(h.name)}</span></button>`).join('')}</div>`,
+          'If any of this applies to you, talk to your doctor first. The plan will be gentle, with what matters shown above it. Your answers stay on this device only.');
     }}
 };
 /* вопрос последнего шага: заголовок, варианты, пояснение под ними */
@@ -14376,7 +15013,14 @@ function setupFirstRun() {
     if (t.dataset.frLevel) return one('level', 'frLevel');
     if (t.dataset.frProtect) {
       const id = t.dataset.frProtect, list = A.protect || [], on = !list.includes(id);
-      A.protect = on ? list.concat(id) : list.filter(x => x !== id);
+      /* строгая отметка включает обычную, снятая обычная снимает строгую (как в параметрах, 11g-gentle.js) */
+      const base = PROTECT_BY[id].base, strict = PROTECT.filter(p => p.base === id).map(p => p.id);
+      A.protect = on ? [...new Set(list.concat(id, base ? [base] : []))] : list.filter(x => x !== id && !strict.includes(x));
+      d.querySelectorAll('[data-fr-protect]').forEach(b => { const v = A.protect.includes(b.dataset.frProtect); b.classList.toggle('on', v); b.setAttribute('aria-pressed', String(v)); });
+    }
+    if (t.dataset.frHealth) {
+      const id = t.dataset.frHealth, list = A.health || [], on = !list.includes(id);
+      A.health = on ? list.concat(id) : list.filter(x => x !== id);
       t.classList.toggle('on', on); t.setAttribute('aria-pressed', String(on));
     }
   });
@@ -14385,6 +15029,118 @@ function setupFirstRun() {
   /* окно закрылось само (браузер не дал отменить закрытие) — как «Пропустить» */
   d.addEventListener('close', () => { if (!FR.closing && !FR.done) frFinish(true); });
 }
+
+/* ===================== ЗДОРОВЬЕ: КОРОТКИЙ ВОПРОС И ОГОВОРКИ =====================
+   Решение владельца 15.11.2026 («Согласен»; замечания кардиолога, Михаил п. 3, 10): необязательный вопрос о здоровье
+   в первом запуске — по образцу PAR-Q+ (Warburton D.E.R., Jamnik V.K., Bredin S.S.D., Gledhill N. on behalf of the PAR-Q+
+   Collaboration; бланк «2024 PAR-Q+», версия 01-11-2024, проверено по тексту бланка). Семь общих вопросов PAR-Q+: 1) врач
+   говорил о болезни сердца или повышенном давлении; 2) боль в груди в покое, в быту или при нагрузке; 3) потеря равновесия
+   от головокружения или потеря сознания за последние 12 месяцев; 4) другая хроническая болезнь; 5) лекарства от хронической
+   болезни; 6) проблема с костями, суставами, мышцами, связками или сухожилиями сейчас или за 12 месяцев, которую нагрузка
+   может ухудшить; 7) врач говорил заниматься только под наблюдением. При беременности — посоветоваться с врачом.
+   Здесь — восемь пунктов: шесть, о которых договорились с владельцем (давление и сердце, боль в груди, головокружения и
+   обмороки, беременность, недавняя операция или травма, врач ограничил нагрузку), и вопросы 4–5 бланка — другая хроническая
+   болезнь и лекарства от неё (решение владельца по 4.106, вопрос 5), одним необязательным вопросом в последнем шаге
+   первого запуска (лишнего шага нет) и в параметрах — для тех, кто уже пользуется приложением. При любом «да» — спокойное
+   «сначала посоветуйтесь с врачом», цель «Бережно» и оговорки о дыхании и пульсе. Без диагнозов и запретов. Ответы — только
+   в параметрах на устройстве (S.health); в аккаунт и копию параметров попадают так же, как отметки «Что беречь». */
+const HEALTH = [
+  {id:'heart', name:'High blood pressure or a heart condition'},
+  {id:'chest', name:'Chest pain with exercise or at rest'},
+  {id:'dizzy', name:'Dizziness or fainting in the past year'},
+  {id:'chronic', name:'Another chronic condition'},
+  {id:'meds', name:'Medication for a chronic condition'},
+  {id:'pregnant', name:'Pregnancy'},
+  {id:'surgery', name:'Recent surgery or injury'},
+  {id:'doctor', name:'A doctor limited your exercise'}
+];
+const HEALTH_BY = Object.fromEntries(HEALTH.map(h => [h.id, h]));
+function ensureHealth(s) { s.health = Array.isArray(s.health) ? HEALTH.map(h => h.id).filter(id => s.health.includes(id)) : []; return s.health; }
+ensureHealth(S);
+
+/* ---------- оговорка о дыхании ----------
+   У тяжёлой базы (schemeOf: heavy), там, где советуют задержку дыхания, у жимов над головой и у упражнений вниз головой —
+   одна и та же строка (замечания кардиолога, Михаил п. 2, 7, 11):
+   · натуживание с задержкой дыхания — часть очень высокого давления при тяжёлом подходе: жим ногами до отказа — в среднем
+     320/250 мм рт. ст., у одного из пяти — выше 480/350 (MacDougall J.D., Tuxen D., Sale D.G., Moroz J.R., Sutton J.R.,
+     J Appl Physiol 1985, 58(3):785–790, аннотация);
+   · рекомендация Американской кардиологической ассоциации — выдыхать на усилии, вдыхать при расслаблении, не задерживать
+     дыхание и не натуживаться (Williams M.A. et al., Circulation 2007, 116:572–584 — по пересказу Reuters Health в Rehab
+     Management, 20.07.2007; текст заявления не открылся);
+   · глаза: жим лёжа с задержкой дыхания поднимал давление в глазу у 90 % (в среднем на 4,3 мм рт. ст.), с обычным дыханием —
+     у 62 % (на 2,2) — Vieira G.M. et al., Arch Ophthalmol 2006, 124:1251–1254 (по пресс-релизу журнала, EurekAlert);
+     положение вниз головой — давление в глазу за минуту с 17 до 28–29 мм рт. ст. и у больных глаукомой, и у здоровых —
+     Jasien J.V., Jonas J.B., de Moraes C.G., Ritch R., PLoS ONE 2015, 10(12):e0144505 (аннотация);
+   · беременность: при головокружении от натуживания — не задерживать дыхание; если лёжа на спине нехорошо — сменить
+     положение — 2019 Canadian Guideline for Physical Activity throughout Pregnancy (Mottola M.F. et al., J Obstet Gynaecol
+     Can 2018, 40(11):1549–1559).
+   Вниз головой — голова ниже и плеч, и таза больше чем на 5 см в каком-то положении повторения (по позе манекена):
+   гиперэкстензия, упор углом и упор углом с ногами на скамье, жим на скамье с обратным наклоном, отжимания с ногами на скамье,
+   скручивания на скамье с обратным наклоном. */
+const BREATH_MED = 'With high blood pressure, a heart condition, glaucoma or during pregnancy, don’t hold your breath: breathe out on the effort.';
+const HEAD_DOWN_MED = 'Having your head below your heart raises pressure in the head and eyes: with glaucoma, high blood pressure or a heart condition, choose an exercise without a head-down position.';
+const HEAD_DOWN = new Map();
+function headDown(ex) {
+  if (HEAD_DOWN.has(ex.id)) return HEAD_DOWN.get(ex.id);
+  let low = -Infinity;
+  const rig = ex.anim && ex.anim.catalogRig;
+  if (rig && typeof CATALOG_POSES !== 'undefined' && CATALOG_POSES[ex.id]) for (let i = 0; i <= 20; i++) {
+    const R = rig(i / 20); if (!R.frames || !R.head) break;
+    low = Math.max(low, Math.min(R.head[1] - (R.shL[1] + R.shR[1]) / 2, R.head[1] - R.hip[1]));
+  }
+  const v = low > 5; HEAD_DOWN.set(ex.id, v); return v;
+}
+function breathCaveat(ex) {
+  const hold = /вдох[^.]*задержк/i.test(ex.breath || ''), heavy = typeof schemeOf === 'function' && schemeOf(ex) === 'heavy';
+  const over = typeof PATTERN !== 'undefined' && PATTERN[ex.id] === 'vpush', down = headDown(ex);
+  if (!hold && !heavy && !over && !down) return '';
+  return down ? BREATH_MED + ' ' + HEAD_DOWN_MED : BREATH_MED;
+}
+
+/* При отмеченных давлении или сердце, боли в груди, головокружениях и беременности упражнения вниз головой не подбираются
+   (давление в глазу в положении вниз головой — с 17 до 28–29 мм рт. ст., Jasien et al. 2015; при головокружении — риск
+   упасть, вставая): в подборе, в заменах и в своём плане — как с отметками «Что беречь?». То же с целью «Бережно» без
+   отметок: вопрос о здоровье необязательный, о давлении человек может не сказать (решение владельца по 4.106, вопрос 3). */
+const HEALTH_NO_HEAD_DOWN = ['heart', 'chest', 'dizzy', 'pregnant'];
+function healthOk(ex) { return !((S.goal === 'gentle' || ensureHealth(S).some(id => HEALTH_NO_HEAD_DOWN.includes(id))) && headDown(ex)); }
+
+/* ---------- плашка в плане при отмеченном здоровье ---------- */
+const HEALTH_TIPS = {
+  pregnant:'If you feel unwell lying on your back, do the exercise seated or on your side.',
+  surgery:'After surgery or an injury, agree on the load and timing with your doctor or physical therapist; mark what is healing under “Anything to protect?”.'
+};
+function healthHtml() {
+  const list = ensureHealth(S);
+  if (!list.length) return '';
+  const tips = [BREATH_MED, 'If you take medicines that lower your heart rate (beta blockers, for example), the heart rate from your watch does not show the effort — go by your breathing and how you feel.']
+    .concat(list.filter(id => HEALTH_TIPS[id]).map(id => HEALTH_TIPS[id]), HEART_STOP);
+  return `<details class="health-box"${ensureFold(S).health ? '' : ' open'}><summary>Health: talk to your doctor first</summary>
+    <p><b>You marked:</b> ${esc(list.map(id => HEALTH_BY[id].name.toLowerCase()).join('; '))}. Ask your doctor what kind of exercise suits you.${S.goal === 'gentle' ? ' For now the goal is “Easy” — light weight, slow.' : ''}</p>
+    <ul>${tips.map(t => `<li>${esc(t)}</li>`).join('')}</ul>
+    <p class="gentle-warn">Your answers are stored on this device only. You can change them in the settings, under “Health”.</p></details>`;
+}
+
+/* ---------- параметры: «Здоровье» для тех, кто уже пользуется приложением ---------- */
+function renderHealth() {
+  const box = $('#h-chips'); if (!box) return;
+  const on = new Set(ensureHealth(S));
+  box.innerHTML = HEALTH.map(h => `<button type="button" class="chip${on.has(h.id) ? ' on' : ''}" data-health="${h.id}" aria-pressed="${on.has(h.id)}">${ICON.check}<span>${esc(h.name)}</span></button>`).join('');
+  $('#h-note').textContent = on.size ? 'Talk to your doctor first. Above the plan is what matters for what you marked. Your answers are stored on this device only.'
+    : 'Optional. If any of this applies to you, mark it: the plan will show what matters and suggest gentle mode. Your answers are stored on this device only.';
+}
+document.addEventListener('click', e => {
+  const t = e.target.closest('button'); if (!t || !t.dataset.health || !HEALTH_BY[t.dataset.health]) return;
+  const id = t.dataset.health, was = ensureHealth(S).length;
+  S.health = S.health.includes(id) ? S.health.filter(x => x !== id) : S.health.concat(id);
+  ensureHealth(S);
+  /* первое «да» — бережная цель (её можно сменить); снятые отметки цель не трогают */
+  if (!was && S.health.length && S.mode !== 'custom') S.goal = 'gentle';
+  regen();
+});
+document.addEventListener('toggle', e => {
+  if (!e.target.classList || !e.target.classList.contains('health-box')) return;
+  ensureFold(S).health = !e.target.open; saveSettings();
+}, true);
 
 /* ---------- «Анатомия» вне разбора: экран тренировки и карточки плана (этап 2) — правила без страницы ----------
    Здесь — только расчёты (их проверяет tools/anatomy-cards.test.js без браузера): какой вид фигуры показать, с какой
@@ -14711,6 +15467,7 @@ function stressTrack(F){
 }
 function configureStressPanel(prefix,F){
  const panel=$('#'+prefix+'-stress-panel');if(!panel||!F)return;
+ const lead=panel.querySelector('.stress-explanation');if(lead)lead.textContent=stressLead(F.it.ex);
  const rules=jointStress(F.it.ex).rules,toggle=$('#'+prefix+'-stress-toggle'),track=$('#'+prefix+'-stress-track');
  if(toggle){toggle.checked=!!motionPrefs.stress;toggle.disabled=!rules.length;}
  /* без пиковых нагрузок переключатель серый — подпись объясняет почему */
@@ -15021,7 +15778,7 @@ function selectMotion(it, clock=0) {
   $('#mv-steps').innerHTML=it.ex.tech.map(x=>`<li>${esc(x)}</li>`).join('');
   $('#mv-errors').innerHTML=it.ex.err.map(x=>`<li>${esc(x)}</li>`).join('');
   $('#mv-breath').textContent=it.ex.breath;
-  $('#mv-note').textContent=it.ex.note||'';
+  $('#mv-note').textContent=[breathCaveat(it.ex),it.ex.note].filter(Boolean).join(' ');
   const links=[...(SOURCES_BY_EX[it.ex.id]||[]),...(motionProfile(it.ex.anim)?.sources||[])];
   const src=links.filter((v,i)=>links.findIndex(x=>x[1]===v[1])===i).map(([label,url])=>`<a href="${url}" target="_blank" rel="noopener noreferrer">${esc(label)}</a>`);
   $('#mv-sources').innerHTML=src.length?`<p class="mv-muscle-label">More on technique</p>${src.join('')}`:'';
@@ -15820,14 +16577,39 @@ const OverlayBack = (() => {
    (null), а основные поля — слабая сторона. eq — снаряд (гантели, гиря, штанга) у упражнений с гантелями или гирей:
    по нему считается общий вес. Подробно — 13a-sets.js. */
 const LOG_KEY = 'podhod.log.v1';
-const LOG = {mode:'connecting', data:{}, col:null, pending:{}, writing:{}, again:{}, timers:{}, err:'', dl:null, canExport:false};
+/* foreign — записи упражнений, которых нет в этой версии: хранятся и уходят в копию, не показываются (13a-sets.js: checkLog) */
+const LOG = {mode:'connecting', data:{}, foreign:{}, col:null, pending:{}, writing:{}, again:{}, timers:{}, err:'', dl:null, canExport:false, undo:null};
 const WEIGHTED = new Set(['db', 'bb', 'kb', 'cable', 'smith', 'legpress', 'legext', 'legcurl', 'pecdeck', 'hack', 'chestpress', 'shoulderpress', 'leverrow', 'tbar', 'abductor', 'calfseat', 'calfstand']);
 const LOWER_G = new Set(['quads', 'hams', 'glutes', 'calves']);
 const MACHINE = new Set(['cable', 'smith', 'legext', 'legcurl', 'pecdeck', 'chestpress', 'shoulderpress', 'leverrow', 'abductor', 'calfseat', 'calfstand', 'gravitron', 'hack', 'tbar']);
 const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
 function dayKey(d) { return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0'); }
-const todayKey = () => dayKey(new Date());
+/* «Сегодня» журнала (Ксения 13, 14). Обычно — дата на часах телефона. Но тренировка, начатая в 23:50 и законченная в 00:10,
+   — одна тренировка (и через Новый год тоже), а после перелёта Москва → Нью-Йорк подход, записанный 5 минут назад, не
+   «завтрашний». Поэтому день идущей тренировки помнится (podhod.active.v1: день и время последнего подхода, время — по
+   абсолютным часам Date.now, они не зависят от часового пояса): если последний подход был не больше 3 часов назад, а дата
+   на часах ушла на день вперёд или назад, «сегодня» — день тренировки. Часы, переведённые назад сильнее, — обычная дата:
+   записи «из будущего» не теряются, в журнале идут после сегодняшних (recentKey), «прошлым разом» считаются (pastSessions). */
+const ACTIVE_KEY = 'podhod.active.v1', ACTIVE_GAP = 3 * 3600e3;
+let activeMem;
+function activeRead(text) { try { const a = JSON.parse(text || 'null'); return a && typeof a.d === 'string' && /^\d{4}-\d\d-\d\d$/.test(a.d) && Number.isFinite(a.at) ? {d:a.d, at:a.at} : null; } catch (e) { return null; } }
+function activeDay(now = Date.now()) {
+  if (activeMem === undefined) { activeMem = activeRead(Keep.get(ACTIVE_KEY)); Keep.watch(ACTIVE_KEY, v => { activeMem = activeRead(v); }); }
+  const a = activeMem; if (!a) return null;
+  const gap = now - a.at; if (!(gap >= 0 && gap <= ACTIVE_GAP)) return null;
+  const local = dayKey(new Date(now)); if (a.d === local) return null;
+  const ut = k => { const [y, m, d] = k.split('-').map(Number); return Date.UTC(y, m - 1, d); };
+  return Math.abs(Math.round((ut(a.d) - ut(local)) / 864e5)) === 1 ? a.d : null;
+}
+const todayKey = () => activeDay() || dayKey(new Date());
+/* подход записан: день тренировки и время */
+function markActive(d = todayKey()) { activeMem = {d, at:Date.now()}; Keep.set(ACTIVE_KEY, JSON.stringify(activeMem)); if (typeof keepPersistAsk === 'function') keepPersistAsk(); }
+/* порядок «по свежести»: сегодняшние записи — первыми, потом записи «из будущего» (часы переведены назад), потом прошлые */
+function recentKey(d, today = todayKey()) { return (d === today ? '2' : d > today ? '1' : '0') + d; }
+function byRecent(ss, today = todayKey()) {
+  return ss.map(s => [recentKey(s.d, today), s]).sort((a, b) => a[0] < b[0] ? -1 : a[0] > b[0] ? 1 : 0).map(x => x[1]);
+}
 /* день записи: «сегодня», «9 ноя», «9 ноя 2025»; в сборке с датами через Intl (английская) — по языку браузера:
    en-US «Nov 9», en-GB «9 Nov» */
 function fmtDay(k, withYear) {
@@ -15881,23 +16663,89 @@ const unitRange = (kg, lb) => { const [a, b] = isLb() ? lb : kg; return `${fmtU(
 function validSessions(ss) {
   return Array.isArray(ss) && ss.every(x => x && typeof x.d === 'string' && /^\d{4}-\d\d-\d\d$/.test(x.d) && Array.isArray(x.s));
 }
-function logLoadLocal() {
-  try {
-    const s = JSON.parse(localStorage.getItem(LOG_KEY) || 'null');
-    if (s && typeof s === 'object') for (const [k, v] of Object.entries(s)) if (EXI[k] && validSessions(v)) LOG.data[k] = v;
-  } catch (e) {}
+/* Журнал в хранилище — текст; logBase — каким эта вкладка видела его последним (для слияния вкладок, logMergeDisk).
+   Испорченный журнал не затирается (Ксения 15): исходный текст — в отложенные (Keep.quarantine), уцелевшее читается
+   (обрезанный JSON — repairJson, неверные записи — мимо, checkLog), человек видит сообщение (18a-data-keep.js). */
+let logBase = null;
+function logParse(text) {
+  if (text == null) return {data:{}, foreign:{}, r:logDrops(), cut:false, whole:false};
+  let o = null, cut = false;
+  try { o = JSON.parse(text); } catch (e) { const rep = repairJson(text); if (rep) { o = rep.value; cut = true; } }
+  const c = checkLog(o);
+  return {...c, cut, whole:c.whole || o === null};
 }
-function logSaveLocal() { try { localStorage.setItem(LOG_KEY, JSON.stringify(LOG.data)); } catch (e) {} }
+function logLoadLocal() {
+  const raw = Keep.get(LOG_KEY); logBase = raw;
+  if (raw == null) return;
+  const p = logParse(raw);
+  LOG.data = p.data; LOG.foreign = p.foreign;
+  if (p.cut || p.whole || p.r.sets || p.r.sessions) {
+    Keep.quarantine(LOG_KEY, raw, p.cut ? 'log: cut' : 'log: ' + JSON.stringify(p.r.why));
+    Keep.note('log', {cut:p.cut, whole:p.whole && !Object.keys(p.data).length, drops:p.r, kept:Object.values(p.data).reduce((a, ss) => a + ss.length, 0)});
+  }
+}
+const logStoreObject = () => ({...LOG.foreign, ...LOG.data});
+/* Запись журнала. Перед ней — что сейчас в хранилище: другая вкладка (или приложение с экрана «Домой») могла записать свои
+   подходы (Ксения 3, Артём 3) — они сливаются с нашими, а не затираются */
+function logSaveLocal() {
+  const disk = Keep.get(LOG_KEY);
+  if (disk != null && disk !== logBase) logMergeDisk(disk);
+  const text = JSON.stringify(logStoreObject());
+  if (Keep.set(LOG_KEY, text)) logBase = text;
+}
+/* Слияние трёх версий: base — что эта вкладка видела, mine — что у неё сейчас, theirs — что в хранилище. По упражнениям,
+   записям дня и номерам подходов: изменённое одной стороной — от неё; обе добавили разный подход под одним номером — оба
+   остаются (наш — следующим номером); обе правили один подход — наш (последняя правка). Пустое хранилище (очистили
+   данные сайта) не стирает записи вкладки — они запишутся обратно. Вернёт упражнения, которые изменились. */
+function logMergeDisk(diskText) {
+  const changed = [];
+  if (diskText == null) return changed;
+  const theirs = logParse(diskText), base = logParse(logBase);
+  logBase = diskText;
+  const J = v => JSON.stringify(v ?? null);
+  for (const id of new Set([...Object.keys(LOG.data), ...Object.keys(theirs.data), ...Object.keys(base.data)])) {
+    const mine = LOG.data[id] || [], was = base.data[id] || [], th = theirs.data[id] || [];
+    let out;
+    if (J(mine) === J(was)) out = th;
+    else if (J(th) === J(was) || J(th) === J(mine)) out = mine;
+    else out = mergeThree(mine, was, th);
+    if (J(out) !== J(LOG.data[id] || [])) { changed.push(id); if (out.length) LOG.data[id] = out; else delete LOG.data[id]; }
+  }
+  for (const [id, ss] of Object.entries(theirs.foreign)) if (!LOG.foreign[id]) LOG.foreign[id] = ss;
+  return changed;
+}
+function mergeThree(mine, was, th) {
+  const J = v => JSON.stringify(v ?? null), at = (ss, d) => ss.find(x => x.d === d), out = [];
+  for (const d of new Set([...mine, ...was, ...th].map(x => x.d))) {
+    const m = at(mine, d), w = at(was, d), t = at(th, d);
+    if (J(m) === J(w)) { if (t) out.push(t); continue; }
+    if (J(t) === J(w) || J(t) === J(m)) { if (m) out.push(m); continue; }
+    if (!m || !t) { out.push(m || t); continue; } /* одна сторона удалила запись, другая дописала — остаётся дописанное */
+    const s = [], extra = [], wk = k => w && w.s[k] || null;
+    for (let k = 0; k < Math.max(m.s.length, t.s.length); k++) {
+      const a = m.s[k] || null, b = t.s[k] || null, o = wk(k);
+      if (J(a) === J(o)) s[k] = b; else if (J(b) === J(o) || J(a) === J(b)) s[k] = a;
+      else if (!o && a && b) { s[k] = b; extra.push(a); } /* обе вкладки записали подход под этим номером */
+      else s[k] = a;
+    }
+    while (s.length && !s[s.length - 1]) s.pop();
+    s.push(...extra);
+    const o = {...t, ...m, s:s.map(v => v || null)};
+    if (m.target || t.target) o.target = Math.max(m.target || 0, t.target || 0);
+    if (m.at || t.at) o.at = Math.min(...[m.at, t.at].filter(Number.isFinite));
+    out.push(o);
+  }
+  return out.filter(x => x && x.s.some(Boolean)).sort((p, q) => p.d < q.d ? -1 : 1);
+}
 
-/* объединение двух историй: по дате; при совпадении берём запись с большим числом подходов */
+/* Объединение двух историй (аккаунт и браузер, копия и журнал): по дате; запись одного дня — подходы по номерам: где у одной
+   пусто, берётся другая; где обе записаны и различаются — первая (a). Предела числа записей нет (Ксения 5): раньше хранились
+   только 150 последних занятий упражнения, старые молча удалялись — годовой журнал жима занимает ~10 КБ из ~5 МБ хранилища. */
 function mergeSessions(a, b) {
   const by = new Map();
   for (const x of a || []) by.set(x.d, x);
-  for (const x of b || []) {
-    const cur = by.get(x.d);
-    if (!cur || x.s.filter(Boolean).length > cur.s.filter(Boolean).length) by.set(x.d, x);
-  }
-  return [...by.values()].sort((p, q) => p.d < q.d ? -1 : 1).slice(-150);
+  for (const x of b || []) { const cur = by.get(x.d); by.set(x.d, cur ? unionSession(cur, x) : x); }
+  return [...by.values()].sort((p, q) => p.d < q.d ? -1 : 1);
 }
 
 async function logInit() {
@@ -15978,14 +16826,15 @@ function todaySession(id, create) {
   const d = todayKey();
   let s = ss.find(x => x.d === d);
   if (!s && create) {
-    s = {d, s:[]};
+    /* at — когда начато упражнение: порядок выполнения внутри дня (выгрузка для Excel) */
+    s = {d, s:[], at:Date.now()};
     if (S.mode === 'program') s.wk = S.week;
     ss.push(s); ss.sort((a, b) => a.d < b.d ? -1 : 1);
-    if (ss.length > 150) ss.splice(0, ss.length - 150);
   }
   return s;
 }
-function pastSessions(id) { const d = todayKey(); return (LOG.data[id] || []).filter(x => x.d < d && x.s.some(Boolean)); }
+/* прошлые записи упражнения — все, кроме сегодняшней: запись «из будущего» (часы переведены назад) — тоже прошлый раз */
+function pastSessions(id) { const d = todayKey(); return byRecent((LOG.data[id] || []).filter(x => x.d !== d && x.s.some(Boolean)), d); }
 function cleanToday(id) {
   const ss = LOG.data[id]; if (!ss) return;
   const s = ss.find(x => x.d === todayKey()); if (!s) return;
@@ -16057,6 +16906,13 @@ function suggestBase(it) {
     res.tone = 'plan'; res.kgs = it.rx.kgPlan; res.kg = it.rx.kgPlan[0]; res.prev = prev;
     const what = lt === 'assist' ? 'Planned counterweight' : lt === 'extra' ? 'Planned extra weight' : 'Planned weight';
     res.text = `${what}: ${planKgText(it.rx.kgPlan)} ${wUnit()}.` + (rp ? ` Planned reps: ${rp.join(' / ')}.` : '') + (ps.length ? ` Last time: ${ps.map(x => (x[0] ? fmtKg(x[0]) + '×' : '') + x[1]).join(', ')}.` : '');
+    /* после перерыва — и вес по плану ниже, на то же число (layoffInfo, 15-autoreg.js); противовес — не трогаем */
+    const lay = past.length && lt === 'kg' && typeof layoffInfo === 'function' ? layoffInfo() : null;
+    if (lay) {
+      const fine = isLb() ? 5 * LB_KG : (it.eqIds || []).includes('kb') ? 4 : (it.eqIds || []).includes('db') ? 2 : 2.5;
+      res.tone = 'deload'; res.layoff = true; res.kgs = it.rx.kgPlan.map(v => roundTo(v * (1 - lay.pct / 100), fine)); res.kg = res.kgs[0];
+      res.text = 'After a {g} break: {kg} instead of the planned {was} (about {p}% less), not to the limit.'.replace(/\{(\w+)\}/g, (_, k) => ({g:`${lay.gap} ${plural(lay.gap, 'day', 'days', 'days')}`, kg:planKgText(res.kgs) + ' ' + wUnit(), was:planKgText(it.rx.kgPlan), p:lay.pct})[k]);
+    }
     return res;
   }
   /* прошлых тренировок нет, а сегодня подходы уже записаны — не «Первая запись», а сколько сделано и что дальше */
@@ -16100,6 +16956,30 @@ function suggestBase(it) {
   const work = kgs.length ? Math.max(...kgs) : null;
   const prevList = sets.map(x => (x[0] ? fmtKg(x[0]) + '×' : '') + x[1]).join(', ');
   if (ex.kind === 'dist') { res.tone = 'same'; res.kg = work; res.text = work ? `Last time — ${fmtKg(work)} ${wUnit()}. Try to cover more distance or go heavier.` : `Last time: ${prevList} m.`; return res; }
+  /* после перерыва (layoffInfo, 15-autoreg.js): вес ниже прежнего по шкале — то же число, что в плашке «По вашему журналу»;
+     у пирамиды — каждый подход; у противовеса — больше; без веса — повторы по нижней границе, не до предела */
+  const lay = typeof layoffInfo === 'function' ? layoffInfo() : null;
+  if (lay && !ex.kind) {
+    /* шаг округления — мельче шага прибавки (у жима ногами прибавка 10 кг, а сбросить на 10 % от 60 — до 55): блины 2,5 кг
+       (гантели 2, гири 4; в фунтах — 5) — тогда число на экране близко к проценту шкалы */
+    const ids = it.eqIds || [], fine = isLb() ? 5 * LB_KG : ids.includes('kb') ? 4 : ids.includes('db') ? 2 : 2.5;
+    const f = 1 - lay.pct / 100, pk = sets.map(x => x[0]), mixed = (lt === 'kg' || lt === 'extra') && pk.length > 1 && pk.every(v => v > 0) && !pk.every(v => v === pk[0]);
+    /* фразы с {g} (перерыв), {kg}, {was}, {p} переводятся целиком: в английском слова стоят в другом порядке */
+    const say = (t, o) => t.replace(/\{(\w+)\}/g, (_, k) => o[k] ?? ''), g = `${lay.gap} ${plural(lay.gap, 'day', 'days', 'days')}`, u = ' ' + wUnit();
+    res.tone = 'deload'; res.reps = sets.map((x, i) => tgt(i)[0]);
+    if (lt === 'kg' && work) {
+      if (mixed) { res.kgs = pk.map(v => roundTo(v * f, fine)); res.kg = res.kgs[0]; res.text = say('After a {g} break: weights about {p}% lower than last time — {kg}, not to the limit.', {g, p:lay.pct, kg:res.kgs.map(fmtKg).join(' / ') + u}); }
+      else { res.kg = roundTo(work * f, fine); res.text = say('After a {g} break: {kg} instead of {was} (about {p}% less), not to the limit.', {g, p:lay.pct, kg:fmtKg(res.kg) + u, was:fmtKg(work)}); }
+      return res;
+    }
+    if (lt === 'assist' && work) {
+      res.kg = Math.max((Math.floor(work / step) + 1) * step, roundTo(work / f, fine));
+      res.text = say('After a {g} break: counterweight {kg} instead of {was}, not to the limit.', {g, kg:fmtKg(res.kg) + u, was:fmtKg(work)});
+      return res;
+    }
+    res.kg = work; res.text = say('After a {g} break: reps at the bottom of the plan’s range, not to the limit. Last time: {prev}.', {g, prev:prevList});
+    return res;
+  }
   /* пирамида или сброс (веса подходов в прошлый раз разные): совет — по верхнему подходу, подсказки — по каждому подходу */
   const pyr = !ex.kind && (lt === 'kg' || lt === 'extra') && pyramidAdvice(it, res, sets, past, tgt, step, week, rp);
   if (pyr) return pyr;
@@ -16312,7 +17192,8 @@ function firstKg(tset, sg, own) {
    подходов в ней разные (пирамида, сброс); иначе null — один вес на все подходы (подсказка — по прогрессии, sg.kg).
    prevSets — записанные подходы прошлой тренировки */
 function ownKgs(it, prevSets, sg) {
-  if (it.rx.kgPlan) return k => planKg(it.rx, k);
+  /* вес по плану; после перерыва — сниженный (suggestBase: sg.layoff) */
+  if (it.rx.kgPlan) return sg && sg.layoff && Array.isArray(sg.kgs) ? k => sg.kgs[Math.min(k, sg.kgs.length - 1)] : k => planKg(it.rx, k);
   /* пирамида прошлого раза с советом по верхнему подходу (pyramidAdvice): вес каждого подхода — из совета */
   if (sg && Array.isArray(sg.kgs) && sg.kgs.length) return k => sg.kgs[Math.min(k, sg.kgs.length - 1)];
   const kgs = prevSets.map(x => x[0]);
@@ -16526,15 +17407,25 @@ function histSets(ex, s) {
   const t = sessionTonnage(ex, s);
   return `${setsText(s.s, ex)}${t > 0 ? `<small class="h-ton">${'total weight ' + fmtTon(t) + ' ' + wUnit()}</small>` : ''}`;
 }
+/* записи упражнения «по свежести» и, пока не истекло время, место удалённой записи («Удалено · Вернуть») */
+function histList(ex) {
+  const ss = byRecent((LOG.data[ex.id] || []).filter(x => x.s.some(Boolean))), u = undoFor(ex.id);
+  return {ss, list:u ? byRecent(ss.concat({d:u.s.d, s:[], gone:true})) : ss};
+}
+function histRowHtml(ex, s) {
+  if (s.gone) return undoLineHtml(`Entry deleted: ${fmtDay(s.d, true)}.`, `data-hist-undo="${ex.id}"`, `h-gone-${ex.id}`);
+  return `<li><span class="h-d">${fmtDay(s.d, true)}${s.wk ? `<small>wk ${s.wk}</small>` : ''}${s.fmt === 'static' ? '<small>static-dynamic</small>' : ''}</span>
+    <span class="h-s">${histSets(ex, s)}</span>
+    <button type="button" class="h-del" data-del="${ex.id}" data-d="${s.d}" aria-label="Delete entry for ${fmtDay(s.d, true)}">Delete</button></li>`;
+}
 function histHtml(ex) {
-  const ss = (LOG.data[ex.id] || []).filter(x => x.s.some(Boolean));
+  const {ss, list} = histList(ex);
+  if (!ss.length && list.length) return `<ul class="h-list">${list.map(s => histRowHtml(ex, s)).join('')}</ul>${variantHistNote(ex)}`;
   if (!ss.length) return `<p class="h-empty">No entries yet. Log your sets above — history and a chart will appear here.</p>${variantHistNote(ex)}`;
   const m = histMetric(ex, ss);
   const pts = ss.map(s => ({d:s.d, v:m.f(s)})).filter(p => p.v != null).slice(-24);
   const best = pts.length ? Math.max(...pts.map(p => p.v)) : null;
-  const rows = ss.slice(-6).reverse().map(s => `<li><span class="h-d">${fmtDay(s.d, true)}${s.wk ? `<small>wk ${s.wk}</small>` : ''}${s.fmt === 'static' ? '<small>static-dynamic</small>' : ''}</span>
-    <span class="h-s">${histSets(ex, s)}</span>
-    <button type="button" class="h-del" data-del="${ex.id}" data-d="${s.d}" aria-label="Delete entry for ${fmtDay(s.d, true)}">Delete</button></li>`).join('');
+  const rows = list.slice(-6).reverse().map(s => histRowHtml(ex, s)).join('');
   return `<div class="h-chart"><p class="h-cap">${m.name}${m.bare ? '' : ', ' + m.unit}${best != null ? ` · best ${metricFmt(m)(best)}` : ''}</p>${sparkSvg(pts, m.unit, metricFmt(m))}</div>
     <ul class="h-list">${rows}</ul>${ss.length > 6 ? `<p class="h-more">Total entries: ${ss.length}. Full history is in the “Log” section.</p>` : ''}${variantHistNote(ex)}`;
 }
@@ -16567,12 +17458,19 @@ function logRefresh(ids) {
   if (S.view === 'journal') { if (!$('#plan').contains(document.activeElement) || document.activeElement === document.body) renderJournal(); return; }
   document.querySelectorAll('.card').forEach(c => { if (!ids || ids.includes(c.dataset.ex)) refreshCard(c); });
 }
+/* где хранятся записи; хранилище не принимает записи — так и сказано (Ксения 6, 7); постоянное хранилище и iPhone —
+   storageLineHtml (18a-data-keep.js) */
 function statusHtml() {
-  const m = LOG.mode;
+  const m = LOG.mode, st = Keep.state();
+  if (st !== 'ok' && m !== 'cloud') return `<span class="ls-dot ls-bad" aria-hidden="true"></span><span>${st === 'full' ? 'Entries are not being saved: the browser storage is full.' : 'Entries are not being saved on this device: the browser does not let the site store data.'} ${'Save a full backup to a file while the page is open.'}</span>`;
   const t = m === 'cloud' ? 'Entries are saved to your account and available on any device where you open this page.'
     : m === 'connecting' ? 'Connecting entry storage…'
-    : 'Entries are stored in this browser. Make a backup to move your log to another device or to keep it if browser data is cleared.';
+    : 'Entries are stored in this browser on this device.' + (typeof storageLineHtml === 'function' ? storageLineHtml() : '') + ' Make a backup to move your log to another device or to keep it if browser data is cleared.';
   return `<span class="ls-dot ls-${m}" aria-hidden="true"></span><span>${LOG.err ? esc(LOG.err) + ' Make a backup so you don’t lose your entries.' : t}</span>`;
+}
+/* одна строка о личных данных (Михаил 12): что где хранится и что копия — открытый файл */
+function privacyHtml() {
+  return `<p class="p-hint j-private">${LOG.mode === 'cloud' ? 'Heart rate and measurements are stored in your account and on this device; joint settings — only on this device.' : 'Heart rate, body weight and joint settings are stored only on this device — the app does not send them anywhere.'} ${'A backup is a plain, unencrypted file: anyone with it can read all of this without a password.'}</p>`;
 }
 function journalDays() { const s = new Set(); for (const ss of Object.values(LOG.data)) for (const x of ss) if (x.s.some(Boolean)) s.add(x.d); return s.size; }
 
@@ -16592,9 +17490,12 @@ function trainingDays(data = LOG.data) {
 }
 /* последние тренировки списком: дата, упражнений и подходов, общий вес за день */
 function daysHtml(by = trainingDays(), limit = 5) {
-  const days = Object.values(by).sort((a, b) => a.d < b.d ? 1 : -1).slice(0, limit);
+  /* дни с пометкой «Больно» (11g-gentle.js: «Пропустить → больно» на экране тренировки) — и без записанных подходов */
+  const pain = typeof painDayHtml === 'function' ? painDayHtml : () => '', all = {...by};
+  if (typeof ensurePain === 'function') for (const x of ensurePain(S).log) if (!all[x.d]) all[x.d] = {d:x.d, ex:0, sets:0, t:0};
+  const today = todayKey(), days = Object.values(all).sort((a, b) => recentKey(a.d, today) < recentKey(b.d, today) ? 1 : -1).slice(0, limit);
   if (!days.length) return '';
-  return `<div class="j-days"><p class="lb-h">${'Recent workouts · total weight'}</p><ul>${days.map(x => `<li><span class="j-dd">${fmtDay(x.d, true)}</span><span class="j-dn">${x.ex} ${plural(x.ex, 'exercise', 'exercises', 'exercises')} · ${x.sets} ${plural(x.sets, 'set', 'sets', 'sets')}${heartDayHtml(x.d)}</span><b class="j-dt">${x.t > 0 ? fmtTon(x.t) + `<small>${wUnit()}</small>` : '—'}</b></li>`).join('')}</ul></div>`;
+  return `<div class="j-days"><p class="lb-h">${'Recent workouts · total weight'}</p><ul>${days.map(x => `<li><span class="j-dd">${fmtDay(x.d, true)}</span><span class="j-dn">${x.sets ? `${x.ex} ${plural(x.ex, 'exercise', 'exercises', 'exercises')} · ${x.sets} ${plural(x.sets, 'set', 'sets', 'sets')}${heartDayHtml(x.d)}` : ''}${pain(x.d)}</span><b class="j-dt">${x.t > 0 ? fmtTon(x.t) + `<small>${wUnit()}</small>` : '—'}</b></li>`).join('')}</ul></div>`;
 }
 function heatmap(today = new Date(), by = trainingDays()) {
   const byDay = {};
@@ -16626,17 +17527,22 @@ function heatmap(today = new Date(), by = trainingDays()) {
 }
 function renderJournal() {
   stopFigures();
-  const entries = Object.entries(LOG.data).map(([id, ss]) => [id, ss.filter(x => x.s.some(Boolean))]).filter(([id, ss]) => EXI[id] && ss.length);
+  /* записи — «по свежести» (byRecent): сегодняшние первыми, записи «из будущего» (часы переведены назад) — за ними */
+  const today = todayKey();
+  const entries = Object.entries(LOG.data).map(([id, ss]) => [id, byRecent(ss.filter(x => x.s.some(Boolean)), today)]).filter(([id, ss]) => EXI[id] && ss.length);
   const days = journalDays();
   const sets = entries.reduce((a, [, ss]) => a + ss.reduce((b, x) => b + x.s.filter(Boolean).length, 0), 0);
-  const last = entries.reduce((m, [, ss]) => ss[ss.length - 1].d > m ? ss[ss.length - 1].d : m, '');
+  const lastK = entries.reduce((m, [, ss]) => { const k = recentKey(ss[ss.length - 1].d, today); return k > m ? k : m; }, ''), last = lastK.slice(1);
   const byDays = trainingDays();
-  entries.sort((a, b) => a[1][a[1].length - 1].d < b[1][b[1].length - 1].d ? 1 : -1);
+  entries.sort((a, b) => recentKey(a[1][a[1].length - 1].d, today) < recentKey(b[1][b[1].length - 1].d, today) ? 1 : -1);
+  const broken = Keep.broken().length;
   const tools = `<div class="j-tools">
       ${LOG.canExport ? `<button type="button" class="btn btn-2" id="exp-json">Full backup (JSON)</button><button type="button" class="btn btn-2" id="exp-csv">Log for Excel</button><button type="button" class="btn btn-2" id="exp-body">Measurements for Excel</button>` : ''}
       <label class="btn btn-2" for="imp-file">Restore from backup</label><input type="file" id="imp-file" accept=".json,application/json" hidden>
-    </div>${unitsHtml()}<p class="p-hint" id="j-msg" role="status"></p>
-    <p class="p-hint">A full backup holds your settings, gear, log and measurements in one file: it moves everything to another phone or brings it back after the browser data is cleared.</p>`;
+      ${broken ? `<button type="button" class="btn btn-2" data-keep="broken">${'Damaged data'} (${broken})</button>` : ''}
+    </div>${restorePanelHtml()}${unitsHtml()}<p class="p-hint" id="j-msg" role="status" tabindex="-1">${esc(LOG.msg || '')}</p>
+    <p class="p-hint">A full backup holds your settings, gear, log and measurements in one file: it moves everything to another phone or brings it back after the browser data is cleared.</p>${privacyHtml()}`;
+  LOG.msg = '';
   let html = `<header class="p-head j-head">
     <div class="p-sum">
       <p class="eyebrow">Log</p>
@@ -16651,19 +17557,22 @@ function renderJournal() {
     </div>
     <figure class="j-heat"><figcaption class="lb-h">Activity over 12 weeks${last ? ` · last workout ${fmtDay(last, true)}` : ''}</figcaption>${heatmap(new Date(), byDays)}${daysHtml(byDays)}</figure>
   </header>${entries.length ? muscleLoadHtml() : ''}${bodyHtml()}`;
+  /* упражнение, у которого удалили последнюю запись, остаётся в списке, пока видно «Удалено · Вернуть» */
+  const gone = undoLive(LOG.undo);
+  if (gone && EXI[gone.id] && !entries.some(([id]) => id === gone.id)) entries.unshift([gone.id, []]);
   if (!entries.length) {
     html += `<div class="empty"><h2>No entries yet</h2><p>Open the plan and log sets in the exercise cards: weight and reps will be saved here, and the planner will start suggesting when to add weight.</p><button type="button" class="btn" data-view="plan">Go to plan</button></div>`;
   } else {
     html += `<ul class="j-list">${entries.map(([id, ss]) => {
-      const ex = EXI[id];
-      const lastS = ss[ss.length - 1];
+      const ex = EXI[id], list = histList(ex).list;
+      const lastS = ss[ss.length - 1], open = LOG.openId === id;
       return `<li class="j-row">
-        <details>
+        <details data-jex="${id}"${open ? ' open' : ''}>
           <summary>
-            <span class="j-name">${esc(ex.name)}<small>${GN[ex.g]} · ${ss.length} ${plural(ss.length, 'entry', 'entries', 'entries')} · ${fmtDay(lastS.d, true)}</small></span>
-            ${journalVal(ex, ss)}
+            <span class="j-name">${esc(ex.name)}<small>${GN[ex.g]} · ${ss.length} ${plural(ss.length, 'entry', 'entries', 'entries')}${lastS ? ' · ' + fmtDay(lastS.d, true) : ''}</small></span>
+            ${ss.length ? journalVal(ex, ss) : ''}
           </summary>
-          <div class="j-body">${histHtml(ex).replace(/<p class="h-more">.*?<\/p>/, '')}${ss.length > 6 ? `<details class="j-all"><summary>All entries (${ss.length})</summary><ul class="h-list">${ss.slice(0, -6).reverse().map(s => `<li><span class="h-d">${fmtDay(s.d, true)}</span><span class="h-s">${histSets(ex, s)}</span><button type="button" class="h-del" data-del="${id}" data-d="${s.d}">Delete</button></li>`).join('')}</ul></details>` : ''}</div>
+          <div class="j-body">${histHtml(ex).replace(/<p class="h-more">.*?<\/p>/, '')}${list.length > 6 ? `<details class="j-all"${open && list.slice(0, -6).some(s => s.gone) ? ' open' : ''}><summary>All entries (${ss.length})</summary><ul class="h-list">${list.slice(0, -6).reverse().map(s => histRowHtml(ex, s)).join('')}</ul></details>` : ''}</div>
         </details>
       </li>`;
     }).join('')}</ul>
@@ -16671,6 +17580,7 @@ function renderJournal() {
     <p class="legend">Estimated max is the weight you could lift once (your one-rep max), per the Epley formula: weight × (1 + reps / 30). It rises both when you add weight and when you do more reps with the same weight, but reps above 12 are not counted. If every entry uses the same weight, the chart shows your reps with it.</p>
     <p class="legend">Total weight is the sum of “weight × reps” over all implements and sides: ${tonnageExample()}. Only external load counts: dumbbells, kettlebells, barbell, machine, extra weight; body weight, assisted-machine counterweight, timed holds and distance are not included. L/R — a set with the left and right side logged separately: progress and records follow the weaker side.</p>`;
   }
+  LOG.openId = null;
   $('#plan').innerHTML = html;
 }
 /* единицы веса — рядом с копией и выгрузкой: общая настройка приложения (S.units) */
@@ -16706,51 +17616,102 @@ async function saveFile(name, text, mime) {
 }
 /* Таблица для Excel: подход — строка. Вес — одного снаряда (как записан); «Левая» и «Правая» — у подходов с Л/П
    («12×10», у удержаний — секунды), основные вес и повторы тогда — слабая сторона; общий вес — последний столбец,
-   у подходов без внешнего веса пусто. */
+   у подходов без внешнего веса пусто. Разделитель — как ждёт Excel языка (Mike 3): где десятичная запятая (русская версия) —
+   точка с запятой, где точка (английская) — запятая. Внутри дня — по порядку выполнения (Дмитрий 22): упражнения — по времени
+   первого подхода (at записи дня), подходы — по номерам; записи прежних версий без времени — первыми, в порядке журнала. */
+const csvSep = () => DEC === ',' ? ';' : ',';
+function csvLine(r, sep = csvSep()) { return r.map(v => { const t = String(v); return t.includes(sep) || /["\n\r]/.test(t) ? `"${t.replace(/"/g, '""')}"` : t; }).join(sep); }
 function csvText() {
   /* вес и общий вес — в выбранных единицах, единица — в заголовке столбца */
   const rows = [['Date', 'Exercise', 'Muscle group', 'Set', `Weight, ${wUnit()}`, 'Reps / seconds / meters', 'Cycle week', 'Rest after the set, s', 'Left', 'Right', `Total weight per set, ${wUnit()}`]];
   const all = [], side = p => (p[0] != null ? fmtKg(p[0]) + '×' : '') + p[1];
+  let order = 0;
   for (const [id, ss] of Object.entries(LOG.data)) {
-    const ex = EXI[id]; if (!ex) continue;
+    const ex = EXI[id]; order++; if (!ex) continue;
     for (const s of ss) {
-      const impl = sessionImpl(ex, s);
+      const impl = sessionImpl(ex, s), at = Number.isFinite(s.at) ? s.at : -Infinity;
       s.s.forEach((x, k) => {
         if (!x) return;
         const sd = setSides(x, ex), t = setTonnage(ex, x, impl);
-        all.push([s.d, ex.name, GN[ex.g], k + 1, x[0] != null ? fmtKg(x[0]) : '', x[1], s.wk || '', restField(x[2]) ?? '', sd ? side(sd.l) : '', sd ? side(sd.r) : '', t > 0 ? fmtKg(t) : '']);
+        all.push({key:[s.d, at, order, k], row:[s.d, ex.name, GN[ex.g], k + 1, x[0] != null ? fmtKg(x[0]) : '', x[1], s.wk || '', restField(x[2]) ?? '', sd ? side(sd.l) : '', sd ? side(sd.r) : '', t > 0 ? fmtKg(t) : '']});
       });
     }
   }
-  all.sort((a, b) => a[0] < b[0] ? -1 : a[0] > b[0] ? 1 : a[1] < b[1] ? -1 : 1);
-  return '﻿' + rows.concat(all).map(r => r.map(v => /[;"\n]/.test(String(v)) ? `"${String(v).replace(/"/g, '""')}"` : v).join(';')).join('\r\n');
+  all.sort((a, b) => { for (let i = 0; i < 4; i++) if (a.key[i] !== b.key[i]) return a.key[i] < b.key[i] ? -1 : 1; return 0; });
+  const sep = csvSep();
+  return '﻿' + rows.concat(all.map(x => x.row)).map(r => csvLine(r, sep)).join('\r\n');
 }
+/* имя файла копии: в английской версии — backup, в русской — как раньше (Mike 5) */
+/* имя копии одно на обоих языках, латиницей, как остальные файлы lazy-gym-… (решение владельца по 4.107, вопрос 9) */
+const backupStem = () => 'lazy-gym-backup';
 async function exportLog(kind) {
   const msg = $('#j-msg'), d = todayKey();
   const r = kind === 'csv' ? await saveFile(`lazy-gym-log-${d}.csv`, csvText(), 'text/csv')
-    : await saveFile(`lazy-gym-kopiya-${d}.json`, JSON.stringify(backupObject()), 'application/json');
-  if (msg) msg.textContent = r === 'ok' ? (kind === 'csv' ? 'Spreadsheet saved. Open it in Excel: columns are separated by semicolons.' : 'Full backup saved. You can restore everything from it right here, on any device.')
+    : await saveFile(`${backupStem()}-${d}.json`, JSON.stringify(backupObject()), 'application/json');
+  if (msg) msg.textContent = r === 'ok' ? (kind === 'csv' ? (csvSep() === ';' ? 'Spreadsheet saved. Open it in Excel: columns are separated by semicolons.' : 'Table saved. Open it in Excel: columns are separated by commas.') : 'Full backup saved. You can restore everything from it right here, on any device.')
     : r === 'declined' ? 'Save canceled.' : 'Couldn’t save the file.';
 }
+/* ---------- восстановление из копии: сначала — что будет, и выбор для планов и настроек (Ксения 4) ---------- */
+let restorePending = null; /* {obj, cut, log, body, settings, heart, choice} */
 function importLog(file) {
-  const msg = $('#j-msg');
   const rd = new FileReader();
-  rd.onload = () => {
-    let obj; try { obj = JSON.parse(rd.result); } catch (e) { obj = null; }
-    if (!obj || obj.app !== 'podhod' || (!obj.log && !obj.body && !obj.settings)) { if (msg) msg.textContent = 'This is not a Lazy Gym Planner backup. Choose a lazy-gym-kopiya-….json file.'; return; }
-    const r = restoreBackup(obj);
-    renderJournal();
-    const m2 = $('#j-msg');
-    const parts = [];
-    if (r.exercises) parts.push(`log entries: ${r.sessions} (exercises: ${r.exercises})`);
-    if (r.body > 0) parts.push(`measurements: ${r.body}`);
-    if (r.heart > 0) parts.push(`days with heart rate: ${r.heart}`);
-    if (r.settings) parts.push('settings');
-    if (m2) m2.textContent = parts.length ? `Restored: ${parts.join(', ')}. Matching dates were merged.` : 'Nothing new in the backup — everything in it is already here.';
-  };
+  rd.onload = () => restoreRead(String(rd.result || ''));
+  rd.onerror = () => { const m = $('#j-msg'); if (m) m.textContent = 'The file can’t be read.'; };
   rd.readAsText(file);
 }
-
+function restoreRead(text) {
+  const r = readBackupText(text);
+  restorePending = null;
+  if (r.error) { LOG.msg = r.error; renderJournalKeep('#j-msg'); return; }
+  const sp = restoreSettingsPlan(r.obj);
+  restorePending = {obj:r.obj, cut:r.cut, log:restoreLogPlan(r.obj), body:restoreBodyPlan(r.obj), settings:sp,
+    heart:r.obj.heart && typeof r.obj.heart === 'object' && r.obj.heart.days && typeof r.obj.heart.days === 'object' ? Object.keys(r.obj.heart.days).length : 0,
+    choice:sp && (sp.fresh || !sp.differs) ? 'copy' : 'mine'};
+  renderJournalKeep('#jr-h');
+}
+/* перерисовать журнал, сохранив прокрутку, и поставить фокус */
+function renderJournalKeep(focusSel) {
+  if (S.view !== 'journal') return;
+  const y = window.scrollY; renderJournal(); window.scrollTo(0, y);
+  const f = focusSel && $(focusSel); if (f) f.focus();
+}
+function restorePanelHtml() {
+  const p = restorePending; if (!p) return '';
+  const L = p.log, made = typeof p.obj.exported === 'string' && realDay(p.obj.exported.slice(0, 10)) ? fmtDay(p.obj.exported.slice(0, 10), true) : '';
+  const inCopy = [L.added + L.joined + L.same ? `log entries — ${L.added + L.joined + L.same}` : '', p.body.added ? `measurements — ${p.body.added}` : '', p.heart ? `days with heart rate — ${p.heart}` : '', p.settings ? 'plans and settings' : ''].filter(Boolean).join(', ');
+  const warn = [];
+  if (p.cut) warn.push('The file is cut off or damaged (for example, while being sent): the part that survived will be restored.');
+  const drop = logDropText(L.drops); if (drop) warn.push(`Invalid and will be skipped: ${drop}.`);
+  if (p.body.dropped) warn.push(`Measurement values skipped: ${p.body.dropped} — the date or number is invalid.`);
+  if (L.foreign.length) warn.push(`Exercises this version of the app doesn't know: ${L.foreign.length}. Their entries will be kept (and go into the next backup) but won't be shown.`);
+  if (p.settings && p.settings.bad.length) warn.push(`Damaged in the backup settings: ${settingsBadText(p.settings.bad)} — these won't be taken; the ones here stay.`);
+  const radio = (v, label, sum) => `<label class="po-opt"><input type="radio" name="jr-set" value="${v}"${p.choice === v ? ' checked' : ''}><span><b>${label}</b>${sum ? `<small>${esc(sum)}</small>` : ''}</span></label>`;
+  const choice = p.settings && p.settings.differs ? `<fieldset class="po-set"><legend>${'Plans and settings'}</legend>${radio('mine', 'Keep mine', settingsSummary(S))}${radio('copy', 'Take from the backup', settingsSummary(p.settings.s))}</fieldset>` : '';
+  return `<section class="j-restore" aria-labelledby="jr-h"><h2 id="jr-h" tabindex="-1">${made ? `${'Restore from the backup of'} ${made}` : 'Restore from backup'}</h2>
+    <p>${inCopy ? `In the backup: ${inCopy}.` : 'The backup has no entries.'} ${'The log and measurements are added to what is recorded here — nothing here is erased.'}</p>
+    ${warn.map(w => `<p class="warn">${esc(w)}</p>`).join('')}${choice}
+    <div class="j-restore-b"><button type="button" class="btn" id="jr-go">${'Restore'}</button><button type="button" class="btn btn-2" id="jr-cancel">${'Cancel'}</button></div></section>`;
+}
+function restoreApply() {
+  const p = restorePending; if (!p) return;
+  const pick = document.querySelector('input[name="jr-set"]:checked'), choice = pick ? pick.value : p.choice;
+  restorePending = null;
+  const r = restoreBackup(p.obj, {settings:choice});
+  const parts = [];
+  if (r.added) parts.push(`${'new log entries —'} ${r.added}`);
+  if (r.joined) parts.push(`${'entries filled in with sets from the backup —'} ${r.joined}`);
+  if (r.body > 0) parts.push(`${'measurements —'} ${r.body}`);
+  if (r.heart > 0) parts.push(`${'days with heart rate —'} ${r.heart}`);
+  if (r.settings) parts.push('plans and settings — from the backup');
+  let text = parts.length ? `${'Restored:'} ${parts.join(', ')}.` : 'Nothing new in the backup — everything in it is already here.';
+  if (p.obj.v >= 2 && p.settings && choice === 'mine') text += ' ' + 'Plans and settings — the ones here.';
+  if (r.same) text += ` ${'Already here, unchanged:'} ${r.same}.`;
+  if (r.conflicts.length) text += ` ${'Sets in the backup differed from the ones recorded here'} (${r.conflicts.length} ${plural(r.conflicts.length, 'day', 'days', 'days')}: ${r.conflicts.slice(0, 5).map(d => fmtDay(d, true)).join(', ')}${r.conflicts.length > 5 ? '…' : ''}) ${'— the ones here were kept.'}`;
+  const drop = logDropText(r.drops); if (drop) text += ` ${'Skipped:'} ${drop}.`;
+  if (r.bodyDropped) text += ` ${'Measurement values skipped:'} ${r.bodyDropped}.`;
+  LOG.msg = text;
+  renderJournalKeep('#j-msg');
+}
 /* ---------- всплывающая подсказка для графиков ---------- */
 const tipEl = document.createElement('div'); tipEl.className = 'tip'; tipEl.hidden = true; document.body.appendChild(tipEl);
 function showTip(text, cx, cy) {
@@ -16797,12 +17758,16 @@ function readFields({kgIn, rIn}, lt) {
 }
 /* sure — вес уже подтвердили («Записать» в вопросе о весе) */
 function tickSet(btn, sure) {
-  const id = btn.dataset.tick, k = +btn.dataset.k;
-  const row = btn.closest('.lt-r');
+  const id = btn.dataset.tick, row = btn.closest('.lt-r');
+  let k = +btn.dataset.k;
   const it = plan.items.find(x => x.ex.id === id);
   const lt = loadType(it.ex), lr = row.classList.contains('lt-lr');
   const F = (lr ? ['l', 'r'] : [null]).map(side => rowFields(row, side));
   const s = todaySession(id, true);
+  /* строка пустая, а подход под этим номером уже записан — другой вкладкой (Ксения 3): не снимать его, а записать этот
+     следующим номером */
+  const other = s.s[k] && !row.classList.contains('done');
+  if (other) { while (s.s[k]) k++; }
   if (s.s[k]) {
     if (kgAsk[id] && kgAsk[id].k === k) dropKgAsk(id, row.closest('.c-log'));
     s.s[k] = null; cleanToday(id);
@@ -16825,11 +17790,12 @@ function tickSet(btn, sure) {
   s.s[k] = lr ? makeSidedSet([got[0].kg, got[0].reps], [got[1].kg, got[1].reps], it.ex) : [got[0].kg, got[0].reps];
   s.target=Math.max(s.target||0,it.rx.circ?(it.rounds||it.rx.sets):it.rx.sets);
   if (it.rx.static) s.fmt = 'static';
-  markImpl(s, it);
+  markImpl(s, it); markActive(s.d);
   F.forEach((f, i) => { if (f.kgIn) f.kgIn.value = got[i].kg != null ? fmtKg(got[i].kg) : ''; f.rIn.value = got[i].reps; });
   row.classList.add('done'); btn.setAttribute('aria-pressed', 'true');
   carryKgBox(row.closest('.c-log'));
   logTouch(id); refreshHist(id); refreshSug(row.closest('.c-log'), it);
+  if (other) { const card = row.closest('.card'); if (card) refreshCard(card); }
   const total = it.rx.circ ? 0 : it.rx.sets;
   const doneN = s.s.filter(Boolean).length;
   if (!it.rx.circ) {
@@ -16965,21 +17931,67 @@ function refreshHist(id) {
   logBarUpdate(card);
   const tab = document.querySelector('[data-view="journal"] small'); if (tab) tab.textContent = journalDays() || '';
 }
-const delArm = {};
+/* ---------- «Удалить запись» (Галина 3) ----------
+   Первое нажатие — переспрос: надпись «Точно удалить?», имя кнопки для диктора — «Точно удалить запись за 16 ноя?», фокус на месте;
+   через 4 с без ответа — снова «Удалить». Второе — удаляет, и на месте записи на 10 с — «Удалена запись за … · Вернуть»,
+   фокус на «Вернуть». Время вышло — строка уходит, фокус — на заголовок упражнения (в журнале) или «История» (в карточке).
+   Пока фокус на «Точно удалить?» или «Вернуть», время не идёт: отсчёт начинается заново, когда фокус уйдёт — диктору и
+   клавиатуре нужно время (решение владельца по 4.107, вопрос 3). */
+const UNDO_MS = 10000, ARM_MS = 4000;
+const undoLive = u => u && u.until > Date.now() ? u : null;
+function undoFor(id) { const u = undoLive(LOG.undo); return u && u.id === id ? u : null; }
+function undoLineHtml(text, attr, id) { return `<li class="sw-gone h-gone"><span id="${id}">${text}</span>${undoBtn(attr, id)}</li>`; }
+/* надпись — коротко («Точно удалить?»: длинная не помещается в строке истории), имя для диктора — весь вопрос с датой */
+function whileFocused(sel, ms, fn, hold) {
+  const tick = () => {
+    const b = typeof sel === 'string' ? document.querySelector(sel) : sel;
+    if (b && b.isConnected && document.activeElement === b) {
+      if (hold) hold(Infinity);
+      b.addEventListener('blur', () => { if (hold) hold(Date.now() + ms); setTimeout(tick, ms); }, {once:true});
+      return;
+    }
+    fn();
+  };
+  setTimeout(tick, ms);
+}
+function armDelete(btn, ask, label) {
+  btn.classList.add('armed'); btn.textContent = 'Are you sure?'; btn.setAttribute('aria-label', ask); keepSay(ask);
+  whileFocused(btn, ARM_MS, () => { if (btn.isConnected && btn.classList.contains('armed')) { btn.classList.remove('armed'); btn.textContent = 'Delete'; btn.setAttribute('aria-label', label); } });
+}
+function focusUndo(sel) { const b = document.querySelector(sel); if (b) b.focus(); }
+function undoExpire(fn, sel, u) { whileFocused(sel, UNDO_MS + 50, fn, u ? t => { u.until = t; } : null); }
+/* строка «Вернуть» уходит без перерисовки; фокус с неё — на fallback */
+function undoRepaint(sel, fallbackSel) {
+  const b = document.querySelector(sel); if (!b) return;
+  const had = document.activeElement === b, li = b.closest('li'); if (li) li.remove();
+  if (had) { const f = document.querySelector(fallbackSel); if (f) f.focus(); }
+}
 function deleteSession(btn) {
-  const id = btn.dataset.del, d = btn.dataset.d, key = id + d;
-  if (!delArm[key]) {
-    delArm[key] = true; btn.textContent = 'Are you sure?'; btn.classList.add('armed');
-    setTimeout(() => { delArm[key] = false; if (btn.isConnected) { btn.textContent = 'Delete'; btn.classList.remove('armed'); } }, 3500);
-    return;
-  }
-  delArm[key] = false;
+  const id = btn.dataset.del, d = btn.dataset.d, when = fmtDay(d, true);
+  if (!btn.classList.contains('armed')) { armDelete(btn, `Really delete the entry for ${when}?`, `Delete the entry for ${when}`); return; }
   const ss = LOG.data[id]; if (!ss) return;
   const i = ss.findIndex(x => x.d === d); if (i < 0) return;
+  const s = ss[i];
   ss.splice(i, 1); if (!ss.length) delete LOG.data[id];
+  LOG.undo = {id, s, until:Date.now() + UNDO_MS};
   logTouch(id, true);
-  if (S.view === 'journal') renderJournal();
-  else { const card = document.querySelector(`.card[data-ex="${id}"]`); if (card) refreshCard(card); }
+  histRepaint(id);
+  focusUndo(`[data-hist-undo="${id}"]`);
+  undoExpire(() => { if (LOG.undo && LOG.undo.s === s) { LOG.undo = null; undoRepaint(`[data-hist-undo="${id}"]`, S.view === 'journal' ? `[data-jex="${id}"] > summary` : `.card[data-ex="${id}"] [data-hist]`); } }, `[data-hist-undo="${id}"]`, LOG.undo);
+}
+function histUndo(id) {
+  const u = undoFor(id); if (!u) return;
+  LOG.undo = null;
+  LOG.data[id] = mergeSessions(LOG.data[id] || [], [u.s]);
+  logTouch(id, true);
+  histRepaint(id);
+  focusUndo(`[data-del="${id}"][data-d="${u.s.d}"]`);
+  const m = $('#j-msg'); if (m && S.view === 'journal') m.textContent = `Entry for ${fmtDay(u.s.d, true)} restored.`;
+}
+/* история упражнения после удаления или возврата: в журнале — с раскрытым упражнением, в карточке — открытая история */
+function histRepaint(id) {
+  if (S.view === 'journal') { LOG.openId = id; const y = window.scrollY; renderJournal(); window.scrollTo(0, y); return; }
+  const card = document.querySelector(`.card[data-ex="${id}"]`); if (card) refreshCard(card);
 }
 
 document.addEventListener('click', e => {
@@ -17000,6 +18012,9 @@ document.addEventListener('click', e => {
     return;
   }
   if (t.dataset.del) { deleteSession(t); return; }
+  if (t.dataset.histUndo) { histUndo(t.dataset.histUndo); return; }
+  if (t.id === 'jr-go') { restoreApply(); return; }
+  if (t.id === 'jr-cancel') { restorePending = null; LOG.msg = 'Restore cancelled — nothing changed.'; renderJournalKeep('#j-msg'); return; }
   if (t.dataset.view) { S.view = t.dataset.view; saveSettings(); renderSetup(); renderPlan(); window.scrollTo({top:0}); return; }
   if (t.dataset.units) { S.units = t.dataset.units === 'lb' ? 'lb' : 'kg'; saveSettings(); renderJournal(); const b = document.querySelector(`[data-units="${S.units}"]`); if (b) b.focus(); return; }
   if (t.id === 'exp-csv') { exportLog('csv'); return; }
@@ -17137,6 +18152,90 @@ function cleanSet(v, ex) {
   const sd = ex && setSides([o[0], o[1], null, v[3]], ex);
   if (sd) o.push(r || null, {l:sd.l, r:sd.r}); else if (r) o.push(r);
   return o;
+}
+
+/* ---------- проверка записей журнала (Ксения 9, 15) ----------
+   Из хранилища — мягко (strict false): то, что записало само приложение, не теряется; отбрасывается только то, что не читается:
+   подход — не массив, повторы — не число больше нуля, вес — не пусто и не число не меньше нуля, дата — не настоящая (2026-13-45).
+   Из копии — строго: ещё дата не раньше 2000 года и не позже maxDay (день копии или завтра), вес до 2000 кг, повторы до 1000
+   (секунды — до 10 ч, метры — до 200 км), поля записи — только верные. Отброшенный подход оставляет пустое место (номера
+   подходов не съезжают). Что не прошло — не молча: r.sets, r.sessions и причины r.why для сообщения (logDropText).
+   Упражнения, которых нет в этой версии (новые версии, переименование), не теряются: foreign — хранятся и уходят в копию. */
+const LOG_DAY_MIN = '2000-01-01', LOG_KG_MAX = 2000, LOG_REPS_MAX = {reps:1000, time:36000, dist:200000};
+function realDay(d) {
+  if (typeof d !== 'string' || !/^\d{4}-\d\d-\d\d$/.test(d)) return false;
+  const [y, m, n] = d.split('-').map(Number), t = new Date(Date.UTC(y, m - 1, n));
+  return t.getUTCFullYear() === y && t.getUTCMonth() === m - 1 && t.getUTCDate() === n;
+}
+const logDrops = () => ({sets:0, sessions:0, why:{}});
+const dropWhy = (r, why) => { r.why[why] = (r.why[why] || 0) + 1; };
+const numOf = v => typeof v === 'number' ? v : typeof v === 'string' && v.trim() !== '' ? Number(v.replace(',', '.')) : NaN;
+function checkSet(v, ex, strict, r) {
+  if (v == null) return null;
+  let why = '', out = null;
+  if (!Array.isArray(v)) why = 'set';
+  else if (strict) {
+    const kg = v[0] == null || v[0] === '' ? null : numOf(v[0]), reps = numOf(v[1]);
+    const max = LOG_REPS_MAX[ex.kind === 'time' ? 'time' : ex.kind === 'dist' ? 'dist' : 'reps'];
+    if (kg !== null && !(Number.isFinite(kg) && kg >= 0 && kg <= LOG_KG_MAX)) why = 'kg';
+    else if (!(Number.isFinite(reps) && reps > 0 && reps <= max)) why = 'reps';
+    else out = cleanSet([kg, reps, v[2], v[3]], ex);
+  } else if (!(typeof v[1] === 'number' && Number.isFinite(v[1]) && v[1] > 0)) why = 'reps';
+  else if (!(v[0] == null || (typeof v[0] === 'number' && Number.isFinite(v[0]) && v[0] >= 0))) why = 'kg';
+  else out = v;
+  if (why) { r.sets++; dropWhy(r, why); }
+  return out;
+}
+/* запись дня: null — отброшена (причина в r) или в ней нет ни одного подхода */
+function checkSession(x, ex, {strict = false, maxDay = null} = {}, r = logDrops()) {
+  if (!x || typeof x !== 'object' || Array.isArray(x) || !Array.isArray(x.s)) { r.sessions++; dropWhy(r, 'shape'); return null; }
+  const bad = !realDay(x.d) ? 'date' : strict && x.d < LOG_DAY_MIN ? 'old' : strict && maxDay && x.d > maxDay ? 'future' : null;
+  if (bad) { r.sessions++; dropWhy(r, bad); return null; }
+  const s = x.s.map(v => checkSet(v, ex, strict, r));
+  if (!s.some(Boolean)) return null;
+  if (!strict) return {...x, s};
+  const o = {d:x.d};
+  if (Number.isInteger(+x.wk) && +x.wk >= 1 && +x.wk <= 4) o.wk = +x.wk;
+  if (x.fmt === 'static') o.fmt = 'static';
+  if (Number.isSafeInteger(+x.target) && +x.target > 0 && +x.target <= 50) o.target = +x.target;
+  if (cleanImpl(ex, x.eq)) o.eq = x.eq;
+  if (Number.isFinite(x.at) && x.at > 946684800000) o.at = Math.round(x.at); /* время первого подхода (порядок выполнения), с 2000 года */
+  o.s = s;
+  return o;
+}
+/* две записи одного дня: подходы по номерам — первая, где у неё пусто, вторая; поля — первой, цель — бо́льшая */
+function unionSession(a, b) {
+  /* вторая ничего не добавляет — первая как есть */
+  if (b.s.every((v, k) => !v || a.s[k]) && (b.target || 0) <= (a.target || 0)) return a;
+  const s = [];
+  for (let k = 0; k < Math.max(a.s.length, b.s.length); k++) s.push(a.s[k] || b.s[k] || null);
+  const o = {...b, ...a, s};
+  if (a.target || b.target) o.target = Math.max(a.target || 0, b.target || 0);
+  if (a.at || b.at) o.at = Math.min(...[a.at, b.at].filter(Number.isFinite));
+  return o;
+}
+/* весь журнал: {data, foreign, r, whole} — whole: это вообще не журнал (не объект) */
+function checkLog(obj, opts = {}) {
+  const r = logDrops(), data = {}, foreign = {};
+  if (!obj || typeof obj !== 'object' || Array.isArray(obj)) return {data, foreign, r, whole:obj != null};
+  for (const [id, ss] of Object.entries(obj)) {
+    if (!EXI[id]) { if (Array.isArray(ss) && ss.length) foreign[id] = ss; continue; }
+    if (!Array.isArray(ss)) { r.sessions++; dropWhy(r, 'shape'); continue; }
+    const by = new Map();
+    for (const x of ss) { const c = checkSession(x, EXI[id], opts, r); if (c) by.set(c.d, by.has(c.d) ? unionSession(by.get(c.d), c) : c); }
+    if (by.size) data[id] = [...by.values()].sort((a, b) => a.d < b.d ? -1 : 1);
+  }
+  return {data, foreign, r, whole:false};
+}
+/* «7 подходов (вес не число, меньше нуля или больше 2000 кг — 5; …), 3 записи (нет такой даты — 1; …)» */
+function logDropText(r) {
+  const W = {kg:'weight is not a number, below zero or over 2000 kg', reps:'reps are not a number, zero or less, or too many', set:'set in the wrong format',
+    date:'no such date', old:'date before 2000', future:'date later than the day the backup was made', shape:'entry in the wrong format'};
+  const list = keys => keys.filter(k => r.why[k]).map(k => `${W[k]} — ${r.why[k]}`).join('; ');
+  const parts = [];
+  if (r.sets) parts.push(`${r.sets} ${plural(r.sets, 'set', 'sets', 'sets')} (${list(['kg', 'reps', 'set'])})`);
+  if (r.sessions) parts.push(`${r.sessions} ${plural(r.sessions, 'entry', 'entries', 'entries')} (${list(['date', 'old', 'future', 'shape'])})`);
+  return parts.join(', ');
 }
 
 /* ---------- общий вес (тоннаж) ---------- */
@@ -17494,11 +18593,13 @@ function galleryAddBtn(id, name) {
 }
 /* название на плитке: с инвентарём этого места, а если здесь упражнения нет — с полным инвентарём */
 const galleryTileName = (ex, E = effEquip(S.equip), all = effEquip(EQUIP.map(e => e.id))) => exName(ex, available(ex, E) ? E : all);
+/* бережный режим: «нагружает колени — в плане будет замена», как во вкладке «Мышцы» и в «Добавить упражнение» (Елена, п. 5) */
+function galleryUnfit(ex) { const why = unfitWhy(ex); return why ? `<span class="mv-tunfit unfit">${esc('{why} — will be replaced in the plan'.replace('{why}', why))}</span>` : ''; }
 function galleryTile(ex, E, all) {
   const here = available(ex, E), name = galleryTileName(ex, E, all), fav = isFav(ex.id);
   const sub = here ? equipLine(ex, E) : `Not at “${placeOf().name}”, needs: ${equipLine(ex, all).toLowerCase()}`;
   return `<div class="mv-tw"><button type="button" class="mv-tile${here ? '' : ' off'}" data-gallery-open="${ex.id}"><span class="mv-thumb" data-thumb="${ex.id}" aria-hidden="true"></span>`
-    + `<span class="mv-tname">${fav ? '<span class="mv-tfav" aria-label="In favorites">★</span> ' : ''}${esc(name)}</span><span class="mv-tsub">${esc(sub)}</span></button>${galleryAddBtn(ex.id, name)}</div>`;
+    + `<span class="mv-tname">${fav ? '<span class="mv-tfav" aria-label="In favorites">★</span> ' : ''}${esc(name)}</span><span class="mv-tsub">${esc(sub)}</span>${galleryUnfit(ex)}</button>${galleryAddBtn(ex.id, name)}</div>`;
 }
 /* ничего не нашлось (строка над витриной — живая, её слышит диктор): из-за фильтров — «Искать во всех: N»; иначе —
    ближайшие по написанию названия или совет. Совет выбрать «Всё», когда «Всё» уже выбрано, не нужен (замечание 20 тестера) */
@@ -18409,13 +19510,17 @@ function workoutSpent(now=Date.now()){return workout.spent+(workout.openAt?Math.
 function saveWorkout(){
   if(!workout)return;
   const now=Date.now(),c=workoutCount();workout.savedAt=now;
-  try{localStorage.setItem(WORKOUT_STORE,JSON.stringify({stamp:workout.stamp,day:workout.days[0],days:workout.days,index:workout.index,started:workout.started,spent:workoutSpent(now),restUntil:workout.restUntil,restTotal:workout.restTotal,restFrom:workout.restFrom,restPaused:workout.restPaused,next:workout.next,last:workout.last,drafts:workout.drafts,skipped:workout.skipped,gone:workout.gone,ended:workout.ended,done:c.done,total:c.total}));}catch(e){}
+  Keep.set(WORKOUT_STORE,JSON.stringify({stamp:workout.stamp,day:workout.days[0],days:workout.days,index:workout.index,started:workout.started,spent:workoutSpent(now),restUntil:workout.restUntil,restTotal:workout.restTotal,restFrom:workout.restFrom,restPaused:workout.restPaused,next:workout.next,last:workout.last,drafts:workout.drafts,skipped:workout.skipped,gone:workout.gone,ended:workout.ended,done:c.done,total:c.total,snap:workoutSnap(workout.queue)}));
 }
 function workoutLoad(){let o=null;try{o=JSON.parse(localStorage.getItem(WORKOUT_STORE)||'null');}catch(e){}return wkNormalize(o,Date.now(),todayKey());}
 /* план: «Начать тренировку →», «Продолжить тренировку →» со сделанным или вопрос о тренировке прошлого дня */
 function workoutPlanState(){
   if(!plan?.items?.length)return{kind:'start'};
-  return wkPlanState(workoutLoad(),{today:todayKey(),queue:workoutQueue(plan),data:LOG.data});
+  const saved=workoutLoad(),q=workoutQueueNow(saved);
+  const w=wkPlanState(saved,{today:todayKey(),queue:q,data:LOG.data});
+  /* тренировка продолжается по своему списку, а карточки показывают уже новый план (решение владельца по 4.107, вопрос 7) */
+  if(w.kind==='continue'&&workoutStamp(q)!==workoutStamp(workoutQueue(plan)||[]))w.own=true;
+  return w;
 }
 function yesterdayKey(){const d=new Date();d.setDate(d.getDate()-1);return dayKey(d);}
 const doneOfText=(n,total)=>`${n} ${'of'} ${total} ${plural(total,'sets','sets','sets')}`;
@@ -18439,7 +19544,7 @@ function paintStartButtons(){
 /* «Закончить её»: тренировка прошлого дня закрыта, её подходы остаются в журнале */
 function workoutEndSaved(){
   const o=workoutLoad();if(!o)return;o.ended=true;
-  try{localStorage.setItem(WORKOUT_STORE,JSON.stringify(o));}catch(e){}
+  Keep.set(WORKOUT_STORE,JSON.stringify(o));
 }
 /* введённое в полях подхода: общее (kg, reps) и по сторонам (kl, rl — левая, kr, rr — правая) */
 function workoutInputs(){return{kg:$('#wv-kg').value,reps:$('#wv-reps').value,kl:$('#wv-kg-l').value,rl:$('#wv-reps-l').value,kr:$('#wv-kg-r').value,rr:$('#wv-reps-r').value};}
@@ -18452,7 +19557,9 @@ function workoutCapture(){
 function startWorkout(id,opts={}){
   if(!plan?.items?.length)return;
   workoutReturn=document.activeElement;
-  const queue=workoutQueue(plan),stamp=workoutStamp(queue),today=todayKey(),old=workoutLoad(),now=Date.now();
+  /* начатая тренировка идёт по своему списку упражнений, даже если план с тех пор собрался иначе (новая версия приложения):
+     workoutQueueNow, 18a-data-keep.js (Ксения 12) */
+  const old=workoutLoad(),queue=workoutQueueNow(old,{cont:!!opts.cont}),stamp=workoutStamp(queue),today=todayKey(),now=Date.now();
   const oldDays=old?wkDaysWith(old.days,today):[today],done=old?wkCount(queue,s=>wkSet(LOG.data,s.it.ex.id,s.k,oldDays),old).done:0;
   const how=wkResume(old,{today,stamp,cont:!!opts.cont,done}),keep=how!=='new',same=how==='same'&&old.stamp===stamp;
   workout={queue,stamp,index:0,days:keep?oldDays:[today],started:keep&&Number.isFinite(old.started)?old.started:now,spent:keep?old.spent:0,openAt:now,
@@ -18487,6 +19594,8 @@ function closeWorkout(fromBack){
   const d=$('#workout-view');if(d.open)d.close();document.documentElement.classList.remove('workout-open');d.classList.remove('rest-over');workout.restOver=null;
   if(fromBack!==true)OverlayBack.closed('workout');
   /* кнопка, с которой открыли, могла пересобраться вместе с планом (замена в тренировке) — тогда фокус на «Продолжить тренировку» */
+  /* «Больно» посреди тренировки — теперь вне подбора: план пересобирается без этих упражнений */
+  if(painFlush())renderPlan();
   logRefresh(null);paintStartButtons();(workoutReturn?.isConnected?workoutReturn:$('#start-workout'))?.focus();workoutReturn=null;
   /* вид фигуры мог смениться на экране тренировки — карточки плана берут его же */
   if(figs.some(F=>F.card))applyCardsView();
@@ -18495,6 +19604,7 @@ function workoutShow(index){
   if(!workout)return;
   workout.index=Math.max(0,Math.min(workout.queue.length-1,index));workout.restUntil=0;workout.restFrom=0;workout.restPaused=0;workout.next=-1;workout.sideNote='';workout.holdPair=null;RestAlarm.cancel();paintRestPhase(false);workoutAskHide();
   const s=workout.queue[workout.index],it=s.it,ex=it.ex,stored=workoutValue(s),sg=suggest(it),hold=isHold(ex);
+  workout.shown=JSON.stringify(stored||null); /* что было записано у подхода, когда его показали (запись из другой вкладки — workoutTaken) */
   const prev=sg.prev?.s[s.k]||sg.prev?.s.filter(Boolean).slice(-1)[0];
   $('#wv-active').hidden=false;$('#wv-rest').hidden=true;$('#wv-finish').hidden=true;
   $('#wv-title').textContent=it.name;$('#wv-exercise').value=ex.id;paintExerciseTools();
@@ -18533,7 +19643,11 @@ function workoutFill(s,sg,prev){
   /* вес: записанный сегодня в подходе выше (carriedKg — то же правило, что в карточке: свой вес подхода по плану или
      по пирамиде прошлого раза не перетирается), иначе свой вес подхода, иначе из прошлой тренировки */
   const own=ownKgs(it,sg.prev?sg.prev.s.filter(Boolean):[],sg),planned=own(s.k),kgText=v=>v!=null?fmtKg(v):'',carried=carriedKg(it,today,s.k,null,own);
-  $('#wv-kg').value=draft?draft.kg:stored?kgText(stored[0]):carried!=null?fmtKg(carried):planned!=null?fmtKg(planned):prev?.[0]!=null?fmtKg(prev[0]):'';
+  /* совет снизить вес (после перерыва, облегчённый режим, разгрузка — tone 'deload') — в поле его вес, а не прошлый (Михаил п. 1) */
+  const ease=sg.tone==='deload'&&sg.kg!=null?sg.kg:null;
+  $('#wv-kg').value=draft?draft.kg:stored?kgText(stored[0]):carried!=null?fmtKg(carried):planned!=null?fmtKg(planned):ease!=null?fmtKg(ease):prev?.[0]!=null?fmtKg(prev[0]):'';
+  /* в поле — сниженный вес: подсказка под полем говорит почему, а не «из последней записи» (замечание к 4.106) */
+  const eased=ease!=null&&$('#wv-kg').value===fmtKg(ease),easeHint=eased?(typeof layoffInfo==='function'&&layoffInfo()?'Weight lowered after your break. Adjust it and enter your result.':'Weight lowered as suggested above. Adjust it and enter your result.'):'';
   /* подсказка повторов — цель подхода со словом «цель»: серое «12–15» без него выглядело введённым */
   const goal='goal '+planReps(it.rx,s.k);
   $('#wv-reps').value=draft?draft.reps:stored?String(stored[1]):'';$('#wv-reps').placeholder=goal;
@@ -18547,7 +19661,7 @@ function workoutFill(s,sg,prev){
   }
   workoutPairTotal();
   $('#wv-input-hint').textContent=hold?(lt==='extra'?'Extra weight can be left empty. ':'')+'“Stop” logs the seconds and starts the rest. You can also type the seconds in.'
-    :lt==='extra'?(wl.impl==='db'?'Without dumbbells, leave the weight blank. Enter your actual result.':'Extra weight can be left blank. Enter your actual result.'):lt==='none'?'Enter the actual result of the set.':'Weight is filled in from your last entry, if there is one. Adjust it and enter your result.';
+    :lt==='extra'?(wl.impl==='db'?'Without dumbbells, leave the weight blank. Enter your actual result.':'Extra weight can be left blank. Enter your actual result.'):lt==='none'?'Enter the actual result of the set.':easeHint||'Weight is filled in from your last entry, if there is one. Adjust it and enter your result.';
   $('#wv-error').textContent='';for(const id of ['wv-kg','wv-reps','wv-kg-l','wv-reps-l','wv-kg-r','wv-reps-r'])$('#'+id).removeAttribute('aria-invalid');
 }
 /* «×2 = 40 кг» под весом одной гантели, когда их две */
@@ -18599,8 +19713,13 @@ function commitWorkout(e,sure){
   workoutAskHide();
   /* отдых, уже записанный у этого подхода (третье поле), при исправлении сохраняется; правка подхода — в его же дне журнала,
      новый подход — сегодняшним днём */
+  /* подход под этим номером записала другая вкладка, пока здесь он был пустым (Артём 3, Ксения 3): здешний — следующим номером,
+     ни один не затирается (workoutTaken, 18a-data-keep.js) */
+  const taken=workoutTaken(step);
+  if(taken)return workoutCommitTaken(step,got,taken);
   const already=!!workoutValue(step),session=workoutSession(step,true),rest=already?restField(session.s[step.k][2]):null;
   if(!already&&!workout.days.includes(session.d))workout.days.push(session.d);
+  if(!already)markActive(session.d);
   /* записали пропущенное упражнение — оно снова в тренировке */
   if(workout.skipped.includes(ex.id)){workout.skipped=workout.skipped.filter(x=>x!==ex.id);workoutOptions();}
   while(session.s.length<step.k)session.s.push(null);
@@ -18764,14 +19883,20 @@ function holdStop(){if(workout?.hold){workout.hold.h=null;workout.hold.last=null
    считаются в прогрессе и итогах тренировки (workout.gone). */
 function paintExerciseTools(){
   const s=workout.queue[workout.index],id=s.it.ex.id,self=workout.skipped.includes(id),u=workout.skipUndo;
-  workout.skipUndo=null;workoutSwapToggle(false);
+  workout.skipUndo=null;workoutSwapToggle(false);painBoxToggle(false);
   const line=self?{id,text:'Exercise skipped.'}:u&&workout.skipped.includes(u.id)?{id:u.id,text:`${'Skipped:'} ${u.name}.`}:null;
   $('#wv-skip').hidden=self;$('#wv-skip-line').hidden=!line;
-  if(line){$('#wv-skip-t').textContent=line.text;$('#wv-unskip').dataset.id=line.id;}
+  /* «Больно» — у пропущенного, пока оно не отмечено (11g-gentle.js: painMark) */
+  const marked=line&&ensurePain(S).log.some(x=>x.id===line.id&&x.d===todayKey());
+  if(line){$('#wv-skip-t').textContent=line.text;$('#wv-unskip').dataset.id=line.id;$('#wv-pain').dataset.id=line.id;$('#wv-pain').hidden=!!marked;}
   /* название целиком над выбором: у <select> текст не переносится */
   const o=$('#wv-exercise').selectedOptions?.[0];$('#wv-exercise-text').textContent=o?o.textContent:s.it.label+'. '+s.it.name;
 }
+/* «Пропустить» дважды подряд по ошибке (двойное касание, отчёт Артёма п. 4): второе нажатие в течение 0,7 с после первого
+   не пропускает следующее упражнение — как «Подход выполнен», которое после записи сразу уводит на экран отдыха */
+const WV_SKIP_GUARD=700;
 function workoutSkip(){
+  const now=Date.now();if(now-(workout.skipAt||0)<WV_SKIP_GUARD)return;workout.skipAt=now;
   workoutCapture();
   const s=workout.queue[workout.index],id=s.it.ex.id;
   if(!workout.skipped.includes(id))workout.skipped.push(id);
@@ -18779,6 +19904,25 @@ function workoutSkip(){
   const next=workoutFirstOpen(workout.queue,workout.index);
   if(next<0){workoutFinish();$('#wv-finish-close').focus();return;}
   workout.skipUndo={id,name:s.it.name};workoutShow(next);$('#wv-unskip').focus();
+}
+/* «Пропустить → больно» (отчёт Елены п. 12): выбор «Заменить» или «Убрать из плана»; пометка в журнале дня, упражнение
+   само в план не возвращается (S.pain, 11g-gentle.js), вернуть — в параметрах, «Беречь суставы» */
+function painBoxToggle(open){
+  const b=$('#wv-pain'),box=$('#wv-pain-box');if(!b||!box)return;
+  if(open===undefined)open=b.getAttribute('aria-expanded')!=='true';
+  b.setAttribute('aria-expanded',String(open));box.hidden=!open;
+  if(open){box.dataset.id=b.dataset.id||'';$('#wv-pain-swap').focus({preventScroll:true});box.scrollIntoView({block:'nearest',behavior:reduceMotion?'auto':'smooth'});}
+}
+function workoutPainOff(){
+  const id=$('#wv-pain-box').dataset.id;if(!id||!EXI[id])return;
+  painMark(id,'removed',todayKey(),null,true);painBoxToggle(false);$('#wv-pain').hidden=true;
+  $('#wv-save-status').textContent='Removed from the plan: {name}. It won’t come back on its own; to bring it back, go to Settings, “Protect joints & tendons”.'.replace('{name}',exNameHere(EXI[id]));
+  $('#wv-skip').focus();
+}
+function workoutPainSwap(){
+  const id=$('#wv-pain-box').dataset.id;if(!id)return;
+  const i=workout.queue.findIndex(x=>x.it.ex.id===id&&!workoutValue(x)),j=i>=0?i:workout.queue.findIndex(x=>x.it.ex.id===id);if(j<0)return;
+  painBoxToggle(false);workout.painFrom=id;workoutShow(j);workoutSwapToggle(true);
 }
 function workoutUnskip(id){
   if(!id)return;
@@ -18798,6 +19942,9 @@ function workoutSwapToggle(open){
 function workoutSwap(nextId){
   const it=workout.queue[workout.index].it,from=it.ex.id;
   workoutCapture();
+  /* замена после «Больно»: пометка в журнале и прежнее упражнение — вне подбора */
+  const pain=workout.painFrom===from;workout.painFrom=null;
+  if(pain)painMark(from,'swapped',todayKey(),nextId,true);
   if(!swapSet(it.slot,nextId))return;
   /* план за окном тренировки: в карточке — «Заменено: … → … Вернуть»; тренировка при этом не закрывается (stopFigures) */
   workoutReplanning=true;try{renderPlan();}finally{workoutReplanning=false;}
@@ -18842,6 +19989,9 @@ function setupWorkout(){
     if(t.id==='wv-hold-reset'){holdStop();paintHold();return;}
     if(t.id==='wv-skip'){workoutSkip();return;}
     if(t.id==='wv-unskip'){workoutUnskip(t.dataset.id);return;}
+    if(t.id==='wv-pain'){painBoxToggle();return;}
+    if(t.id==='wv-pain-off'){workoutPainOff();return;}
+    if(t.id==='wv-pain-swap'){workoutPainSwap();return;}
     if(t.id==='wv-swap'){workoutSwapToggle();return;}
     if(t.dataset.wvSwap){workoutSwap(t.dataset.wvSwap);return;}
     if(t.id==='wv-rest-pause'){workoutRestPause();return;}
@@ -19030,6 +20180,11 @@ function wkNormalize(o, now, today) {
   x.ended = !!x.ended;
   x.restPaused = Number(x.restPaused) > 0 ? Number(x.restPaused) : 0;
   for (const k of ['done', 'total']) x[k] = Number.isInteger(x[k]) && x[k] >= 0 ? x[k] : null;
+  /* список упражнений тренировки (18a-data-keep.js: workoutSnap) — только в верном виде, иначе тренировка идёт по плану */
+  const sn = x.snap;
+  x.snap = sn && typeof sn === 'object' && typeof sn.ctx === 'string' && Array.isArray(sn.items) && Array.isArray(sn.q) && sn.items.length && sn.q.length
+    && sn.items.every(it => it && typeof it.id === 'string' && it.rx && typeof it.rx === 'object')
+    && sn.q.every(s => Array.isArray(s) && Number.isInteger(s[0]) && s[0] >= 0 && s[0] < sn.items.length && Number.isInteger(s[1]) && s[1] >= 0) ? sn : null;
   return x;
 }
 /* подход k упражнения id в днях тренировки: сначала самый поздний день */
@@ -19061,7 +20216,8 @@ function wkResume(saved, {today, stamp, cont = false, done = 0}) {
   if (!saved || saved.ended) return 'new';
   const last = saved.days[saved.days.length - 1];
   if (last === today) return saved.stamp === stamp || done > 0 ? 'same' : 'new';
-  return last < today && cont ? 'past' : 'new';
+  /* «прошлого дня» — и день «из будущего» (часы переведены назад, 13-log.js: todayKey) */
+  return last !== today && cont ? 'past' : 'new';
 }
 /* что показать в плане: 'continue' — «Продолжить тренировку →» и сколько сделано; 'ask' — тренировка прошлого дня не
    закончена (can — в нынешнем плане её можно продолжить); 'start' — «Начать тренировку →» */
@@ -19071,7 +20227,7 @@ function wkPlanState(saved, {today, queue, data}) {
   const c = wkCount(queue, s => wkSet(data, s.it.ex.id, s.k, days), saved, (id, k) => wkSet(data, id, k, days));
   if (last === today) return c.done > 0 && c.done < c.total ? {kind:'continue', ...c} : {kind:'start'};
   const done = saved.done ?? c.done, total = saved.total ?? c.total;
-  if (last < today && done > 0) return {kind:'ask', day:last, done, total, can:c.done > 0 && c.done < c.total};
+  if (last !== today && done > 0) return {kind:'ask', day:last, done, total, can:c.done > 0 && c.done < c.total};
   return {kind:'start'};
 }
 /* минут на экране тренировки: spent — до этого открытия, openAt — когда открыт (0 — закрыт) */
@@ -19117,15 +20273,34 @@ function wkAddGone(gone, g) {
      чем при отдыхе 1:1; Schoenmakers и Reed (IJSPP, комментарий) — отдых до числа пульса или до доли от максимума для
      назначения отдыха не подходит.
    · Yoon и Kim, 2023 (Applied Sciences 13:7850) — постоянный отдых 30 с … 5 мин, восстановление пульса только измерялось.
-   Надёжного общего числа (уд/мин, % от максимума или резерва) для отдыха между подходами нет — числа по умолчанию нет. */
+   Надёжного общего числа (уд/мин, % от максимума или резерва) для отдыха между подходами нет — числа по умолчанию нет.
+
+   Безопасность (замечания кардиолога, Михаил п. 5, 6; 4.106):
+   · Предупреждение при очень высоком пульсе — выше расчётного максимума для возраста: 208 − 0,7 × возраст (Tanaka H.,
+     Monahan K.D., Seals D.R., J Am Coll Cardiol 2001, 37(1):153–156 — метаанализ 351 исследования, 18 712 человек без
+     лекарств и некурящих, и лабораторная проверка на 514; разброс у разных людей около ±10 уд/мин). Возраст — по желанию,
+     в настройке отдыха; без него — выше 195: это расчётный максимум уже в 18 лет (208 − 0,7 × 18 ≈ 195), выше него — у любого
+     взрослого (HR_HIGH_ANY). Слова — «снизьте темп, отдохните; если плохо — остановитесь», без диагнозов.
+   · Лекарства, снижающие пульс: бета-блокаторы уменьшают пульс в покое и при нагрузке; у здоровых при той же нагрузке пульс
+     ниже на 16–19 % (Levinger I., Bronks R., Cody D.V., Linton I., Davie A., J Sports Sci Med 2004, 3(YISI 1):23–27 —
+     со ссылкой на Sjöberg, Frankenhaeuser 1979); пульс при них не отражает нагрузку — строка в настройке отдыха.
+   · Отдых «до пульса» не короче минимума (restFloor ниже): обычно не короче минуты (или плана, если он короче) —
+     самый короткий отдых в исследованиях для массы — 30–60 с, для силы 3–5 мин (de Salles B.F. et al., Sports Med 2009,
+     39(9):765–777); ACSM: 1–2 мин во вспомогательных, 2–3 мин в базовых (Ratamess et al., MSSE 2009, 41(3):687–708).
+     В «Бережно» пульс отдых только продлевает, не сокращает.
+   · Порог — до 190 (было до 250): порог выше расчётного максимума молодого взрослого значит «почти без отдыха». */
 
 /* Технические, а не физиологические числа: попытки переподключения (мс), пульс старше 5 с — уже не «живой», шаг продления
    отдыха по пульсу — как у кнопок «±15 сек.», ниже порога — два показания подряд (не одно случайное). */
 const HR_RETRY = [1000, 2000, 4000, 8000, 15000];
 const HR_LIVE = {stale:5000, gap:5};
 const HR_REST = {step:15, confirm:2};
-/* поле порога: границы только от опечаток (не рекомендация) */
-const HR_THR = {min:30, max:250};
+/* поле порога: снизу — от опечаток, сверху — 190 (см. шапку: выше — почти без отдыха); возраст — 10…100 лет */
+const HR_THR = {min:30, max:190}, HR_AGE = {min:10, max:100};
+/* расчётный максимум пульса для возраста (Tanaka et al. 2001); без возраста — порог предупреждения для любого взрослого */
+const HR_HIGH_ANY = 195;
+function hrMaxFor(age) { return Number.isInteger(age) && age >= HR_AGE.min && age <= HR_AGE.max ? Math.round(208 - 0.7 * age) : null; }
+function hrTooHigh(bpm, age) { if (!(bpm > 0)) return false; const m = hrMaxFor(age); return bpm > (m || HR_HIGH_ANY); }
 const HEART_KEY = 'podhod.heart.v1', HEART_PREFS_KEY = 'podhod.heart.prefs.v1';
 
 /* ---------- разбор Heart Rate Measurement (0x2A37) ----------
@@ -19288,6 +20463,9 @@ function hrSimBluetooth({phase = () => 'idle', timers = globalThis, rand = Math.
     sim:{drop() { if (!st.connected) return; st.connected = false; stop(); dev.dispatch('gattserverdisconnected', {target:dev}); }, contact(v) { st.contact = !!v; }, set(b) { st.bpm = +b || st.bpm; }, fail(n) { st.fail = Math.max(0, n | 0); }, state:() => ({...st})}};
 }
 function hrSimFlag(search) { return /[?&]hr=sim(?=[&#]|$)/.test(search || ''); }
+/* минимальный отдых при отдыхе «до пульса», с: в «Бережно» — весь план (пульс отдых только продлевает), иначе не короче минуты
+   или плана, если он короче (см. шапку: de Salles et al. 2009, Ratamess et al. 2009) */
+function restFloor(planned, gentle) { const p = Math.max(0, Number(planned) || 0); return gentle ? p : Math.min(60, p); }
 
 /* ---------- запись: пульс подхода, отдыха и тренировки (без страницы — tools/heart.test.js) ----------
    День: {t: секунды с пульсом, avg: средний (по времени), max, sets: {'id:k': [в конце подхода, максимум за подход]},
@@ -19331,7 +20509,8 @@ function hrCleanDays(o) {
   if (o && typeof o === 'object') for (const [d, x] of Object.entries(o)) if (/^\d{4}-\d\d-\d\d$/.test(d)) { const c = hrCleanDay(x); if (c) out[d] = c; }
   return out;
 }
-/* объединение по дате: основа — день с бо́льшим временем пульса, подходы и отдых — из обоих (у основы приоритет); 400 дней */
+/* объединение по дате: основа — день с бо́льшим временем пульса, подходы и отдых — из обоих (у основы приоритет).
+   Все дни: день пульса — несколько чисел, а предел в 400 дней молча стирал историю (решение владельца по 4.107, вопрос 5). */
 function hrMergeDays(a, b) {
   const out = {...(a || {})};
   for (const [d, y] of Object.entries(b || {})) {
@@ -19340,8 +20519,6 @@ function hrMergeDays(a, b) {
     const [base, other] = (y.t || 0) > (x.t || 0) ? [y, x] : [x, y];
     out[d] = {...base, max:Math.max(base.max || 0, other.max || 0), sets:{...other.sets, ...base.sets}, rests:{...other.rests, ...base.rests}};
   }
-  const keys = Object.keys(out).sort();
-  for (const k of keys.slice(0, Math.max(0, keys.length - 400))) delete out[k];
   return out;
 }
 
@@ -19350,14 +20527,15 @@ function hrMergeDays(a, b) {
    плана пульс выше — продление по HR_REST.step с); 'first' — по плану или раньше, если пульс опустился ниже порога.
    st — состояние этого отдыха {below, lastAt, done, ext}; at — время показания (ниже порога — HR_REST.confirm показаний
    подряд). Без живого пульса — отдых по времени. Вернёт {act: null | 'end' | 'extend', until, why}. */
-function hrRestStep(st, {mode, thr, now, until, bpm, at}) {
+function hrRestStep(st, {mode, thr, now, until, bpm, at, floorAt = 0}) {
   if (mode !== 'hr' && mode !== 'first') return {act:null, until, why:'time'};
   if (!(thr > 0)) return {act:null, until, why:'nothr'};
   if (st.done) return {act:null, until, why:st.done};
   if (until <= now) { st.done = 'timeup'; return {act:null, until, why:'timeup'}; }
   if (bpm == null) { st.below = 0; return {act:null, until, why:'nohr'}; }
   if (at && at !== st.lastAt) { st.lastAt = at; st.below = bpm < thr ? (st.below || 0) + 1 : 0; }
-  if ((st.below || 0) >= HR_REST.confirm) { st.done = 'below'; return {act:'end', until:Math.min(until, now + 100), why:'below'}; }
+  /* ниже порога, но отдых ещё короче минимума (floorAt) — конец отдыха на минимуме, а не сразу */
+  if ((st.below || 0) >= HR_REST.confirm) { st.done = now + 100 < floorAt ? 'floor' : 'below'; return {act:'end', until:Math.min(until, Math.max(now + 100, floorAt)), why:st.done}; }
   if (mode === 'hr' && bpm >= thr && until - now <= 1000) { st.ext = (st.ext || 0) + 1; return {act:'extend', until:until + HR_REST.step * 1000, why:'extended'}; }
   return {act:null, until, why:st.ext ? 'extended' : 'waiting'};
 }
@@ -19365,7 +20543,8 @@ function hrRestStep(st, {mode, thr, now, until, bpm, at}) {
 /* ---------- хранилище пульса ---------- */
 const HEART = {days:{}, pending:false, writing:false, again:false, timer:0};
 function heartLoad() { try { const s = JSON.parse(localStorage.getItem(HEART_KEY) || 'null'); if (s && typeof s === 'object') HEART.days = hrCleanDays(s.days); } catch (e) {} }
-function heartSaveLocal() { try { localStorage.setItem(HEART_KEY, JSON.stringify({v:1, days:HEART.days})); } catch (e) {} }
+/* через Keep (00a-keep.js): переполненное хранилище — плашка, а не тихая потеря пульса */
+function heartSaveLocal() { return Keep.set(HEART_KEY, JSON.stringify({v:1, days:HEART.days})); }
 function heartDay(d, create) { if (!HEART.days[d] && create) HEART.days[d] = hrDayNew(); return HEART.days[d] || null; }
 function heartTouch(now) {
   heartSaveLocal();
@@ -19420,13 +20599,15 @@ function heartDayHtml(d) {
    время, пульс или что раньше, порог. В итогах тренировки — средний и максимальный пульс. Код подключения — в 14-workout-mode.js
    (Heart.open, close, set, setDone, restDone, restTick, finish). */
 const Heart = (() => {
-  let P = {rest:'time', thr:null};
+  let P = {rest:'time', thr:null, age:null};
   try { const s = JSON.parse(localStorage.getItem(HEART_PREFS_KEY) || 'null'); if (s && typeof s === 'object') P = cleanPrefs(s); } catch (e) {}
   function cleanPrefs(s) {
     const thr = Number(s.thr);
-    return {rest:['time', 'hr', 'first'].includes(s.rest) ? s.rest : 'time', thr:Number.isInteger(thr) && thr >= HR_THR.min && thr <= HR_THR.max ? thr : null};
+    const age = Number(s.age);
+    return {rest:['time', 'hr', 'first'].includes(s.rest) ? s.rest : 'time', thr:Number.isInteger(thr) && thr >= HR_THR.min && thr <= HR_THR.max ? thr : null,
+      age:Number.isInteger(age) && age >= HR_AGE.min && age <= HR_AGE.max ? age : null};
   }
-  function savePrefs() { try { localStorage.setItem(HEART_PREFS_KEY, JSON.stringify(P)); } catch (e) {} }
+  function savePrefs() { Keep.set(HEART_PREFS_KEY, JSON.stringify(P)); }
   let client = null, simBt = null, simOn = null, mounted = false, opened = false, armed = 0, ticker = 0;
   const cur = {set:null, rest:null, rule:null, feedAt:0, savedAt:0, why:'', ruleFrom:null};
   const q = sel => typeof document !== 'undefined' && document.querySelector ? document.querySelector(sel) : null;
@@ -19472,6 +20653,7 @@ const Heart = (() => {
     const row = el('div', {id:'wv-hr', class:'wv-hr', 'data-state':'idle'},
       `<button type="button" id="wv-hr-btn" class="wv-hr-btn" aria-describedby="wv-hr-note wv-hr-meta"><span class="wv-hr-heart" aria-hidden="true">♥</span><span id="wv-hr-val" class="wv-hr-val">${'Heart rate'}</span><small id="wv-hr-unit" class="wv-hr-unit" hidden>${'bpm'}</small></button>`
       + `<div class="wv-hr-text"><p id="wv-hr-note" class="wv-hr-note" role="status"></p><p id="wv-hr-meta" class="wv-hr-meta"></p></div>`
+      + `<p id="wv-hr-warn" class="wv-hr-warn" role="alert" hidden></p>`
       + `<p id="wv-hr-line" class="wv-hr-line" hidden><span class="wv-hr-heart" aria-hidden="true">♥</span> <span id="wv-hr-line-t"></span></p>`
       + `<p id="wv-hr-help" class="wv-hr-help" hidden>${'Watch not in the list? Turn on heart rate broadcast on it: on a Galaxy Watch, use an app that broadcasts heart rate as a sensor.'} <button type="button" id="wv-hr-all" class="wv-hr-all">${'Show all devices'}</button></p>`);
     prog.after(row);
@@ -19484,7 +20666,10 @@ const Heart = (() => {
       + `<p id="wv-hr-mode-note" class="wv-signal-note"></p>`
       + `<label class="wv-hr-thr" for="wv-hr-thr"><span>${'Heart rate threshold'}</span><input id="wv-hr-thr" type="text" inputmode="numeric" autocomplete="off" maxlength="3" aria-describedby="wv-hr-thr-note"><span>${'bpm'}</span></label>`
       + `<p id="wv-hr-thr-note" class="wv-signal-note">${'You set the threshold: research gives no common number for rest between sets.'}</p>`
-      + `<p class="wv-signal-note wv-hr-med">${'Heart rate from watches and sensors is a guide, not a medical measurement.'}</p>`));
+      + `<p class="wv-signal-note wv-hr-med">${'Heart rate from watches and sensors is a guide, not a medical measurement.'}</p>`
+      + `<label class="wv-hr-age" for="wv-hr-age"><span>${'Age'}</span><input id="wv-hr-age" type="text" inputmode="numeric" autocomplete="off" maxlength="3" aria-describedby="wv-hr-age-note"><span>${'years'}</span></label>`
+      + `<p id="wv-hr-age-note" class="wv-signal-note">${'Optional: the warning about a too-high heart rate will then use your age (predicted maximum 208 − 0.7 × age, ±10 bpm between people).'}</p>`
+      + `<p class="wv-signal-note wv-hr-med">${'If you take medicines that lower your heart rate (beta blockers, for example), heart rate does not show the effort — go by your breathing and how you feel.'}</p>`));
     const fin = q('#wv-finish-text');
     if (fin) fin.after(el('p', {id:'wv-hr-finish', class:'wv-hr-finish', hidden:''}, `<span class="wv-hr-heart" aria-hidden="true">♥</span> <span id="wv-hr-finish-t"></span>`));
     mounted = true; paintPrefs(); return true;
@@ -19526,6 +20711,11 @@ const Heart = (() => {
     btn.setAttribute('aria-label', armed && on ? 'Disconnect the heart rate monitor' : view === 'live' ? `${'Heart rate'} ${bpm} ${'bpm. Tap to disconnect the heart rate monitor'}` : on ? 'Heart rate monitor is connecting. Tap to disconnect' : 'Heart rate: connect a monitor');
     const wv = q('#workout-view'); if (wv && view === 'live') wv.style.setProperty('--hr-beat', (60 / bpm).toFixed(2) + 's');
     show('#wv-hr-help', !!(c && c.help) && !on);
+    /* очень высокий пульс — заметная строка (hrTooHigh) */
+    const high = view === 'live' && hrTooHigh(bpm, P.age), mx = hrMaxFor(P.age);
+    text('#wv-hr-warn', !high ? '' : mx ? 'Heart rate is above the predicted maximum for your age (≈ {n}). Slow down and rest; if you feel unwell, stop.'.replace('{n}', mx)
+      : 'Very high heart rate. Slow down and rest; if you feel unwell, stop. Enter your age in the rest settings for a more precise warning.');
+    show('#wv-hr-warn', high);
     paintRest(now, bpm, on);
   }
   function paintRest(now, bpm, on) {
@@ -19534,12 +20724,14 @@ const Heart = (() => {
     show('#wv-hr-rest', on && resting);
     if (!on || !resting) return;
     text('#wv-hr-rest-val', bpm != null ? String(bpm) : '—');
-    const from = cur.rest && cur.rest.from > 0 ? cur.rest.from : null, thr = P.thr, why = cur.why;
+    /* пульс упал раньше минимума отдыха: до минимума — «отдохните ещё немного», после — «можно к подходу» */
+    const from = cur.rest && cur.rest.from > 0 ? cur.rest.from : null, thr = P.thr, why = cur.why === 'floor' && workout.restUntil <= now ? 'below' : cur.why;
     const start = from ? `${'at rest start'} ${from}` : '';
     let lead = '';
     if (P.rest !== 'time') {
       if (why === 'nothr') lead = 'No heart rate threshold set — rest by time';
       else if (why === 'below') lead = `${'Heart rate below'} ${thr} ${'— ready for the set'}`;
+      else if (why === 'floor') lead = `${'Heart rate below'} ${thr} ${'— rest a little longer: rest is never shorter than the minimum'}`;
       else if (why === 'timeup') lead = 'Planned rest is over';
       else if (why === 'nohr') lead = 'No heart rate — rest by time';
       else if (why === 'extended') lead = `${'Heart rate above'} ${thr} ${'— rest extended by 15 s'}`;
@@ -19553,6 +20745,8 @@ const Heart = (() => {
     for (const b of document.querySelectorAll('[data-hr-rest]')) b.setAttribute('aria-pressed', String(b.dataset.hrRest === P.rest));
     const inp = q('#wv-hr-thr');
     if (inp && document.activeElement !== inp) inp.value = P.thr ? String(P.thr) : '';
+    const ag = q('#wv-hr-age');
+    if (ag && document.activeElement !== ag) ag.value = P.age ? String(P.age) : '';
     text('#wv-hr-mode-note', P.rest === 'hr' ? 'Rest ends when heart rate drops below the threshold: before the plan — right away; later — extended 15 s at a time.'
       : P.rest === 'first' ? 'Rest ends as planned or earlier — as soon as heart rate drops below the threshold.'
       : 'Rest as planned; heart rate is only shown.');
@@ -19581,11 +20775,18 @@ const Heart = (() => {
     else { inp.setAttribute('aria-invalid', 'true'); return; }
     savePrefs(); cur.rule = null; if (typeof workout !== 'undefined' && workout) restTick();
   }
+  function ageInput(inp) {
+    const s = inp.value.trim(), n = Number(s);
+    if (!s) { P.age = null; inp.removeAttribute('aria-invalid'); }
+    else if (Number.isInteger(n) && n >= HR_AGE.min && n <= HR_AGE.max) { P.age = n; inp.removeAttribute('aria-invalid'); }
+    else { inp.setAttribute('aria-invalid', 'true'); return; }
+    savePrefs(); paint();
+  }
   /* шаг таймера отдыха (workoutTick): отдых «до пульса» двигает конец отдыха (workout.restUntil) и сигнал */
   function restTick(now = Date.now()) {
     if (typeof workout === 'undefined' || !workout || !(workout.restFrom > 0)) return;
     if (!cur.rule || cur.ruleFrom !== workout.restFrom) { cur.rule = {below:0, lastAt:0, done:null, ext:0}; cur.ruleFrom = workout.restFrom; }
-    const c = C(), r = hrRestStep(cur.rule, {mode:P.rest, thr:P.thr, now, until:workout.restUntil, bpm:live(now), at:c ? c.at : 0});
+    const c = C(), r = hrRestStep(cur.rule, {mode:P.rest, thr:P.thr, now, until:workout.restUntil, bpm:live(now), at:c ? c.at : 0, floorAt:workout.restFrom + restFloor(workout.restTotal, typeof S !== 'undefined' && S.goal === 'gentle') * 1000});
     if (r.act) { workout.restUntil = r.until; RestAlarm.arm(r.until, {from:workout.restFrom}); saveWorkout(); }
     cur.why = r.why;
     const row = q('#wv-hr'); if (row && row.dataset.screen !== 'rest') row.dataset.screen = 'rest';
@@ -19598,10 +20799,12 @@ const Heart = (() => {
       else if (t.id === 'wv-hr-all') press(true);
       else if (t.dataset && t.dataset.hrRest) setRest(t.dataset.hrRest);
     });
-    document.addEventListener('input', e => { if (e.target && e.target.id === 'wv-hr-thr') thrInput(e.target); });
-    document.addEventListener('focusout', e => { if (e.target && e.target.id === 'wv-hr-thr') paintPrefs(); });
+    document.addEventListener('input', e => { if (e.target && e.target.id === 'wv-hr-thr') thrInput(e.target); if (e.target && e.target.id === 'wv-hr-age') ageInput(e.target); });
+    document.addEventListener('focusout', e => { if (e.target && (e.target.id === 'wv-hr-thr' || e.target.id === 'wv-hr-age')) paintPrefs(); });
   }
   return {
+    /* возраст из настройки отдыха (по желанию) — и для шкалы после перерыва (15-autoreg.js: layoffInfo) */
+    age() { return P.age; },
     /* тренировка открыта / закрыта: подключение остаётся (вернулись к плану и обратно), пульс пишется только в тренировке */
     open() { if (!mount()) return; opened = true; cur.feedAt = 0; clearInterval(ticker); ticker = setInterval(() => paint(), 1000); paintPrefs(); paint(); },
     close() { opened = false; clearInterval(ticker); ticker = 0; cur.set = null; cur.feedAt = 0; if (HEART.days[todayKey()]) heartTouch(); },
@@ -19635,10 +20838,33 @@ heartLoad();
    1. Застой: 3 последние тренировки по упражнению без роста расчётного максимума (±1%) и без выхода на верх диапазона → заменить упражнение или поработать в другом диапазоне.
    2. Недобор: 2 последние тренировки подряд ниже нижней границы повторов → снизить вес (это уже делает подсказка) — здесь только отмечаем.
    3. Усталость: за последние 10 дней не меньше 4 записей, и в половине из них хотя бы один подход ниже нижней границы → внеплановая разгрузка.
-   4. Пропуск: последняя запись старше 14 дней при наличии истории → мягкий возврат: веса на 10% ниже. */
+   4. Пропуск: последняя запись старше 14 дней при наличии истории → мягкий возврат по ступенчатой шкале (LAYOFF_STEPS):
+      чем дольше перерыв, тем ниже вес; одно и то же число — в плашке, в подсказке карточки, в разминке и в поле веса на экране
+      тренировки (suggestBase, 13-log.js). */
+/* Шкала после перерыва (замечание кардиолога, Михаил п. 1: было «на 10 % ниже» и после 14, и после 200 дней, а подставлялся
+   прежний вес). Что найдено (11.2026):
+   · Bosquet L. et al., Scand J Med Sci Sports 2013, 23(3):e140–e149 (метаанализ, аннотация): прекращение силовых тренировок
+     снижает все виды силы; эффект растёт с длительностью перерыва, больше — у старших 65 лет и у малоактивных. По пересказу
+     (Stronger by Science, «Detraining»): до 28 дней максимальная сила почти не меняется, после — потери ускоряются.
+   · Encarnação I.G.A. et al., Muscles 2022, 1(1):1–15 (систематический обзор, текст): после 3 недель — минимальные изменения;
+     через 24 недели сила ниже на 4–12 % (Häkkinen и др.) и на 17 % (в другой работе); к 32–48 неделям — возвращается
+     к уровню до тренировок.
+   Ступени — потеря силы за этот срок плюс запас на первую тренировку (связки и сухожилия отвыкли от веса, техника): 14–27 дней —
+   10 %, 4–12 недель — 15 %, 12–24 недели — 20 %, больше 24 недель — 30 % (сила могла вернуться к исходной — начать как
+   с новичка, «подберите вес заново»).
+   С 65 лет (если возраст указан в настройке отдыха) — ступенью выше: у старших сила за перерыв уходит больше (Bosquet 2013,
+   см. выше; решение владельца по 4.106, вопрос 4). */
+const LAYOFF_STEPS = [{from:14, pct:10}, {from:28, pct:15}, {from:84, pct:20}, {from:168, pct:30}], LAYOFF_OLD = 65;
+function layoffPct(gap, age = null) {
+  let i = -1;
+  LAYOFF_STEPS.forEach((s, j) => { if (gap >= s.from) i = j; });
+  if (i < 0) return 0;
+  if (Number.isInteger(age) && age >= LAYOFF_OLD) i = Math.min(i + 1, LAYOFF_STEPS.length - 1);
+  return LAYOFF_STEPS[i].pct;
+}
 const AR = {dismissed:{}, light:false};
 try { Object.assign(AR, JSON.parse(localStorage.getItem('podhod.autoreg.v1') || '{}')); } catch (e) {}
-function arSave() { try { localStorage.setItem('podhod.autoreg.v1', JSON.stringify({dismissed:AR.dismissed, light:AR.light})); } catch (e) {} }
+function arSave() { Keep.set('podhod.autoreg.v1', JSON.stringify({dismissed:AR.dismissed, light:AR.light})); }
 function daysBetween(a, b) { return Math.round((new Date(b) - new Date(a)) / 86400000); }
 
 function exerciseStall(it) {
@@ -19669,13 +20895,21 @@ function fatigueCheck(items) {
   if (n < 4 || low * 2 < n) return null;
   return {kind:'fatigue', n, low, text:`In the last 10 days, ${low} of ${n} entries fell short of the bottom of the rep range. This looks like accumulated fatigue: take a deload week — 40% fewer sets, weights 10–15% lower.`};
 }
-function layoffCheck() {
+/* перерыв: дней с последней записи до сегодняшнего дня и снижение веса (%), null — перерыва нет */
+function layoffInfo() {
   let last = '';
-  for (const ss of Object.values(LOG.data)) for (const s of ss) if (s.s.some(Boolean) && s.d > last && s.d < todayKey()) last = s.d;
+  for (const ss of Object.values(LOG.data)) for (const s of ss) if (Array.isArray(s.s) && s.s.some(Boolean) && s.d > last && s.d < todayKey()) last = s.d;
   if (!last) return null;
-  const gap = daysBetween(last, todayKey());
-  if (gap < 14) return null;
-  return {kind:'layoff', gap, text:`Last entry ${fmtDay(last, true)}, a break of ${gap} ${plural(gap, 'day', 'days', 'days')}. Do your first workout after the break with weights 10% lower than before, then get back to the increment rule.`};
+  const age = typeof Heart !== 'undefined' && typeof Heart.age === 'function' ? Heart.age() : null;
+  const gap = daysBetween(last, todayKey()), pct = layoffPct(gap, age);
+  return pct ? {last, gap, pct} : null;
+}
+function layoffCheck() {
+  const L = layoffInfo(); if (!L) return null;
+  const long = L.gap >= LAYOFF_STEPS[LAYOFF_STEPS.length - 1].from;
+  const text = 'Last entry {d}, a {g} break. Do your first workout with weights {p}% lower than before — they are already filled in on the cards and the workout screen; then get back to the increment rule.'
+    .replace('{d}', fmtDay(L.last, true)).replace('{g}', `${L.gap} ${plural(L.gap, 'day', 'days', 'days')}`).replace('{p}', L.pct);
+  return {kind:'layoff', gap:L.gap, pct:L.pct, text:text + (long ? ' ' + 'After half a year, strength may be back where it was before training: if this weight is still heavy, pick it again as if for the first time.' : '')};
 }
 function autoreg() {
   if (!plan || !plan.items) return [];
@@ -19722,7 +20956,15 @@ document.addEventListener('click', e => {
 /* ===================== ЭКСПОРТ В КАЛЕНДАРЬ ===================== */
 const ICS_KEY = 'podhod.ics.v1';
 const ICS = {time:'19:00', weeks:4, alarm:60};
-try { Object.assign(ICS, JSON.parse(localStorage.getItem(ICS_KEY) || '{}')); } catch (e) {}
+/* из хранилища и копии — только верные поля (строка вместо времени роняла бы окно календаря) */
+function icsClean(o) {
+  const x = {}; if (!o || typeof o !== 'object') return x;
+  if (typeof o.time === 'string' && /^([01]\d|2[0-3]):[0-5]\d$/.test(o.time)) x.time = o.time;
+  if (Number.isInteger(o.weeks) && o.weeks >= 1 && o.weeks <= 52) x.weeks = o.weeks;
+  if (Number.isInteger(o.alarm) && o.alarm >= 0 && o.alarm <= 1440) x.alarm = o.alarm;
+  return x;
+}
+try { Object.assign(ICS, icsClean(JSON.parse(localStorage.getItem(ICS_KEY) || '{}'))); } catch (e) {}
 /* напоминание: «Тренировка через 1 час: Всё тело А» (порядок слов — из перевода целой строки с {t} и {name}) */
 function icsAlarmText(min, name) {
   const h = min / 60, t = min >= 60 && Number.isInteger(h) ? `${h} ${plural(h, 'hour', 'hours', 'hours')}` : `${min} min`;
@@ -19783,7 +21025,7 @@ async function saveIcs() {
   const start = new Date($('#ics-start').value + 'T12:00:00');
   if (isNaN(start)) { $('#ics-msg').textContent = 'Enter a start date.'; return; }
   ICS.time = $('#ics-time').value || '19:00'; ICS.weeks = +$('#ics-weeks').value || 4; ICS.alarm = +$('#ics-alarm').value || 0;
-  try { localStorage.setItem(ICS_KEY, JSON.stringify(ICS)); } catch (e) {}
+  Keep.set(ICS_KEY, JSON.stringify(ICS));
   const txt = icsText(start, ICS.time, ICS.weeks);
   const r = await saveFile(`lazy-gym-workouts-${dayKey(start)}.ics`, txt, 'text/calendar');
   $('#ics-msg').textContent = r === 'ok' ? 'File saved. Open it — your calendar will offer to add the events.' : r === 'declined' ? 'Save canceled.' : 'Couldn’t save the file.';
@@ -19821,7 +21063,7 @@ function gearPick(to, g) {
 function gearLoad() { try { const g = JSON.parse(localStorage.getItem(GEAR_KEY) || 'null'); if (g && typeof g === 'object') { gearPick(GEAR_UNITS.kg, g); gearPick(GEAR_UNITS.lb, g.lb); } } catch (e) {} }
 /* для файла и хранилища: килограммы — на прежних местах, фунты — в lb */
 const gearObject = () => ({bar:GEAR_UNITS.kg.bar, plates:GEAR_UNITS.kg.plates, lb:{bar:GEAR_UNITS.lb.bar, plates:GEAR_UNITS.lb.plates}});
-function gearSave() { try { localStorage.setItem(GEAR_KEY, JSON.stringify(gearObject())); } catch (e) {} }
+function gearSave() { Keep.set(GEAR_KEY, JSON.stringify(gearObject())); }
 gearLoad();
 
 /* чем нагружают: штанга (гриф + блины), гантели, тренажёр (стек), гиря */
@@ -19962,18 +21204,68 @@ const bodyToU = (f, v) => f.w ? toU(v) : isLb() ? v / IN_CM : v;
 const bodyFromU = (f, v) => f.w ? fromU(v) : isLb() ? v * IN_CM : v;
 /* значение замера в выбранных единицах, до десятых */
 const fmtBody = (f, v) => fmtU1(bodyToU(f, v));
-const BODY = {rows:[], pending:false, writing:false, again:false};
+const BODY = {rows:[], pending:false, writing:false, again:false, undo:null};
+/* Границы значений (кг и см). hard — так не бывает: в форме — отказ с причиной, в копии — значение отбрасывается (Ксения 8, 9);
+   ask — необычно: в форме переспрашиваем «Записать?». В хранилище — как раньше, больше нуля и меньше 1000: записанное
+   прежними версиями не теряется. */
+const BODY_LIMITS = {kg:{hard:[20, 400], ask:[35, 250]}, waist:{hard:[30, 250], ask:[50, 180]}, chest:{hard:[40, 250], ask:[60, 180]}, hips:{hard:[40, 250], ask:[60, 180]},
+  arm:{hard:[10, 80], ask:[18, 60]}, thigh:{hard:[20, 120], ask:[35, 100]}, calf:{hard:[15, 80], ask:[22, 60]}, neck:{hard:[15, 80], ask:[25, 60]}};
 function validBodyRows(rows) { return Array.isArray(rows) && rows.every(r => r && typeof r.d === 'string' && /^\d{4}-\d\d-\d\d$/.test(r.d)); }
-function cleanBodyRow(r) { const o = {d:r.d}; for (const f of BODY_FIELDS) { const v = parseNum(r[f.k]); if (v != null && v > 0 && v < 1000) o[f.k] = Math.round(v * 100) / 100; } return o; }
+/* strict — из копии: значение в пределах hard, иначе — мимо (dropped считает отброшенные поля) */
+function cleanBodyRow(r, strict = false, dropped = null) {
+  const o = {d:r.d};
+  for (const f of BODY_FIELDS) {
+    if (r[f.k] == null || r[f.k] === '') continue;
+    const v = parseNum(r[f.k]), [lo, hi] = strict ? BODY_LIMITS[f.k].hard : [0, 1000];
+    if (v != null && (strict ? v >= lo && v <= hi : v > lo && v < hi)) o[f.k] = Math.round(v * 100) / 100; else if (dropped) dropped.n++;
+  }
+  return o;
+}
 function bodyHasValues(r) { return BODY_FIELDS.some(f => r[f.k] != null); }
-function bodyLoad() { try { const s = JSON.parse(localStorage.getItem(BODY_KEY) || 'null'); if (s && validBodyRows(s.rows)) BODY.rows = s.rows.map(cleanBodyRow).filter(bodyHasValues); } catch (e) {} }
-function bodySaveLocal() { try { localStorage.setItem(BODY_KEY, JSON.stringify({rows:BODY.rows})); } catch (e) {} }
-/* объединение по дате: поля складываются, при совпадении приоритет у b */
+/* замеры из текста хранилища: строки по одной, неверные — мимо (не весь список, как раньше) */
+function bodyParse(text) {
+  let o = null, cut = false;
+  try { o = JSON.parse(text); } catch (e) { const r = repairJson(text); if (r) { o = r.value; cut = true; } }
+  if (!o || typeof o !== 'object' || !Array.isArray(o.rows)) return o == null && !cut ? null : {rows:[], dropped:1, cut, whole:true};
+  const dropped = {n:0}, rows = [];
+  for (const r of o.rows) { if (!r || typeof r !== 'object' || !realDay(r.d)) { dropped.n++; continue; } const c = cleanBodyRow(r, false, dropped); if (bodyHasValues(c)) rows.push(c); }
+  return {rows:mergeBodyRows([], rows), dropped:dropped.n, cut, whole:false};
+}
+let bodyBase = null;
+function bodyLoad() {
+  const raw = Keep.get(BODY_KEY); bodyBase = raw;
+  if (raw == null) return;
+  const p = bodyParse(raw);
+  if (!p) { Keep.quarantine(BODY_KEY, raw, 'body: unreadable'); Keep.note('body', {dropped:'all'}); return; }
+  BODY.rows = p.rows;
+  if (p.dropped || p.cut) { Keep.quarantine(BODY_KEY, raw, 'body'); Keep.note('body', {dropped:p.whole ? 'all' : p.dropped}); }
+}
+/* запись поверх хранилища: замеры, записанные в другой вкладке, остаются (по дате: строка, которую эта вкладка не меняла, —
+   из хранилища; удалённая другой вкладкой — удалена) */
+function bodySaveLocal() {
+  const disk = Keep.get(BODY_KEY);
+  if (disk != null && disk !== bodyBase) {
+    const t = bodyParse(disk), b = bodyBase != null ? bodyParse(bodyBase) : null;
+    if (t) {
+      const J = v => JSON.stringify(v ?? null), at = (rs, d) => (rs || []).find(r => r.d === d), was = b ? b.rows : [], out = [];
+      for (const d of new Set([...BODY.rows, ...was, ...t.rows].map(r => r.d))) {
+        const m = at(BODY.rows, d), w = at(was, d), th = at(t.rows, d);
+        const v = J(m) === J(w) ? th : J(th) === J(w) ? m : m && th ? {...th, ...m} : m || th;
+        if (v) out.push(v);
+      }
+      BODY.rows = mergeBodyRows([], out);
+    }
+  }
+  const text = JSON.stringify({rows:BODY.rows});
+  if (Keep.set(BODY_KEY, text)) bodyBase = text;
+}
+/* объединение по дате: поля складываются, при совпадении приоритет у b. Предела числа замеров нет (было 400 — старые молча
+   удалялись, Ксения 5) */
 function mergeBodyRows(a, b) {
   const by = new Map();
   for (const r of a || []) by.set(r.d, {...r});
   for (const r of b || []) by.set(r.d, {...(by.get(r.d) || {}), ...r});
-  return [...by.values()].filter(bodyHasValues).sort((p, q) => p.d < q.d ? -1 : 1).slice(-400);
+  return [...by.values()].filter(bodyHasValues).sort((p, q) => p.d < q.d ? -1 : 1);
 }
 /* синхронизация с аккаунтом: вызывается из logInit при каждом снимке коллекции */
 function bodyRemote(doc, first) {
@@ -20030,11 +21322,15 @@ function bodyHtml() {
     <label class="b-date">Date<input type="date" id="b-date" value="${todayKey()}" max="${todayKey()}" required></label>
     ${BODY_FIELDS.map(f => { const l = bodyLatest(f.k), u = bodyUnit(f); return `<label${f.main ? ' class="b-main"' : ''}>${f.name}, ${u}<input class="lt-in" type="text" inputmode="decimal" data-bf="${f.k}" placeholder="${l ? fmtBody(f, l[f.k]) : '—'}" aria-label="${f.name}, ${u}"></label>`; }).join('')}
     <button type="submit" class="btn">Save</button>
+    <p class="b-msg" id="b-msg" role="status">${bodyAskHtml()}</p>
     <p class="b-hint">Fill in what you measured: weight in the morning before eating, girths with a tape measure without pulling it tight, always at the same spots. Leave the rest empty.</p>
   </form>`;
-  const rows = [...BODY.rows].reverse();
-  const rowHtml = r => `<li><span class="h-d">${fmtDay(r.d, true)}</span><span class="h-s">${BODY_FIELDS.filter(f => r[f.k] != null).map(f => `${f.main ? '' : f.name.toLowerCase() + ' '}${fmtBody(f, r[f.k])}${f.main ? ' ' + wUnit() : ''}`).join(' · ')}</span><button type="button" class="h-del" data-bdel="${r.d}" aria-label="Delete the measurement for ${fmtDay(r.d, true)}">Delete</button></li>`;
-  const list = rows.length ? `<ul class="h-list b-list">${rows.slice(0, 6).map(rowHtml).join('')}</ul>${rows.length > 6 ? `<details class="j-all"><summary>All measurements (${rows.length})</summary><ul class="h-list b-list">${rows.slice(6).map(rowHtml).join('')}</ul></details>` : ''}` : '';
+  /* удалённый замер — на его месте «Удалено · Вернуть», пока не истекло время (bodyDelete) */
+  const u = BODY.undo && BODY.undo.until > Date.now() ? BODY.undo : null;
+  const rows = byRecent(u && !BODY.rows.some(r => r.d === u.row.d) ? BODY.rows.concat({...u.row, gone:true}) : BODY.rows).reverse();
+  const rowHtml = r => r.gone ? undoLineHtml(`Measurement deleted: ${fmtDay(r.d, true)}.`, 'data-bundo="1"', 'b-gone')
+    : `<li><span class="h-d">${fmtDay(r.d, true)}</span><span class="h-s">${BODY_FIELDS.filter(f => r[f.k] != null).map(f => `${f.main ? '' : f.name.toLowerCase() + ' '}${fmtBody(f, r[f.k])}${f.main ? ' ' + wUnit() : ''}`).join(' · ')}</span><button type="button" class="h-del" data-bdel="${r.d}" aria-label="Delete the measurement for ${fmtDay(r.d, true)}">Delete</button></li>`;
+  const list = rows.length ? `<ul class="h-list b-list">${rows.slice(0, 6).map(rowHtml).join('')}</ul>${rows.length > 6 ? `<details class="j-all"${u && rows.slice(6).some(r => r.gone) ? ' open' : ''}><summary>All measurements (${rows.length})</summary><ul class="h-list b-list">${rows.slice(6).map(rowHtml).join('')}</ul></details>` : ''}` : '';
   return `<section class="b-sec" aria-labelledby="b-title">
     <div class="b-head">
       <div>
@@ -20049,34 +21345,85 @@ function bodyHtml() {
     ${list}
   </section>`;
 }
-function bodySubmit(form) {
+/* Замер: не число, ноль или меньше, «так не бывает» (вес 5000 кг, 1e308) — отказ с причиной у поля, ничего не пишется;
+   необычное (вес 270 кг) — вопрос «Записать?» (Ксения 8). «Записан» — только когда записан. */
+let bodyAsk = null; /* {row, text} — ждёт ответа «Записать / Исправить» */
+function bodyAskHtml() {
+  if (!bodyAsk) return '';
+  return `<span class="b-ask" role="group" aria-labelledby="b-ask-t"><span id="b-ask-t">${esc(bodyAsk.text)}</span><button type="button" class="lt-cfy" data-bask="yes">${'Log'}</button><button type="button" class="lt-cfn" data-bask="fix">${'Fix'}</button></span>`;
+}
+function bodyMsg(text, bad) {
+  const m = $('#b-msg'); if (m) m.textContent = text;
+  document.querySelectorAll('#b-form [data-bf]').forEach(i => { i.removeAttribute('aria-invalid'); i.removeAttribute('aria-describedby'); });
+  if (bad) { bad.setAttribute('aria-invalid', 'true'); bad.setAttribute('aria-describedby', 'b-msg'); bad.classList.add('need'); setTimeout(() => bad.classList.remove('need'), 1600); bad.focus(); }
+}
+function bodyRead(form) {
+  const d = $('#b-date').value, row = {d}, ask = [];
+  for (const inp of form.querySelectorAll('[data-bf]')) {
+    const raw = inp.value.trim(), f = BODY_FIELDS.find(x => x.k === inp.dataset.bf); if (!raw || !f) continue;
+    const u = bodyUnit(f), v = /^[+-]?\d+([.,]\d+)?$/.test(raw) ? parseNum(raw) : null;
+    if (v == null) return {bad:inp, text:`${f.name}: “${raw.slice(0, 20)}” — enter a number, for example ${f.w ? (isLb() ? '176' : '80' + DEC + '5') : (isLb() ? '32' : '82')}.`};
+    if (v <= 0) return {bad:inp, text:`${f.name} can't be zero or less.`};
+    const x = bodyFromU(f, v), L = BODY_LIMITS[f.k];
+    if (x < L.hard[0] || x > L.hard[1]) return {bad:inp, text:`${f.name} ${fmtU(v)} ${u} — that can't be right. Check the number: a digit may be extra or missing.`};
+    if (x < L.ask[0] || x > L.ask[1]) ask.push({inp, t:`${f.name.toLowerCase()} ${fmtU(v)} ${u}`});
+    row[f.k] = x;
+  }
+  return {row, ask};
+}
+function bodySubmit(form, sure = false) {
   const d = $('#b-date').value;
-  if (!/^\d{4}-\d\d-\d\d$/.test(d) || d > todayKey()) { $('#b-date').focus(); return; }
-  const row = {d};
-  let any = false;
-  /* вписано в выбранных единицах — в килограммы и сантиметры */
-  form.querySelectorAll('[data-bf]').forEach(inp => { const v = parseNum(inp.value), f = BODY_FIELDS.find(x => x.k === inp.dataset.bf); if (v != null && v > 0 && f) { row[f.k] = bodyFromU(f, v); any = true; } });
-  if (!any) { const f = form.querySelector('[data-bf="kg"]'); f.classList.add('need'); f.focus(); setTimeout(() => f.classList.remove('need'), 1200); return; }
-  BODY.rows = mergeBodyRows(BODY.rows, [cleanBodyRow(row)]);
+  if (!realDay(d) || d > todayKey() || d < LOG_DAY_MIN) { bodyMsg(d > todayKey() ? 'The measurement date can\'t be later than today.' : 'Enter the measurement date.'); $('#b-date').focus(); return; }
+  const r = bodyRead(form);
+  if (r.bad) { bodyAsk = null; bodyMsg(r.text, r.bad); return; }
+  if (!bodyHasValues(r.row)) { bodyAsk = null; bodyMsg('Enter at least one number — for example, your weight.', form.querySelector('[data-bf="kg"]')); return; }
+  if (!sure && r.ask.length) {
+    bodyAsk = {text:`Unusual value: ${r.ask.map(x => x.t).join(', ')}. Log it?`, inp:r.ask[0].inp};
+    const m = $('#b-msg'); if (m) { m.innerHTML = bodyAskHtml(); const b = m.querySelector('[data-bask="fix"]'); if (b) b.focus(); }
+    return;
+  }
+  bodyAsk = null;
+  const row = cleanBodyRow(r.row);
+  BODY.rows = mergeBodyRows(BODY.rows, [row]);
   bodyTouch(false);
   renderJournal();
-  const m = $('#j-msg'); if (m) m.textContent = `Measurement for ${fmtDay(d, true)} saved.`;
+  const what = BODY_FIELDS.filter(f => row[f.k] != null).map(f => `${f.name.toLowerCase()} ${fmtBody(f, row[f.k])} ${bodyUnit(f)}`).join(', ');
+  const m = $('#b-msg'); if (m) m.textContent = `Measurement for ${fmtDay(d, true)} saved: ${what}.`;
+  const sb = $('#b-form [type="submit"]'); if (sb) sb.focus();
 }
+/* «Удалить» у замера: первое нажатие — «Точно удалить замер за …?» (и для диктора: подпись кнопки — тот же вопрос), второе —
+   удаляет; на месте замера «Удалено · Вернуть» на 10 секунд, фокус — на «Вернуть» (Галина 3) */
 function bodyDelete(btn) {
-  if (!btn.classList.contains('armed')) { btn.classList.add('armed'); btn.textContent = 'Are you sure?'; setTimeout(() => { btn.classList.remove('armed'); btn.textContent = 'Delete'; }, 3000); return; }
-  BODY.rows = BODY.rows.filter(r => r.d !== btn.dataset.bdel);
+  const d = btn.dataset.bdel;
+  if (!btn.classList.contains('armed')) { armDelete(btn, `Really delete the measurement for ${fmtDay(d, true)}?`, `Delete the measurement for ${fmtDay(d, true)}`); return; }
+  const row = BODY.rows.find(r => r.d === d); if (!row) return;
+  BODY.rows = BODY.rows.filter(r => r.d !== d);
+  BODY.undo = {row, until:Date.now() + UNDO_MS};
   bodyTouch(false); renderJournal();
+  focusUndo('[data-bundo]');
+  undoExpire(() => { if (BODY.undo && BODY.undo.row === row) { BODY.undo = null; if (S.view === 'journal') undoRepaint('[data-bundo]', '#b-date'); } }, '[data-bundo]', BODY.undo);
+}
+function bodyUndo() {
+  const u = BODY.undo; if (!u) return;
+  BODY.undo = null;
+  BODY.rows = mergeBodyRows(BODY.rows, [u.row]); bodyTouch(true); renderJournal();
+  const b = document.querySelector(`[data-bdel="${u.row.d}"]`); if (b) b.focus();
+  const m = $('#b-msg'); if (m) m.textContent = `Measurement for ${fmtDay(u.row.d, true)} restored.`;
 }
 function bodyCsv() {
   /* в выбранных единицах, единица — в заголовке столбца */
   const head = ['Date'].concat(BODY_FIELDS.map(f => `${f.name}, ${bodyUnit(f)}`));
   const rows = BODY.rows.map(r => [r.d].concat(BODY_FIELDS.map(f => r[f.k] != null ? fmtBody(f, r[f.k]) : '')));
-  return '﻿' + [head].concat(rows).map(r => r.join(';')).join('\r\n');
+  return '\ufeff' + [head].concat(rows).map(r => csvLine(r)).join('\r\n');
 }
 document.addEventListener('submit', e => { if (e.target.id === 'b-form') { e.preventDefault(); bodySubmit(e.target); } });
+document.addEventListener('input', e => { if (bodyAsk && e.target.closest && e.target.closest('#b-form')) { bodyAsk = null; const m = $('#b-msg'); if (m) m.textContent = ''; } });
 document.addEventListener('click', e => {
   const t = e.target.closest('button'); if (!t) return;
   if (t.dataset.bdel) { bodyDelete(t); return; }
+  if (t.dataset.bundo) { bodyUndo(); return; }
+  if (t.dataset.bask === 'yes') { bodySubmit($('#b-form'), true); return; }
+  if (t.dataset.bask === 'fix') { const inp = bodyAsk && bodyAsk.inp; bodyAsk = null; const m = $('#b-msg'); if (m) m.textContent = ''; const f = inp && inp.isConnected ? inp : $('#b-form [data-bf="kg"]'); if (f) { f.focus(); f.select(); } return; }
   if (t.id === 'exp-body') { saveFile(`lazy-gym-body-${todayKey()}.csv`, bodyCsv(), 'text/csv').then(r => { const m = $('#j-msg'); if (m) m.textContent = r === 'ok' ? 'Measurements table saved.' : r === 'declined' ? 'Save canceled.' : 'Couldn’t save the file.'; }); }
 });
 bodyLoad();
@@ -20085,52 +21432,375 @@ bodyLoad();
 /* v2: настройки планировщика, инвентарь, авторегулировка, календарь, атлас, журнал и замеры. v1 (только журнал) тоже читается.
    Подход в журнале — [кг, повторы], [кг, повторы, отдых, с] или [кг, повторы, отдых | null, {l, r}] (Л/П, 13a-sets.js):
    отдых и стороны необязательны, неверные отбрасываются, подход остаётся. Снаряд записи (eq) — только допустимый
-   для упражнения. */
+   для упражнения. В копию уходят и записи упражнений, которых нет в этой версии (LOG.foreign). */
 function backupObject() {
   return {app:'podhod', v:2, exported:new Date().toISOString(), version:window.PODHOD_VERSION || '',
     settings:{...S}, gear:gearObject(), autoreg:{dismissed:AR.dismissed, light:AR.light}, ics:{...ICS}, motion:{...motionPrefs},
-    log:LOG.data, body:BODY.rows, heart:heartBackup()};
+    log:logStoreObject(), body:BODY.rows, heart:heartBackup()};
 }
-function restoreBackup(obj) {
-  const out = {sessions:0, exercises:0, body:0, heart:0, settings:false};
-  if (obj.log && typeof obj.log === 'object') {
-    for (const [id, ss] of Object.entries(obj.log)) {
-      if (!EXI[id] || !validSessions(ss)) continue;
-      const ex = EXI[id];
-      const clean = ss.map(x => ({d:x.d, ...(x.wk ? {wk:+x.wk} : {}), ...(x.fmt === 'static' ? {fmt:'static'} : {}),
-        ...(Number.isSafeInteger(+x.target) && +x.target > 0 ? {target:+x.target} : {}),
-        ...(cleanImpl(ex, x.eq) ? {eq:x.eq} : {}),
-        s:x.s.map(v => cleanSet(v, ex))}));
-      const merged = mergeSessions(LOG.data[id], clean);
-      if (JSON.stringify(merged) !== JSON.stringify(LOG.data[id] || [])) { LOG.data[id] = merged; logTouch(id, true); out.exercises++; out.sessions += clean.length; }
-    }
-    logSaveLocal();
+/* Чтение файла копии (Ксения 10): пустой; обрезанный или повреждённый — так и сказать и спасти уцелевшее (repairJson); файл плана;
+   чужой файл. Вернёт {obj, cut} или {error} */
+function readBackupText(text) {
+  if (typeof text !== 'string' || !text.trim()) return {error:'The file is empty.'};
+  let obj = null, cut = false;
+  try { obj = JSON.parse(text); }
+  catch (e) {
+    if (!/"app"\s*:\s*"podhod"/.test(text.slice(0, 4000))) return {error:'This is not a Lazy Gym Planner backup: the file can\'t be read. Choose a lazy-gym-backup-….json file.'};
+    const r = repairJson(text);
+    if (!r || !r.value || r.value.app !== 'podhod' || !(r.value.log || r.value.body || r.value.settings)) return {error:'The backup file is damaged or cut off (for example, while being sent) — nothing can be read from it. Make the backup again on the device where it was made.'};
+    obj = r.value; cut = true;
   }
-  if (validBodyRows(obj.body)) {
-    const merged = mergeBodyRows(BODY.rows, obj.body.map(cleanBodyRow).filter(bodyHasValues));
-    if (JSON.stringify(merged) !== JSON.stringify(BODY.rows)) { out.body = merged.length - BODY.rows.length; BODY.rows = merged; bodyTouch(true); }
-  }
-  out.heart = heartRestore(obj.heart); /* пульс: 14b-heart.js */
-  if (obj.v >= 2) {
-    if (obj.settings && typeof obj.settings === 'object') {
-      const s = obj.settings, ok = {};
-      for (const k of Object.keys(DEFAULTS)) if (k in s && k !== 'view') ok[k] = s[k];
-      if (Array.isArray(ok.groups)) ok.groups = ok.groups.filter(g => GROUPS.some(x => x.id === g));
-      if (Array.isArray(ok.equip)) ok.equip = ok.equip.filter(id => EQUIP.some(x => x.id === id));
-      if (!GOALS[ok.goal]) delete ok.goal; if (!FORMATS[ok.format]) delete ok.format; if (!LEVELS[ok.level]) delete ok.level;
-      if ('lr' in ok) ok.lr = cleanLr(ok.lr);
-      if ('units' in ok && ok.units !== 'kg' && ok.units !== 'lb') ok.units = null;
-      if ('dur' in ok && !DURATIONS[ok.dur]) ok.dur = null;
-      Object.assign(S, ok); ensurePlaces(S); ensureCustoms(S); saveSettings(); out.settings = true; /* имена по умолчанию — на языке страницы */
+  if (!obj || typeof obj !== 'object' || Array.isArray(obj)) return {error:'This is not a Lazy Gym Planner backup. Choose a lazy-gym-backup-….json file.'};
+  if (obj.format === PLAN_FILE) return {error:'This is a plan file, not a backup. Import it in “Custom plan” → “Import plan”.'};
+  if (obj.app !== 'podhod' || (!obj.log && !obj.body && !obj.settings && !obj.heart)) return {error:'This is not a Lazy Gym Planner backup. Choose a lazy-gym-backup-….json file.'};
+  return {obj, cut};
+}
+/* самая поздняя дата записи в копии: день, когда копия сделана (или завтра — часовые пояса), но не раньше завтрашнего */
+function restoreMaxDay(obj) {
+  const plus = (k, n) => { const [y, m, d] = k.split('-').map(Number); return dayKey(new Date(y, m - 1, d + n, 12)); };
+  const tomorrow = plus(todayKey(), 1), ex = obj && typeof obj.exported === 'string' ? obj.exported.slice(0, 10) : '';
+  return realDay(ex) && plus(ex, 1) > tomorrow ? plus(ex, 1) : tomorrow;
+}
+/* журнал из копии и здешний: {next — объединённый по упражнениям, added — новых записей, joined — дополненных подходами из копии,
+   same — уже были здесь, conflicts — дни, где подходы в копии и здесь различаются (оставлены здешние), drops, foreign} */
+function restoreLogPlan(obj) {
+  const c = checkLog(obj && obj.log, {strict:true, maxDay:restoreMaxDay(obj)}), out = {next:{}, added:0, joined:0, same:0, conflicts:new Set(), exercises:0, drops:c.r, foreign:Object.keys(c.foreign).filter(id => !LOG.foreign[id]), foreignData:c.foreign};
+  const J = v => JSON.stringify(v ?? null);
+  for (const [id, ss] of Object.entries(c.data)) {
+    const cur = LOG.data[id] || [];
+    let changed = false;
+    for (const x of ss) {
+      const y = cur.find(v => v.d === x.d);
+      if (!y) { out.added++; changed = true; continue; }
+      const fills = x.s.some((v, k) => v && !y.s[k]), clash = x.s.some((v, k) => v && y.s[k] && J(v) !== J(y.s[k]));
+      if (fills) { out.joined++; changed = true; } else out.same++;
+      if (clash) out.conflicts.add(x.d);
     }
-    if (obj.gear && typeof obj.gear === 'object') { gearPick(GEAR_UNITS.kg, obj.gear); gearPick(GEAR_UNITS.lb, obj.gear.lb); gearSave(); }
-    if (obj.autoreg && typeof obj.autoreg === 'object') { if (obj.autoreg.dismissed && typeof obj.autoreg.dismissed === 'object') AR.dismissed = obj.autoreg.dismissed; AR.light = !!obj.autoreg.light; arSave(); }
-    if (obj.ics && typeof obj.ics === 'object') { Object.assign(ICS, obj.ics); try { localStorage.setItem(ICS_KEY, JSON.stringify(ICS)); } catch (e) {} }
-    if (obj.motion && typeof obj.motion === 'object') { Object.assign(motionPrefs, obj.motion); saveMotionPrefs(); }
-    S.view = 'journal';
-    renderSetup();
+    if (changed) { out.next[id] = mergeSessions(cur, ss); out.exercises++; }
   }
   return out;
+}
+/* замеры из копии: строго (BODY_LIMITS.hard); здешние значения за ту же дату остаются */
+function restoreBodyPlan(obj) {
+  const dropped = {n:0}, rows = [], maxDay = restoreMaxDay(obj);
+  if (Array.isArray(obj && obj.body)) for (const r of obj.body) {
+    if (!r || typeof r !== 'object' || !realDay(r.d) || r.d < LOG_DAY_MIN || r.d > maxDay) { dropped.n++; continue; }
+    const c = cleanBodyRow(r, true, dropped); if (bodyHasValues(c)) rows.push(c);
+  }
+  const next = mergeBodyRows(rows, BODY.rows), J = v => JSON.stringify(v);
+  const added = next.filter(r => { const y = BODY.rows.find(v => v.d === r.d); return !y || J(y) !== J(r); }).length;
+  return {next, added, dropped:dropped.n, changed:J(next) !== J(BODY.rows)};
+}
+/* настройки копии отличаются от здешних тем, что видно человеку: планы, места, цель, суставы */
+const RESTORE_KEYS = ['goal', 'format', 'level', 'mode', 'customs', 'places', 'protect', 'groups', 'dur', 'days', 'split', 'units'];
+function restoreSettingsPlan(obj) {
+  if (!obj || obj.v < 2 || !obj.settings || typeof obj.settings !== 'object' || Array.isArray(obj.settings)) return null;
+  const {s, bad} = cleanSettings(obj.settings), J = v => JSON.stringify(v ?? null);
+  const differs = RESTORE_KEYS.some(k => k in obj.settings && J(s[k]) !== J(S[k]));
+  /* новое устройство: здесь нет ни журнала, ни своих планов — по умолчанию берём из копии */
+  const fresh = !journalDays() && S.customs.every(c => !c.items.length);
+  return {s, bad:bad.filter(k => k !== '*'), differs, fresh};
+}
+/* «цель — Сила, своих планов — 2, мест — 4» */
+function settingsSummary(s) {
+  const plans = (Array.isArray(s.customs) ? s.customs : []).filter(c => c && Array.isArray(c.items) && c.items.length).length;
+  const places = Array.isArray(s.places) ? s.places.length : 0, g = GOALS[s.goal];
+  return [g ? `goal — ${g.name}` : '', `custom plans — ${plans}`, places ? `places — ${places}` : '', Array.isArray(s.protect) && s.protect.length ? `joints protected — ${s.protect.length}` : ''].filter(Boolean).join(', ');
+}
+/* Восстановление. opts.settings: 'copy' — планы и настройки из копии (по умолчанию, как раньше), 'mine' — остаются здешние.
+   Журнал и замеры добавляются к здешним, ничего здешнего не стирается (Ксения 4); неверное отбрасывается с отчётом (Ксения 9). */
+function restoreBackup(obj, opts = {}) {
+  const take = opts.settings !== 'mine';
+  const out = {sessions:0, exercises:0, added:0, joined:0, same:0, conflicts:[], body:0, heart:0, settings:false, drops:logDrops(), bodyDropped:0, foreign:0, bad:[]};
+  if (obj.log && typeof obj.log === 'object') {
+    const p = restoreLogPlan(obj);
+    for (const [id, ss] of Object.entries(p.next)) { LOG.data[id] = ss; logTouch(id, true); }
+    for (const id of p.foreign) LOG.foreign[id] = p.foreignData[id];
+    Object.assign(out, {exercises:p.exercises, added:p.added, joined:p.joined, same:p.same, sessions:p.added + p.joined, conflicts:[...p.conflicts].sort(), drops:p.drops, foreign:p.foreign.length});
+    logSaveLocal();
+  }
+  if (Array.isArray(obj.body)) {
+    const b = restoreBodyPlan(obj);
+    out.bodyDropped = b.dropped;
+    if (b.changed) { out.body = b.added; BODY.rows = b.next; bodyTouch(true); }
+  }
+  /* пульс: 14b-heart.js; его настройки — вместе с остальными настройками */
+  out.heart = heartRestore(take || !obj.heart || typeof obj.heart !== 'object' ? obj.heart : {...obj.heart, prefs:undefined});
+  if (obj.v >= 2 && take) {
+    const sp = restoreSettingsPlan(obj);
+    if (sp) {
+      const ok = {};
+      /* испорченное поле копии не затирает здешнее: остаётся как было (в сообщении — «эти поля будут обычными» → здешними) */
+      for (const k of [...Object.keys(DEFAULTS), 'places', 'place', 'placesV', 'adapt', 'swaps']) if (k in obj.settings && k !== 'view' && k !== 'logPick' && !sp.bad.includes(k)) ok[k] = sp.s[k];
+      if ('lr' in ok) ok.lr = cleanLr(ok.lr);
+      if ('dur' in ok && !DURATIONS[ok.dur]) ok.dur = null;
+      Object.assign(S, ok); ensurePlaces(S); ensureCustoms(S); ensureFold(S); ensureProtect(S); /* имена по умолчанию — на языке страницы */
+      swaps = S.swaps && typeof S.swaps === 'object' && !Array.isArray(S.swaps) ? S.swaps : (S.swaps = {});
+      saveSettings(); out.settings = true; out.bad = sp.bad;
+    }
+    if (obj.gear && typeof obj.gear === 'object') { gearPick(GEAR_UNITS.kg, obj.gear); gearPick(GEAR_UNITS.lb, obj.gear.lb); gearSave(); }
+    if (obj.autoreg && typeof obj.autoreg === 'object') { if (obj.autoreg.dismissed && typeof obj.autoreg.dismissed === 'object' && !Array.isArray(obj.autoreg.dismissed)) AR.dismissed = obj.autoreg.dismissed; AR.light = obj.autoreg.light === true; arSave(); }
+    if (obj.ics && typeof obj.ics === 'object') { Object.assign(ICS, icsClean(obj.ics)); Keep.set(ICS_KEY, JSON.stringify(ICS)); }
+    if (obj.motion && typeof obj.motion === 'object' && !Array.isArray(obj.motion)) { Object.assign(motionPrefs, motionClean(obj.motion)); saveMotionPrefs(); }
+  }
+  if (obj.v >= 2) { S.view = 'journal'; renderSetup(); }
+  return out;
+}
+/* настройки атласа из копии: только простые значения */
+function motionClean(o) {
+  const x = {};
+  for (const [k, v] of Object.entries(o)) if (typeof v === 'boolean' || (typeof v === 'number' && Number.isFinite(v)) || (typeof v === 'string' && v.length < 40)) x[k] = v;
+  if ('speed' in x && !(typeof x.speed === 'number' && x.speed > 0 && x.speed <= 4)) delete x.speed;
+  return x;
+}
+
+/* ===================== ДАННЫЕ БЕЗ ПОТЕРЬ: вкладки, тренировка, сообщения =====================
+   Хранилище и безопасный запуск — 00a-keep.js; проверка записей журнала — 13a-sets.js (checkLog); восстановление копии —
+   18-measures.js. Здесь:
+   · начатая тренировка хранит свой список упражнений (workoutSnap): обновление приложения или новая сборка плана не меняют
+     оставшиеся упражнения (Ксения 12);
+   · другая вкладка записала подход — журнал и настройки сливаются (13-log.js: logMergeDisk, 11-planner.js: settingsMerge),
+     экран обновляется; подход, записанный в двух вкладках под одним номером, остаётся в обеих (Ксения 3, Артём 3);
+   · сообщения о спасённых данных и о хранилище, которое не принимает записи (Ксения 1, 6, 7, 15), просьба к браузеру хранить
+     данные постоянно (navigator.storage.persist) и строка «где хранятся данные» в журнале (Кира 16, Михаил 12).
+   Проверки — tools/data-keep.test.js, в браузере — tools/ui-check.mjs. */
+
+/* ---------- тренировка хранит свой список ---------- */
+/* что определяет состав тренировки: если это не менялось, а список вышел другим, — изменилась сборка плана (новая версия),
+   и начатая тренировка идёт по своему списку */
+function planCtx() {
+  const c = S.mode === 'custom' && typeof customOf === 'function' ? customOf() : null;
+  return JSON.stringify([S.mode, S.day, S.week, S.days, S.split, S.goal, S.format, S.level, S.count, [...S.groups].sort(), [...S.equip].sort(), S.seed,
+    S.focus, S.dur, [...(S.protect || [])].sort(), S.place, S.adapt || null, S.swaps || {}, S.logPick ? S.logPick.d + JSON.stringify(S.logPick.groups) : null,
+    c ? [c.id, c.items, c.goal, c.format, c.level] : null, !!(typeof AR !== 'undefined' && AR.light)]);
+}
+/* очередь подходов → {ctx, items:[упражнение с дозировкой], q:[[номер упражнения, подход, подходов, отдых, этап]]} */
+function workoutSnap(queue) {
+  if (!Array.isArray(queue) || !queue.length) return null;
+  const items = [], at = new Map();
+  for (const s of queue) if (!at.has(s.it)) {
+    at.set(s.it, items.length);
+    const it = s.it;
+    items.push({id:it.ex.id, slot:it.slot, label:it.label, name:it.name, eqIds:it.eqIds || [], eqLine:it.eqLine || '', rounds:it.rounds, rx:JSON.parse(JSON.stringify(it.rx || {}))});
+  }
+  return {ctx:planCtx(), items, q:queue.map(s => [at.get(s.it), s.k, s.n, s.rest, s.phase])};
+}
+function snapItem(o) {
+  const ex = EXI[o.id]; if (!ex) return null;
+  const E = effEquip(S.equip);
+  return {ex, slot:o.slot, label:o.label, name:typeof o.name === 'string' ? o.name : exName(ex, E), eqIds:Array.isArray(o.eqIds) ? o.eqIds : chosenEquip(ex, E),
+    eqLine:typeof o.eqLine === 'string' ? o.eqLine : equipLine(ex, E), has:propHas(ex, E), rx:{...o.rx}, rounds:o.rounds, sub:null};
+}
+/* сохранённая тренировка → очередь: из списка (с 4.107) или, у тренировок прежних версий, из её отметки stamp — там упражнения,
+   номера подходов, число подходов, отдых и повторы каждого подхода; дозировка остального — как сейчас */
+function queueFromSaved(saved) {
+  const sn = saved && saved.snap;
+  if (sn) {
+    const items = sn.items.map(snapItem); if (items.some(x => !x)) return null;
+    return sn.q.map(([i, k, n, rest, phase]) => ({it:items[i], k, n:Number.isInteger(n) && n > 0 ? n : items[i].rx.sets, rest:Number(rest) || 0, phase:typeof phase === 'string' ? phase : 'Straight sets'}));
+  }
+  let a = null; try { a = JSON.parse(saved.stamp); } catch (e) { return null; }
+  if (!Array.isArray(a) || a.length < 6 || !Array.isArray(a[5])) return null;
+  const [, , , format] = a, steps = a[5], items = new Map(), q = [];
+  for (const st of steps) {
+    if (!Array.isArray(st) || !EXI[st[0]] || !Number.isInteger(st[1])) return null;
+    let it = items.get(st[0]);
+    if (!it) { it = previewItem(st[0]); it.label = String(items.size + 1); it.eqIds = chosenEquip(it.ex, effEquip(S.equip)); it.slot = items.size; it.sub = null; it.rx = {...it.rx}; items.set(st[0], it); }
+    const n = Number.isInteger(st[2]) && st[2] > 0 ? st[2] : it.rx.sets;
+    it.rx.sets = n; if (st[4] != null) it.rx.reps = st[4]; if (format === 'circuit') { it.rx.circ = true; it.rounds = n; }
+    q.push({it, k:st[1], n, rest:Number(st[3]) || 0, phase:format === 'circuit' ? `Round ${st[1] + 1} of ${n}` : format === 'superset' ? `Superset · round ${st[1] + 1}` : 'Straight sets'});
+  }
+  return q.length ? q : null;
+}
+/* очередь для «Начать / Продолжить тренировку»: начатая сегодня тренировка (или не законченная в прошлый день, если её
+   продолжают — cont), в которой уже есть подходы, — по своему списку, пока не меняли то, из чего собирается план; иначе — по
+   плану (новая тренировка — всегда по плану) */
+function workoutQueueNow(saved = workoutLoad(), {cont = true} = {}) {
+  const q = plan && plan.items && plan.items.length ? workoutQueue(plan) : [];
+  if (!saved || saved.ended || saved.stamp === workoutStamp(q)) return q;
+  if (!cont && saved.days[saved.days.length - 1] !== todayKey()) return q;
+  if (saved.snap ? saved.snap.ctx !== planCtx() : !legacyCtxSame(saved.stamp)) return q;
+  const sq = queueFromSaved(saved); if (!sq) return q;
+  const days = wkDaysWith(saved.days, todayKey());
+  return sq.some(s => wkSet(LOG.data, s.it.ex.id, s.k, days)) ? sq : q;
+}
+/* у тренировки прежней версии: что собрать, день, неделя, формат и цель — те же */
+function legacyCtxSame(stamp) {
+  try { const a = JSON.parse(stamp); return Array.isArray(a) && a[0] === S.mode && a[1] === S.day && a[2] === S.week && a[3] === S.format && a[4] === S.goal; } catch (e) { return false; }
+}
+
+/* ---------- подход, который записала другая вкладка ---------- */
+/* у подхода на экране сейчас запись, которой не было, когда его показали: её сделала другая вкладка */
+function workoutTaken(step) {
+  if (!workout || workout.shown !== 'null') return null;
+  return workoutValue(step) || null;
+}
+/* «Подход выполнен» на таком подходе: записывается следующим номером этого упражнения сегодня, оба подхода остаются */
+function workoutCommitTaken(step, got, taken) {
+  const ex = step.it.ex, s = todaySession(ex.id, true), lr = lrOn(ex);
+  let rec = lr ? makeSidedSet([got[0].kg, got[0].reps], [got[1].kg, got[1].reps], ex) : null;
+  if (!rec) rec = [got[0].kg, got[0].reps];
+  const days = workoutDays(), used = k => !!s.s[k] || !!wkSet(LOG.data, ex.id, k, days);
+  let k = step.k + 1; while (used(k)) k++;
+  while (s.s.length < k) s.s.push(null);
+  s.s[k] = rec; s.target = Math.max(s.target || 0, step.n); if (step.it.rx.static) s.fmt = 'static'; markImpl(s, step.it); markActive(s.d);
+  if (!workout.days.includes(s.d)) workout.days.push(s.d);
+  delete workout.drafts[workoutDraftKey(step)];
+  logTouch(ex.id); logRefresh([ex.id]);
+  const next = workoutFirstOpen(workout.queue, workout.index);
+  if (next < 0) { workoutFinish(); return; }
+  workoutShow(next);
+  $('#wv-save-status').textContent = `${'Set'} ${step.k + 1} ${'is already logged in another tab:'} ${setText(taken, ex)}. ${'This one is logged as set'} ${k + 1}.`;
+  saveWorkout();
+}
+/* журнал изменила другая вкладка: экран тренировки — по журналу. Подход на экране записан там, а здесь в полях ничего
+   не вписано — переход к следующему несделанному */
+function workoutOtherTab() {
+  if (!workout || !$('#workout-view') || !$('#workout-view').open || $('#wv-active').hidden) return;
+  const step = workout.queue[workout.index]; if (!step) return;
+  const v = workoutTaken(step), d = workout.drafts[workoutDraftKey(step)], typed = d && Object.values(d).some(x => String(x || '').trim());
+  if (v && !typed) {
+    const next = workoutFirstOpen(workout.queue, workout.index);
+    if (next < 0) { workoutFinish(); return; }
+    workoutShow(next);
+    $('#wv-save-status').textContent = `${'Set'} ${step.k + 1} ${'was logged in another tab:'} ${setText(v, step.it.ex)}.`;
+  } else if (typeof workoutTick === 'function') workoutTick();
+}
+
+/* короткое объявление для диктора (переспрос «Точно удалить запись за …?» — смена имени кнопки в фокусе озвучивается не везде) */
+function keepSay(text) {
+  if (typeof document === 'undefined' || !document.body || !document.getElementById) return;
+  try {
+    let el = document.getElementById('keep-live');
+    if (!el) { el = document.createElement('p'); el.id = 'keep-live'; el.className = 'vh'; el.setAttribute('role', 'status'); document.body.appendChild(el); }
+    el.textContent = ''; setTimeout(() => { el.textContent = text; }, 30);
+  } catch (e) {}
+}
+
+/* ---------- изменения из другой вкладки ---------- */
+/* фокус в поле ввода — перерисовка позже (когда поле отпустят), чтобы не сбить ввод */
+let keepRepaint = null;
+function keepPaintLater(fn) {
+  const ae = document.activeElement, typing = ae && (ae.tagName === 'INPUT' || ae.tagName === 'TEXTAREA' || ae.tagName === 'SELECT');
+  if (!typing) { fn(); return; }
+  keepRepaint = fn;
+  ae.addEventListener('blur', () => { const f = keepRepaint; keepRepaint = null; if (f) setTimeout(f, 0); }, {once:true});
+}
+Keep.watch(LOG_KEY, text => {
+  if (text == null || text === logBase) return;
+  const changed = logMergeDisk(text);
+  if (!changed.length) return;
+  workoutOtherTab();
+  keepPaintLater(() => logRefresh(changed));
+});
+Keep.watch(STORE, text => {
+  const took = settingsMerge(text); if (!took.length) return;
+  ensurePlaces(S); ensureCustoms(S); ensureFold(S); ensureProtect(S);
+  S.lr = cleanLr(S.lr);
+  swaps = S.swaps && typeof S.swaps === 'object' && !Array.isArray(S.swaps) ? S.swaps : (S.swaps = {});
+  if (workout && $('#workout-view') && $('#workout-view').open) return; /* план перерисуется, когда тренировку закроют */
+  keepPaintLater(() => { const y = window.scrollY; renderSetup(); renderPlan(); window.scrollTo(0, y); });
+});
+Keep.watch(BODY_KEY, text => {
+  if (text == null) return;
+  const p = bodyParse(text); if (!p) return;
+  const merged = mergeBodyRows(BODY.rows, p.rows);
+  if (JSON.stringify(merged) === JSON.stringify(BODY.rows)) return;
+  BODY.rows = merged;
+  if (S.view === 'journal') keepPaintLater(renderJournal);
+});
+
+/* ---------- сообщения: спасённые данные, хранилище ---------- */
+const KEEP_DISMISSED = new Set();
+/* хранилище не принимает записи: заметно, с выходом — полная копия в файл (и на странице, и на экране тренировки) */
+function keepBadHtml() {
+  const st = Keep.state(); if (st === 'ok') return '';
+  return `<div class="keep-note keep-bad" role="alert"><p><b>${st === 'full' ? 'Entries are not being saved: the browser storage is full.' : 'Entries are not being saved on this device: the browser does not let the site store data.'}</b> `
+    + `${st === 'full' ? 'Other pages of this site may have used up the space too.' : 'This happens in a private window or when saving site data is blocked.'} ${'While the page is open, your entries are in memory — save a full backup to a file so you don\'t lose them.'}</p>`
+    + `<div class="keep-b"><button type="button" class="btn" data-keep="backup">${'Save a backup to a file'}</button></div></div>`;
+}
+function keepNoteHtml() {
+  const notes = Keep.notes(), parts = [keepBadHtml()];
+  const fixed = [];
+  const s = notes.get('settings'); if (s && !KEEP_DISMISSED.has('settings')) fixed.push(s.whole ? 'The saved settings couldn\'t be read — the default ones are open.' : `Some saved settings were damaged and replaced with the defaults: ${settingsBadText(s.fields)}.`);
+  const l = notes.get('log'); if (l && !KEEP_DISMISSED.has('log')) fixed.push(l.whole ? 'The log in the browser storage couldn\'t be read.' : l.cut ? `The log in the browser storage was cut off — entries that survived: ${l.kept}.` : `The log in the browser storage had damaged entries — they are not shown: ${logDropText(l.drops)}.`);
+  const b = notes.get('body'); if (b && !KEEP_DISMISSED.has('body')) fixed.push(`Some measurements in the browser storage couldn't be read — skipped: ${b.dropped}.`);
+  const safe = notes.get('safe'); if (safe && !KEEP_DISMISSED.has('safe')) fixed.push('The app didn\'t open with the saved settings and was started with the defaults. The log and measurements are in place.');
+  if (fixed.length) parts.push(`<div class="keep-note" role="status"><p>${fixed.map(esc).join(' ')} ${'The damaged data is not erased: it is kept separately, and you can download it as a file.'}</p>`
+    + `<div class="keep-b"><button type="button" class="btn btn-2" data-keep="broken">${'Download damaged data'}</button>`
+    /* «Удалить» — только когда испорченное действительно лежит отдельно (решение владельца по 4.107, вопрос 6) */
+    + (Keep.broken().length ? `<button type="button" class="btn btn-2" data-keep="drop" aria-label="${'Delete damaged data'}">${'Delete'}</button>` : '')
+    + `<button type="button" class="btn btn-2" data-keep="ok">${'Got it'}</button></div></div>`);
+  return parts.join('');
+}
+function keepPaint() {
+  if (typeof document === 'undefined' || !document.body || !document.querySelector) return;
+  const html = keepNoteHtml();
+  let box = document.getElementById('keep-notes');
+  if (!box) { if (!html) return; box = document.createElement('div'); box.id = 'keep-notes'; const main = document.querySelector('main'); if (main && main.parentNode) main.parentNode.insertBefore(box, main); else document.body.prepend(box); }
+  if (box.innerHTML !== html) box.innerHTML = html;
+  /* на экране тренировки (модальное окно поверх страницы) — то же предупреждение о хранилище */
+  const wv = document.getElementById('workout-view');
+  if (wv) {
+    let w = document.getElementById('keep-notes-wv'); const bad = keepBadHtml();
+    if (!w && bad) { w = document.createElement('div'); w.id = 'keep-notes-wv'; wv.prepend(w); }
+    if (w && w.innerHTML !== bad) w.innerHTML = bad;
+  }
+  const st = $('#log-status'); if (st) st.innerHTML = statusHtml();
+}
+Keep.on(() => keepPaint());
+async function keepBackupFile() {
+  const name = `${backupStem()}-${todayKey()}.json`;
+  const r = await saveFile(name, JSON.stringify(backupObject()), 'application/json');
+  return r;
+}
+function keepBrokenFile() {
+  const list = Keep.broken();
+  return saveFile(`lazy-gym-broken-${todayKey()}.json`, JSON.stringify({app:'podhod', broken:true, exported:new Date().toISOString(), items:list}, null, 1), 'application/json');
+}
+document.addEventListener('click', e => {
+  const t = e.target.closest && e.target.closest('[data-keep]'); if (!t) return;
+  const a = t.dataset.keep;
+  if (a === 'backup') keepBackupFile().then(r => { if (r === 'ok') t.textContent = 'Backup saved'; });
+  else if (a === 'broken') keepBrokenFile();
+  /* «Удалить»: первое нажатие — «Точно удалить?» (как у записей журнала), второе стирает отложенное и убирает плашку */
+  else if (a === 'drop' && !t.classList.contains('armed')) armDelete(t, 'Delete the damaged data for sure?', 'Delete damaged data');
+  else if (a === 'ok' || a === 'drop') {
+    if (a === 'drop') Keep.clearBroken();
+    for (const k of ['settings', 'log', 'body', 'safe']) KEEP_DISMISSED.add(k); keepPaint();
+    if (a === 'drop') keepSay('Damaged data deleted.');
+    const f = $('#views button[aria-selected="true"]') || $('#views button'); if (f) f.focus();
+  }
+});
+
+/* ---------- где хранятся данные: постоянное хранилище, iPhone ---------- */
+const KEEP_STORE = {persisted:null, asked:false};
+const isIOS = () => typeof navigator !== 'undefined' && (/iP(hone|ad|od)/.test(navigator.userAgent || '') || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1));
+const isStandalone = () => typeof navigator !== 'undefined' && (navigator.standalone === true || (typeof matchMedia === 'function' && matchMedia('(display-mode: standalone)').matches));
+function keepPersistRead() {
+  const sm = typeof navigator !== 'undefined' && navigator.storage;
+  if (!sm || typeof sm.persisted !== 'function') return;
+  sm.persisted().then(v => { KEEP_STORE.persisted = !!v; const st = $('#log-status'); if (st) st.innerHTML = statusHtml(); }).catch(() => {});
+}
+/* Просьба к браузеру не стирать данные сайта самому (при нехватке места, у Safari — после 7 дней без захода): после первого
+   записанного подхода — человек уже пользуется журналом (Firefox спрашивает разрешения окном) */
+function keepPersistAsk() {
+  const sm = typeof navigator !== 'undefined' && navigator.storage;
+  if (KEEP_STORE.asked || KEEP_STORE.persisted || !sm || typeof sm.persist !== 'function' || LOG.mode === 'cloud') return;
+  KEEP_STORE.asked = true;
+  sm.persist().then(v => { KEEP_STORE.persisted = !!v; const st = $('#log-status'); if (st) st.innerHTML = statusHtml(); }).catch(() => {});
+}
+/* строка о хранении в журнале (statusHtml, 13-log.js): где хранится, просил ли браузер не стирать, что с iPhone */
+function storageLineHtml() {
+  if (LOG.mode === 'cloud') return '';
+  const st = Keep.state();
+  if (st !== 'ok') return '';
+  const parts = [];
+  if (KEEP_STORE.persisted === true) parts.push('The browser promised not to erase them on its own.');
+  else if (KEEP_STORE.persisted === false) parts.push('The browser may erase them on its own if the device runs out of space.');
+  if (isIOS() && !isStandalone()) parts.push('On iPhone and iPad, Safari erases a site\'s data if you don\'t open it for 7 days — add the app to the Home Screen (“Share” → “Add to Home Screen”) and make backups.');
+  const big = Keep.usage(); if (big > 3.5e6) parts.push(`App data takes ${(big / 1e6).toFixed(1).replace('.', DEC)} million characters of the roughly 5 million the browser gives a site — save a full backup to a file.`);
+  return parts.length ? ' ' + parts.join(' ') : '';
 }
 
 /* ---------- Замер скорости на настоящем телефоне: скрытая панель ?perf (П8) ----------
@@ -20724,16 +22394,27 @@ async function perfRun(opts = {}) {
   if (on && typeof document !== 'undefined' && document.body && typeof requestAnimationFrame === 'function') try { perfStart(); } catch (e) { console.error('Speed test', e); }
 })();
 
-/* ---------- запуск ---------- */
-logLoadLocal();
-setupMotionViewer();
-setupGallery();
-setupWorkout();
-setupMotionCameras();
-setupFirstRun();
-renderSetup();
-renderPlan();
-prefetchStressIds();
-logInit();
-/* самый первый запуск — несколько вопросов вместо параметров (11k-first-run.js) */
-if (FIRST_RUN) openFirstRun();
+/* ---------- запуск ----------
+   Ошибка при запуске (испорченные данные, которые не поймала проверка) — безопасный запуск (00a-keep.js: bootFailed):
+   перезапуск с обычными настройками, журнал на месте; не помогло — экран спасения. */
+try {
+  logLoadLocal();
+  setupMotionViewer();
+  setupGallery();
+  setupWorkout();
+  setupMotionCameras();
+  setupFirstRun();
+  renderSetup();
+  renderPlan();
+} catch (e) { bootFailed(e); }
+if (!BOOT.failed) {
+  BOOT.phase = 'done';
+  /* прошлый запуск не удался и прошёл с обычными настройками — сказать об этом (настройки отложены, их можно скачать) */
+  try { const f = sessionStorage.getItem(KEEP_SAFE); if (f) { sessionStorage.removeItem(KEEP_SAFE); Keep.note('safe', JSON.parse(f) || {}); } } catch (e) {}
+  Keep.probe(); keepPaint();
+  keepPersistRead();
+  prefetchStressIds();
+  logInit();
+  /* самый первый запуск — несколько вопросов вместо параметров (11k-first-run.js) */
+  if (FIRST_RUN) openFirstRun();
+}
