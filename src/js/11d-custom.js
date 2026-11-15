@@ -314,7 +314,10 @@ function cpPickHtml(id, boxId) {
     const state = has ? `<span class="cp-pick-st in">✓ уже в плане</span>` : full ? `<span class="cp-pick-st">полон</span>` : '';
     return `<button type="button" class="place cp-pick-i" data-cp-to="${p.id}"${has || full ? ' aria-disabled="true"' : ''}><span class="cp-pick-n"><b>${esc(p.name)}</b><small>${p.group ? esc(p.group) + ' · ' : ''}${count}</small></span>${state}</button>`;
   }).join('');
-  return `<p class="cp-pick-h" id="${boxId}-h">В какой план добавить</p>${rows}<button type="button" class="place place-add cp-pick-i" data-cp-to="">+ Новый план</button>`;
+  /* бережный режим: предупредить до добавления (отчёт Елены, п. 5) — в своём плане его заменит похожее или оно не войдёт */
+  const why = EXI[id] ? unfitWhy(EXI[id]) : '';
+  const warn = why ? `<p class="cp-pick-warn unfit" role="note">${esc(`${upFirst(why)}: в своём плане его заменит похожее упражнение без этой нагрузки, а если замены нет — оно не войдёт в план.`)}</p>` : '';
+  return `<p class="cp-pick-h" id="${boxId}-h">В какой план добавить</p>${warn}${rows}<button type="button" class="place place-add cp-pick-i" data-cp-to="">+ Новый план</button>`;
 }
 /* панель под карточкой своего плана: порядок, подходы, повторы, отдых */
 function customToolsHtml(it) {

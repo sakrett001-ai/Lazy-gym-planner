@@ -44,7 +44,9 @@ test('single-workout light flag does not alter program circuit volume', () => {
 });
 test('backup preserves an incomplete session target and its progression decision', () => {
   const a=appModel(); Object.assign(a.S,{mode:'single',format:'classic',goal:'mass',level:'mid'});
-  a.LOG.data={bbbench:[{d:'2000-01-01',wk:3,target:5,s:[[60,10],[60,10],[60,10],[60,10]]}]};
+  /* вчерашняя запись: после долгого перерыва совет — сниженный вес (layoffInfo, 15-autoreg.js), а здесь проверяется копия */
+  const y=new Date(Date.now()-864e5),yd=`${y.getFullYear()}-${String(y.getMonth()+1).padStart(2,'0')}-${String(y.getDate()).padStart(2,'0')}`;
+  a.LOG.data={bbbench:[{d:yd,wk:3,target:5,s:[[60,10],[60,10],[60,10],[60,10]]}]};
   const item={...a.previewItem('bbbench'),eqIds:['bb']}, before=a.suggest(item);
   const copy=JSON.parse(JSON.stringify(a.backupObject())); a.LOG.data={}; a.restoreBackup(copy);
   const after=a.suggest(item);

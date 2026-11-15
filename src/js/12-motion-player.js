@@ -113,6 +113,7 @@ function stressTrack(F){
 }
 function configureStressPanel(prefix,F){
  const panel=$('#'+prefix+'-stress-panel');if(!panel||!F)return;
+ const lead=panel.querySelector('.stress-explanation');if(lead)lead.textContent=stressLead(F.it.ex);
  const rules=jointStress(F.it.ex).rules,toggle=$('#'+prefix+'-stress-toggle'),track=$('#'+prefix+'-stress-track');
  if(toggle){toggle.checked=!!motionPrefs.stress;toggle.disabled=!rules.length;}
  /* без пиковых нагрузок переключатель серый — подпись объясняет почему */
@@ -423,7 +424,7 @@ function selectMotion(it, clock=0) {
   $('#mv-steps').innerHTML=it.ex.tech.map(x=>`<li>${esc(x)}</li>`).join('');
   $('#mv-errors').innerHTML=it.ex.err.map(x=>`<li>${esc(x)}</li>`).join('');
   $('#mv-breath').textContent=it.ex.breath;
-  $('#mv-note').textContent=it.ex.note||'';
+  $('#mv-note').textContent=[breathCaveat(it.ex),it.ex.note].filter(Boolean).join(' ');
   const links=[...(SOURCES_BY_EX[it.ex.id]||[]),...(motionProfile(it.ex.anim)?.sources||[])];
   const src=links.filter((v,i)=>links.findIndex(x=>x[1]===v[1])===i).map(([label,url])=>`<a href="${url}" target="_blank" rel="noopener noreferrer">${esc(label)}</a>`);
   $('#mv-sources').innerHTML=src.length?`<p class="mv-muscle-label">Подробнее о технике</p>${src.join('')}`:'';

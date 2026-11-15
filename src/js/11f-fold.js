@@ -8,7 +8,7 @@
 const FOLD_CARDS = ['compact', 'full'];
 function ensureFold(s) {
   const f = s.fold && typeof s.fold === 'object' ? s.fold : {};
-  s.fold = {setup:f.setup === true, load:f.load === true, cards:FOLD_CARDS.includes(f.cards) ? f.cards : 'compact', gentle:f.gentle === true};
+  s.fold = {setup:f.setup === true, load:f.load === true, cards:FOLD_CARDS.includes(f.cards) ? f.cards : 'compact', gentle:f.gentle === true, health:f.health === true};
   return s.fold;
 }
 ensureFold(S);
@@ -30,6 +30,7 @@ const cardFold = new Map(); /* «группа:упражнение» → рас�
 function cardOpen(g, id) { const k = g + ':' + id; return cardFold.has(k) ? cardFold.get(k) : ensureFold(S).cards === 'full'; }
 function cardFoldClass(id) { return FOLD_GROUPS.filter(g => cardOpen(g, id)).map(g => ' open-' + g).join(''); }
 const lowFirst = s => s ? s.charAt(0).toLowerCase() + s.slice(1) : s;
+const upFirst = s => s ? s.charAt(0).toUpperCase() + s.slice(1) : s;
 const chev = '<i class="cg-chev" aria-hidden="true"></i>';
 
 /* ---------- карточка: мышцы и запись подходов ---------- */

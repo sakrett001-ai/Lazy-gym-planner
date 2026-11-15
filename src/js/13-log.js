@@ -244,6 +244,12 @@ function suggestBase(it) {
     res.tone = 'plan'; res.kgs = it.rx.kgPlan; res.kg = it.rx.kgPlan[0]; res.prev = prev;
     const what = lt === 'assist' ? 'Противовес по плану' : lt === 'extra' ? 'Доп. вес по плану' : 'Вес по плану';
     res.text = `${what}: ${planKgText(it.rx.kgPlan)} ${wUnit()}.` + (rp ? ` Повторы по плану: ${rp.join(' / ')}.` : '') + (ps.length ? ` В прошлый раз: ${ps.map(x => (x[0] ? fmtKg(x[0]) + '×' : '') + x[1]).join(', ')}.` : '');
+    /* после перерыва — и вес по плану ниже, на то же число (layoffInfo, 15-autoreg.js); противовес — не трогаем */
+    const lay = past.length && lt === 'kg' && typeof layoffInfo === 'function' ? layoffInfo() : null;
+    if (lay) {
+      res.tone = 'deload'; res.layoff = true; res.kgs = it.rx.kgPlan.map(v => roundTo(v * (1 - lay.pct / 100), step)); res.kg = res.kgs[0];
+      res.text = `${'После перерыва'} ${lay.gap} ${plural(lay.gap, 'день', 'дня', 'дней')}: ${planKgText(res.kgs)} ${wUnit()} ${'вместо'} ${planKgText(it.rx.kgPlan)} ${'по плану'} (${'на'} ${lay.pct}% ${'меньше'}), ${'не до предела.'}`;
+    }
     return res;
   }
   /* прошлых тренировок нет, а сегодня подходы уже записаны — не «Первая запись», а сколько сделано и что дальше */
@@ -287,6 +293,26 @@ function suggestBase(it) {
   const work = kgs.length ? Math.max(...kgs) : null;
   const prevList = sets.map(x => (x[0] ? fmtKg(x[0]) + '×' : '') + x[1]).join(', ');
   if (ex.kind === 'dist') { res.tone = 'same'; res.kg = work; res.text = work ? `В прошлый раз — ${fmtKg(work)} ${wUnit()}. Попробуйте пройти дальше или взять тяжелее.` : `В прошлый раз: ${prevList} м.`; return res; }
+  /* после перерыва (layoffInfo, 15-autoreg.js): вес ниже прежнего по шкале — то же число, что в плашке «По вашему журналу»;
+     у пирамиды — каждый подход; у противовеса — больше; без веса — повторы по нижней границе, не до предела */
+  const lay = typeof layoffInfo === 'function' ? layoffInfo() : null;
+  if (lay && !ex.kind) {
+    const f = 1 - lay.pct / 100, pk = sets.map(x => x[0]), mixed = (lt === 'kg' || lt === 'extra') && pk.length > 1 && pk.every(v => v > 0) && !pk.every(v => v === pk[0]);
+    const gap = `${'После перерыва'} ${lay.gap} ${plural(lay.gap, 'день', 'дня', 'дней')}`;
+    res.tone = 'deload'; res.reps = sets.map((x, i) => tgt(i)[0]);
+    if (lt === 'kg' && work) {
+      if (mixed) { res.kgs = pk.map(v => roundTo(v * f, step)); res.kg = res.kgs[0]; res.text = `${gap}: ${'веса на'} ${lay.pct}% ${'меньше прошлых —'} ${res.kgs.map(fmtKg).join(' / ')} ${wUnit()}, ${'не до предела.'}`; }
+      else { res.kg = roundTo(work * f, step); res.text = `${gap}: ${fmtKg(res.kg)} ${wUnit()} ${'вместо'} ${fmtKg(work)} (${'на'} ${lay.pct}% ${'меньше'}), ${'не до предела.'}`; }
+      return res;
+    }
+    if (lt === 'assist' && work) {
+      res.kg = Math.max((Math.floor(work / step) + 1) * step, roundTo(work / f, step));
+      res.text = `${gap}: ${'противовес'} ${fmtKg(res.kg)} ${wUnit()} ${'вместо'} ${fmtKg(work)}, ${'не до предела.'}`;
+      return res;
+    }
+    res.kg = work; res.text = `${gap}: ${'повторы по нижней границе плана, не до предела. В прошлый раз:'} ${prevList}.`;
+    return res;
+  }
   /* пирамида или сброс (веса подходов в прошлый раз разные): совет — по верхнему подходу, подсказки — по каждому подходу */
   const pyr = !ex.kind && (lt === 'kg' || lt === 'extra') && pyramidAdvice(it, res, sets, past, tgt, step, week, rp);
   if (pyr) return pyr;
@@ -499,7 +525,8 @@ function firstKg(tset, sg, own) {
    подходов в ней разные (пирамида, сброс); иначе null — один вес на все подходы (подсказка — по прогрессии, sg.kg).
    prevSets — записанные подходы прошлой тренировки */
 function ownKgs(it, prevSets, sg) {
-  if (it.rx.kgPlan) return k => planKg(it.rx, k);
+  /* вес по плану; после перерыва — сниженный (suggestBase: sg.layoff) */
+  if (it.rx.kgPlan) return sg && sg.layoff && Array.isArray(sg.kgs) ? k => sg.kgs[Math.min(k, sg.kgs.length - 1)] : k => planKg(it.rx, k);
   /* пирамида прошлого раза с советом по верхнему подходу (pyramidAdvice): вес каждого подхода — из совета */
   if (sg && Array.isArray(sg.kgs) && sg.kgs.length) return k => sg.kgs[Math.min(k, sg.kgs.length - 1)];
   const kgs = prevSets.map(x => x[0]);
@@ -779,9 +806,12 @@ function trainingDays(data = LOG.data) {
 }
 /* последние тренировки списком: дата, упражнений и подходов, общий вес за день */
 function daysHtml(by = trainingDays(), limit = 5) {
-  const days = Object.values(by).sort((a, b) => a.d < b.d ? 1 : -1).slice(0, limit);
+  /* дни с пометкой «Больно» (11g-gentle.js: «Пропустить → больно» на экране тренировки) — и без записанных подходов */
+  const pain = typeof painDayHtml === 'function' ? painDayHtml : () => '', all = {...by};
+  if (typeof ensurePain === 'function') for (const x of ensurePain(S).log) if (!all[x.d]) all[x.d] = {d:x.d, ex:0, sets:0, t:0};
+  const days = Object.values(all).sort((a, b) => a.d < b.d ? 1 : -1).slice(0, limit);
   if (!days.length) return '';
-  return `<div class="j-days"><p class="lb-h">${'Последние тренировки · общий вес'}</p><ul>${days.map(x => `<li><span class="j-dd">${fmtDay(x.d, true)}</span><span class="j-dn">${x.ex} ${plural(x.ex, 'упражнение', 'упражнения', 'упражнений')} · ${x.sets} ${plural(x.sets, 'подход', 'подхода', 'подходов')}${heartDayHtml(x.d)}</span><b class="j-dt">${x.t > 0 ? fmtTon(x.t) + `<small>${wUnit()}</small>` : '—'}</b></li>`).join('')}</ul></div>`;
+  return `<div class="j-days"><p class="lb-h">${'Последние тренировки · общий вес'}</p><ul>${days.map(x => `<li><span class="j-dd">${fmtDay(x.d, true)}</span><span class="j-dn">${x.sets ? `${x.ex} ${plural(x.ex, 'упражнение', 'упражнения', 'упражнений')} · ${x.sets} ${plural(x.sets, 'подход', 'подхода', 'подходов')}${heartDayHtml(x.d)}` : ''}${pain(x.d)}</span><b class="j-dt">${x.t > 0 ? fmtTon(x.t) + `<small>${wUnit()}</small>` : '—'}</b></li>`).join('')}</ul></div>`;
 }
 function heatmap(today = new Date(), by = trainingDays()) {
   const byDay = {};

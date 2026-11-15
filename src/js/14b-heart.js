@@ -24,15 +24,34 @@
      чем при отдыхе 1:1; Schoenmakers и Reed (IJSPP, комментарий) — отдых до числа пульса или до доли от максимума для
      назначения отдыха не подходит.
    · Yoon и Kim, 2023 (Applied Sciences 13:7850) — постоянный отдых 30 с … 5 мин, восстановление пульса только измерялось.
-   Надёжного общего числа (уд/мин, % от максимума или резерва) для отдыха между подходами нет — числа по умолчанию нет. */
+   Надёжного общего числа (уд/мин, % от максимума или резерва) для отдыха между подходами нет — числа по умолчанию нет.
+
+   Безопасность (замечания кардиолога, Михаил п. 5, 6; 4.106):
+   · Предупреждение при очень высоком пульсе — выше расчётного максимума для возраста: 208 − 0,7 × возраст (Tanaka H.,
+     Monahan K.D., Seals D.R., J Am Coll Cardiol 2001, 37(1):153–156 — метаанализ 351 исследования, 18 712 человек без
+     лекарств и некурящих, и лабораторная проверка на 514; разброс у разных людей около ±10 уд/мин). Возраст — по желанию,
+     в настройке отдыха; без него — выше 195: это расчётный максимум уже в 18 лет (208 − 0,7 × 18 ≈ 195), выше него — у любого
+     взрослого (HR_HIGH_ANY). Слова — «снизьте темп, отдохните; если плохо — остановитесь», без диагнозов.
+   · Лекарства, снижающие пульс: бета-блокаторы уменьшают пульс в покое и при нагрузке; у здоровых при той же нагрузке пульс
+     ниже на 16–19 % (Levinger I., Bronks R., Cody D.V., Linton I., Davie A., J Sports Sci Med 2004, 3(YISI 1):23–27 —
+     со ссылкой на Sjöberg, Frankenhaeuser 1979); пульс при них не отражает нагрузку — строка в настройке отдыха.
+   · Отдых «до пульса» не короче минимума (restFloor, 14-workout-mode.js): обычно не короче минуты (или плана, если он короче) —
+     самый короткий отдых в исследованиях для массы — 30–60 с, для силы 3–5 мин (de Salles B.F. et al., Sports Med 2009,
+     39(9):765–777); ACSM: 1–2 мин во вспомогательных, 2–3 мин в базовых (Ratamess et al., MSSE 2009, 41(3):687–708).
+     В «Бережно» пульс отдых только продлевает, не сокращает.
+   · Порог — до 190 (было до 250): порог выше расчётного максимума молодого взрослого значит «почти без отдыха». */
 
 /* Технические, а не физиологические числа: попытки переподключения (мс), пульс старше 5 с — уже не «живой», шаг продления
    отдыха по пульсу — как у кнопок «±15 сек.», ниже порога — два показания подряд (не одно случайное). */
 const HR_RETRY = [1000, 2000, 4000, 8000, 15000];
 const HR_LIVE = {stale:5000, gap:5};
 const HR_REST = {step:15, confirm:2};
-/* поле порога: границы только от опечаток (не рекомендация) */
-const HR_THR = {min:30, max:250};
+/* поле порога: снизу — от опечаток, сверху — 190 (см. шапку: выше — почти без отдыха); возраст — 10…100 лет */
+const HR_THR = {min:30, max:190}, HR_AGE = {min:10, max:100};
+/* расчётный максимум пульса для возраста (Tanaka et al. 2001); без возраста — порог предупреждения для любого взрослого */
+const HR_HIGH_ANY = 195;
+function hrMaxFor(age) { return Number.isInteger(age) && age >= HR_AGE.min && age <= HR_AGE.max ? Math.round(208 - 0.7 * age) : null; }
+function hrTooHigh(bpm, age) { if (!(bpm > 0)) return false; const m = hrMaxFor(age); return bpm > (m || HR_HIGH_ANY); }
 const HEART_KEY = 'podhod.heart.v1', HEART_PREFS_KEY = 'podhod.heart.prefs.v1';
 
 /* ---------- разбор Heart Rate Measurement (0x2A37) ----------
@@ -195,6 +214,9 @@ function hrSimBluetooth({phase = () => 'idle', timers = globalThis, rand = Math.
     sim:{drop() { if (!st.connected) return; st.connected = false; stop(); dev.dispatch('gattserverdisconnected', {target:dev}); }, contact(v) { st.contact = !!v; }, set(b) { st.bpm = +b || st.bpm; }, fail(n) { st.fail = Math.max(0, n | 0); }, state:() => ({...st})}};
 }
 function hrSimFlag(search) { return /[?&]hr=sim(?=[&#]|$)/.test(search || ''); }
+/* минимальный отдых при отдыхе «до пульса», с: в «Бережно» — весь план (пульс отдых только продлевает), иначе не короче минуты
+   или плана, если он короче (см. шапку: de Salles et al. 2009, Ratamess et al. 2009) */
+function restFloor(planned, gentle) { const p = Math.max(0, Number(planned) || 0); return gentle ? p : Math.min(60, p); }
 
 /* ---------- запись: пульс подхода, отдыха и тренировки (без страницы — tools/heart.test.js) ----------
    День: {t: секунды с пульсом, avg: средний (по времени), max, sets: {'id:k': [в конце подхода, максимум за подход]},
@@ -257,14 +279,15 @@ function hrMergeDays(a, b) {
    плана пульс выше — продление по HR_REST.step с); 'first' — по плану или раньше, если пульс опустился ниже порога.
    st — состояние этого отдыха {below, lastAt, done, ext}; at — время показания (ниже порога — HR_REST.confirm показаний
    подряд). Без живого пульса — отдых по времени. Вернёт {act: null | 'end' | 'extend', until, why}. */
-function hrRestStep(st, {mode, thr, now, until, bpm, at}) {
+function hrRestStep(st, {mode, thr, now, until, bpm, at, floorAt = 0}) {
   if (mode !== 'hr' && mode !== 'first') return {act:null, until, why:'time'};
   if (!(thr > 0)) return {act:null, until, why:'nothr'};
   if (st.done) return {act:null, until, why:st.done};
   if (until <= now) { st.done = 'timeup'; return {act:null, until, why:'timeup'}; }
   if (bpm == null) { st.below = 0; return {act:null, until, why:'nohr'}; }
   if (at && at !== st.lastAt) { st.lastAt = at; st.below = bpm < thr ? (st.below || 0) + 1 : 0; }
-  if ((st.below || 0) >= HR_REST.confirm) { st.done = 'below'; return {act:'end', until:Math.min(until, now + 100), why:'below'}; }
+  /* ниже порога, но отдых ещё короче минимума (floorAt) — конец отдыха на минимуме, а не сразу */
+  if ((st.below || 0) >= HR_REST.confirm) { st.done = now + 100 < floorAt ? 'floor' : 'below'; return {act:'end', until:Math.min(until, Math.max(now + 100, floorAt)), why:st.done}; }
   if (mode === 'hr' && bpm >= thr && until - now <= 1000) { st.ext = (st.ext || 0) + 1; return {act:'extend', until:until + HR_REST.step * 1000, why:'extended'}; }
   return {act:null, until, why:st.ext ? 'extended' : 'waiting'};
 }
@@ -327,11 +350,13 @@ function heartDayHtml(d) {
    время, пульс или что раньше, порог. В итогах тренировки — средний и максимальный пульс. Код подключения — в 14-workout-mode.js
    (Heart.open, close, set, setDone, restDone, restTick, finish). */
 const Heart = (() => {
-  let P = {rest:'time', thr:null};
+  let P = {rest:'time', thr:null, age:null};
   try { const s = JSON.parse(localStorage.getItem(HEART_PREFS_KEY) || 'null'); if (s && typeof s === 'object') P = cleanPrefs(s); } catch (e) {}
   function cleanPrefs(s) {
     const thr = Number(s.thr);
-    return {rest:['time', 'hr', 'first'].includes(s.rest) ? s.rest : 'time', thr:Number.isInteger(thr) && thr >= HR_THR.min && thr <= HR_THR.max ? thr : null};
+    const age = Number(s.age);
+    return {rest:['time', 'hr', 'first'].includes(s.rest) ? s.rest : 'time', thr:Number.isInteger(thr) && thr >= HR_THR.min && thr <= HR_THR.max ? thr : null,
+      age:Number.isInteger(age) && age >= HR_AGE.min && age <= HR_AGE.max ? age : null};
   }
   function savePrefs() { try { localStorage.setItem(HEART_PREFS_KEY, JSON.stringify(P)); } catch (e) {} }
   let client = null, simBt = null, simOn = null, mounted = false, opened = false, armed = 0, ticker = 0;
@@ -379,6 +404,7 @@ const Heart = (() => {
     const row = el('div', {id:'wv-hr', class:'wv-hr', 'data-state':'idle'},
       `<button type="button" id="wv-hr-btn" class="wv-hr-btn" aria-describedby="wv-hr-note wv-hr-meta"><span class="wv-hr-heart" aria-hidden="true">♥</span><span id="wv-hr-val" class="wv-hr-val">${'Пульс'}</span><small id="wv-hr-unit" class="wv-hr-unit" hidden>${'уд/мин'}</small></button>`
       + `<div class="wv-hr-text"><p id="wv-hr-note" class="wv-hr-note" role="status"></p><p id="wv-hr-meta" class="wv-hr-meta"></p></div>`
+      + `<p id="wv-hr-warn" class="wv-hr-warn" role="alert" hidden></p>`
       + `<p id="wv-hr-line" class="wv-hr-line" hidden><span class="wv-hr-heart" aria-hidden="true">♥</span> <span id="wv-hr-line-t"></span></p>`
       + `<p id="wv-hr-help" class="wv-hr-help" hidden>${'Часов нет в списке? Включите на них трансляцию пульса: на Galaxy Watch — приложение, которое транслирует пульс как датчик.'} <button type="button" id="wv-hr-all" class="wv-hr-all">${'Показать все устройства'}</button></p>`);
     prog.after(row);
@@ -391,7 +417,10 @@ const Heart = (() => {
       + `<p id="wv-hr-mode-note" class="wv-signal-note"></p>`
       + `<label class="wv-hr-thr" for="wv-hr-thr"><span>${'Порог пульса'}</span><input id="wv-hr-thr" type="text" inputmode="numeric" autocomplete="off" maxlength="3" aria-describedby="wv-hr-thr-note"><span>${'уд/мин'}</span></label>`
       + `<p id="wv-hr-thr-note" class="wv-signal-note">${'Порог задаёте вы: общего числа для отдыха между подходами в исследованиях нет.'}</p>`
-      + `<p class="wv-signal-note wv-hr-med">${'Пульс с часов и датчиков — ориентир, а не медицинское измерение.'}</p>`));
+      + `<p class="wv-signal-note wv-hr-med">${'Пульс с часов и датчиков — ориентир, а не медицинское измерение.'}</p>`
+      + `<label class="wv-hr-age" for="wv-hr-age"><span>${'Возраст'}</span><input id="wv-hr-age" type="text" inputmode="numeric" autocomplete="off" maxlength="3" aria-describedby="wv-hr-age-note"><span>${'лет'}</span></label>`
+      + `<p id="wv-hr-age-note" class="wv-signal-note">${'По желанию: тогда предупреждение о слишком высоком пульсе — по вашему возрасту (расчётный максимум 208 − 0,7 × возраст, у разных людей ±10 уд/мин).'}</p>`
+      + `<p class="wv-signal-note wv-hr-med">${'Если вы принимаете лекарства, которые снижают пульс (например, бета-блокаторы), пульс не показывает нагрузку — ориентируйтесь на дыхание и самочувствие.'}</p>`));
     const fin = q('#wv-finish-text');
     if (fin) fin.after(el('p', {id:'wv-hr-finish', class:'wv-hr-finish', hidden:''}, `<span class="wv-hr-heart" aria-hidden="true">♥</span> <span id="wv-hr-finish-t"></span>`));
     mounted = true; paintPrefs(); return true;
@@ -433,6 +462,11 @@ const Heart = (() => {
     btn.setAttribute('aria-label', armed && on ? 'Отключить пульсометр' : view === 'live' ? `${'Пульс'} ${bpm} ${'уд/мин. Нажмите, чтобы отключить пульсометр'}` : on ? 'Пульсометр подключается. Нажмите, чтобы отключить' : 'Пульс: подключить пульсометр');
     const wv = q('#workout-view'); if (wv && view === 'live') wv.style.setProperty('--hr-beat', (60 / bpm).toFixed(2) + 's');
     show('#wv-hr-help', !!(c && c.help) && !on);
+    /* очень высокий пульс — заметная строка (hrTooHigh) */
+    const high = view === 'live' && hrTooHigh(bpm, P.age), mx = hrMaxFor(P.age);
+    text('#wv-hr-warn', !high ? '' : mx ? `${'Пульс выше расчётного максимума для вашего возраста (≈'}${mx}). ${'Снизьте темп и отдохните; если стало плохо — остановитесь.'}`
+      : `${'Очень высокий пульс. Снизьте темп и отдохните; если стало плохо — остановитесь. Укажите возраст в настройке отдыха — предупреждение будет точнее.'}`);
+    show('#wv-hr-warn', high);
     paintRest(now, bpm, on);
   }
   function paintRest(now, bpm, on) {
@@ -447,6 +481,7 @@ const Heart = (() => {
     if (P.rest !== 'time') {
       if (why === 'nothr') lead = 'Порог пульса не задан — отдых по времени';
       else if (why === 'below') lead = `${'Пульс ниже'} ${thr} ${'— можно к подходу'}`;
+      else if (why === 'floor') lead = `${'Пульс ниже'} ${thr} ${'— отдохните ещё немного: отдых не короче минимума'}`;
       else if (why === 'timeup') lead = 'Отдых по плану закончился';
       else if (why === 'nohr') lead = 'Пульса нет — отдых по времени';
       else if (why === 'extended') lead = `${'Пульс выше'} ${thr} ${'— отдых продлён на 15 с'}`;
@@ -460,6 +495,8 @@ const Heart = (() => {
     for (const b of document.querySelectorAll('[data-hr-rest]')) b.setAttribute('aria-pressed', String(b.dataset.hrRest === P.rest));
     const inp = q('#wv-hr-thr');
     if (inp && document.activeElement !== inp) inp.value = P.thr ? String(P.thr) : '';
+    const ag = q('#wv-hr-age');
+    if (ag && document.activeElement !== ag) ag.value = P.age ? String(P.age) : '';
     text('#wv-hr-mode-note', P.rest === 'hr' ? 'Отдых кончается, когда пульс опустится ниже порога: раньше плана — сразу, позже — продлевается по 15 с.'
       : P.rest === 'first' ? 'Отдых кончается по плану или раньше — как только пульс опустится ниже порога.'
       : 'Отдых по плану, пульс только показывается.');
@@ -488,11 +525,18 @@ const Heart = (() => {
     else { inp.setAttribute('aria-invalid', 'true'); return; }
     savePrefs(); cur.rule = null; if (typeof workout !== 'undefined' && workout) restTick();
   }
+  function ageInput(inp) {
+    const s = inp.value.trim(), n = Number(s);
+    if (!s) { P.age = null; inp.removeAttribute('aria-invalid'); }
+    else if (Number.isInteger(n) && n >= HR_AGE.min && n <= HR_AGE.max) { P.age = n; inp.removeAttribute('aria-invalid'); }
+    else { inp.setAttribute('aria-invalid', 'true'); return; }
+    savePrefs(); paint();
+  }
   /* шаг таймера отдыха (workoutTick): отдых «до пульса» двигает конец отдыха (workout.restUntil) и сигнал */
   function restTick(now = Date.now()) {
     if (typeof workout === 'undefined' || !workout || !(workout.restFrom > 0)) return;
     if (!cur.rule || cur.ruleFrom !== workout.restFrom) { cur.rule = {below:0, lastAt:0, done:null, ext:0}; cur.ruleFrom = workout.restFrom; }
-    const c = C(), r = hrRestStep(cur.rule, {mode:P.rest, thr:P.thr, now, until:workout.restUntil, bpm:live(now), at:c ? c.at : 0});
+    const c = C(), r = hrRestStep(cur.rule, {mode:P.rest, thr:P.thr, now, until:workout.restUntil, bpm:live(now), at:c ? c.at : 0, floorAt:workout.restFrom + restFloor(workout.restTotal, typeof S !== 'undefined' && S.goal === 'gentle') * 1000});
     if (r.act) { workout.restUntil = r.until; RestAlarm.arm(r.until, {from:workout.restFrom}); saveWorkout(); }
     cur.why = r.why;
     const row = q('#wv-hr'); if (row && row.dataset.screen !== 'rest') row.dataset.screen = 'rest';
@@ -505,8 +549,8 @@ const Heart = (() => {
       else if (t.id === 'wv-hr-all') press(true);
       else if (t.dataset && t.dataset.hrRest) setRest(t.dataset.hrRest);
     });
-    document.addEventListener('input', e => { if (e.target && e.target.id === 'wv-hr-thr') thrInput(e.target); });
-    document.addEventListener('focusout', e => { if (e.target && e.target.id === 'wv-hr-thr') paintPrefs(); });
+    document.addEventListener('input', e => { if (e.target && e.target.id === 'wv-hr-thr') thrInput(e.target); if (e.target && e.target.id === 'wv-hr-age') ageInput(e.target); });
+    document.addEventListener('focusout', e => { if (e.target && (e.target.id === 'wv-hr-thr' || e.target.id === 'wv-hr-age')) paintPrefs(); });
   }
   return {
     /* тренировка открыта / закрыта: подключение остаётся (вернулись к плану и обратно), пульс пишется только в тренировке */

@@ -68,26 +68,30 @@ function protectShown(list = ensureProtect(S)) { const strict = new Set(list.map
 
 /* ---------- «Пропустить → больно» (14-workout-mode.js): упражнение не возвращается в план само ----------
    S.pain = {off: [id] — убраны из подбора и замен до «Вернуть», log: [{d, id, how: 'removed' | 'swapped', to}] — пометки
-   в журнале (последние 200)}. Хранится в параметрах — значит, и в резервной копии. */
+   в журнале (последние 200), pend: [id] — отмечены посреди тренировки: в подбор не идут только после её закрытия, чтобы
+   оставшиеся упражнения открытой тренировки не пересобрались (painFlush)}. Хранится в параметрах — значит, и в копии. */
 const PAIN_LOG_MAX = 200;
 function ensurePain(s) {
   const p = s.pain && typeof s.pain === 'object' ? s.pain : {};
   const off = Array.isArray(p.off) ? [...new Set(p.off.filter(id => typeof id === 'string' && EXI[id]))] : [];
   const log = Array.isArray(p.log) ? p.log.filter(x => x && typeof x.id === 'string' && /^\d{4}-\d\d-\d\d$/.test(x.d || '') && ['removed', 'swapped'].includes(x.how))
     .map(x => ({d:x.d, id:x.id, how:x.how, ...(typeof x.to === 'string' && EXI[x.to] ? {to:x.to} : {})})).slice(-PAIN_LOG_MAX) : [];
-  s.pain = {off, log};
+  const pend = Array.isArray(p.pend) ? [...new Set(p.pend.filter(id => typeof id === 'string' && EXI[id] && !off.includes(id)))] : [];
+  s.pain = {off, log, pend};
   return s.pain;
 }
 function painOff(ex) { return ensurePain(S).off.includes(ex.id); }
-/* отметить «больно»: убрать из подбора, записать в журнал дня d */
-function painMark(id, how, d, to) {
+/* отметить «больно»: убрать из подбора (посреди тренировки — после её закрытия), записать в журнал дня d */
+function painMark(id, how, d, to, pending = false) {
   const p = ensurePain(S);
   if (!EXI[id]) return;
-  if (!p.off.includes(id)) p.off.push(id);
+  if (pending) { if (!p.off.includes(id) && !p.pend.includes(id)) p.pend.push(id); }
+  else if (!p.off.includes(id)) p.off.push(id);
   p.log = p.log.filter(x => !(x.d === d && x.id === id)).concat({d, id, how, ...(to && EXI[to] ? {to} : {})}).slice(-PAIN_LOG_MAX);
   saveSettings();
 }
-function painReturn(id) { const p = ensurePain(S); p.off = p.off.filter(x => x !== id); saveSettings(); }
+function painReturn(id) { const p = ensurePain(S); p.off = p.off.filter(x => x !== id); p.pend = p.pend.filter(x => x !== id); saveSettings(); }
+function painFlush() { const p = ensurePain(S); if (!p.pend.length) return false; p.off = [...new Set(p.off.concat(p.pend))]; p.pend = []; saveSettings(); return true; }
 /* пометка в журнале за день (13-log.js) */
 function painDayHtml(d) {
   const marks = ensurePain(S).log.filter(x => x.d === d && EXI[x.id]);
@@ -95,6 +99,8 @@ function painDayHtml(d) {
   return marks.map(x => `<p class="j-pain"><b>${'Больно:'}</b> ${esc(exNameHere(EXI[x.id]))} — ${x.how === 'swapped' && x.to ? `${'заменено на'} ${esc(exNameHere(EXI[x.to]))}` : 'убрано из плана'}</p>`).join('');
 }
 ensureProtect(S); ensurePain(S);
+/* отмеченное посреди прошлой тренировки, если приложение закрыли, не закрыв её */
+if (S.pain.pend.length) { S.pain.off = [...new Set(S.pain.off.concat(S.pain.pend))]; S.pain.pend = []; }
 
 /* ---------- какие суставы нагружает упражнение: считается по 41 положению манекена один раз за сборку ---------- */
 const STRESS_IDS = new Map(), STRESS_IDS_KEY = 'podhod.stress.v1';
@@ -201,7 +207,7 @@ const STRICT_NOTE = {
 };
 /* убранные «Пропустить → больно»: вернуть в подбор */
 function painListHtml() {
-  const off = ensurePain(S).off.filter(id => EXI[id]);
+  const off = [...ensurePain(S).off, ...S.pain.pend].filter(id => EXI[id]);
   if (!off.length) return '';
   return `<p class="f-note">${'Убраны, потому что было больно:'}</p><div class="chips">${off.map(id => `<button type="button" class="chip on" data-pain-back="${id}" aria-label="${esc('Вернуть в подбор: ' + exNameHere(EXI[id]))}">${esc(exNameHere(EXI[id]))} <span aria-hidden="true">×</span></button>`).join('')}</div>`;
 }

@@ -903,6 +903,7 @@ function renderSetup() {
   $('#f-format').innerHTML = seg('format', FORMATS, S.format);
   $('#f-level').innerHTML = seg('level', LEVELS, S.level);
   renderProtect();
+  if (typeof renderHealth === 'function') renderHealth();
   /* время на тренировку (11j-duration.js): в своём плане упражнения и подходы задал человек — поля нет */
   $('#f-dur').hidden = custom;
   const dur = S.dur || '';
@@ -1018,12 +1019,22 @@ function rxHtml(it) {
 /* суставы под пиковой нагрузкой — короткая строка в карточке. Пояснение раскрывается нажатием на строку (касанием и
    с клавиатуры, а не только в подсказке мыши): тот же текст, что в панели «Нагрузка на суставы» внизу разбора движения */
 const PEAK_OPEN = new Set();
+/* пояснение к меткам: «напоминание, а не запрет» — только тем, кто суставы не отмечал (Елена, п. 5); отмеченным — правда
+   про это упражнение и их суставы */
+const STRESS_LEAD = 'Красная метка на манекене — момент пиковой нагрузки на сустав, связки или сухожилие. Это напоминание держать технику, а не запрет.';
+function stressLead(ex) {
+  const prot = typeof protectShown === 'function' ? protectShown() : [];
+  if (!prot.length) return STRESS_LEAD;
+  const hits = protectHits(ex), strict = strictHit(ex);
+  if (hits.length || strict) return `${'Красная метка на манекене — момент пиковой нагрузки на сустав, связки или сухожилие.'} ${hits.length ? `Вы бережёте ${hitsText(hits)}: это упражнение их нагружает.` : `${STRICT[strict].why} — ${PROTECT_BY[strict].name.toLowerCase()}.`} В план оно не подбирается, в своём плане его заменит похожее.`;
+  return `${'Красная метка на манекене — момент пиковой нагрузки на сустав, связки или сухожилие.'} ${'То, что вы бережёте'} (${hitsText(prot)}), ${'здесь пиково не нагружено; метки — на других суставах, держите технику.'}`;
+}
 function jointsLine(ex, idx) {
   const zones = typeof stressZones === 'function' ? stressZones(ex) : [];
   if (!zones.length) return '';
   const on = typeof motionPrefs === 'undefined' || motionPrefs.stress !== false, open = PEAK_OPEN.has(ex.id);
   const rules = typeof jointStress === 'function' ? jointStress(ex).rules : [];
-  const lead = document.querySelector('#mv-stress-panel .stress-explanation')?.textContent || 'Красная метка на манекене — момент пиковой нагрузки на сустав, связки или сухожилие. Это напоминание держать технику, а не запрет.';
+  const lead = stressLead(ex);
   return `<div class="c-joints"${on ? '' : ' hidden'}><button type="button" class="c-joints-b" data-peak="${ex.id}" aria-expanded="${open}" aria-controls="peak-${idx}"><span class="stress-dot" aria-hidden="true"></span><span>Пиковая нагрузка: ${esc(zones.join(', '))}</span><i class="cg-chev" aria-hidden="true"></i></button>`
     + `<div class="c-joints-x" id="peak-${idx}"${open ? '' : ' hidden'}><p class="stress-explanation">${esc(lead)}</p><ul class="stress-list">${rules.map(r => `<li><span class="stress-dot" aria-hidden="true"></span><span><b>${esc(r.zone)}.</b> ${esc(r.what)} <em>${esc(r.tip)}</em></span></li>`).join('')}</ul></div></div>`;
 }
@@ -1081,7 +1092,7 @@ function cardHtml(it, idx) {
     <ol class="t-steps">${ex.tech.map(s => `<li>${esc(s)}</li>`).join('')}</ol>
     <div class="t-cols">
       <div><h4>Частые ошибки</h4><ul class="t-err">${ex.err.map(s => `<li>${esc(s)}</li>`).join('')}</ul></div>
-      <div><h4>Дыхание</h4><p>${esc(ex.breath)}</p>${ex.note ? `<h4>Важно</h4><p>${esc(ex.note)}</p>` : ''}${r.notes.map(n => `<p class="t-tip">${esc(n)}</p>`).join('')}</div>
+      <div><h4>Дыхание</h4><p>${esc(ex.breath)}</p>${breathCaveat(ex) ? `<p class="t-tip t-med">${esc(breathCaveat(ex))}</p>` : ''}${ex.note ? `<h4>Важно</h4><p>${esc(ex.note)}</p>` : ''}${r.notes.map(n => `<p class="t-tip">${esc(n)}</p>`).join('')}</div>
     </div>
   </details>
 </li>`;
@@ -1250,9 +1261,9 @@ function renderPlanView() {
   </header>`;
   if (plan.custom) {
     const hints = customHints(plan), lost = lostMessages(plan.lost, plan.E);
-    html += autoregHtml() + gentleHtml() + (lost.length ? `<div class="warn">${lost.map(w => `<p>${esc(w)}</p>`).join('')}</div>` : '')
+    html += autoregHtml() + healthHtml() + gentleHtml() + (lost.length ? `<div class="warn">${lost.map(w => `<p>${esc(w)}</p>`).join('')}</div>` : '')
       + (hints.length ? `<div class="cp-hints">${hints.map(w => `<p>${esc(w)}</p>`).join('')}</div>` : '') + blocksHtml(plan) + customAddHtml() + LEGEND;
-  } else html += logPickHtml(plan) + autoregHtml() + gentleHtml() + warnHtml(plan) + blocksHtml(plan) + LEGEND;
+  } else html += logPickHtml(plan) + autoregHtml() + healthHtml() + gentleHtml() + warnHtml(plan) + blocksHtml(plan) + LEGEND;
   root.innerHTML = html;
   mountFigures();
 }
@@ -1299,7 +1310,7 @@ function renderProgram() {
   const bodyDay = !plan.items && emptyBodyGroups(plan.groups || DAY_T[day.tid].g);
   if (!plan.items) html += bodyDay ? `<div class="empty"><h2>Для этого дня нет упражнений</h2><p>${esc(`Для этих мышц (${bodyDay.map(g => GN[g].toLowerCase()).join(', ')}) в бережном режиме подходящих упражнений с этим оборудованием нет: все дают нагрузку, которую вы бережёте.`)}</p><p>Выберите другой сплит или место; отметки можно поменять в параметрах.</p></div>${gentleHtml()}`
     : `<div class="empty"><h2>Для этого дня нет упражнений</h2><p>С выбранным оборудованием нечем нагрузить эти мышцы. Добавьте оборудование или выберите другой сплит.</p></div>`;
-  else html += autoregHtml() + gentleHtml() + warnHtml(plan) + blocksHtml(plan);
+  else html += autoregHtml() + healthHtml() + gentleHtml() + warnHtml(plan) + blocksHtml(plan);
   html += LEGEND;
   $('#plan').innerHTML = html;
   if (plan.items) mountFigures();
