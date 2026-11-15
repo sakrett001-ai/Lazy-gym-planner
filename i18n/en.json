@@ -1562,7 +1562,7 @@
  "Таблица сохранена. Откройте её в Excel: столбцы разделены точкой с запятой.": "Spreadsheet saved. Open it in Excel: columns are separated by semicolons.",
  "Сохранение отменено.": "Save canceled.",
  "Сохранить файл не удалось.": "Couldn’t save the file.",
- "Это не резервная копия Lazy Gym Planner. Выберите файл lazy-gym-kopiya-….json.": "This is not a Lazy Gym Planner backup. Choose a lazy-gym-kopiya-….json file.",
+ "Это не резервная копия Lazy Gym Planner. Выберите файл lazy-gym-backup-….json.": "This is not a Lazy Gym Planner backup. Choose a lazy-gym-backup-….json file.",
  "Отдых перед следующим упражнением": "Rest before the next exercise",
  "Отдых после подхода": "Rest after set",
  "Точно удалить?": "Are you sure?",
@@ -3631,7 +3631,7 @@
  "Точно удалить замер за": "Really delete the measurement for",
  "Удалить замер за": "Delete the measurement for",
  "возвращён.": "restored.",
- "Это не резервная копия Lazy Gym Planner: файл не читается. Выберите файл lazy-gym-kopiya-….json.": "This is not a Lazy Gym Planner backup: the file can't be read. Choose a lazy-gym-backup-….json file.",
+ "Это не резервная копия Lazy Gym Planner: файл не читается. Выберите файл lazy-gym-backup-….json.": "This is not a Lazy Gym Planner backup: the file can't be read. Choose a lazy-gym-backup-….json file.",
  "Файл копии повреждён или обрезан (например, при пересылке) — прочитать из него ничего не получается. Сделайте копию заново на том устройстве, где она сделана.": "The backup file is damaged or cut off (for example, while being sent) — nothing can be read from it. Make the backup again on the device where it was made.",
  "Это файл плана, а не резервная копия. Его загружают в «Свой план» → «Загрузить план».": "This is a plan file, not a backup. Import it in “Custom plan” → “Import plan”.",
  "цель —": "goal —",
@@ -3661,5 +3661,9 @@
  "Браузер может стереть их сам, если на устройстве кончится место.": "The browser may erase them on its own if the device runs out of space.",
  "На iPhone и iPad Safari стирает данные сайта, если его не открывать 7 дней, — добавьте приложение на экран «Домой» («Поделиться» → «На экран „Домой“») и делайте копию.": "On iPhone and iPad, Safari erases a site's data if you don't open it for 7 days — add the app to the Home Screen (“Share” → “Add to Home Screen”) and make backups.",
  "Данные приложения занимают": "App data takes",
- "млн знаков из примерно 5 млн, которые браузер даёт сайту, — сохраните полную копию в файл.": "million characters of the roughly 5 million the browser gives a site — save a full backup to a file."
+ "млн знаков из примерно 5 млн, которые браузер даёт сайту, — сохраните полную копию в файл.": "million characters of the roughly 5 million the browser gives a site — save a full backup to a file.",
+ "Удалить испорченные данные": "Delete damaged data",
+ "Точно удалить испорченные данные?": "Delete the damaged data for sure?",
+ "Испорченные данные удалены.": "Damaged data deleted.",
+ "Тренировка идёт по списку, с которого её начали.": "The workout follows the list it was started with."
 }

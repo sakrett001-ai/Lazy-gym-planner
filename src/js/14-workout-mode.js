@@ -58,8 +58,11 @@ function workoutLoad(){let o=null;try{o=JSON.parse(localStorage.getItem(WORKOUT_
 /* план: «Начать тренировку →», «Продолжить тренировку →» со сделанным или вопрос о тренировке прошлого дня */
 function workoutPlanState(){
   if(!plan?.items?.length)return{kind:'start'};
-  const saved=workoutLoad();
-  return wkPlanState(saved,{today:todayKey(),queue:workoutQueueNow(saved),data:LOG.data});
+  const saved=workoutLoad(),q=workoutQueueNow(saved);
+  const w=wkPlanState(saved,{today:todayKey(),queue:q,data:LOG.data});
+  /* тренировка продолжается по своему списку, а карточки показывают уже новый план (решение владельца по 4.107, вопрос 7) */
+  if(w.kind==='continue'&&workoutStamp(q)!==workoutStamp(workoutQueue(plan)||[]))w.own=true;
+  return w;
 }
 function yesterdayKey(){const d=new Date();d.setDate(d.getDate()-1);return dayKey(d);}
 const doneOfText=(n,total)=>`${n} ${'из'} ${total} ${plural(total,'подхода','подходов','подходов')}`;

@@ -1072,7 +1072,8 @@ function csvText() {
   return '﻿' + rows.concat(all.map(x => x.row)).map(r => csvLine(r, sep)).join('\r\n');
 }
 /* имя файла копии: в английской версии — backup, в русской — как раньше (Mike 5) */
-const backupStem = () => (typeof window !== 'undefined' && window.PODHOD_LANG === 'en') ? 'lazy-gym-backup' : 'lazy-gym-kopiya';
+/* имя копии одно на обоих языках, латиницей, как остальные файлы lazy-gym-… (решение владельца по 4.107, вопрос 9) */
+const backupStem = () => 'lazy-gym-backup';
 async function exportLog(kind) {
   const msg = $('#j-msg'), d = todayKey();
   const r = kind === 'csv' ? await saveFile(`lazy-gym-log-${d}.csv`, csvText(), 'text/csv')
@@ -1363,18 +1364,32 @@ function refreshHist(id) {
 /* ---------- «Удалить запись» (Галина 3) ----------
    Первое нажатие — переспрос: надпись «Точно удалить?», имя кнопки для диктора — «Точно удалить запись за 16 ноя?», фокус на месте;
    через 4 с без ответа — снова «Удалить». Второе — удаляет, и на месте записи на 10 с — «Удалена запись за … · Вернуть»,
-   фокус на «Вернуть». Время вышло — строка уходит, фокус — на заголовок упражнения (в журнале) или «История» (в карточке). */
+   фокус на «Вернуть». Время вышло — строка уходит, фокус — на заголовок упражнения (в журнале) или «История» (в карточке).
+   Пока фокус на «Точно удалить?» или «Вернуть», время не идёт: отсчёт начинается заново, когда фокус уйдёт — диктору и
+   клавиатуре нужно время (решение владельца по 4.107, вопрос 3). */
 const UNDO_MS = 10000, ARM_MS = 4000;
 const undoLive = u => u && u.until > Date.now() ? u : null;
 function undoFor(id) { const u = undoLive(LOG.undo); return u && u.id === id ? u : null; }
 function undoLineHtml(text, attr, id) { return `<li class="sw-gone h-gone"><span id="${id}">${text}</span>${undoBtn(attr, id)}</li>`; }
 /* надпись — коротко («Точно удалить?»: длинная не помещается в строке истории), имя для диктора — весь вопрос с датой */
+function whileFocused(sel, ms, fn, hold) {
+  const tick = () => {
+    const b = typeof sel === 'string' ? document.querySelector(sel) : sel;
+    if (b && b.isConnected && document.activeElement === b) {
+      if (hold) hold(Infinity);
+      b.addEventListener('blur', () => { if (hold) hold(Date.now() + ms); setTimeout(tick, ms); }, {once:true});
+      return;
+    }
+    fn();
+  };
+  setTimeout(tick, ms);
+}
 function armDelete(btn, ask, label) {
   btn.classList.add('armed'); btn.textContent = 'Точно удалить?'; btn.setAttribute('aria-label', ask); keepSay(ask);
-  setTimeout(() => { if (btn.isConnected && btn.classList.contains('armed')) { btn.classList.remove('armed'); btn.textContent = 'Удалить'; btn.setAttribute('aria-label', label); } }, ARM_MS);
+  whileFocused(btn, ARM_MS, () => { if (btn.isConnected && btn.classList.contains('armed')) { btn.classList.remove('armed'); btn.textContent = 'Удалить'; btn.setAttribute('aria-label', label); } });
 }
 function focusUndo(sel) { const b = document.querySelector(sel); if (b) b.focus(); }
-function undoExpire(fn) { setTimeout(fn, UNDO_MS + 50); }
+function undoExpire(fn, sel, u) { whileFocused(sel, UNDO_MS + 50, fn, u ? t => { u.until = t; } : null); }
 /* строка «Вернуть» уходит без перерисовки; фокус с неё — на fallback */
 function undoRepaint(sel, fallbackSel) {
   const b = document.querySelector(sel); if (!b) return;
@@ -1392,7 +1407,7 @@ function deleteSession(btn) {
   logTouch(id, true);
   histRepaint(id);
   focusUndo(`[data-hist-undo="${id}"]`);
-  undoExpire(() => { if (LOG.undo && LOG.undo.s === s) { LOG.undo = null; undoRepaint(`[data-hist-undo="${id}"]`, S.view === 'journal' ? `[data-jex="${id}"] > summary` : `.card[data-ex="${id}"] [data-hist]`); } });
+  undoExpire(() => { if (LOG.undo && LOG.undo.s === s) { LOG.undo = null; undoRepaint(`[data-hist-undo="${id}"]`, S.view === 'journal' ? `[data-jex="${id}"] > summary` : `.card[data-ex="${id}"] [data-hist]`); } }, `[data-hist-undo="${id}"]`, LOG.undo);
 }
 function histUndo(id) {
   const u = undoFor(id); if (!u) return;

@@ -70,7 +70,7 @@ async function saveIcs() {
   const start = new Date($('#ics-start').value + 'T12:00:00');
   if (isNaN(start)) { $('#ics-msg').textContent = 'Укажите дату начала.'; return; }
   ICS.time = $('#ics-time').value || '19:00'; ICS.weeks = +$('#ics-weeks').value || 4; ICS.alarm = +$('#ics-alarm').value || 0;
-  try { localStorage.setItem(ICS_KEY, JSON.stringify(ICS)); } catch (e) {}
+  Keep.set(ICS_KEY, JSON.stringify(ICS));
   const txt = icsText(start, ICS.time, ICS.weeks);
   const r = await saveFile(`lazy-gym-workouts-${dayKey(start)}.ics`, txt, 'text/calendar');
   $('#ics-msg').textContent = r === 'ok' ? 'Файл сохранён. Откройте его — календарь предложит добавить события.' : r === 'declined' ? 'Сохранение отменено.' : 'Сохранить файл не удалось.';

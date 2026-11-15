@@ -1253,6 +1253,7 @@ function headButtons(copyLabel) {
         ${S.mode === 'custom' ? `<button type="button" class="btn btn-2" id="plan-export">${ICON.share}<span>Выгрузить</span></button>`
           : `<button type="button" class="btn btn-2" id="save-plan">${ICON.save}<span>${S.mode === 'program' ? 'Сохранить неделю' : 'Сохранить как свой план'}</span></button>`}
       </div>
+      ${w.own ? `<p class="p-hint wk-own">${'Тренировка идёт по списку, с которого её начали.'}</p>` : ''}
       <p class="p-hint" id="copy-msg" role="status"></p>
       <p class="p-hint" id="save-msg" role="status"></p>`;
 }

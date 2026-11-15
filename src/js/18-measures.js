@@ -211,7 +211,7 @@ function bodyDelete(btn) {
   BODY.undo = {row, until:Date.now() + UNDO_MS};
   bodyTouch(false); renderJournal();
   focusUndo('[data-bundo]');
-  undoExpire(() => { if (BODY.undo && BODY.undo.row === row) { BODY.undo = null; if (S.view === 'journal') undoRepaint('[data-bundo]', '#b-date'); } });
+  undoExpire(() => { if (BODY.undo && BODY.undo.row === row) { BODY.undo = null; if (S.view === 'journal') undoRepaint('[data-bundo]', '#b-date'); } }, '[data-bundo]', BODY.undo);
 }
 function bodyUndo() {
   const u = BODY.undo; if (!u) return;
@@ -255,14 +255,14 @@ function readBackupText(text) {
   let obj = null, cut = false;
   try { obj = JSON.parse(text); }
   catch (e) {
-    if (!/"app"\s*:\s*"podhod"/.test(text.slice(0, 4000))) return {error:'Это не резервная копия Lazy Gym Planner: файл не читается. Выберите файл lazy-gym-kopiya-….json.'};
+    if (!/"app"\s*:\s*"podhod"/.test(text.slice(0, 4000))) return {error:'Это не резервная копия Lazy Gym Planner: файл не читается. Выберите файл lazy-gym-backup-….json.'};
     const r = repairJson(text);
     if (!r || !r.value || r.value.app !== 'podhod' || !(r.value.log || r.value.body || r.value.settings)) return {error:'Файл копии повреждён или обрезан (например, при пересылке) — прочитать из него ничего не получается. Сделайте копию заново на том устройстве, где она сделана.'};
     obj = r.value; cut = true;
   }
-  if (!obj || typeof obj !== 'object' || Array.isArray(obj)) return {error:'Это не резервная копия Lazy Gym Planner. Выберите файл lazy-gym-kopiya-….json.'};
+  if (!obj || typeof obj !== 'object' || Array.isArray(obj)) return {error:'Это не резервная копия Lazy Gym Planner. Выберите файл lazy-gym-backup-….json.'};
   if (obj.format === PLAN_FILE) return {error:'Это файл плана, а не резервная копия. Его загружают в «Свой план» → «Загрузить план».'};
-  if (obj.app !== 'podhod' || (!obj.log && !obj.body && !obj.settings && !obj.heart)) return {error:'Это не резервная копия Lazy Gym Planner. Выберите файл lazy-gym-kopiya-….json.'};
+  if (obj.app !== 'podhod' || (!obj.log && !obj.body && !obj.settings && !obj.heart)) return {error:'Это не резервная копия Lazy Gym Planner. Выберите файл lazy-gym-backup-….json.'};
   return {obj, cut};
 }
 /* самая поздняя дата записи в копии: день, когда копия сделана (или завтра — часовые пояса), но не раньше завтрашнего */

@@ -17,6 +17,8 @@ function heart() {
     setTimeout, clearTimeout, setInterval, clearInterval, console, DataView, Uint8Array };
   ctx.globalThis = ctx;
   vm.createContext(ctx);
+  /* запись пульса идёт через Keep (00a-keep.js) */
+  vm.runInContext(fs.readFileSync(path.join(root, 'src/js/00a-keep.js'), 'utf8'), ctx, { filename: '00a-keep.js' });
   vm.runInContext(fs.readFileSync(path.join(root, 'src/js/14b-heart.js'), 'utf8'), ctx, { filename: '14b-heart.js' });
   return vm.runInContext('({HR_RETRY, HR_LIVE, HR_REST, HR_THR, HR_HIGH_ANY, hrMaxFor, hrTooHigh, restFloor, hrParse, hrSupport, hrErrorText, hrClient, hrSimBluetooth, hrSimFlag, hrKey, hrDayNew, hrAccumulate, hrSetDone, hrRestDone, hrSummary, hrCleanDays, hrMergeDays, hrRestStep, Heart})', ctx);
 }

@@ -309,7 +309,7 @@ test('Excel: в русской версии — точка с запятой, в
   }
   const en = app({}, 'en');
   assert.match(en.get('csvText()'), /^﻿Date,Exercise,Muscle group,Set,"Weight, (kg|lb)",/, 'заголовок с запятой — в кавычках');
-  assert.equal(en.get('backupStem()'), 'lazy-gym-backup'); assert.equal(app().get('backupStem()'), 'lazy-gym-kopiya');
+  assert.equal(en.get('backupStem()'), 'lazy-gym-backup'); assert.equal(app().get('backupStem()'), 'lazy-gym-backup');
 });
 
 /* ---------- 9. сервис-воркер: оболочка — из сети, мимо HTTP-кеша браузера (Ксения 2) ---------- */

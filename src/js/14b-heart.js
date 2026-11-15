@@ -260,7 +260,8 @@ function hrCleanDays(o) {
   if (o && typeof o === 'object') for (const [d, x] of Object.entries(o)) if (/^\d{4}-\d\d-\d\d$/.test(d)) { const c = hrCleanDay(x); if (c) out[d] = c; }
   return out;
 }
-/* объединение по дате: основа — день с бо́льшим временем пульса, подходы и отдых — из обоих (у основы приоритет); 400 дней */
+/* объединение по дате: основа — день с бо́льшим временем пульса, подходы и отдых — из обоих (у основы приоритет).
+   Все дни: день пульса — несколько чисел, а предел в 400 дней молча стирал историю (решение владельца по 4.107, вопрос 5). */
 function hrMergeDays(a, b) {
   const out = {...(a || {})};
   for (const [d, y] of Object.entries(b || {})) {
@@ -269,8 +270,6 @@ function hrMergeDays(a, b) {
     const [base, other] = (y.t || 0) > (x.t || 0) ? [y, x] : [x, y];
     out[d] = {...base, max:Math.max(base.max || 0, other.max || 0), sets:{...other.sets, ...base.sets}, rests:{...other.rests, ...base.rests}};
   }
-  const keys = Object.keys(out).sort();
-  for (const k of keys.slice(0, Math.max(0, keys.length - 400))) delete out[k];
   return out;
 }
 
@@ -295,7 +294,8 @@ function hrRestStep(st, {mode, thr, now, until, bpm, at, floorAt = 0}) {
 /* ---------- хранилище пульса ---------- */
 const HEART = {days:{}, pending:false, writing:false, again:false, timer:0};
 function heartLoad() { try { const s = JSON.parse(localStorage.getItem(HEART_KEY) || 'null'); if (s && typeof s === 'object') HEART.days = hrCleanDays(s.days); } catch (e) {} }
-function heartSaveLocal() { try { localStorage.setItem(HEART_KEY, JSON.stringify({v:1, days:HEART.days})); } catch (e) {} }
+/* через Keep (00a-keep.js): переполненное хранилище — плашка, а не тихая потеря пульса */
+function heartSaveLocal() { return Keep.set(HEART_KEY, JSON.stringify({v:1, days:HEART.days})); }
 function heartDay(d, create) { if (!HEART.days[d] && create) HEART.days[d] = hrDayNew(); return HEART.days[d] || null; }
 function heartTouch(now) {
   heartSaveLocal();
@@ -358,7 +358,7 @@ const Heart = (() => {
     return {rest:['time', 'hr', 'first'].includes(s.rest) ? s.rest : 'time', thr:Number.isInteger(thr) && thr >= HR_THR.min && thr <= HR_THR.max ? thr : null,
       age:Number.isInteger(age) && age >= HR_AGE.min && age <= HR_AGE.max ? age : null};
   }
-  function savePrefs() { try { localStorage.setItem(HEART_PREFS_KEY, JSON.stringify(P)); } catch (e) {} }
+  function savePrefs() { Keep.set(HEART_PREFS_KEY, JSON.stringify(P)); }
   let client = null, simBt = null, simOn = null, mounted = false, opened = false, armed = 0, ticker = 0;
   const cur = {set:null, rest:null, rule:null, feedAt:0, savedAt:0, why:'', ruleFrom:null};
   const q = sel => typeof document !== 'undefined' && document.querySelector ? document.querySelector(sel) : null;

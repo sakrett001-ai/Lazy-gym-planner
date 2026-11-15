@@ -21,7 +21,7 @@ const LAYOFF_STEPS = [{from:14, pct:10}, {from:28, pct:15}, {from:84, pct:20}, {
 function layoffPct(gap) { let pct = 0; for (const s of LAYOFF_STEPS) if (gap >= s.from) pct = s.pct; return pct; }
 const AR = {dismissed:{}, light:false};
 try { Object.assign(AR, JSON.parse(localStorage.getItem('podhod.autoreg.v1') || '{}')); } catch (e) {}
-function arSave() { try { localStorage.setItem('podhod.autoreg.v1', JSON.stringify({dismissed:AR.dismissed, light:AR.light})); } catch (e) {} }
+function arSave() { Keep.set('podhod.autoreg.v1', JSON.stringify({dismissed:AR.dismissed, light:AR.light})); }
 function daysBetween(a, b) { return Math.round((new Date(b) - new Date(a)) / 86400000); }
 
 function exerciseStall(it) {

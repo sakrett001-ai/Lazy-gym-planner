@@ -171,7 +171,10 @@ function keepNoteHtml() {
   const b = notes.get('body'); if (b && !KEEP_DISMISSED.has('body')) fixed.push(`Часть замеров в памяти браузера не читалась — пропущено: ${b.dropped}.`);
   const safe = notes.get('safe'); if (safe && !KEEP_DISMISSED.has('safe')) fixed.push('Приложение не открылось с сохранёнными настройками и запущено с обычными. Журнал и замеры на месте.');
   if (fixed.length) parts.push(`<div class="keep-note" role="status"><p>${fixed.map(esc).join(' ')} ${'Испорченное не стёрто: оно сохранено отдельно, его можно скачать файлом.'}</p>`
-    + `<div class="keep-b"><button type="button" class="btn btn-2" data-keep="broken">${'Скачать испорченное'}</button><button type="button" class="btn btn-2" data-keep="ok">${'Понятно'}</button></div></div>`);
+    + `<div class="keep-b"><button type="button" class="btn btn-2" data-keep="broken">${'Скачать испорченное'}</button>`
+    /* «Удалить» — только когда испорченное действительно лежит отдельно (решение владельца по 4.107, вопрос 6) */
+    + (Keep.broken().length ? `<button type="button" class="btn btn-2" data-keep="drop" aria-label="${'Удалить испорченные данные'}">${'Удалить'}</button>` : '')
+    + `<button type="button" class="btn btn-2" data-keep="ok">${'Понятно'}</button></div></div>`);
   return parts.join('');
 }
 function keepPaint() {
@@ -204,7 +207,14 @@ document.addEventListener('click', e => {
   const a = t.dataset.keep;
   if (a === 'backup') keepBackupFile().then(r => { if (r === 'ok') t.textContent = 'Копия сохранена'; });
   else if (a === 'broken') keepBrokenFile();
-  else if (a === 'ok') { for (const k of ['settings', 'log', 'body', 'safe']) KEEP_DISMISSED.add(k); keepPaint(); const f = $('#views button[aria-selected="true"]') || $('#views button'); if (f) f.focus(); }
+  /* «Удалить»: первое нажатие — «Точно удалить?» (как у записей журнала), второе стирает отложенное и убирает плашку */
+  else if (a === 'drop' && !t.classList.contains('armed')) armDelete(t, 'Точно удалить испорченные данные?', 'Удалить испорченные данные');
+  else if (a === 'ok' || a === 'drop') {
+    if (a === 'drop') Keep.clearBroken();
+    for (const k of ['settings', 'log', 'body', 'safe']) KEEP_DISMISSED.add(k); keepPaint();
+    if (a === 'drop') keepSay('Испорченные данные удалены.');
+    const f = $('#views button[aria-selected="true"]') || $('#views button'); if (f) f.focus();
+  }
 });
 
 /* ---------- где хранятся данные: постоянное хранилище, iPhone ---------- */
