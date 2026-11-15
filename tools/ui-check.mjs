@@ -1437,7 +1437,7 @@ await page.close();
   const first = await K.evaluate(() => document.querySelector('[data-jex="dbcurl"] [data-del]').dataset.d), delSel = `[data-del="dbcurl"][data-d="${first}"]`;
   await K.click(delSel);
   let r = await K.evaluate(s => { const b = document.querySelector(s); return { text: b.textContent, label: b.getAttribute('aria-label'), focus: document.activeElement === b, log: LOG.data.dbcurl.length }; }, delSel);
-  check(/^Точно удалить запись за /.test(r.text) && r.label === r.text && r.focus && r.log === 3, `«Удалить»: переспрос и в надписи, и в имени кнопки для диктора, фокус на месте, ничего не удалено (${JSON.stringify(r)})`);
+  check(r.text === 'Точно удалить?' && /^Точно удалить запись за .+\?$/.test(r.label) && r.focus && r.log === 3, `«Удалить»: переспрос в надписи и полным вопросом в имени кнопки для диктора, фокус на месте, ничего не удалено (${JSON.stringify(r)})`);
   await K.click(delSel);
   r = await K.evaluate(() => { const u = document.querySelector('[data-hist-undo="dbcurl"]'), ae = document.activeElement; return { focus: !!u && ae === u, line: u?.closest('li').textContent.replace(/\s+/g, ' ').trim(), desc: u && document.getElementById(u.getAttribute('aria-describedby'))?.textContent, log: LOG.data.dbcurl.length, stored: JSON.parse(localStorage.getItem('podhod.log.v1')).dbcurl.length, open: document.querySelector('[data-jex="dbcurl"]').open, wide: document.documentElement.scrollWidth > innerWidth + 1 }; });
   check(r.focus && /^Удалена запись за .+\.\s*Вернуть$/.test(r.line) && /^Удалена запись за/.test(r.desc) && r.log === 2 && r.stored === 2 && r.open && !r.wide, `второе нажатие удаляет; на месте записи — «Удалена запись за … · Вернуть», фокус на «Вернуть» (${JSON.stringify(r)})`);

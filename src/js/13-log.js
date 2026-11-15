@@ -1326,15 +1326,16 @@ function refreshHist(id) {
   const tab = document.querySelector('[data-view="journal"] small'); if (tab) tab.textContent = journalDays() || '';
 }
 /* ---------- «Удалить запись» (Галина 3) ----------
-   Первое нажатие — переспрос: и надпись, и имя кнопки для диктора — «Точно удалить запись за 16 ноя?», фокус на месте;
+   Первое нажатие — переспрос: надпись «Точно удалить?», имя кнопки для диктора — «Точно удалить запись за 16 ноя?», фокус на месте;
    через 4 с без ответа — снова «Удалить». Второе — удаляет, и на месте записи на 10 с — «Удалена запись за … · Вернуть»,
    фокус на «Вернуть». Время вышло — строка уходит, фокус — на заголовок упражнения (в журнале) или «История» (в карточке). */
 const UNDO_MS = 10000, ARM_MS = 4000;
 const undoLive = u => u && u.until > Date.now() ? u : null;
 function undoFor(id) { const u = undoLive(LOG.undo); return u && u.id === id ? u : null; }
 function undoLineHtml(text, attr, id) { return `<li class="sw-gone h-gone"><span id="${id}">${text}</span>${undoBtn(attr, id)}</li>`; }
+/* надпись — коротко («Точно удалить?»: длинная не помещается в строке истории), имя для диктора — весь вопрос с датой */
 function armDelete(btn, ask, label) {
-  btn.classList.add('armed'); btn.textContent = ask; btn.setAttribute('aria-label', ask);
+  btn.classList.add('armed'); btn.textContent = 'Точно удалить?'; btn.setAttribute('aria-label', ask); keepSay(ask);
   setTimeout(() => { if (btn.isConnected && btn.classList.contains('armed')) { btn.classList.remove('armed'); btn.textContent = 'Удалить'; btn.setAttribute('aria-label', label); } }, ARM_MS);
 }
 function focusUndo(sel) { const b = document.querySelector(sel); if (b) b.focus(); }

@@ -109,6 +109,16 @@ function workoutOtherTab() {
   } else if (typeof workoutTick === 'function') workoutTick();
 }
 
+/* короткое объявление для диктора (переспрос «Точно удалить запись за …?» — смена имени кнопки в фокусе озвучивается не везде) */
+function keepSay(text) {
+  if (typeof document === 'undefined' || !document.body || !document.getElementById) return;
+  try {
+    let el = document.getElementById('keep-live');
+    if (!el) { el = document.createElement('p'); el.id = 'keep-live'; el.className = 'vh'; el.setAttribute('role', 'status'); document.body.appendChild(el); }
+    el.textContent = ''; setTimeout(() => { el.textContent = text; }, 30);
+  } catch (e) {}
+}
+
 /* ---------- изменения из другой вкладки ---------- */
 /* фокус в поле ввода — перерисовка позже (когда поле отпустят), чтобы не сбить ввод */
 let keepRepaint = null;

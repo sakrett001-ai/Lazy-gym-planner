@@ -47,5 +47,5 @@
 /* «Загрузить план»: в плане больше упражнений, чем помещается, — сколько войдёт и «Разбить» */
 .pi-over { display:grid; gap:6px; }
 .pi-over p { margin:0; }
-.pi-split { display:flex; align-items:center; gap:8px; font-weight:600; cursor:pointer; }
-.pi-split input { width:18px; height:18px; margin:0; accent-color:var(--accent); }
+.gear .pi-split { display:flex; align-items:center; gap:8px; font-size:.875rem; font-weight:600; color:var(--warn-ink); cursor:pointer; }
+.gear .pi-split input { width:18px; height:18px; margin:0; accent-color:var(--accent); }

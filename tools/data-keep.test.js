@@ -323,3 +323,15 @@ test('сервис-воркер скачивает оболочку с cache: re
   assert(added.length > 10 && added.every(r => r instanceof Request && r.cache === 'reload' && r.url.startsWith(SCOPE)), 'все файлы оболочки — с cache: reload');
   assert(added.some(r => r.url === SCOPE) && added.some(r => r.url === SCOPE + 'index.html'), 'страница и index.html — тоже');
 });
+
+/* копия → чистый браузер → копия: то же самое (кроме времени выгрузки и открытого раздела) — новые проверки ничего не теряют */
+test('выгрузка → восстановление в чистом браузере → выгрузка: данные те же', () => {
+  const a = app({'podhod.settings.v1':JSON.stringify(SETTINGS), 'podhod.log.v1':JSON.stringify({...LOG, dbrow:[{d:'2026-11-03', at:1794844800000, eq:'db', target:3, wk:2, s:[[30, 10, 95], [30, 8, null, {l:[30, 10], r:[30, 8]}]]}], nope_ex:[{d:'2026-11-02', s:[[1, 1]]}]}),
+    'podhod.body.v1':JSON.stringify({rows:[{d:'2026-11-01', kg:80.5, waist:88}]})});
+  a.get('logLoadLocal()');
+  const one = a.json('backupObject()'), b = app();
+  b.get(`restoreBackup(${JSON.stringify(one)}, {settings:'copy'})`);
+  const two = b.json('backupObject()');
+  for (const o of [one, two]) { delete o.exported; delete o.settings.view; }
+  assert.deepEqual(two.log, one.log); assert.deepEqual(two.body, one.body); assert.deepEqual(two.settings.customs, one.settings.customs); assert.deepEqual(two.settings.places, one.settings.places);
+});
