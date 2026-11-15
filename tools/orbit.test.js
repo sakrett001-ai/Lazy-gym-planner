@@ -161,3 +161,20 @@ test('one constant returns the drawing view: with fov 0 a preset is the old orth
  }
  view.dispose();
 });
+/* ракурсы от человека (4.110, замечание анатома 5): у двери тело повёрнуто к креплению — «Спереди» смотрит в лицо, «Сбоку» —
+   в профиль; лёжа и стоя лицом вперёд — прежние ракурсы; рамки фигуры — по повёрнутым ракурсам */
+test('presets follow the person: door exercises turn the presets with the body, lying and front-facing ones do not',async()=>{
+ const{S,m,O}=await setup(),{catalogVolumeData}=m.get('({catalogVolumeData})'),yaw=id=>S.facingYaw(catalogVolumeData(m.EX.find(e=>e.id===id).anim,0,0).pose);
+ for(const id of ['bandfacepull','bandpushdown','bandlatpull'])assert.equal(Math.abs(yaw(id)),90,id);
+ assert.equal(yaw('towelrow'),180,'towel row faces the door');
+ for(const id of ['facepull','squat','bbbench','tablerow','legpress','bandextrot','pushup'])assert.equal(yaw(id),0,id);
+ assert.equal(S.cameraSettings(0),S.CAMERA_SETTINGS);
+ const turned=S.cameraSettings(90);for(const[id,[y,e]]of Object.entries(S.CAMERA_SETTINGS))assert.deepEqual(turned[id],[y+90,e],id);
+ /* «Спереди» смотрит туда, куда грудь: ось камеры к зрителю совпадает с горизонтальной нормалью груди */
+ for(const id of ['bandfacepull','towelrow','facepull']){
+  const d=catalogVolumeData(m.EX.find(e=>e.id===id).anim,0,0),n=d.pose.chestN,h=Math.hypot(n[0],n[2]),a=O.presetAngles(S.cameraSettings(S.facingYaw(d.pose)),'front'),B=O.axes(a.yaw,a.pitch).back;
+  assert(B[0]*n[0]/h+B[2]*n[2]/h>.7,id+': the front camera faces the chest');
+ }
+ const view=S.createCatalogScene(catalogVolumeData(m.EX.find(e=>e.id==='bandfacepull').anim,0,0));
+ assert.equal(view.settings.front[0],S.facingYaw(catalogVolumeData(m.EX.find(e=>e.id==='bandfacepull').anim,0,0).pose),'the scene carries its own presets');view.dispose();
+});

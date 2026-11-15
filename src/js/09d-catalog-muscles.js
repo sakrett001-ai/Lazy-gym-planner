@@ -1,23 +1,31 @@
 /* Anatomical parts and teaching regions are deliberately distinct. Deep muscles
    have an entry but no patch painted on top of the skin. Colour curves are authored
    illustrations; identical head profiles do not pretend to measure head-specific EMG. */
+/* Названия частей — по Международной анатомической терминологии в русском переводе, в одной форме «часть/головка + мышца в
+   родительном падеже» (4.110, замечание анатома 9): части большой грудной — ключичная, грудино-рёберная, брюшная; части
+   трапециевидной — нисходящая, поперечная, восходящая (в скобках — привычное «верхняя / средняя / нижняя»); части дельтовидной —
+   ключичная, акромиальная, остистая; «боковая ягодичная область» — средняя и малая ягодичные мышцы, «медиальная область
+   заднего бедра» — полусухожильная и полуперепончатая мышцы. Подостная и малая круглая лежат на задней поверхности лопатки
+   (StatPearls — Miniato и др., 2023, NBK536933: «Posterior scapula, inferior to the scapular spine/Infraspinous fossa»), по
+   краям их прикрывают трапециевидная и задняя часть дельтовидной (Gray's Anatomy, 20-е изд., 1918, «Deltoideus»: «Its
+   posterior border rests on the Infraspinatus and Triceps») — видимая область, а не «глубже» (замечание анатома 4) */
 const MUSCLE_REGIONS={
- chest:[['pec_clavicular','Ключичная часть грудной','anatomical'],['pec_sternal','Средняя область грудной','teaching'],['pec_costal','Нижняя область грудной','teaching'],['pec_minor','Малая грудная · глубже','deep']],
- triceps:[['tri_long','Длинная головка трицепса','anatomical'],['tri_lateral','Латеральная головка трицепса','anatomical'],['tri_medial','Медиальная головка трицепса · глубже','deep']],
- biceps:[['bi_long','Длинная головка бицепса','anatomical'],['bi_short','Короткая головка бицепса','anatomical'],['brachialis','Плечевая мышца · глубже','deep']],
- delt_f:[['delt_f','Передняя часть дельтовидной','anatomical']],delt_s:[['delt_s','Средняя часть дельтовидной','anatomical']],delt_r:[['delt_r','Задняя часть дельтовидной','anatomical']],
- quads:[['quad_rectus','Прямая мышца бедра','anatomical'],['quad_lateral','Латеральная широкая мышца','anatomical'],['quad_medial','Медиальная широкая мышца','anatomical'],['quad_deep','Промежуточная широкая · глубже','deep']],
- hams:[['ham_lateral','Двуглавая мышца бедра, длинная головка','anatomical'],['ham_medial','Медиальная область заднего бедра','teaching'],['ham_short','Короткая головка двуглавой бедра · глубже','deep']],
- calves:[['calf_medial','Медиальная головка икроножной','anatomical'],['calf_lateral','Латеральная головка икроножной','anatomical'],['soleus','Камбаловидная · глубже','deep']],
- glutes:[['glute_max','Большая ягодичная','anatomical'],['glute_lateral','Боковая ягодичная область','teaching']],
- traps:[['trap_upper','Верхняя область трапециевидной','teaching'],['trap_mid','Средняя область трапециевидной','teaching'],['trap_lower','Нижняя область трапециевидной','teaching'],['lev_scap','Поднимающая лопатку · глубже','deep']],
- lats:[['lats','Широчайшие · общий профиль','group']],midback:[['midback','Межлопаточная область · общий профиль','group']],
+ chest:[['pec_clavicular','Ключичная часть большой грудной мышцы','anatomical'],['pec_sternal','Грудино-рёберная часть большой грудной мышцы','anatomical'],['pec_costal','Брюшная часть большой грудной мышцы','anatomical'],['pec_minor','Малая грудная мышца · глубже','deep']],
+ triceps:[['tri_long','Длинная головка трёхглавой мышцы плеча','anatomical'],['tri_lateral','Латеральная головка трёхглавой мышцы плеча','anatomical'],['tri_medial','Медиальная головка трёхглавой мышцы плеча · глубже','deep']],
+ biceps:[['bi_long','Длинная головка двуглавой мышцы плеча','anatomical'],['bi_short','Короткая головка двуглавой мышцы плеча','anatomical'],['brachialis','Плечевая мышца · глубже','deep']],
+ delt_f:[['delt_f','Передняя (ключичная) часть дельтовидной мышцы','anatomical']],delt_s:[['delt_s','Средняя (акромиальная) часть дельтовидной мышцы','anatomical']],delt_r:[['delt_r','Задняя (остистая) часть дельтовидной мышцы','anatomical']],
+ quads:[['quad_rectus','Прямая мышца бедра','anatomical'],['quad_lateral','Латеральная широкая мышца бедра','anatomical'],['quad_medial','Медиальная широкая мышца бедра','anatomical'],['quad_deep','Промежуточная широкая мышца бедра · глубже','deep']],
+ hams:[['ham_lateral','Длинная головка двуглавой мышцы бедра','anatomical'],['ham_medial','Полусухожильная и полуперепончатая мышцы','anatomical'],['ham_short','Короткая головка двуглавой мышцы бедра · глубже','deep']],
+ calves:[['calf_medial','Медиальная головка икроножной мышцы','anatomical'],['calf_lateral','Латеральная головка икроножной мышцы','anatomical'],['soleus','Камбаловидная мышца · глубже','deep']],
+ glutes:[['glute_max','Большая ягодичная мышца','anatomical'],['glute_lateral','Средняя и малая ягодичные мышцы','anatomical']],
+ traps:[['trap_upper','Нисходящая (верхняя) часть трапециевидной мышцы','anatomical'],['trap_mid','Поперечная (средняя) часть трапециевидной мышцы','anatomical'],['trap_lower','Восходящая (нижняя) часть трапециевидной мышцы','anatomical'],['lev_scap','Мышца, поднимающая лопатку · глубже','deep']],
+ lats:[['lats','Широчайшая мышца спины · общий профиль','group']],midback:[['midback','Межлопаточная область: ромбовидные мышцы под трапециевидной · общий профиль','group']],
  lowback:[['lowback','Разгибатели спины · общий профиль','group']],abs:[['abs','Прямая мышца живота','anatomical']],
  obliques:[['obl_ext','Наружная косая мышца живота','anatomical'],['obl_int','Внутренняя косая мышца живота · глубже','deep']],
  forearms:[['forearm_flex','Сгибатели запястья и пальцев','anatomical'],['forearm_ext','Разгибатели запястья и пальцев','anatomical'],['brachiorad','Плечелучевая мышца','anatomical']],
- adductors:[['adductors','Приводящие мышцы бедра · общий профиль','group']],hipflex:[['hipflex','Подвздошно-поясничная · глубже','deep']],
- serratus:[['serratus','Передняя зубчатая','anatomical']],
- cuff:[['cuff_ext','Подостная и малая круглая · глубже','deep'],['cuff_int','Подлопаточная · глубже','deep'],['cuff_sup','Надостная · глубже','deep']]
+ adductors:[['adductors','Приводящие мышцы бедра · общий профиль','group']],hipflex:[['hipflex','Подвздошно-поясничная мышца · глубже','deep']],
+ serratus:[['serratus','Передняя зубчатая мышца','anatomical']],
+ cuff:[['cuff_ext','Подостная и малая круглая мышцы','anatomical'],['cuff_int','Подлопаточная мышца · глубже','deep'],['cuff_sup','Надостная мышца · глубже','deep']]
 };
 const REGION_ANATOMY_SOURCES=[['Анатомия мышц плечевого пояса — OpenStax','https://openstax.org/books/anatomy-and-physiology-2e/pages/11-5-muscles-of-the-pectoral-girdle-and-upper-limbs'],['Анатомия мышц ног — OpenStax','https://openstax.org/books/anatomy-and-physiology-2e/pages/11-6-appendicular-muscles-of-the-pelvic-girdle-and-lower-limbs']];
 function motionProfile(anim){return anim.catalogProfile||anim.muscleProfile;}
@@ -38,15 +46,26 @@ const LOWER_CHEST=new Set(['declinebb','dip','assistdip']);
      Anatomy; OpenStax A&P 2e, 11.4: наружная косая поворачивает корпус в противоположную сторону, внутренняя — в свою);
    - «мельница» с гирей в левой руке: внизу грудь развёрнута влево, к гире; на подъёме корпус разворачивается вправо —
      наружная косая левой стороны и внутренняя правой (то же правило; по длинам мышц они укорачиваются). */
-const CATALOG_LATERALITY={dbrow:{upper:'L'},kbsnatch:{upper:'L'},kbsllift:{lower:'L'},kbwindmill:{upper:'L',regions:{obl_ext:'L',obl_int:'R'}},kbswing1:{upper:'L'},kbclean:{upper:'L'},kbpress:{upper:'L'},kbrow:{upper:'L'},kbfloorpress:{upper:'L'},cablelat:{upper:'R'},concentration:{upper:'L'},kickback:{upper:'L'},archer:{upper:'R'},bulgarian:{lower:'L'},stepup:{lower:'L'},lunge:{lower:'L'},revlunge:{lower:'L'},sidelunge:{lower:'R'},pistolbox:{lower:'L'},sllift:{lower:'L'},glutebridge1:{lower:'L'},glutekick:{lower:'L'},cablekickback:{lower:'L'},calf1:{lower:'L'},cableadduct:{lower:'L'},bandadduct:{lower:'L'},bandlegext:{lower:'L'},cableextrot:{upper:'R'},bandextrot:{upper:'R'},
+const CATALOG_LATERALITY={dbrow:{upper:'L',support:'upper'},kbsnatch:{upper:'L'},kbsllift:{lower:'L'},kbwindmill:{upper:'L',regions:{obl_ext:'L',obl_int:'R'}},kbswing1:{upper:'L',both:['lats']},kbclean:{upper:'L'},kbpress:{upper:'L'},kbrow:{upper:'L'},kbfloorpress:{upper:'L'},cablelat:{upper:'R'},concentration:{upper:'L'},kickback:{upper:'L',support:'upper'},archer:{upper:'R',support:'upper'},bulgarian:{lower:'L',support:'lower'},stepup:{lower:'L',support:'lower'},lunge:{lower:'L',support:'lower'},revlunge:{lower:'L',support:'lower'},sidelunge:{lower:'R',support:'lower'},pistolbox:{lower:'L'},sllift:{lower:'L'},glutebridge1:{lower:'L'},glutekick:{lower:'L',support:'lower'},cablekickback:{lower:'L',support:'lower'},calf1:{lower:'L'},cableadduct:{lower:'L',support:'lower'},bandadduct:{lower:'L',support:'lower'},bandlegext:{lower:'L'},cableextrot:{upper:'R'},bandextrot:{upper:'R'},
  copenhagen:{lower:'L'},copenhagenknee:{lower:'L'},sidebend:{regions:{obl_ext:'L',obl_int:'L'}},cablewood:{regions:{obl_ext:'L',obl_int:'R'}}};
+/* Нерабочая сторона (4.110, замечание анатома 1: «цветом выделена только рабочая сторона, свободная рука нейтральная»):
+   - свободная рука или нога (висит, лежит, поднята над полом) — в покое, как мышцы вне упражнения: значение IDLE_SIDE, цвет
+     покоя (muscleTint, кожа «Манекена»);
+   - вторая рука или нога держит вес тела (support — опора в позе: ладонь и колено на скамье в тяге гантели и разгибании в
+     наклоне, прямая рука в отжиманиях «лучник», вторая нога на полу или скамье в выпадах, зашагиваниях, отведении и сведении
+     ноги стоя) — слабое участие SUPPORT_SIDE: по механике мышцы опорной конечности держат вес, но не делают движения
+     упражнения (опора проверяется по контактам позы — tools/muscle-phase.test.js);
+   - both — группы, которые работают с обеих сторон: в махе гирей одной рукой широчайшая противоположной стороны работает
+     сильнее, чем своей (ЭМГ — McGill и Marshall, 2012, JSCR 26(1):16–27, табл. 1: мах правой рукой — правая 17 %, левая
+     56 % MVC). */
+const IDLE_SIDE=0,SUPPORT_SIDE=.28;
 function catalogSideValues(profile,values){
- const sides={L:{...values},R:{...values}},lower=new Set(['quads','hams','calves','glutes','adductors','hipflex']),lat=profile.laterality||{};
- for(const[part,active]of Object.entries(lat))if(part!=='regions')for(const[id,r]of Object.entries(profile.regions)){
+ const sides={L:{...values},R:{...values}},lower=new Set(['quads','hams','calves','glutes','adductors','hipflex']),lat=profile.laterality||{},both=new Set(lat.both||[]);
+ for(const[part,active]of Object.entries(lat))if(part==='upper'||part==='lower')for(const[id,r]of Object.entries(profile.regions)){
   const applies=part==='lower'?lower.has(r.parent):!lower.has(r.parent)&&!['abs','obliques','lowback','traps'].includes(r.parent);
-  if(applies)sides[active==='L'?'R':'L'][id]=.28;
+  if(applies&&!both.has(r.parent))sides[active==='L'?'R':'L'][id]=lat.support===part?SUPPORT_SIDE:IDLE_SIDE;
  }
- for(const[id,active]of Object.entries(lat.regions||{}))if(profile.regions[id])sides[active==='L'?'R':'L'][id]=.28;
+ for(const[id,active]of Object.entries(lat.regions||{}))if(profile.regions[id])sides[active==='L'?'R':'L'][id]=IDLE_SIDE;
  return sides;
 }
 /* Учебные акценты частей мышц (этап А аудита анатомии 4.53.0: цвет по фазам против длины мышц — tools/muscles/phase.js,
@@ -54,6 +73,13 @@ function catalogSideValues(profile,values){
 const SQUAT_LIKE=new Set('squat goblet airsquat smithsquat hacksquat legpress legpresshigh legpresslow lunge revlunge bulgarian stepup pistolbox sidelunge wallsit jumpsquat thruster kbfrontsquat'.split(' '));
 const PULL_DOWN=new Set(['latpull','latpullv','latpulluh','bandlatpull','assistpull','pullup','chinup']);
 const EXT_ROT=new Set(['cableextrot','bandextrot']);
+/* тяга к лицу — разведение плеч назад с поворотом наружу при руках на уровне плеч (4.110, замечание анатома 2): средняя часть
+   трапециевидной работает сильнее всего в горизонтальном разгибании плеча с наружной ротацией (ЭМГ — Ekstrom и др., 2003,
+   JOSPT 33(5):247–258, реферат), нижняя — в повороте плеча наружу лёжа при отведении 90° (там же: 79 % MVIC — по McCabe и
+   др., 2007, NAJSPT 2(1):34–43); верхняя в повороте наружу лёжа при отведении 90° работает вдвое слабее средней (там же:
+   отношение верхней части к средней 0,44 — Schory и др., 2016, IJSPT 11(3):321–336, табл. 3). Средняя и нижняя части — доля
+   1, верхняя — 0,44; лопатку здесь не поднимают (подсказка «плечи не поднимать») */
+const FACE_PULL=new Set(['facepull','bandfacepull']);
 const REGION_FACTORS={
  /* прямая бедра в приседаниях, выпадах и жиме ногами работает слабее широких: двусуставная, в разгибании колена с
     разгибанием бедра длина почти не меняется (ЭМГ: Escamilla и др., 1998) */
@@ -64,7 +90,7 @@ const REGION_FACTORS={
  /* шраги поднимают лопатку верхняя часть трапециевидной и поднимающая лопатку, нижняя часть — опускатель (Neumann, 2017;
     ЭМГ — Pizzari и др., 2014); в тягах сверху и подтягиваниях лопатку опускает нижняя часть (ЭМГ — Youdas и др., 2010),
     верхняя при этом удлиняется */
- trap_upper:id=>PULL_DOWN.has(id)?.35:1,
+ trap_upper:id=>PULL_DOWN.has(id)?.35:FACE_PULL.has(id)?.44:1,
  trap_mid:id=>id==='shrug'?.6:PULL_DOWN.has(id)?.8:1,
  trap_lower:id=>id==='shrug'?.25:1,
  lev_scap:id=>id==='shrug'?1:.5,
@@ -80,8 +106,11 @@ const REGION_FACTORS={
  forearm_ext:id=>id==='wristcurl'?.3:id==='hammer'?.6:1,
  brachiorad:id=>id==='wristcurl'?.3:1,
  /* манжета: наружу плечо поворачивают подостная и малая круглая, надостная помогает (ЭМГ — Reinold и др., 2004),
-    подлопаточная — внутренний ротатор (OpenStax A&P 2e, 11.5) и растягивается */
- cuff_int:id=>EXT_ROT.has(id)?.25:id==='ytw'?.3:1,
+    подлопаточная — внутренний ротатор (OpenStax A&P 2e, 11.5; Gray's Anatomy, 20-е изд., 1918: «The Subscapularis rotates
+    the head of the humerus medially»; StatPearls — Aguirre и др., 2023, NBK513344: «The subscapularis is the only rotator
+    cuff muscle that has this function») и растягивается — в наружном вращении не двигатель (4.110, замечание анатома 4):
+    доля 0, цвет покоя */
+ cuff_int:id=>EXT_ROT.has(id)?0:id==='ytw'?.3:1,
  cuff_sup:id=>EXT_ROT.has(id)?.6:id==='ytw'?.9:1,
  /* малая грудная плечо не сгибает — опускает и выводит вперёд лопатку (OpenStax A&P 2e, 11.5): в подъёме рук вперёд
     лопатка поворачивается вверх и малая грудная растягивается; руку поднимает ключичная часть большой грудной */
@@ -96,12 +125,16 @@ const REGION_SOURCES={
  brd:['Плечелучевая в сгибании локтя: замеры активности мышц — Boland и др., 2008','https://doi.org/10.1016/j.jhsa.2008.07.019'],
  bra:['Плечевая мышца сгибает локоть при любом положении предплечья: замеры активности мышц — Basmajian и Latif, 1957','https://pubmed.ncbi.nlm.nih.gov/13475410/'],
  grip:['Двуглавая и плечелучевая при хвате снизу, нейтральном и сверху: замеры активности мышц — Kleiber и др., 2015','https://doi.org/10.3389/fphys.2015.00215'],
- cuff:['Мышцы манжеты и дельтовидная в упражнениях на наружную ротацию: замеры активности мышц — Reinold и др., 2004','https://doi.org/10.2519/jospt.2004.34.7.385']
+ cuff:['Мышцы манжеты и дельтовидная в упражнениях на наружную ротацию: замеры активности мышц — Reinold и др., 2004','https://doi.org/10.2519/jospt.2004.34.7.385'],
+ subsc:['Подлопаточная мышца — внутренний ротатор плеча: StatPearls, Aguirre и др., 2023','https://www.ncbi.nlm.nih.gov/books/NBK513344/'],
+ trap:['Части трапециевидной и передняя зубчатая в упражнениях для лопатки: замеры активности мышц — Ekstrom и др., 2003','https://doi.org/10.2519/jospt.2003.33.5.247'],
+ trapRatio:['Отношения частей трапециевидной в упражнениях для лопатки: обзор — Schory и др., 2016','https://pmc.ncbi.nlm.nih.gov/articles/PMC4886800/']
 };
 const regionSources=(id,muscles)=>[
  ...(SQUAT_LIKE.has(id)&&muscles.quads?[REGION_SOURCES.rectus]:[]),...(muscles.hams&&id!=='legcurl'&&id!=='nordic'?[REGION_SOURCES.hamShort]:[]),
  ...(id==='shrug'?[REGION_SOURCES.shrug]:[]),...(PULL_DOWN.has(id)?[REGION_SOURCES.pull]:[]),...(id==='hammer'?[REGION_SOURCES.brd,REGION_SOURCES.bra,REGION_SOURCES.grip]:[]),
- ...(EXT_ROT.has(id)||id==='ytw'?[REGION_SOURCES.cuff]:[])];
+ ...(EXT_ROT.has(id)||id==='ytw'?[REGION_SOURCES.cuff]:[]),...(EXT_ROT.has(id)?[REGION_SOURCES.subsc]:[]),
+ ...(FACE_PULL.has(id)?[REGION_SOURCES.trap,REGION_SOURCES.trapRatio]:[])];
 /* Группы, которых нет в составе упражнения, но которые по ЭМГ участвуют: нижняя часть трапециевидной опускает лопатку в тягах
    сверху и подтягиваниях (Youdas и др., 2010) — в профиле как вспомогательная, в составе упражнения (pri/sec) не меняется */
 const PROFILE_EXTRA={traps:PULL_DOWN};
@@ -121,8 +154,10 @@ for(const ex of EX){
   const basis=factors.some(f=>f!==factors[0])?'illustrative-regional':'shared-group';
   MUSCLE_REGIONS[parent].forEach(([id,label,kind],i)=>{regions[id]={parent,label,kind,role:m.role,factor:factors[i],visible:kind!=='deep',profileBasis:basis};});
  }
- const names=ex.pri.map(id=>MUSCLE_NAMES[id]).join(', ');
- const notes=base?base.notes:{concentric:hold?'Удержание: мышцы сохраняют положение.':cyclic?'Движение по кругу: цвет примерно показывает, какие мышцы работают сильнее.':names+' участвуют в рабочей фазе.',eccentric:cyclic?'Дальше по кругу: участие мышц меняется плавно.':'Мышцы контролируют возврат.',end:'Конечная точка: сохраняйте контроль и опору.',start:'Исходное положение: подготовьтесь к следующему повторению.'};
+ /* «Квадрицепс участвует», «Грудные, трицепс участвуют» (4.110, замечание анатома 14): число глагола — по числу групп и по
+    самому названию (у групп во множественном числе — «Грудные», «Широчайшие», «Икры» — «участвуют») */
+ const names=ex.pri.map(id=>MUSCLE_NAMES[id]).join(', '),many=ex.pri.length>1||MUSCLE_PLURAL.has(ex.pri[0]);
+ const notes=base?base.notes:{concentric:hold?'Удержание: мышцы сохраняют положение.':cyclic?'Движение по кругу: цвет примерно показывает, какие мышцы работают сильнее.':names+(many?' участвуют в рабочей фазе.':' участвует в рабочей фазе.'),eccentric:cyclic?'Дальше по кругу: участие мышц меняется плавно.':'Мышцы контролируют возврат.',end:'Конечная точка: сохраняйте контроль и опору.',start:'Исходное положение: подготовьтесь к следующему повторению.'};
  ex.anim.catalogProfile={curveBasis:'illustrative',muscles,regions,notes,pair:ex.pri.some(id=>['lats','midback','lowback','glutes','hams','traps'].includes(id))?'back':'above',sources:[...(base?.sources||[]),...regionSources(ex.id,muscles),...REGION_ANATOMY_SOURCES],cyclic,hold,laterality:CATALOG_LATERALITY[ex.id]};
 }
 /* Мышечные зоны на манекене: те же учебные области, но на поверхности нового тела.
@@ -130,11 +165,23 @@ for(const ex of EX){
    Конечности: t — доля сегмента, угол от передней поверхности к латеральной. Дельты лежат на «шапке» плеча. */
 /* нижняя область трапециевидной — между разгибателями спины (до 24) и межлопаточной областью (от 33), медиальнее
    широчайших: восходящая часть идёт от остистых отростков Th6–Th12 к основанию ости лопатки (OpenStax A&P 2e, 11.5) */
-const MANNEQUIN_TORSO_PATCHES=[['pec_clavicular',43,51.8,.06,1.12],['pec_sternal',34,43,.06,1.22],['pec_costal',29,34,.08,1.02],['abs',3,29,.04,.5],['obl_ext',3,28,.56,1.36],
+/* 4.110 (замечание анатома 15): части большой грудной — от средней линии (у грудины; адрес кожи Anny у грудины сжат — на
+   3–5 см от средней линии угол сечения 0,03, и с началом 0,06 полоса у грудины и выемки по краю пятен оставались серыми);
+   подостная и малая круглая — на лопатке ниже ости, латеральнее поперечной части трапециевидной и выше широчайшей
+   (замечание анатома 4). Латеральный край области — не дальше 1,92: при руках над головой кожа у подмышки уходит с сечения
+   корпуса, и участок там отрывался от процедурной кожи (tools/catalog-render-audit.mjs, тяги сверху и подтягивания); на коже
+   Anny в области 6 вершин на сторону */
+const MANNEQUIN_TORSO_PATCHES=[['pec_clavicular',43,51.8,.02,1.12],['pec_sternal',34,43,.02,1.22],['pec_costal',29,34,.02,1.02],['abs',3,29,.04,.5],['obl_ext',3,28,.56,1.36],
  ['lats',13,40.2,1.52,2.62],['serratus',28,39,1.24,1.5],['midback',33,51.8,2.62,3.1],['lowback',3,24,2.7,3.1],['glute_max',-5.3,4,1.72,3.1],['glute_lateral',-3.5,7,1.16,1.7],['trap_upper',50.8,59.8,2.05,3.1],['trap_mid',40.2,50.8,2.3,2.68],
- ['trap_lower',24,33,2.62,3.1]];
+ ['trap_lower',24,33,2.62,3.1],['cuff_ext',40.2,47.7,1.92,2.3]];
 const MANNEQUIN_LIMB_PATCHES={
- ua:[['bi_long',.33,.84,.05,.8],['bi_short',.33,.84,-.8,-.05],['tri_long',.3,.86,2.5,3.9],['tri_lateral',.3,.85,1.7,2.45]],
+ /* дельтовидная на плече (4.110, замечание анатома 3): от «шапки» вниз до бугристости на середине латеральной поверхности
+    плечевой кости (Gray's Anatomy, 20-е изд., 1918, «Deltoideus»: «inserted into the deltoid tuberosity on the lateral side
+    of the shaft of the humerus»; бугристость — около середины плеча) — передняя и задняя части сходятся к средней клином. Без
+    этого у кожи Anny боковая поверхность плеча оставалась без области (180 вершин на сторону), а средняя часть горела
+    только у акромиона — «серпом у шеи» */
+ ua:[['bi_long',.33,.84,.05,.8],['bi_short',.33,.84,-.8,-.05],['tri_long',.3,.86,2.5,3.9],['tri_lateral',.3,.85,1.7,2.45],
+  ['delt_f',0,.3,-.5,.8],['delt_s',0,.45,.8,1.7],['delt_r',0,.3,1.7,2.6]],
  /* предплечье (угол 0 — ладонная сторона, +π/2 — лучевая, Mannequin.limbAxes): сгибатели — ладонная и локтевая стороны,
     плечелучевая — лучевая сторона верхних двух третей, разгибатели — тыльная сторона (OpenStax A&P 2e, 11.5) */
  fa:[['forearm_flex',.12,.76,-1.9,.7],['brachiorad',.05,.62,.75,1.65],['forearm_ext',.12,.76,1.7,4.35]],

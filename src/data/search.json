@@ -5,7 +5,8 @@
  "words": {"db": ["dumbbell"], "bb": ["barbell"], "kb": ["kettlebell"]},
  "exercises": {
   "pushup": {"en": ["press-up"]},
-  "diamond": {"ru": ["алмазные отжимания"], "en": ["diamond push-up", "triangle push-up"]},
+  "diamond": {"ru": ["алмазные отжимания", "отжимания узким хватом"], "en": ["diamond push-up", "triangle push-up"]},
+  "widepush": {"ru": ["отжимания широким хватом"]},
   "dip": {"ru": ["брусья"], "en": ["parallel bar dip", "chest dip"]},
   "bbbench": {"ru": ["жим лёжа", "бенч", "бенч-пресс"], "en": ["bench press", "bench", "flat bench press"]},
   "dbincline": {"ru": ["наклонный жим гантелей"]},
@@ -75,7 +76,7 @@
   "abs": {"ru": ["кор"], "en": ["core"]},
   "glutes": {"ru": ["ягодичные"]},
   "quads": {"ru": ["квадры", "передняя поверхность бедра"], "en": ["quadriceps"]},
-  "hams": {"ru": ["задняя поверхность бедра"]},
+  "hams": {"ru": ["бицепс бедра", "задняя группа бедра"]},
   "calves": {"ru": ["икроножные"], "en": ["calf"]}
  },
  "muscles": {

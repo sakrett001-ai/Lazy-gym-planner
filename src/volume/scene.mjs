@@ -14,6 +14,18 @@ export const world=p=>[p[0]/100,(186-p[1])/100,p[2]/100];
 const direction=p=>[p[0],-p[1],p[2]],vec=p=>new THREE.Vector3(...p);
 /* ракурсы: [yaw, elev] в градусах (elev < 0 — камера выше); те же углы — у свободной камеры разбора (orbit.mjs) */
 export const CAMERA_SETTINGS={above:[35,-55],angle:[55,-15],side:[90,0],front:[0,0],back:[180,0],rear:[235,-15]};
+/* Ракурсы — от человека, а не от сцены (4.110, замечание анатома 5): в упражнениях у двери тело повёрнуто к креплению
+   боком или спиной (turn в спецификации), и «Сбоку» показывал спину, «Спереди» — бок. Поворот ракурсов — куда смотрит
+   грудь в первом кадре (R.chestN, горизонтальная часть), с шагом 90°; лёжа и в глубоком наклоне (горизонтальная часть
+   меньше половины) — прежние ракурсы */
+export function facingYaw(pose){
+ const n=pose?.chestN;if(!n)return 0;const h=Math.hypot(n[0],n[2]);if(h<.5)return 0;
+ const yaw=Math.atan2(-n[0],n[2])*180/Math.PI,q=Math.round(yaw/90)*90;return q===-180?180:q||0;
+}
+export function cameraSettings(yaw=0){
+ if(!yaw)return CAMERA_SETTINGS;
+ return Object.fromEntries(Object.entries(CAMERA_SETTINGS).map(([id,[y,e]])=>[id,[y+yaw,e]]));
+}
 function frame(a,b,reference){
  const z=unit(sub(b,a));let x=sub(reference,z.map(v=>v*dot(reference,z)));
  if(len(x)<1e-5)x=cross(z,Math.abs(z[0])<.8?[1,0,0]:[0,0,1]);x=unit(x);return{x,y:unit(cross(z,x)),z};
@@ -240,7 +252,7 @@ export function createCatalogScene(first){
    let o=regionMeshes.get(key);if(!o){const g=new THREE.BufferGeometry();g.setAttribute('position',new THREE.BufferAttribute(new Float32Array(faces.length*6*3),3));const m=material('#a7b3c6',{roughness:.82});m.polygonOffset=true;m.polygonOffsetFactor=-1;m.polygonOffsetUnits=-1;o=mesh(regionsGroup,g,m,key);o.receiveShadow=false;o.userData={region:faces[0].id,side:faces[0].side};regionMeshes.set(key,o);}
    if(o.geometry.attributes.position.count!==faces.length*6){o.geometry.dispose();o.geometry=new THREE.BufferGeometry();o.geometry.setAttribute('position',new THREE.BufferAttribute(new Float32Array(faces.length*6*3),3));}
    let i=0;const p=o.geometry.attributes.position;for(const f of faces)for(const j of [0,1,2,0,2,3])p.setXYZ(i++,...world(f.points[j]));p.needsUpdate=true;if(!shape){o.geometry.computeVertexNormals();o.geometry.computeBoundingSphere();}o.geometry.computeBoundingBox();
-   const id=faces[0].id,side=faces[0].side,muscles=options.muscles!==false&&!skeletonOn,active=muscles&&(!options.selected||options.selected==='all'||options.selected===id||options.selected===faces[0].parent);o.visible=muscles;o.material.color.set(active?options.color(data.sideValues?.[side]?.[id]??data.values[id]??.28):'#a0adc0');
+   const id=faces[0].id,side=faces[0].side,muscles=options.muscles!==false&&!skeletonOn,active=muscles&&(!options.selected||options.selected==='all'||options.selected===id||options.selected===faces[0].parent);o.visible=muscles;const val=data.sideValues?.[side]?.[id]??data.values[id]??.28;o.material.color.set(active&&val>0?options.color(val):'#a0adc0');
    /* собственное свечение участка: жёлтый и оранжевый в тени не уходят в коричневый */
    if(active)o.material.emissive.copy(o.material.color).multiplyScalar(STUDIO.muscleGlow);else o.material.emissive.setRGB(0,0,0);
   }
@@ -253,7 +265,8 @@ export function createCatalogScene(first){
   data.props.forEach((s,i)=>{if(!keep||!isStaticProp(s))updateProp(propNodes[i],s);});applyStress(options.stress?data.stress||[]:[]);scene.updateMatrixWorld(true);
   if(!keep)mergeStatic(data.props);
  }
- const cameras=Object.fromEntries(Object.entries(CAMERA_SETTINGS).map(([id,[yaw,elev]])=>{
+ const settings=cameraSettings(facingYaw(first?.pose));
+ const cameras=Object.fromEntries(Object.entries(settings).map(([id,[yaw,elev]])=>{
   const y=yaw*Math.PI/180,e=elev*Math.PI/180,eye=[-Math.sin(y)*Math.cos(e),-Math.sin(e),Math.cos(y)*Math.cos(e)];
   const c=new THREE.OrthographicCamera(-1,1,1,-1,.01,30);c.position.fromArray(eye.map(v=>v*8));c.lookAt(0,0,0);c.updateMatrixWorld(true);return[id,c];
  }));
@@ -317,7 +330,7 @@ export function createCatalogScene(first){
   const cam=key.shadow.camera;cam.left=-r;cam.right=r;cam.top=r;cam.bottom=-r;cam.near=.1;cam.far=8+r*2;cam.updateProjectionMatrix();key.shadow.needsUpdate=true;
  }
  apply(first,{color:()=> '#a7b3c6'});
- return{scene,cameras,apply,includeBounds,resize,bounds,regionMeshes,parts,body,head,mannequin,skeleton:skeletonLayer,muscleLayer,propNodes:()=>propNodes,staticMeshes:()=>staticMerged.children,studio,fitShadow,setShadows,
+ return{scene,cameras,settings,apply,includeBounds,resize,bounds,regionMeshes,parts,body,head,mannequin,skeleton:skeletonLayer,muscleLayer,propNodes:()=>propNodes,staticMeshes:()=>staticMerged.children,studio,fitShadow,setShadows,
   anny,dispose(){disposeGeometry();disposeMaterials();},disposeGeometry,disposeMaterials};
  /* геометрия, текстуры и карты теней освобождаются сразу; материалы — отдельно: пока они живы, рендерер держит их
     собранные программы для следующей фигуры (main.mjs) */

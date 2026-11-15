@@ -85,10 +85,12 @@ export function createVolumeFigure(options){
  const root=document.createElement('div');root.className='fig volume-figure';root.setAttribute('role','img');root.setAttribute('aria-label',options.label);root.dataset.camera=options.camera||'above';
  const slot=takeRenderer();
  if(!slot){rendererUnavailable=true;return null;}root.dataset.renderer='webgl';
- const{renderer,canvas}=slot,releasePrevious=slot.release,VIEW=viewOptions();slot.release=null;
+ const{renderer,canvas}=slot,releasePrevious=slot.release;slot.release=null;
  /* lean — кадр для костей и мышц: области манекена тогда скрыты, их поверхности не считаются */
  const data=(t,index,lean=false)=>options.data(t,index,false,lean),initial=data(0,0);
- const scene=createCatalogScene(initial),cameras=scene.cameras;root.append(renderer.domElement);let disposed=false,lastT=options.t||0,lastIndex=0,selected='all',muscles=options.muscles!==false,joints=!!options.joints,stress=options.stress!==false,skeleton=null,anatomy=null;
+ const scene=createCatalogScene(initial),cameras=scene.cameras;
+ /* ракурсы этой фигуры — от человека (scene.settings: в упражнениях у двери повёрнуты вместе с телом) */
+ const SETTINGS=scene.settings||CAMERA_SETTINGS,VIEW=SETTINGS===CAMERA_SETTINGS?viewOptions():{...viewOptions(),settings:SETTINGS};root.append(renderer.domElement);let disposed=false,lastT=options.t||0,lastIndex=0,selected='all',muscles=options.muscles!==false,joints=!!options.joints,stress=options.stress!==false,skeleton=null,anatomy=null;
  if(!cameras[options.camera||'above'])throw Error('Unknown volume camera '+options.camera);
  let updateVectors=()=>{};
  /* options.memoBones — фигура, которой показывают одно и то же повторение по сетке фаз (экран тренировки): матрицы костей — из памяти */
@@ -138,7 +140,38 @@ export function createVolumeFigure(options){
  }
  const wantAnny=()=>{if(!skeleton&&!anatomy)loadAnny();};
  /* shape — кадр только для рамки (без нормалей, scene.apply) */
- const apply=(t,index,shape=false)=>{const d=data(t,index,!!(skeleton||anatomy));if(bonesMemo)memoBones(bonesMemo,anatomy?.skeleton||skeleton,t,d);scene.apply(d,{color:options.color,selected,muscles,joints,stress,skeleton,anatomy},{shape});updateVectors(t,index,d.pose);wantAnny();};
+ /* Инвентарь между камерой и человеком — полупрозрачный (4.110, замечание анатома 6: «Спереди» у блоков человека загораживала
+    стойка со стеком, у жима ногами — платформа). В каждом ракурсе перед кадром: деталь, чья рамка пересекает отрезок от камеры
+    к голове, плечам, локтям, тазу или коленям (не у самой точки — так рукоять в кулаке не в счёт), рисуется прозрачной; остальные — как были.
+    Мелкие детали (рамка меньше 2 л: рукояти, трос, гантели) не трогаются. Цвета и тени те же */
+ let lastPose=null;const FADE_KEEP=/^(barbell|dumbbell|kettlebell|cable|line)$/,FADE_MIN=.002,fadeMats=new Map(),fadeBox=new THREE.Box3(),fadeRay=new THREE.Ray(),fadeHit=new THREE.Vector3(),fadeTo=new THREE.Vector3(),fadeFrom=new THREE.Vector3();
+ const fadeOf=m=>{let f=fadeMats.get(m);if(!f){f=m.clone();f.transparent=true;f.opacity=.22;f.depthWrite=false;f.name=(m.name||'')+'-fade';fadeMats.set(m,f);}return f;};
+ function fadeOccluders(cam){
+  const P=lastPose;if(!P||!scene.propNodes)return;
+  const targets=[P.head,P.sh,P.waist,P.hip,P.elL,P.elR,P.knL,P.knR].filter(Boolean).map(p=>new THREE.Vector3(...world(p)));
+  cam.getWorldPosition(fadeFrom);
+  /* подвижные детали — каждая своей рамкой; неподвижные слиты в сетки по материалу (staticMeshes) — проверяются рамки их
+     деталей (userData.sources), а прозрачной становится вся слитая сетка */
+  const list=[];
+  /* снаряд в руках (гриф, гантель, гиря) и тросы с лентами не прячутся: их и показывают */
+  for(const n of scene.propNodes()){if(!n.group||!n.group.parent?.visible||FADE_KEEP.test(n.kind||''))continue;n.group.traverse(o=>{if(o.isMesh&&o.visible)list.push([o,[o]]);});}
+  for(const o of scene.staticMeshes?.()||[])if(o.isMesh&&o.visible)list.push([o,o.userData.sources||[o]]);
+  const blocks=src=>{
+   fadeBox.setFromObject(src);const sz=fadeBox.getSize(fadeHit);if(sz.x*sz.y*sz.z<FADE_MIN)return false;
+   for(const t of targets){
+    if(fadeBox.containsPoint(t))continue;
+    fadeTo.copy(t).sub(fadeFrom);const d=fadeTo.length();fadeRay.set(fadeFrom,fadeTo.normalize());
+    if(fadeRay.intersectBox(fadeBox,fadeHit)&&fadeHit.distanceTo(fadeFrom)<d-.05)return true;
+   }
+   return false;
+  };
+  for(const[o,sources]of list){
+   const orig=o.userData.fadeOrig||o.material,hit=sources.some(blocks);
+   if(hit){if(!o.userData.fadeOrig)o.userData.fadeOrig=orig;o.material=Array.isArray(orig)?orig.map(fadeOf):fadeOf(orig);}
+   else if(o.userData.fadeOrig){o.material=o.userData.fadeOrig;delete o.userData.fadeOrig;}
+  }
+ }
+ const apply=(t,index,shape=false)=>{const d=data(t,index,!!(skeleton||anatomy));lastPose=d.pose;if(bonesMemo)memoBones(bonesMemo,anatomy?.skeleton||skeleton,t,d);scene.apply(d,{color:options.color,selected,muscles,joints,stress,skeleton,anatomy},{shape});updateVectors(t,index,d.pose);wantAnny();};
  const trace=new THREE.Line(new THREE.BufferGeometry().setFromPoints(options.trace.map(p=>new THREE.Vector3(...world(p)))),new THREE.LineBasicMaterial({color:'#b4c3d9',transparent:true,opacity:.7}));trace.visible=false;scene.scene.add(trace);
  const vectors=new THREE.Group();vectors.name='movement-vectors';vectors.visible=false;scene.scene.add(vectors);
  for(const v of options.vectors){const a=new THREE.Vector3(...world(v.a)),b=new THREE.Vector3(...world(v.b)),d=b.clone().sub(a);vectors.add(new THREE.ArrowHelper(d.clone().normalize(),a,d.length(),/^(sh|hip)$/.test(v.key)?0x77a9d3:0xe97155,.075,.035));}
@@ -150,7 +183,7 @@ export function createVolumeFigure(options){
  let fit=null;
  if(savedBounds&&Object.keys(scene.bounds).every(key=>savedBounds[key])&&validFrame(savedBounds._view,VIEW)){for(const key of Object.keys(scene.bounds))Object.assign(scene.bounds[key],savedBounds[key]);fit=savedBounds._view;}
  else{
-  const collect=frameCollector(CAMERA_SETTINGS,VIEW);
+  const collect=frameCollector(SETTINGS,VIEW);
   for(let i=0;i<=FIT_STEPS;i++){apply(i/FIT_STEPS,0,true);scene.includeBounds(undefined,collect.add);}
   fit=collect.data();
   boundsSet(fitKey,{...Object.fromEntries(Object.entries(scene.bounds).map(([key,e])=>[key,{minX:round4(e.minX),maxX:round4(e.maxX),minY:round4(e.minY),maxY:round4(e.maxY)}])),...(fit?{_view:fit}:{})});
@@ -213,7 +246,7 @@ export function createVolumeFigure(options){
   const changed=()=>{v.dirty=true;v.schedule();};
   /* ракурс свободный — углы ушли от нажатой предустановки; подпись и кнопки ракурсов — у приложения (options.onCamera) */
   function checkFree(){
-   const q=o.go?o.go.to:o.v,free=!sameAngles(q,presetAngles(CAMERA_SETTINGS,v.camera));
+   const q=o.go?o.go.to:o.v,free=!sameAngles(q,presetAngles(SETTINGS,v.camera));
    if(free===o.free)return;o.free=free;vroot.dataset.free=free?'1':'0';try{vo.onCamera?.({camera:v.camera,free});}catch(e){console.error(e);}
   }
   const limits=q=>viewLimits(fit,q,o.aspect,VIEW);
@@ -265,6 +298,7 @@ export function createVolumeFigure(options){
   v.dirty=false;v.drawnAt=clock();
   const o=v.orbit;if(o){v.place();if(o.go)v.schedule();}
   const cam=o?o.cam:cameras[v.camera];
+  try{fadeOccluders(cam);}catch(e){}
   if(!copy)renderer.render(scene.scene,cam);
   else{
    /* контекст WebGL потерян: холст ракурса хранит прежнюю картинку (кадр — после webglcontextrestored) */
@@ -341,8 +375,13 @@ export function createVolumeFigure(options){
  at(lastT,{index:lastIndex});
  if(skeleton||anatomy)warmAnny();
  /* закрыта, не нарисовав ни кадра: материалы прежней фигуры отпускаются вместе с её — после первого кадра следующей */
- function dispose(){if(disposed)return;disposed=true;for(const v of views)v.close();canvas.removeEventListener('webglcontextrestored',restore);scene.disposeGeometry();
-  slot.release=firstDrawn||!releasePrevious?scene.disposeMaterials:()=>{try{releasePrevious();}catch(e){}scene.disposeMaterials();};spareRenderer(slot);}
+ function dispose(){if(disposed)return;disposed=true;for(const v of views)v.close();canvas.removeEventListener('webglcontextrestored',restore);
+  /* прозрачные копии материалов: детали — снова со своими материалами; копии отпускаются вместе с материалами сцены (после
+     первого кадра следующей фигуры — их программы тоже ей пригодятся) */
+  scene.scene.traverse(o=>{if(o.userData?.fadeOrig){o.material=o.userData.fadeOrig;delete o.userData.fadeOrig;}});const fades=[...fadeMats.values()];fadeMats.clear();
+  const releaseOwn=()=>{scene.disposeMaterials();for(const f of fades)f.dispose();};
+  scene.disposeGeometry();
+  slot.release=firstDrawn||!releasePrevious?releaseOwn:()=>{try{releasePrevious();}catch(e){}releaseOwn();};spareRenderer(slot);}
  /* фигура ракурса: первая (main) или связанная (linkView). У связанной at и настройки вида — общие с первой: тот же кадр
     и те же значения — без работы (приложение вызывает их у обеих фигур) */
  function figure(v,linked){
