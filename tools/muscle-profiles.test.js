@@ -4,10 +4,10 @@ const {loadModel}=require('./biomechanics-audit');
 const model=loadModel({fullApp:true});
 const {muscleFrame,mannequinMuscleSurfaces,camera3,motionFrame,muscleColor}=model.get('({muscleFrame,mannequinMuscleSurfaces,camera3,motionFrame,muscleColor})');
 /* три исходных профиля ригов и профили прицельных упражнений каталога; области мышц — на поверхности манекена (catalogProfile) */
-const ORIGINAL=['bbbench','latpull','squat'],TARGETED=['bandextrot','cableadduct','cableextrot','copenhagen','copenhagenknee'],ECCENTRIC=['nordic'];
+const ORIGINAL=['bbbench','latpull','squat'],TARGETED=['bandextrot','cableadduct','cableextrot','copenhagen','copenhagenknee'],ECCENTRIC=['nordic'],SWING=['kbswing','kbswing1'];
 const authored=model.EX.filter(ex=>ex.anim.muscleProfile),pilot=authored.filter(ex=>ORIGINAL.includes(ex.id));
 test('three original hand-authored profiles remain intact alongside the catalog',()=>{
- assert.deepEqual(Array.from(authored,ex=>ex.id).sort(),[...ORIGINAL,...TARGETED,...ECCENTRIC].sort());
+ assert.deepEqual(Array.from(authored,ex=>ex.id).sort(),[...ORIGINAL,...TARGETED,...ECCENTRIC,...SWING].sort());
  assert.deepEqual(Array.from(pilot,ex=>ex.id).sort(),ORIGINAL);
  for(const ex of pilot){
   const p=ex.anim.muscleProfile;
@@ -121,5 +121,22 @@ test('the Nordic curl profile is brightest while lowering',()=>{
   const up=muscleFrame(ex.anim,.5,0),down=muscleFrame(ex.anim,.5,2),main=ex.pri[0];
   assert.equal(up.phase,'concentric');assert.equal(down.phase,'eccentric');
   assert(down.values[main]>up.values[main]+.2&&down.values[main]>.8,id+' main muscle is brightest while lowering');
+ }
+});
+/* махи гирей (4.110, замечание анатома 7): доли — по ЭМГ McGill и Marshall, 2012 (табл. 1): разгибатели спины около половины
+   MVC с пиком в первой половине разгона — уже в нижней точке «заметное участие», а не стабилизатор; большая ягодичная — 76 %
+   у полного разгибания таза наверху — ярче всего в конце разгона; в нижней точке (замах) ягодичные и задняя поверхность бедра
+   держат вес — не «слабое участие» */
+test('kettlebell swings: shares follow the EMG — erectors and glutes work at the bottom, glutes peak at the top',()=>{
+ for(const id of SWING){
+  const ex=model.EX.find(e=>e.id===id),p=ex.anim.muscleProfile,c=ex.anim.catalogProfile;
+  assert(p.sources.length>0&&p.sources.every(([t,u])=>/McGill/.test(t)&&/^https:\/\//.test(u)),id+' cites McGill and Marshall, 2012');
+  for(const m of ex.pri){assert.equal(p.muscles[m].role,'primary');assert.equal(c.muscles[m].role,'primary');}
+  assert.equal(p.muscles.lowback.role,'support',id+': the erectors are not a stabilizer here');
+  for(const v of Object.values(p.muscles)){assert.equal(v.concentric[0],v.eccentric[0]);assert.equal(v.concentric[2],v.eccentric[2]);}
+  const bottom=muscleFrame(ex.anim,0,3).values,top=muscleFrame(ex.anim,1,1).values,up=muscleFrame(ex.anim,.5,0).values;
+  for(const m of ['glutes','hams','lowback'])assert(bottom[m]>=.45,id+' '+m+' at the bottom: '+bottom[m]);
+  assert(top.glutes>=.72&&top.glutes>up.glutes,id+': glutes brightest at full hip extension');
+  assert(up.lowback>=.45&&up.lowback>top.lowback,id+': the erectors peak early in the drive');
  }
 });

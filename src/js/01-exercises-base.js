@@ -26,7 +26,7 @@ const EQUIP_PRESETS = [
 const GROUPS = [
   {id:'chest', name:'Грудь'}, {id:'back', name:'Спина'}, {id:'shoulders', name:'Плечи'}, {id:'biceps', name:'Бицепс'},
   {id:'triceps', name:'Трицепс'}, {id:'forearms', name:'Предплечья'}, {id:'abs', name:'Пресс'}, {id:'glutes', name:'Ягодицы'},
-  {id:'quads', name:'Квадрицепс'}, {id:'hams', name:'Бицепс бедра'}, {id:'calves', name:'Икры'}, {id:'cardio', name:'Кардио'}
+  {id:'quads', name:'Квадрицепс'}, {id:'hams', name:'Задняя поверхность бедра'}, {id:'calves', name:'Икры'}, {id:'cardio', name:'Кардио'}
 ];
 const GROUP_PRESETS = [
   {id:'push', name:'Жим', g:['chest', 'shoulders', 'triceps']},
@@ -51,7 +51,7 @@ const EX = [
  err:['Провисание поясницы или поднятый таз', 'Локти разведены в стороны под 90°', 'Неполная амплитуда'],
  breath:'Вдох при опускании, выдох при подъёме.',
  anim:{}},
-{id:'diamond', name:'Отжимания узким хватом', eq:[], g:'triceps', pri:['triceps', 'chest'], sec:['delt_f', 'abs', 'serratus'], type:'c', lvl:1,
+{id:'diamond', name:'Отжимания с узкой постановкой рук', eq:[], g:'triceps', pri:['triceps', 'chest'], sec:['delt_f', 'abs', 'serratus'], type:'c', lvl:1,
  tech:['Ладони под грудью на ширине плеч, пальцы смотрят вперёд.',
    'Тело прямое, пресс и ягодицы напряжены.',
    'Опускайтесь, ведя локти назад вдоль корпуса, пока грудь не приблизится к кистям.',

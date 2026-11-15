@@ -49,7 +49,8 @@ const EXPECT = {
     off: ['abduction', 'adduction', 'declinecrunch', 'copenhagenknee', 'copenhagen', 'declinebb', 'legext', 'legcurl', 'squat', 'lunge', 'revlunge', 'bulgarian', 'plank', 'pushup', 'bridge', 'mountain', 'burpee'] },
   /* гиря: наклоны от таза и тяга в наклоне без опоры — как со штангой */
   /* протяжка на блоке между ног: рукоять троса — нагрузка и в упражнении на ягодичные (п. 2) */
-  lumbar: { on: ['deadlift', 'rdl', 'sllift', 'goodmorning', 'bbrow', 'kbswing', 'squat', 'kbdeadlift', 'kbswing1', 'kbclean', 'kbrow', 'kbsnatch', 'kbsllift', 'pullthrough'], off: ['latpull', 'cablerow', 'dbrow', 'shrug', 'ohp', 'chestrowdb', 'legpress', 'bandlatpull', 'bandbridge'] },
+  /* разгибание рук с канатом над головой в выпаде (4.110, замечание анатома 10): наклон корпуса без веса на разгибателях таза и спины */
+  lumbar: { on: ['deadlift', 'rdl', 'sllift', 'goodmorning', 'bbrow', 'kbswing', 'squat', 'kbdeadlift', 'kbswing1', 'kbclean', 'kbrow', 'kbsnatch', 'kbsllift', 'pullthrough'], off: ['latpull', 'cablerow', 'dbrow', 'shrug', 'ohp', 'chestrowdb', 'legpress', 'bandlatpull', 'bandbridge', 'cableohext'] },
   /* длинный рычаг: руки над головой в упоре при вытянутом теле. Планка, отжимания, скалолаз — кисти под плечами;
      пуловер и «супермен» — туловище лежит на опоре; жимы в упоре согнувшись — таз согнут */
   /* сгибание позвоночника вперёд или вбок в упражнениях на пресс и косые (п. 2). Молчит: удержания без сгибания (планки,
@@ -84,7 +85,7 @@ const EXPECT = {
      (пятки уходят за край платформы на 12°); приседания, прыжки и бег — не подъёмы на носки */
   achilles: { on: ['calfraise', 'calf1', 'seatedcalf', 'standcalf', 'lpcalf'], off: ['squat', 'jumpsquat', 'treadmill', 'jumpingjack', 'legpress'] },
   landing: { on: ['jumpsquat', 'burpee', 'jumpingjack'], off: ['pullup', 'dip', 'stepup', 'elliptical', 'stairs', 'squat', 'hangknee'] },
-  hams: { on: ['rdl', 'sllift', 'goodmorning', 'nordic', 'kbsllift', 'pullthrough'], off: ['squat', 'legcurl', 'hipthrust', 'lunge'] }
+  hams: { on: ['rdl', 'sllift', 'goodmorning', 'nordic', 'kbsllift', 'pullthrough'], off: ['squat', 'legcurl', 'hipthrust', 'lunge', 'cableohext'] }
 };
 test('every rule has texts and lights up where the joint is loaded, and only there', () => {
   assert.deepEqual(plain(A.STRESS_RULES.map(r => r.id)).sort(), Object.keys(EXPECT).sort(), 'each rule is covered by this test');
@@ -116,6 +117,22 @@ test('marks follow the phase: bottom of a squat and a bench press, end range of 
   }
   assert(lit >= 3, 'the arc is crossed in several frames');
   assert(at('pullup', 1).includes('neck') && at('pullup', 1).includes('pullTop'), 'pull-up top: neck and shoulders');
+  /* руки за корпусом с самого начала (4.110, замечание анатома 12): метка «плечи» — в нижней точке, не весь повтор */
+  for (const id of ['benchdip', 'assistdip']) {
+    assert(!at(id, 0).includes('shPress') && at(id, 1).includes('shPress'), id + ': shoulder mark at the bottom only');
+    const e = ex(id); let lit = 0;
+    for (let i = 0; i <= 40; i++) if (A.jointStressAt(e, i / 40).some(x => x.rule.id === 'shPress')) lit++;
+    assert(lit > 0 && lit <= 20, id + ': marked in the deeper half of the rep, frames ' + lit);
+  }
+  assert(at('chairdip', 0).includes('shPress') && !at('chairdip', 1).includes('shPress'), 'chair dip starts at the bottom');
+});
+/* гравитрон (4.110, замечание анатома 11): колени на подушке тренажёра — совет без коврика */
+test('assisted pull-up and dip machines: the kneeling tip fits the machine pad, no mat', () => {
+  for (const id of ['assistpull', 'assistdip']) {
+    const r = A.jointStress(ex(id)).rules.find(x => x.id === 'kneel');
+    assert(r && /подушк/.test(r.what) && !/коврик/.test(r.tip), id + ': ' + r?.tip);
+  }
+  assert(/коврик/.test(A.jointStress(ex('kneepush')).rules.find(x => x.id === 'kneel').tip), 'on the floor the mat tip stays');
 });
 test('open-chain knee extension with a band: only the cuffed leg, only near a straight knee', () => {
   const e = ex('bandlegext'), lit = [];

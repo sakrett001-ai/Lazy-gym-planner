@@ -122,7 +122,7 @@ await page.close();
   const g = await open(1280);
   await g.click('#motion-atlas'); await g.waitForTimeout(150);
   check(await shown(g, '#mv-gallery') && !(await shown(g, '#mv-detail')), 'кнопка атласа открывает витрину, а не разбор');
-  check(await g.evaluate(() => document.querySelectorAll('.mv-tile').length === EX.length && document.querySelectorAll('.mv-gsec').length === GROUPS.filter(x => EX.some(e => e.g === x.id)).length), 'на витрине все упражнения по группам мышц');
+  check(await g.evaluate(() => document.querySelectorAll('.mv-tile').length === EX.length && document.querySelectorAll('.mv-gsec').length === GALLERY_GROUPS.filter(x => EX.some(e => galleryGroup(e) === x.id)).length && !!document.querySelector('#mv-g-adductors')), 'на витрине все упражнения по группам мышц');
   await g.click('[data-gallery-kind="band"]');
   check(await g.evaluate(() => { const t = [...document.querySelectorAll('.mv-tile')]; return t.length > 0 && t.every(b => workKind(EXI[b.dataset.galleryOpen]) === 'band') && document.querySelector('[data-gallery-kind="band"]').getAttribute('aria-pressed') === 'true'; }), 'фильтр «Резинки» оставляет только упражнения с резинкой');
   await g.click('[data-gallery-kind="all"]');
