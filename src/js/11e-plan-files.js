@@ -232,8 +232,19 @@ function planInItems(p) {
   const E = effEquip(p.placeIn ? p.placeIn.equip : S.equip), all = effEquip(EQUIP.map(e => e.id));
   return p.items.map(it => {
     const ex = EXI[it.id], name = exName(ex, available(ex, E) ? E : all), dose = it.sets && it.reps ? `${it.sets} × ${it.reps}` : it.reps || (it.sets ? `${it.sets} ${plural(it.sets, 'подход', 'подхода', 'подходов')}` : '');
-    return `<li>${esc(name)}${dose ? ` <small>${esc(dose)}</small>` : ''}</li>`;
+    return `<li>${esc(name)}${dose ? ` <small>${esc(dose)}</small>` : ''}${planInSwap(ex, p, E) ? ` <em class="pi-swap">${'нужна замена'}</em>` : ''}</li>`;
   }).join('');
+}
+/* упражнение плана не подойдёт у получателя: в месте плана нет снаряда или оно нагружает то, что бережёт план или сам
+   человек (те же правила, что в сборке своего плана: protectHits, strictHit, kneeDeepBlocked) — в плане будет замена
+   или, если её нет, оно не войдёт; подробно — на странице плана */
+function planInSwap(ex, p, E) {
+  if (!available(ex, E)) return true;
+  const on = protectNorm(ensureProtect(S).concat(p.protect || []));
+  if (!on.length) return false;
+  const ids = stressIdsOf(ex);
+  return on.some(id => PROTECT_BY[id].rules.some(r => ids.includes(r)) || (STRICT[id] && STRICT[id].test(ex)))
+    || (on.includes('knees') && typeof stressKneeDeep === 'function' && stressKneeDeep(ex));
 }
 function planInHtml() {
   const r = planIn, link = !!(r && r.link);
@@ -246,11 +257,11 @@ function planInHtml() {
     /* один план — список упражнений сразу открыт: человек видит, что ему прислали (решение владельца 3) */
     const one = r.plans.length === 1;
     body = `${meta ? `<p class="cp-sub pi-meta">${meta}</p>` : ''}${r.note ? `<p class="c-note">${esc(r.note)}</p>` : ''}
-      ${r.newer ? `<p class="warn">${link ? 'Ссылка сделана в более новой версии приложения: то, что эта версия не знает, будет пропущено. Обновите приложение.' : 'Файл сделан в более новой версии приложения: то, что эта версия не знает, будет пропущено. Обновите приложение.'}</p>` : ''}
+      ${r.newer ? `<p class="warn">${link || r.fromLink ? 'Ссылка сделана в более новой версии приложения: то, что эта версия не знает, будет пропущено. Обновите приложение.' : 'Файл сделан в более новой версии приложения: то, что эта версия не знает, будет пропущено. Обновите приложение.'}</p>` : ''}
       ${r.unknown.length ? `<p class="warn">Этой версии приложения неизвестны упражнения: ${esc(r.unknown.join(', '))}. Они будут пропущены.</p>` : ''}
       ${r.cut ? `<p class="warn">В файле больше ${PLAN_FILE_PLANS} планов — загрузятся первые ${PLAN_FILE_PLANS}.</p>` : ''}
       ${r.plans.filter(p => p.all).map(p => { const i = r.plans.indexOf(p), n = Math.ceil(p.all.length / CUSTOM_MAX); return `<div class="warn pi-over"><p>${`В плане «${esc(p.name)}» — ${p.all.length} ${plural(p.all.length, 'упражнение', 'упражнения', 'упражнений')}, а в один свой план помещается ${CUSTOM_MAX}: войдут первые ${CUSTOM_MAX}, остальные ${p.all.length - CUSTOM_MAX} не войдут.`}</p><label class="pi-split"><input type="checkbox" data-pi-split="${i}"> ${`Разбить на ${n} ${plural(n, 'план', 'плана', 'планов')} — войдут все упражнения`}</label></div>`; }).join('')}
-      <fieldset class="po-set"><legend>${link ? 'Планы по ссылке' : 'Планы в файле'}</legend>${r.plans.map((p, i) => `<div class="pi-row"><label class="po-opt pi-plan"><input type="checkbox" data-pi="${i}" checked><span><b>${esc(p.name)}</b><small>${p.items.length} ${plural(p.items.length, 'упражнение', 'упражнения', 'упражнений')}${p.all ? ` ${'из'} ${p.all.length}` : ''}${planInSetup(p) ? ` — ${esc(planInSetup(p))}` : ''}</small>${!common && p.group ? `<small>программа: ${esc(p.group)}</small>` : ''}</span></label>`
+      <fieldset class="po-set"><legend>${link || r.fromLink ? 'Планы по ссылке' : 'Планы в файле'}</legend>${r.plans.map((p, i) => `<div class="pi-row"><label class="po-opt pi-plan"><input type="checkbox" data-pi="${i}" checked><span><b>${esc(p.name)}</b><small>${p.items.length} ${plural(p.items.length, 'упражнение', 'упражнения', 'упражнений')}${p.all ? ` ${'из'} ${p.all.length}` : ''}${planInSetup(p) ? ` — ${esc(planInSetup(p))}` : ''}</small>${!common && p.group ? `<small>программа: ${esc(p.group)}</small>` : ''}</span></label>`
         + (p.items.length ? `<details class="pi-items"${one ? ' open' : ''}><summary>${'Упражнения'}</summary><ol>${planInItems(p)}</ol></details>` : '') + `</div>`).join('')}</fieldset>`;
   }
   return `<form method="dialog" class="gear pi">

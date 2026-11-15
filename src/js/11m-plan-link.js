@@ -90,7 +90,7 @@ async function readPlanLink(code) {
   if (!o || typeof o !== 'object' || Array.isArray(o)) return {error:LINK_NOT_PLAN};
   const r = readPlanFile(text);
   if (r.error) return {error:/резервная копия/.test(r.error) ? r.error : /нет планов/.test(r.error) ? 'В ссылке нет планов.' : LINK_NOT_PLAN};
-  return r;
+  return {...r, fromLink:true};
 }
 /* Адрес страницы, на которую ведёт ссылка: сайт, на котором человек сейчас (GitHub Pages и его сборка — своя страница;
    Floot — его страница: приложение там в окне srcdoc с тем же адресом сайта), а для офлайн-файла и встроенных копий —

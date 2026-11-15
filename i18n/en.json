@@ -3775,5 +3775,6 @@
  "Картинка сохранена: {name}": "Picture saved: {name}",
  "Сохранить картинку не получилось.": "Couldn’t save the picture.",
  "В своём плане мышцы подсказывают, что добавить: по ним собирается список «Добавить упражнение» и проверяется, все ли нагружены. У каждого своего плана мышцы свои.": "In a custom plan the muscles suggest what to add: they drive the “Add an exercise” list and the check that every one is worked. Each custom plan has its own muscles.",
- "Свой план открывается в своём месте: выбранное здесь запоминается у этого плана.": "A custom plan opens at its own place: the place chosen here is saved with this plan."
+ "Свой план открывается в своём месте: выбранное здесь запоминается у этого плана.": "A custom plan opens at its own place: the place chosen here is saved with this plan.",
+ "нужна замена": "needs a swap"
 }
