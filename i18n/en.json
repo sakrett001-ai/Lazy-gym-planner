@@ -3451,7 +3451,7 @@
  "Убрано из плана: {name}. Само оно не вернётся; вернуть — в параметрах, «Беречь суставы».": "Removed from the plan: {name}. It won’t come back on its own; to bring it back, go to Settings, “Protect joints & tendons”.",
  "Возраст": "Age",
  "лет": "years",
- "По желанию: тогда предупреждение о слишком высоком пульсе — по вашему возрасту (расчётный максимум 208 − 0,7 × возраст, у разных людей ±10 уд/мин).": "Optional: the warning about a too-high heart rate will then use your age (predicted maximum 208 − 0.7 × age, ±10 bpm between people).",
+ "По желанию: тогда предупреждение о слишком высоком пульсе — по вашему возрасту (расчётный максимум 208 − 0,7 × возраст, у разных людей ±10 уд/мин). Это средняя оценка, а не безопасный предел для вас.": "Optional: the warning about a too-high heart rate will then use your age (predicted maximum 208 − 0.7 × age, ±10 bpm between people). This is an average estimate, not a safe limit for you.",
  "Если вы принимаете лекарства, которые снижают пульс (например, бета-блокаторы), пульс не показывает нагрузку — ориентируйтесь на дыхание и самочувствие.": "If you take medicines that lower your heart rate (beta blockers, for example), heart rate does not show the effort — go by your breathing and how you feel.",
  "Пульс выше расчётного максимума для вашего возраста (≈ {n}). Снизьте темп и отдохните; если стало плохо — остановитесь.": "Heart rate is above the predicted maximum for your age (≈ {n}). Slow down and rest; if you feel unwell, stop.",
  "Очень высокий пульс. Снизьте темп и отдохните; если стало плохо — остановитесь. Укажите возраст в настройке отдыха — предупреждение будет точнее.": "Very high heart rate. Slow down and rest; if you feel unwell, stop. Enter your age in the rest settings for a more precise warning.",
@@ -3723,5 +3723,6 @@
  "Колени стоят на подушке гравитрона: вес тела, который не снимает противовес, давит на надколенник и бугристость большеберцовой кости.": "Your knees rest on the machine’s pad: the body weight the counterweight does not take presses on the kneecap and the tibial tuberosity.",
  "Опирайтесь на подушку голенями у колена, а не надколенником; если стоять на коленях больно, выберите тягу верхнего блока.": "Rest on the pad with your shins just below the knee, not on the kneecap; if kneeling hurts, choose the lat pulldown.",
  "Опирайтесь на подушку голенями у колена, а не надколенником; если стоять на коленях больно, выберите жим от груди в тренажёре.": "Rest on the pad with your shins just below the knee, not on the kneecap; if kneeling hurts, choose the machine chest press.",
- "Темп — плавно, без рывков. Скорость просмотра темп не меняет.": "Tempo: smooth, no jerking. Playback speed doesn’t change the tempo."
+ "Темп — плавно, без рывков. Скорость просмотра темп не меняет.": "Tempo: smooth, no jerking. Playback speed doesn’t change the tempo.",
+ "Нет предупреждения — это ещё не значит, что нагрузка безопасна. При боли в груди, головокружении, необычной одышке — остановитесь.": "No warning does not mean the effort is safe. If you have chest pain, dizziness or unusual shortness of breath, stop."
 }
