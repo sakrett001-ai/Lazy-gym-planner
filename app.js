@@ -1,4 +1,4 @@
-window.PODHOD_VERSION='4.108.0';window.PODHOD_BUILD='4.108.0-2d3e567b7de4';window.PODHOD_RENDER={"skin":"41c62f8b22","skeleton":"040f915bc8","anatomy":"4b15dc31e6"};window.PODHOD_SEARCH={"alt":{"ex":{"pushup":["Push-up"],"diamond":["Close-grip push-up"],"dip":["Dip"],"bbbench":["Barbell bench press"],"dbbench":["Dumbbell bench press"],"dbincline":["Incline dumbbell press"],"smithincline":["Smith machine incline press"],"dbfly":["Dumbbell fly"],"cablefly":["Cable crossover fly"],"pecdeck":["Pec deck fly"],"pullup":["Pull-up"],"bbrow":["Bent-over row"],"dbrow":["One-arm dumbbell row"],"latpull":["Lat pulldown"],"latpullv":["V-handle lat pulldown"],"latpulluh":["Underhand lat pulldown"],"cablerow":["Seated cable row"],"cablerowwide":["Wide-grip seated cable row"],"deadlift":["Deadlift"],"hyper":["Back extension"],"shrug":["Dumbbell shrug"],"bandrow":["Seated band row"],"dbpress":["Seated dumbbell press"],"ohp":["Overhead press"],"latraise":["Dumbbell lateral raise"],"bandlatraise":["Band lateral raise"],"frontraise":["Dumbbell front raise"],"facepull":["Cable face pull"],"pikepush":["Pike push-up"],"bbcurl":["Barbell biceps curl"],"dbcurl":["Dumbbell biceps curl"],"hammer":["Hammer curl"],"cablecurl":["Cable curl"],"ropecurl":["Rope cable curl"],"bandcurl":["Resistance band curl"],"chinup":["Chin-up"],"skull":["Lying triceps extension"],"pushdown":["Cable triceps pushdown"],"ropepushdown":["Rope triceps pushdown"],"bandpushdown":["Resistance band pushdown"],"benchdip":["Bench dip"],"ohext":["Overhead dumbbell triceps extension"],"wristcurl":["Barbell wrist curl"],"farmer":["Farmer’s carry","Kettlebell farmer’s carry"],"hang":["Dead hang"],"crunch":["Crunch"],"plank":["Forearm plank"],"sideplank":["Side plank"],"legraise":["Hanging leg raise"],"lyinglegraise":["Lying leg raise"],"cablecrunch":["Kneeling cable crunch"],"hipthrust":["Barbell hip thrust"],"bridge":["Glute bridge"],"kbswing":["Kettlebell swing"],"kbdeadlift":["Kettlebell deadlift"],"kbswing1":["One-arm kettlebell swing"],"kbclean":["Kettlebell clean"],"kbpress":["One-arm standing kettlebell press"],"kbfrontsquat":["Kettlebell front squat"],"kbrow":["One-arm bent-over kettlebell row"],"kbfloorpress":["Kettlebell floor press"],"kbsnatch":["Kettlebell snatch"],"kbsllift":["Single-leg kettlebell Romanian deadlift"],"kbwindmill":["Kettlebell windmill"],"kbhalo":["Kettlebell halo"],"kbtgu":["Kettlebell Turkish get-up"],"bulgarian":["Bulgarian split squat"],"stepup":["Step-up"],"rdl":["Romanian deadlift","Barbell Romanian deadlift","Dumbbell Romanian deadlift"],"squat":["Barbell squat"],"goblet":["Goblet squat","Kettlebell goblet squat"],"airsquat":["Bodyweight squat"],"lunge":["Split squat"],"legpress":["Leg press"],"legpresshigh":["Leg press, feet high"],"legpresslow":["Leg press, feet low"],"legext":["Leg extension"],"smithsquat":["Smith machine squat"],"legcurl":["Lying leg curl"],"calfraise":["Standing calf raise"],"lpcalf":["Leg press calf raise"],"inclinebb":["Incline barbell bench press"],"declinebb":["Decline barbell bench press"],"closegrip":["Close-grip bench press"],"pullover":["Dumbbell pullover"],"declinepush":["Decline push-up (feet on bench)"],"invrow":["Inverted row"],"straightpull":["Straight-arm cable pullover"],"goodmorning":["Barbell good morning"],"arnold":["Arnold press"],"cablelat":["Cable lateral raise"],"reversefly":["Reverse pec deck fly"],"bandfacepull":["Resistance band face pull"],"cableextrot":["Cable shoulder external rotation"],"bandextrot":["Resistance band shoulder external rotation"],"preacher":["Preacher curl"],"inclinecurl":["Incline dumbbell curl"],"concentration":["Concentration curl"],"kickback":["Dumbbell triceps kickback"],"declinecrunch":["Ab bench crunch"],"captainraise":["Captain’s chair knee raise"],"hangknee":["Hanging knee raise"],"rollout":["Kneeling ab wheel rollout"],"sidebend":["Dumbbell side bend"],"glutekick":["Cable glute kickback"],"bandlatpull":["Kneeling band lat pulldown"],"bandlegext":["Seated band leg extension"],"bandadduct":["Band hip adduction"],"bandabduct":["Standing mini-band hip abduction"],"bandbridge":["Mini-band glute bridge"],"bandfloorpress":["Band floor press"],"bandfly":["Band chest fly at the door"],"sissysquat":["Door-frame assisted sissy squat"],"jumpingjack":["Jumping jack"],"burpee":["Burpee"],"mountain":["Mountain climber"],"jumpsquat":["Jump squat"],"thruster":["Dumbbell thruster"],"wallpush":["Wall push-up"],"inclinepush":["Incline push-up"],"kneepush":["Knee push-up"],"widepush":["Wide push-up"],"archer":["Archer push-up"],"declinepike":["Feet-elevated pike push-up"],"superman":["Superman hold"],"ytw":["Prone Y-T-W raise"],"towelrow":["Door towel row"],"tablerow":["Under-table row"],"reversesnow":["Reverse snow angel"],"wallsit":["Wall sit"],"revlunge":["Reverse lunge"],"sidelunge":["Lateral lunge"],"copenhagen":["Copenhagen plank"],"copenhagenknee":["Short-lever Copenhagen plank"],"pistolbox":["Single-leg box squat"],"sllift":["Single-leg Romanian deadlift"],"glutebridge1":["Single-leg glute bridge"],"nordic":["Nordic curl"],"calf1":["Single-leg calf raise"],"deadbug":["Dead bug"],"birddog":["Bird dog"],"hollow":["Hollow hold"],"bicycle":["Bicycle crunch"],"plankup":["Plank up-down"],"chairdip":["Chair dip"],"towelcurl":["Towel curl"],"chestpressm":["Machine chest press"],"smithbench":["Smith machine bench press"],"cablelowfly":["Low-to-high cable crossover fly"],"leverrowm":["Chest-supported lever row"],"tbarrow":["T-bar row"],"assistpull":["Assisted pull-up"],"chestrowdb":["Chest-supported incline dumbbell row"],"shoulderpressm":["Machine shoulder press"],"smithohp":["Seated Smith machine press"],"assistdip":["Assisted dip"],"cableohext":["Overhead cable rope triceps extension"],"cablewood":["Cable woodchopper"],"pullthrough":["Cable pull-through"],"cablekickback":["Straight-leg cable glute kickback"],"abduction":["Hip abduction machine"],"adduction":["Hip adduction machine"],"cableadduct":["Standing cable hip adduction"],"hacksquat":["Hack squat"],"seatedcalf":["Seated calf raise"],"standcalf":["Standing machine calf raise"],"treadmill":["Treadmill"],"bike":["Stationary bike"],"rower":["Rowing machine"],"elliptical":["Elliptical"],"stairs":["Stair climber"]},"groups":{"chest":["Chest"],"back":["Back"],"shoulders":["Shoulders"],"biceps":["Biceps"],"triceps":["Triceps"],"forearms":["Forearms"],"abs":["Abs"],"glutes":["Glutes"],"quads":["Quads"],"hams":["Hamstrings"],"calves":["Calves"],"cardio":["Cardio"]},"muscles":{"chest":["Chest"],"delt_f":["Front delt"],"delt_s":["Side delt"],"delt_r":["Rear delt"],"biceps":["Biceps"],"triceps":["Triceps"],"forearms":["Forearms"],"abs":["Abs (rectus abdominis)"],"obliques":["Obliques"],"traps":["Traps"],"midback":["Rhomboids & mid-back"],"lats":["Lats"],"lowback":["Lower back (spinal erectors)"],"glutes":["Glutes"],"quads":["Quads"],"hams":["Hamstrings"],"calves":["Calves"],"adductors":["Hip adductors"],"hipflex":["Hip flexors"],"serratus":["Serratus anterior"],"cuff":["Rotator cuff"]}},"syn":{"ex":{"pushup":["press-up"],"diamond":["алмазные отжимания","diamond push-up","triangle push-up"],"dip":["брусья","parallel bar dip","chest dip"],"bbbench":["жим лёжа","бенч","бенч-пресс","bench press","bench","flat bench press"],"dbincline":["наклонный жим гантелей"],"smithincline":["наклонный жим в Смите","incline Smith press"],"inclinebb":["наклонный жим","жим на наклонной","incline bench press","incline bench"],"declinebb":["жим головой вниз","decline bench press","decline bench"],"dbfly":["dumbbell flye"],"pecdeck":["пек-дек","butterfly","machine fly"],"bbrow":["тяга штанги к поясу","barbell row"],"dbrow":["тяга гантели в наклоне","dumbbell row","single-arm dumbbell row"],"latpull":["вертикальная тяга","тяга верхнего блока к груди","lat pull-down"],"cablerow":["горизонтальная тяга","тяга нижнего блока","seated row","cable row","low row"],"hyper":["hyperextension"],"dbpress":["жим гантелей над головой","dumbbell shoulder press"],"ohp":["армейский жим","жим над головой","жим стоя","OHP","military press","standing press"],"latraise":["разведения в стороны","разведения гантелей в стороны","side raise","side lateral raise"],"facepull":["фейс-пул"],"bbcurl":["сгибание рук со штангой"],"dbcurl":["сгибание рук с гантелями"],"hammer":["молотки","хаммер"],"skull":["skull crusher","French press"],"pushdown":["трицепс на блоке","pressdown"],"ohext":["французский жим сидя","французский жим стоя"],"farmer":["фермерская прогулка","farmer’s walk"],"cablecrunch":["молитва"],"hipthrust":["хип-траст"],"kbswing":["свинг"],"kbswing1":["свинг одной рукой"],"kbtgu":["TGU","get-up"],"bulgarian":["болгарские сплит-приседания","Bulgarian squat","rear-foot-elevated split squat","RFESS"],"stepup":["степ-ап"],"rdl":["румынка","RDL"],"squat":["присед","squat","back squat"],"airsquat":["приседания без веса","air squat"],"lunge":["выпады на месте","static lunge"],"legcurl":["hamstring curl"],"invrow":["горизонтальные подтягивания","Australian pull-up","body row"],"straightpull":["straight-arm pulldown"],"goodmorning":["гуд морнинг"],"cablelat":["махи на нижнем блоке","cable side raise"],"reversefly":["обратная бабочка","rear delt fly"],"rollout":["ролик для пресса","ab wheel","ab roller"],"glutekick":["кикбэк"],"cablekickback":["кикбэк","cable kickback"],"jumpingjack":["джампинг джек","star jump"],"burpee":["бурпи"],"mountain":["альпинист"],"superman":["супермен"],"revlunge":["выпады назад"],"sidelunge":["выпады в сторону","side lunge"],"nordic":["нордические сгибания","Nordic hamstring curl"],"chestpressm":["жим в хаммере"],"leverrowm":["тяга в хаммере","machine row"],"cablewood":["wood chop"],"abduction":["абдуктор","abductor machine","hip abductor"],"adduction":["аддуктор","adductor machine","hip adductor"],"hacksquat":["гакк-приседания"],"treadmill":["бег","running"],"rower":["гребля","rowing","erg"],"elliptical":["орбитрек","эллипс","cross trainer"],"stairs":["stepper"]},"groups":{"chest":["грудные","pecs"],"shoulders":["дельты","delts","deltoids"],"forearms":["хват","grip"],"abs":["кор","core"],"glutes":["ягодичные"],"quads":["квадры","передняя поверхность бедра","quadriceps"],"hams":["задняя поверхность бедра"],"calves":["икроножные","calf"]},"muscles":{"obliques":["косые"],"lowback":["поясница"],"midback":["ромбовидные","rhomboids"],"adductors":["приводящие","adductors"],"serratus":["зубчатая","serratus"],"cuff":["ротаторы","ротаторная манжета"]}},"stop":["в","во","на","с","со","и","для","к","ко","по","из","от","у","за","упражнение","упражнения","упражнений","the","a","an","of","on","with","for","and","in","to","at","exercise","exercises"],"words":{"db":["dumbbell"],"bb":["barbell"],"kb":["kettlebell"]},"layout":{"en":"`qwertyuiop[]asdfghjkl;'zxcvbnm,./","ru":"ёйцукенгшщзхъфывапролджэячсмитьбю."}};window.PODHOD_LANG='ru';window.PODHOD_LOCALE={"dec":",","plural":"ru","dates":"ru","units":"kg"};
+window.PODHOD_VERSION='4.110.0';window.PODHOD_BUILD='4.110.0-c07ed212d62a';window.PODHOD_RENDER={"skin":"fc3bf1632e","skeleton":"d5460535c6","anatomy":"ee8effafd8"};window.PODHOD_SEARCH={"alt":{"ex":{"pushup":["Push-up"],"diamond":["Close-grip push-up"],"dip":["Dip"],"bbbench":["Barbell bench press"],"dbbench":["Dumbbell bench press"],"dbincline":["Incline dumbbell press"],"smithincline":["Smith machine incline press"],"dbfly":["Dumbbell fly"],"cablefly":["Cable crossover fly"],"pecdeck":["Pec deck fly"],"pullup":["Pull-up"],"bbrow":["Bent-over row"],"dbrow":["One-arm dumbbell row"],"latpull":["Lat pulldown"],"latpullv":["V-handle lat pulldown"],"latpulluh":["Underhand lat pulldown"],"cablerow":["Seated cable row"],"cablerowwide":["Wide-grip seated cable row"],"deadlift":["Deadlift"],"hyper":["Back extension"],"shrug":["Dumbbell shrug"],"bandrow":["Seated band row"],"dbpress":["Seated dumbbell press"],"ohp":["Overhead press"],"latraise":["Dumbbell lateral raise"],"bandlatraise":["Band lateral raise"],"frontraise":["Dumbbell front raise"],"facepull":["Cable face pull"],"pikepush":["Pike push-up"],"bbcurl":["Barbell biceps curl"],"dbcurl":["Dumbbell biceps curl"],"hammer":["Hammer curl"],"cablecurl":["Cable curl"],"ropecurl":["Rope cable curl"],"bandcurl":["Resistance band curl"],"chinup":["Chin-up"],"skull":["Lying triceps extension"],"pushdown":["Cable triceps pushdown"],"ropepushdown":["Rope triceps pushdown"],"bandpushdown":["Resistance band pushdown"],"benchdip":["Bench dip"],"ohext":["Overhead dumbbell triceps extension"],"wristcurl":["Barbell wrist curl"],"farmer":["Farmer’s carry","Kettlebell farmer’s carry"],"hang":["Dead hang"],"crunch":["Crunch"],"plank":["Forearm plank"],"sideplank":["Side plank"],"legraise":["Hanging leg raise"],"lyinglegraise":["Lying leg raise"],"cablecrunch":["Kneeling cable crunch"],"hipthrust":["Barbell hip thrust"],"bridge":["Glute bridge"],"kbswing":["Kettlebell swing"],"kbdeadlift":["Kettlebell deadlift"],"kbswing1":["One-arm kettlebell swing"],"kbclean":["Kettlebell clean"],"kbpress":["One-arm standing kettlebell press"],"kbfrontsquat":["Kettlebell front squat"],"kbrow":["One-arm bent-over kettlebell row"],"kbfloorpress":["Kettlebell floor press"],"kbsnatch":["Kettlebell snatch"],"kbsllift":["Single-leg kettlebell Romanian deadlift"],"kbwindmill":["Kettlebell windmill"],"kbhalo":["Kettlebell halo"],"kbtgu":["Kettlebell Turkish get-up"],"bulgarian":["Bulgarian split squat"],"stepup":["Step-up"],"rdl":["Romanian deadlift","Barbell Romanian deadlift","Dumbbell Romanian deadlift"],"squat":["Barbell squat"],"goblet":["Goblet squat","Kettlebell goblet squat"],"airsquat":["Bodyweight squat"],"lunge":["Split squat"],"legpress":["Leg press"],"legpresshigh":["Leg press, feet high"],"legpresslow":["Leg press, feet low"],"legext":["Leg extension"],"smithsquat":["Smith machine squat"],"legcurl":["Lying leg curl"],"calfraise":["Standing calf raise"],"lpcalf":["Leg press calf raise"],"inclinebb":["Incline barbell bench press"],"declinebb":["Decline barbell bench press"],"closegrip":["Close-grip bench press"],"pullover":["Dumbbell pullover"],"declinepush":["Decline push-up (feet on bench)"],"invrow":["Inverted row"],"straightpull":["Straight-arm cable pullover"],"goodmorning":["Barbell good morning"],"arnold":["Arnold press"],"cablelat":["Cable lateral raise"],"reversefly":["Reverse pec deck fly"],"bandfacepull":["Resistance band face pull"],"cableextrot":["Cable shoulder external rotation"],"bandextrot":["Resistance band shoulder external rotation"],"preacher":["Preacher curl"],"inclinecurl":["Incline dumbbell curl"],"concentration":["Concentration curl"],"kickback":["Dumbbell triceps kickback"],"declinecrunch":["Ab bench crunch"],"captainraise":["Captain’s chair knee raise"],"hangknee":["Hanging knee raise"],"rollout":["Kneeling ab wheel rollout"],"sidebend":["Dumbbell side bend"],"glutekick":["Cable glute kickback"],"bandlatpull":["Kneeling band lat pulldown"],"bandlegext":["Seated band leg extension"],"bandadduct":["Band hip adduction"],"bandabduct":["Standing mini-band hip abduction"],"bandbridge":["Mini-band glute bridge"],"bandfloorpress":["Band floor press"],"bandfly":["Band chest fly at the door"],"sissysquat":["Door-frame assisted sissy squat"],"jumpingjack":["Jumping jack"],"burpee":["Burpee"],"mountain":["Mountain climber"],"jumpsquat":["Jump squat"],"thruster":["Dumbbell thruster"],"wallpush":["Wall push-up"],"inclinepush":["Incline push-up"],"kneepush":["Knee push-up"],"widepush":["Wide push-up"],"archer":["Archer push-up"],"declinepike":["Feet-elevated pike push-up"],"superman":["Superman hold"],"ytw":["Prone Y-T-W raise"],"towelrow":["Door towel row"],"tablerow":["Under-table row"],"reversesnow":["Reverse snow angel"],"wallsit":["Wall sit"],"revlunge":["Reverse lunge"],"sidelunge":["Lateral lunge"],"copenhagen":["Copenhagen plank"],"copenhagenknee":["Short-lever Copenhagen plank"],"pistolbox":["Single-leg box squat"],"sllift":["Single-leg Romanian deadlift"],"glutebridge1":["Single-leg glute bridge"],"nordic":["Nordic curl"],"calf1":["Single-leg calf raise"],"deadbug":["Dead bug"],"birddog":["Bird dog"],"hollow":["Hollow hold"],"bicycle":["Bicycle crunch"],"plankup":["Plank up-down"],"chairdip":["Chair dip"],"towelcurl":["Towel curl"],"chestpressm":["Machine chest press"],"smithbench":["Smith machine bench press"],"cablelowfly":["Low-to-high cable crossover fly"],"leverrowm":["Chest-supported lever row"],"tbarrow":["T-bar row"],"assistpull":["Assisted pull-up"],"chestrowdb":["Chest-supported incline dumbbell row"],"shoulderpressm":["Machine shoulder press"],"smithohp":["Seated Smith machine press"],"assistdip":["Assisted dip"],"cableohext":["Overhead cable rope triceps extension"],"cablewood":["Cable woodchopper"],"pullthrough":["Cable pull-through"],"cablekickback":["Straight-leg cable glute kickback"],"abduction":["Hip abduction machine"],"adduction":["Hip adduction machine"],"cableadduct":["Standing cable hip adduction"],"hacksquat":["Hack squat"],"seatedcalf":["Seated calf raise"],"standcalf":["Standing machine calf raise"],"treadmill":["Treadmill"],"bike":["Stationary bike"],"rower":["Rowing machine"],"elliptical":["Elliptical"],"stairs":["Stair climber"]},"groups":{"chest":["Chest"],"back":["Back"],"shoulders":["Shoulders"],"biceps":["Biceps"],"triceps":["Triceps"],"forearms":["Forearms"],"abs":["Abs"],"glutes":["Glutes"],"quads":["Quads"],"hams":["Hamstrings"],"calves":["Calves"],"cardio":["Cardio"]},"muscles":{"chest":["Chest"],"delt_f":["Front delt"],"delt_s":["Side delt"],"delt_r":["Rear delt"],"biceps":["Biceps"],"triceps":["Triceps"],"forearms":["Forearms"],"abs":["Abs (rectus abdominis)"],"obliques":["Obliques"],"traps":["Traps"],"midback":["Rhomboids & mid-back"],"lats":["Lats"],"lowback":["Spinal erectors"],"glutes":["Glutes"],"quads":["Quads"],"hams":["Hamstrings"],"calves":["Calves"],"adductors":["Hip adductors"],"hipflex":["Hip flexors"],"serratus":["Serratus anterior"],"cuff":["Rotator cuff"]}},"syn":{"ex":{"pushup":["press-up"],"diamond":["алмазные отжимания","отжимания узким хватом","diamond push-up","triangle push-up"],"widepush":["отжимания широким хватом"],"dip":["брусья","parallel bar dip","chest dip"],"bbbench":["жим лёжа","бенч","бенч-пресс","bench press","bench","flat bench press"],"dbincline":["наклонный жим гантелей"],"smithincline":["наклонный жим в Смите","incline Smith press"],"inclinebb":["наклонный жим","жим на наклонной","incline bench press","incline bench"],"declinebb":["жим головой вниз","decline bench press","decline bench"],"dbfly":["dumbbell flye"],"pecdeck":["пек-дек","butterfly","machine fly"],"bbrow":["тяга штанги к поясу","barbell row"],"dbrow":["тяга гантели в наклоне","dumbbell row","single-arm dumbbell row"],"latpull":["вертикальная тяга","тяга верхнего блока к груди","lat pull-down"],"cablerow":["горизонтальная тяга","тяга нижнего блока","seated row","cable row","low row"],"hyper":["hyperextension"],"dbpress":["жим гантелей над головой","dumbbell shoulder press"],"ohp":["армейский жим","жим над головой","жим стоя","OHP","military press","standing press"],"latraise":["разведения в стороны","разведения гантелей в стороны","side raise","side lateral raise"],"facepull":["фейс-пул"],"bbcurl":["сгибание рук со штангой"],"dbcurl":["сгибание рук с гантелями"],"hammer":["молотки","хаммер"],"skull":["skull crusher","French press"],"pushdown":["трицепс на блоке","pressdown"],"ohext":["французский жим сидя","французский жим стоя"],"farmer":["фермерская прогулка","farmer’s walk"],"cablecrunch":["молитва"],"hipthrust":["хип-траст"],"kbswing":["свинг"],"kbswing1":["свинг одной рукой"],"kbtgu":["TGU","get-up"],"bulgarian":["болгарские сплит-приседания","Bulgarian squat","rear-foot-elevated split squat","RFESS"],"stepup":["степ-ап"],"rdl":["румынка","RDL"],"squat":["присед","squat","back squat"],"airsquat":["приседания без веса","air squat"],"lunge":["выпады на месте","static lunge"],"legcurl":["hamstring curl"],"invrow":["горизонтальные подтягивания","Australian pull-up","body row"],"straightpull":["straight-arm pulldown"],"goodmorning":["гуд морнинг"],"cablelat":["махи на нижнем блоке","cable side raise"],"reversefly":["обратная бабочка","rear delt fly"],"rollout":["ролик для пресса","ab wheel","ab roller"],"glutekick":["кикбэк"],"cablekickback":["кикбэк","cable kickback"],"jumpingjack":["джампинг джек","star jump"],"burpee":["бурпи"],"mountain":["альпинист"],"superman":["супермен"],"revlunge":["выпады назад"],"sidelunge":["выпады в сторону","side lunge"],"nordic":["нордические сгибания","Nordic hamstring curl"],"chestpressm":["жим в хаммере"],"leverrowm":["тяга в хаммере","machine row"],"cablewood":["wood chop"],"abduction":["абдуктор","abductor machine","hip abductor"],"adduction":["аддуктор","adductor machine","hip adductor"],"hacksquat":["гакк-приседания"],"treadmill":["бег","running"],"rower":["гребля","rowing","erg"],"elliptical":["орбитрек","эллипс","cross trainer"],"stairs":["stepper"]},"groups":{"chest":["грудные","pecs"],"shoulders":["дельты","delts","deltoids"],"forearms":["хват","grip"],"abs":["кор","core"],"glutes":["ягодичные"],"quads":["квадры","передняя поверхность бедра","quadriceps"],"hams":["бицепс бедра","задняя группа бедра"],"calves":["икроножные","calf"]},"muscles":{"obliques":["косые"],"lowback":["поясница"],"midback":["ромбовидные","rhomboids"],"adductors":["приводящие","adductors"],"serratus":["зубчатая","serratus"],"cuff":["ротаторы","ротаторная манжета"]}},"stop":["в","во","на","с","со","и","для","к","ко","по","из","от","у","за","упражнение","упражнения","упражнений","the","a","an","of","on","with","for","and","in","to","at","exercise","exercises"],"words":{"db":["dumbbell"],"bb":["barbell"],"kb":["kettlebell"]},"layout":{"en":"`qwertyuiop[]asdfghjkl;'zxcvbnm,./","ru":"ёйцукенгшщзхъфывапролджэячсмитьбю."}};window.PODHOD_LANG='ru';window.PODHOD_LOCALE={"dec":",","plural":"ru","dates":"ru","units":"kg"};
 /* ===================== SVG-ФИГУРА: общие помощники ===================== */
 const D2R = Math.PI / 180;
 const SVGNS = 'http://www.w3.org/2000/svg';
@@ -86,11 +86,15 @@ const MAP_BACK = [
 ];
 const MUSCLE_NAMES = {chest:'Грудные', delt_f:'Передняя дельта', delt_s:'Средняя дельта', delt_r:'Задняя дельта', biceps:'Бицепс', triceps:'Трицепс',
   forearms:'Предплечья', abs:'Прямая мышца живота', obliques:'Косые мышцы живота', traps:'Трапеции', midback:'Ромбовидные и середина спины',
-  lats:'Широчайшие', lowback:'Разгибатели спины', glutes:'Ягодичные', quads:'Квадрицепс', hams:'Бицепс бедра', calves:'Икры',
+  lats:'Широчайшие', lowback:'Разгибатели спины', glutes:'Ягодичные', quads:'Квадрицепс', hams:'Задняя поверхность бедра', calves:'Икры',
   /* с 4.33.0 (аудит анатомии): мышцы, без которых состав упражнений был неверен или неполон — приводящие (сведение ног,
      приседания, выпады), сгибатели бедра (подъёмы ног), передняя зубчатая (отжимания, жимы над головой), вращательная
      манжета (разведения назад, «Y-T-W», тяги сверху); «Икры» — икроножная и камбаловидная вместе */
   adductors:'Приводящие бедра', hipflex:'Сгибатели бедра', serratus:'Передняя зубчатая', cuff:'Вращательная манжета'};
+/* 4.110 (замечание анатома 8): «Бицепс бедра» — лишь одна из трёх мышц задней группы бедра (двуглавая, полусухожильная,
+   полуперепончатая), группа называется «Задняя поверхность бедра», как в разделе суставов; английское — Hamstrings.
+   Названия во множественном числе — для согласования глагола («Квадрицепс участвует», «Грудные участвуют») */
+const MUSCLE_PLURAL = new Set(['chest', 'forearms', 'obliques', 'traps', 'midback', 'lats', 'lowback', 'glutes', 'calves', 'adductors', 'hipflex']);
 
 function mirrorShape(kind, d) {
   if (kind === 'p') return d.map(([x, y]) => [100 - x, y]);
@@ -333,7 +337,7 @@ const EQUIP_PRESETS = [
 const GROUPS = [
   {id:'chest', name:'Грудь'}, {id:'back', name:'Спина'}, {id:'shoulders', name:'Плечи'}, {id:'biceps', name:'Бицепс'},
   {id:'triceps', name:'Трицепс'}, {id:'forearms', name:'Предплечья'}, {id:'abs', name:'Пресс'}, {id:'glutes', name:'Ягодицы'},
-  {id:'quads', name:'Квадрицепс'}, {id:'hams', name:'Бицепс бедра'}, {id:'calves', name:'Икры'}, {id:'cardio', name:'Кардио'}
+  {id:'quads', name:'Квадрицепс'}, {id:'hams', name:'Задняя поверхность бедра'}, {id:'calves', name:'Икры'}, {id:'cardio', name:'Кардио'}
 ];
 const GROUP_PRESETS = [
   {id:'push', name:'Жим', g:['chest', 'shoulders', 'triceps']},
@@ -358,7 +362,7 @@ const EX = [
  err:['Провисание поясницы или поднятый таз', 'Локти разведены в стороны под 90°', 'Неполная амплитуда'],
  breath:'Вдох при опускании, выдох при подъёме.',
  anim:{}},
-{id:'diamond', name:'Отжимания узким хватом', eq:[], g:'triceps', pri:['triceps', 'chest'], sec:['delt_f', 'abs', 'serratus'], type:'c', lvl:1,
+{id:'diamond', name:'Отжимания с узкой постановкой рук', eq:[], g:'triceps', pri:['triceps', 'chest'], sec:['delt_f', 'abs', 'serratus'], type:'c', lvl:1,
  tech:['Ладони под грудью на ширине плеч, пальцы смотрят вперёд.',
    'Тело прямое, пресс и ягодицы напряжены.',
    'Опускайтесь, ведя локти назад вдоль корпуса, пока грудь не приблизится к кистям.',
@@ -1407,7 +1411,7 @@ EX.push(
  err:['Таз отставлен назад — работают только руки', 'Прогиб в пояснице', 'Локти в стороны'],
  breath:'Вдох вниз, выдох вверх.',
  anim:{}},
-{id:'widepush', name:'Отжимания широким хватом', eq:[], g:'chest', pri:['chest'], sec:['delt_f', 'triceps', 'abs', 'serratus'], type:'c', lvl:2,
+{id:'widepush', name:'Отжимания с широкой постановкой рук', eq:[], g:'chest', pri:['chest'], sec:['delt_f', 'triceps', 'abs', 'serratus'], type:'c', lvl:2,
  tech:['Ладони в полтора раза шире плеч, пальцы слегка наружу. Тело прямое.', 'Опускайтесь, пока грудь не окажется в 3–5 см от пола; локти уходят в стороны, но не выше плеч.', 'Выжмите себя вверх, сводя грудные.'],
  err:['Локти выше плеч — нагрузка на плечевые суставы', 'Провисание таза'],
  breath:'Вдох вниз, выдох вверх.',
@@ -2322,7 +2326,8 @@ function buildSpatialFigure(anim,opts={}){
   const facingCam=f=>{const a=project([0,0,0]),b=project(f.normal);return b[2]-a[2]>.035;};
   const surfaces=!muscles||!withMuscles?[]:mannequinMuscleSurfaces(R,anim.muscleProfile,{coarse:true}).filter(facingCam);
   if(muscles&&withMuscles)for(const zone of muscleContours(surfaces)){
-   const value=sideValues?.[zone.side]?.[zone.id]??muscles.values[zone.id],fill=muscleColor(value);
+   /* нерабочая сторона (значение 0) — без зоны: кожа, как у мышц вне упражнения (09d-catalog-muscles.js, IDLE_SIDE) */
+   const value=sideValues?.[zone.side]?.[zone.id]??muscles.values[zone.id];if(!(value>0))continue;const fill=muscleColor(value);
    queue('path',{d:closedSpline(zone.points.map(p=>project(p).slice(0,2))),fill,class:'muscle-zone','data-muscle':zone.id,'data-side':zone.side,
     'data-role':(anim.muscleProfile.regions?.[zone.id]||anim.muscleProfile.muscles[zone.id]).role,'data-band':muscleBand(value),
     stroke:fill,'stroke-width':.25,'stroke-linejoin':'round','aria-hidden':'true'},zone.points);
@@ -2497,7 +2502,7 @@ const MUSCLE_PROFILES={
   }},
  cableextrot:{pair:'back',curveBasis:'illustrative',
   sources:[['Мышцы манжеты и дельтовидная в упражнениях на наружную ротацию: замеры активности мышц — Reinold и др., 2004','https://doi.org/10.2519/jospt.2004.34.7.385']],
-  notes:{concentric:'Подостная и малая круглая поворачивают плечо наружу, задняя дельта помогает. Локоть у бока.',
+  notes:{concentric:'Подостная и малая круглая поворачивают плечо наружу, задняя дельта помогает. Подлопаточная поворачивает плечо внутрь — здесь она растягивается. Локоть у бока.',
    eccentric:'Наружные ротаторы сдерживают возврат кисти к животу под тягой троса.',
    end:'Плечо развёрнуто наружу: манжета удерживает положение, локоть не отходит от валика.',
    start:'Кисть у живота: трос натянут, плечо повёрнуто внутрь.'},
@@ -2507,13 +2512,36 @@ const MUSCLE_PROFILES={
   }},
  bandextrot:{pair:'back',curveBasis:'illustrative',
   sources:[['Мышцы манжеты и дельтовидная в упражнениях на наружную ротацию: замеры активности мышц — Reinold и др., 2004','https://doi.org/10.2519/jospt.2004.34.7.385']],
-  notes:{concentric:'Подостная и малая круглая поворачивают плечо наружу; лента тянет сильнее к концу движения.',
+  notes:{concentric:'Подостная и малая круглая поворачивают плечо наружу; лента тянет сильнее к концу движения. Подлопаточная поворачивает плечо внутрь — здесь она растягивается.',
    eccentric:'Наружные ротаторы сдерживают возврат кисти к животу, лента не дёргает руку.',
    end:'Плечо развёрнуто наружу — лента натянута сильнее всего.',
    start:'Кисть у живота: лента едва натянута.'},
   muscles:{
    cuff:{role:'primary',concentric:[.26,.70,.86],eccentric:[.26,.56,.86]},
    delt_r:{role:'support',concentric:[.22,.46,.60],eccentric:[.22,.38,.60]}
+  }},
+ /* Махи гирей (4.110, замечание анатома 7): доли по фазам — по ЭМГ McGill и Marshall, 2012 (JSCR 26(1):16–27, табл. 1,
+    мах гирей 16 кг одной рукой; цикл начинается в нижней точке, из приседа с нейтральной спиной). Пики (% MVC и доля цикла):
+    поясничные разгибатели спины 46–52 % около 30 % цикла — в первой половине разгона, грудные 44–55 %; большая ягодичная
+    76 % на 57 % цикла — у полного разгибания таза наверху («culminating hip joint final extension»), средняя ягодичная 70 %;
+    двуглавая бедра 33 % на 52 %; внутренняя косая 30–42 %, наружная 14–17 %; прямая живота 7 % (в составе нет);
+    широчайшие 17–56 % (противоположная руке сторона сильнее). Узлы: t=0 — замах (гиря за коленями), t=1 — гиря на уровне
+    груди, тело прямое; разгон 0→1 — рабочая фаза, 1→0 — гиря падает и её тормозят у нижней точки (механика: разгибатели
+    таза и спины держат вес гири и корпуса в наклоне — в нижней точке и на замахе они не расслаблены). Шкала: 0,45–0,72 —
+    «заметное» (около половины MVC), ≥ 0,72 — «сильное». Lake и Lauder, 2012 (JSCR 26(12):3209–3216) мерили силу и мощность
+    по опоре, без ЭМГ, — доли по ним не ставятся. */
+ kbswing:{pair:'back',curveBasis:'illustrative',
+  sources:[['Махи гирей, рывок и переноска: активность мышц спины и таза, нагрузка на поясницу — McGill и Marshall, 2012','https://www.backfitpro.com/medical-scientific-articles/2012/%5B63%5DMcGill,S.(2012)Kettlebell-swing-snatch-and-bottoms-up-carry%5BJ.Strength-Condit.Res.%5D.pdf']],
+  notes:{concentric:'Разгон: ягодичные и задняя поверхность бедра разгибают таз, разгибатели спины держат спину прямой — сильнее всего в начале подъёма.',
+   eccentric:'Гиря падает сама; у нижней точки ягодичные и разгибатели спины снова напрягаются и тормозят её между ног.',
+   end:'Наверху тело прямое: ягодичные напряжены сильнее всего, корпус не отклоняется назад.',
+   start:'Замах: гиря за коленями, ягодичные и разгибатели спины уже держат вес перед новым разгоном.'},
+  muscles:{
+   glutes:{role:'primary',concentric:[.55,.80,.88],eccentric:[.55,.40,.88]},
+   hams:{role:'primary',concentric:[.48,.60,.56],eccentric:[.48,.38,.56]},
+   lowback:{role:'support',concentric:[.62,.70,.46],eccentric:[.62,.44,.46]},
+   obliques:{role:'support',concentric:[.30,.44,.48],eccentric:[.30,.32,.48]},
+   lats:{role:'support',concentric:[.40,.50,.38],eccentric:[.40,.36,.38]}
   }},
  /* Скандинавские сгибания — уступающий акцент (этап А аудита анатомии 4.53.0): поза при t 0→1 — толчок руками от пола и
     возврат вверх, главная работа задней поверхности бедра — медленное опускание 1→0, ярче всего в его середине и ниже, где
@@ -2531,6 +2559,8 @@ const MUSCLE_PROFILES={
    calves:{role:'support',concentric:[.34,.36,.30],eccentric:[.34,.50,.30]}
   }}
 };
+/* мах одной рукой — те же доли (у McGill и Marshall, 2012 — мах одной рукой); стороны — CATALOG_LATERALITY */
+MUSCLE_PROFILES.kbswing1=MUSCLE_PROFILES.kbswing;
 /* DEMO собран до модулей 04 и 04b: упражнения оттуда ищутся в EX */
 for(const[id,profile]of Object.entries(MUSCLE_PROFILES))(DEMO[id]||EX.find(ex=>ex.id===id)).anim.muscleProfile=profile;
 
@@ -2548,8 +2578,12 @@ function muscleFrame(anim,t,index=0){
  return{phase,values,note:profile.notes[phase]};
 }
 function muscleBand(v){return v<.12?0:v<.45?1:v<.72?2:3;}
-/* Шкала участия: цвет тела → жёлтый → янтарный → оранжевый. Красный оставлен для отметок нагрузки на суставы. */
-const MUSCLE_STOPS=[[0,[174,184,200]],[.15,[233,210,106]],[.45,[245,184,46]],[.75,[242,138,31]],[1,[234,106,14]]];
+/* Шкала участия: цвет тела → бледно-песочный → янтарный → оранжевый. Красный оставлен для отметок нагрузки на суставы.
+   4.110 (замечания анатома 2 и 3): прежде уже «слабое участие» (0,15) было насыщенным жёлтым — светлее оранжевого, — и
+   стабилизатор (пресс в жиме гири, 0,35) на коже «Манекена» и вспомогательная трапециевидная в тяге к лицу бросались в глаза
+   сильнее главной мышцы. Теперь насыщенность растёт вместе с участием: слабое — бледное, заметное — янтарное, сильное —
+   оранжевое; границы полос (muscleBand) прежние. */
+const MUSCLE_STOPS=[[0,[174,184,200]],[.15,[198,198,188]],[.45,[234,200,118]],[.72,[244,150,36]],[1,[234,106,14]]];
 function muscleColor(v){
  const x=Math.max(0,Math.min(1,Number.isFinite(v)?v:0));let i=0;while(i<MUSCLE_STOPS.length-2&&x>MUSCLE_STOPS[i+1][0])i++;
  const[a,ca]=MUSCLE_STOPS[i],[b,cb]=MUSCLE_STOPS[i+1],q=(x-a)/(b-a);
@@ -10845,23 +10879,31 @@ for(const ex of EX){
 /* Anatomical parts and teaching regions are deliberately distinct. Deep muscles
    have an entry but no patch painted on top of the skin. Colour curves are authored
    illustrations; identical head profiles do not pretend to measure head-specific EMG. */
+/* Названия частей — по Международной анатомической терминологии в русском переводе, в одной форме «часть/головка + мышца в
+   родительном падеже» (4.110, замечание анатома 9): части большой грудной — ключичная, грудино-рёберная, брюшная; части
+   трапециевидной — нисходящая, поперечная, восходящая (в скобках — привычное «верхняя / средняя / нижняя»); части дельтовидной —
+   ключичная, акромиальная, остистая; «боковая ягодичная область» — средняя и малая ягодичные мышцы, «медиальная область
+   заднего бедра» — полусухожильная и полуперепончатая мышцы. Подостная и малая круглая лежат на задней поверхности лопатки
+   (StatPearls — Miniato и др., 2023, NBK536933: «Posterior scapula, inferior to the scapular spine/Infraspinous fossa»), по
+   краям их прикрывают трапециевидная и задняя часть дельтовидной (Gray's Anatomy, 20-е изд., 1918, «Deltoideus»: «Its
+   posterior border rests on the Infraspinatus and Triceps») — видимая область, а не «глубже» (замечание анатома 4) */
 const MUSCLE_REGIONS={
- chest:[['pec_clavicular','Ключичная часть грудной','anatomical'],['pec_sternal','Средняя область грудной','teaching'],['pec_costal','Нижняя область грудной','teaching'],['pec_minor','Малая грудная · глубже','deep']],
- triceps:[['tri_long','Длинная головка трицепса','anatomical'],['tri_lateral','Латеральная головка трицепса','anatomical'],['tri_medial','Медиальная головка трицепса · глубже','deep']],
- biceps:[['bi_long','Длинная головка бицепса','anatomical'],['bi_short','Короткая головка бицепса','anatomical'],['brachialis','Плечевая мышца · глубже','deep']],
- delt_f:[['delt_f','Передняя часть дельтовидной','anatomical']],delt_s:[['delt_s','Средняя часть дельтовидной','anatomical']],delt_r:[['delt_r','Задняя часть дельтовидной','anatomical']],
- quads:[['quad_rectus','Прямая мышца бедра','anatomical'],['quad_lateral','Латеральная широкая мышца','anatomical'],['quad_medial','Медиальная широкая мышца','anatomical'],['quad_deep','Промежуточная широкая · глубже','deep']],
- hams:[['ham_lateral','Двуглавая мышца бедра, длинная головка','anatomical'],['ham_medial','Медиальная область заднего бедра','teaching'],['ham_short','Короткая головка двуглавой бедра · глубже','deep']],
- calves:[['calf_medial','Медиальная головка икроножной','anatomical'],['calf_lateral','Латеральная головка икроножной','anatomical'],['soleus','Камбаловидная · глубже','deep']],
- glutes:[['glute_max','Большая ягодичная','anatomical'],['glute_lateral','Боковая ягодичная область','teaching']],
- traps:[['trap_upper','Верхняя область трапециевидной','teaching'],['trap_mid','Средняя область трапециевидной','teaching'],['trap_lower','Нижняя область трапециевидной','teaching'],['lev_scap','Поднимающая лопатку · глубже','deep']],
- lats:[['lats','Широчайшие · общий профиль','group']],midback:[['midback','Межлопаточная область · общий профиль','group']],
+ chest:[['pec_clavicular','Ключичная часть большой грудной мышцы','anatomical'],['pec_sternal','Грудино-рёберная часть большой грудной мышцы','anatomical'],['pec_costal','Брюшная часть большой грудной мышцы','anatomical'],['pec_minor','Малая грудная мышца · глубже','deep']],
+ triceps:[['tri_long','Длинная головка трёхглавой мышцы плеча','anatomical'],['tri_lateral','Латеральная головка трёхглавой мышцы плеча','anatomical'],['tri_medial','Медиальная головка трёхглавой мышцы плеча · глубже','deep']],
+ biceps:[['bi_long','Длинная головка двуглавой мышцы плеча','anatomical'],['bi_short','Короткая головка двуглавой мышцы плеча','anatomical'],['brachialis','Плечевая мышца · глубже','deep']],
+ delt_f:[['delt_f','Передняя (ключичная) часть дельтовидной мышцы','anatomical']],delt_s:[['delt_s','Средняя (акромиальная) часть дельтовидной мышцы','anatomical']],delt_r:[['delt_r','Задняя (остистая) часть дельтовидной мышцы','anatomical']],
+ quads:[['quad_rectus','Прямая мышца бедра','anatomical'],['quad_lateral','Латеральная широкая мышца бедра','anatomical'],['quad_medial','Медиальная широкая мышца бедра','anatomical'],['quad_deep','Промежуточная широкая мышца бедра · глубже','deep']],
+ hams:[['ham_lateral','Длинная головка двуглавой мышцы бедра','anatomical'],['ham_medial','Полусухожильная и полуперепончатая мышцы','anatomical'],['ham_short','Короткая головка двуглавой мышцы бедра · глубже','deep']],
+ calves:[['calf_medial','Медиальная головка икроножной мышцы','anatomical'],['calf_lateral','Латеральная головка икроножной мышцы','anatomical'],['soleus','Камбаловидная мышца · глубже','deep']],
+ glutes:[['glute_max','Большая ягодичная мышца','anatomical'],['glute_lateral','Средняя и малая ягодичные мышцы','anatomical']],
+ traps:[['trap_upper','Нисходящая (верхняя) часть трапециевидной мышцы','anatomical'],['trap_mid','Поперечная (средняя) часть трапециевидной мышцы','anatomical'],['trap_lower','Восходящая (нижняя) часть трапециевидной мышцы','anatomical'],['lev_scap','Мышца, поднимающая лопатку · глубже','deep']],
+ lats:[['lats','Широчайшая мышца спины · общий профиль','group']],midback:[['midback','Межлопаточная область: ромбовидные мышцы под трапециевидной · общий профиль','group']],
  lowback:[['lowback','Разгибатели спины · общий профиль','group']],abs:[['abs','Прямая мышца живота','anatomical']],
  obliques:[['obl_ext','Наружная косая мышца живота','anatomical'],['obl_int','Внутренняя косая мышца живота · глубже','deep']],
  forearms:[['forearm_flex','Сгибатели запястья и пальцев','anatomical'],['forearm_ext','Разгибатели запястья и пальцев','anatomical'],['brachiorad','Плечелучевая мышца','anatomical']],
- adductors:[['adductors','Приводящие мышцы бедра · общий профиль','group']],hipflex:[['hipflex','Подвздошно-поясничная · глубже','deep']],
- serratus:[['serratus','Передняя зубчатая','anatomical']],
- cuff:[['cuff_ext','Подостная и малая круглая · глубже','deep'],['cuff_int','Подлопаточная · глубже','deep'],['cuff_sup','Надостная · глубже','deep']]
+ adductors:[['adductors','Приводящие мышцы бедра · общий профиль','group']],hipflex:[['hipflex','Подвздошно-поясничная мышца · глубже','deep']],
+ serratus:[['serratus','Передняя зубчатая мышца','anatomical']],
+ cuff:[['cuff_ext','Подостная и малая круглая мышцы','anatomical'],['cuff_int','Подлопаточная мышца · глубже','deep'],['cuff_sup','Надостная мышца · глубже','deep']]
 };
 const REGION_ANATOMY_SOURCES=[['Анатомия мышц плечевого пояса — OpenStax','https://openstax.org/books/anatomy-and-physiology-2e/pages/11-5-muscles-of-the-pectoral-girdle-and-upper-limbs'],['Анатомия мышц ног — OpenStax','https://openstax.org/books/anatomy-and-physiology-2e/pages/11-6-appendicular-muscles-of-the-pelvic-girdle-and-lower-limbs']];
 function motionProfile(anim){return anim.catalogProfile||anim.muscleProfile;}
@@ -10882,15 +10924,26 @@ const LOWER_CHEST=new Set(['declinebb','dip','assistdip']);
      Anatomy; OpenStax A&P 2e, 11.4: наружная косая поворачивает корпус в противоположную сторону, внутренняя — в свою);
    - «мельница» с гирей в левой руке: внизу грудь развёрнута влево, к гире; на подъёме корпус разворачивается вправо —
      наружная косая левой стороны и внутренняя правой (то же правило; по длинам мышц они укорачиваются). */
-const CATALOG_LATERALITY={dbrow:{upper:'L'},kbsnatch:{upper:'L'},kbsllift:{lower:'L'},kbwindmill:{upper:'L',regions:{obl_ext:'L',obl_int:'R'}},kbswing1:{upper:'L'},kbclean:{upper:'L'},kbpress:{upper:'L'},kbrow:{upper:'L'},kbfloorpress:{upper:'L'},cablelat:{upper:'R'},concentration:{upper:'L'},kickback:{upper:'L'},archer:{upper:'R'},bulgarian:{lower:'L'},stepup:{lower:'L'},lunge:{lower:'L'},revlunge:{lower:'L'},sidelunge:{lower:'R'},pistolbox:{lower:'L'},sllift:{lower:'L'},glutebridge1:{lower:'L'},glutekick:{lower:'L'},cablekickback:{lower:'L'},calf1:{lower:'L'},cableadduct:{lower:'L'},bandadduct:{lower:'L'},bandlegext:{lower:'L'},cableextrot:{upper:'R'},bandextrot:{upper:'R'},
+const CATALOG_LATERALITY={dbrow:{upper:'L',support:'upper'},kbsnatch:{upper:'L'},kbsllift:{lower:'L'},kbwindmill:{upper:'L',regions:{obl_ext:'L',obl_int:'R'}},kbswing1:{upper:'L',both:['lats']},kbclean:{upper:'L'},kbpress:{upper:'L'},kbrow:{upper:'L'},kbfloorpress:{upper:'L'},cablelat:{upper:'R'},concentration:{upper:'L'},kickback:{upper:'L',support:'upper'},archer:{upper:'R',support:'upper'},bulgarian:{lower:'L',support:'lower'},stepup:{lower:'L',support:'lower'},lunge:{lower:'L',support:'lower'},revlunge:{lower:'L',support:'lower'},sidelunge:{lower:'R',support:'lower'},pistolbox:{lower:'L'},sllift:{lower:'L'},glutebridge1:{lower:'L'},glutekick:{lower:'L',support:'lower'},cablekickback:{lower:'L',support:'lower'},calf1:{lower:'L'},cableadduct:{lower:'L',support:'lower'},bandadduct:{lower:'L',support:'lower'},bandlegext:{lower:'L'},cableextrot:{upper:'R'},bandextrot:{upper:'R'},
  copenhagen:{lower:'L'},copenhagenknee:{lower:'L'},sidebend:{regions:{obl_ext:'L',obl_int:'L'}},cablewood:{regions:{obl_ext:'L',obl_int:'R'}}};
+/* Нерабочая сторона (4.110, замечание анатома 1: «цветом выделена только рабочая сторона, свободная рука нейтральная»):
+   - свободная рука или нога (висит, лежит, поднята над полом) — в покое, как мышцы вне упражнения: значение IDLE_SIDE, цвет
+     покоя (muscleTint, кожа «Манекена»);
+   - вторая рука или нога держит вес тела (support — опора в позе: ладонь и колено на скамье в тяге гантели и разгибании в
+     наклоне, прямая рука в отжиманиях «лучник», вторая нога на полу или скамье в выпадах, зашагиваниях, отведении и сведении
+     ноги стоя) — слабое участие SUPPORT_SIDE: по механике мышцы опорной конечности держат вес, но не делают движения
+     упражнения (опора проверяется по контактам позы — tools/muscle-phase.test.js);
+   - both — группы, которые работают с обеих сторон: в махе гирей одной рукой широчайшая противоположной стороны работает
+     сильнее, чем своей (ЭМГ — McGill и Marshall, 2012, JSCR 26(1):16–27, табл. 1: мах правой рукой — правая 17 %, левая
+     56 % MVC). */
+const IDLE_SIDE=0,SUPPORT_SIDE=.28;
 function catalogSideValues(profile,values){
- const sides={L:{...values},R:{...values}},lower=new Set(['quads','hams','calves','glutes','adductors','hipflex']),lat=profile.laterality||{};
- for(const[part,active]of Object.entries(lat))if(part!=='regions')for(const[id,r]of Object.entries(profile.regions)){
+ const sides={L:{...values},R:{...values}},lower=new Set(['quads','hams','calves','glutes','adductors','hipflex']),lat=profile.laterality||{},both=new Set(lat.both||[]);
+ for(const[part,active]of Object.entries(lat))if(part==='upper'||part==='lower')for(const[id,r]of Object.entries(profile.regions)){
   const applies=part==='lower'?lower.has(r.parent):!lower.has(r.parent)&&!['abs','obliques','lowback','traps'].includes(r.parent);
-  if(applies)sides[active==='L'?'R':'L'][id]=.28;
+  if(applies&&!both.has(r.parent))sides[active==='L'?'R':'L'][id]=lat.support===part?SUPPORT_SIDE:IDLE_SIDE;
  }
- for(const[id,active]of Object.entries(lat.regions||{}))if(profile.regions[id])sides[active==='L'?'R':'L'][id]=.28;
+ for(const[id,active]of Object.entries(lat.regions||{}))if(profile.regions[id])sides[active==='L'?'R':'L'][id]=IDLE_SIDE;
  return sides;
 }
 /* Учебные акценты частей мышц (этап А аудита анатомии 4.53.0: цвет по фазам против длины мышц — tools/muscles/phase.js,
@@ -10898,6 +10951,13 @@ function catalogSideValues(profile,values){
 const SQUAT_LIKE=new Set('squat goblet airsquat smithsquat hacksquat legpress legpresshigh legpresslow lunge revlunge bulgarian stepup pistolbox sidelunge wallsit jumpsquat thruster kbfrontsquat'.split(' '));
 const PULL_DOWN=new Set(['latpull','latpullv','latpulluh','bandlatpull','assistpull','pullup','chinup']);
 const EXT_ROT=new Set(['cableextrot','bandextrot']);
+/* тяга к лицу — разведение плеч назад с поворотом наружу при руках на уровне плеч (4.110, замечание анатома 2): средняя часть
+   трапециевидной работает сильнее всего в горизонтальном разгибании плеча с наружной ротацией (ЭМГ — Ekstrom и др., 2003,
+   JOSPT 33(5):247–258, реферат), нижняя — в повороте плеча наружу лёжа при отведении 90° (там же: 79 % MVIC — по McCabe и
+   др., 2007, NAJSPT 2(1):34–43); верхняя в повороте наружу лёжа при отведении 90° работает вдвое слабее средней (там же:
+   отношение верхней части к средней 0,44 — Schory и др., 2016, IJSPT 11(3):321–336, табл. 3). Средняя и нижняя части — доля
+   1, верхняя — 0,44; лопатку здесь не поднимают (подсказка «плечи не поднимать») */
+const FACE_PULL=new Set(['facepull','bandfacepull']);
 const REGION_FACTORS={
  /* прямая бедра в приседаниях, выпадах и жиме ногами работает слабее широких: двусуставная, в разгибании колена с
     разгибанием бедра длина почти не меняется (ЭМГ: Escamilla и др., 1998) */
@@ -10908,7 +10968,7 @@ const REGION_FACTORS={
  /* шраги поднимают лопатку верхняя часть трапециевидной и поднимающая лопатку, нижняя часть — опускатель (Neumann, 2017;
     ЭМГ — Pizzari и др., 2014); в тягах сверху и подтягиваниях лопатку опускает нижняя часть (ЭМГ — Youdas и др., 2010),
     верхняя при этом удлиняется */
- trap_upper:id=>PULL_DOWN.has(id)?.35:1,
+ trap_upper:id=>PULL_DOWN.has(id)?.35:FACE_PULL.has(id)?.44:1,
  trap_mid:id=>id==='shrug'?.6:PULL_DOWN.has(id)?.8:1,
  trap_lower:id=>id==='shrug'?.25:1,
  lev_scap:id=>id==='shrug'?1:.5,
@@ -10924,8 +10984,11 @@ const REGION_FACTORS={
  forearm_ext:id=>id==='wristcurl'?.3:id==='hammer'?.6:1,
  brachiorad:id=>id==='wristcurl'?.3:1,
  /* манжета: наружу плечо поворачивают подостная и малая круглая, надостная помогает (ЭМГ — Reinold и др., 2004),
-    подлопаточная — внутренний ротатор (OpenStax A&P 2e, 11.5) и растягивается */
- cuff_int:id=>EXT_ROT.has(id)?.25:id==='ytw'?.3:1,
+    подлопаточная — внутренний ротатор (OpenStax A&P 2e, 11.5; Gray's Anatomy, 20-е изд., 1918: «The Subscapularis rotates
+    the head of the humerus medially»; StatPearls — Aguirre и др., 2023, NBK513344: «The subscapularis is the only rotator
+    cuff muscle that has this function») и растягивается — в наружном вращении не двигатель (4.110, замечание анатома 4):
+    доля 0, цвет покоя */
+ cuff_int:id=>EXT_ROT.has(id)?0:id==='ytw'?.3:1,
  cuff_sup:id=>EXT_ROT.has(id)?.6:id==='ytw'?.9:1,
  /* малая грудная плечо не сгибает — опускает и выводит вперёд лопатку (OpenStax A&P 2e, 11.5): в подъёме рук вперёд
     лопатка поворачивается вверх и малая грудная растягивается; руку поднимает ключичная часть большой грудной */
@@ -10940,12 +11003,16 @@ const REGION_SOURCES={
  brd:['Плечелучевая в сгибании локтя: замеры активности мышц — Boland и др., 2008','https://doi.org/10.1016/j.jhsa.2008.07.019'],
  bra:['Плечевая мышца сгибает локоть при любом положении предплечья: замеры активности мышц — Basmajian и Latif, 1957','https://pubmed.ncbi.nlm.nih.gov/13475410/'],
  grip:['Двуглавая и плечелучевая при хвате снизу, нейтральном и сверху: замеры активности мышц — Kleiber и др., 2015','https://doi.org/10.3389/fphys.2015.00215'],
- cuff:['Мышцы манжеты и дельтовидная в упражнениях на наружную ротацию: замеры активности мышц — Reinold и др., 2004','https://doi.org/10.2519/jospt.2004.34.7.385']
+ cuff:['Мышцы манжеты и дельтовидная в упражнениях на наружную ротацию: замеры активности мышц — Reinold и др., 2004','https://doi.org/10.2519/jospt.2004.34.7.385'],
+ subsc:['Подлопаточная мышца — внутренний ротатор плеча: StatPearls, Aguirre и др., 2023','https://www.ncbi.nlm.nih.gov/books/NBK513344/'],
+ trap:['Части трапециевидной и передняя зубчатая в упражнениях для лопатки: замеры активности мышц — Ekstrom и др., 2003','https://doi.org/10.2519/jospt.2003.33.5.247'],
+ trapRatio:['Отношения частей трапециевидной в упражнениях для лопатки: обзор — Schory и др., 2016','https://pmc.ncbi.nlm.nih.gov/articles/PMC4886800/']
 };
 const regionSources=(id,muscles)=>[
  ...(SQUAT_LIKE.has(id)&&muscles.quads?[REGION_SOURCES.rectus]:[]),...(muscles.hams&&id!=='legcurl'&&id!=='nordic'?[REGION_SOURCES.hamShort]:[]),
  ...(id==='shrug'?[REGION_SOURCES.shrug]:[]),...(PULL_DOWN.has(id)?[REGION_SOURCES.pull]:[]),...(id==='hammer'?[REGION_SOURCES.brd,REGION_SOURCES.bra,REGION_SOURCES.grip]:[]),
- ...(EXT_ROT.has(id)||id==='ytw'?[REGION_SOURCES.cuff]:[])];
+ ...(EXT_ROT.has(id)||id==='ytw'?[REGION_SOURCES.cuff]:[]),...(EXT_ROT.has(id)?[REGION_SOURCES.subsc]:[]),
+ ...(FACE_PULL.has(id)?[REGION_SOURCES.trap,REGION_SOURCES.trapRatio]:[])];
 /* Группы, которых нет в составе упражнения, но которые по ЭМГ участвуют: нижняя часть трапециевидной опускает лопатку в тягах
    сверху и подтягиваниях (Youdas и др., 2010) — в профиле как вспомогательная, в составе упражнения (pri/sec) не меняется */
 const PROFILE_EXTRA={traps:PULL_DOWN};
@@ -10965,8 +11032,10 @@ for(const ex of EX){
   const basis=factors.some(f=>f!==factors[0])?'illustrative-regional':'shared-group';
   MUSCLE_REGIONS[parent].forEach(([id,label,kind],i)=>{regions[id]={parent,label,kind,role:m.role,factor:factors[i],visible:kind!=='deep',profileBasis:basis};});
  }
- const names=ex.pri.map(id=>MUSCLE_NAMES[id]).join(', ');
- const notes=base?base.notes:{concentric:hold?'Удержание: мышцы сохраняют положение.':cyclic?'Движение по кругу: цвет примерно показывает, какие мышцы работают сильнее.':names+' участвуют в рабочей фазе.',eccentric:cyclic?'Дальше по кругу: участие мышц меняется плавно.':'Мышцы контролируют возврат.',end:'Конечная точка: сохраняйте контроль и опору.',start:'Исходное положение: подготовьтесь к следующему повторению.'};
+ /* «Квадрицепс участвует», «Грудные, трицепс участвуют» (4.110, замечание анатома 14): число глагола — по числу групп и по
+    самому названию (у групп во множественном числе — «Грудные», «Широчайшие», «Икры» — «участвуют») */
+ const names=ex.pri.map(id=>MUSCLE_NAMES[id]).join(', '),many=ex.pri.length>1||MUSCLE_PLURAL.has(ex.pri[0]);
+ const notes=base?base.notes:{concentric:hold?'Удержание: мышцы сохраняют положение.':cyclic?'Движение по кругу: цвет примерно показывает, какие мышцы работают сильнее.':names+(many?' участвуют в рабочей фазе.':' участвует в рабочей фазе.'),eccentric:cyclic?'Дальше по кругу: участие мышц меняется плавно.':'Мышцы контролируют возврат.',end:'Конечная точка: сохраняйте контроль и опору.',start:'Исходное положение: подготовьтесь к следующему повторению.'};
  ex.anim.catalogProfile={curveBasis:'illustrative',muscles,regions,notes,pair:ex.pri.some(id=>['lats','midback','lowback','glutes','hams','traps'].includes(id))?'back':'above',sources:[...(base?.sources||[]),...regionSources(ex.id,muscles),...REGION_ANATOMY_SOURCES],cyclic,hold,laterality:CATALOG_LATERALITY[ex.id]};
 }
 /* Мышечные зоны на манекене: те же учебные области, но на поверхности нового тела.
@@ -10974,11 +11043,23 @@ for(const ex of EX){
    Конечности: t — доля сегмента, угол от передней поверхности к латеральной. Дельты лежат на «шапке» плеча. */
 /* нижняя область трапециевидной — между разгибателями спины (до 24) и межлопаточной областью (от 33), медиальнее
    широчайших: восходящая часть идёт от остистых отростков Th6–Th12 к основанию ости лопатки (OpenStax A&P 2e, 11.5) */
-const MANNEQUIN_TORSO_PATCHES=[['pec_clavicular',43,51.8,.06,1.12],['pec_sternal',34,43,.06,1.22],['pec_costal',29,34,.08,1.02],['abs',3,29,.04,.5],['obl_ext',3,28,.56,1.36],
+/* 4.110 (замечание анатома 15): части большой грудной — от средней линии (у грудины; адрес кожи Anny у грудины сжат — на
+   3–5 см от средней линии угол сечения 0,03, и с началом 0,06 полоса у грудины и выемки по краю пятен оставались серыми);
+   подостная и малая круглая — на лопатке ниже ости, латеральнее поперечной части трапециевидной и выше широчайшей
+   (замечание анатома 4). Латеральный край области — не дальше 1,92: при руках над головой кожа у подмышки уходит с сечения
+   корпуса, и участок там отрывался от процедурной кожи (tools/catalog-render-audit.mjs, тяги сверху и подтягивания); на коже
+   Anny в области 6 вершин на сторону */
+const MANNEQUIN_TORSO_PATCHES=[['pec_clavicular',43,51.8,.02,1.12],['pec_sternal',34,43,.02,1.22],['pec_costal',29,34,.02,1.02],['abs',3,29,.04,.5],['obl_ext',3,28,.56,1.36],
  ['lats',13,40.2,1.52,2.62],['serratus',28,39,1.24,1.5],['midback',33,51.8,2.62,3.1],['lowback',3,24,2.7,3.1],['glute_max',-5.3,4,1.72,3.1],['glute_lateral',-3.5,7,1.16,1.7],['trap_upper',50.8,59.8,2.05,3.1],['trap_mid',40.2,50.8,2.3,2.68],
- ['trap_lower',24,33,2.62,3.1]];
+ ['trap_lower',24,33,2.62,3.1],['cuff_ext',40.2,47.7,1.92,2.3]];
 const MANNEQUIN_LIMB_PATCHES={
- ua:[['bi_long',.33,.84,.05,.8],['bi_short',.33,.84,-.8,-.05],['tri_long',.3,.86,2.5,3.9],['tri_lateral',.3,.85,1.7,2.45]],
+ /* дельтовидная на плече (4.110, замечание анатома 3): от «шапки» вниз до бугристости на середине латеральной поверхности
+    плечевой кости (Gray's Anatomy, 20-е изд., 1918, «Deltoideus»: «inserted into the deltoid tuberosity on the lateral side
+    of the shaft of the humerus»; бугристость — около середины плеча) — передняя и задняя части сходятся к средней клином. Без
+    этого у кожи Anny боковая поверхность плеча оставалась без области (180 вершин на сторону), а средняя часть горела
+    только у акромиона — «серпом у шеи» */
+ ua:[['bi_long',.33,.84,.05,.8],['bi_short',.33,.84,-.8,-.05],['tri_long',.3,.86,2.5,3.9],['tri_lateral',.3,.85,1.7,2.45],
+  ['delt_f',0,.3,-.5,.8],['delt_s',0,.45,.8,1.7],['delt_r',0,.3,1.7,2.6]],
  /* предплечье (угол 0 — ладонная сторона, +π/2 — лучевая, Mannequin.limbAxes): сгибатели — ладонная и локтевая стороны,
     плечелучевая — лучевая сторона верхних двух третей, разгибатели — тыльная сторона (OpenStax A&P 2e, 11.5) */
  fa:[['forearm_flex',.12,.76,-1.9,.7],['brachiorad',.05,.62,.75,1.65],['forearm_ext',.12,.76,1.7,4.35]],
@@ -11145,7 +11226,10 @@ function selectMuscleRegion(prefix,id){
                  2 года — Rahardja et al. 2023, AJSM 51(13):3464–3472. Не упор: колено в валиках тренажёра сбоку (сведение,
                  разведение), под валиком скамьи для пресса (передняя поверхность смотрит вверх), боком на скамье
                  в копенгагенской планке;
-   поясница    — наклон корпуса ≥40° без опоры с весом: McGill 1997, J Biomech 30(5):465–475;
+   поясница    — наклон корпуса ≥40° без опоры с весом: McGill 1997, J Biomech 30(5):465–475. Вес держат разгибатели
+                 таза и спины — в упражнении на ягодичные, заднюю поверхность бедра, разгибатели спины или в наклоне от
+                 таза; разгибание рук с канатом над головой в выпаде — нет: трос тянет руки вверх-назад, наклон держит корпус
+                 без веса (4.110, замечание анатома 10 — то же условие у метки «задняя поверхность бедра»);
    поясница, длинный рычаг — упор руками далеко впереди при вытянутом теле (выкатывание ролика): плечо поднято ≥120°,
                  корпус почти горизонтален (наклон 50–110°), таз раскрыт (сгибание бедра ≤30°), туловище ничем не подпёрто.
                  В планке и отжиманиях плечо у 90° и меньше — кисти под плечами; в полном выкате 150–180° — руки на линии
@@ -11181,7 +11265,12 @@ function selectMuscleRegion(prefix,id){
                  1,1 МПа, бег трусцой — до 0,95 МПа: Wilke et al. 1999, Spine 24(8):755–762;
    плечи       — плечо за линией корпуса ≥20° в жимах и брусьях, длинный рычаг в разведениях:
                  Fees et al. 1998, AJSM 26(5):732–742 (обзор: хват, ширина рук, траектория, исходное и конечное положение
-                 в жимах при болях в плече); брусья — McKenzie et al. 2022, IJERPH 19(21):14390;
+                 в жимах при болях в плече); брусья — McKenzie et al. 2022, IJERPH 19(21):14390. Где руки уже в исходном
+                 положении за корпусом (обратные отжимания от скамьи и стула, брусья в гравитроне), 20° отсчитываются от
+                 исходного положения повторения: наверху вес идёт по прямым рукам, плечо уходит назад дальше всего внизу —
+                 там и пик (4.110, замечание анатома 12; обратные отжимания от скамьи требуют большей амплитуды разгибания
+                 плеча, чем брусья, — McKenzie et al. 2022, IJERPH 19(20):13211, реферат). У жимов лёжа и брусьев исходное
+                 положение — 0–6°, метка прежняя;
    плечи вверх — жим над головой: плечо поднято на 90–120° под весом — подакромиальное пространство здесь самое узкое
                  (при работе мышц — уже всего около 90°): Graichen et al. 1999, AJR 172(4):1081–1086; жалобы на плечо
                  у тех, кто тренируется с отягощениями: болезненными названы жим и тяга из-за головы, жим широким хватом,
@@ -11227,8 +11316,12 @@ const STRESS_RULES = [
   {id:'hams', parts:['задняя поверхность бедра'], zone:'Задняя поверхность бедра', what:'Мышцы задней поверхности бедра растянуты под весом.', tip:'Опускайтесь до ощутимого натяжения, без рывка из нижней точки.'}
 ];
 const STRESS_RULE = Object.fromEntries(STRESS_RULES.map(r => [r.id, r]));
-/* свои тексты, где общие не подходят: в турецком подъёме плечо и кисть нагружает опорная рука, а не жим или отжимание */
+/* свои тексты, где общие не подходят: в турецком подъёме плечо и кисть нагружает опорная рука, а не жим или отжимание;
+   в гравитроне колени стоят на подушке тренажёра — коврик не подложить (4.110, замечание анатома 11) */
+const STRESS_GRAVITRON_KNEEL = {what:'Колени стоят на подушке гравитрона: вес тела, который не снимает противовес, давит на надколенник и бугристость большеберцовой кости.'};
 const STRESS_TEXT = {
+  assistpull:{kneel:{...STRESS_GRAVITRON_KNEEL, tip:'Опирайтесь на подушку голенями у колена, а не надколенником; если стоять на коленях больно, выберите тягу верхнего блока.'}},
+  assistdip:{kneel:{...STRESS_GRAVITRON_KNEEL, tip:'Опирайтесь на подушку голенями у колена, а не надколенником; если стоять на коленях больно, выберите жим от груди в тренажёре.'}},
   kbtgu:{
     shPress:{what:'Плечо уходит за линию корпуса, когда на руку переносится вес тела или гири, — нагрузка на переднюю часть сустава.', tip:'Опорная ладонь под плечом, плечи опущены от ушей, рука с гирей вертикально над плечом; переходите из положения в положение без рывка.'},
     wrist:{what:'Опорная кисть разогнута под весом тела, пока вы сидите на ладони.', tip:'Ладонь плоско, пальцы врозь, вес на основание ладони; при боли в запястье переходите с локтя на ладонь плавно и не задерживайтесь на ней.'}
@@ -11390,7 +11483,9 @@ function stressRulesAt(ex, k, f, X = {}) {
   add('kneeSide', both(s => f[s].knee <= 30 && f[s].sideLoad >= STRESS_SIDE, 'kn'));
   /* упор на колени: колено на опоре передней поверхностью */
   add('kneel', both(s => k.kneeOn(s, f.t) && f[s].kneeDown >= .6, 'kn'));
-  if (k.sole('') && !k.seated && (k.loaded || k.backBar) && f.trunk >= 40) add('lumbar', ['lumbar']);
+  /* вес держат разгибатели таза и спины: упражнение на них или наклон от таза (разгибание рук с канатом в выпаде — нет) */
+  const hipLoad = hinge || ['hams', 'glutes', 'lowback'].some(g => ex.pri.includes(g) || ex.sec.includes(g));
+  if (hipLoad && k.sole('') && !k.seated && (k.loaded || k.backBar) && f.trunk >= 40) add('lumbar', ['lumbar']);
   /* длинный рычаг: тело вытянуто между упором рук далеко впереди и коленями или стопами */
   if (k.trunkFree && k.leverHands(f.t) && f.trunk >= 50 && f.trunk <= 110 && Math.max(f.L.hipFlex, f.R.hipFlex) <= 30 && Math.max(f.L.elevation, f.R.elevation) >= 120) add('lumbarLever', ['lumbar']);
   /* сгибание позвоночника вперёд или вбок в упражнениях на пресс и косые: согнутая фаза */
@@ -11408,7 +11503,7 @@ function stressRulesAt(ex, k, f, X = {}) {
   /* валики на плечах — при любом наклоне спины (гакк-машина: спина на упоре, вес давит вдоль позвоночника) */
   if (k.sole('') && (k.shoulderPads || (f.trunk < 40 && k.standFree && (k.backBar || (k.free && (f.wristsUp || carry)))))) add('axial', ['lumbar']);
   const push = ['chest', 'triceps', 'shoulders'].includes(ex.g);
-  if (push && (k.loaded || k.handsBear)) add('shPress', both(s => f[s].behind >= 20, 'sh'));
+  if (push && (k.loaded || k.handsBear)) add('shPress', both(s => f[s].behind >= 20 + (X.behind ? X.behind[s] : 0), 'sh'));
   /* жим вверх: плечо в дуге 90–120° — только в жимах, а не в тяге к лицу или махах (там другая задача и малый вес) */
   const vpush = typeof PATTERN !== 'undefined' ? PATTERN[ex.id] === 'vpush' : STRESS_VPUSH.has(ex.id);
   if (vpush && (k.loaded || k.handsBear)) add('shOverhead', both(s => f[s].elevation >= 90 && f[s].elevation <= 120, 'sh'));
@@ -11422,7 +11517,7 @@ function stressRulesAt(ex, k, f, X = {}) {
   if (ex.pri[0] === 'triceps' && ex.type !== 'c' && k.loaded) add('elbow', both(s => f[s].elbow >= 100 && f[s].elevation >= 80, 'el'));
   if (!k.kneelAnchored) add('wrist', both(s => ((k.palmBear(s) && f.trunk >= 45) || k.palmTop) && f[s].wristFlex <= -60, 'wr'));
   if (ex.pri[0] === 'calves' && ex.type !== 'c' && ex.g !== 'cardio') add('achilles', both(s => f[s].dorsi >= STRESS_DORSI, 'an'));
-  if (k.sole('') && !k.seated && (k.loaded || k.backBar)) add('hams', both(s => f[s].knee <= 40 && f[s].hipFlex >= 70, 'th'));
+  if (hipLoad && k.sole('') && !k.seated && (k.loaded || k.backBar)) add('hams', both(s => f[s].knee <= 40 && f[s].hipFlex >= 70, 'th'));
   if (k.kneelAnchored && f.trunk >= 40) add('hams', ['thL', 'thR']);
   return out;
 }
@@ -11447,7 +11542,8 @@ function jointStress(ex) {
        0→1 — весь период, иначе туда и обратно) */
     if (F.length) {
       const range = vals => ({min:Math.min(...vals), range:Math.max(...vals) - Math.min(...vals), zero:vals.reduce((z, v) => Math.abs(v) < Math.abs(z) ? v : z, vals[0])});
-      const X = {kneeSpan:{}, flex:range(F.map(f => f.flex)), lat:range(F.map(f => f.lat)), twist:range(F.map(f => f.twist)), strike:null};
+      /* behind — исходное (наименьшее за повторение) разгибание плеча за линию корпуса: от него отсчитывается метка «плечи» */
+      const X = {kneeSpan:{}, behind:{L:Math.min(...F.map(f => f.L.behind)), R:Math.min(...F.map(f => f.R.behind))}, flex:range(F.map(f => f.flex)), lat:range(F.map(f => f.lat)), twist:range(F.map(f => f.twist)), strike:null};
       const dt = ex.anim.period ? ex.anim.period / (ex.anim.loop ? STRESS_FRAMES : 2 * STRESS_FRAMES) / 1000 : 0;
       for (const s of ['L', 'R']) {
         const kn = F.map(f => f[s].knee); X.kneeSpan[s] = Math.max(...kn) - Math.min(...kn);
@@ -15450,7 +15546,11 @@ function motionFrame(F, clock=F.clock) {
   if (F.it.ex.id === 'kbhalo') labels=['Вокруг головы вправо','За головой','Вокруг головы влево','Перед грудью'];
   if (F.it.ex.id === 'kbclean') labels=['Взятие на грудь','Стойка','Сброс в замах','Замах'];
   if (F.it.ex.id === 'deadlift' || F.it.ex.id === 'kbdeadlift') labels=['Подъём','Верхняя точка','Опускание','Исходное положение'];
-  return {t,index,label:a.hold?'Удержание':labels[index],cue:a.hold?a.cues[0]:a.cues[(index<2)!==!!a.eccFirst?0:1],progress:((clock%total)+total)%total/total,total};
+  /* точка разворота без паузы (4.110, замечание анатома 13): у приседа нижняя точка — граница двух фаз, и подпись прыгала —
+     «Опускание» у ползунка, «Подъём» у кнопки «Конечная точка». Последние и первые 8 % фазы рядом с разворотом, где пауза
+     короче 250 мс, подписаны самой точкой разворота */
+  const turn=!a.hold&&!a.loop&&(index===0||index===2)?(q>=.92&&d[index+1]<250?index+1:q<=.08&&d[(index+3)%4]<250?(index+3)%4:index):index;
+  return {t,index,label:a.hold?'Удержание':labels[turn],cue:a.hold?a.cues[0]:a.cues[(index<2)!==!!a.eccFirst?0:1],progress:((clock%total)+total)%total/total,total};
 }
 /* Часы рисунка карточки — по сетке ≈30 кадров в секунду, целое число кадров на повторение: каждый круг проходит те же
    фазы, и готовые кадры берутся из памяти (FIGURE_FRAMES, 07-rigs-core.js). Кадр отстаёт от точного времени
@@ -15501,7 +15601,9 @@ function paintMusclePanel(prefix,F,m){
  const state=muscleFrame(F.it.ex.anim,m.t,m.index);if(!state)return;
  const note=$('#'+prefix+'-muscle-note');if(note.textContent!==state.note)note.textContent=state.note;
  for(const row of panel.querySelectorAll('[data-muscle-row]')){
-  const v=state.values[row.dataset.muscleRow],level=row.querySelector('.muscle-level'),text=row.dataset.deep==='true'?'Глубже':MUSCLE_BANDS[muscleBand(v)];
+  /* у глубокой части — тоже её участие (4.110, замечание анатома 4: подлопаточная в наружном вращении — «Нейтрально»); что
+     она глубже, говорит её название («· глубже»), а в «Анатомии» она видна среди мышц */
+  const v=state.values[row.dataset.muscleRow],level=row.querySelector('.muscle-level'),text=MUSCLE_BANDS[muscleBand(v)];
   row.querySelector('.muscle-swatch').style.backgroundColor=muscleColor(v);
   if(level.textContent!==text)level.textContent=text;
  }
@@ -15821,7 +15923,7 @@ function selectMotion(it, clock=0) {
   $('#mv-tools').innerHTML=cpKeepHtml(it.ex.id,'mv');
   $('#mv-view').textContent=CAMERA3[motionCamera(it.ex)].label;
   $('#mv-speed').value=String(motionPrefs.speed);$('#mv-joints').checked=!!motionPrefs.joints;$('#mv-trace').checked=!!motionPrefs.trace;$('#mv-vectors').checked=!!motionPrefs.vectors;
-  $('#mv-tempo').textContent=it.ex.anim.hold?'Удерживайте положение и дышите ровно.':it.ex.anim.timing||it.ex.g==='cardio'||it.ex.kind?'Ритм показан схематично. Замедление помогает разобрать движение.':it.rx.static?`Статодинамика: ${tempoWords(it.rx.tempo)}, без пауз; показана рабочая часть амплитуды — без выпрямления до конца и без расслабления внизу.`:`Темп по плану: ${tempoWords(it.rx.tempo)}. Скорость просмотра темп не меняет.`;
+  $('#mv-tempo').textContent=it.ex.anim.hold?'Удерживайте положение и дышите ровно.':it.ex.anim.timing||it.ex.g==='cardio'||it.ex.kind?'Ритм показан схематично. Замедление помогает разобрать движение.':it.rx.static?`Статодинамика: ${tempoWords(it.rx.tempo)}, без пауз; показана рабочая часть амплитуды — без выпрямления до конца и без расслабления внизу.`:tempoWords(it.rx.tempo)?`Темп по плану: ${tempoWords(it.rx.tempo)}. Скорость просмотра темп не меняет.`:'Темп — плавно, без рывков. Скорость просмотра темп не меняет.';
   const level={};it.ex.pri.forEach(m=>level[m]=1);it.ex.sec.forEach(m=>{if(!level[m])level[m]=.38;});
   $('#mv-muscles').innerHTML=muscleMapSvg(level,{labels:true,aria:'Основные и вспомогательные мышцы'});
   $('#mv-primary').textContent=it.ex.pri.map(m=>MUSCLE_NAMES[m]).join(', ');
@@ -15910,7 +16012,8 @@ function closeMotion(fromBack) {
 }
 function setupMotionViewer() {
   window.addEventListener('resize',()=>{pickActiveCards();for(const F of figs)if(F.av)F.av.size=null;if(cardAnatomy.view!=='mannequin')queueCardStills();},{passive:true});
-  $('#mv-exercise').innerHTML=GROUPS.map(g=>`<optgroup label="${esc(g.name)}">${EX.filter(ex=>ex.g===g.id).map(ex=>`<option value="${ex.id}">${esc(exNameHere(ex))}</option>`).join('')}</optgroup>`).join('');
+  /* разделы списка — как у витрины атласа: приводящие своим разделом (13c-gallery.js, GALLERY_GROUPS) */
+  $('#mv-exercise').innerHTML=GALLERY_GROUPS.map(g=>`<optgroup label="${esc(g.name)}">${EX.filter(ex=>galleryGroup(ex)===g.id).map(ex=>`<option value="${ex.id}">${esc(exNameHere(ex))}</option>`).join('')}</optgroup>`).join('');
 
   document.addEventListener('click',e=>{
     const t=e.target.closest('button');if(!t)return;
@@ -18859,14 +18962,19 @@ function galleryEmptyHtml() {
   const near = R.near.map(ex => `<button type="button" class="btn-ghost" data-gallery-q="${esc(exNameHere(ex))}">${esc(exNameHere(ex))}</button>`).join('');
   return `<div class="mv-gempty">${near ? `<p>Похожие по написанию:</p><div class="mv-gnear">${near}</div>` : '<p>Проверьте написание или попробуйте другое слово: «жим», «тяга», «присед».</p>'}</div>`;
 }
+/* Разделы витрины — группы плана, а упражнения на приводящие (сведение ног, копенгагенская планка) — своим разделом после
+   квадрицепса (4.110; Alex 18, замечание анатома: приводящие — не квадрицепс). В плане они по-прежнему в группе «Квадрицепс»
+   (MUSCLE_GROUP.adductors) — id групп и сохранённые настройки не меняются */
+const GALLERY_GROUPS = GROUPS.flatMap(g => g.id === 'quads' ? [g, {id:'adductors', name:'Приводящие бедра'}] : [g]);
+const galleryGroup = ex => ex.g === 'quads' && ex.pri[0] === 'adductors' ? 'adductors' : ex.g;
 function galleryHtml() {
   const E = effEquip(S.equip), all = effEquip(EQUIP.map(e => e.id)), list = galleryList(), R = searchExercises(gallery.q);
   const chips = WORK_KINDS.map(k => `<button type="button" class="${gallery.kind === k.id ? 'on' : ''}" data-gallery-kind="${k.id}" aria-pressed="${gallery.kind === k.id}">${esc(k.name)} <small>${galleryList(k.id).length}</small></button>`).join('');
   /* с запросом группы идут по лучшему совпадению в них (при равенстве — по порядку), без запроса — по порядку */
-  const rank = new Map(list.map((ex, i) => [ex.id, i])), first = g => Math.min(...list.filter(ex => ex.g === g.id).map(ex => rank.get(ex.id)));
-  const groups = R.mode === 'all' ? GROUPS : GROUPS.slice().sort((a, b) => first(a) - first(b));
+  const rank = new Map(list.map((ex, i) => [ex.id, i])), first = g => Math.min(...list.filter(ex => galleryGroup(ex) === g.id).map(ex => rank.get(ex.id)));
+  const groups = R.mode === 'all' ? GALLERY_GROUPS : GALLERY_GROUPS.slice().sort((a, b) => first(a) - first(b));
   const sections = groups.map(g => {
-    const xs = list.filter(ex => ex.g === g.id); if (!xs.length) return '';
+    const xs = list.filter(ex => galleryGroup(ex) === g.id); if (!xs.length) return '';
     return `<section class="mv-gsec" aria-labelledby="mv-g-${g.id}"><h3 id="mv-g-${g.id}">${esc(g.name)} <small>${xs.length}</small></h3><div class="mv-ggrid">${xs.map(ex => galleryTile(ex, E, all)).join('')}</div></section>`;
   }).join('');
   const note = list.length ? searchNoteText(R) : '';
@@ -20589,6 +20697,11 @@ function wkAddGone(gone, g) {
      самый короткий отдых в исследованиях для массы — 30–60 с, для силы 3–5 мин (de Salles B.F. et al., Sports Med 2009,
      39(9):765–777); ACSM: 1–2 мин во вспомогательных, 2–3 мин в базовых (Ratamess et al., MSSE 2009, 41(3):687–708).
      В «Бережно» пульс отдых только продлевает, не сокращает.
+   · Нет предупреждения — ещё не «безопасно» (замечание владельца, 15.11.2026): формула даёт средний максимум для возраста
+     (разброс у разных людей около ±10 уд/мин, Tanaka 2001), а не безопасный предел для конкретного человека; AHA о целевом
+     пульсе (heart.org, Target Heart Rates): цифры — средние, общий ориентир (пересказ, дословно не сверено). Поэтому рядом
+     с живым пульсом, пока предупреждения нет, — строка об этом и стоп-сигналы; в настройке отдыха — стоп-сигналы целиком
+     (HEART_STOP, 11g-gentle.js: памятка ACSM, Riebe et al. 2015).
    · Порог — до 190 (было до 250): порог выше расчётного максимума молодого взрослого значит «почти без отдыха». */
 
 /* Технические, а не физиологические числа: попытки переподключения (мс), пульс старше 5 с — уже не «живой», шаг продления
@@ -20955,6 +21068,7 @@ const Heart = (() => {
       `<button type="button" id="wv-hr-btn" class="wv-hr-btn" aria-describedby="wv-hr-note wv-hr-meta"><span class="wv-hr-heart" aria-hidden="true">♥</span><span id="wv-hr-val" class="wv-hr-val">${'Пульс'}</span><small id="wv-hr-unit" class="wv-hr-unit" hidden>${'уд/мин'}</small></button>`
       + `<div class="wv-hr-text"><p id="wv-hr-note" class="wv-hr-note" role="status"></p><p id="wv-hr-meta" class="wv-hr-meta"></p></div>`
       + `<p id="wv-hr-warn" class="wv-hr-warn" role="alert" hidden></p>`
+      + `<p id="wv-hr-safe" class="wv-hr-safe" hidden>${'Нет предупреждения — это ещё не значит, что нагрузка безопасна. При боли в груди, головокружении, необычной одышке — остановитесь.'}</p>`
       + `<p id="wv-hr-line" class="wv-hr-line" hidden><span class="wv-hr-heart" aria-hidden="true">♥</span> <span id="wv-hr-line-t"></span></p>`
       + `<p id="wv-hr-help" class="wv-hr-help" hidden>${'Часов нет в списке? Включите на них трансляцию пульса: на Galaxy Watch — приложение, которое транслирует пульс как датчик.'} <button type="button" id="wv-hr-all" class="wv-hr-all">${'Показать все устройства'}</button></p>`);
     prog.after(row);
@@ -20969,8 +21083,9 @@ const Heart = (() => {
       + `<p id="wv-hr-thr-note" class="wv-signal-note">${'Порог задаёте вы: общего числа для отдыха между подходами в исследованиях нет.'}</p>`
       + `<p class="wv-signal-note wv-hr-med">${'Пульс с часов и датчиков — ориентир, а не медицинское измерение.'}</p>`
       + `<label class="wv-hr-age" for="wv-hr-age"><span>${'Возраст'}</span><input id="wv-hr-age" type="text" inputmode="numeric" autocomplete="off" maxlength="3" aria-describedby="wv-hr-age-note"><span>${'лет'}</span></label>`
-      + `<p id="wv-hr-age-note" class="wv-signal-note">${'По желанию: тогда предупреждение о слишком высоком пульсе — по вашему возрасту (расчётный максимум 208 − 0,7 × возраст, у разных людей ±10 уд/мин).'}</p>`
-      + `<p class="wv-signal-note wv-hr-med">${'Если вы принимаете лекарства, которые снижают пульс (например, бета-блокаторы), пульс не показывает нагрузку — ориентируйтесь на дыхание и самочувствие.'}</p>`));
+      + `<p id="wv-hr-age-note" class="wv-signal-note">${'По желанию: тогда предупреждение о слишком высоком пульсе — по вашему возрасту (расчётный максимум 208 − 0,7 × возраст, у разных людей ±10 уд/мин). Это средняя оценка, а не безопасный предел для вас.'}</p>`
+      + `<p class="wv-signal-note wv-hr-med">${'Если вы принимаете лекарства, которые снижают пульс (например, бета-блокаторы), пульс не показывает нагрузку — ориентируйтесь на дыхание и самочувствие.'}</p>`
+      + (typeof HEART_STOP === 'string' ? `<p class="wv-signal-note wv-hr-med">${HEART_STOP}</p>` : '')));
     const fin = q('#wv-finish-text');
     if (fin) fin.after(el('p', {id:'wv-hr-finish', class:'wv-hr-finish', hidden:''}, `<span class="wv-hr-heart" aria-hidden="true">♥</span> <span id="wv-hr-finish-t"></span>`));
     mounted = true; paintPrefs(); return true;
@@ -21017,6 +21132,8 @@ const Heart = (() => {
     text('#wv-hr-warn', !high ? '' : mx ? 'Пульс выше расчётного максимума для вашего возраста (≈ {n}). Снизьте темп и отдохните; если стало плохо — остановитесь.'.replace('{n}', mx)
       : 'Очень высокий пульс. Снизьте темп и отдохните; если стало плохо — остановитесь. Укажите возраст в настройке отдыха — предупреждение будет точнее.');
     show('#wv-hr-warn', high);
+    /* без предупреждения — строка «это ещё не значит, что безопасно» (шапка: формула — средняя, не предел для человека) */
+    show('#wv-hr-safe', view === 'live' && !high && !(armed && on));
     paintRest(now, bpm, on);
   }
   function paintRest(now, bpm, on) {
