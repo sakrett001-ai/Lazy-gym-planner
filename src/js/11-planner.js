@@ -964,7 +964,8 @@ function buildPlanAt(ctx = {}) {
   /* тренировка на сегодня по журналу: группы уже в S.groups, отсюда — доли групп, отдых и облегчение (13d-muscle-load.js) */
   const lp = !custom && !ctx.groups && S.mode === 'single' ? logPickCtx() : null;
   const base = !!ctx.fitBase, dose = ctx.dose || null;
-  const groups = ctx.groups || S.groups, count = custom ? custom.items.length : ctx.count || (lp ? lp.count : S.count), week = base ? null : ctx.week || null;
+  /* свой план, сохранённый из недели цикла, — с её запасом и процентом (custom.week, 11d-custom.js) */
+  const groups = ctx.groups || S.groups, count = custom ? custom.items.length : ctx.count || (lp ? lp.count : S.count), week = base ? null : ctx.week || (custom && custom.week ? WEEKS[custom.week - 1] : null);
   const sw = custom ? {} : ctx.swaps || {};
   /* круговая (кроме своего плана) — без штанги: становая, присед и жим штанги «до последнего чистого повтора» с 15 с на
      переход — техника разваливается от усталости, а страховать некому (Марина п. 15). В круг — тренажёры, гантели, гиря,
@@ -1111,8 +1112,11 @@ function buildPlanAt(ctx = {}) {
 function heavyDemote(list) {
   const out = new Set();
   if (S.goal !== 'strength' || S.level === 'beg' || S.format === 'circuit' || S.format === 'static') return out;
-  let n = 0;
-  for (const ex of orderClassic(list)) if (schemeOf(ex) === 'heavy') { if (n >= 2) out.add(ex); n++; }
+  /* тяжёлыми остаются главные многосуставные дня — первое на ноги и первое на верх (mainCompounds), а если тяжёлые только
+     с одной стороны — два первых по порядку (было бы: присед и ягодичный мост тяжёлые, а тяга и жим — вспомогательные) */
+  const heavy = orderClassic(list).filter(ex => schemeOf(ex) === 'heavy'), keep = new Set([...mainCompounds(list)].filter(ex => schemeOf(ex) === 'heavy'));
+  for (const ex of heavy) if (keep.size < 2) keep.add(ex);
+  for (const ex of heavy) if (!keep.has(ex)) out.add(ex);
   return out;
 }
 /* подходы разгрузки: 60% от первой недели на всю тренировку (не меньше подхода на упражнение), остаток — тем, у кого

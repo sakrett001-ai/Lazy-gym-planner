@@ -235,11 +235,12 @@ test('«Intro» week advice does not ask for more than the logged max allows (Ru
 test('«Swap» changes one exercise, not the whole plan; the assisted machine is not first for «I already train»; notes are right (Igor 12, 15, 16, Mike 9)', () => {
   for (const goal of ['strength', 'mass']) for (const dur of ['short', 'mid', 'long']) {
     reset({ goal, dur });
-    const p = a.buildPlan(), before = ids(p);
-    m.get(`swaps = S.swaps = {s:{0:'goblet'}}`);
-    const q = a.buildPlan(), after = ids(q);
+    const p = a.buildPlan(), before = ids(p), slot = p.items[0].slot, to = before.includes('goblet') ? 'legpress' : 'goblet';
+    m.get(`swaps = S.swaps = {s:{${slot}:'${to}'}}`);
+    const q = m.get('buildPlan({swaps:swaps.s})'), after = ids(q);
+    assert(after.includes(to), `${goal} ${dur}: the swap is applied — ${after}`);
     assert.equal(after.length, before.length, `${goal} ${dur}: ${before} → ${after}`);
-    assert.equal(after.filter((id, i) => id !== before[i]).length <= 1, true, `${goal} ${dur}: ${before} → ${after}`);
+    assert.equal(after.filter((id, i) => id !== before[i]).length, 1, `${goal} ${dur}: ${before} → ${after}`);
   }
   reset({ groups: UPPER.slice(), dur: 'long' });
   m.get('plan = buildPlan()');
@@ -262,7 +263,7 @@ test('«Another version» says when there is none, shows what changed and can un
   reset();
   const p0 = ids(a.buildPlan()), s0 = a.S.seed;
   assert.equal(a.rerollPlan(), true);
-  assert.match(a.rerollText(), /^Другой вариант: .+ → .+\./);
+  assert.match(a.rerollText(), /^Другой вариант: (.+ → .+|новых упражнений \d+ из 6 — .+)\./);
   assert.notDeepEqual(ids(a.buildPlan()), p0);
   assert.equal(a.rerollBack(), true);
   assert.equal(a.S.seed, s0); assert.deepEqual(ids(a.buildPlan()), p0);
@@ -308,4 +309,18 @@ test('«No equipment» names the household items an exercise needs (Galina 20)',
   assert.equal(a.equipLine(a.EXI.towelrow, E), 'Нужно: полотенце и закрытая дверь');
   assert.equal(a.equipLine(a.EXI.chairdip, E), 'Нужно: устойчивый стул');
   assert.equal(a.equipLine(a.EXI.pushup, E), 'Без снаряжения');
+});
+
+test('a plan saved from a cycle week keeps that week’s reserve and percent (Marina 3 — old, Igor’s re-check)', () => {
+  reset({ mode: 'program', days: 3, split: 'full', week: 2 });
+  m.get('prog = buildProgram()');
+  const added = plain(m.get('savePlansFrom()'));
+  assert(added.length === 3 && added.every(c => c.week === 2), 'the saved plans carry week 2');
+  const prog = m.get('prog');
+  a.S.mode = 'custom'; a.S.custom = added[0].id;
+  const p = a.buildPlan();
+  for (const it of p.items) {
+    const src = prog.days[0].plan.items.find(x => x.ex.id === it.ex.id);
+    assert.equal(it.rx.load, src.rx.load, it.ex.id);
+  }
 });

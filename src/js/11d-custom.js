@@ -67,6 +67,9 @@ function cleanPlan(c, id) {
     items:(Array.isArray(c.items) ? c.items : []).map(cleanCustomItem).filter(it => it && !ids.has(it.id) && ids.add(it.id)).slice(0, CUSTOM_MAX)};
   for (const [k, dict] of [['goal', GOALS], ['format', FORMATS], ['level', LEVELS]]) if (typeof c[k] === 'string' && dict[c[k]]) out[k] = c[k];
   for (const k of ['group', 'for', 'from']) { const v = cleanText(c[k], CUSTOM_TEXT); if (v) out[k] = v; }
+  /* неделя цикла, из которой сохранён план (savePlansFrom): запас и процент в карточках — как в программе в ту неделю
+     (Марина 3 — старое, перепроверка Игоря: в программе на неделе 2 запас «3», в сохранённом плане — «2–3») */
+  if (Number.isInteger(c.week) && c.week >= 1 && c.week <= WEEKS.length) out.week = c.week;
   const gauto = out.group && autoKey(c.gauto, out.group, 'group'); if (gauto) { out.group = autoName(gauto); out.gauto = gauto; }
   const note = cleanText(c.note, CUSTOM_NOTE, true); if (note) out.note = note;
   return out;
@@ -412,7 +415,7 @@ function savePlansFrom() {
   if (S.mode === 'program' && prog) {
     /* имена и программа — с ключами (11a-names.js): в другом языке они пишутся на нём */
     const gauto = `split:${prog.split}:${S.week}`, group = cleanText(autoName(gauto) || `${SPLITS[prog.split].name} · неделя ${S.week}`, CUSTOM_TEXT);
-    for (const d of prog.days) if (d.plan.items) added.push({id:newPlanId(), ...namedPlan(`${WD[d.wd]} · ${d.name}`, `day:${d.wd}:${d.tid}${d.li ? ':' + d.li : ''}`, S.customs.map(c => c.name).concat(added.map(c => c.name))), group, gauto, ...set, items:freezePlan(d.plan)});
+    for (const d of prog.days) if (d.plan.items) added.push({id:newPlanId(), ...namedPlan(`${WD[d.wd]} · ${d.name}`, `day:${d.wd}:${d.tid}${d.li ? ':' + d.li : ''}`, S.customs.map(c => c.name).concat(added.map(c => c.name))), group, gauto, week:S.week, ...set, items:freezePlan(d.plan)});
   } else if (plan && plan.items) added.push({id:newPlanId(), ...namedPlan(titleFor(), S.mode === 'custom' ? customOf().auto : S.groups.length ? 'groups:' + S.groups.join(',') : null), ...set, items:freezePlan(plan)});
   S.customs.push(...added); saveSettings();
   return added;

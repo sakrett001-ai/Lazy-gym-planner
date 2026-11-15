@@ -29,7 +29,9 @@ function swapPool(cur, p) {
      стоял гравитрон, для жима узким — брусья в гравитроне (Игорь 15) */
   const lightLast = S.level !== 'beg' ? swapLight(p.E) : () => false;
   return EX.filter(ex => !taken.has(ex.id) && available(ex, p.E) && ex.lvl <= lvlMax && (ex.g === cur.g || (!!pat && PATTERN[ex.id] === pat)) && (S.format !== 'static' || staticOk(ex)))
-    .map(ex => ({ex, score:analogScore(cur, ex) - (lightLast(ex) ? 0.25 : 0)})).sort((a, b) => b.score - a.score);
+    /* на одной ноге или руке вместо упражнения двумя — дальше (Марина 18: для румынской тяги — гиперэкстензия и наклоны, а не
+       только тяга на одной ноге) */
+    .map(ex => ({ex, score:analogScore(cur, ex) - (lightLast(ex) ? 0.25 : 0) - (!cur.uni && ex.uni ? 0.08 : 0)})).sort((a, b) => b.score - a.score);
 }
 /* облегчённое там, где есть то же движение с весом: противовес гравитрона, многосуставное без веса */
 function swapLight(E) {
@@ -244,13 +246,13 @@ function rerollDiff(a, b) {
 /* вернёт true, если подбор поменялся */
 function rerollPlan() {
   const before = rerollIds(), seed0 = S.seed, sw0 = JSON.parse(JSON.stringify(swaps || {}));
-  let diff = null;
+  let diff = null, after = null;
   for (let i = 0; i < REROLL_TRIES && !diff; i++) {
     S.seed = (S.seed * 48271 + 11) % 2147483647; swaps = S.swaps = {};
-    diff = rerollDiff(before, rerollIds());
+    diff = rerollDiff(before, after = rerollIds());
   }
   if (!diff) { S.seed = seed0; swaps = S.swaps = sw0; }
-  rerollMsg = diff ? {diff, seed:seed0, swaps:sw0, now:S.seed, mode:S.mode} : {none:true, now:S.seed, mode:S.mode};
+  rerollMsg = diff ? {diff, after, seed:seed0, swaps:sw0, now:S.seed, mode:S.mode} : {none:true, now:S.seed, mode:S.mode};
   done = {}; planUndo = null; saveSettings(); renderSetup();
   planNote = rerollText(); renderPlan();
   return !!diff;
@@ -269,8 +271,11 @@ function rerollText() {
   const u = rerollMsg; if (!u || u.now !== S.seed || u.mode !== S.mode) return '';
   if (u.none) return 'Других вариантов нет: для этих мышц, места и отметок подбираются те же упражнения.';
   const day = S.mode === 'program' ? S.day : 0, here = u.diff.find(x => x.d === day), other = u.diff.filter(x => x.d !== day).length;
-  const pair = here ? `${here.gone.map(rerollName).join(', ') || '—'} → ${here.came.map(rerollName).join(', ') || '—'}` : '';
-  const first = here ? 'Другой вариант: {list}.'.replace('{list}', pair) : 'Другой вариант: в этом дне упражнения те же.';
+  /* одно-два — «было → стало», больше — сколько новых и какие (длинная строка «A, B, C, D → E, F, G, H» не читается) */
+  const total = (u.after && u.after[day] || []).length;
+  const first = !here ? 'Другой вариант: в этом дне упражнения те же.'
+    : here.gone.length <= 2 ? 'Другой вариант: {list}.'.replace('{list}', `${here.gone.map(rerollName).join(', ') || '—'} → ${here.came.map(rerollName).join(', ') || '—'}`)
+    : 'Другой вариант: новых упражнений {n} из {m} — {list}.'.replace('{n}', here.came.length).replace('{m}', total || here.came.length).replace('{list}', here.came.map(rerollName).join(', '));
   return first + (other ? ' ' + 'Поменялись и другие дни недели: {n}.'.replace('{n}', other) : '');
 }
 function rerollHtml() {

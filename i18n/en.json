@@ -3755,5 +3755,6 @@
  "Вчера уже работали мышцы этой тренировки: {list}. Им нужно 24–48 часов, чтобы восстановиться, — эту тренировку лучше сделать завтра.": "The muscles of this workout already worked yesterday: {list}. They need 24–48 hours to recover — better do this workout tomorrow.",
  "Хочется позаниматься сегодня — соберите тренировку на мышцы, которые отдохнули.": "If you want to train today, build a workout for the muscles that have rested.",
  "Собрать тренировку на сегодня →": "Build today’s workout →",
- "В бережном режиме обычно хватает 2–3 тренировок в неделю: каждой группе мышц — 2–3 раза по 2–4 подхода. При {n} тренировках следите за самочувствием, а если устаёте — выберите 3 дня.": "In gentle mode, 2–3 workouts a week are usually enough: each muscle group 2–3 times with 2–4 sets. With {n} workouts, keep an eye on how you feel, and if you get tired, choose 3 days."
+ "В бережном режиме обычно хватает 2–3 тренировок в неделю: каждой группе мышц — 2–3 раза по 2–4 подхода. При {n} тренировках следите за самочувствием, а если устаёте — выберите 3 дня.": "In gentle mode, 2–3 workouts a week are usually enough: each muscle group 2–3 times with 2–4 sets. With {n} workouts, keep an eye on how you feel, and if you get tired, choose 3 days.",
+ "Другой вариант: новых упражнений {n} из {m} — {list}.": "Another version: {n} new exercises out of {m} — {list}."
 }
