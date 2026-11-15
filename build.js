@@ -112,7 +112,8 @@ for (const [lang, L] of Object.entries(LANGS)) {
   /* язык, версия и локаль — до кода приложения: первая отрисовка (99-boot.js) уже с точкой, английским множественным числом и датами.
      Данные поиска (i18n/search-data.js) — после перевода: названия на другом языке и русские синонимы остаются как есть */
   const search = searchData(lang, jsSrc, JSON.parse(read(path.join(__dirname, 'i18n', 'en.json'))));
-  js = `window.PODHOD_VERSION='${VERSION}';window.PODHOD_BUILD='${ASSET_VERSION}';window.PODHOD_RENDER=${JSON.stringify(RENDER)};window.PODHOD_SEARCH=${JSON.stringify(search)};window.PODHOD_LANG='${lang}';window.PODHOD_LOCALE=${JSON.stringify(L.locale)};\n` + js;
+  const head = `window.PODHOD_VERSION='${VERSION}';window.PODHOD_BUILD='${ASSET_VERSION}';window.PODHOD_RENDER=${JSON.stringify(RENDER)};window.PODHOD_SEARCH=${JSON.stringify(search)};window.PODHOD_LANG='${lang}';window.PODHOD_LOCALE=${JSON.stringify(L.locale)};\n`, code = js;
+  js = head + code;
   body = body.replace(/__VERSION__/g, VERSION).replace(/__LANG_CODE__/g, L.other.lang).replace(/__LANG_HREF__/g, L.other.href).replace(/__LANG_LABEL__/g, L.other.label).replace(/__LANG_TITLE__/g, L.other.title);
   const manifest = {...manifestSrc, name:L.manifestName, description:L.manifestDesc, lang, scope:up || './', icons:manifestSrc.icons.map(i => ({...i, src:up + iconUrl[i.src]}))};
 
@@ -149,8 +150,12 @@ ${body}
 </html>
 `);
 
-  /* 2. офлайн-файл: ссылка на другой язык ведёт на соседний офлайн-файл */
-  const single = `<title>${L.title}</title>\n<style>\n${inlineFonts(css)}\n</style>\n${body.replace(`href="${L.other.href}"`, `href="${L.other.offline}"`)}\n<script>\n${volumeSrc}\n</script>\n<script>window.SKELETON_BIN='${skeletonB64}';window.MUSCLES_BIN='${musclesB64}';window.ANNY_BIN='${annyB64}';</script>\n<script>\n${js}\n</script>\n`;
+  /* 2. офлайн-файл: ссылка на другой язык ведёт на соседний офлайн-файл. Код в нём — без комментариев и лишних пробелов
+     (esbuild, только пробелы: имена и порядок те же, кириллица как есть): этот же файл — документ для Floot, у которого
+     предел 4,5 МБ (tools/build-floot-release.mjs); 4.107.0 с комментариями вышел за предел. Строка с версией и языком —
+     как есть: Floot ищет её дословно. */
+  const singleJs = head + require('esbuild').transformSync(code, {minifyWhitespace:true, charset:'utf8', legalComments:'none'}).code;
+  const single = `<title>${L.title}</title>\n<style>\n${inlineFonts(css)}\n</style>\n${body.replace(`href="${L.other.href}"`, `href="${L.other.offline}"`)}\n<script>\n${volumeSrc}\n</script>\n<script>window.SKELETON_BIN='${skeletonB64}';window.MUSCLES_BIN='${musclesB64}';window.ANNY_BIN='${annyB64}';</script>\n<script>\n${singleJs}\n</script>\n`;
   fs.writeFileSync(path.join(DIST, `lazy-gym-planner-offline-${lang}.html`), `<!doctype html>
 <html lang="${L.html}">
 <head>
