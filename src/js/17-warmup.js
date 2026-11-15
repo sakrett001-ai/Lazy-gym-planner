@@ -24,7 +24,7 @@ function gearPick(to, g) {
 function gearLoad() { try { const g = JSON.parse(localStorage.getItem(GEAR_KEY) || 'null'); if (g && typeof g === 'object') { gearPick(GEAR_UNITS.kg, g); gearPick(GEAR_UNITS.lb, g.lb); } } catch (e) {} }
 /* для файла и хранилища: килограммы — на прежних местах, фунты — в lb */
 const gearObject = () => ({bar:GEAR_UNITS.kg.bar, plates:GEAR_UNITS.kg.plates, lb:{bar:GEAR_UNITS.lb.bar, plates:GEAR_UNITS.lb.plates}});
-function gearSave() { try { localStorage.setItem(GEAR_KEY, JSON.stringify(gearObject())); } catch (e) {} }
+function gearSave() { Keep.set(GEAR_KEY, JSON.stringify(gearObject())); }
 gearLoad();
 
 /* чем нагружают: штанга (гриф + блины), гантели, тренажёр (стек), гиря */

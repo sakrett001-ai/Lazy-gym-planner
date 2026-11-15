@@ -226,11 +226,13 @@ for (const theme of ['light', 'dark']) {
     caps: [...document.querySelectorAll('.motion-caption, #mv-phase')].filter(c => c.closest('[aria-live], [role=status], [role=log], [role=alert]')).length,
   }));
   check(live.plan === null && live.status === 'status' && live.caps === 0, `диктор: у #plan нет aria-live, есть #plan-status с role="status", подписи фаз вне живых областей (${JSON.stringify(live)})`);
-  await page.click('#count-plus'); await page.waitForTimeout(250);
+  /* объявление вписывается через 80 мс после пересборки; на загруженной машине пересборка дольше — ждём текст, а не фиксированное время */
+  const said$ = re => page.waitForFunction(r => new RegExp(r).test(document.querySelector('#plan-status').textContent), re, { timeout: 5000, polling: 50 }).catch(() => {});
+  await page.click('#count-plus'); await said$('^План обновлён');
   const said = await page.evaluate(() => ({ text: document.querySelector('#plan-status').textContent, cards: document.querySelectorAll('.card').length, min: plan.minutes }));
   check(said.text === `План обновлён: ${said.cards} упражнений, ≈${said.min} мин` || said.text === `План обновлён: ${said.cards} упражнения, ≈${said.min} мин`, `после «+» объявляется «План обновлён: N упражнений, ≈M мин» (${JSON.stringify(said)})`);
   await page.evaluate(() => { document.querySelector('#plan-status').textContent = 'x'; S.count = 6; regen(); });
-  await page.waitForTimeout(250);
+  await said$('^План обновлён: 6 ');
   check(await page.evaluate(() => /^План обновлён: 6 упражнений, ≈\d+ мин$/.test(document.querySelector('#plan-status').textContent)), 'повторная пересборка объявляется снова');
 
   const names = await page.evaluate(NAMES);

@@ -31,6 +31,11 @@ function wkNormalize(o, now, today) {
   x.ended = !!x.ended;
   x.restPaused = Number(x.restPaused) > 0 ? Number(x.restPaused) : 0;
   for (const k of ['done', 'total']) x[k] = Number.isInteger(x[k]) && x[k] >= 0 ? x[k] : null;
+  /* список упражнений тренировки (18a-data-keep.js: workoutSnap) — только в верном виде, иначе тренировка идёт по плану */
+  const sn = x.snap;
+  x.snap = sn && typeof sn === 'object' && typeof sn.ctx === 'string' && Array.isArray(sn.items) && Array.isArray(sn.q) && sn.items.length && sn.q.length
+    && sn.items.every(it => it && typeof it.id === 'string' && it.rx && typeof it.rx === 'object')
+    && sn.q.every(s => Array.isArray(s) && Number.isInteger(s[0]) && s[0] >= 0 && s[0] < sn.items.length && Number.isInteger(s[1]) && s[1] >= 0) ? sn : null;
   return x;
 }
 /* подход k упражнения id в днях тренировки: сначала самый поздний день */
@@ -62,7 +67,8 @@ function wkResume(saved, {today, stamp, cont = false, done = 0}) {
   if (!saved || saved.ended) return 'new';
   const last = saved.days[saved.days.length - 1];
   if (last === today) return saved.stamp === stamp || done > 0 ? 'same' : 'new';
-  return last < today && cont ? 'past' : 'new';
+  /* «прошлого дня» — и день «из будущего» (часы переведены назад, 13-log.js: todayKey) */
+  return last !== today && cont ? 'past' : 'new';
 }
 /* что показать в плане: 'continue' — «Продолжить тренировку →» и сколько сделано; 'ask' — тренировка прошлого дня не
    закончена (can — в нынешнем плане её можно продолжить); 'start' — «Начать тренировку →» */
@@ -72,7 +78,7 @@ function wkPlanState(saved, {today, queue, data}) {
   const c = wkCount(queue, s => wkSet(data, s.it.ex.id, s.k, days), saved, (id, k) => wkSet(data, id, k, days));
   if (last === today) return c.done > 0 && c.done < c.total ? {kind:'continue', ...c} : {kind:'start'};
   const done = saved.done ?? c.done, total = saved.total ?? c.total;
-  if (last < today && done > 0) return {kind:'ask', day:last, done, total, can:c.done > 0 && c.done < c.total};
+  if (last !== today && done > 0) return {kind:'ask', day:last, done, total, can:c.done > 0 && c.done < c.total};
   return {kind:'start'};
 }
 /* минут на экране тренировки: spent — до этого открытия, openAt — когда открыт (0 — закрыт) */

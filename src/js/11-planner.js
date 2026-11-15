@@ -16,9 +16,10 @@ const GOALS = {
   cut:{name:'Рельеф', hint:'12–20 повт.', about:'Подтянуть тело и выносливость: лёгкий вес, 12–20 повторов, короткий отдых.', reps:{c:'12–15', i:'15–20'}, sets:{c:3, i:3}, rest:{c:60, i:40}, tempo:'2-0-1-0',
     load:{c:'≈ 55–65%', i:'до сильного жжения в мышце'}, rir:null, rep:3, time:'45–60 с', dist:'40 м',
     circ:{rounds:4, reps:'15–20', work:40, rest:15, roundRest:90}, ss:{rest:60}, ctrl:'10–15', ball:'10–15'},
-  /* бережно: суставы болят или идёт восстановление (11g-gentle.js) — Garber et al., MSSE 2011, 43(7):1334–1359 */
-  gentle:{name:'Бережно', hint:'12–15 повт.', about:'Если болят суставы, после травмы или долгого перерыва: лёгкий вес, медленно, без прыжков и рывков.', reps:{c:'12–15', i:'12–15'}, sets:{c:2, i:2}, rest:{c:90, i:60}, tempo:'3-0-2-0',
-    load:{c:'≈ 40–60%', i:'лёгкий вес'}, rir:[3, 4], rep:5, time:'20–30 с', dist:'20 м',
+  /* бережно: суставы болят или идёт восстановление (11g-gentle.js) — Garber et al., MSSE 2011, 43(7):1334–1359 (рекомендации
+     для практически здоровых взрослых); нагрузка — словами, без процента от максимума на 1 повтор (load.c — как у прицельных) */
+  gentle:{name:'Бережно', hint:'12–15 повт.', about:'Если болят суставы или после долгого перерыва: лёгкий вес, медленно, без прыжков и рывков. После травмы или операции — сначала к врачу.', reps:{c:'12–15', i:'12–15'}, sets:{c:2, i:2}, rest:{c:90, i:60}, tempo:'3-0-2-0',
+    load:{c:'лёгкий вес: все повторы спокойно', i:'лёгкий вес: все повторы спокойно'}, rir:[3, 4], rep:5, time:'20–30 с', dist:'20 м',
     circ:{rounds:2, reps:'12–15', work:30, rest:30, roundRest:120}, ss:{rest:90}, ctrl:'8–12', ball:'8–10'}
 };
 /* Запас повторов (повторы в запасе) — один источник для строки нагрузки в карточке, подсказки первой записи в журнале,
@@ -108,9 +109,12 @@ const GN = Object.fromEntries(GROUPS.map(g => [g.id, g.name]));
 /* ---------- генератор как у тренера (отчёт тестеров 4.94.0: Марина п. 11–16, Дмитрий, Alex п. 25) ---------- */
 /* Жимы и тяги — горизонтальные и вертикальные. В тренировке, где есть и спина, и грудь или плечи, подходов на тяги
    не меньше, чем на жимы (было: «4 жима, 16 подходов, против 2 тяг, 8», приложение само писало «жимов заметно больше»).
-   Перекос в сторону жимов — одна из причин болей в плече у тех, кто тренируется с отягощениями: Kolber M.J. et al.,
-   J Strength Cond Res 2010; 24(6):1696–1704; баланс мышц-антагонистов при выборе упражнений и чередование жимов
-   и тяг — NSCA, Haff & Triplett, Essentials of Strength Training and Conditioning, 4-е изд., 2016, гл. 17. */
+   Основание — правило методики: баланс мышц-антагонистов при выборе упражнений и чередование жимов и тяг — NSCA, Haff &
+   Triplett, Essentials of Strength Training and Conditioning, 4-е изд., 2016, гл. 17. Исследования именно о том, что
+   жимов больше, чем тяг, — причина боли в плече, не нашёл (11.2026). Близкое — обзор Kolber M.J. et al., J Strength Cond
+   Res 2010; 24(6):1696–1704: у тех, кто тренируется с отягощениями, программы перегружены крупными мышцами (грудные,
+   дельты, верх трапеций), а вращатели плеча и мышцы лопатки забыты; найден перекос «дельты — наружные вращатели» и «верх —
+   низ трапеции» (с. 1698). Перекос «жимы — тяги» в обзоре так не называется. */
 const PUSH_P = new Set(['hpush', 'ipush', 'dpush', 'vpush']), PULL_P = new Set(['hrow', 'vpull']);
 const sideOf = ex => PUSH_P.has(PATTERN[ex.id]) ? 'push' : PULL_P.has(PATTERN[ex.id]) ? 'pull' : null;
 /* Тяжёлая база с нагрузкой на позвоночник: присед со штангой, в Смите и в гакк-машине, становая и румынская тяги,
@@ -235,11 +239,89 @@ const STORE = 'podhod.settings.v1';
 const FIRST_RUN = (() => {
   try { return !['podhod.settings.v1', 'podhod.log.v1', 'podhod.workout.v3', 'podhod.planSeen.v1'].some(k => localStorage.getItem(k) != null); } catch (e) { return false; }
 })();
-function loadSettings() {
-  try { const s = JSON.parse(localStorage.getItem(STORE) || 'null'); if (s && s.groups && s.equip) return Object.assign({}, DEFAULTS, s); } catch (e) {}
-  return Object.assign({}, DEFAULTS);
+/* Настройки из хранилища или резервной копии — с проверкой типа каждого поля (Ксения 1, 9, 15): строка вместо списка мышц
+   («groups»: "chest»), строка вместо «Беречь суставы», мусор в местах и планах роняли приложение («groups.map is not a function»)
+   навсегда. Неверное поле — значение по умолчанию, и его имя попадает в bad (сообщение человеку). Здесь — только то, что можно
+   проверить до остального кода (цели, форматы, уровни, мышцы, инвентарь, упражнения); состав планов, мест, суставов, сворачивания —
+   ensureCustoms, ensurePlaces, ensureProtect, ensureFold (они вызываются при запуске и после восстановления). Неизвестные
+   поля (из новых версий) остаются как есть. */
+const SETTINGS_LABEL = {goal:'цель', format:'формат', level:'уровень', count:'число упражнений', groups:'мышцы', equip:'инвентарь',
+  seed:'вариант подбора', mode:'что собрать', days:'тренировок в неделю', split:'сплит', week:'неделя цикла', day:'день недели',
+  view:'раздел', atlasM:'мышца в атласе', focus:'акцент', fav:'избранное', customs:'свои планы', custom:'открытый свой план',
+  gen:'параметры обычных планов', author:'имя автора планов', fold:'свёрнутые блоки', protect:'«Беречь суставы»', cpLast:'последний свой план',
+  lr:'«Л/П отдельно»', units:'единицы веса', dur:'время на тренировку', places:'места', place:'место', placesV:'места', adapt:'«как в другом месте»',
+  swaps:'замены упражнений', logPick:'тренировка по журналу', health:'«Здоровье»', pain:'упражнения с пометкой «больно»'};
+function cleanSettings(raw) {
+  const s = raw && typeof raw === 'object' && !Array.isArray(raw) ? {...raw} : {}, bad = new Set();
+  if (!raw || typeof raw !== 'object' || Array.isArray(raw)) bad.add('*');
+  const obj = v => v && typeof v === 'object' && !Array.isArray(v);
+  const fix = (k, ok, def = DEFAULTS[k]) => { if (!(k in s)) return; if (!ok(s[k])) { bad.add(k); if (def === undefined) delete s[k]; else s[k] = Array.isArray(def) ? def.slice() : obj(def) ? {...def} : def; } };
+  const int = (lo, hi) => v => Number.isInteger(v) && v >= lo && v <= hi;
+  const ids = (k, list) => { if (!(k in s)) return; if (!Array.isArray(s[k])) { fix(k, () => false); return; }
+    const ok = new Set(list), v = [...new Set(s[k].filter(x => typeof x === 'string' && ok.has(x)))]; if (v.length !== s[k].length) bad.add(k); s[k] = v; };
+  const strOrNull = max => v => v === null || (typeof v === 'string' && v.length <= max);
+  fix('goal', v => typeof v === 'string' && !!GOALS[v]); fix('format', v => typeof v === 'string' && !!FORMATS[v]); fix('level', v => typeof v === 'string' && !!LEVELS[v]);
+  fix('count', int(3, 10)); fix('seed', v => Number.isInteger(v) && Math.abs(v) < 2 ** 31);
+  fix('mode', v => typeof v === 'string' && !!MODES[v]); fix('days', int(2, 5)); fix('split', v => typeof v === 'string' && !!SPLITS[v]);
+  fix('week', int(1, WEEKS.length)); fix('day', int(0, 6)); fix('view', v => ['plan', 'atlas', 'journal'].includes(v));
+  fix('atlasM', v => typeof v === 'string' && v.length <= 40); fix('focus', v => v === null || (typeof v === 'string' && !!MUSCLE_NAMES[v]));
+  ids('groups', GROUPS.map(g => g.id)); ids('equip', EQUIP.map(e => e.id));
+  fix('fav', Array.isArray); fix('customs', Array.isArray); fix('custom', strOrNull(40)); fix('gen', v => v === null || obj(v));
+  fix('author', v => typeof v === 'string'); fix('fold', v => v === null || obj(v)); fix('protect', v => Array.isArray(v) && v.every(x => typeof x === 'string'));
+  /* 4.106: ответы о здоровье и пометки «больно» (11l-health.js, 11g-gentle.js — ensureHealth, ensurePain дочищают по спискам) */
+  fix('health', v => Array.isArray(v) && v.every(x => typeof x === 'string')); fix('pain', v => v === null || obj(v));
+  fix('cpLast', strOrNull(40)); fix('lr', obj); fix('units', v => v === null || v === 'kg' || v === 'lb'); fix('dur', strOrNull(12));
+  fix('places', Array.isArray); fix('place', v => typeof v === 'string' && v.length <= 40);
+  fix('placesV', v => Number.isInteger(v) && v >= 0 && v < 1000); fix('adapt', strOrNull(40));
+  fix('swaps', v => obj(v) && Object.values(v).every(x => obj(x) || Array.isArray(x))); fix('logPick', v => v === null || obj(v));
+  /* элементы списков, которые потом чистят ensure*: не объекты — мимо, и это отмечается */
+  if (Array.isArray(s.customs) && s.customs.some(c => !obj(c) || typeof c.id !== 'string')) { s.customs = s.customs.filter(c => obj(c) && typeof c.id === 'string'); bad.add('customs'); }
+  if (Array.isArray(s.fav) && s.fav.some(id => typeof id !== 'string' || !EXI[id])) { s.fav = s.fav.filter(id => typeof id === 'string' && EXI[id]); bad.add('fav'); }
+  if (Array.isArray(s.places) && s.places.some(p => !obj(p) || typeof p.id !== 'string')) { s.places = s.places.filter(p => obj(p) && typeof p.id === 'string'); bad.add('places'); }
+  if (Array.isArray(s.places) && !s.places.length) delete s.places;
+  return {s:Object.assign({}, DEFAULTS, s), bad:[...bad]};
 }
-function saveSettings() { try { localStorage.setItem(STORE, JSON.stringify(S)); } catch (e) {} }
+/* названия испорченных полей для сообщения: «мышцы, места» */
+function settingsBadText(bad) { return [...new Set(bad.map(k => SETTINGS_LABEL[k] || 'прочие настройки'))].join(', '); }
+/* Две вкладки (или приложение с экрана «Домой» и вкладка браузера): у каждой свои настройки в памяти. settingsBase — текст
+   настроек в хранилище, каким эта вкладка видела его последним. Перед записью и по событию storage (18a-data-keep.js)
+   поле, которое другая вкладка изменила, а эта — нет, берётся из хранилища; изменённое здесь остаётся своим.
+   Вернёт список полей, взятых из хранилища. */
+let settingsBase = null;
+function settingsMerge(diskText = Keep.get(STORE)) {
+  if (diskText == null || diskText === settingsBase) return [];
+  let d = null, b = null;
+  try { d = JSON.parse(diskText); } catch (e) { return []; }
+  /* настроек не было, когда эта вкладка открылась (первый запуск) — основа — обычные */
+  try { b = settingsBase == null ? null : JSON.parse(settingsBase); } catch (e) {}
+  const theirs = cleanSettings(d).s, base = cleanSettings(b).s, took = [];
+  for (const k of new Set([...Object.keys(theirs), ...Object.keys(base)])) {
+    const was = JSON.stringify(base[k]), t = JSON.stringify(theirs[k]);
+    if (t !== was && JSON.stringify(S[k]) === was) { if (theirs[k] === undefined) delete S[k]; else S[k] = theirs[k]; took.push(k); }
+  }
+  settingsBase = diskText;
+  return took;
+}
+function loadSettings() {
+  const raw = Keep.get(STORE);
+  settingsBase = raw;
+  if (raw == null) return Object.assign({}, DEFAULTS);
+  let o = null, cut = false;
+  try { o = JSON.parse(raw); } catch (e) { const r = repairJson(raw); if (r) { o = r.value; cut = true; } }
+  const {s, bad} = cleanSettings(o);
+  if (cut || bad.length) {
+    /* исходное — в отложенные, до того как на его место запишется исправленное */
+    Keep.quarantine(STORE, raw, cut ? 'settings: cut' : 'settings: ' + bad.join(','));
+    Keep.note('settings', {fields:cut && !bad.length ? ['прочие настройки'] : bad.filter(k => k !== '*'), whole:o == null});
+  }
+  return s;
+}
+/* запись поверх того, что в хранилище сейчас: поля, изменённые здесь, — отсюда, остальные — из хранилища (settingsMerge) */
+function saveSettings() {
+  if (settingsMerge().includes('swaps')) try { swaps = S.swaps && typeof S.swaps === 'object' && !Array.isArray(S.swaps) ? S.swaps : (S.swaps = {}); } catch (e) {}
+  const text = JSON.stringify(S);
+  if (Keep.set(STORE, text)) settingsBase = text;
+}
 
 const S = loadSettings();
 /* замены и порядок упражнений (кнопки «Заменить» и ↑ ↓) хранятся с настройками: после перезапуска приложения
@@ -543,7 +625,7 @@ function prescribe(ex, week, E, extra = 0) {
   /* процент от 1ПМ — только у тяжёлой базы (schemeOf: heavy): штанга, гантели, тренажёр, блок обеими руками или ногами.
      Для резины, противовеса, собственного веса, гири одной рукой и подвижности — запас повторов без процента:
      подбирается натяжение ленты, противовес, вариант упражнения или вес, с которым держится техника. */
-  const pct = sch === 'heavy';
+  const pct = sch === 'heavy' && S.goal !== 'gentle';
   const band = ex.eq.length && ex.eq.every(g => g.every(id => id === 'band')), assisted = ex.eq.some(g => g.includes('gravitron'));
   const how = band ? 'натяжение ленты: ' : assisted ? 'противовес: ' : weighable(ex, E) ? '' : 'вариант полегче или посложнее: ';
   const easy = band ? 'натяжение ленты: слабее обычного, не до предела' : assisted ? 'противовес: больше обычного, не до предела' : weighable(ex, E) ? 'лёгкий вес, не до предела' : 'вариант полегче, не до предела';
@@ -564,6 +646,8 @@ function prescribe(ex, week, E, extra = 0) {
   }
   if (ex.kind === 'time') load = ex.g === 'cardio' ? (S.goal === 'gentle' ? 'умеренный темп: можно говорить, не задыхаясь' : 'высокий темп без потери техники') : S.goal === 'strength' ? 'с отягощением или в усложнённом варианте' : 'ровно, без потери формы';
   else if (ex.g === 'cardio') load = S.goal === 'gentle' ? 'плавно, в ровном темпе' : 'взрывно и в ровном темпе';
+  /* дорожка при «Коленях» и «Грыже диска» — шаг без бега (treadmillWalk, 11g-gentle.js) */
+  if (typeof treadmillWalk === 'function' && treadmillWalk(ex)) load = 'быстрым шагом, без бега: можно говорить, не задыхаясь';
   if (ex.kind === 'dist') load = S.goal === 'strength' ? 'максимально тяжёлые снаряды' : S.goal === 'gentle' ? 'умеренный вес, ровным шагом' : 'тяжёлые снаряды, без остановок';
   const notes = [];
   if (bodyweight && sch === 'mod' && S.goal === 'strength') notes.push('Если диапазон даётся легко, добавьте отягощение или замедлите опускание до 4 с.');
@@ -897,6 +981,7 @@ function renderSetup() {
   $('#f-format').innerHTML = seg('format', FORMATS, S.format);
   $('#f-level').innerHTML = seg('level', LEVELS, S.level);
   renderProtect();
+  if (typeof renderHealth === 'function') renderHealth();
   /* время на тренировку (11j-duration.js): в своём плане упражнения и подходы задал человек — поля нет */
   $('#f-dur').hidden = custom;
   const dur = S.dur || '';
@@ -1012,12 +1097,23 @@ function rxHtml(it) {
 /* суставы под пиковой нагрузкой — короткая строка в карточке. Пояснение раскрывается нажатием на строку (касанием и
    с клавиатуры, а не только в подсказке мыши): тот же текст, что в панели «Нагрузка на суставы» внизу разбора движения */
 const PEAK_OPEN = new Set();
+/* пояснение к меткам: «напоминание, а не запрет» — только тем, кто суставы не отмечал (Елена, п. 5); отмеченным — правда
+   про это упражнение и их суставы */
+const STRESS_LEAD = 'Красная метка на манекене — момент пиковой нагрузки на сустав, связки или сухожилие. Это напоминание держать технику, а не запрет.';
+function stressLead(ex) {
+  const prot = typeof protectShown === 'function' ? protectShown() : [];
+  if (!prot.length) return STRESS_LEAD;
+  const hits = protectHits(ex), strict = strictHit(ex);
+  const head = 'Красная метка на манекене — момент пиковой нагрузки на сустав, связки или сухожилие.';
+  if (hits.length || strict) return head + ' ' + (hits.length ? 'Вы бережёте {what}: это упражнение их нагружает.'.replace('{what}', hitsText(hits)) : upFirst(`${STRICT[strict].why} — ${PROTECT_BY[strict].name.toLowerCase()}.`)) + ' ' + 'В план оно не подбирается, в своём плане его заменит похожее.';
+  return head + ' ' + 'То, что вы бережёте ({what}), здесь пиково не нагружено; метки — на других суставах, держите технику.'.replace('{what}', hitsText(prot));
+}
 function jointsLine(ex, idx) {
   const zones = typeof stressZones === 'function' ? stressZones(ex) : [];
   if (!zones.length) return '';
   const on = typeof motionPrefs === 'undefined' || motionPrefs.stress !== false, open = PEAK_OPEN.has(ex.id);
   const rules = typeof jointStress === 'function' ? jointStress(ex).rules : [];
-  const lead = document.querySelector('#mv-stress-panel .stress-explanation')?.textContent || 'Красная метка на манекене — момент пиковой нагрузки на сустав, связки или сухожилие. Это напоминание держать технику, а не запрет.';
+  const lead = stressLead(ex);
   return `<div class="c-joints"${on ? '' : ' hidden'}><button type="button" class="c-joints-b" data-peak="${ex.id}" aria-expanded="${open}" aria-controls="peak-${idx}"><span class="stress-dot" aria-hidden="true"></span><span>Пиковая нагрузка: ${esc(zones.join(', '))}</span><i class="cg-chev" aria-hidden="true"></i></button>`
     + `<div class="c-joints-x" id="peak-${idx}"${open ? '' : ' hidden'}><p class="stress-explanation">${esc(lead)}</p><ul class="stress-list">${rules.map(r => `<li><span class="stress-dot" aria-hidden="true"></span><span><b>${esc(r.zone)}.</b> ${esc(r.what)} <em>${esc(r.tip)}</em></span></li>`).join('')}</ul></div></div>`;
 }
@@ -1075,7 +1171,7 @@ function cardHtml(it, idx) {
     <ol class="t-steps">${ex.tech.map(s => `<li>${esc(s)}</li>`).join('')}</ol>
     <div class="t-cols">
       <div><h4>Частые ошибки</h4><ul class="t-err">${ex.err.map(s => `<li>${esc(s)}</li>`).join('')}</ul></div>
-      <div><h4>Дыхание</h4><p>${esc(ex.breath)}</p>${ex.note ? `<h4>Важно</h4><p>${esc(ex.note)}</p>` : ''}${r.notes.map(n => `<p class="t-tip">${esc(n)}</p>`).join('')}</div>
+      <div><h4>Дыхание</h4><p>${esc(ex.breath)}</p>${breathCaveat(ex) ? `<p class="t-tip t-med">${esc(breathCaveat(ex))}</p>` : ''}${ex.note ? `<h4>Важно</h4><p>${esc(ex.note)}</p>` : ''}${r.notes.map(n => `<p class="t-tip">${esc(n)}</p>`).join('')}</div>
     </div>
   </details>
 </li>`;
@@ -1132,7 +1228,9 @@ function blocksHtml(p) {
   return html;
 }
 /* расшифровка для тех, кто знает обозначения: на карточках они уже сказаны словами */
-const LEGEND = `<p class="legend">Максимум на 1 повтор (1ПМ) — вес, который вы можете поднять только один раз. Темп: усилие — подъём веса, возврат — опускание, в секундах. В поле «Темп» своего плана — четыре числа: опускание, пауза внизу, подъём, пауза вверху; X — быстрый подъём.</p>`;
+/* «Не заменяет врача» — всем, под каждым планом, одной спокойной строкой (замечание кардиолога, Михаил п. 3) */
+const DOCTOR_LINE = 'Приложение не заменяет врача. При болезнях сердца, повышенном давлении, после травмы или операции, при беременности — сначала посоветуйтесь с врачом.';
+const LEGEND = `<p class="legend">Максимум на 1 повтор (1ПМ) — вес, который вы можете поднять только один раз. Темп: усилие — подъём веса, возврат — опускание, в секундах. В поле «Темп» своего плана — четыре числа: опускание, пауза внизу, подъём, пауза вверху; X — быстрый подъём.</p><p class="legend legend-med">${DOCTOR_LINE}</p>`;
 function warnHtml(p) {
   const warn = [];
   const gentle = S.goal === 'gentle' || S.protect.length > 0;
@@ -1157,6 +1255,7 @@ function headButtons(copyLabel) {
         ${S.mode === 'custom' ? `<button type="button" class="btn btn-2" id="plan-export">${ICON.share}<span>Выгрузить</span></button>`
           : `<button type="button" class="btn btn-2" id="save-plan">${ICON.save}<span>${S.mode === 'program' ? 'Сохранить неделю' : 'Сохранить как свой план'}</span></button>`}
       </div>
+      ${w.own ? `<p class="p-hint wk-own">${'Тренировка идёт по списку, с которого её начали.'}</p>` : ''}
       <p class="p-hint" id="copy-msg" role="status"></p>
       <p class="p-hint" id="save-msg" role="status"></p>`;
 }
@@ -1179,6 +1278,24 @@ function announcePlan() {
   clearTimeout(announcePlan.t); announcePlan.t = setTimeout(() => { box.textContent = text; }, 80);
 }
 function renderPlan() { renderPlanView(); if ($('#count-v')) renderCount(); announcePlan(); }
+/* пустой план: настоящая причина (отчёт Елены, п. 10) — бережный режим, а не оборудование, если без него упражнения нашлись бы */
+function emptyBodyGroups(groups = S.groups) {
+  const E = effEquip(S.equip), lvl = S.level === 'beg' ? 2 : 3;
+  /* те же условия формата, что и в подборе (buildPlan): в статодинамике нет удержаний и кардио, в круговой — упражнений на дозу */
+  const here = EX.filter(ex => available(ex, E) && ex.lvl <= lvl && (S.format !== 'static' || staticOk(ex)) && (S.format !== 'circuit' || !ex.doseReps)
+    && groups.some(g => ex.g === g || (g !== 'cardio' && ex.pri.some(m => MUSCLE_GROUP[m] === g))));
+  return here.length && !here.some(fitsBody) ? groups.filter(g => here.some(ex => ex.g === g)) : null;
+}
+function emptyWhyHtml() {
+  const body = emptyBodyGroups();
+  if (body) {
+    const prot = typeof protectShown === 'function' ? protectShown() : [];
+    const what = [S.format === 'static' ? 'в статодинамике' : '', S.goal === 'gentle' ? 'в бережном режиме' : '', prot.length ? 'при отметках: {list}'.replace('{list}', prot.map(p => p.name.toLowerCase()).join(', ')) : ''].filter(Boolean).join(GROUPS_AND);
+    const why = 'Для этих мышц ({g}) {what} подходящих упражнений с этим оборудованием нет: все дают нагрузку, которую вы бережёте.'.replace('{g}', body.map(g => GN[g].toLowerCase()).join(', ')).replace('{what}', what);
+    return `<div class="empty"><h2>Не из чего собрать тренировку</h2><p>${esc(why)}</p><p>Выберите другие мышцы или другое место; отметки можно поменять в параметрах.</p></div>`;
+  }
+  return `<div class="empty"><h2>Не из чего собрать тренировку</h2><p>Для выбранных мышц нет упражнений с этим оборудованием и уровнем. Добавьте оборудование или выберите другие группы мышц.</p></div>`;
+}
 function renderPlanView() {
   stopFigures();
   if (S.view === 'journal') { prog = null; plan = null; return renderJournal(); }
@@ -1198,7 +1315,7 @@ function renderPlanView() {
   if (plan.empty === 'none') {
     root.innerHTML = S.mode === 'custom'
       ? rmGoneHtml('div') + `<div class="empty"><h2>Здесь нечем выполнить этот план</h2>${lostMessages(plan.lost, effEquip(S.equip)).map(m => `<p>${esc(m)}</p>`).join('')}<p>Выберите другое место или добавьте упражнения.</p></div>` + customAddHtml()
-      : `<div class="empty"><h2>Не из чего собрать тренировку</h2><p>Для выбранных мышц нет упражнений с этим оборудованием и уровнем. Добавьте оборудование или выберите другие группы мышц.</p></div>`;
+      : emptyWhyHtml();
     return;
   }
   const G = GOALS[S.goal];
@@ -1227,9 +1344,9 @@ function renderPlanView() {
   </header>`;
   if (plan.custom) {
     const hints = customHints(plan), lost = lostMessages(plan.lost, plan.E);
-    html += autoregHtml() + gentleHtml() + (lost.length ? `<div class="warn">${lost.map(w => `<p>${esc(w)}</p>`).join('')}</div>` : '')
+    html += autoregHtml() + healthHtml() + gentleHtml() + (lost.length ? `<div class="warn">${lost.map(w => `<p>${esc(w)}</p>`).join('')}</div>` : '')
       + (hints.length ? `<div class="cp-hints">${hints.map(w => `<p>${esc(w)}</p>`).join('')}</div>` : '') + blocksHtml(plan) + customAddHtml() + LEGEND;
-  } else html += logPickHtml(plan) + autoregHtml() + gentleHtml() + warnHtml(plan) + blocksHtml(plan) + LEGEND;
+  } else html += logPickHtml(plan) + autoregHtml() + healthHtml() + gentleHtml() + warnHtml(plan) + blocksHtml(plan) + LEGEND;
   root.innerHTML = html;
   mountFigures();
 }
@@ -1273,8 +1390,10 @@ function renderProgram() {
   <nav class="days" role="tablist" aria-label="Дни недели">${prog.days.map((d, i) => `<button type="button" role="tab" class="${i === S.day ? 'on' : ''}" data-day="${i}" aria-selected="${i === S.day}"><b>${WD[d.wd]}</b><span>${esc(d.name)}</span><small>${d.plan.items ? `≈${d.plan.minutes} мин` : 'нет упражнений'}</small></button>`).join('')}</nav>
   <div class="day-head"><h2>${WD_FULL[day.wd]} — ${esc(day.name)}</h2>
     <p>${(plan.groups || DAY_T[day.tid].g).map(g => GN[g].toLowerCase()).join(', ')}${plan.items ? ` · ≈${plan.minutes} мин · ${plan.totalSets} ${plural(plan.totalSets, 'подход', 'подхода', 'подходов')}` : ''}</p></div>`;
-  if (!plan.items) html += `<div class="empty"><h2>Для этого дня нет упражнений</h2><p>С выбранным оборудованием нечем нагрузить эти мышцы. Добавьте оборудование или выберите другой сплит.</p></div>`;
-  else html += autoregHtml() + gentleHtml() + warnHtml(plan) + blocksHtml(plan);
+  const bodyDay = !plan.items && emptyBodyGroups(plan.groups || DAY_T[day.tid].g);
+  if (!plan.items) html += bodyDay ? `<div class="empty"><h2>Для этого дня нет упражнений</h2><p>${esc('Для этих мышц ({g}) {what} подходящих упражнений с этим оборудованием нет: все дают нагрузку, которую вы бережёте.'.replace('{g}', bodyDay.map(g => GN[g].toLowerCase()).join(', ')).replace('{what}', 'в бережном режиме'))}</p><p>Выберите другой сплит или место; отметки можно поменять в параметрах.</p></div>${gentleHtml()}`
+    : `<div class="empty"><h2>Для этого дня нет упражнений</h2><p>С выбранным оборудованием нечем нагрузить эти мышцы. Добавьте оборудование или выберите другой сплит.</p></div>`;
+  else html += autoregHtml() + healthHtml() + gentleHtml() + warnHtml(plan) + blocksHtml(plan);
   html += LEGEND;
   $('#plan').innerHTML = html;
   if (plan.items) mountFigures();

@@ -1,0 +1,51 @@
+/* Данные без потерь (00a-keep.js, 18a-data-keep.js): сообщения о спасённых данных и о хранилище, которое не принимает записи;
+   выбор при восстановлении копии; «Удалено · Вернуть» в истории; переспрос замера; экран спасения. */
+#keep-notes { display:grid; gap:8px; margin:0 0 12px; }
+#keep-notes:empty { display:none; }
+.keep-note { display:flex; flex-wrap:wrap; align-items:center; gap:8px 14px; padding:12px 14px; border-radius:12px; background:var(--accent-soft); color:var(--ink); font-size:.875rem; line-height:1.45; }
+.keep-note p { flex:1 1 18rem; margin:0; min-width:0; overflow-wrap:anywhere; }
+.keep-note.keep-bad { background:var(--hot-soft); border:1.5px solid var(--hot); }
+.keep-note.keep-bad b { color:var(--hot); }
+.keep-b { display:flex; flex-wrap:wrap; gap:8px; }
+.keep-b .btn { min-height:44px; }
+/* на экране тренировки — над шапкой */
+#keep-notes-wv:empty { display:none; }
+#keep-notes-wv .keep-note { margin:8px 12px 0; }
+.ls-bad { background:var(--hot); }
+.j-private { margin-top:4px; }
+/* восстановление копии: что будет и что взять */
+.j-restore { display:grid; gap:10px; margin-top:12px; padding:14px; border:1.5px solid var(--accent); border-radius:var(--r, 14px); background:var(--surface); }
+.j-restore h2 { margin:0; font-size:1rem; }
+.j-restore h2:focus { outline:none; }
+.j-restore h2:focus-visible { outline:2px solid var(--accent); outline-offset:3px; }
+.j-restore p { margin:0; font-size:.875rem; line-height:1.45; }
+.j-restore .po-set { display:grid; gap:6px; }
+.j-restore .po-opt { display:flex; align-items:flex-start; gap:10px; font-size:.875rem; color:var(--ink); border:1px solid var(--line); border-radius:10px; padding:9px 12px; cursor:pointer; }
+.j-restore .po-opt input { width:18px; height:18px; margin:1px 0 0; flex:none; accent-color:var(--accent); }
+.j-restore .po-opt span { display:grid; gap:2px; min-width:0; }
+.j-restore .po-opt small { color:var(--muted); font-size:.78125rem; }
+.j-restore-b { display:flex; flex-wrap:wrap; gap:8px; }
+.j-restore-b .btn { min-height:44px; }
+#j-msg:focus { outline:none; }
+/* удалённая запись истории или замер: «Удалена запись за … · Вернуть» на её месте */
+.h-list li.h-gone { display:flex; grid-template-columns:none; margin:4px 0; padding:8px 12px; }
+.h-del { min-height:32px; padding:4px 6px; }
+.h-del.armed { color:var(--hot); font-weight:600; }
+/* замер: причина отказа и вопрос «Записать?» у кнопки */
+.b-form .b-msg { grid-column:1 / -1; margin:0; font-size:.84375rem; line-height:1.45; color:var(--ink); }
+.b-form .b-msg:empty { display:none; }
+.b-ask { display:flex; flex-wrap:wrap; align-items:center; gap:8px 10px; }
+.b-ask > span { flex:1 1 14rem; min-width:0; }
+.b-form input[aria-invalid="true"] { border-color:var(--hot); }
+/* экран спасения (приложение не открылось): поверх страницы, без кода приложения */
+.rescue { position:relative; z-index:30; max-width:40rem; margin:16px; padding:18px 16px; border:1.5px solid var(--hot, #C92723); border-radius:14px; background:var(--surface, #fff); color:var(--ink, #111); font:1rem/1.5 system-ui, sans-serif; }
+.rescue h1 { margin:0 0 8px; font-size:1.25rem; }
+.rescue p { margin:0 0 10px; }
+.rescue-err { font-size:.8125rem; color:var(--muted, #555); overflow-wrap:anywhere; }
+.rescue-b { display:flex; flex-wrap:wrap; gap:8px; }
+.rescue-b .btn { min-height:44px; }
+/* «Загрузить план»: в плане больше упражнений, чем помещается, — сколько войдёт и «Разбить» */
+.pi-over { display:grid; gap:6px; }
+.pi-over p { margin:0; }
+.gear .pi-split { display:flex; align-items:center; gap:8px; font-size:.875rem; font-weight:600; color:var(--warn-ink); cursor:pointer; }
+.gear .pi-split input { width:18px; height:18px; margin:0; accent-color:var(--accent); }

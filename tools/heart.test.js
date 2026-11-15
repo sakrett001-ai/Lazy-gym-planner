@@ -17,8 +17,10 @@ function heart() {
     setTimeout, clearTimeout, setInterval, clearInterval, console, DataView, Uint8Array };
   ctx.globalThis = ctx;
   vm.createContext(ctx);
+  /* запись пульса идёт через Keep (00a-keep.js) */
+  vm.runInContext(fs.readFileSync(path.join(root, 'src/js/00a-keep.js'), 'utf8'), ctx, { filename: '00a-keep.js' });
   vm.runInContext(fs.readFileSync(path.join(root, 'src/js/14b-heart.js'), 'utf8'), ctx, { filename: '14b-heart.js' });
-  return vm.runInContext('({HR_RETRY, HR_LIVE, HR_REST, hrParse, hrSupport, hrErrorText, hrClient, hrSimBluetooth, hrSimFlag, hrKey, hrDayNew, hrAccumulate, hrSetDone, hrRestDone, hrSummary, hrCleanDays, hrMergeDays, hrRestStep, Heart})', ctx);
+  return vm.runInContext('({HR_RETRY, HR_LIVE, HR_REST, HR_THR, HR_HIGH_ANY, hrMaxFor, hrTooHigh, restFloor, hrParse, hrSupport, hrErrorText, hrClient, hrSimBluetooth, hrSimFlag, hrKey, hrDayNew, hrAccumulate, hrSetDone, hrRestDone, hrSummary, hrCleanDays, hrMergeDays, hrRestStep, Heart})', ctx);
 }
 const H = heart();
 const dv = bytes => new DataView(Uint8Array.from(bytes).buffer);
@@ -230,9 +232,31 @@ test('rest «until heart rate»: by heart rate, or by plan / heart rate — whic
 });
 
 test('heart settings are remembered; the threshold has no default number', () => {
-  assert.deepEqual(plain(H.Heart.prefs()), { rest: 'time', thr: null }, 'по умолчанию — отдых по времени, порога нет');
+  assert.deepEqual(plain(H.Heart.prefs()), { rest: 'time', thr: null, age: null }, 'по умолчанию — отдых по времени, порога и возраста нет');
   H.Heart.setPrefs({ rest: 'first', thr: 112 });
-  assert.deepEqual(plain(H.Heart.prefs()), { rest: 'first', thr: 112 });
+  assert.deepEqual(plain(H.Heart.prefs()), { rest: 'first', thr: 112, age: null });
   H.Heart.setPrefs({ rest: 'бег', thr: 5 });
-  assert.deepEqual(plain(H.Heart.prefs()), { rest: 'time', thr: null }, 'неверное не принимается');
+  assert.deepEqual(plain(H.Heart.prefs()), { rest: 'time', thr: null, age: null }, 'неверное не принимается');
+  /* порог — не выше 190 (было до 250: «почти без отдыха»), возраст — 10…100 */
+  H.Heart.setPrefs({ thr: 200, age: 64 }); assert.deepEqual(plain(H.Heart.prefs()), { rest: 'time', thr: null, age: 64 });
+  H.Heart.setPrefs({ thr: 190, age: 300 }); assert.deepEqual(plain(H.Heart.prefs()), { rest: 'time', thr: 190, age: null });
+  assert.equal(H.HR_THR.max, 190);
+});
+
+test('very high heart rate: above the age-predicted maximum (Tanaka 2001: 208 − 0.7 × age), without age — above 195', () => {
+  assert.equal(H.hrMaxFor(60), 166); assert.equal(H.hrMaxFor(20), 194); assert.equal(H.hrMaxFor(null), null);
+  assert(H.hrTooHigh(170, 60) && !H.hrTooHigh(160, 60), '60 years: above 166');
+  assert(H.hrTooHigh(200, null) && !H.hrTooHigh(190, null), 'no age: above 195 for any adult');
+  assert.equal(H.HR_HIGH_ANY, Math.floor(208 - 0.7 * 18), 'the predicted maximum already at 18');
+});
+
+test('rest «until heart rate» is never shorter than the minimum: a minute (or the plan), the whole plan in «Easy»', () => {
+  const step = (st, o) => plain(H.hrRestStep(st, { thr: 110, now: 10000, until: 100000, mode: 'hr', ...o }));
+  let st = {};
+  step(st, { bpm: 90, at: 1, floorAt: 60000 });
+  assert.deepEqual(step(st, { bpm: 90, at: 2, floorAt: 60000 }), { act: 'end', until: 60000, why: 'floor' }, 'below the threshold at 10 s — rest still ends at the minimum');
+  st = {}; step(st, { bpm: 90, at: 1, now: 70000, floorAt: 60000 });
+  assert.deepEqual(step(st, { bpm: 90, at: 2, now: 70000, floorAt: 60000 }), { act: 'end', until: 70100, why: 'below' }, 'after the minimum — right away');
+  assert.equal(H.restFloor(90, false), 60); assert.equal(H.restFloor(40, false), 40, 'a shorter plan is the minimum itself');
+  assert.equal(H.restFloor(90, true), 90, '«Easy»: heart rate only extends rest');
 });

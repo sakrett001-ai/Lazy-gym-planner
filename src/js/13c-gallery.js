@@ -48,11 +48,13 @@ function galleryAddBtn(id, name) {
 }
 /* название на плитке: с инвентарём этого места, а если здесь упражнения нет — с полным инвентарём */
 const galleryTileName = (ex, E = effEquip(S.equip), all = effEquip(EQUIP.map(e => e.id))) => exName(ex, available(ex, E) ? E : all);
+/* бережный режим: «нагружает колени — в плане будет замена», как во вкладке «Мышцы» и в «Добавить упражнение» (Елена, п. 5) */
+function galleryUnfit(ex) { const why = unfitWhy(ex); return why ? `<span class="mv-tunfit unfit">${esc('{why} — в плане будет замена'.replace('{why}', why))}</span>` : ''; }
 function galleryTile(ex, E, all) {
   const here = available(ex, E), name = galleryTileName(ex, E, all), fav = isFav(ex.id);
   const sub = here ? equipLine(ex, E) : `Нет в месте «${placeOf().name}», нужно: ${equipLine(ex, all).toLowerCase()}`;
   return `<div class="mv-tw"><button type="button" class="mv-tile${here ? '' : ' off'}" data-gallery-open="${ex.id}"><span class="mv-thumb" data-thumb="${ex.id}" aria-hidden="true"></span>`
-    + `<span class="mv-tname">${fav ? '<span class="mv-tfav" aria-label="В избранном">★</span> ' : ''}${esc(name)}</span><span class="mv-tsub">${esc(sub)}</span></button>${galleryAddBtn(ex.id, name)}</div>`;
+    + `<span class="mv-tname">${fav ? '<span class="mv-tfav" aria-label="В избранном">★</span> ' : ''}${esc(name)}</span><span class="mv-tsub">${esc(sub)}</span>${galleryUnfit(ex)}</button>${galleryAddBtn(ex.id, name)}</div>`;
 }
 /* ничего не нашлось (строка над витриной — живая, её слышит диктор): из-за фильтров — «Искать во всех: N»; иначе —
    ближайшие по написанию названия или совет. Совет выбрать «Всё», когда «Всё» уже выбрано, не нужен (замечание 20 тестера) */

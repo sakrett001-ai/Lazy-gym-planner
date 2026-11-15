@@ -572,6 +572,18 @@ await page.close();
   check(sk.cur !== skipFrom && /^Пропущено: /.test(sk.line) && sk.focus === 'wv-unskip' && /· пропущено$/.test(sk.opt) && !sk.log && sk.prog === '2 из 6 подходов', `«Пропустить»: дальше следующее, «Пропущено: … Вернуть», в журнале ничего (${JSON.stringify(sk)})`);
   await f.click('#wv-unskip');
   check(await f.evaluate(id => workout.queue[workout.index].it.ex.id === id && !workout.skipped.length && $('#wv-progress-label').textContent === '2 из 8 подходов', skipFrom), '«Вернуть»: пропущенное снова в тренировке');
+  /* двойное быстрое «Пропустить» (отчёт Артёма п. 4) — пропущено одно упражнение, а не два */
+  await f.evaluate(() => { workout.skipAt = 0; }); await f.dblclick('#wv-skip');
+  const dbl = await f.evaluate(() => ({ n: workout.skipped.length, pain: !$('#wv-pain').hidden }));
+  check(dbl.n === 1 && dbl.pain, `двойное «Пропустить» — одно упражнение, рядом «Больно» (${JSON.stringify(dbl)})`);
+  /* «Больно» → «Убрать из плана»: пометка в журнале дня, в подбор вернётся только из параметров (после закрытия тренировки) */
+  await f.click('#wv-pain');
+  const pb = await f.evaluate(() => ({ open: !$('#wv-pain-box').hidden, focus: document.activeElement.id }));
+  check(pb.open && pb.focus === 'wv-pain-swap', `«Больно»: выбор «Заменить» / «Убрать из плана» (${JSON.stringify(pb)})`);
+  await f.click('#wv-pain-off');
+  const po = await f.evaluate(id => ({ pend: S.pain.pend.includes(id), log: S.pain.log.some(x => x.id === id && x.d === todayKey() && x.how === 'removed'), status: $('#wv-save-status').textContent }), skipFrom);
+  check(po.pend && po.log && /^Убрано из плана: /.test(po.status), `«Убрать из плана»: отмечено, пометка в журнале (${JSON.stringify(po)})`);
+  await f.evaluate(id => { S.pain = { off: [], log: [], pend: [] }; saveSettings(); workoutUnskip(id); }, skipFrom);
   /* «Заменить»: тот же список, что в карточке плана; выбор меняет упражнение в плане и в тренировке, записанные подходы остаются */
   await f.evaluate(() => workoutShow(0));
   await f.click('#wv-swap');
@@ -1424,6 +1436,97 @@ await page.close();
   await G.close();
 }
 
+/* данные без потерь (4.107, телефон 390×844; 00a-keep.js, 13-log.js, 18-measures.js, 18a-data-keep.js): «Удалить запись» —
+   переспрос и в имени кнопки для диктора, «Удалено · Вернуть» на месте записи, фокус не теряется (Галина 3); замер «5000» —
+   отказ с причиной у поля, «270» — «Записать?» (Ксения 8); восстановление копии — сначала что будет и выбор «оставить мои /
+   взять из копии» (Ксения 4); строка о личных данных (Михаил 12); испорченные настройки при запуске — сообщение, приложение
+   работает (Ксения 1); ошибка при запуске — перезапуск с обычными настройками, не помогло — экран спасения; хранилище
+   запрещено — предупреждение и на экране тренировки (Ксения 6). Расчёты — tools/data-keep.test.js */
+{
+  const K = await open(390, 844);
+  await K.evaluate(() => { const d = n => dayKey(new Date(Date.now() - n * 864e5)); LOG.data = { dbcurl: [{ d: d(9), s: [[5, 12]] }, { d: d(5), s: [[5, 13]] }, { d: d(2), s: [[5, 15]] }] }; logSaveLocal(); S.view = 'journal'; renderSetup(); renderPlan(); });
+  await K.click('[data-jex="dbcurl"] > summary');
+  const first = await K.evaluate(() => document.querySelector('[data-jex="dbcurl"] [data-del]').dataset.d), delSel = `[data-del="dbcurl"][data-d="${first}"]`;
+  await K.click(delSel);
+  let r = await K.evaluate(s => { const b = document.querySelector(s); return { text: b.textContent, label: b.getAttribute('aria-label'), focus: document.activeElement === b, log: LOG.data.dbcurl.length }; }, delSel);
+  check(r.text === 'Точно удалить?' && /^Точно удалить запись за .+\?$/.test(r.label) && r.focus && r.log === 3, `«Удалить»: переспрос в надписи и полным вопросом в имени кнопки для диктора, фокус на месте, ничего не удалено (${JSON.stringify(r)})`);
+  await K.click(delSel);
+  r = await K.evaluate(() => { const u = document.querySelector('[data-hist-undo="dbcurl"]'), ae = document.activeElement; return { focus: !!u && ae === u, line: u?.closest('li').textContent.replace(/\s+/g, ' ').trim(), desc: u && document.getElementById(u.getAttribute('aria-describedby'))?.textContent, log: LOG.data.dbcurl.length, stored: JSON.parse(localStorage.getItem('podhod.log.v1')).dbcurl.length, open: document.querySelector('[data-jex="dbcurl"]').open, wide: document.documentElement.scrollWidth > innerWidth + 1 }; });
+  check(r.focus && /^Удалена запись за .+\.\s*Вернуть$/.test(r.line) && /^Удалена запись за/.test(r.desc) && r.log === 2 && r.stored === 2 && r.open && !r.wide, `второе нажатие удаляет; на месте записи — «Удалена запись за … · Вернуть», фокус на «Вернуть» (${JSON.stringify(r)})`);
+  await K.click('[data-hist-undo="dbcurl"]');
+  r = await K.evaluate(d => ({ log: LOG.data.dbcurl.length, stored: JSON.parse(localStorage.getItem('podhod.log.v1')).dbcurl.length, focus: document.activeElement?.dataset.del === 'dbcurl' && document.activeElement.dataset.d === d, msg: $('#j-msg').textContent }), first);
+  check(r.log === 3 && r.stored === 3 && r.focus && /возвращена/.test(r.msg), `«Вернуть» возвращает запись, фокус на её «Удалить» (${JSON.stringify(r)})`);
+  /* время вышло: строка уходит, фокус — на заголовок упражнения */
+  await K.click(delSel); await K.click(delSel);
+  r = await K.evaluate(id => { LOG.undo.until = 0; undoRepaint(`[data-hist-undo="${id}"]`, `[data-jex="${id}"] > summary`); return { gone: !document.querySelector('[data-hist-undo]'), focus: document.activeElement === document.querySelector('[data-jex="dbcurl"] > summary') }; }, 'dbcurl');
+  check(r.gone && r.focus, `через 10 с «Вернуть» уходит, фокус — на заголовок упражнения (${JSON.stringify(r)})`);
+  /* замер: «5000» — отказ с причиной, ничего не записано; «270» — вопрос; «Записать» — записано и сказано, что именно */
+  const kg = '#b-form [data-bf="kg"]';
+  await K.fill(kg, '5000'); await K.click('#b-form [type="submit"]');
+  r = await K.evaluate(() => ({ msg: $('#b-msg').textContent, rows: BODY.rows.length, invalid: $('#b-form [data-bf="kg"]').getAttribute('aria-invalid'), desc: $('#b-form [data-bf="kg"]').getAttribute('aria-describedby'), focus: document.activeElement?.dataset.bf, j: $('#j-msg').textContent }));
+  check(/^Вес 5000 кг — так не бывает/.test(r.msg) && r.rows === 0 && r.invalid === 'true' && r.desc === 'b-msg' && r.focus === 'kg' && !/записан/.test(r.j), `замер «5000»: отказ с причиной у поля, ничего не записано, «записан» не сказано (${JSON.stringify(r)})`);
+  await K.fill(kg, '270'); await K.click('#b-form [type="submit"]');
+  r = await K.evaluate(() => ({ ask: $('#b-msg .b-ask')?.textContent.replace(/\s+/g, ' '), focus: document.activeElement?.dataset.bask, rows: BODY.rows.length }));
+  check(/^Необычное значение: вес 270 кг\. Записать\?/.test(r.ask || '') && r.focus === 'fix' && r.rows === 0, `замер «270»: вопрос «Записать?», фокус на «Исправить» (${JSON.stringify(r)})`);
+  await K.click('[data-bask="yes"]');
+  r = await K.evaluate(() => ({ rows: BODY.rows.length, msg: $('#b-msg').textContent }));
+  check(r.rows === 1 && /^Замер за сегодня записан: вес 270 кг\.$/.test(r.msg), `«Записать» — замер записан, сказано что (${JSON.stringify(r)})`);
+  /* строка о личных данных */
+  check(await K.evaluate(() => /Пульс, вес и отметки о суставах хранятся только на этом устройстве.*открытый файл/.test($('.j-private')?.textContent || '')), 'в журнале сказано, где хранятся пульс, вес и отметки о суставах и что копия — открытый файл');
+  /* восстановление: сначала что будет и выбор; «оставить мои» — свой план и цель остаются, журнал добавлен */
+  await K.evaluate(() => { S.customs = [{ id: 'c9', name: 'Сегодняшний план', items: [{ id: 'squat' }] }]; S.custom = 'c9'; S.goal = 'gentle'; ensureCustoms(S); saveSettings(); });
+  const copy = await K.evaluate(() => { const b = backupObject(); b.settings = { ...b.settings, goal: 'strength', customs: [{ id: 'c1', name: 'Из копии', items: [{ id: 'bbbench' }] }], custom: 'c1' }; b.log = { bbbench: [{ d: '2026-11-02', s: [[60, 8]] }] }; return JSON.stringify(b); });
+  await K.evaluate(t => restoreRead(t), copy);
+  r = await K.evaluate(() => ({ h: document.activeElement?.id, mine: document.querySelector('input[name="jr-set"][value="mine"]')?.checked, copy: !!document.querySelector('input[name="jr-set"][value="copy"]'), text: $('.j-restore')?.textContent.replace(/\s+/g, ' '), customs: S.customs[0].name, log: !!LOG.data.bbbench, wide: document.documentElement.scrollWidth > innerWidth + 1 }));
+  check(r.h === 'jr-h' && r.mine && r.copy && /Журнал и замеры добавятся/.test(r.text) && /Оставить мои.*цель — Бережно.*Взять из копии.*цель — Сила/.test(r.text) && r.customs === 'Сегодняшний план' && !r.log && !r.wide,
+    `восстановление: сначала — что будет, «Оставить мои» выбрано, ничего ещё не изменилось (${JSON.stringify(r)})`);
+  await K.click('#jr-go');
+  r = await K.evaluate(() => ({ customs: S.customs[0].name, goal: S.goal, log: LOG.data.bbbench?.length, msg: $('#j-msg').textContent, focus: document.activeElement?.id }));
+  check(r.customs === 'Сегодняшний план' && r.goal === 'gentle' && r.log === 1 && /Восстановлено: новых записей журнала — 1\. Планы и настройки — здешние\./.test(r.msg) && r.focus === 'j-msg',
+    `«Восстановить» с «Оставить мои»: свой план и цель на месте, журнал добавлен, итог — как было сделано (${JSON.stringify(r)})`);
+  await K.close();
+  /* испорченные настройки в хранилище при запуске: приложение работает, сообщение и «Скачать испорченное» */
+  const seed = (store, extra) => { const c = browser.newContext({ viewport: { width: 390, height: 844 } }); return c.then(async ctx => { await ctx.addInitScript(([s, x]) => { if (!sessionStorage.getItem('seeded')) { for (const [k, v] of Object.entries(s)) localStorage.setItem(k, v); sessionStorage.setItem('seeded', '1'); } if (x) (0, eval)(x); }, [store, extra || '']); const pg = await ctx.newPage(); pg.on('pageerror', e => errors.push(String(e))); pg.on('close', () => ctx.close().catch(() => {})); return pg; }); };
+  const B = await seed({ 'podhod.settings.v1': JSON.stringify({ goal: 'mass', groups: 'chest', equip: ['db'], protect: 'knees' }), 'podhod.log.v1': JSON.stringify({ dbcurl: [{ d: '2026-11-02', s: [[5, 12]] }] }) });
+  await B.goto('file://' + file); await B.waitForTimeout(600);
+  r = await B.evaluate(() => ({ note: $('#keep-notes')?.textContent.replace(/\s+/g, ' ') || '', groups: Array.isArray(S.groups), protect: Array.isArray(S.protect), plan: !!document.querySelector('#plan').children.length, broken: JSON.parse(localStorage.getItem('podhod.broken.v1') || '[]').map(x => x.key) }));
+  check(/Часть сохранённых настроек была испорчена и заменена обычными: мышцы, «Беречь суставы»/.test(r.note) && /Скачать испорченное/.test(r.note) && r.groups && r.protect && r.plan && r.broken.includes('podhod.settings.v1'),
+    `испорченные настройки при запуске: приложение работает, сообщение, исходное отложено (${JSON.stringify(r)})`);
+  /* «Удалить» у испорченного (решение владельца по 4.107, вопрос 6): переспрос, затем отложенное стёрто и плашки нет */
+  r = await B.evaluate(async () => { const b = document.querySelector('[data-keep="drop"]'); if (!b) return { btn: false }; b.click(); const ask = b.textContent; b.click(); await new Promise(res => setTimeout(res, 50));
+    return { btn: true, ask, left: localStorage.getItem('podhod.broken.v1'), note: ($('#keep-notes')?.textContent || '').trim() }; });
+  check(r.btn && /Точно удалить/.test(r.ask) && !r.left && !/Скачать испорченное/.test(r.note), `«Удалить» у испорченного: переспрос, отложенное стёрто (${JSON.stringify(r)})`);
+  await B.close();
+  /* ошибка при запуске, которую не поймала проверка (здесь — подменённое начало app.js): перезапуск с обычными настройками и
+     сообщение; ошибка и после этого — экран спасения с «Сохранить все данные в файл», журнал не тронут */
+  const errsBefore = errors.length;
+  const boom = flag => `Object.defineProperty(window, 'PODHOD_LOCALE', { configurable: true, set(v) { this.__loc = v; }, get() { if (${flag}) throw new Error('boom'); return this.__loc; } });`;
+  const C = await seed({ 'podhod.settings.v1': JSON.stringify({ goal: 'cut', author: '__boom__' }), 'podhod.log.v1': JSON.stringify({ dbcurl: [{ d: '2026-11-02', s: [[5, 12]] }] }) }, boom(`(localStorage.getItem('podhod.settings.v1') || '').includes('__boom__')`));
+  await C.goto('file://' + file); await C.waitForTimeout(1500);
+  r = await C.evaluate(() => ({ note: $('#keep-notes')?.textContent || '', goal: S.goal, log: !!JSON.parse(localStorage.getItem('podhod.log.v1')).dbcurl, broken: JSON.parse(localStorage.getItem('podhod.broken.v1') || '[]').map(x => x.key + ':' + x.why.slice(0, 4)) }));
+  check(/запущено с обычными/.test(r.note) && r.goal === 'mass' && r.log && r.broken.includes('podhod.settings.v1:boot'), `ошибка при запуске: перезапуск с обычными настройками, журнал на месте, настройки отложены (${JSON.stringify(r)})`);
+  await C.close();
+  const D = await seed({ 'podhod.log.v1': JSON.stringify({ dbcurl: [{ d: '2026-11-02', s: [[5, 12]] }] }) }, boom('true'));
+  await D.goto('file://' + file); await D.waitForTimeout(1500);
+  r = await D.evaluate(() => ({ title: document.querySelector('.rescue h1')?.textContent, btns: [...document.querySelectorAll('.rescue button')].map(b => b.textContent), focus: document.activeElement?.dataset.rescue, log: localStorage.getItem('podhod.log.v1') }));
+  check(r.title === 'Приложение не открылось' && r.btns.join('|') === 'Сохранить все данные в файл|Открыть без сохранённых данных' && r.focus === 'save' && /dbcurl/.test(r.log), `ошибка и после перезапуска — экран спасения, журнал не тронут (${JSON.stringify(r)})`);
+  const [dl] = await Promise.all([D.waitForEvent('download'), D.click('[data-rescue="save"]')]);
+  const saved = JSON.parse(fs.readFileSync(await dl.path(), 'utf8'));
+  check(saved.app === 'podhod' && saved.log?.dbcurl?.length === 1 && saved.raw['podhod.log.v1'], 'файл «все данные» — в виде резервной копии, с журналом и исходными текстами');
+  await D.close();
+  errors.splice(errsBefore); /* ошибки подменённого запуска — нарочно */
+  /* хранилище запрещено: предупреждение на странице и на экране тренировки */
+  const E = await seed({}, `Object.defineProperty(window, 'localStorage', { get() { throw new DOMException('insecure', 'SecurityError'); } });`);
+  await E.goto('file://' + file); await E.waitForTimeout(600);
+  await fakeFigures(E);
+  r = await E.evaluate(() => ({ bad: $('#keep-notes .keep-bad')?.getAttribute('role'), text: $('#keep-notes')?.textContent || '' }));
+  check(r.bad === 'alert' && /Записи не сохраняются на этом устройстве/.test(r.text) && /Сохранить копию в файл/.test(r.text), `хранилище запрещено: заметное предупреждение (${JSON.stringify(r)})`);
+  await E.evaluate(() => { if (typeof firstRunClose === 'function') try { firstRunClose(); } catch (e) {} });
+  await E.evaluate(() => startWorkout()); await E.waitForTimeout(200);
+  check(await E.evaluate(() => /Записи не сохраняются/.test($('#keep-notes-wv')?.textContent || '') && $('#workout-view').open), 'и на экране тренировки');
+  await E.close();
+}
+
 /* «+ В свой план» (телефон): в атласе мышц и в разборе кнопка раскрывает под собой список своих планов и «+ Новый план».
    Выбор добавляет в выбранный план и не открывает его; повторное нажатие и Esc сворачивают список, фокус — на кнопку;
    последний выбранный — первым. На странице своего плана кнопка, как раньше, добавляет в открытый план. */
@@ -1645,15 +1748,22 @@ const fakeBluetooth = () => {
   check(JSON.stringify(s.day?.sets) === '{"squat:0":[149,152]}' && s.day.max === 152 && s.day.t >= 2, `подход: пульс в конце и максимум записаны (${JSON.stringify(s.day)})`);
   check(s.rest === '149' && s.rnote === 'В начале отдыха 149' && await shown(h, '#wv-hr-rest') && await shown(h, '#wv-hr-set'), `отдых: пульс крупно, «в начале отдыха», настройка конца отдыха (${JSON.stringify(s)})`);
   check(await h.evaluate(() => [...document.querySelectorAll('[data-hr-rest]')].map(b => b.textContent + ':' + b.getAttribute('aria-pressed')).join() === 'Время:true,Пульс:false,Пульс или время:false' && $('.wv-hr-thr').hidden && /не медицинское измерение/.test($('#wv-hr-set').textContent)), 'по умолчанию отдых по времени, порога нет, строка «не медицинское измерение»');
-  /* «пульс или время»: порог 110 — отдых кончается раньше плана, когда пульс ниже порога два показания подряд */
+  /* «пульс или время»: порог 110 — отдых кончается раньше плана, когда пульс ниже порога два показания подряд, но не раньше
+     минимума: минута или план, если он короче (restFloor, 14b-heart.js; de Salles et al. 2009) */
   await h.click('[data-hr-rest="first"]'); await h.fill('#wv-hr-thr', '110');
-  check(await h.evaluate(() => JSON.stringify(Heart.prefs()) === '{"rest":"first","thr":110}' && JSON.parse(localStorage.getItem('podhod.heart.prefs.v1')).thr === 110), 'выбор «Пульс или время» и порог запоминаются');
+  check(await h.evaluate(() => JSON.stringify(Heart.prefs()) === '{"rest":"first","thr":110,"age":null}' && JSON.parse(localStorage.getItem('podhod.heart.prefs.v1')).thr === 110), 'выбор «Пульс или время» и порог запоминаются, возраст не задан');
   await push(126); s = await hs();
   check(s.rnote === 'Отдых до пульса ниже 110 · в начале отдыха 149' && await h.evaluate(() => !$('#workout-view').classList.contains('rest-over')), `отдых до пульса: подпись (${s.rnote})`);
   await push(108); await push(104); await h.evaluate(() => { window.__dt += 300; workoutTick(); });
   s = await hs();
-  const r1 = await h.evaluate(() => ({ h: $('#wv-rest-heading').textContent, red: $('#workout-view').classList.contains('rest-over'), done: !$('#wv-rest-done').hidden, end: RestAlarm.state().end, left: workout.restUntil - Date.now() }));
-  check(r1.h === 'Можно продолжать' && !r1.red && r1.done && r1.left <= 0 && s.rnote === 'Пульс ниже 110 — можно к подходу · в начале отдыха 149', `пульс ниже порога — отдых кончился раньше плана (${JSON.stringify(r1)}, ${s.rnote})`);
+  const restNow = () => h.evaluate(() => ({ h: $('#wv-rest-heading').textContent, red: $('#workout-view').classList.contains('rest-over'), done: !$('#wv-rest-done').hidden, end: RestAlarm.state().end, left: workout.restUntil - Date.now() }));
+  const r0 = await restNow();
+  check(r0.h === 'Отдых' && !r0.done && !r0.red && r0.left > 50000 && r0.left <= 60000, `пульс ниже порога в начале отдыха — отдых не короче минуты (${JSON.stringify(r0)})`);
+  check(s.rnote === 'Пульс ниже 110 — отдохните ещё немного: отдых не короче минимума · в начале отдыха 149', `до минимума — «отдохните ещё немного» (${s.rnote})`);
+  await h.evaluate(() => { window.__dt += workout.restUntil - Date.now() + 200; window.__hr.push(104); workoutTick(); });
+  s = await hs();
+  const r1 = await restNow();
+  check(r1.h === 'Можно продолжать' && !r1.red && r1.done && r1.left <= 0 && s.rnote === 'Пульс ниже 110 — можно к подходу · в начале отдыха 149', `пульс ниже порога — отдых кончился на минимуме, раньше плана (${JSON.stringify(r1)}, ${s.rnote})`);
   await h.click('#wv-continue');
   s = await hs();
   check(JSON.stringify(s.day.rests) === '{"squat:0":[149,104]}', `отдых: пульс в начале и в конце записан (${JSON.stringify(s.day.rests)})`);

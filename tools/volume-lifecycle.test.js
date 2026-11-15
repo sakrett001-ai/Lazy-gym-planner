@@ -84,7 +84,8 @@ test('3D joint-stress marks appear at the loaded joints, show through the body, 
  const r=await runtime();let figure;
  try{
   figure=r.create(r.options('squat','side'));const group=r.counters.scene.getObjectByName('joint-stress'),visible=()=>group.children.filter(g=>g.visible);
-  figure.at(0,{index:0});assert.equal(visible().length,0,'standing tall: no marks');
+  /* стоя со штангой на спине — одна метка: осевая нагрузка на поясницу (09f-joint-stress.js, правило axial) */
+  figure.at(0,{index:0});assert.equal(visible().length,1,'standing tall: only the bar pressing on the lower back');
   figure.at(1,{index:1});const R=r.model.EX.find(e=>e.id==='squat').anim.catalogRig(1),marks=visible();
   assert.equal(marks.length,3,'both knees and the lower back');
   const knee=[R.knL[0]/100,(186-R.knL[1])/100,R.knL[2]/100];

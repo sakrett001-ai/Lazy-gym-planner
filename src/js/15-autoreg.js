@@ -3,10 +3,33 @@
    1. Застой: 3 последние тренировки по упражнению без роста расчётного максимума (±1%) и без выхода на верх диапазона → заменить упражнение или поработать в другом диапазоне.
    2. Недобор: 2 последние тренировки подряд ниже нижней границы повторов → снизить вес (это уже делает подсказка) — здесь только отмечаем.
    3. Усталость: за последние 10 дней не меньше 4 записей, и в половине из них хотя бы один подход ниже нижней границы → внеплановая разгрузка.
-   4. Пропуск: последняя запись старше 14 дней при наличии истории → мягкий возврат: веса на 10% ниже. */
+   4. Пропуск: последняя запись старше 14 дней при наличии истории → мягкий возврат по ступенчатой шкале (LAYOFF_STEPS):
+      чем дольше перерыв, тем ниже вес; одно и то же число — в плашке, в подсказке карточки, в разминке и в поле веса на экране
+      тренировки (suggestBase, 13-log.js). */
+/* Шкала после перерыва (замечание кардиолога, Михаил п. 1: было «на 10 % ниже» и после 14, и после 200 дней, а подставлялся
+   прежний вес). Что найдено (11.2026):
+   · Bosquet L. et al., Scand J Med Sci Sports 2013, 23(3):e140–e149 (метаанализ, аннотация): прекращение силовых тренировок
+     снижает все виды силы; эффект растёт с длительностью перерыва, больше — у старших 65 лет и у малоактивных. По пересказу
+     (Stronger by Science, «Detraining»): до 28 дней максимальная сила почти не меняется, после — потери ускоряются.
+   · Encarnação I.G.A. et al., Muscles 2022, 1(1):1–15 (систематический обзор, текст): после 3 недель — минимальные изменения;
+     через 24 недели сила ниже на 4–12 % (Häkkinen и др.) и на 17 % (в другой работе); к 32–48 неделям — возвращается
+     к уровню до тренировок.
+   Ступени — потеря силы за этот срок плюс запас на первую тренировку (связки и сухожилия отвыкли от веса, техника): 14–27 дней —
+   10 %, 4–12 недель — 15 %, 12–24 недели — 20 %, больше 24 недель — 30 % (сила могла вернуться к исходной — начать как
+   с новичка, «подберите вес заново»).
+   С 65 лет (если возраст указан в настройке отдыха) — ступенью выше: у старших сила за перерыв уходит больше (Bosquet 2013,
+   см. выше; решение владельца по 4.106, вопрос 4). */
+const LAYOFF_STEPS = [{from:14, pct:10}, {from:28, pct:15}, {from:84, pct:20}, {from:168, pct:30}], LAYOFF_OLD = 65;
+function layoffPct(gap, age = null) {
+  let i = -1;
+  LAYOFF_STEPS.forEach((s, j) => { if (gap >= s.from) i = j; });
+  if (i < 0) return 0;
+  if (Number.isInteger(age) && age >= LAYOFF_OLD) i = Math.min(i + 1, LAYOFF_STEPS.length - 1);
+  return LAYOFF_STEPS[i].pct;
+}
 const AR = {dismissed:{}, light:false};
 try { Object.assign(AR, JSON.parse(localStorage.getItem('podhod.autoreg.v1') || '{}')); } catch (e) {}
-function arSave() { try { localStorage.setItem('podhod.autoreg.v1', JSON.stringify({dismissed:AR.dismissed, light:AR.light})); } catch (e) {} }
+function arSave() { Keep.set('podhod.autoreg.v1', JSON.stringify({dismissed:AR.dismissed, light:AR.light})); }
 function daysBetween(a, b) { return Math.round((new Date(b) - new Date(a)) / 86400000); }
 
 function exerciseStall(it) {
@@ -37,13 +60,21 @@ function fatigueCheck(items) {
   if (n < 4 || low * 2 < n) return null;
   return {kind:'fatigue', n, low, text:`За 10 дней в ${low} из ${n} записей не дотянули до нижней границы повторов. Похоже на накопленную усталость: возьмите разгрузочную неделю — подходов на 40% меньше, веса на 10–15% ниже.`};
 }
-function layoffCheck() {
+/* перерыв: дней с последней записи до сегодняшнего дня и снижение веса (%), null — перерыва нет */
+function layoffInfo() {
   let last = '';
-  for (const ss of Object.values(LOG.data)) for (const s of ss) if (s.s.some(Boolean) && s.d > last && s.d < todayKey()) last = s.d;
+  for (const ss of Object.values(LOG.data)) for (const s of ss) if (Array.isArray(s.s) && s.s.some(Boolean) && s.d > last && s.d < todayKey()) last = s.d;
   if (!last) return null;
-  const gap = daysBetween(last, todayKey());
-  if (gap < 14) return null;
-  return {kind:'layoff', gap, text:`Последняя запись ${fmtDay(last, true)}, перерыв ${gap} ${plural(gap, 'день', 'дня', 'дней')}. Первую тренировку после перерыва проведите на весах на 10% ниже прежних, затем возвращайтесь по правилу прибавок.`};
+  const age = typeof Heart !== 'undefined' && typeof Heart.age === 'function' ? Heart.age() : null;
+  const gap = daysBetween(last, todayKey()), pct = layoffPct(gap, age);
+  return pct ? {last, gap, pct} : null;
+}
+function layoffCheck() {
+  const L = layoffInfo(); if (!L) return null;
+  const long = L.gap >= LAYOFF_STEPS[LAYOFF_STEPS.length - 1].from;
+  const text = 'Последняя запись {d}, перерыв {g}. Первую тренировку проведите на весах на {p}% ниже прежних — они уже подставлены в карточки и на экран тренировки; дальше возвращайтесь по правилу прибавок.'
+    .replace('{d}', fmtDay(L.last, true)).replace('{g}', `${L.gap} ${plural(L.gap, 'день', 'дня', 'дней')}`).replace('{p}', L.pct);
+  return {kind:'layoff', gap:L.gap, pct:L.pct, text:text + (long ? ' ' + 'После полугода сила могла вернуться к той, что была до тренировок: если и этот вес тяжёл, подберите его заново, как в первый раз.' : '')};
 }
 function autoreg() {
   if (!plan || !plan.items) return [];

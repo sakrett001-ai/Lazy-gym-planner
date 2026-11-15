@@ -96,7 +96,8 @@ test('strength scheme (3–5 reps, percent of max) only for heavy basics; bodywe
     for (const ex of a.EX) for (const week of [null, a.WEEKS[1], a.WEEKS[3]]) {
       const r = a.prescribe(ex, week, E), sch = a.schemeOf(ex), tag = `${goal} ${level} ${ex.id} (${sch})`;
       if (r.static) continue;
-      assert.equal(/от максимума/.test(r.load), sch === 'heavy', `${tag}: percent only for heavy basics — ${r.load}`);
+      /* в «Бережно» — без процента: максимум на 1 повтор человек после травмы не знает (Михаил п. 8) */
+      assert.equal(/от максимума/.test(r.load), sch === 'heavy' && goal !== 'gentle', `${tag}: percent only for heavy basics, never in «Easy» — ${r.load}`);
       if (goal === 'strength' && sch !== 'heavy' && sch !== 'cardio' && !ex.doseReps) assert.notEqual(r.reps, '3–5', `${tag}: no 3–5 strength reps`);
       if (r.tempo && /X/i.test(r.tempo)) assert.equal(sch, 'heavy', `${tag}: fast lifting only for heavy basics — ${r.tempo}`);
       if (sch === 'ctrl') { assert.equal(r.tempo, null, tag); assert(r.load.startsWith(a.CTRL_LOAD), `${tag}: ${r.load}`); assert(!/взрывно/.test(r.load), tag); }
@@ -293,7 +294,10 @@ test('the main compound of a day keeps at least 3 sets when the isolation work o
 /* предложение владельцу (отдельный коммит): новичку при 4–5 тренировках по 45–60 мин неделя не выходит за шкалу 4–12 —
    подходов и упражнений меньше, под планом сказано почему. На сетке ниже (зал и дом × 4 цели × «всё тело» и «верх / низ» ×4,
    «жим / тяга / ноги» и «верх / низ» ×5 × 45 и 60+ мин) групп выше 12 было 353 из 656, стало 9 (там и самый короткий вариант
-   чуть выше потолка). Числа — только убывают. */
+   чуть выше потолка). Числа — только убывают.
+   4.107.0: 9 → 10 — дом, 5 дней, 60+ мин, «Бережно»: спина 13,5. По решению владельца (4.106, вопрос 3) в «Бережно» не
+   подбираются упражнения вниз головой (дома — отжимания углом): неделя собралась по-другому, в дне «верх» вместо разведений
+   «Y-T-W» встали шраги, а они нагружают и спину. Это следствие запрета по безопасности, а не ошибка подбора. */
 test('beginner with 4–5 long workouts: the week stays on the 4–12 scale, and the plan says why it is shorter', () => {
   const sc = s => s.replace(/\u00a0/g, ' ');
   let over = 0, n = 0, cut = 0;
@@ -306,7 +310,7 @@ test('beginner with 4–5 long workouts: the week stays on the 4–12 scale, and
       assert.match(sc(a.durationWarn(d.plan)), /^Новичку больше подходов не прибавляем: тренировка ≈\d+ мин, иначе за неделю мышцам выйдет больше 12 подходов\./);
     }
   }
-  assert(over <= 9, `${n} group-weeks: ${over} above 12 (limit 9)`);
+  assert(over <= 10, `${n} group-weeks: ${over} above 12 (limit 10)`);
   assert(cut > 0, 'some days are shorter because of the weekly volume');
   /* не новичку — как раньше: потолка нет */
   reset({ mode: 'program', days: 5, split: 'ul', dur: 'long' });

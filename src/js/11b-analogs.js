@@ -83,6 +83,12 @@ const PLACE_DEFAULTS = [
    пользователем потом не возвращается */
 const PLACE_ADDED = [[1, 'homeband']];
 function ensurePlaces(s) {
+  /* места из хранилища или копии: только объекты с кодом, именем-строкой и списком известного инвентаря (мусор — мимо) */
+  if (Array.isArray(s.places)) {
+    const seen = new Set(), known = new Set(EQUIP.map(e => e.id));
+    s.places = s.places.filter(p => p && typeof p === 'object' && typeof p.id === 'string' && /^[\w-]{1,40}$/.test(p.id) && !seen.has(p.id) && seen.add(p.id))
+      .map(p => ({...p, name:typeof p.name === 'string' && p.name.trim() ? p.name.slice(0, 40) : 'Место', equip:Array.isArray(p.equip) ? [...new Set(p.equip.filter(id => known.has(id)))] : []}));
+  }
   if (!Array.isArray(s.places) || !s.places.length) {
     s.places = PLACE_DEFAULTS.map(p => ({...p, auto:p.id, equip:p.equip.slice()}));
     /* перенос старой настройки: инвентарь, который уже был выбран, становится инвентарём подходящего места */

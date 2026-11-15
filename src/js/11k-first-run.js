@@ -6,7 +6,8 @@
      1. где тренируетесь — места тренировок (11b-analogs.js);
      2. что есть под рукой — инвентарь этого места; в зале всё есть, шага нет;
      3. цель — с пояснением простыми словами (GOALS.about), без выбора по умолчанию;
-     4. время на тренировку (11j-duration.js), опыт и необязательные отметки «что беречь» (11g-gentle.js).
+     4. время на тренировку (11j-duration.js), опыт, необязательные отметки «что беречь» (11g-gentle.js) и необязательный
+        вопрос о здоровье по образцу PAR-Q+ (11l-health.js): при любом «да» — цель «Бережно» и плашка «Здоровье» над планом.
    Вопрос с одним ответом ведёт дальше сразу по нажатию. «Назад» — кнопкой, системной «Назад» телефона (запись в истории
    на каждый шаг, 12d-back.js) и Esc — на предыдущий шаг; с первого шага системная «Назад» уводит, как и раньше.
    «Пропустить» — на оставшиеся вопросы ответы по умолчанию для новичка (FIRST_DEFAULTS). Потом — план сверху,
@@ -21,7 +22,7 @@ const FIRST_EQUIP = ['db', 'kb', 'band', 'pullup', 'dipbars', 'bench', 'incline'
 /* короткие пояснения на шаге «Что есть под рукой?»: какие резинки считаются и что регулируемая скамья даёт и горизонтальную */
 const FIRST_EQUIP_HINT = {band:'трубка с рукоятями, петли, крепление на дверь', incline:'со спинкой под наклоном; годится и как горизонтальная'};
 /* суставы: чаще всего берегут колени, поясницу и плечи — они первыми */
-const FIRST_PROTECT = ['knees', 'lumbar', 'shoulders', 'neck', 'elbows', 'wrists', 'achilles', 'hams'];
+const FIRST_PROTECT = ['knees', 'kneeOp', 'lumbar', 'disc', 'shoulders', 'neck', 'elbows', 'wrists', 'achilles', 'hams'];
 const FIRST_GROUPS = () => GROUP_PRESETS.find(p => p.id === 'full').g.slice();
 
 /* все снаряды места — «как в зале»: спрашивать не о чем */
@@ -35,11 +36,13 @@ function firstRunApply(A = {}, s = S) {
     const list = EQUIP.map(e => e.id).filter(id => A.equip.includes(id));
     placeOf(s, place).equip = list.slice(); s.equip = list.slice();
   }
-  const goal = GOALS[A.goal] ? A.goal : FIRST_DEFAULTS.goal, level = LEVELS[A.level] ? A.level : FIRST_DEFAULTS.level;
+  /* здоровье: хоть одно «да» — «Бережно», даже если выбрана другая цель (её можно сменить; плашка над планом это говорит) */
+  const health = Array.isArray(A.health) ? A.health.filter(id => HEALTH_BY[id]) : [];
+  const goal = health.length ? 'gentle' : GOALS[A.goal] ? A.goal : FIRST_DEFAULTS.goal, level = LEVELS[A.level] ? A.level : FIRST_DEFAULTS.level;
   Object.assign(s, {mode:'single', view:'plan', goal, level, format:'classic', dur:DURATIONS[A.dur] ? A.dur : FIRST_DEFAULTS.dur,
-    protect:Array.isArray(A.protect) ? A.protect.slice() : FIRST_DEFAULTS.protect.slice(), groups:FIRST_GROUPS(), focus:null, day:0});
+    protect:Array.isArray(A.protect) ? A.protect.slice() : FIRST_DEFAULTS.protect.slice(), health, groups:FIRST_GROUPS(), focus:null, day:0});
   s.gen = {...(s.gen || {}), goal, format:'classic', level};
-  ensureProtect(s); ensureDur(s);
+  ensureProtect(s); ensureDur(s); ensureHealth(s);
   return s;
 }
 
@@ -78,7 +81,10 @@ const FR_STEP = {
         + frQ('fr-q-lvl', 'Ваш опыт', `<div class="fr-opts">${Object.entries(LEVELS).map(([k, l]) => frOpt(`data-fr-level="${k}"`, FR.A.level === k, l.ask, l.about)).join('')}</div>`)
         + frQ('fr-q-joint', `${'Что беречь?'} <em>${'Необязательно'}</em>`,
           `<div class="chips">${FIRST_PROTECT.map(id => PROTECT_BY[id]).map(p => `<button type="button" class="chip${on.has(p.id) ? ' on' : ''}" data-fr-protect="${p.id}" aria-pressed="${on.has(p.id)}">${ICON.check}<span>${p.name}</span></button>`).join('')}</div>`,
-          'Отметьте, что болит или восстанавливается: в план не попадут упражнения с сильной нагрузкой на эти места.');
+          'Отметьте, что болит или восстанавливается: в план не попадут упражнения с сильной нагрузкой на эти места.')
+        + frQ('fr-q-health', `${'Здоровье'} <em>${'Необязательно'}</em>`,
+          `<div class="chips">${HEALTH.map(h => `<button type="button" class="chip${(FR.A.health || []).includes(h.id) ? ' on' : ''}" data-fr-health="${h.id}" aria-pressed="${(FR.A.health || []).includes(h.id)}">${ICON.check}<span>${esc(h.name)}</span></button>`).join('')}</div>`,
+          'Если что-то из этого про вас — сначала посоветуйтесь с врачом. План будет бережным, а над ним — что важно. Ответы остаются только на этом устройстве.');
     }}
 };
 /* вопрос последнего шага: заголовок, варианты, пояснение под ними */
@@ -167,7 +173,14 @@ function setupFirstRun() {
     if (t.dataset.frLevel) return one('level', 'frLevel');
     if (t.dataset.frProtect) {
       const id = t.dataset.frProtect, list = A.protect || [], on = !list.includes(id);
-      A.protect = on ? list.concat(id) : list.filter(x => x !== id);
+      /* строгая отметка включает обычную, снятая обычная снимает строгую (как в параметрах, 11g-gentle.js) */
+      const base = PROTECT_BY[id].base, strict = PROTECT.filter(p => p.base === id).map(p => p.id);
+      A.protect = on ? [...new Set(list.concat(id, base ? [base] : []))] : list.filter(x => x !== id && !strict.includes(x));
+      d.querySelectorAll('[data-fr-protect]').forEach(b => { const v = A.protect.includes(b.dataset.frProtect); b.classList.toggle('on', v); b.setAttribute('aria-pressed', String(v)); });
+    }
+    if (t.dataset.frHealth) {
+      const id = t.dataset.frHealth, list = A.health || [], on = !list.includes(id);
+      A.health = on ? list.concat(id) : list.filter(x => x !== id);
       t.classList.toggle('on', on); t.setAttribute('aria-pressed', String(on));
     }
   });

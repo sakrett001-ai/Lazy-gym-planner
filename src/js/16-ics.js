@@ -1,7 +1,15 @@
 /* ===================== ЭКСПОРТ В КАЛЕНДАРЬ ===================== */
 const ICS_KEY = 'podhod.ics.v1';
 const ICS = {time:'19:00', weeks:4, alarm:60};
-try { Object.assign(ICS, JSON.parse(localStorage.getItem(ICS_KEY) || '{}')); } catch (e) {}
+/* из хранилища и копии — только верные поля (строка вместо времени роняла бы окно календаря) */
+function icsClean(o) {
+  const x = {}; if (!o || typeof o !== 'object') return x;
+  if (typeof o.time === 'string' && /^([01]\d|2[0-3]):[0-5]\d$/.test(o.time)) x.time = o.time;
+  if (Number.isInteger(o.weeks) && o.weeks >= 1 && o.weeks <= 52) x.weeks = o.weeks;
+  if (Number.isInteger(o.alarm) && o.alarm >= 0 && o.alarm <= 1440) x.alarm = o.alarm;
+  return x;
+}
+try { Object.assign(ICS, icsClean(JSON.parse(localStorage.getItem(ICS_KEY) || '{}'))); } catch (e) {}
 /* напоминание: «Тренировка через 1 час: Всё тело А» (порядок слов — из перевода целой строки с {t} и {name}) */
 function icsAlarmText(min, name) {
   const h = min / 60, t = min >= 60 && Number.isInteger(h) ? `${h} ${plural(h, 'час', 'часа', 'часов')}` : `${min} мин`;
@@ -62,7 +70,7 @@ async function saveIcs() {
   const start = new Date($('#ics-start').value + 'T12:00:00');
   if (isNaN(start)) { $('#ics-msg').textContent = 'Укажите дату начала.'; return; }
   ICS.time = $('#ics-time').value || '19:00'; ICS.weeks = +$('#ics-weeks').value || 4; ICS.alarm = +$('#ics-alarm').value || 0;
-  try { localStorage.setItem(ICS_KEY, JSON.stringify(ICS)); } catch (e) {}
+  Keep.set(ICS_KEY, JSON.stringify(ICS));
   const txt = icsText(start, ICS.time, ICS.weeks);
   const r = await saveFile(`lazy-gym-workouts-${dayKey(start)}.ics`, txt, 'text/calendar');
   $('#ics-msg').textContent = r === 'ok' ? 'Файл сохранён. Откройте его — календарь предложит добавить события.' : r === 'declined' ? 'Сохранение отменено.' : 'Сохранить файл не удалось.';

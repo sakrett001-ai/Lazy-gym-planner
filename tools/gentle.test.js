@@ -22,9 +22,10 @@ const GROUP_SETS = [['quads', 'glutes', 'hams', 'calves'], ['chest', 'back', 'sh
 test('every red-mark rule belongs to a joint you can protect, and the cached list matches the mannequin', () => {
   const covered = new Set(a.PROTECT.flatMap(p => p.rules));
   for (const r of a.STRESS_RULES) assert(covered.has(r.id), r.id + ' is protectable');
-  for (const p of a.PROTECT) assert(p.rules.length, p.id + ' maps to rules');
-  assert.deepEqual(plain(a.PROTECT_BY.knees.rules), ['knee', 'kneeOpen', 'kneel', 'landing']);
-  assert.deepEqual(plain(a.PROTECT_BY.lumbar.rules), ['lumbar', 'lumbarLever']);
+  /* строгие отметки («после операции на колене», «грыжа диска») своих меток не имеют — у них свои правила (STRICT) */
+  for (const p of a.PROTECT) assert(p.base ? !p.rules.length && a.PROTECT_BY[p.base] : p.rules.length, p.id + ' maps to rules');
+  assert.deepEqual(plain(a.PROTECT_BY.knees.rules), ['knee', 'kneeOpen', 'kneeFast', 'kneeSide', 'kneel', 'landing']);
+  assert.deepEqual(plain(a.PROTECT_BY.lumbar.rules), ['lumbar', 'lumbarLever', 'lumbarFlex', 'lumbarTwist', 'lumbarExt', 'lumbarLegs', 'axial']);
   for (const ex of a.EX) assert.deepEqual(plain(a.stressIdsOf(ex)), plain(a.jointStress(ex).rules.map(r => r.id)), ex.id);
 });
 
@@ -73,7 +74,8 @@ test('gentle goal: light dosage with reserve, no impact, ballistic or advanced e
   reset({ goal: 'gentle', groups: ['chest', 'back'] });
   const E = a.effEquip(a.S.equip), rx = plain(a.prescribe(a.EXI.dbbench, null, E));
   assert.deepEqual([rx.reps, rx.sets, rx.rest, rx.tempo], ['12–15', 2, 90, '3-0-2-0']);
-  assert.equal(rx.load, 'оставляйте силы ещё на 3–4 повтора, без боли (≈ 40–60% от максимума на 1 повтор)');
+  /* словами, без процента от максимума на 1 повтор (Михаил п. 8) */
+  assert.equal(rx.load, 'лёгкий вес: все повторы спокойно, оставляйте силы ещё на 3–4 повтора, без боли');
   assert(!/X/.test(a.GOALS.gentle.tempo), 'no explosive lift');
   for (const w of a.WEEKS) {
     const r = plain(a.prescribe(a.EXI.dbbench, w, E));
@@ -93,7 +95,9 @@ test('knees protected: the sissy squat is not picked, not offered as a substitut
   for (const seed of [1, 3, 7, 11, 23, 31, 51, 77]) for (const groups of [['quads'], ['quads', 'glutes', 'hams']]) for (const adapt of [null, 'gym']) {
     if (all(at('homeband', { seed, groups, adapt })).some(x => /sissysquat$/.test(x))) seen++;
     const p = at('homeband', { seed, groups, adapt, protect: ['knees'] });
-    assert(!p.items.some(it => it.ex.id === 'sissysquat'), `knees protected, ${groups} ${seed} ${adapt || ''}: ${all(p)}`);
+    /* дома с лентой «только квадрицепс» при «Беречь колени» план может быть пустым: разгибание сидя с эспандером тоже
+       с меткой (открытая цепь до прямой ноги) — тогда пусто, с честной причиной */
+    assert(!(p.items || []).some(it => it.ex.id === 'sissysquat'), `knees protected, ${groups} ${seed} ${adapt || ''}: ${p.items ? all(p) : p.empty}`);
   }
   for (const place of ['homeband', 'street']) {
     /* свой план из зала: разгибание ног в тренажёре здесь недоступно — заменой без «Беречь колени» был бы сисси-присед */
@@ -109,8 +113,8 @@ test('knees protected: the sissy squat is not picked, not offered as a substitut
   reset({ mode: 'custom', protect: ['knees'] }); a.S.place = 'homeband'; a.ensurePlaces(a.S);
   a.S.customs = [{ id: 'k2', name: 'Дома', items: [{ id: 'sissysquat' }] }]; a.ensureCustoms(a.S); a.openCustom('k2');
   const p = a.buildPlan();
-  assert(!p.items.some(it => it.ex.id === 'sissysquat'), 'a custom plan does not keep it: ' + all(p));
-  const sub = p.items.find(it => it.sub && it.sub.from.id === 'sissysquat');
+  assert(!(p.items || []).some(it => it.ex.id === 'sissysquat'), 'a custom plan does not keep it: ' + (p.items ? all(p) : p.empty));
+  const sub = (p.items || []).find(it => it.sub && it.sub.from.id === 'sissysquat');
   if (sub) assert.match(sub.sub.note, /нагружает колени/); else assert(p.lost.some(ex => ex.id === 'sissysquat'));
 });
 
