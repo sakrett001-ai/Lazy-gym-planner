@@ -51,9 +51,10 @@ test('progression in pounds: +5 lb on the upper body, +10 on legs, dumbbells by 
   assert.equal(db.kg, '30', 'dumbbells by 5 lb');
   const press = sug('legpress', ['legpress'], [[270, 15], [270, 15], [270, 15]]);
   assert.equal(press.kg, '290', 'leg press +20 lb');
-  /* история в килограммах: 60 кг = 132,28 фнт → 137,5 (сетка штанги — 2,5 фнт), прибавка — сколько на самом деле */
+  /* история в килограммах — к настоящему шагу штанги в фунтах (4.108, Mike 1: было «137.5 (+5.22)» и «231.5 lb»): 60 кг =
+     132,28 фнт → 130 (пара блинов 2,5 фнт — шаг 5), прибавка — обычные +5 */
   const kgHist = en.json(`(()=>{Object.assign(S,{mode:'single',goal:'mass'});LOG.data={bbbench:[{d:'${day(3)}',target:4,s:[[60,12],[60,12],[60,12],[60,12]]}]};const s=suggest({...previewItem('bbbench'),eqIds:['bb','bench']});return [fmtKg(s.kg),s.text];})()`);
-  assert.equal(kgHist[0], '137.5'); assert.match(kgHist[1], /\(\+5\.22\)/);
+  assert.equal(kgHist[0], '135'); assert.match(kgHist[1], /\(\+5\)/); assert.doesNotMatch(kgHist[1], /132\.|5\.22/);
   const deload = sug('bbbench', ['bb', 'bench'], [[135, 10], [135, 10], [135, 10], [135, 10]], `S.mode='program';S.week=4;`);
   assert.equal(deload.tone, 'deload'); assert.equal(Number(deload.kg) % 5, 0, 'a deload weight is on the 5 lb grid: ' + deload.kg);
   /* в килограммах — как раньше */
@@ -80,7 +81,8 @@ test('warm-up and plates in pounds: 45 lb bar, 45/35/25/10/5/2.5 lb plates, perc
   /* в килограммах — прежний инвентарь, процент тоже от того, что получилось (замечание 10: 30 из 50 — 60%) */
   const ru = loadApp({lang:'ru'});
   assert.deepEqual(ru.json(`warmupPlan(50, 'machine', '8–12').map(s=>[s.kg, s.note])`), [[30, '60%'], [40, '80%']], 'stack by 5 kg: 55% of 50 is 27.5 → 30, that is 60%');
-  assert.deepEqual(ru.json(`warmupPlan(50, 'bb', '8–12').map(s=>[s.kg, s.note])`), [[20, 'пустой гриф'], [27.5, '55%'], [40, '80%']]);
+  /* на разминке — блины не мельче 2,5 кг (4.108, Руслан 12: шаг 5 кг, без дисков 1,25): 55% от 50 — 27,5 → 25, это 50% */
+  assert.deepEqual(ru.json(`warmupPlan(50, 'bb', '8–12').map(s=>[s.kg, s.note])`), [[20, 'пустой гриф'], [25, '50%'], [40, '80%']]);
   /* инвентарь каждых единиц хранится отдельно; килограммовый — на прежних местах (прежние версии читают его как раньше) */
   en.get(`(()=>{gearU('lb').bar=35;gearSave();})()`);
   const g = JSON.parse(en.storage.get('podhod.gear.v1'));
@@ -91,12 +93,15 @@ test('weight question, journal, CSV and body measurements in pounds and inches',
   en.get(`LOG.data={bbbench:[{d:'${day(3)}',target:2,s:[[parseKg('135'),10],[parseKg('135'),10]]}]}`);
   const q = en.get(`kgDoubt({...previewItem('bbbench'),eqIds:['bb','bench']},[parseKg('1350')],0).text`);
   assert.match(q, /\(135\slb\)\. Log 1350\slb\?$/);
-  assert.equal(en.get(`kgDoubt({...previewItem('bbbench'),eqIds:['bb','bench']},[parseKg('185')],0)`), null);
+  /* больше прошлого на четверть — вопрос (4.108, Руслан 4: 300 вместо 202,5; ACSM — прибавка 2–10 %): 185 после 135 (+37 %)
+     спрашивается, 165 (+22 %) — нет */
+  assert.match(en.get(`kgDoubt({...previewItem('bbbench'),eqIds:['bb','bench']},[parseKg('185')],0).text`), /Log 185\slb\?$/);
+  assert.equal(en.get(`kgDoubt({...previewItem('bbbench'),eqIds:['bb','bench']},[parseKg('165')],0)`), null);
   const csv = en.get('csvText()');
   /* американский Excel делит столбцы запятой (Mike 3): заголовки с запятой — в кавычках */
-  assert.match(csv, /"Weight, lb"/); assert.match(csv, /"Total weight per set, lb"/); assert.match(csv, /,135,10,/);
+  assert.match(csv, /"Weight, lb"/); assert.match(csv, /"Volume per set, lb"/); assert.match(csv, /,135,10,/);
   assert.match(en.get(`journalVal(EXI.bbbench, LOG.data.bbbench)`), /135<small>lb<\/small> × 10/);
-  assert.match(en.get('histHtml(EXI.bbbench)'), /total weight 2,700 lb/);
+  assert.match(en.get('histHtml(EXI.bbbench)'), /volume 2,700 lb/);
   assert.match(en.get('unitsHtml()'), /data-units="lb" aria-pressed="true">lb</);
   /* вес тела 180 фнт и талия 34 дюйма: хранятся в кг и см, показываются теми же числами */
   en.get(`(()=>{BODY.rows=mergeBodyRows([], [cleanBodyRow({d:'${day(1)}', kg:bodyFromU(BODY_FIELDS[0], 180), waist:bodyFromU(BODY_FIELDS[1], 34)})]);})()`);

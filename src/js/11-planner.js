@@ -1002,7 +1002,8 @@ function renderSetup() {
   $('#e-place-tools').innerHTML = `<label class="place-name">Название<input id="place-name" type="text" maxlength="24" value="${esc(cur.name)}" autocomplete="off"></label>`
     + (S.places.length > 1 ? `<button type="button" class="place-del${placeDel ? ' armed' : ''}" data-place-del="1">${placeDel ? 'Точно удалить?' : 'Удалить место'}</button>` : '')
     + (others.length ? `<label class="place-adapt">Программа<select id="place-adapt"><option value="">Своя для этого места</option>${others.map(p => `<option value="${p.id}"${S.adapt === p.id ? ' selected' : ''}>Как в «${esc(p.name)}», с заменами</option>`).join('')}</select></label>
-      <p class="f-note">${S.adapt ? `Упражнения подобраны под «${esc(placeOf(S, S.adapt).name)}»; то, чего здесь нет, заменено ближайшим аналогом — по тому же движению и тем же мышцам.` : 'Программа собирается из того, что есть в этом месте.'}</p>` : '');
+      <p class="f-note">${S.adapt ? `Упражнения подобраны под «${esc(placeOf(S, S.adapt).name)}»; то, чего здесь нет, заменено ближайшим аналогом — по тому же движению и тем же мышцам.` : 'Программа собирается из того, что есть в этом месте.'}</p>` : '')
+    + (typeof placeWeightsHtml === 'function' ? placeWeightsHtml(cur) : '');
   const es = new Set(S.equip);
   $('#e-presets').innerHTML = '<span class="pres-l">Заполнить:</span>' + EQUIP_PRESETS.map(p => {
     const on = p.eq.length === es.size && p.eq.every(e => es.has(e));
@@ -1048,6 +1049,14 @@ function groupsTitle(groups) {
   return s.charAt(0).toUpperCase() + s.slice(1);
 }
 
+/* Подходы тренировки на группу — тот же счёт, что у недели в плане и у журнала (groupShare: целевая группа — подход целиком,
+   остальные работающие — половина). Раньше здесь были подходы на мышцу (основные — целиком, вспомогательные — половина),
+   и одна тренировка давала три числа: «Ягодичные 12» в плане, «8» и «12 подходов» в журнале (Mike 4, Дмитрий 10) */
+function groupBars(gvol) {
+  const rows = Object.entries(gvol).filter(([g, v]) => g !== 'cardio' && v > 0).sort((a, b) => b[1] - a[1]).slice(0, 6);
+  const max = rows.length ? rows[0][1] : 1;
+  return rows.map(([g, v]) => `<li><span class="lb-n">${GN[g]}</span><span class="lb-t"><i style="width:${Math.max(6, v / max * 100).toFixed(0)}%"></i></span><span class="lb-v">${fmtNum(Math.round(v * 2) / 2)}</span></li>`).join('');
+}
 function loadBars(load) {
   const rows = Object.entries(load).filter(([, v]) => v > 0).sort((a, b) => b[1] - a[1]).slice(0, 6);
   const max = rows.length ? rows[0][1] : 1;
@@ -1063,11 +1072,13 @@ function volBars(gvol, groups) {
 }
 /* строка полосы «подходов на группу»: коридор по уровню (volScale), «мало / в норме / много», не цель программы —
    «попутно»; extra — добавка под полосой (статус восстановления в журнале, 13d-muscle-load.js) */
-function volRow(g, val, max, extra = '', cls = '', target = true) {
+/* soft — журнал за 7 скользящих дней: ниже ориентира не «мало», а сколько осталось до его нижней границы — после первой
+   или неполной тренировки недели почти всё ниже, и это не ошибка (Ольга 12, Артём: «почти всё мало») */
+function volRow(g, val, max, extra = '', cls = '', target = true, soft = false) {
   const pct = v => (v / max * 100).toFixed(1), sc = volScale();
   const v = Math.round(val * 2) / 2;
   const st = v > sc.hi ? 'hi' : !target ? 'side' : v < sc.lo ? 'lo' : 'ok';
-  const lab = st === 'lo' ? 'мало' : st === 'hi' ? 'много' : st === 'side' ? 'попутно' : 'в норме';
+  const lab = st === 'lo' ? (soft ? 'ещё {n}'.replace('{n}', fmtNum(Math.round((sc.lo - v) * 2) / 2)) : 'мало') : st === 'hi' ? 'много' : st === 'side' ? 'попутно' : 'в норме';
   return `<li class="${st}${cls ? ' ' + cls : ''}"${cls ? ` data-lg="${g}"` : ''}><span class="vb-n">${GN[g]}</span><span class="vb-v">${fmtNum(v)}<em>${lab}</em></span><span class="vb-t"><b style="left:${pct(sc.lo)}%;width:${pct(sc.hi - sc.lo)}%"></b><i style="width:${Math.max(1.5, +pct(v))}%"></i></span>${extra}</li>`;
 }
 /* «Полоса — ориентир …: 10–20 подходов в неделю» — по уровню; новичку и в «Бережно» — с пояснением */
@@ -1082,7 +1093,7 @@ function volScaleText() {
 function rxKgHtml(it) {
   const r = it.rx; if (!r.kgPlan || typeof loadType !== 'function') return '';
   const lt = loadType(it.ex); if (lt === 'none') return '';
-  return `<span class="rx-kg">${lt === 'assist' ? 'противовес ' : lt === 'extra' ? '+' : ''}${planKgText(r.kgPlan)} ${wUnit()}</span>`;
+  return `<span class="rx-kg">${lt === 'assist' ? 'противовес ' : lt === 'extra' ? '+' : ''}${planKgText(planKgsHere(it))} ${wUnit()}</span>`;
 }
 function rxHtml(it) {
   const r = it.rx;
@@ -1320,7 +1331,7 @@ function renderPlanView() {
   }
   const G = GOALS[S.goal];
   const setsWord = S.format === 'circuit' ? plural(plan.totalSets, 'подход', 'подхода', 'подходов') + ' за круги' : plural(plan.totalSets, 'подход', 'подхода', 'подходов');
-  const lf = ensureFold(S).load, loadRows = Object.entries(plan.load).filter(([, v]) => v > 0).sort((a, b) => b[1] - a[1]).map(([m, v]) => [MUSCLE_NAMES[m], v]);
+  const lf = ensureFold(S).load, loadRows = Object.entries(plan.gvol).filter(([g, v]) => g !== 'cardio' && v > 0).sort((a, b) => b[1] - a[1]).map(([g, v]) => [GN[g], Math.round(v * 2) / 2]);
   let html = `<header class="p-head${lf ? ' load-folded' : ''}">
     <div class="p-sum">
       <p class="eyebrow">${plan.custom ? 'Свой план · ' : plan.byLog ? 'По журналу · ' : ''}${G.name} · ${FORMATS[S.format].name} · ${LEVELS[S.level].name.toLowerCase()}</p>
@@ -1336,9 +1347,9 @@ function renderPlanView() {
     <figure class="p-load${lf ? ' folded' : ''}">
       <div class="p-map">${muscleMapSvg(norm(plan.load), {labels:true, aria:'Карта нагрузки тренировки'})}</div>
       <figcaption>
-        ${loadFoldHead('Нагрузка по мышцам, подходов', loadTop(loadRows))}
-        <ul class="lbars">${loadBars(plan.load)}</ul>
-        <p class="lb-note">Вспомогательная работа считается за половину подхода.</p>
+        ${loadFoldHead('Подходов на группу мышц', loadTop(loadRows))}
+        <ul class="lbars">${groupBars(plan.gvol)}</ul>
+        <p class="lb-note">${'Подход засчитывается целиком целевой группе упражнения и наполовину остальным работающим — так же считают журнал и неделя.'}</p>
       </figcaption>
     </figure>
   </header>`;

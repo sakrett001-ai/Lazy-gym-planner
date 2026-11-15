@@ -17,6 +17,8 @@
 
 /* история: общий вес записи — второй строкой под подходами */
 .h-ton { display:block; margin-top:2px; font:500 .75rem var(--f-body); color:var(--faint); }
+/* история: подходы, вписанные в другой единице, — теми числами, что вписали (4.108) */
+.h-u { display:block; margin-top:2px; font:500 .75rem var(--f-body); color:var(--faint); }
 
 /* журнал: последние тренировки с общим весом за день */
 .j-days { margin-top:6px; }

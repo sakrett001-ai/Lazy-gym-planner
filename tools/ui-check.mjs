@@ -659,7 +659,7 @@ await page.close();
   await v.fill('#wv-kg', '22');
   check(await v.evaluate(() => $('#wv-kg-total').textContent === '×2 = 44 кг'), '«×2» обновляется при вводе веса');
   await v.fill('#wv-kg', '20'); await v.click('#wv-done');
-  check(await v.evaluate(() => JSON.stringify(LOG.data.dbbench[0].s) === '[[20,10]]' && LOG.data.dbbench[0].eq === 'db' && /общий вес подхода 400 кг/.test($('#wv-rest-note').textContent)), 'подход записан как вес одной гантели; после подхода — общий вес 400 кг');
+  check(await v.evaluate(() => JSON.stringify(LOG.data.dbbench[0].s) === '[[20,10]]' && LOG.data.dbbench[0].eq === 'db' && /объём подхода 400 кг/.test($('#wv-rest-note').textContent)), 'подход записан как вес одной гантели; после подхода — общий вес 400 кг');
   await v.click('#wv-continue');
   s = await f();
   check(s.cap === 'Вес гантели, кг' && !s.x2 && s.rep === 'Повторы на каждую сторону' && s.bar && s.lr === 'false' && s.one && !s.two, `тяга одной рукой: одна гантель, повторы на каждую сторону, «Л/П отдельно» выключен (${JSON.stringify(s)})`);
@@ -667,7 +667,7 @@ await page.close();
   check(s.lr === 'true' && !s.one && s.two && await v.evaluate(() => S.lr.dbrow === true && JSON.parse(localStorage.getItem('podhod.settings.v1')).lr.dbrow === true), '«Л/П отдельно»: две строки — левая и правая, выбор запоминается');
   await v.fill('#wv-kg-l', '30'); await v.fill('#wv-reps-l', '10'); await v.fill('#wv-kg-r', '30'); await v.fill('#wv-reps-r', '8'); await v.click('#wv-done');
   check(await v.evaluate(() => JSON.stringify(LOG.data.dbrow[0].s[0]) === '[30,8,null,{"l":[30,10],"r":[30,8]}]'), 'тренировка: обе стороны в поле сторон, слабая (правая) — в основных полях');
-  check(await v.evaluate(() => /общий вес подхода 540 кг/.test($('#wv-rest-note').textContent) && /слабая сторона — правая/i.test($('#wv-rest-note').textContent)), 'после подхода с Л/П: общий вес — сумма сторон, слабая сторона названа');
+  check(await v.evaluate(() => /объём подхода 540 кг/.test($('#wv-rest-note').textContent) && /слабая сторона — правая/i.test($('#wv-rest-note').textContent)), 'после подхода с Л/П: общий вес — сумма сторон, слабая сторона названа');
   await v.click('#wv-continue');
   s = await f();
   check(s.two && await v.evaluate(() => $('#wv-kg-l').value === '30' && $('#wv-kg-r').value === '30' && $('#wv-reps-l').value === ''), 'второй подход: Л/П остаётся включённым, вес сторон подставлен из первого');
@@ -680,7 +680,7 @@ await page.close();
   s = await f();
   check(s.cap === 'Вес гантели, кг' && !s.x2 && !s.bar, 'гоблет: одна гантель, без «×2» и без Л/П');
   await v.fill('#wv-kg', '24'); await v.fill('#wv-reps', '10'); await v.click('#wv-done');
-  check(await v.evaluate(() => !$('#wv-finish').hidden && /Общий вес — 1 720 кг/.test($('#wv-finish-text').textContent) && /1 080 кг/.test($('#wv-summary').textContent)), 'итоги тренировки: общий вес за тренировку и по упражнениям');
+  check(await v.evaluate(() => !$('#wv-finish').hidden && /Объём — 1 720 кг/.test($('#wv-finish-text').textContent) && /1 080 кг/.test($('#wv-summary').textContent)), 'итоги тренировки: общий вес за тренировку и по упражнениям');
   await v.click('#wv-finish-close');
   /* карточка плана: Л/П в таблице, подпись столбца, «×2» под таблицей */
   await v.evaluate(() => { document.querySelectorAll('.card').forEach(c => { const b = c.querySelector('[data-cfold="log"]'); if (b && b.getAttribute('aria-expanded') !== 'true') b.click(); }); });
@@ -707,7 +707,7 @@ await page.close();
   await v.evaluate(() => { S.view = 'journal'; renderSetup(); renderPlan(); });
   const j = await v.evaluate(() => ({ day: document.querySelector('.j-days li')?.textContent || '', hist: [...document.querySelectorAll('.j-row')].find(li => li.querySelector('[data-del="dbrow"]'))?.textContent || '' }));
   check(/сегодня/.test(j.day) && /3 упражнения · 4 подхода/.test(j.day) && /1 846\s*кг/.test(j.day), `журнал: тренировка дня — упражнения, подходы, общий вес (${j.day})`);
-  check(/Л 30×10 · П 30×8; Л 28×12 · П 30×11/.test(j.hist) && /общий вес 1 206 кг/.test(j.hist), `журнал: история — «Л … · П …» и общий вес (${j.hist.replace(/\s+/g, ' ').slice(0, 200)})`);
+  check(/Л 30×10 · П 30×8; Л 28×12 · П 30×11/.test(j.hist) && /объём 1 206 кг/.test(j.hist), `журнал: история — «Л … · П …» и общий вес (${j.hist.replace(/\s+/g, ' ').slice(0, 200)})`);
   await v.close();
 }
 
@@ -728,7 +728,8 @@ await page.close();
   await seedLog(j);
   check(await shown(j, '#ml') && await j.evaluate(() => document.querySelectorAll('#ml .ml-list li').length === 11), 'журнал с записями: панель загрузки мышц видна, 11 групп');
   check(await st(j, 'back') === 'loaded' && await st(j, 'biceps') === 'recovering' && await st(j, 'chest') === 'ready'
-    && await j.evaluate(() => /вчера, 4 подхода/.test(document.querySelector('#ml [data-lg="back"] .ml-st').textContent)), 'статусы: спина вчера — нагружена, бицепс позавчера — восстанавливается, грудь — готова');
+    /* 4.108: подходы того дня — тем же счётом, что полоса и план (целевая группа — целиком, остальные — половина), а не основные целиком */
+    && await j.evaluate(() => { const L = muscleLoad().back.last, n = fmtNum(Math.round(L.v * 2) / 2); return new RegExp(`вчера, ${n.replace('.', '\\.')} подход`).test(document.querySelector('#ml [data-lg="back"] .ml-st').textContent) && L.v >= 4; }), 'статусы: спина вчера — нагружена, бицепс позавчера — восстанавливается, грудь — готова');
   check(await noSide(j), 'журнал с панелью загрузки (390 px) без прокрутки вбок');
   await j.click('[data-logpick="journal"]'); await j.waitForTimeout(100);
   const built = await j.evaluate(() => ({ view: S.view, mode: S.mode, byLog: !!plan.byLog, groups: S.groups.slice(), lines: document.querySelectorAll('.lp li').length,
@@ -1854,12 +1855,12 @@ const fakeBluetooth = () => {
   const wv = await p.evaluate(() => ({ cap: $('#wv-weight-caption').textContent, hidden: $('#wv-weight-label').hidden }));
   check(wv.hidden || /lb/.test(wv.cap), `экран тренировки: «${wv.cap}»`);
   await p.evaluate(() => closeWorkout());
-  /* журнал: переключатель единиц, 135 lb; кг — и запись та же, 61,23 */
+  /* журнал: переключатель единиц, 135 lb; кг — вес шагом снаряда, а не «61,23», и строкой — вписанное: 135 фунтов (4.108, Mike 1) */
   await p.evaluate(() => { S.view = 'journal'; renderSetup(); renderPlan(); });
   const j = await p.evaluate(() => ({ on: document.querySelector('[data-units="lb"]')?.getAttribute('aria-pressed'), text: document.querySelector('.j-list')?.textContent || '' }));
   await p.click('[data-units="kg"]');
   const jk = await p.evaluate(() => ({ units: S.units, text: document.querySelector('.j-list')?.textContent || '' }));
-  check(j.on === 'true' && /135\s*lb/.test(j.text) && jk.units === 'kg' && /61\.23\s*kg/.test(jk.text), `журнал: единицы lb → kg (${j.text.slice(0, 60)} → ${jk.text.slice(0, 60)})`);
+  check(j.on === 'true' && /135\s*lb/.test(j.text) && jk.units === 'kg' && !/61\.23/.test(jk.text) && /logged in pounds: 135×8/.test(jk.text), `журнал: единицы lb → kg (${j.text.slice(0, 60)} → ${jk.text.slice(0, 60)})`);
   await p.click('[data-units="lb"]');
   /* переключатель RU: выбор запоминается до перехода, корень больше не уводит на английский */
   await p.evaluate(() => { S.view = 'plan'; regen(); });
