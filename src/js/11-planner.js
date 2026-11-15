@@ -265,12 +265,14 @@ function cleanSettings(raw) {
   fix('fav', Array.isArray); fix('customs', Array.isArray); fix('custom', strOrNull(40)); fix('gen', v => v === null || obj(v));
   fix('author', v => typeof v === 'string'); fix('fold', v => v === null || obj(v)); fix('protect', v => Array.isArray(v) && v.every(x => typeof x === 'string'));
   fix('cpLast', strOrNull(40)); fix('lr', obj); fix('units', v => v === null || v === 'kg' || v === 'lb'); fix('dur', strOrNull(12));
-  fix('places', v => Array.isArray(v) && v.length > 0 && v.every(p => obj(p) && typeof p.id === 'string')); fix('place', v => typeof v === 'string' && v.length <= 40);
+  fix('places', Array.isArray); fix('place', v => typeof v === 'string' && v.length <= 40);
   fix('placesV', v => Number.isInteger(v) && v >= 0 && v < 1000); fix('adapt', strOrNull(40));
   fix('swaps', v => obj(v) && Object.values(v).every(x => obj(x) || Array.isArray(x))); fix('logPick', v => v === null || obj(v));
   /* элементы списков, которые потом чистят ensure*: не объекты — мимо, и это отмечается */
   if (Array.isArray(s.customs) && s.customs.some(c => !obj(c) || typeof c.id !== 'string')) { s.customs = s.customs.filter(c => obj(c) && typeof c.id === 'string'); bad.add('customs'); }
   if (Array.isArray(s.fav) && s.fav.some(id => typeof id !== 'string' || !EXI[id])) { s.fav = s.fav.filter(id => typeof id === 'string' && EXI[id]); bad.add('fav'); }
+  if (Array.isArray(s.places) && s.places.some(p => !obj(p) || typeof p.id !== 'string')) { s.places = s.places.filter(p => obj(p) && typeof p.id === 'string'); bad.add('places'); }
+  if (Array.isArray(s.places) && !s.places.length) delete s.places;
   return {s:Object.assign({}, DEFAULTS, s), bad:[...bad]};
 }
 /* названия испорченных полей для сообщения: «мышцы, места» */
@@ -281,10 +283,11 @@ function settingsBadText(bad) { return [...new Set(bad.map(k => SETTINGS_LABEL[k
    Вернёт список полей, взятых из хранилища. */
 let settingsBase = null;
 function settingsMerge(diskText = Keep.get(STORE)) {
-  if (diskText == null || settingsBase == null || diskText === settingsBase) return [];
+  if (diskText == null || diskText === settingsBase) return [];
   let d = null, b = null;
   try { d = JSON.parse(diskText); } catch (e) { return []; }
-  try { b = JSON.parse(settingsBase); } catch (e) {}
+  /* настроек не было, когда эта вкладка открылась (первый запуск) — основа — обычные */
+  try { b = settingsBase == null ? null : JSON.parse(settingsBase); } catch (e) {}
   const theirs = cleanSettings(d).s, base = cleanSettings(b).s, took = [];
   for (const k of new Set([...Object.keys(theirs), ...Object.keys(base)])) {
     const was = JSON.stringify(base[k]), t = JSON.stringify(theirs[k]);
