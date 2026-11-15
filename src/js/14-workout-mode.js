@@ -188,6 +188,8 @@ function workoutFill(s,sg,prev){
   /* совет снизить вес (после перерыва, облегчённый режим, разгрузка — tone 'deload') — в поле его вес, а не прошлый (Михаил п. 1) */
   const ease=sg.tone==='deload'&&sg.kg!=null?sg.kg:null;
   $('#wv-kg').value=draft?draft.kg:stored?kgText(stored[0]):carried!=null?fmtKg(carried):planned!=null?fmtKg(planned):ease!=null?fmtKg(ease):prev?.[0]!=null?fmtKg(prev[0]):'';
+  /* в поле — сниженный вес: подсказка под полем говорит почему, а не «из последней записи» (замечание к 4.106) */
+  const eased=ease!=null&&$('#wv-kg').value===fmtKg(ease),easeHint=eased?(typeof layoffInfo==='function'&&layoffInfo()?'Вес снижен после перерыва. Уточните его и введите результат.':'Вес снижен по подсказке выше. Уточните его и введите результат.'):'';
   /* подсказка повторов — цель подхода со словом «цель»: серое «12–15» без него выглядело введённым */
   const goal='цель '+planReps(it.rx,s.k);
   $('#wv-reps').value=draft?draft.reps:stored?String(stored[1]):'';$('#wv-reps').placeholder=goal;
@@ -201,7 +203,7 @@ function workoutFill(s,sg,prev){
   }
   workoutPairTotal();
   $('#wv-input-hint').textContent=hold?(lt==='extra'?'Доп. вес можно оставить пустым. ':'')+'«Стоп» запишет секунды и начнёт отдых. Секунды можно ввести и вручную.'
-    :lt==='extra'?(wl.impl==='db'?'Без гантелей оставьте вес пустым. Введите фактический результат.':'Дополнительный вес можно оставить пустым. Введите фактический результат.'):lt==='none'?'Укажите фактический результат подхода.':'Вес подставлен из последней записи, если она есть. Уточните его и введите результат.';
+    :lt==='extra'?(wl.impl==='db'?'Без гантелей оставьте вес пустым. Введите фактический результат.':'Дополнительный вес можно оставить пустым. Введите фактический результат.'):lt==='none'?'Укажите фактический результат подхода.':easeHint||'Вес подставлен из последней записи, если она есть. Уточните его и введите результат.';
   $('#wv-error').textContent='';for(const id of ['wv-kg','wv-reps','wv-kg-l','wv-reps-l','wv-kg-r','wv-reps-r'])$('#'+id).removeAttribute('aria-invalid');
 }
 /* «×2 = 40 кг» под весом одной гантели, когда их две */

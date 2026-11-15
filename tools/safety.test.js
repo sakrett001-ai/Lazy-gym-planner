@@ -31,6 +31,9 @@ test('health question (PAR-Q+): any «yes» — gentle goal and a calm box with 
   reset(); a.firstRunApply({ place: 'gym', goal: 'mass', level: 'mid' }, a.S);
   assert.equal(a.S.goal, 'mass', 'skipped health question — the chosen goal stays'); assert.equal(a.healthHtml(), '');
   assert.deepEqual(plain(m.get('backupObject()')).settings.health, [], 'health answers live in settings (and the backup), nowhere else');
+  /* вопросы 4–5 бланка PAR-Q+ — другая хроническая болезнь и лекарства от неё (решение владельца по 4.106, вопрос 5) */
+  reset(); a.firstRunApply({ place: 'gym', goal: 'mass', level: 'mid', health: ['chronic', 'meds'] }, a.S);
+  assert.deepEqual(plain(a.S.health), ['chronic', 'meds'], 'PAR-Q+ questions 4–5'); assert.equal(a.S.goal, 'gentle');
 });
 
 test('breathing caveat: heavy basics, breath-hold advice, overhead presses and head-down exercises — one wording', () => {
@@ -46,10 +49,17 @@ test('breathing caveat: heavy basics, breath-hold advice, overhead presses and h
     for (const seed of [1, 7, 23]) { a.S.seed = seed; for (const it of a.buildPlan().items || []) assert(!a.headDown(it.ex), `${h} ${seed}: ${it.ex.id}`); }
   }
   reset({ health: ['surgery'] }); assert(a.healthOk(a.EXI.declinepike), 'surgery alone does not ban head-down');
+  /* «Бережно» без отметок — тоже без упражнений вниз головой: о давлении могут не сказать (решение владельца по 4.106, вопрос 3) */
+  reset({ goal: 'gentle', groups: ['shoulders', 'chest', 'abs'], level: 'adv' }); a.S.place = 'home'; a.ensurePlaces(a.S);
+  assert(!a.healthOk(a.EXI.declinepike) && /вниз головой/.test(a.unfitWhy(a.EXI.declinepike)), 'gentle: no head-down');
+  for (const seed of [1, 7, 23]) { a.S.seed = seed; for (const it of a.buildPlan().items || []) assert(!a.headDown(it.ex), `gentle ${seed}: ${it.ex.id}`); }
 });
 
 test('after a break: one stepped number everywhere — plan box, card hint, warm-up weight; 14 and 200 days differ', () => {
-  assert.deepEqual([13, 14, 27, 28, 83, 84, 167, 168, 400].map(a.layoffPct), [0, 10, 10, 15, 15, 20, 20, 30, 30]);
+  assert.deepEqual([13, 14, 27, 28, 83, 84, 167, 168, 400].map(g => a.layoffPct(g)), [0, 10, 10, 15, 15, 20, 20, 30, 30]);
+  /* с 65 лет (возраст из настройки отдыха) — ступенью выше (решение владельца по 4.106, вопрос 4) */
+  assert.deepEqual([13, 14, 28, 84, 168].map(g => a.layoffPct(g, 70)), [0, 15, 20, 30, 30]);
+  assert.deepEqual([14, 28].map(g => a.layoffPct(g, 64)), [10, 15]);
   for (const [gap, pct] of [[16, 10], [40, 15], [100, 20], [200, 30]]) {
     reset({ goal: 'mass' });
     a.LOG.data = { legpress: [{ d: dayAgo(gap), s: [[60, 10], [60, 10], [60, 10]] }] };

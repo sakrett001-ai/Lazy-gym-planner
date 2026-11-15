@@ -250,7 +250,7 @@ const SETTINGS_LABEL = {goal:'цель', format:'формат', level:'уров�
   view:'раздел', atlasM:'мышца в атласе', focus:'акцент', fav:'избранное', customs:'свои планы', custom:'открытый свой план',
   gen:'параметры обычных планов', author:'имя автора планов', fold:'свёрнутые блоки', protect:'«Беречь суставы»', cpLast:'последний свой план',
   lr:'«Л/П отдельно»', units:'единицы веса', dur:'время на тренировку', places:'места', place:'место', placesV:'места', adapt:'«как в другом месте»',
-  swaps:'замены упражнений', logPick:'тренировка по журналу'};
+  swaps:'замены упражнений', logPick:'тренировка по журналу', health:'«Здоровье»', pain:'упражнения с пометкой «больно»'};
 function cleanSettings(raw) {
   const s = raw && typeof raw === 'object' && !Array.isArray(raw) ? {...raw} : {}, bad = new Set();
   if (!raw || typeof raw !== 'object' || Array.isArray(raw)) bad.add('*');
@@ -268,6 +268,8 @@ function cleanSettings(raw) {
   ids('groups', GROUPS.map(g => g.id)); ids('equip', EQUIP.map(e => e.id));
   fix('fav', Array.isArray); fix('customs', Array.isArray); fix('custom', strOrNull(40)); fix('gen', v => v === null || obj(v));
   fix('author', v => typeof v === 'string'); fix('fold', v => v === null || obj(v)); fix('protect', v => Array.isArray(v) && v.every(x => typeof x === 'string'));
+  /* 4.106: ответы о здоровье и пометки «больно» (11l-health.js, 11g-gentle.js — ensureHealth, ensurePain дочищают по спискам) */
+  fix('health', v => Array.isArray(v) && v.every(x => typeof x === 'string')); fix('pain', v => v === null || obj(v));
   fix('cpLast', strOrNull(40)); fix('lr', obj); fix('units', v => v === null || v === 'kg' || v === 'lb'); fix('dur', strOrNull(12));
   fix('places', Array.isArray); fix('place', v => typeof v === 'string' && v.length <= 40);
   fix('placesV', v => Number.isInteger(v) && v >= 0 && v < 1000); fix('adapt', strOrNull(40));

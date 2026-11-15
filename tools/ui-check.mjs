@@ -1492,6 +1492,10 @@ await page.close();
   r = await B.evaluate(() => ({ note: $('#keep-notes')?.textContent.replace(/\s+/g, ' ') || '', groups: Array.isArray(S.groups), protect: Array.isArray(S.protect), plan: !!document.querySelector('#plan').children.length, broken: JSON.parse(localStorage.getItem('podhod.broken.v1') || '[]').map(x => x.key) }));
   check(/Часть сохранённых настроек была испорчена и заменена обычными: мышцы, «Беречь суставы»/.test(r.note) && /Скачать испорченное/.test(r.note) && r.groups && r.protect && r.plan && r.broken.includes('podhod.settings.v1'),
     `испорченные настройки при запуске: приложение работает, сообщение, исходное отложено (${JSON.stringify(r)})`);
+  /* «Удалить» у испорченного (решение владельца по 4.107, вопрос 6): переспрос, затем отложенное стёрто и плашки нет */
+  r = await B.evaluate(async () => { const b = document.querySelector('[data-keep="drop"]'); if (!b) return { btn: false }; b.click(); const ask = b.textContent; b.click(); await new Promise(res => setTimeout(res, 50));
+    return { btn: true, ask, left: localStorage.getItem('podhod.broken.v1'), note: ($('#keep-notes')?.textContent || '').trim() }; });
+  check(r.btn && /Точно удалить/.test(r.ask) && !r.left && !/Скачать испорченное/.test(r.note), `«Удалить» у испорченного: переспрос, отложенное стёрто (${JSON.stringify(r)})`);
   await B.close();
   /* ошибка при запуске, которую не поймала проверка (здесь — подменённое начало app.js): перезапуск с обычными настройками и
      сообщение; ошибка и после этого — экран спасения с «Сохранить все данные в файл», журнал не тронут */

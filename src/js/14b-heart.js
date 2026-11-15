@@ -554,6 +554,8 @@ const Heart = (() => {
     document.addEventListener('focusout', e => { if (e.target && (e.target.id === 'wv-hr-thr' || e.target.id === 'wv-hr-age')) paintPrefs(); });
   }
   return {
+    /* возраст из настройки отдыха (по желанию) — и для шкалы после перерыва (15-autoreg.js: layoffInfo) */
+    age() { return P.age; },
     /* тренировка открыта / закрыта: подключение остаётся (вернулись к плану и обратно), пульс пишется только в тренировке */
     open() { if (!mount()) return; opened = true; cur.feedAt = 0; clearInterval(ticker); ticker = setInterval(() => paint(), 1000); paintPrefs(); paint(); },
     close() { opened = false; clearInterval(ticker); ticker = 0; cur.set = null; cur.feedAt = 0; if (HEART.days[todayKey()]) heartTouch(); },

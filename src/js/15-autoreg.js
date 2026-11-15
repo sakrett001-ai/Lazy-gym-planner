@@ -16,9 +16,17 @@
      к уровню до тренировок.
    Ступени — потеря силы за этот срок плюс запас на первую тренировку (связки и сухожилия отвыкли от веса, техника): 14–27 дней —
    10 %, 4–12 недель — 15 %, 12–24 недели — 20 %, больше 24 недель — 30 % (сила могла вернуться к исходной — начать как
-   с новичка, «подберите вес заново»). */
-const LAYOFF_STEPS = [{from:14, pct:10}, {from:28, pct:15}, {from:84, pct:20}, {from:168, pct:30}];
-function layoffPct(gap) { let pct = 0; for (const s of LAYOFF_STEPS) if (gap >= s.from) pct = s.pct; return pct; }
+   с новичка, «подберите вес заново»).
+   С 65 лет (если возраст указан в настройке отдыха) — ступенью выше: у старших сила за перерыв уходит больше (Bosquet 2013,
+   см. выше; решение владельца по 4.106, вопрос 4). */
+const LAYOFF_STEPS = [{from:14, pct:10}, {from:28, pct:15}, {from:84, pct:20}, {from:168, pct:30}], LAYOFF_OLD = 65;
+function layoffPct(gap, age = null) {
+  let i = -1;
+  LAYOFF_STEPS.forEach((s, j) => { if (gap >= s.from) i = j; });
+  if (i < 0) return 0;
+  if (Number.isInteger(age) && age >= LAYOFF_OLD) i = Math.min(i + 1, LAYOFF_STEPS.length - 1);
+  return LAYOFF_STEPS[i].pct;
+}
 const AR = {dismissed:{}, light:false};
 try { Object.assign(AR, JSON.parse(localStorage.getItem('podhod.autoreg.v1') || '{}')); } catch (e) {}
 function arSave() { Keep.set('podhod.autoreg.v1', JSON.stringify({dismissed:AR.dismissed, light:AR.light})); }
@@ -57,7 +65,8 @@ function layoffInfo() {
   let last = '';
   for (const ss of Object.values(LOG.data)) for (const s of ss) if (Array.isArray(s.s) && s.s.some(Boolean) && s.d > last && s.d < todayKey()) last = s.d;
   if (!last) return null;
-  const gap = daysBetween(last, todayKey()), pct = layoffPct(gap);
+  const age = typeof Heart !== 'undefined' && typeof Heart.age === 'function' ? Heart.age() : null;
+  const gap = daysBetween(last, todayKey()), pct = layoffPct(gap, age);
   return pct ? {last, gap, pct} : null;
 }
 function layoffCheck() {

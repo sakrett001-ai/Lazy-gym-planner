@@ -3473,7 +3473,7 @@
  "Остановитесь и обратитесь к врачу, если появились боль или давление в груди, боль в шее, челюсти или руке, необычная одышка, головокружение, перебои в сердце.": "Stop and see a doctor if you feel chest pain or pressure, pain in the neck, jaw or arm, unusual shortness of breath, dizziness, or an irregular heartbeat.",
  "<p><b>Бережно.</b> 12–15 повторов лёгким весом — таким, с которым все повторы даются спокойно": "<p><b>Gentle.</b> 12–15 reps with a light weight — one that lets every rep feel easy",
  "остаются силы ещё на {n}": "{n} still in the tank",
- "; медленно и без рывков. Прыжки, рывковые, сложные упражнения и тяжёлая штанга на спину не подбираются.": "; slow, no jerks. Jumps, ballistic and advanced exercises and heavy barbell work on the back are not picked.",
+ "; медленно и без рывков. Прыжки, рывковые, сложные упражнения, тяжёлая штанга на спину и упражнения вниз головой не подбираются.": "; slow, no jerks. Jumps, ballistic and advanced exercises, heavy barbell work on the back and head-down exercises are not picked.",
  "><summary>Бережный режим: правило боли и когда остановиться</summary>": "><summary>Gentle mode: the pain rule and when to stop</summary>",
  "<p><b>Боль в суставах во время упражнения</b> по шкале от 0 до 10: до 2 — продолжайте; 3–5 — можно, если к утру боль проходит и от недели к неделе не нарастает; больше 5 — остановитесь, уменьшите вес или амплитуду либо замените упражнение.</p>\n    <p class=\"gentle-stop\">": "<p><b>Joint pain during an exercise</b> on a 0–10 scale: up to 2 — keep going; 3–5 — acceptable if it is gone by the next morning and does not build up from week to week; above 5 — stop, reduce the weight or range of motion, or swap the exercise.</p>\n    <p class=\"gentle-stop\">",
  "</p>\n    <p class=\"gentle-warn\">Правило боли взято из лечения боли в ахилловом сухожилии, нагрузка — из рекомендаций для здоровых взрослых: это ориентир, а не лечение. После травмы или операции, при острой боли, отёке, онемении, ощущении нестабильности сустава — сначала к врачу или реабилитологу.</p></details>": "</p>\n    <p class=\"gentle-warn\">The pain rule comes from treating Achilles tendon pain, and the load from guidelines for healthy adults: it is a guide, not a treatment. After an injury or surgery, or with sharp pain, swelling, numbness or a joint that feels unstable, see a doctor or physical therapist first.</p></details>",
@@ -3665,5 +3665,11 @@
  "Удалить испорченные данные": "Delete damaged data",
  "Точно удалить испорченные данные?": "Delete the damaged data for sure?",
  "Испорченные данные удалены.": "Damaged data deleted.",
- "Тренировка идёт по списку, с которого её начали.": "The workout follows the list it was started with."
+ "Тренировка идёт по списку, с которого её начали.": "The workout follows the list it was started with.",
+ "Другая хроническая болезнь": "Another chronic condition",
+ "Лекарства от хронической болезни": "Medication for a chronic condition",
+ "«Здоровье»": "“Health”",
+ "упражнения с пометкой «больно»": "exercises marked as painful",
+ "Вес снижен после перерыва. Уточните его и введите результат.": "Weight lowered after your break. Adjust it and enter your result.",
+ "Вес снижен по подсказке выше. Уточните его и введите результат.": "Weight lowered as suggested above. Adjust it and enter your result."
 }

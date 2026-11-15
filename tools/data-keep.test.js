@@ -33,6 +33,7 @@ test('испорченные настройки в хранилище: прил�
     const broken = a.json('Keep.broken()');
     assert.equal(broken[0].key, 'podhod.settings.v1'); assert.equal(broken[0].raw, raw, `${k}: исходное значение отложено как было`);
     assert(a.json('[...Keep.notes().keys()]').includes('settings'), `${k}: есть сообщение`);
+    assert.match(a.get('keepNoteHtml()'), /data-keep="broken".*data-keep="drop"/s, `${k}: «Скачать испорченное» и «Удалить»`);
     assert.equal(a.json('LOG.data') && Object.keys(a.json('(logLoadLocal(), LOG.data)')).length, 2, `${k}: журнал на месте`);
   }
   /* мусор в местах: не объекты, имя-число, инвентарь строкой */
