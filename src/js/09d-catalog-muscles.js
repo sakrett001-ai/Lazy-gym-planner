@@ -1,23 +1,31 @@
 /* Anatomical parts and teaching regions are deliberately distinct. Deep muscles
    have an entry but no patch painted on top of the skin. Colour curves are authored
    illustrations; identical head profiles do not pretend to measure head-specific EMG. */
+/* Названия частей — по Международной анатомической терминологии в русском переводе, в одной форме «часть/головка + мышца в
+   родительном падеже» (4.110, замечание анатома 9): части большой грудной — ключичная, грудино-рёберная, брюшная; части
+   трапециевидной — нисходящая, поперечная, восходящая (в скобках — привычное «верхняя / средняя / нижняя»); части дельтовидной —
+   ключичная, акромиальная, остистая; «боковая ягодичная область» — средняя и малая ягодичные мышцы, «медиальная область
+   заднего бедра» — полусухожильная и полуперепончатая мышцы. Подостная и малая круглая лежат на задней поверхности лопатки
+   (StatPearls — Miniato и др., 2023, NBK536933: «Posterior scapula, inferior to the scapular spine/Infraspinous fossa»), по
+   краям их прикрывают трапециевидная и задняя часть дельтовидной (Gray's Anatomy, 20-е изд., 1918, «Deltoideus»: «Its
+   posterior border rests on the Infraspinatus and Triceps») — видимая область, а не «глубже» (замечание анатома 4) */
 const MUSCLE_REGIONS={
- chest:[['pec_clavicular','Ключичная часть грудной','anatomical'],['pec_sternal','Средняя область грудной','teaching'],['pec_costal','Нижняя область грудной','teaching'],['pec_minor','Малая грудная · глубже','deep']],
- triceps:[['tri_long','Длинная головка трицепса','anatomical'],['tri_lateral','Латеральная головка трицепса','anatomical'],['tri_medial','Медиальная головка трицепса · глубже','deep']],
- biceps:[['bi_long','Длинная головка бицепса','anatomical'],['bi_short','Короткая головка бицепса','anatomical'],['brachialis','Плечевая мышца · глубже','deep']],
- delt_f:[['delt_f','Передняя часть дельтовидной','anatomical']],delt_s:[['delt_s','Средняя часть дельтовидной','anatomical']],delt_r:[['delt_r','Задняя часть дельтовидной','anatomical']],
- quads:[['quad_rectus','Прямая мышца бедра','anatomical'],['quad_lateral','Латеральная широкая мышца','anatomical'],['quad_medial','Медиальная широкая мышца','anatomical'],['quad_deep','Промежуточная широкая · глубже','deep']],
- hams:[['ham_lateral','Двуглавая мышца бедра, длинная головка','anatomical'],['ham_medial','Медиальная область заднего бедра','teaching'],['ham_short','Короткая головка двуглавой бедра · глубже','deep']],
- calves:[['calf_medial','Медиальная головка икроножной','anatomical'],['calf_lateral','Латеральная головка икроножной','anatomical'],['soleus','Камбаловидная · глубже','deep']],
- glutes:[['glute_max','Большая ягодичная','anatomical'],['glute_lateral','Боковая ягодичная область','teaching']],
- traps:[['trap_upper','Верхняя область трапециевидной','teaching'],['trap_mid','Средняя область трапециевидной','teaching'],['trap_lower','Нижняя область трапециевидной','teaching'],['lev_scap','Поднимающая лопатку · глубже','deep']],
- lats:[['lats','Широчайшие · общий профиль','group']],midback:[['midback','Межлопаточная область · общий профиль','group']],
+ chest:[['pec_clavicular','Ключичная часть большой грудной мышцы','anatomical'],['pec_sternal','Грудино-рёберная часть большой грудной мышцы','anatomical'],['pec_costal','Брюшная часть большой грудной мышцы','anatomical'],['pec_minor','Малая грудная мышца · глубже','deep']],
+ triceps:[['tri_long','Длинная головка трёхглавой мышцы плеча','anatomical'],['tri_lateral','Латеральная головка трёхглавой мышцы плеча','anatomical'],['tri_medial','Медиальная головка трёхглавой мышцы плеча · глубже','deep']],
+ biceps:[['bi_long','Длинная головка двуглавой мышцы плеча','anatomical'],['bi_short','Короткая головка двуглавой мышцы плеча','anatomical'],['brachialis','Плечевая мышца · глубже','deep']],
+ delt_f:[['delt_f','Передняя (ключичная) часть дельтовидной мышцы','anatomical']],delt_s:[['delt_s','Средняя (акромиальная) часть дельтовидной мышцы','anatomical']],delt_r:[['delt_r','Задняя (остистая) часть дельтовидной мышцы','anatomical']],
+ quads:[['quad_rectus','Прямая мышца бедра','anatomical'],['quad_lateral','Латеральная широкая мышца бедра','anatomical'],['quad_medial','Медиальная широкая мышца бедра','anatomical'],['quad_deep','Промежуточная широкая мышца бедра · глубже','deep']],
+ hams:[['ham_lateral','Длинная головка двуглавой мышцы бедра','anatomical'],['ham_medial','Полусухожильная и полуперепончатая мышцы','anatomical'],['ham_short','Короткая головка двуглавой мышцы бедра · глубже','deep']],
+ calves:[['calf_medial','Медиальная головка икроножной мышцы','anatomical'],['calf_lateral','Латеральная головка икроножной мышцы','anatomical'],['soleus','Камбаловидная мышца · глубже','deep']],
+ glutes:[['glute_max','Большая ягодичная мышца','anatomical'],['glute_lateral','Средняя и малая ягодичные мышцы','anatomical']],
+ traps:[['trap_upper','Нисходящая (верхняя) часть трапециевидной мышцы','anatomical'],['trap_mid','Поперечная (средняя) часть трапециевидной мышцы','anatomical'],['trap_lower','Восходящая (нижняя) часть трапециевидной мышцы','anatomical'],['lev_scap','Мышца, поднимающая лопатку · глубже','deep']],
+ lats:[['lats','Широчайшая мышца спины · общий профиль','group']],midback:[['midback','Межлопаточная область: ромбовидные мышцы под трапециевидной · общий профиль','group']],
  lowback:[['lowback','Разгибатели спины · общий профиль','group']],abs:[['abs','Прямая мышца живота','anatomical']],
  obliques:[['obl_ext','Наружная косая мышца живота','anatomical'],['obl_int','Внутренняя косая мышца живота · глубже','deep']],
  forearms:[['forearm_flex','Сгибатели запястья и пальцев','anatomical'],['forearm_ext','Разгибатели запястья и пальцев','anatomical'],['brachiorad','Плечелучевая мышца','anatomical']],
- adductors:[['adductors','Приводящие мышцы бедра · общий профиль','group']],hipflex:[['hipflex','Подвздошно-поясничная · глубже','deep']],
- serratus:[['serratus','Передняя зубчатая','anatomical']],
- cuff:[['cuff_ext','Подостная и малая круглая · глубже','deep'],['cuff_int','Подлопаточная · глубже','deep'],['cuff_sup','Надостная · глубже','deep']]
+ adductors:[['adductors','Приводящие мышцы бедра · общий профиль','group']],hipflex:[['hipflex','Подвздошно-поясничная мышца · глубже','deep']],
+ serratus:[['serratus','Передняя зубчатая мышца','anatomical']],
+ cuff:[['cuff_ext','Подостная и малая круглая мышцы','anatomical'],['cuff_int','Подлопаточная мышца · глубже','deep'],['cuff_sup','Надостная мышца · глубже','deep']]
 };
 const REGION_ANATOMY_SOURCES=[['Анатомия мышц плечевого пояса — OpenStax','https://openstax.org/books/anatomy-and-physiology-2e/pages/11-5-muscles-of-the-pectoral-girdle-and-upper-limbs'],['Анатомия мышц ног — OpenStax','https://openstax.org/books/anatomy-and-physiology-2e/pages/11-6-appendicular-muscles-of-the-pelvic-girdle-and-lower-limbs']];
 function motionProfile(anim){return anim.catalogProfile||anim.muscleProfile;}
@@ -146,8 +154,10 @@ for(const ex of EX){
   const basis=factors.some(f=>f!==factors[0])?'illustrative-regional':'shared-group';
   MUSCLE_REGIONS[parent].forEach(([id,label,kind],i)=>{regions[id]={parent,label,kind,role:m.role,factor:factors[i],visible:kind!=='deep',profileBasis:basis};});
  }
- const names=ex.pri.map(id=>MUSCLE_NAMES[id]).join(', ');
- const notes=base?base.notes:{concentric:hold?'Удержание: мышцы сохраняют положение.':cyclic?'Движение по кругу: цвет примерно показывает, какие мышцы работают сильнее.':names+' участвуют в рабочей фазе.',eccentric:cyclic?'Дальше по кругу: участие мышц меняется плавно.':'Мышцы контролируют возврат.',end:'Конечная точка: сохраняйте контроль и опору.',start:'Исходное положение: подготовьтесь к следующему повторению.'};
+ /* «Квадрицепс участвует», «Грудные, трицепс участвуют» (4.110, замечание анатома 14): число глагола — по числу групп и по
+    самому названию (у групп во множественном числе — «Грудные», «Широчайшие», «Икры» — «участвуют») */
+ const names=ex.pri.map(id=>MUSCLE_NAMES[id]).join(', '),many=ex.pri.length>1||MUSCLE_PLURAL.has(ex.pri[0]);
+ const notes=base?base.notes:{concentric:hold?'Удержание: мышцы сохраняют положение.':cyclic?'Движение по кругу: цвет примерно показывает, какие мышцы работают сильнее.':names+(many?' участвуют в рабочей фазе.':' участвует в рабочей фазе.'),eccentric:cyclic?'Дальше по кругу: участие мышц меняется плавно.':'Мышцы контролируют возврат.',end:'Конечная точка: сохраняйте контроль и опору.',start:'Исходное положение: подготовьтесь к следующему повторению.'};
  ex.anim.catalogProfile={curveBasis:'illustrative',muscles,regions,notes,pair:ex.pri.some(id=>['lats','midback','lowback','glutes','hams','traps'].includes(id))?'back':'above',sources:[...(base?.sources||[]),...regionSources(ex.id,muscles),...REGION_ANATOMY_SOURCES],cyclic,hold,laterality:CATALOG_LATERALITY[ex.id]};
 }
 /* Мышечные зоны на манекене: те же учебные области, но на поверхности нового тела.

@@ -65,14 +65,19 @@ function galleryEmptyHtml() {
   const near = R.near.map(ex => `<button type="button" class="btn-ghost" data-gallery-q="${esc(exNameHere(ex))}">${esc(exNameHere(ex))}</button>`).join('');
   return `<div class="mv-gempty">${near ? `<p>Похожие по написанию:</p><div class="mv-gnear">${near}</div>` : '<p>Проверьте написание или попробуйте другое слово: «жим», «тяга», «присед».</p>'}</div>`;
 }
+/* Разделы витрины — группы плана, а упражнения на приводящие (сведение ног, копенгагенская планка) — своим разделом после
+   квадрицепса (4.110; Alex 18, замечание анатома: приводящие — не квадрицепс). В плане они по-прежнему в группе «Квадрицепс»
+   (MUSCLE_GROUP.adductors) — id групп и сохранённые настройки не меняются */
+const GALLERY_GROUPS = GROUPS.flatMap(g => g.id === 'quads' ? [g, {id:'adductors', name:'Приводящие бедра'}] : [g]);
+const galleryGroup = ex => ex.g === 'quads' && ex.pri[0] === 'adductors' ? 'adductors' : ex.g;
 function galleryHtml() {
   const E = effEquip(S.equip), all = effEquip(EQUIP.map(e => e.id)), list = galleryList(), R = searchExercises(gallery.q);
   const chips = WORK_KINDS.map(k => `<button type="button" class="${gallery.kind === k.id ? 'on' : ''}" data-gallery-kind="${k.id}" aria-pressed="${gallery.kind === k.id}">${esc(k.name)} <small>${galleryList(k.id).length}</small></button>`).join('');
   /* с запросом группы идут по лучшему совпадению в них (при равенстве — по порядку), без запроса — по порядку */
-  const rank = new Map(list.map((ex, i) => [ex.id, i])), first = g => Math.min(...list.filter(ex => ex.g === g.id).map(ex => rank.get(ex.id)));
-  const groups = R.mode === 'all' ? GROUPS : GROUPS.slice().sort((a, b) => first(a) - first(b));
+  const rank = new Map(list.map((ex, i) => [ex.id, i])), first = g => Math.min(...list.filter(ex => galleryGroup(ex) === g.id).map(ex => rank.get(ex.id)));
+  const groups = R.mode === 'all' ? GALLERY_GROUPS : GALLERY_GROUPS.slice().sort((a, b) => first(a) - first(b));
   const sections = groups.map(g => {
-    const xs = list.filter(ex => ex.g === g.id); if (!xs.length) return '';
+    const xs = list.filter(ex => galleryGroup(ex) === g.id); if (!xs.length) return '';
     return `<section class="mv-gsec" aria-labelledby="mv-g-${g.id}"><h3 id="mv-g-${g.id}">${esc(g.name)} <small>${xs.length}</small></h3><div class="mv-ggrid">${xs.map(ex => galleryTile(ex, E, all)).join('')}</div></section>`;
   }).join('');
   const note = list.length ? searchNoteText(R) : '';

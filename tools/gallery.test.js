@@ -6,7 +6,7 @@ const { loadModel } = require('./biomechanics-audit');
 const plain = x => JSON.parse(JSON.stringify(x));
 const m = loadModel({ fullApp: true });
 m.get('renderSetup=()=>{}; logRefresh=()=>{}; LOG.mode="local";');
-const a = m.get('({S,EX,EXI,GROUPS,WORK_KINDS,workKind,gallery,galleryList,galleryHtml,ensurePlaces,PLACE_DEFAULTS,effEquip,available})');
+const a = m.get('({S,EX,EXI,GROUPS,GALLERY_GROUPS,galleryGroup,WORK_KINDS,workKind,gallery,galleryList,galleryHtml,ensurePlaces,PLACE_DEFAULTS,effEquip,available})');
 function reset(extra = {}) {
   a.S.places = a.PLACE_DEFAULTS.map(p => ({ ...p, equip: p.equip.slice() })); a.S.place = 'gym'; a.ensurePlaces(a.S);
   Object.assign(a.gallery, { kind: 'all', here: false, q: '' }, extra);
@@ -33,7 +33,13 @@ test('filters: kind, only-here, search; sections follow muscle groups', () => {
   assert.deepEqual(plain(a.galleryList().map(ex => ex.id)).sort(), ['latpull', 'latpulluh', 'latpullv'], 'case-insensitive name search');
   reset();
   const html = a.galleryHtml(), order = [...html.matchAll(/id="mv-g-(\w+)"/g)].map(x => x[1]);
-  assert.deepEqual(order, plain(a.GROUPS.map(g => g.id).filter(g => a.EX.some(ex => ex.g === g))), 'one section per muscle group, in the usual order');
+  assert.deepEqual(order, plain(a.GALLERY_GROUPS.map(g => g.id).filter(g => a.EX.some(ex => a.galleryGroup(ex) === g))), 'one section per muscle group, in the usual order');
+  /* приводящие — своим разделом после квадрицепса, не среди упражнений на квадрицепс (4.110, Alex 18); группа плана прежняя */
+  assert.deepEqual(order.slice(order.indexOf('quads'), order.indexOf('quads') + 2), ['quads', 'adductors']);
+  for (const id of ['copenhagen', 'copenhagenknee', 'adduction', 'cableadduct', 'bandadduct']) {
+    assert.equal(a.galleryGroup(a.EXI[id]), 'adductors', id); assert.equal(a.EXI[id].g, 'quads', id + ': plan group unchanged');
+    assert.match(html, new RegExp(`id="mv-g-adductors"[^]*?data-gallery-open="${id}"[^]*?id="mv-g-hams"`), id + ' in the adductors section');
+  }
   assert.equal([...html.matchAll(/data-gallery-open=/g)].length, a.EX.length);
   a.S.place = 'home'; a.ensurePlaces(a.S);
   assert.match(a.galleryHtml(), /class="mv-tile off" data-gallery-open="bbbench"[\s\S]*?Нет в месте «Дом», нужно: штанга/, 'an exercise not available here says what it needs');
