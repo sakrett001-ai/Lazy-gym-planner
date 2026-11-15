@@ -281,6 +281,10 @@ test('начатая тренировка идёт по своему списк�
   assert.notDeepEqual(a.json('workoutQueue(plan).map(s => [s.it.ex.id, s.k])'), q0, 'план действительно другой');
   assert.deepEqual(a.json('workoutQueueNow().map(s => [s.it.ex.id, s.k])'), q0, 'тренировка — по своему списку');
   assert.equal(a.get('workoutStamp(workoutQueueNow())'), JSON.parse(store.get('podhod.workout.v3')).stamp, 'та же тренировка — продолжается с того же места');
+  /* не законченная в прошлый день: «Продолжить её» — по своему списку, новая тренировка — по плану */
+  const sv = JSON.parse(store.get('podhod.workout.v3')); sv.days = [day(1)]; sv.day = day(1); store.set('podhod.workout.v3', JSON.stringify(sv));
+  assert.deepEqual(a.json('workoutQueueNow(workoutLoad(), {cont:true}).map(s => [s.it.ex.id, s.k])'), q0);
+  assert.deepEqual(a.json('workoutQueueNow(workoutLoad(), {cont:false}).map(s => [s.it.ex.id, s.k])'), a.json('workoutQueue(plan).map(s => [s.it.ex.id, s.k])'));
   /* человек сам поменял выбор (мышцы) — тренировка по новому плану */
   a.get(`S.groups = ['quads']; plan = buildPlan()`);
   assert.deepEqual(a.json('workoutQueueNow().map(s => s.it.ex.id)'), a.json('workoutQueue(plan).map(s => s.it.ex.id)'));

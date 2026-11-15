@@ -98,7 +98,7 @@ function startWorkout(id,opts={}){
   workoutReturn=document.activeElement;
   /* начатая тренировка идёт по своему списку упражнений, даже если план с тех пор собрался иначе (новая версия приложения):
      workoutQueueNow, 18a-data-keep.js (Ксения 12) */
-  const old=workoutLoad(),queue=workoutQueueNow(old),stamp=workoutStamp(queue),today=todayKey(),now=Date.now();
+  const old=workoutLoad(),queue=workoutQueueNow(old,{cont:!!opts.cont}),stamp=workoutStamp(queue),today=todayKey(),now=Date.now();
   const oldDays=old?wkDaysWith(old.days,today):[today],done=old?wkCount(queue,s=>wkSet(LOG.data,s.it.ex.id,s.k,oldDays),old).done:0;
   const how=wkResume(old,{today,stamp,cont:!!opts.cont,done}),keep=how!=='new',same=how==='same'&&old.stamp===stamp;
   workout={queue,stamp,index:0,days:keep?oldDays:[today],started:keep&&Number.isFinite(old.started)?old.started:now,spent:keep?old.spent:0,openAt:now,

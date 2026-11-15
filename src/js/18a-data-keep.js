@@ -56,11 +56,13 @@ function queueFromSaved(saved) {
   }
   return q.length ? q : null;
 }
-/* очередь для «Начать / Продолжить тренировку»: начатая сегодня (или не законченная вчера) тренировка, в которой уже есть
-   подходы, — по своему списку, пока не меняли то, из чего собирается план; иначе — по плану */
-function workoutQueueNow(saved = workoutLoad()) {
+/* очередь для «Начать / Продолжить тренировку»: начатая сегодня тренировка (или не законченная в прошлый день, если её
+   продолжают — cont), в которой уже есть подходы, — по своему списку, пока не меняли то, из чего собирается план; иначе — по
+   плану (новая тренировка — всегда по плану) */
+function workoutQueueNow(saved = workoutLoad(), {cont = true} = {}) {
   const q = plan && plan.items && plan.items.length ? workoutQueue(plan) : [];
   if (!saved || saved.ended || saved.stamp === workoutStamp(q)) return q;
+  if (!cont && saved.days[saved.days.length - 1] !== todayKey()) return q;
   if (saved.snap ? saved.snap.ctx !== planCtx() : !legacyCtxSame(saved.stamp)) return q;
   const sq = queueFromSaved(saved); if (!sq) return q;
   const days = wkDaysWith(saved.days, todayKey());
