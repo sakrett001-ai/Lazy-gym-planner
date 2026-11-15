@@ -3489,7 +3489,7 @@
  "Убрано из плана: {name}. Само оно не вернётся; вернуть — в параметрах, «Беречь суставы».": "Removed from the plan: {name}. It won’t come back on its own; to bring it back, go to Settings, “Protect joints & tendons”.",
  "Возраст": "Age",
  "лет": "years",
- "По желанию: тогда предупреждение о слишком высоком пульсе — по вашему возрасту (расчётный максимум 208 − 0,7 × возраст, у разных людей ±10 уд/мин).": "Optional: the warning about a too-high heart rate will then use your age (predicted maximum 208 − 0.7 × age, ±10 bpm between people).",
+ "По желанию: тогда предупреждение о слишком высоком пульсе — по вашему возрасту (расчётный максимум 208 − 0,7 × возраст, у разных людей ±10 уд/мин). Это средняя оценка, а не безопасный предел для вас.": "Optional: the warning about a too-high heart rate will then use your age (predicted maximum 208 − 0.7 × age, ±10 bpm between people). This is an average estimate, not a safe limit for you.",
  "Если вы принимаете лекарства, которые снижают пульс (например, бета-блокаторы), пульс не показывает нагрузку — ориентируйтесь на дыхание и самочувствие.": "If you take medicines that lower your heart rate (beta blockers, for example), heart rate does not show the effort — go by your breathing and how you feel.",
  "Пульс выше расчётного максимума для вашего возраста (≈ {n}). Снизьте темп и отдохните; если стало плохо — остановитесь.": "Heart rate is above the predicted maximum for your age (≈ {n}). Slow down and rest; if you feel unwell, stop.",
  "Очень высокий пульс. Снизьте темп и отдохните; если стало плохо — остановитесь. Укажите возраст в настройке отдыха — предупреждение будет точнее.": "Very high heart rate. Slow down and rest; if you feel unwell, stop. Enter your age in the rest settings for a more precise warning.",
@@ -3710,5 +3710,6 @@
  "В месте «{place}» нет {what} тяжелее {w}, а повторов уже {n}: замедлите опускание до 3–4 с или возьмите упражнение тяжелее.": "No {what} heavier than {w} at «{place}», and you are at {n} reps already: lower in 3–4 s or pick a harder exercise.",
  "В месте «{place}» нет {what} тяжелее {w} — прибавляйте повторы: в следующий раз на 1 больше в каждом подходе. В прошлый раз: {prev}.": "No {what} heavier than {w} at «{place}» — add reps: next time 1 more in each set. Last time: {prev}.",
  "ещё {n}": "{n} more",
- "Пустое поле — тот же вес, что в подходе перед ним.": "An empty field — the same weight as the set before it."
+ "Пустое поле — тот же вес, что в подходе перед ним.": "An empty field — the same weight as the set before it.",
+ "Нет предупреждения — это ещё не значит, что нагрузка безопасна. При боли в груди, головокружении, необычной одышке — остановитесь.": "No warning does not mean the effort is safe. If you have chest pain, dizziness or unusual shortness of breath, stop."
 }
