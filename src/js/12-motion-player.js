@@ -45,7 +45,11 @@ function motionFrame(F, clock=F.clock) {
   if (F.it.ex.id === 'kbhalo') labels=['Вокруг головы вправо','За головой','Вокруг головы влево','Перед грудью'];
   if (F.it.ex.id === 'kbclean') labels=['Взятие на грудь','Стойка','Сброс в замах','Замах'];
   if (F.it.ex.id === 'deadlift' || F.it.ex.id === 'kbdeadlift') labels=['Подъём','Верхняя точка','Опускание','Исходное положение'];
-  return {t,index,label:a.hold?'Удержание':labels[index],cue:a.hold?a.cues[0]:a.cues[(index<2)!==!!a.eccFirst?0:1],progress:((clock%total)+total)%total/total,total};
+  /* точка разворота без паузы (4.110, замечание анатома 13): у приседа нижняя точка — граница двух фаз, и подпись прыгала —
+     «Опускание» у ползунка, «Подъём» у кнопки «Конечная точка». Последние и первые 8 % фазы рядом с разворотом, где пауза
+     короче 250 мс, подписаны самой точкой разворота */
+  const turn=!a.hold&&!a.loop&&(index===0||index===2)?(q>=.92&&d[index+1]<250?index+1:q<=.08&&d[(index+3)%4]<250?(index+3)%4:index):index;
+  return {t,index,label:a.hold?'Удержание':labels[turn],cue:a.hold?a.cues[0]:a.cues[(index<2)!==!!a.eccFirst?0:1],progress:((clock%total)+total)%total/total,total};
 }
 /* Часы рисунка карточки — по сетке ≈30 кадров в секунду, целое число кадров на повторение: каждый круг проходит те же
    фазы, и готовые кадры берутся из памяти (FIGURE_FRAMES, 07-rigs-core.js). Кадр отстаёт от точного времени

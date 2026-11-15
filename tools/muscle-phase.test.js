@@ -202,3 +202,18 @@ test('phase labels and cues follow the working phase: rising after a lowering, t
   assert.equal(up.label, 'Подъём'); assert.equal(down.label, 'Опускание');
   assert.match(down.cue, /Опускайтесь медленно/);
 });
+/* точка разворота без паузы (4.110, замечание анатома 13): нижняя точка приседа подписана одинаково — у кнопки «Конечная
+   точка» (часы на границе фаз) и у ползунка рядом с ней; середины фаз — прежние «Опускание» и «Подъём» */
+test('the bottom of a squat is labelled as the bottom both from the button and from the slider', () => {
+  const { m } = P.model(), { motionFrame } = m.get('({motionFrame})'), ex = id => m.EX.find(e => e.id === id);
+  for (const id of ['goblet', 'kbfrontsquat', 'squat']) {
+    const at = clock => motionFrame({ it: { ex: ex(id) }, durations: [1000, 0, 1000, 0], clock }).label;
+    assert.equal(ex(id).anim.eccFirst, true, id);
+    for (const c of [960, 1000, 1040]) assert.equal(at(c), 'Нижняя точка', `${id} at ${c}`);
+    assert.equal(at(500), 'Опускание'); assert.equal(at(1500), 'Подъём');
+    assert.equal(at(0), 'Верхняя точка');
+  }
+  /* с паузой в нижней точке подпись паузы — как прежде, разворот без паузы не дописывается */
+  const paused = clock => motionFrame({ it: { ex: ex('goblet') }, durations: [1000, 400, 1000, 400], clock }).label;
+  assert.equal(paused(980), 'Опускание'); assert.equal(paused(1200), 'Нижняя точка');
+});
