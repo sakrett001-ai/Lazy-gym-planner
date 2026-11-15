@@ -138,6 +138,10 @@ h1, h2, h3, h4 { text-wrap:balance; margin:0; }
 .place-name { flex:1 1 9.375rem; }
 .place-adapt { flex:1 1 100%; }
 .place-name input, .place-adapt select { min-height:40px; border:1px solid var(--line); border-radius:9px; background:var(--surface); color:var(--ink); padding:7px 10px; font:inherit; font-size:.875rem; min-width:0; max-width:100%; }
+/* гантели и гири, которые есть в месте (4.108) */
+.place-w { display:grid; gap:4px; font-size:.75rem; color:var(--muted); min-width:0; flex:1 1 100%; }
+.place-w input { min-height:40px; border:1px solid var(--line); border-radius:9px; background:var(--surface); color:var(--ink); padding:7px 10px; font:inherit; font-size:.875rem; min-width:0; max-width:100%; }
+.place-w input[aria-invalid="true"] { border-color:var(--hot); }
 .place-del { border:0; background:transparent; color:var(--muted); font-size:.8125rem; padding:10px 2px; }
 .place-del.armed { color:var(--hot); font-weight:600; }
 .pres-l { font-size:.78125rem; color:var(--faint); align-self:center; }
@@ -230,6 +234,7 @@ h1, h2, h3, h4 { text-wrap:balance; margin:0; }
 /* подтверждение в строке заполненного подхода: строка подсвечена, под полями — вопрос и две кнопки */
 .lt-r.lt-arm { background:var(--hot-soft); border-radius:10px; box-shadow:0 0 0 5px var(--hot-soft); }
 .lt-cf, .lt-kq { grid-column:1 / -1; display:flex; flex-wrap:wrap; align-items:center; gap:6px 8px; font-size:.8125rem; line-height:1.3; color:var(--ink); }
+.lt-err { grid-column:1 / -1; margin:2px 0 0; font-size:.8125rem; line-height:1.3; color:var(--hot); font-weight:600; }
 .lt-cft { flex:1 0 100%; font-weight:600; padding-top:2px; }
 .lt-cfy, .lt-cfn { min-height:38px; min-width:104px; padding:0 14px; border-radius:9px; background:var(--surface); font:600 .84375rem var(--f-body); cursor:pointer; }
 .lt-cfy { border:1.5px solid var(--hot); color:var(--hot); }
@@ -358,6 +363,7 @@ h1, h2, h3, h4 { text-wrap:balance; margin:0; }
 .j-val { font:600 1.25rem/1 var(--f-mono); font-variant-numeric:tabular-nums; text-align:right; display:grid; justify-items:end; gap:3px; }
 .j-val small { font:500 .75rem var(--f-body); color:var(--muted); }
 .j-val em { font:600 .75rem var(--f-mono); font-style:normal; color:var(--muted); }
+.j-val em.j-same { font-family:var(--f-body); font-weight:500; }
 .j-val em.pos { color:var(--good); } .j-val em.neg { color:var(--hot); }
 /* с весом: «5 кг × 15» крупно, расчётный максимум мелко с подписью */
 .j-big { white-space:nowrap; }
@@ -1034,7 +1040,13 @@ button.link { border:0; background:none; padding:0; color:var(--accent); font:in
 .cp-edited { font-weight:600; }
 .cp-dot { display:inline-block; width:7px; height:7px; border-radius:50%; background:var(--accent); margin-left:6px; vertical-align:middle; }
 .cp-f input[aria-invalid="true"] { border-color:var(--hot); }
-.cp-kg { flex:1 1 11.25rem; } .cp-kg input { width:100%; }
+.cp-kg { flex:1 1 100%; display:grid; gap:4px; }
+/* вес по подходам — поле на подход (4.108) */
+.cp-kgs { display:flex; flex-wrap:wrap; gap:6px; }
+.cp-kgs input { width:4.5rem; min-height:44px; text-align:center; font-variant-numeric:tabular-nums; }
+.cp-kgs input[aria-invalid="true"] { border-color:var(--hot); }
+.cp-kg-h { font-size:.75rem; color:var(--faint); }
+.cp-err { margin:0; font-size:.8125rem; font-weight:600; color:var(--hot); }
 .cp-note { flex:1 1 100%; } .cp-note textarea { width:100%; min-height:56px; border:1px solid var(--line); border-radius:9px; background:var(--surface); color:var(--ink); padding:7px 10px; font:inherit; font-size:.875rem; resize:vertical; }
 .cp-edit .cp-fields + .cp-fields { margin-top:10px; }
 
@@ -1076,6 +1088,10 @@ button.link { border:0; background:none; padding:0; color:var(--accent); font:in
 .cp-find input { width:100%; box-sizing:border-box; height:44px; border:1px solid var(--line); border-radius:10px; background:var(--surface-2); color:var(--ink); padding:0 12px; font:inherit; font-size:.9375rem; }
 .cp-find input:focus-visible { outline:2px solid var(--accent); outline-offset:1px; }
 .cp-gh small { font-weight:400; }
+/* в прошлый раз тяжелее плана — «Записать в план» (4.108, Руслан 10) */
+.sug-planup { margin-top:6px; background:var(--accent-soft); }
+.sug-planup b { background:var(--accent); color:var(--accent-ink); }
+.sug-planup button { grid-column:2; justify-self:start; min-height:44px; text-align:left; }
 
 /* Сворачиваемые блоки: заголовок-кнопка со сводкой и шевроном (11f-fold.js). */
 .cg-h { display:flex; align-items:center; gap:10px; width:100%; min-height:40px; border:0; background:transparent; padding:6px 4px; margin:0; text-align:left; color:var(--ink); font:inherit; cursor:pointer; border-radius:8px; }
@@ -1428,6 +1444,8 @@ details.rule p { margin:6px 0 0; }
 
 /* история: общий вес записи — второй строкой под подходами */
 .h-ton { display:block; margin-top:2px; font:500 .75rem var(--f-body); color:var(--faint); }
+/* история: подходы, вписанные в другой единице, — теми числами, что вписали (4.108) */
+.h-u { display:block; margin-top:2px; font:500 .75rem var(--f-body); color:var(--faint); }
 
 /* журнал: последние тренировки с общим весом за день */
 .j-days { margin-top:6px; }
@@ -1764,6 +1782,10 @@ body { overflow-wrap:break-word; }
 .wip-ask h2 { font:600 .9375rem/1.3 var(--f-body); margin:0 0 4px; color:var(--ink); }
 .wip-ask p { font-size:.8125rem; line-height:1.45; color:var(--muted); margin:0 0 10px; }
 .wip-ask-b { display:flex; flex-wrap:wrap; gap:8px; }
+
+/* разминка перед первым подходом упражнения — та же лесенка, что в карточке (4.108, Руслан 21) */
+.wv-warm { margin:0 0 10px; }
+.wv-warm .wu { border-top:0; padding-top:0; }
 
 /* Первый запуск: несколько вопросов по одному на экран (11k-first-run.js). На телефоне — во весь экран, на компьютере —
    окно по центру поверх плана. Крупные варианты-кнопки; выбранный — рамка и подложка акцента с галочкой. Размеры — в rem:
