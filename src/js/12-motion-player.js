@@ -422,7 +422,7 @@ function selectMotion(it, clock=0) {
   $('#mv-tools').innerHTML=cpKeepHtml(it.ex.id,'mv');
   $('#mv-view').textContent=CAMERA3[motionCamera(it.ex)].label;
   $('#mv-speed').value=String(motionPrefs.speed);$('#mv-joints').checked=!!motionPrefs.joints;$('#mv-trace').checked=!!motionPrefs.trace;$('#mv-vectors').checked=!!motionPrefs.vectors;
-  $('#mv-tempo').textContent=it.ex.anim.hold?'Удерживайте положение и дышите ровно.':it.ex.anim.timing||it.ex.g==='cardio'||it.ex.kind?'Ритм показан схематично. Замедление помогает разобрать движение.':it.rx.static?`Статодинамика: ${tempoWords(it.rx.tempo)}, без пауз; показана рабочая часть амплитуды — без выпрямления до конца и без расслабления внизу.`:`Темп по плану: ${tempoWords(it.rx.tempo)}. Скорость просмотра темп не меняет.`;
+  $('#mv-tempo').textContent=it.ex.anim.hold?'Удерживайте положение и дышите ровно.':it.ex.anim.timing||it.ex.g==='cardio'||it.ex.kind?'Ритм показан схематично. Замедление помогает разобрать движение.':it.rx.static?`Статодинамика: ${tempoWords(it.rx.tempo)}, без пауз; показана рабочая часть амплитуды — без выпрямления до конца и без расслабления внизу.`:tempoWords(it.rx.tempo)?`Темп по плану: ${tempoWords(it.rx.tempo)}. Скорость просмотра темп не меняет.`:'Темп — плавно, без рывков. Скорость просмотра темп не меняет.';
   const level={};it.ex.pri.forEach(m=>level[m]=1);it.ex.sec.forEach(m=>{if(!level[m])level[m]=.38;});
   $('#mv-muscles').innerHTML=muscleMapSvg(level,{labels:true,aria:'Основные и вспомогательные мышцы'});
   $('#mv-primary').textContent=it.ex.pri.map(m=>MUSCLE_NAMES[m]).join(', ');
