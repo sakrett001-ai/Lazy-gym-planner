@@ -111,3 +111,7 @@ html.workout-open{overflow:hidden}
 .illus:not(.anatomy-on)>canvas.card-anatomy,.illus.anatomy-on>svg.fig{visibility:hidden}
 .figure-tile-note{font-size:.75rem;line-height:1.4;color:var(--muted);padding:0 10px 8px;margin:0}
 @media(max-width:380px){.wv-figure button{padding:4px 6px;font-size:.75rem}}
+/* 4.111: «Поделиться итогом» на экране «Тренировка завершена» (14c-share-card.js) — вторая кнопка, спокойнее главной */
+.wv-share{width:100%;min-height:48px;margin-top:10px;border:1px solid var(--line);border-radius:12px;background:var(--surface);color:var(--accent);padding:12px 20px;font:600 .9375rem var(--f-body);cursor:pointer}
+.wv-share[hidden]{display:none}
+#wv-share-msg:empty{display:none}

@@ -56,15 +56,23 @@ const STRICT = {
   disc:{why:'ударная нагрузка на позвоночник', test:ex => stressIdsOf(ex).includes('landing')}
 };
 
-function ensureProtect(s) {
-  const list = Array.isArray(s.protect) ? s.protect : [];
-  /* строгая отметка включает обычную */
-  const on = new Set(list.filter(id => PROTECT_BY[id])); for (const id of [...on]) if (PROTECT_BY[id].base) on.add(PROTECT_BY[id].base);
-  s.protect = PROTECT.map(p => p.id).filter(id => on.has(id));
-  return s.protect;
+/* известные отметки в порядке списка; строгая отметка включает обычную */
+function protectNorm(list) {
+  const on = new Set((Array.isArray(list) ? list : []).filter(id => PROTECT_BY[id])); for (const id of [...on]) if (PROTECT_BY[id].base) on.add(PROTECT_BY[id].base);
+  return PROTECT.map(p => p.id).filter(id => on.has(id));
 }
+function ensureProtect(s) { s.protect = protectNorm(s.protect); return s.protect; }
+/* Что бережём сейчас: свои отметки человека (S.protect, для всех планов) и, в своём плане, — отметки, с которыми план пришёл
+   из файла (c.protect: тренер берёг колени ученика — у ученика без отметок план тот же, Марина 2, перепроверка Ксении).
+   Свои отметки действуют всегда: план из файла или по ссылке им подчиняется */
+function protectOn(s = S) {
+  const own = ensureProtect(s), c = s.mode === 'custom' && Array.isArray(s.customs) && typeof customOf === 'function' ? customOf(s) : null;
+  return c && c.protect && c.protect.length ? protectNorm(own.concat(c.protect)) : own;
+}
+/* отметки, которые пришли с открытым своим планом, а у человека их нет */
+function protectFromPlan(s = S) { const own = new Set(ensureProtect(s)); return protectOn(s).filter(id => !own.has(id)); }
 /* что показать словами: строгая отметка вместо своей обычной («колено после операции», а не «колени и колено…») */
-function protectShown(list = ensureProtect(S)) { const strict = new Set(list.map(id => PROTECT_BY[id].base).filter(Boolean)); return list.filter(id => !strict.has(id)).map(id => PROTECT_BY[id]); }
+function protectShown(list = protectOn(S)) { const strict = new Set(list.map(id => PROTECT_BY[id].base).filter(Boolean)); return list.filter(id => !strict.has(id)).map(id => PROTECT_BY[id]); }
 
 /* ---------- «Пропустить → больно» (14-workout-mode.js): упражнение не возвращается в план само ----------
    S.pain = {off: [id] — убраны из подбора и замен до «Вернуть», log: [{d, id, how: 'removed' | 'swapped', to}] — пометки
@@ -99,6 +107,8 @@ function painDayHtml(d) {
   return marks.map(x => `<p class="j-pain"><b>${'Больно:'}</b> ${esc(exNameHere(EXI[x.id]))} — ${x.how === 'swapped' && x.to ? `${'заменено на'} ${esc(exNameHere(EXI[x.to]))}` : 'убрано из плана'}</p>`).join('');
 }
 ensureProtect(S); ensurePain(S);
+/* отметки своих планов, прочитанные до этого файла (11d-custom.js: cleanPlanProtect), — только известные */
+for (const c of S.customs) if (c.protect) { c.protect = protectNorm(c.protect); if (!c.protect.length) delete c.protect; }
 /* отмеченное посреди прошлой тренировки, если приложение закрыли, не закрыв её */
 if (S.pain.pend.length) { S.pain.off = [...new Set(S.pain.off.concat(S.pain.pend))]; S.pain.pend = []; }
 
@@ -139,14 +149,15 @@ function prefetchStressIds() {
 }
 
 /* ---------- подходит ли упражнение при выбранных суставах и цели ---------- */
-function protectRules() { const set = new Set(); for (const id of ensureProtect(S)) for (const r of PROTECT_BY[id].rules) set.add(r); return set; }
+function protectRules() { const set = new Set(); for (const id of protectOn(S)) for (const r of PROTECT_BY[id].rules) set.add(r); return set; }
 function protectHits(ex) {
-  if (!ensureProtect(S).length) return [];
+  const on = protectOn(S);
+  if (!on.length) return [];
   const ids = stressIdsOf(ex);
-  return S.protect.map(id => PROTECT_BY[id]).filter(p => p.rules.some(r => ids.includes(r)));
+  return on.map(id => PROTECT_BY[id]).filter(p => p.rules.some(r => ids.includes(r)));
 }
 /* строгая отметка, правило которой нарушает упражнение (первая) */
-function strictHit(ex) { for (const id of ensureProtect(S)) if (STRICT[id] && STRICT[id].test(ex)) return id; return null; }
+function strictHit(ex) { for (const id of protectOn(S)) if (STRICT[id] && STRICT[id].test(ex)) return id; return null; }
 function jointOk(ex) { return !protectHits(ex).length && !strictHit(ex); }
 function gentleOk(ex) { return S.goal !== 'gentle' || (ex.lvl <= 2 && !GENTLE_SKIP.has(ex.id) && !GENTLE_SKIP_PATTERNS.has(PATTERN[ex.id]) && !HEAVY_SPINE.has(ex.id)); }
 /* «Беречь колени»: кроме меток — никакого приседа и выпада стоя глубже порога правила колен (85°, на одной ноге 80°;
@@ -154,7 +165,7 @@ function gentleOk(ex) { return S.goal !== 'gentle' || (ex.lvl <= 2 && !GENTLE_SK
    ни в замене, ни в своём плане. Решение владельца 12.11.2026: «по коленям надо максимально застраховаться от того, что
    человек травмирует колено по нашей рекомендации». Гоблет-присед → присед без веса снимает лишь гантель, сгиб остаётся
    тем же (stressKneeDepth); подходят меньший сгиб или упражнения без опоры на стопы (мостик, сгибания ног) */
-function kneeDeepBlocked(ex) { return ensureProtect(S).includes('knees') && typeof stressKneeDeep === 'function' && stressKneeDeep(ex); }
+function kneeDeepBlocked(ex) { return protectOn(S).includes('knees') && typeof stressKneeDeep === 'function' && stressKneeDeep(ex); }
 function fitsBody(ex) { return gentleOk(ex) && jointOk(ex) && !kneeDeepBlocked(ex) && !painOff(ex) && (typeof healthOk !== 'function' || healthOk(ex)); }
 /* замена (в своём плане, в программе другого места, кнопкой «Заменить») — по тем же правилам, что подбор */
 function swapFits(ex) { return fitsBody(ex); }
@@ -192,12 +203,14 @@ function lostMessages(lost, E) {
 
 /* ---------- настройки: «Беречь суставы» ---------- */
 function renderProtect() {
-  const on = new Set(ensureProtect(S));
+  /* в своём плане отмечены и отметки, с которыми план пришёл: снять их можно той же кнопкой (снимается и в плане) */
+  const list = protectOn(S), on = new Set(list), fromPlan = protectShown(protectFromPlan(S));
   $('#j-chips').innerHTML = PROTECT.map(p => `<button type="button" class="chip${p.base ? ' chip-strict' : ''}${on.has(p.id) ? ' on' : ''}" data-protect="${p.id}" aria-pressed="${on.has(p.id)}">${ICON.check}<span>${p.name}</span></button>`).join('');
   const strict = [...on].filter(id => PROTECT_BY[id].base);
   $('#j-note').textContent = on.size
-    ? `Упражнения с пиковой нагрузкой на ${hitsText(S.protect.map(id => PROTECT_BY[id]))} не подбираются, в своём плане заменяются похожими.`
+    ? `Упражнения с пиковой нагрузкой на ${hitsText(list.map(id => PROTECT_BY[id]))} не подбираются, в своём плане заменяются похожими.`
       + (strict.length ? ' ' + strict.map(id => STRICT_NOTE[id]).join(' ') : '')
+      + (fromPlan.length ? ' ' + 'Отметки пришли вместе с этим планом: {list}.'.replace('{list}', fromPlan.map(p => '«' + p.name + '»').join(', ')) : '')
     : 'Отметьте суставы, которые болят или восстанавливаются: план обойдёт упражнения с пиковой нагрузкой на них — по тем же правилам, что красные метки на манекене.';
   const box = $('#j-pain'); if (box) box.innerHTML = painListHtml();
 }
@@ -220,7 +233,7 @@ function gentleHtml() {
   const gentle = S.goal === 'gentle', prot = protectShown();
   if (!gentle && !prot.length) return '';
   /* запас — тот же, что в строке нагрузки карточек (reserveOf: неделя цикла, уровень) */
-  const rir = gentle ? reserveOf(S.mode === 'program' ? WEEKS[S.week - 1] : null) : null;
+  const rir = gentle ? reserveOf(planWeek()) : null;
   const lead = gentle
     ? `<p><b>Бережно.</b> 12–15 повторов лёгким весом — таким, с которым все повторы даются спокойно${rir ? ' и ' + 'остаются силы ещё на {n}'.replace('{n}', reserveReps(rir)) : `, ${NOT_LIMIT}`}; медленно и без рывков. Прыжки, рывковые, сложные упражнения, тяжёлая штанга на спину и упражнения вниз головой не подбираются.${prot.length ? ` Без пиковой нагрузки на ${hitsText(prot)}.` : ''}</p>`
     : `<p><b>Без пиковой нагрузки на ${hitsText(prot)}.</b> Такие упражнения не подбираются, а в своём плане заменяются похожими.</p>`;
@@ -232,15 +245,20 @@ function gentleHtml() {
 /* беговая дорожка при «Коленях» и «Грыже диска»: шаг без бега (отчёт Елены, п. 14) — у бега есть фаза полёта и удар стопы:
    давление в диске при беге трусцой до 0,95 МПа против 0,5 стоя (Wilke et al. 1999); после пластики ПКС бег — только после
    критериев (Aspetar, см. 09f-joint-stress.js). На дорожке скорость задаёт человек, поэтому упражнение остаётся — шагом */
-function treadmillWalk(ex) { const on = ensureProtect(S); return (on.includes('knees') || on.includes('disc')) && typeof stressFlight === 'function' && stressFlight(ex); }
+function treadmillWalk(ex) { const on = protectOn(S); return (on.includes('knees') || on.includes('disc')) && typeof stressFlight === 'function' && stressFlight(ex); }
 
 document.addEventListener('click', e => {
   const t = e.target.closest('button'); if (!t) return;
   if (t.dataset.painBack) { painReturn(t.dataset.painBack); regen(); return; }
   if (!t.dataset.protect) return;
   const id = t.dataset.protect; if (!PROTECT_BY[id]) return;
-  /* снять обычную отметку — снять и строгую, которая её включает */
-  S.protect = S.protect.includes(id) ? S.protect.filter(x => x !== id && (PROTECT_BY[x].base !== id)) : S.protect.concat(id);
+  /* снять обычную отметку — снять и строгую, которая её включает; отмеченная планом снимается и в нём */
+  const drop = list => list.filter(x => x !== id && (PROTECT_BY[x].base !== id));
+  if (protectOn(S).includes(id)) {
+    S.protect = drop(S.protect);
+    const c = S.mode === 'custom' ? customOf() : null;
+    if (c && c.protect) { c.protect = drop(c.protect); if (!c.protect.length) delete c.protect; }
+  } else S.protect = S.protect.concat(id);
   ensureProtect(S); regen();
 });
 document.addEventListener('toggle', e => {

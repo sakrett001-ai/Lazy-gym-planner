@@ -7,6 +7,26 @@ const CUSTOM_MAX = 12, CUSTOM_NAME = 40, CUSTOM_TEXT = 40, CUSTOM_NOTE = 400, IT
 const CUSTOM_REPS = /^(\d{1,3})(?:\s*[–-]\s*(\d{1,3}))?$/;
 const CUSTOM_TEMPO = /^[0-9X]{1,2}-[0-9X]{1,2}-[0-9X]{1,2}-[0-9X]{1,2}$/;
 const PLAN_KEYS = ['goal', 'format', 'level'];
+/* у каждого своего плана — ещё свои мышцы и место (4.111; Дмитрий 9: мышцы были общими для всех своих планов, «Верх А»
+   упрекал «не нагружены: квадрицепс», «Низ А» — «грудь, плечи»; Марина 1: место не сохранялось в план, и у ученика вместо
+   гантелей дома была штанга зала). Как цель, формат и уровень: переключатели в параметрах правят открытый план, обычная
+   тренировка и неделя держат свои (S.gen). Отметки «Что беречь» плана (protect) и неделя цикла (week) в S не переносятся —
+   их читает сборка плана (buildPlanAt, protectOn в 11g-gentle.js) */
+const PLAN_OWN = ['groups', 'place'], PLAN_ALL = PLAN_KEYS.concat(PLAN_OWN);
+const planVal = v => Array.isArray(v) ? v.slice() : v;
+/* мышцы плана: известные группы в порядке параметров; не список — null */
+function cleanGroups(v) { return Array.isArray(v) ? GROUPS.map(g => g.id).filter(id => v.includes(id)) : null; }
+/* мышцы по упражнениям плана (планы прежних версий): целевые группы его упражнений; пустой план — null */
+function groupsOfItems(items) {
+  const set = new Set((items || []).map(it => EXI[it.id] && EXI[it.id].g).filter(Boolean));
+  return set.size ? GROUPS.map(g => g.id).filter(id => set.has(id)) : null;
+}
+/* отметки «Что беречь» плана: до загрузки 11g-gentle.js — строки как есть, потом — только известные (planProtectClean там же) */
+function cleanPlanProtect(v) {
+  if (!Array.isArray(v)) return [];
+  const list = [...new Set(v.filter(x => typeof x === 'string' && /^\w{1,20}$/.test(x)))];
+  return typeof protectNorm === 'function' ? protectNorm(list) : list;
+}
 let cpTab = null, cpOpen = new Set(), cpDel = false;
 /* поиск в «Добавить упражнение» (searchExercises, 11i-search.js): запрос держится до перезагрузки страницы */
 let cpQ = '';
@@ -51,6 +71,8 @@ function cleanCustomItem(it) {
   if (!it || !EXI[it.id]) return null;
   const o = {id:it.id};
   if (Number.isInteger(it.sets) && it.sets >= 1 && it.sets <= 10) o.sets = it.sets;
+  /* суперсет своего плана: false — не в паре со следующим (Дмитрий 15: пары выбирает человек); без поля — пары по порядку */
+  if (it.ss === false) o.ss = false;
   const reps = cleanReps(it.reps); if (reps) o.reps = reps;
   if (Number.isInteger(it.rest) && it.rest >= 0 && it.rest <= 600) o.rest = it.rest;
   const kg = it.kg != null ? cleanKg(it.kg) : null; if (kg) o.kg = kg;
@@ -69,6 +91,11 @@ function cleanPlan(c, id) {
   for (const k of ['group', 'for', 'from']) { const v = cleanText(c[k], CUSTOM_TEXT); if (v) out[k] = v; }
   const gauto = out.group && autoKey(c.gauto, out.group, 'group'); if (gauto) { out.group = autoName(gauto); out.gauto = gauto; }
   const note = cleanText(c.note, CUSTOM_NOTE, true); if (note) out.note = note;
+  /* 4.111: мышцы, место (код места на этом устройстве), отметки «Что беречь», с которыми план пришёл, и неделя цикла */
+  const gs = cleanGroups(c.groups); if (gs) out.groups = gs;
+  if (typeof c.place === 'string' && /^[\w-]{1,40}$/.test(c.place)) out.place = c.place;
+  const pr = cleanPlanProtect(c.protect); if (pr.length) out.protect = pr;
+  if (Number.isInteger(c.week) && c.week >= 1 && c.week <= WEEKS.length) out.week = c.week;
   return out;
 }
 /* настройки из хранилища или резервной копии: только известные упражнения и разумные значения */
@@ -84,20 +111,56 @@ function ensureCustoms(s) {
   s.author = cleanText(s.author, CUSTOM_TEXT);
   /* цель, формат и уровень обычных планов, пока открыт свой план (у своего — свои) */
   const g = s.gen && typeof s.gen === 'object' ? s.gen : {};
-  s.gen = {goal:GOALS[g.goal] ? g.goal : s.goal, format:FORMATS[g.format] ? g.format : s.format, level:LEVELS[g.level] ? g.level : s.level};
+  s.gen = {goal:GOALS[g.goal] ? g.goal : s.goal, format:FORMATS[g.format] ? g.format : s.format, level:LEVELS[g.level] ? g.level : s.level,
+    /* мышцы и место обычных планов (4.111); прежние версии их не хранили — общие, какие есть */
+    groups:cleanGroups(g.groups) || (Array.isArray(s.groups) ? s.groups.slice() : []), place:typeof g.place === 'string' && /^[\w-]{1,40}$/.test(g.place) ? g.place : s.place};
   return s;
+}
+/* Пустой «Мой план» — заготовка: он есть, только пока своих планов нет. Пришли планы (загрузка, сохранение) — заготовка
+   уходит, первым в списке и открытым становится пришедший (Кира 11, Дмитрий 23: «выбран пустой „Мой план“, сохранённый —
+   второй кнопкой», «на новом телефоне остаётся пустой „Мой план“»). Переименованный или с упражнениями — не заготовка. */
+function dropEmptyMy(s = S) {
+  const idle = c => c.auto === 'my' && !c.items.length && !c.group && !c.for && !c.note && !c.from;
+  if (s.customs.length < 2 || !s.customs.some(idle)) return false;
+  const was = s.custom;
+  s.customs = s.customs.filter(c => !idle(c));
+  if (!s.customs.some(c => c.id === was)) s.custom = s.customs[0].id;
+  if (!s.customs.some(c => c.id === s.cpLast)) s.cpLast = null;
+  return true;
 }
 function newPlanId() { let id; do id = 'c' + Date.now().toString(36) + Math.floor(Math.random() * 1296).toString(36); while (S.customs.some(c => c.id === id)); return id; }
 function customOf(s = S) { return s.customs.find(c => c.id === s.custom) || s.customs[0]; }
 
 /* У каждого своего плана свои цель, формат и уровень: план выглядит одинаково у тренера и у ученика.
    Переключатели в параметрах правят открытый план; обычная тренировка и неделя держат свои (S.gen). */
-function loadPlanSettings() { const c = customOf(); for (const k of PLAN_KEYS) { if (!c[k]) c[k] = S[k]; S[k] = c[k]; } }
-function storePlanSetting(k) { if (S.mode === 'custom' && PLAN_KEYS.includes(k)) customOf()[k] = S[k]; else if (PLAN_KEYS.includes(k)) S.gen[k] = S[k]; }
-function switchModeSettings(prev) {
-  if (prev !== 'custom' && S.mode === 'custom') { for (const k of PLAN_KEYS) S.gen[k] = S[k]; loadPlanSettings(); }
-  else if (prev === 'custom' && S.mode !== 'custom') for (const k of PLAN_KEYS) S[k] = S.gen[k];
+function loadPlanSettings() {
+  const c = customOf();
+  for (const k of PLAN_KEYS) { if (!c[k]) c[k] = S[k]; S[k] = c[k]; }
+  /* мышцы плана прежних версий — по его упражнениям; пустой план — те, что выбраны сейчас */
+  if (!Array.isArray(c.groups)) c.groups = groupsOfItems(c.items) || S.groups.slice();
+  S.groups = c.groups.slice();
+  /* место плана прежних версий (или удалённое) — то, где человек сейчас */
+  if (!c.place || !S.places.some(p => p.id === c.place)) c.place = S.place;
+  if (S.place !== c.place) { S.place = c.place; ensurePlaces(S); }
 }
+function storePlanSetting(k) {
+  if (!PLAN_ALL.includes(k)) return;
+  if (S.mode === 'custom') customOf()[k] = planVal(S[k]); else S.gen[k] = planVal(S[k]);
+}
+function switchModeSettings(prev) {
+  if (prev !== 'custom' && S.mode === 'custom') { for (const k of PLAN_ALL) S.gen[k] = planVal(S[k]); loadPlanSettings(); }
+  else if (prev === 'custom' && S.mode !== 'custom') {
+    for (const k of PLAN_ALL) if (S.gen[k] !== undefined) S[k] = planVal(S.gen[k]);
+    ensurePlaces(S);
+  }
+}
+/* неделя цикла своего плана (сохранённого из недели программы или пришедшего с ней); программа — своя неделя; иначе null */
+function planWeek() {
+  if (S.mode === 'program') return WEEKS[S.week - 1] || null;
+  const c = S.mode === 'custom' ? customOf() : null;
+  return c && c.week ? WEEKS[c.week - 1] || null : null;
+}
+function planWeekNo() { const w = planWeek(); return w ? WEEKS.indexOf(w) + 1 : null; }
 function openCustom(id) {
   const prev = S.mode; if (id) S.custom = id;
   S.mode = 'custom'; S.view = 'plan'; S.day = 0; cpOpen = new Set(); cpDel = false;
@@ -146,7 +209,7 @@ function customAdd(id) {
 function newCustomPlan() {
   const c = customOf(), taken = new Set(S.customs.map(p => p.name));
   let n = S.customs.length + 1; while (taken.has('План ' + n)) n++;
-  return {id:newPlanId(), name:'План ' + n, auto:'plan:' + n, items:[], ...(S.mode === 'custom' && c.group ? {group:c.group, ...(c.gauto ? {gauto:c.gauto} : {})} : {}), ...Object.fromEntries(PLAN_KEYS.map(k => [k, S[k]]))};
+  return {id:newPlanId(), name:'План ' + n, auto:'plan:' + n, items:[], ...(S.mode === 'custom' && c.group ? {group:c.group, ...(c.gauto ? {gauto:c.gauto} : {})} : {}), ...Object.fromEntries(PLAN_ALL.map(k => [k, planVal(S[k])]))};
 }
 /* «+ В свой план» в атласе и в разборе: в выбранный план (planId) или в новый (planId пустой). Открытый план, режим
    и вид не меняются (S.custom, S.mode, S.view). Добавленное запоминает план первым в списке (S.cpLast). */
@@ -200,6 +263,17 @@ function customSetReps(slot, text) {
   if (ok.reps.includes('/')) customSet(slot, 'sets', ok.reps.split('/').length);
   return true;
 }
+/* Пары суперсетов своего плана (Дмитрий 15: «хочу выбрать пары сам, остальное — классикой»): по порядку плана упражнение
+   берёт в пару следующее, если у него нет «не в паре со следующим» (ss: false); такое — отдельное упражнение со своими
+   подходами и отдыхом. Без отметок — соседние пары, как раньше. list — упражнения плана по порядку, itemOf(k) — его запись */
+function customPairs(list, itemOf) {
+  const out = [];
+  for (let k = 0; k < list.length;) {
+    const o = itemOf(k) || {};
+    if (o.ss !== false && k + 1 < list.length) { out.push([list[k], list[k + 1]]); k += 2; } else { out.push([list[k]]); k++; }
+  }
+  return out;
+}
 /* дозировка по цели и формату, поверх — правка человека (кроме статодинамики: там серии заданы методом) */
 function customRx(rx, o, ex) {
   if (!o) return rx;
@@ -208,7 +282,7 @@ function customRx(rx, o, ex) {
     if (o.sets) r.sets = o.sets;
     if (o.reps && !ex.kind) { r.reps = o.reps; r.work = midOf(o.reps) * GOALS[S.goal].rep * (ex.uni ? 2 : 1); }
     if (o.rest !== undefined) r.rest = o.rest;
-    if (o.tempo && !ex.kind) r.tempo = o.tempo;
+    if (o.tempo && !ex.kind) { r.tempo = o.tempo; r.tempoOwn = true; }
   }
   /* вес и заметка тренера — и в статодинамике */
   if (o.kg) { r.kgPlan = o.kg; r.kgU = o.ku || 'kg'; }
@@ -329,7 +403,7 @@ function customToolsHtml(it) {
   const restOpts = [0, 15, 30, 45, 60, 75, 90, 120, 150, 180, 240, 300];
   if (!restOpts.includes(r.rest)) restOpts.push(r.rest), restOpts.sort((a, b) => a - b);
   const edit = r.static ? `<p class="f-note">В статодинамике серии, темп и отдых заданы методом — меняются цель и уровень.</p>`
-    : `<div class="cp-fields">
+    : `${cpPairHtml(it)}<div class="cp-fields">
         ${r.circ ? '' : `<div class="cp-f"><span>Подходов</span><div class="stepper sm"><button type="button" data-cp-step="${slot}" data-d="-1" aria-label="Меньше подходов"${r.sets <= 1 ? ' disabled' : ''}>−</button><output>${r.sets}</output><button type="button" data-cp-step="${slot}" data-d="1" aria-label="Больше подходов"${r.sets >= 10 ? ' disabled' : ''}>+</button></div></div>`}
         ${it.ex.kind ? '' : `<label class="cp-f"><span>Повторов</span><input type="text" inputmode="text" maxlength="40" data-cp-reps="${slot}" value="${esc(r.reps)}" aria-label="Повторов: 8–12 или по подходам через «/», например 10/8/6/5" autocomplete="off"></label>`}
         ${r.circ ? '' : `<label class="cp-f"><span>Отдых</span><select data-cp-rest="${slot}">${restOpts.map(s => `<option value="${s}"${s === r.rest ? ' selected' : ''}>${s ? fmtRest(s) : 'без отдыха'}</option>`).join('')}</select></label>`}
@@ -347,6 +421,16 @@ function customToolsHtml(it) {
     <button type="button" class="btn-ghost${r.edited ? ' cp-edited' : ''}" data-cp-edit="${slot}" aria-expanded="${open}">Подходы, вес, заметка${r.edited ? '<i class="cp-dot" aria-label="изменено"></i>' : ''}</button>
     <button type="button" class="btn-ghost cp-rm" data-cp-rm="${slot}">Убрать</button>
   </div>${open ? `<div class="cp-edit">${edit}${extra}</div>` : ''}`;
+}
+/* «В паре со следующим» (формат «Суперсеты», Дмитрий 15) — у первого упражнения пары и у отдельного, за которым есть ещё
+   упражнение: снятая галочка делает упражнение отдельным, со своими подходами и отдыхом (customPairs) */
+function cpPairHtml(it) {
+  if (S.format !== 'superset' || !plan || !plan.blocks) return '';
+  const bi = plan.blocks.findIndex(b => b.items.includes(it)), b = plan.blocks[bi];
+  if (!b || b.items[0] !== it) return '';
+  const on = b.items.length > 1, next = on ? b.items[1] : plan.blocks[bi + 1] && plan.blocks[bi + 1].items[0];
+  if (!next) return '';
+  return `<label class="cp-ss"><input type="checkbox" data-cp-ss="${it.slot}"${on ? ' checked' : ''}><span>${esc('Суперсет со следующим: {name}'.replace('{name}', next.name))}</span></label>`;
 }
 /* Вес по подходам — поле на подход с цифровой клавиатурой (Дмитрий 24, Руслан 13: «60 / 62,5 / 65» в одном поле требовало
    обычной клавиатуры, а «5000», «−20», «абв» молча оставляли прежний вес). Вписан только первый — тот же вес во всех
@@ -384,8 +468,11 @@ function customEmptyHtml() {
 }
 /* под названием своего плана: программа, для кого, от кого и заметка */
 function customHeadHtml() {
-  /* название программы само может содержать «·», поэтому части разделены отступом, а значения выделены */
-  const c = customOf(), sub = [c.group ? `<span>программа: <b>${esc(c.group)}</b></span>` : '', c.for ? `<span>для: <b>${esc(c.for)}</b></span>` : '', c.from ? `<span>от: <b>${esc(c.from)}</b></span>` : ''].filter(Boolean);
+  /* название программы само может содержать «·», поэтому части разделены отступом, а значения выделены; место и неделя
+     цикла — свои у плана (4.111): у ученика видно, где и в какой неделе он задуман */
+  const c = customOf(), wk = c.week ? WEEKS[c.week - 1] : null;
+  const sub = [`<span>место: <b>${esc(placeOf().name)}</b></span>`, wk ? `<span>неделя цикла: <b>${c.week} · ${esc(wk.name.toLowerCase())}</b></span>` : '',
+    c.group ? `<span>программа: <b>${esc(c.group)}</b></span>` : '', c.for ? `<span>для: <b>${esc(c.for)}</b></span>` : '', c.from ? `<span>от: <b>${esc(c.from)}</b></span>` : ''].filter(Boolean);
   return (sub.length ? `<p class="cp-sub">${sub.join('')}</p>` : '') + (c.note ? `<p class="c-note cp-pn">${esc(c.note)}</p>` : '');
 }
 
@@ -407,14 +494,26 @@ function freezePlan(p) {
     return cleanCustomItem(o);
   }).filter(Boolean).slice(0, CUSTOM_MAX);
 }
-function savePlansFrom() {
-  const set = Object.fromEntries(PLAN_KEYS.map(k => [k, S[k]])), added = [];
+/* собранная тренировка или неделя — своими планами, как их видно сейчас (без кодов): для «Сохранить как свой план» и для
+   ссылки и текста (11m-plan-link.js). Вместе с планом — мышцы, место и неделя цикла (4.111, Марина 3: в программе
+   «4 в запасе, ≈55–60 %», в сохранённом плане — «почти до отказа, ≈55–65 %») */
+function frozenPlans(taken = S.customs.map(c => c.name)) {
+  const set = Object.fromEntries(PLAN_KEYS.map(k => [k, S[k]])), out = [], names = () => taken.concat(out.map(c => c.name));
   if (S.mode === 'program' && prog) {
     /* имена и программа — с ключами (11a-names.js): в другом языке они пишутся на нём */
     const gauto = `split:${prog.split}:${S.week}`, group = cleanText(autoName(gauto) || `${SPLITS[prog.split].name} · неделя ${S.week}`, CUSTOM_TEXT);
-    for (const d of prog.days) if (d.plan.items) added.push({id:newPlanId(), ...namedPlan(`${WD[d.wd]} · ${d.name}`, `day:${d.wd}:${d.tid}${d.li ? ':' + d.li : ''}`, S.customs.map(c => c.name).concat(added.map(c => c.name))), group, gauto, ...set, items:freezePlan(d.plan)});
-  } else if (plan && plan.items) added.push({id:newPlanId(), ...namedPlan(titleFor(), S.mode === 'custom' ? customOf().auto : S.groups.length ? 'groups:' + S.groups.join(',') : null), ...set, items:freezePlan(plan)});
-  S.customs.push(...added); saveSettings();
+    for (const d of prog.days) if (d.plan.items) out.push({...namedPlan(`${WD[d.wd]} · ${d.name}`, `day:${d.wd}:${d.tid}${d.li ? ':' + d.li : ''}`, names()), group, gauto, ...set,
+      groups:DAY_T[d.tid].g.slice(), place:S.place, week:S.week, items:freezePlan(d.plan)});
+  } else if (plan && plan.items) out.push({...namedPlan(titleFor(), S.mode === 'custom' ? customOf().auto : S.groups.length ? 'groups:' + S.groups.join(',') : null, names()), ...set,
+    groups:S.groups.slice(), place:S.place, items:freezePlan(plan)});
+  return out;
+}
+function savePlansFrom() {
+  const added = frozenPlans().map(c => ({id:newPlanId(), ...c}));
+  S.customs.push(...added);
+  /* сохранённый — открытым своим планом: «Свой план» в параметрах откроет его, а не пустую заготовку (Кира 11) */
+  if (added.length) { S.custom = added[0].id; dropEmptyMy(); }
+  saveSettings();
   return added;
 }
 
@@ -524,6 +623,7 @@ document.addEventListener('change', e => {
     items[s] = ok; planUndo = null;
     return customRerender(`[data-cp-kg="${s}"][data-k="${t.dataset.k || 0}"]`);
   }
+  if (t.dataset.cpSs !== undefined) { const s = +t.dataset.cpSs; customSet(s, 'ss', t.checked ? null : false); return customRerender(`[data-cp-ss="${s}"]`); }
   if (t.dataset.cpTempo !== undefined) {
     const s = +t.dataset.cpTempo, v = t.value.trim().toUpperCase().replace(/[–—]/g, '-');
     if (v && !CUSTOM_TEMPO.test(v)) { t.setAttribute('aria-invalid', 'true'); return; }

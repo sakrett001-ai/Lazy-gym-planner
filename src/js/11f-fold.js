@@ -90,7 +90,7 @@ function setupSummary() {
   const D = typeof durationOf === 'function' ? durationOf() : null;
   if (D) go('#f-dur', D.say);
   if (S.mode === 'single') { if (!D) go('#count-l', `${S.count} ${plural(S.count, 'упражнение', 'упражнения', 'упражнений')}`); go('#f-muscles', S.groups.length ? titleFor() : 'Мышцы не выбраны'); }
-  if (typeof PROTECT_BY !== 'undefined' && S.protect && S.protect.length) go('#f-joints', 'Бережём ' + hitsText(S.protect.map(id => PROTECT_BY[id])));
+  if (typeof PROTECT_BY !== 'undefined' && protectOn(S).length) go('#f-joints', 'Бережём ' + hitsText(protectOn(S).map(id => PROTECT_BY[id])));
   go('#e-places', placeOf().name);
   return out.join('');
 }

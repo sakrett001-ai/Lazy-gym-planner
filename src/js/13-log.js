@@ -323,7 +323,8 @@ function todaySession(id, create) {
   if (!s && create) {
     /* at — когда начато упражнение: порядок выполнения внутри дня (выгрузка для Excel) */
     s = {d, s:[], at:Date.now()};
-    if (S.mode === 'program') s.wk = S.week;
+    /* неделя цикла: программы или своего плана, сохранённого из недели (planWeekNo, 11d-custom.js) */
+    const wk = typeof planWeekNo === 'function' ? planWeekNo() : S.mode === 'program' ? S.week : null; if (wk) s.wk = wk;
     ss.push(s); ss.sort((a, b) => a.d < b.d ? -1 : 1);
   }
   return s;
@@ -408,7 +409,7 @@ function suggestBase(it) {
   /* цель подхода k (с нуля): [нижняя, верхняя]; у пирамиды повторов — своё число подхода */
   const tgt = k => { if (!rp) return [lo, hi]; const v = rp[Math.min(k, rp.length - 1)]; return [v, v]; };
   const unit = ex.kind === 'time' ? ' с' : ex.kind === 'dist' ? ' м' : '';
-  const week = S.mode === 'program' ? WEEKS[S.week - 1] : null;
+  const week = typeof planWeek === 'function' ? planWeek() : S.mode === 'program' ? WEEKS[S.week - 1] : null;
   const step = stepFor(it);
   const res = {tone:'new', kg:null, reps:[], text:'', prev:null};
   /* вес по плану (свой план, план тренера) — цель вместо подсказки по прогрессии */

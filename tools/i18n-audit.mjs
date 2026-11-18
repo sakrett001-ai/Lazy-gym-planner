@@ -181,6 +181,13 @@ for (const bad of ['', '{"plans":[', JSON.stringify(await run('backupObject()'))
 await readPasted(JSON.stringify({ format: 'lazy-gym-planner/plans', version: 1, plans: [{ name: 'Upper', items: [{ id: 'bbbench' }] }] }));
 await run(`document.querySelector('#pi-add').click()`); await page.waitForTimeout(100);
 await scan('imported plan opened');
+/* 4.111: план по ссылке — окно, битая ссылка, текст без ссылки; шапка своего плана с местом и неделей цикла */
+await run(`(async()=>{const c=customOf();c.week=1;regen();const url=await planLinkUrl(currentLinkObject());const r=await readPlanLink(url.split('#plan=')[1]);openPlanIn({...r,link:true});})()`); await page.waitForTimeout(200);
+await scan('plan from a link');
+await run(`(async()=>{openPlanIn({...(await readPlanLink('zAAAA')),link:true});})()`); await page.waitForTimeout(100); await scan('broken plan link');
+await run(`(async()=>{openPlanIn({...(await readPlanLink('q123')),link:true});})()`); await page.waitForTimeout(100); await scan('foreign plan link');
+await run(`(async()=>{document.querySelector('#plan-in').close();openPlanIn(null);showPlanIn({...(await readPlanAny('1. Bench press — 3 × 8')),pasted:true});})()`); await page.waitForTimeout(100); await scan('pasted text without a link');
+await run(`(()=>{document.querySelector('#plan-in').close();delete customOf().week;regen();})()`);
 await run(`(()=>{S.format='classic';S.place='street';ensurePlaces(S);regen();})()`);
 await scan('custom on the street');
 await run(`(()=>{S.customs.push({id:'c2',name:'Legs',items:[]});S.custom='c2';cpDel=true;renderSetup();})()`);
@@ -495,6 +502,8 @@ step('9. данные из русской версии');
     const fake = () => { const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg'); return { svg, camera: 'side', at() {}, setTrace() {}, setVectors() {}, setJoints() {}, setStress() {}, setMuscles() {}, setRegion() {}, dispose() {} }; };
     window.buildFigure = fake; window.createMotionFigure = fake;
     localStorage.removeItem('podhod.settings.v1'); S.customs = []; S.places = []; ensurePlaces(S); ensureCustoms(S);
+    /* в «Моём плане» — упражнение: пустую заготовку сохранение убирает (4.111, dropEmptyMy), а здесь нужно её имя */
+    customOf().items.push({ id: 'squat' });
     Object.assign(S, { view: 'plan', mode: 'program', days: 3, split: 'full', week: 2 }); regen(); document.querySelector('#save-plan').click();
     Object.assign(S, { mode: 'single', groups: ['chest', 'back', 'biceps'] }); regen(); document.querySelector('#save-plan').click();
     document.querySelector('[data-place-add]').click();
