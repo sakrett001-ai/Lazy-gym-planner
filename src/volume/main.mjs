@@ -146,16 +146,28 @@ export function createVolumeFigure(options){
     Мелкие детали (рамка меньше 2 л: рукояти, трос, гантели) не трогаются. Цвета и тени те же */
  let lastPose=null;const FADE_KEEP=/^(barbell|dumbbell|kettlebell|cable|line)$/,FADE_MIN=.002,fadeMats=new Map(),fadeBox=new THREE.Box3(),fadeRay=new THREE.Ray(),fadeHit=new THREE.Vector3(),fadeTo=new THREE.Vector3(),fadeFrom=new THREE.Vector3();
  const fadeOf=m=>{let f=fadeMats.get(m);if(!f){f=m.clone();f.transparent=true;f.opacity=.22;f.depthWrite=false;f.name=(m.name||'')+'-fade';fadeMats.set(m,f);}return f;};
+ /* Решение «прозрачна ли деталь» зависит только от ракурса, а не от кадра повторения (4.110.1, замечание владельца 18.11.2026:
+    в жиме лёжа «Сверху» стойки мерцали — локоть то заходил за стойку, то выходил, и материал менялся по ходу движения).
+    Точки тела берутся по всему движению (FIT_STEPS + 1 поз и текущая), решение держится, пока камера на месте; у подвижных
+    деталей оно только добавляется (деталь, однажды заслонившая человека в этом ракурсе, остаётся прозрачной). */
+ let fadePoints=null,fadeNodes=null;const fadeStates=new Map(),FADE_VIEWS=4;
+ const fadeTargets=P=>[P.head,P.sh,P.waist,P.hip,P.elL,P.elR,P.knL,P.knR].filter(Boolean).map(p=>new THREE.Vector3(...world(p)));
+ const fadeKey=cam=>{cam.updateMatrixWorld?.();return Array.from(cam.matrixWorld.elements,x=>Math.round(x*500)).join(',')+'|'+Math.round((cam.zoom||1)*100);};
  function fadeOccluders(cam){
   const P=lastPose;if(!P||!scene.propNodes)return;
-  const targets=[P.head,P.sh,P.waist,P.hip,P.elL,P.elR,P.knL,P.knR].filter(Boolean).map(p=>new THREE.Vector3(...world(p)));
+  /* инвентарь собран заново (другой вариант снаряда) — решения и точки считаются снова */
+  const nodes=scene.propNodes();if(nodes!==fadeNodes){fadeNodes=nodes;fadePoints=null;fadeStates.clear();}
+  if(!fadePoints){fadePoints=[];for(let i=0;i<=FIT_STEPS;i++){try{const q=data(i/FIT_STEPS,0,true).pose;if(q)fadePoints.push(...fadeTargets(q));}catch(e){}}}
+  const targets=fadePoints.concat(fadeTargets(P));
   cam.getWorldPosition(fadeFrom);
+  const key=fadeKey(cam);let state=fadeStates.get(key);
+  if(!state){state={fixed:new Map(),moving:new Set()};fadeStates.set(key,state);if(fadeStates.size>FADE_VIEWS)fadeStates.delete(fadeStates.keys().next().value);}
   /* подвижные детали — каждая своей рамкой; неподвижные слиты в сетки по материалу (staticMeshes) — проверяются рамки их
      деталей (userData.sources), а прозрачной становится вся слитая сетка */
   const list=[];
   /* снаряд в руках (гриф, гантель, гиря) и тросы с лентами не прячутся: их и показывают */
-  for(const n of scene.propNodes()){if(!n.group||!n.group.parent?.visible||FADE_KEEP.test(n.kind||''))continue;n.group.traverse(o=>{if(o.isMesh&&o.visible)list.push([o,[o]]);});}
-  for(const o of scene.staticMeshes?.()||[])if(o.isMesh&&o.visible)list.push([o,o.userData.sources||[o]]);
+  for(const n of nodes){if(!n.group||!n.group.parent?.visible||FADE_KEEP.test(n.kind||''))continue;n.group.traverse(o=>{if(o.isMesh&&o.visible)list.push([o,[o],true]);});}
+  for(const o of scene.staticMeshes?.()||[])if(o.isMesh&&o.visible)list.push([o,o.userData.sources||[o],false]);
   const blocks=src=>{
    fadeBox.setFromObject(src);const sz=fadeBox.getSize(fadeHit);if(sz.x*sz.y*sz.z<FADE_MIN)return false;
    for(const t of targets){
@@ -165,8 +177,10 @@ export function createVolumeFigure(options){
    }
    return false;
   };
-  for(const[o,sources]of list){
-   const orig=o.userData.fadeOrig||o.material,hit=sources.some(blocks);
+  for(const[o,sources,moving]of list){
+   const orig=o.userData.fadeOrig||o.material;let hit;
+   if(moving){hit=state.moving.has(o)||sources.some(blocks);if(hit)state.moving.add(o);}
+   else{hit=state.fixed.get(o);if(hit===undefined){hit=sources.some(blocks);state.fixed.set(o,hit);}}
    if(hit){if(!o.userData.fadeOrig)o.userData.fadeOrig=orig;o.material=Array.isArray(orig)?orig.map(fadeOf):fadeOf(orig);}
    else if(o.userData.fadeOrig){o.material=o.userData.fadeOrig;delete o.userData.fadeOrig;}
   }
