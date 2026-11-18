@@ -226,11 +226,21 @@ const DAY_T = {
   fb:{name:'Всё тело', g:['hams', 'glutes', 'back', 'chest', 'triceps', 'abs']},
   fc:{name:'Всё тело', g:['quads', 'glutes', 'back', 'shoulders', 'chest', 'calves']},
   up:{name:'Верх', g:['chest', 'back', 'shoulders', 'biceps', 'triceps']},
-  lo:{name:'Низ', g:['quads', 'hams', 'glutes', 'calves', 'abs']},
+  lo:{name:'Низ', g:['quads', 'adductors', 'hams', 'glutes', 'calves', 'abs']},
   push:{name:'Жим', g:['chest', 'shoulders', 'triceps']},
   pull:{name:'Тяга', g:['back', 'biceps', 'forearms']},
-  legs:{name:'Ноги', g:['quads', 'hams', 'glutes', 'calves', 'abs']}
+  legs:{name:'Ноги', g:['quads', 'adductors', 'hams', 'glutes', 'calves', 'abs']}
 };
+/* Приводящие в днях «Низ» и «Ноги» — группа дня с целью недели (решение владельца 18.11.2026 по вопросу 7 ревью 4.109):
+   одно упражнение на них в день (pickExercises), потолок подходов и отметки суставов — общие. Где своего упражнения на
+   приводящие нет (нет тренажёра, блока, ленты, скамьи — или всё, что есть, не подходит отметкам), они остаются попутной
+   группой без оценки «мало»: программа их и не может нагрузить отдельно */
+function dayTargets(tid) {
+  const g = DAY_T[tid].g;
+  if (!g.includes('adductors')) return g;
+  const E = effEquip(programEquip() || S.equip), lvlMax = S.level === 'beg' ? 2 : 3;
+  return EX.some(ex => ex.g === 'adductors' && available(ex, E) && ex.lvl <= lvlMax && fitsBody(ex)) ? g : g.filter(x => x !== 'adductors');
+}
 const SPLITS = {
   full:{name:'Всё тело', hint:'всё за раз', note:'Каждая тренировка нагружает всё тело, упражнения меняются от дня ко дню. Лучший вариант для новичков и при 2–3 тренировках.',
     days:{2:['fa', 'fb'], 3:['fa', 'fb', 'fc'], 4:['fa', 'fb', 'fc', 'fa']}},
@@ -307,6 +317,19 @@ const SETTINGS_LABEL = {goal:'цель', format:'формат', level:'уров�
   gen:'параметры обычных планов', author:'имя автора планов', fold:'свёрнутые блоки', protect:'«Беречь суставы»', cpLast:'последний свой план',
   lr:'«Л/П отдельно»', units:'единицы веса', dur:'время на тренировку', weekFrom:'начало цикла', groupsV:'мышцы', places:'места', place:'место', placesV:'места', adapt:'«как в другом месте»',
   swaps:'замены упражнений', logPick:'тренировка по журналу', health:'«Здоровье»', pain:'упражнения с пометкой «больно»'};
+/* «Бережно» — без статодинамики (решение владельца 18.11.2026 по вопросу 3 ревью 4.109): долгое напряжение без расслабления
+   поднимает давление сильнее обычных подходов, а врач этот режим не смотрел. В выборе формата кнопка недоступна, под ней —
+   причина (renderSetup); сохранённое так (настройки, копия, свой план, файл плана) — формат «Классика», и один раз об этом
+   сказано под планом (S.fmtNote, warnHtml; снимается первым же действием — regen). */
+const GENTLE_NO_STATIC = 'В бережном режиме статодинамики нет: долгое напряжение без расслабления поднимает давление.';
+const GENTLE_STATIC_FIXED = 'Формат заменён на «Классику»: в бережном режиме статодинамики больше нет — долгое напряжение без расслабления поднимает давление.';
+let fmtNoteFresh = false;
+function gentleNoStatic(s = S) {
+  if (s.goal !== 'gentle' || s.format !== 'static') return false;
+  s.format = 'classic'; s.fmtNote = true; fmtNoteFresh = true;
+  if (s === S && typeof storePlanSetting === 'function') storePlanSetting('format');
+  return true;
+}
 function cleanSettings(raw) {
   const s = raw && typeof raw === 'object' && !Array.isArray(raw) ? {...raw} : {}, bad = new Set();
   if (!raw || typeof raw !== 'object' || Array.isArray(raw)) bad.add('*');
@@ -337,6 +360,11 @@ function cleanSettings(raw) {
   fix('health', v => Array.isArray(v) && v.every(x => typeof x === 'string')); fix('pain', v => v === null || obj(v));
   fix('cpLast', strOrNull(40)); fix('lr', obj); fix('units', v => v === null || v === 'kg' || v === 'lb'); fix('dur', strOrNull(12));
   fix('weekFrom', v => v === null || (typeof v === 'string' && /^\d{4}-\d\d-\d\d$/.test(v)));
+  /* «Бережно» со статодинамикой из прежних версий — «Классика», с пометкой для сообщения (gentleNoStatic); то же в
+     параметрах обычных планов (gen) */
+  if ('fmtNote' in s && s.fmtNote !== true) delete s.fmtNote;
+  if (s.goal === 'gentle' && s.format === 'static') { s.format = 'classic'; s.fmtNote = true; }
+  if (obj(s.gen) && s.gen.goal === 'gentle' && s.gen.format === 'static') { s.gen = {...s.gen, format:'classic'}; s.fmtNote = true; }
   fix('places', Array.isArray); fix('place', v => typeof v === 'string' && v.length <= 40);
   fix('placesV', v => Number.isInteger(v) && v >= 0 && v < 1000); fix('adapt', strOrNull(40));
   fix('swaps', v => obj(v) && Object.values(v).every(x => obj(x) || Array.isArray(x))); fix('logPick', v => v === null || obj(v));
@@ -577,6 +605,8 @@ function pickExercises(E, rand, groups, count, avoid, opt) {
       if (picked.includes(ex)) return;
       /* тяжёлая база с нагрузкой на позвоночник — не больше cap за тренировку, тяга с пола или наклон — одна */
       if (HEAVY_SPINE.has(ex.id) && (spineN >= cap || (PATTERN[ex.id] === 'hinge' && hingeN >= 1))) return;
+      /* в дне программы — одно упражнение на приводящие (малая группа; остальное она добирает попутно) */
+      if (vol && ex.g === 'adductors' && picked.some(p => p.g === 'adductors')) return;
       /* запас сверх потолка — то, что потом срежет capTrim: в классике по подходу у двух упражнений, в паре суперсета — один
          (подходы пары общие), в круговой — нисколько (круги одни на все станции) */
       if (staticOne ? picked.some(p => p.g === ex.g) : G.has(ex.g) && (sess[ex.g] || 0) + setsOf(ex) > sCap + ({circuit:0, superset:1}[S.format] ?? 2)) { capSkip = skipNow = true; return; }
@@ -637,6 +667,9 @@ function pickExercises(E, rand, groups, count, avoid, opt) {
       /* вид движения, которого дню ещё не хватает, — с большим плюсом за каждый (тяга к поясу закрывает и «тягу», и «тягу к
          поясу» — она раньше тяги сверху) */
       if (open.length) sc += 10 * open.filter(k => KIND_TEST[k](ex)).length;
+      /* день программы от 5 упражнений, где приводящие — группа дня («Низ», «Ноги»): одно упражнение на них входит наверняка,
+         после главных многосуставных (в коротком дне из 3–4 упражнений они остаются попутными) */
+      if (vol && ex.g === 'adductors' && G.has('adductors') && count >= 5 && picked.length >= 3 && !picked.some(p => p.g === 'adductors')) sc += 10;
       if (sideOf(ex) === 'pull' && pullUsed.has(PATTERN[ex.id]) && [...pullPats].some(p => !pullUsed.has(p))) sc -= 2;
       if (begGym) sc += begHard(ex) ? -1.2 : machineLike(ex) ? 0.5 : 0;
       /* сверх потолка подходов группы за тренировку — вспомогательной работой */
@@ -1258,7 +1291,7 @@ function buildProgram() {
   const seen = {};
   /* день «всё тело» включает мышцу акцента, даже если по шаблону её группы в этот день нет */
   const fg = S.focus && MUSCLE_GROUP[S.focus];
-  const dayGroups = tid => DAY_T[tid].name === 'Всё тело' && fg && !DAY_T[tid].g.includes(fg) ? DAY_T[tid].g.concat(fg) : DAY_T[tid].g;
+  const dayGroups = tid => { const g = dayTargets(tid); return DAY_T[tid].name === 'Всё тело' && fg && !g.includes(fg) ? g.concat(fg) : g; };
   /* Объём недели попадает в шкалу «мало / в норме / много» по уровню (volScale; Alex п. 25: в своей же программе «Спина 28
      и Плечи 25,5 — много, Икры 1,5 — мало»). Цель группы на неделю — 40% коридора от нижней границы; каждый день
      добирает свою долю того, что осталось до цели, поровну на оставшиеся дни с этой группой; доли групп дня — корень из веса
@@ -1406,7 +1439,7 @@ function weekFill(days, sc) {
   }
   const cap = sessionCap(), wk = () => { const v = {}; for (const d of days) for (const it of d.plan.items || []) for (const [g, x] of Object.entries(groupShare(it.ex))) v[g] = (v[g] || 0) + x * it.rx.sets0; return v; };
   const dayG = (p, g) => p.items.reduce((a, it) => a + (groupShare(it.ex)[g] || 0) * it.rx.sets0, 0), stuck = new Set();
-  const targets = new Set(days.flatMap(d => DAY_T[d.tid].g));
+  const targets = new Set(days.flatMap(d => dayTargets(d.tid)));
   for (let n = 0; n < 40; n++) {
     const v = wk(), g = [...targets].filter(h => h !== 'cardio' && (v[h] || 0) < sc.lo && !stuck.has(h)).sort((a, b) => (v[a] || 0) - (v[b] || 0))[0]; if (!g) break;
     const ok = u => u.it.ex.g === g && u.it.rx.sets0 < (u.it.rx.setsMax || 6) && u.it.rx.sets < (u.it.rx.setsMax || 6) && dayG(u.p, g) + 1 <= cap && (u.it.ex.type !== 'i' || u.mm() >= 3 || u.it.rx.sets0 + 1 <= u.mm())
@@ -1509,6 +1542,11 @@ function renderSetup() {
   $('#f-goal').innerHTML = seg('goal', GOALS, S.goal);
   $('#goal-note').textContent = GOALS[S.goal].about;
   $('#f-format').innerHTML = seg('format', FORMATS, S.format);
+  { /* «Бережно»: статодинамика недоступна, причина — под переключателем */
+    const off = S.goal === 'gentle', b = $('#f-format [data-v="static"]'), n = $('#fmt-note');
+    if (b) { b.disabled = off; b.classList.toggle('off', off); if (off) b.setAttribute('aria-describedby', 'fmt-note'); }
+    if (n) { n.hidden = !off; n.textContent = off ? GENTLE_NO_STATIC : ''; }
+  }
   $('#f-level').innerHTML = seg('level', LEVELS, S.level);
   renderProtect();
   if (typeof renderHealth === 'function') renderHealth();
@@ -1795,6 +1833,7 @@ function warnHtml(p) {
   const byBody = miss.filter(g => EX.some(ex => available(ex, p.E) && groupsOf(ex).has(g))), byEq = miss.filter(g => !byBody.includes(g));
   if (byEq.length) warn.push(`Без упражнений осталось: ${byEq.map(g => GN[g].toLowerCase()).join(', ')}. Для них нужно другое оборудование.`);
   if (byBody.length) warn.push(`Без упражнений в бережном режиме осталось: ${byBody.map(g => GN[g].toLowerCase()).join(', ')}. Всё, что для этого есть, даёт нагрузку, которую вы бережёте.`);
+  if (S.fmtNote) warn.unshift(GENTLE_STATIC_FIXED);
   const dw = durationWarn(p); if (dw) warn.push(dw);
   if (S.goal === 'strength' && S.level === 'beg' && p.items.some(it => begStrength(schemeOf(it.ex)))) warn.push('Новичку в «Силе» — 6–8 повторов с запасом: к тяжёлым 3–5 переходите, когда техника устоится, — выберите уровень «Уже тренируюсь».');
   return warn.length ? `<div class="warn">${warn.map(w => `<p>${esc(w)}</p>`).join('')}</div>` : '';
@@ -1937,7 +1976,7 @@ function renderProgram() {
   const day = prog.days[S.day];
   plan = day.plan;
   const G = GOALS[S.goal], wk = prog.week;
-  const allGroups = new Set(prog.days.flatMap(d => DAY_T[d.tid].g));
+  const allGroups = new Set(prog.days.flatMap(d => dayTargets(d.tid)));
   const sp = SPLITS[prog.split];
   const lf = ensureFold(S).load, volRows = Object.entries(prog.gvol).filter(([g, v]) => g !== 'cardio' && v >= 1).sort((a, b) => b[1] - a[1]).map(([g, v]) => [GN[g], Math.round(v * 2) / 2]);
   let html = `<header class="p-head${lf ? ' load-folded' : ''}">

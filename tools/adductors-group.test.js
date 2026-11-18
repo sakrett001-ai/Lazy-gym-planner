@@ -133,11 +133,65 @@ test('журнал: сведение ног нагружает приводящ�
   a.LOG.data = {};
 });
 
-test('неделя: приводящие отдельно не нагружаются, работают попутно', () => {
-  for (const [days, split] of [[3, 'full'], [4, 'ul'], [5, 'ppl']]) {
-    a.reset({ mode: 'program', days, split });
-    const pr = a.buildProgram();
-    assert(!pr.days.some(d => (d.plan.items || []).some(it => ADD.includes(it.ex.id))), `${days}×${split}`);
-    assert(pr.gvol.adductors > 0, `${days}×${split}: попутно ${pr.gvol.adductors}`);
-  }
+test('неделя: в днях «Низ» и «Ноги» — одно упражнение на приводящие, с целью недели; потолок и отметки не ломаются', () => {
+  /* решение владельца 18.11.2026 (вопрос 7 ревью 4.109) */
+  const fits = a.m.get('fitsBody'), cap = a.m.get('sessionCap'), dayTargets = a.m.get('dayTargets'), volScale = a.m.get('volScale');
+  for (const [days, split] of [[4, 'ul'], [5, 'ppl'], [3, 'ppl'], [5, 'ul']]) for (const level of ['beg', 'mid', 'adv']) for (const goal of ['mass', 'strength', 'gentle'])
+    for (const protect of [[], ['knees'], ['lumbar'], ['knees', 'lumbar', 'hams']]) {
+      a.reset({ mode: 'program', days, split, level, goal, protect: protect.slice() });
+      const pr = a.buildProgram(), tag = `${days}×${split} ${level} ${goal} [${protect}]`;
+      for (const d of pr.days) {
+        const its = d.plan.items || [], own = its.filter(it => it.ex.g === 'adductors'), leg = ['lo', 'legs'].includes(d.tid);
+        assert(own.length <= 1, `${tag} ${d.name}: ${own.map(it => it.ex.id)}`);
+        if (!leg) assert.equal(own.length, 0, `${tag} ${d.name}: приводящие только в днях ног`);
+        for (const it of its) assert(fits(it.ex), `${tag} ${d.name}: ${it.ex.id} не подходит отметкам`);
+        /* потолок подходов за тренировку (первая неделя; дробный счёт, запас как у других групп — полтора подхода) */
+        assert((d.plan.gvol.adductors || 0) <= cap() + 1.5, `${tag} ${d.name}: приводящим ${d.plan.gvol.adductors}`);
+      }
+      if (!protect.length) assert(pr.days.some(d => (d.plan.items || []).some(it => it.ex.g === 'adductors')), tag + ': в неделе есть упражнение на приводящие');
+      assert(Math.round(pr.gvol.adductors * 2) / 2 <= volScale().hi + 1, `${tag}: за неделю ${pr.gvol.adductors}`);
+    }
+  /* «Всё тело» — без отдельного упражнения, попутно */
+  a.reset({ mode: 'program', days: 3, split: 'full' });
+  const full = a.buildProgram();
+  assert(!full.days.some(d => (d.plan.items || []).some(it => ADD.includes(it.ex.id))) && full.gvol.adductors > 0);
+  /* нечем нагрузить отдельно (дом без снаряжения) — не цель дня: на графике «попутно», а не вечное «мало» */
+  a.reset({ mode: 'program', days: 4, split: 'ul' });
+  assert(plain(dayTargets('lo')).includes('adductors'));
+  a.reset({ mode: 'program', days: 4, split: 'ul', place: 'none' });
+  assert(!plain(dayTargets('lo')).includes('adductors'));
+  assert(!a.buildProgram().days.some(d => (d.plan.items || []).some(it => it.ex.g === 'adductors')));
+});
+
+test('«Бережно» без статодинамики: сохранённое так — «Классика», и об этом сказано один раз', () => {
+  /* решение владельца 18.11.2026 (вопрос 3 ревью 4.109): долгое напряжение без расслабления поднимает давление */
+  const c = raw => plain(a.cleanSettings(raw).s);
+  let s = c({ goal: 'gentle', format: 'static' });
+  assert.equal(s.format, 'classic'); assert.equal(s.fmtNote, true, 'настройки: формат заменён, пометка для сообщения');
+  s = c({ goal: 'mass', format: 'static' }); assert.equal(s.format, 'static'); assert(!s.fmtNote, 'в других целях статодинамика остаётся');
+  s = c({ goal: 'gentle', format: 'superset' }); assert.equal(s.format, 'superset'); assert(!s.fmtNote);
+  s = c({ goal: 'mass', format: 'classic', gen: { goal: 'gentle', format: 'static', level: 'beg' } });
+  assert.equal(s.gen.format, 'classic', 'параметры обычных планов, пока открыт свой'); assert.equal(s.fmtNote, true);
+  /* резервная копия */
+  assert.equal(plain(a.restoreSettingsPlan({ v: 2, settings: { goal: 'gentle', format: 'static' } })).s.format, 'classic');
+  /* под планом — одна строка; первое же действие (regen) её снимает */
+  a.reset({ goal: 'gentle', format: 'static' });
+  assert.equal(a.m.get('gentleNoStatic()'), true);
+  assert.equal(a.S.format, 'classic');
+  assert.match(a.warnHtml(a.buildPlan()), /Формат заменён на «Классику»: в бережном режиме статодинамики больше нет/);
+  a.m.get('renderPlan = () => {}; regen(); regen();');
+  assert(!a.S.fmtNote); assert.doesNotMatch(a.warnHtml(a.buildPlan()), /Формат заменён/);
+  /* свой план и план из файла: «Бережно» + статодинамика — при открытии «Классика», в плане тоже */
+  a.reset();
+  const read = a.readPlanFile(JSON.stringify({ format: 'lazy-gym-planner/plans', version: 1, plans: [{ name: 'Мягко', goal: 'gentle', format: 'static', level: 'beg', items: [{ id: 'legpress' }, { id: 'legcurl' }] }] }));
+  const [pl] = a.addPlans(read.plans);
+  a.m.get(`openCustom(${JSON.stringify(pl.id)})`);
+  assert.deepEqual([a.S.goal, a.S.format, a.m.get('customOf().format')], ['gentle', 'classic', 'classic']);
+  assert.equal(a.S.fmtNote, true);
+  assert(!a.buildPlan().items.some(it => it.rx.static));
+  /* выбор «Бережно» при статодинамике и английский текст */
+  a.reset({ goal: 'mass', format: 'static' }); a.S.goal = 'gentle';
+  assert.equal(a.m.get('gentleNoStatic()'), true); assert.equal(a.S.format, 'classic');
+  const en = JSON.parse(fs.readFileSync(path.join(__dirname, '../i18n/en.json'), 'utf8'));
+  for (const k of ['GENTLE_NO_STATIC', 'GENTLE_STATIC_FIXED']) assert(en[a.m.get(k)], k + ': перевод есть');
 });

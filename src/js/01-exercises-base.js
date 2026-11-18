@@ -39,9 +39,8 @@ const GROUP_PRESETS = [
 /* Приводящие бедра — своя группа плана (4.109, решение владельца 15.11.2026 по ревью 4.110; Alex 18, замечание анатома:
    приводящие — не квадрицепс). Было: MUSCLE_GROUP.adductors = 'quads' — выбрав «Квадрицепс», можно было получить сведение
    ног. В «Ногах» и «Всём теле» они есть, как раньше были внутри квадрицепса; сохранённые настройки, где выбран квадрицепс,
-   получают и приводящие (cleanSettings, groupsV), имена планов по прежним ключам групп — те же (groupsTitle). Недельные
-   программы (DAY_T) приводящие отдельно не нагружают: они работают попутно в приседаниях и выпадах (график недели —
-   «попутно») */
+   получают и приводящие (cleanSettings, groupsV), имена планов по прежним ключам групп — те же (groupsTitle). В недельной
+   программе они — группа дней «Низ» и «Ноги»: одно упражнение в день, цель недели (DAY_T, dayTargets, 11-planner.js) */
 const MUSCLE_GROUP = {chest:'chest', delt_f:'shoulders', delt_s:'shoulders', delt_r:'shoulders', biceps:'biceps', triceps:'triceps',
   forearms:'forearms', abs:'abs', obliques:'abs', traps:'back', midback:'back', lats:'back', lowback:'back', glutes:'glutes',
   quads:'quads', hams:'hams', calves:'calves',

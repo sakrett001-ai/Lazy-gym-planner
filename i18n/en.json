@@ -3771,5 +3771,7 @@
  "Опирайтесь на подушку голенями у колена, а не надколенником; если стоять на коленях больно, выберите жим от груди в тренажёре.": "Rest on the pad with your shins just below the knee, not on the kneecap; if kneeling hurts, choose the machine chest press.",
  "Темп — плавно, без рывков. Скорость просмотра темп не меняет.": "Tempo: smooth, no jerking. Playback speed doesn’t change the tempo.",
  "Нет предупреждения — это ещё не значит, что нагрузка безопасна. При боли в груди, головокружении, необычной одышке — остановитесь.": "No warning does not mean the effort is safe. If you have chest pain, dizziness or unusual shortness of breath, stop.",
- "Приводящие": "Adductors"
+ "Приводящие": "Adductors",
+ "В бережном режиме статодинамики нет: долгое напряжение без расслабления поднимает давление.": "Gentle mode has no static-dynamic format: holding tension without relaxing raises blood pressure.",
+ "Формат заменён на «Классику»: в бережном режиме статодинамики больше нет — долгое напряжение без расслабления поднимает давление.": "The format was changed to Straight sets: gentle mode no longer offers static-dynamic — holding tension without relaxing raises blood pressure."
 }

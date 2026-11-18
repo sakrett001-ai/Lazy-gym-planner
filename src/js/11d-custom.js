@@ -95,11 +95,11 @@ function customOf(s = S) { return s.customs.find(c => c.id === s.custom) || s.cu
 
 /* У каждого своего плана свои цель, формат и уровень: план выглядит одинаково у тренера и у ученика.
    Переключатели в параметрах правят открытый план; обычная тренировка и неделя держат свои (S.gen). */
-function loadPlanSettings() { const c = customOf(); for (const k of PLAN_KEYS) { if (!c[k]) c[k] = S[k]; S[k] = c[k]; } }
+function loadPlanSettings() { const c = customOf(); for (const k of PLAN_KEYS) { if (!c[k]) c[k] = S[k]; S[k] = c[k]; } gentleNoStatic(); }
 function storePlanSetting(k) { if (S.mode === 'custom' && PLAN_KEYS.includes(k)) customOf()[k] = S[k]; else if (PLAN_KEYS.includes(k)) S.gen[k] = S[k]; }
 function switchModeSettings(prev) {
   if (prev !== 'custom' && S.mode === 'custom') { for (const k of PLAN_KEYS) S.gen[k] = S[k]; loadPlanSettings(); }
-  else if (prev === 'custom' && S.mode !== 'custom') for (const k of PLAN_KEYS) S[k] = S.gen[k];
+  else if (prev === 'custom' && S.mode !== 'custom') { for (const k of PLAN_KEYS) S[k] = S.gen[k]; gentleNoStatic(); }
 }
 function openCustom(id) {
   const prev = S.mode; if (id) S.custom = id;
@@ -108,6 +108,8 @@ function openCustom(id) {
 }
 ensureCustoms(S);
 if (S.mode === 'custom') loadPlanSettings();
+/* сообщение о замене формата при запуске держится до первого действия */
+fmtNoteFresh = false;
 
 /* ---------- избранное ---------- */
 const isFav = id => S.fav.includes(id);

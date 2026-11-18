@@ -629,13 +629,15 @@ document.addEventListener('change', e => {
   if (e.target.id === 'place-adapt') { S.adapt = e.target.value || null; ensurePlaces(S); return regen(); }
 });
 const swapKey = () => S.mode === 'program' ? 'd' + S.day : 's';
-function regen(resetSwaps = true) { if (resetSwaps) swaps = S.swaps = {}; done = {}; planUndo = null; rerollMsg = null; saveSettings(); renderSetup(); renderPlan(); }
+function regen(resetSwaps = true) { if (resetSwaps) swaps = S.swaps = {}; done = {}; planUndo = null; rerollMsg = null; if (fmtNoteFresh) fmtNoteFresh = false; else delete S.fmtNote; saveSettings(); renderSetup(); renderPlan(); }
 document.addEventListener('click', e => {
   const t = e.target.closest('button, summary');
   if (!t) return;
   if (t.dataset.set) {
     const k = t.dataset.set, prev = S.mode; S[k] = t.dataset.v;
     if (k === 'mode') { S.day = 0; switchModeSettings(prev); } else storePlanSetting(k);
+    /* выбрали «Бережно» при статодинамике — формат «Классика», и об этом сказано под планом */
+    gentleNoStatic();
     return regen();
   }
   if (t.dataset.days) { S.days = +t.dataset.days; S.split = DEFAULT_SPLIT[S.days]; S.day = 0; return regen(); }
