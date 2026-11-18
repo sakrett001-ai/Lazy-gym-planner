@@ -105,5 +105,10 @@ test('the build puts the language script into the PWA pages only, never into the
   const at = build.indexOf('${langSrc}');
   assert(at > pwa && at < offline, 'langSrc is used in the PWA index.html template');
   assert.equal(build.indexOf('${langSrc}', at + 1), -1, 'and nowhere else');
-  assert.match(build, /const single = [^\n]*/); assert.doesNotMatch(build.match(/const single = [^\n]*/)[0], /langSrc|PODHOD_LANGS/);
+  /* 4.111 (Кира 17): офлайн-файл собирается из двух частей — заголовок со стилями (singleHead, в <head>) и разметка с кодом
+     (singleBody, в <body>), чтобы «</head><body>» был один; в обеих — ни выбора языка, ни списка языков */
+  for (const part of ['singleHead', 'singleBody']) {
+    const re = new RegExp(`const ${part} = [^\\n]*`);
+    assert.match(build, re); assert.doesNotMatch(build.match(re)[0], /langSrc|PODHOD_LANGS/);
+  }
 });

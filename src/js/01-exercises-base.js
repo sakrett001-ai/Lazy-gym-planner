@@ -26,20 +26,26 @@ const EQUIP_PRESETS = [
 const GROUPS = [
   {id:'chest', name:'Грудь'}, {id:'back', name:'Спина'}, {id:'shoulders', name:'Плечи'}, {id:'biceps', name:'Бицепс'},
   {id:'triceps', name:'Трицепс'}, {id:'forearms', name:'Предплечья'}, {id:'abs', name:'Пресс'}, {id:'glutes', name:'Ягодицы'},
-  {id:'quads', name:'Квадрицепс'}, {id:'hams', name:'Задняя поверхность бедра'}, {id:'calves', name:'Икры'}, {id:'cardio', name:'Кардио'}
+  {id:'quads', name:'Квадрицепс'}, {id:'adductors', name:'Приводящие'}, {id:'hams', name:'Задняя поверхность бедра'}, {id:'calves', name:'Икры'},
+  {id:'cardio', name:'Кардио'}
 ];
 const GROUP_PRESETS = [
   {id:'push', name:'Жим', g:['chest', 'shoulders', 'triceps']},
   {id:'pull', name:'Тяга', g:['back', 'biceps', 'forearms']},
-  {id:'legs', name:'Ноги', g:['quads', 'hams', 'glutes', 'calves']},
+  {id:'legs', name:'Ноги', g:['quads', 'adductors', 'hams', 'glutes', 'calves']},
   {id:'upper', name:'Верх', g:['chest', 'back', 'shoulders', 'biceps', 'triceps']},
-  {id:'full', name:'Всё тело', g:['chest', 'back', 'shoulders', 'quads', 'hams', 'glutes', 'abs']}
+  {id:'full', name:'Всё тело', g:['chest', 'back', 'shoulders', 'quads', 'adductors', 'hams', 'glutes', 'abs']}
 ];
+/* Приводящие бедра — своя группа плана (4.109, решение владельца 15.11.2026 по ревью 4.110; Alex 18, замечание анатома:
+   приводящие — не квадрицепс). Было: MUSCLE_GROUP.adductors = 'quads' — выбрав «Квадрицепс», можно было получить сведение
+   ног. В «Ногах» и «Всём теле» они есть, как раньше были внутри квадрицепса; сохранённые настройки, где выбран квадрицепс,
+   получают и приводящие (cleanSettings, groupsV), имена планов по прежним ключам групп — те же (groupsTitle). В недельной
+   программе они — группа дней «Низ» и «Ноги»: одно упражнение в день, цель недели (DAY_T, dayTargets, 11-planner.js) */
 const MUSCLE_GROUP = {chest:'chest', delt_f:'shoulders', delt_s:'shoulders', delt_r:'shoulders', biceps:'biceps', triceps:'triceps',
   forearms:'forearms', abs:'abs', obliques:'abs', traps:'back', midback:'back', lats:'back', lowback:'back', glutes:'glutes',
   quads:'quads', hams:'hams', calves:'calves',
-  /* новые мышцы — к группам, в которых их тренируют: сведение ног — среди упражнений на бёдра, подъёмы ног — в прессе */
-  adductors:'quads', hipflex:'abs', serratus:'chest', cuff:'shoulders'};
+  /* новые мышцы — к группам, в которых их тренируют: подъёмы ног — в прессе; приводящие — своя группа (4.109) */
+  adductors:'adductors', hipflex:'abs', serratus:'chest', cuff:'shoulders'};
 
 /* ---------- упражнения ---------- */
 const EX = [

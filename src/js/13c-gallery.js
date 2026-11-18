@@ -65,11 +65,11 @@ function galleryEmptyHtml() {
   const near = R.near.map(ex => `<button type="button" class="btn-ghost" data-gallery-q="${esc(exNameHere(ex))}">${esc(exNameHere(ex))}</button>`).join('');
   return `<div class="mv-gempty">${near ? `<p>Похожие по написанию:</p><div class="mv-gnear">${near}</div>` : '<p>Проверьте написание или попробуйте другое слово: «жим», «тяга», «присед».</p>'}</div>`;
 }
-/* Разделы витрины — группы плана, а упражнения на приводящие (сведение ног, копенгагенская планка) — своим разделом после
-   квадрицепса (4.110; Alex 18, замечание анатома: приводящие — не квадрицепс). В плане они по-прежнему в группе «Квадрицепс»
-   (MUSCLE_GROUP.adductors) — id групп и сохранённые настройки не меняются */
-const GALLERY_GROUPS = GROUPS.flatMap(g => g.id === 'quads' ? [g, {id:'adductors', name:'Приводящие бедра'}] : [g]);
-const galleryGroup = ex => ex.g === 'quads' && ex.pri[0] === 'adductors' ? 'adductors' : ex.g;
+/* Разделы витрины — группы плана; упражнения на приводящие (сведение ног, копенгагенская планка) — своим разделом после
+   квадрицепса (4.110; Alex 18, замечание анатома: приводящие — не квадрицепс). С 4.109 приводящие — и своя группа плана
+   (GROUPS, 01-exercises-base.js); название раздела — полное, как в атласе */
+const GALLERY_GROUPS = GROUPS.map(g => g.id === 'adductors' ? {...g, name:'Приводящие бедра'} : g);
+const galleryGroup = ex => ex.g;
 function galleryHtml() {
   const E = effEquip(S.equip), all = effEquip(EQUIP.map(e => e.id)), list = galleryList(), R = searchExercises(gallery.q);
   const chips = WORK_KINDS.map(k => `<button type="button" class="${gallery.kind === k.id ? 'on' : ''}" data-gallery-kind="${k.id}" aria-pressed="${gallery.kind === k.id}">${esc(k.name)} <small>${galleryList(k.id).length}</small></button>`).join('');

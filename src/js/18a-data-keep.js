@@ -14,9 +14,13 @@
    и начатая тренировка идёт по своему списку */
 function planCtx() {
   const c = S.mode === 'custom' && typeof customOf === 'function' ? customOf() : null;
-  return JSON.stringify([S.mode, S.day, S.week, S.days, S.split, S.goal, S.format, S.level, S.count, [...S.groups].sort(), [...S.equip].sort(), S.seed,
+  /* в своём плане состав задал человек, мышцы плана (4.111) на него не влияют: в отметке — мышцы обычных планов (S.gen),
+     как до 4.111, когда мышцы были общими, — тренировка, начатая до обновления, идёт по своему списку. Неделя и отметки
+     плана — только когда они есть (у планов прежних версий их нет — отметка та же) */
+  const groups = c && S.gen && Array.isArray(S.gen.groups) ? S.gen.groups : S.groups;
+  return JSON.stringify([S.mode, S.day, S.week, S.days, S.split, S.goal, S.format, S.level, S.count, [...groups].sort(), [...S.equip].sort(), S.seed,
     S.focus, S.dur, [...(S.protect || [])].sort(), S.place, S.adapt || null, S.swaps || {}, S.logPick ? S.logPick.d + JSON.stringify(S.logPick.groups) : null,
-    c ? [c.id, c.items, c.goal, c.format, c.level] : null, !!(typeof AR !== 'undefined' && AR.light)]);
+    c ? [c.id, c.items, c.goal, c.format, c.level, ...(c.week ? [c.week] : []), ...(c.protect ? [c.protect] : [])] : null, !!(typeof AR !== 'undefined' && AR.light)]);
 }
 /* очередь подходов → {ctx, items:[упражнение с дозировкой], q:[[номер упражнения, подход, подходов, отдых, этап]]} */
 function workoutSnap(queue) {

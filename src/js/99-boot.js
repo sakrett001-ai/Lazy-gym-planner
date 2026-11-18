@@ -21,4 +21,6 @@ if (!BOOT.failed) {
   logInit();
   /* самый первый запуск — несколько вопросов вместо параметров (11k-first-run.js) */
   if (FIRST_RUN) openFirstRun();
+  /* открыли ссылку на план (11m-plan-link.js): окно с планом — сразу, а в первый запуск — после вопросов */
+  planHashOpen();
 }

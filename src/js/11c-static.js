@@ -19,17 +19,23 @@ function staticOk(ex) {
   return !['jump', 'burpee', 'climb'].includes(PATTERN[ex.id]);
 }
 /* назначение в статодинамике поверх обычного: серии по три подхода, медленный темп, нагрузка по жжению */
+/* «Бережно» в статодинамике — одна серия, лёгкий вес, без сильного жжения и без процента от максимума: тот же счёт, что
+   в плашке «Бережно» (gentleHtml, STATIC_GENTLE) — было: в шапке «12–15 повторов лёгким весом, силы ещё на 3–4», а в
+   карточках «2 × 3 × 5–7, мышца сильно горит» (Игорь 7) */
+const STATIC_GENTLE = 'лёгкий вес: к концу подхода мышца слегка горит, все повторы даются спокойно, без боли';
 function staticRx(rx, ex, week, E) {
-  let series = STATIC.series[S.level] || 2;
+  const gentle = S.goal === 'gentle';
+  let series = gentle ? 1 : STATIC.series[S.level] || 2;
   if (week && week.deload) series = Math.max(1, series - 1);
   const band = ex.eq.length && ex.eq.every(g => g.every(id => id === 'band')), assisted = ex.eq.some(g => g.includes('gravitron'));
   /* простыми словами (11-planner.js: pctText): «не отказ» — «повторы ещё получаются» */
-  const load = weighable(ex, E) ? `к концу подхода мышца сильно горит, но повторы ещё получаются (${pctText('≈ 40–60%')})`
+  const load = gentle ? (band ? 'натяжение ленты: ' : assisted ? 'противовес: ' : !weighable(ex, E) ? 'вес тела: ' : '') + STATIC_GENTLE
+    : weighable(ex, E) ? `к концу подхода мышца сильно горит, но повторы ещё получаются (${pctText('≈ 40–60%')})`
     : band ? 'натяжение ленты: к концу подхода мышца сильно горит, но повторы ещё получаются'
     : assisted ? 'противовес: к концу подхода мышца сильно горит, но повторы ещё получаются'
     : 'вес тела: если жжения нет — медленнее и без отдыха в крайних точках';
   return {...rx, sets:series * STATIC.perSeries, series, reps:STATIC.reps, unit:'повт.', rest:STATIC.rest, seriesRest:STATIC.seriesRest[S.level] || 180,
-    tempo:STATIC.tempo, load, work:STATIC.work * (ex.uni ? 2 : 1), static:true, partial:STATIC.partial,
+    tempo:STATIC.tempo, load, work:STATIC.work * (ex.uni ? 2 : 1), static:true, partial:STATIC.partial, pctN:null, loadAt:null, setsMax:null,
     notes:[...rx.notes, 'Подход ≈ 30–40 с: 3 с вниз и 3 с вверх без пауз, не выпрямляйтесь до конца и не расслабляйтесь внизу.']};
 }
 /* отдых после подхода k (с нуля): внутри серии коротко, между сериями долго, после последнего — переход к следующему */

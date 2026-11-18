@@ -77,6 +77,7 @@ function setFocus(m) {
   S.focus = m && MUSCLE_NAMES[m] ? m : null;
   if (S.focus && S.mode !== 'program' && !S.groups.includes(MUSCLE_GROUP[S.focus])) {
     S.groups = S.groups.concat(MUSCLE_GROUP[S.focus]).sort((a, b) => GROUPS.findIndex(x => x.id === a) - GROUPS.findIndex(x => x.id === b));
+    if (typeof storePlanSetting === 'function') storePlanSetting('groups'); /* в своём плане — его мышцы (11d-custom.js) */
   }
 }
 /* ракурс превью, с которого мышцу видно: сравниваем направление на камеру с нормалью груди в середине повторения */

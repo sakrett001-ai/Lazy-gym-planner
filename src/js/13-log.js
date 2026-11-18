@@ -10,7 +10,7 @@ const LOG_KEY = 'podhod.log.v1';
 /* foreign — записи упражнений, которых нет в этой версии: хранятся и уходят в копию, не показываются (13a-sets.js: checkLog) */
 const LOG = {mode:'connecting', data:{}, foreign:{}, col:null, pending:{}, writing:{}, again:{}, timers:{}, err:'', dl:null, canExport:false, undo:null};
 const WEIGHTED = new Set(['db', 'bb', 'kb', 'cable', 'smith', 'legpress', 'legext', 'legcurl', 'pecdeck', 'hack', 'chestpress', 'shoulderpress', 'leverrow', 'tbar', 'abductor', 'calfseat', 'calfstand']);
-const LOWER_G = new Set(['quads', 'hams', 'glutes', 'calves']);
+const LOWER_G = new Set(['quads', 'adductors', 'hams', 'glutes', 'calves']);
 const MACHINE = new Set(['cable', 'smith', 'legext', 'legcurl', 'pecdeck', 'chestpress', 'shoulderpress', 'leverrow', 'abductor', 'calfseat', 'calfstand', 'gravitron', 'hack', 'tbar']);
 const MONTHS = ['янв', 'фев', 'мар', 'апр', 'мая', 'июн', 'июл', 'авг', 'сен', 'окт', 'ноя', 'дек'];
 
@@ -323,7 +323,8 @@ function todaySession(id, create) {
   if (!s && create) {
     /* at — когда начато упражнение: порядок выполнения внутри дня (выгрузка для Excel) */
     s = {d, s:[], at:Date.now()};
-    if (S.mode === 'program') s.wk = S.week;
+    /* неделя цикла: программы или своего плана, сохранённого из недели (planWeekNo, 11d-custom.js) */
+    const wk = typeof planWeekNo === 'function' ? planWeekNo() : S.mode === 'program' ? S.week : null; if (wk) s.wk = wk;
     ss.push(s); ss.sort((a, b) => a.d < b.d ? -1 : 1);
   }
   return s;
@@ -408,7 +409,7 @@ function suggestBase(it) {
   /* цель подхода k (с нуля): [нижняя, верхняя]; у пирамиды повторов — своё число подхода */
   const tgt = k => { if (!rp) return [lo, hi]; const v = rp[Math.min(k, rp.length - 1)]; return [v, v]; };
   const unit = ex.kind === 'time' ? ' с' : ex.kind === 'dist' ? ' м' : '';
-  const week = S.mode === 'program' ? WEEKS[S.week - 1] : null;
+  const week = typeof planWeek === 'function' ? planWeek() : S.mode === 'program' ? WEEKS[S.week - 1] : null;
   const step = stepFor(it);
   const res = {tone:'new', kg:null, reps:[], text:'', prev:null};
   /* вес по плану (свой план, план тренера) — цель вместо подсказки по прогрессии */
@@ -524,6 +525,7 @@ function suggestBase(it) {
   if (allTop) {
     if (lt === 'kg' && work) {
       res.tone = 'up'; res.kg = up; res.reps = sets.map((x, i) => tgt(i)[0]);
+      if (weekReserve(it, res, past, step, week, prevList)) return res;
       res.text = rp ? `Прибавьте до ${fmtKg(res.kg)} ${wUnit()} (+${fmtKg(res.kg - work)}). В прошлый раз все подходы по плану: ${prevList}.` : `Прибавьте до ${fmtKg(res.kg)} ${wUnit()} (+${fmtKg(res.kg - work)}). В прошлый раз все подходы на верхней границе: ${prevList}.`;
     } else if (lt === 'assist' && work) {
       res.tone = 'up'; res.kg = stepDown(work, step, gridFor(it)); res.reps = sets.map((x, i) => tgt(i)[0]);
@@ -556,7 +558,30 @@ function suggestBase(it) {
   }
   res.tone = 'same'; res.kg = work; res.reps = sets.map((x, i) => Math.min(tgt(i)[1], x[1] + 1));
   res.text = `${work ? `${lt === 'assist' ? 'Тот же противовес' : 'Тот же вес'} — ${fmtKg(work)} ${wUnit()}` : 'Тот же вариант'}, цель — на 1${unit || ' повтор'} больше: в прошлый раз ${prevList}.`;
+  if (lt === 'kg' && work) weekReserve(it, res, past, step, week, prevList);
   return res;
+}
+/* Неделя «Вход» (первая неделя цикла, запас повторов WEEKS[0].rir): совет «тот же вес, на повтор больше» или «прибавьте» не
+   должен требовать больше,
+   чем даёт расчётный максимум по журналу (Руслан 11: неделя «Вход», в прошлый раз 200×3 — «тот же вес, цель 4» — это 200×4 и
+   ещё 3 в запасе, 7 повторов до предела, ≈247 кг расчётного максимума при его 225). Тогда — вес от лучшего расчётного
+   максимума (e1rm, Эпли), чтобы нижняя граница повторов оставляла запас недели: максимум / (1 + (повторы + запас) / 30) — та же
+   формула, что процент в карточке (pctNums, 11-planner.js). Допуск — 3%. Только в «Вход»: с него веса подбираются заново, а в
+   неделях нагрузки и пика двойная прогрессия идёт от весов «Входа» (расчётный максимум по подходам с запасом занижен).
+   Вернёт true, если совет заменён. */
+function weekReserve(it, res, all, step, week, prevList) {
+  const rir = it.rx.rir;
+  if (!week || week !== WEEKS[0] || !rir || !res.kg || it.rx.static || it.ex.kind) return false;
+  const best = Math.max(0, ...all.flatMap(s => s.s.filter(x => x && x[0] > 0 && x[1] > 0).map(x => e1rm(x[0], x[1]))));
+  const reps = Math.max(0, ...res.reps.filter(v => v > 0)), [lo, hi] = parseRange(it.rx.reps);
+  if (!best || !reps || e1rm(res.kg, reps + rir.lo) <= best * 1.03) return false;
+  const kg = Math.floor(best / (1 + (lo + rir.lo) / 30) / step + 1e-9) * step;
+  if (!(kg > 0) || kg >= res.kg) return false;
+  res.tone = 'same'; res.kg = kg; res.reps = res.reps.map(() => lo);
+  const r = lo === hi ? String(lo) : lo + '–' + hi;
+  res.text = 'Неделя «{w}»: {kg} — с этим весом {r} повторов оставят силы ещё на {n} (расчётный максимум по журналу ≈{max}). В прошлый раз: {prev}.'
+    .replace(/\{(\w+)\}/g, (_, k) => ({w:week.name, kg:fmtKg(kg) + ' ' + wUnit(), r, n:reserveNum(rir), max:fmtKg(Math.round(best / step) * step) + ' ' + wUnit(), prev:prevList})[k] ?? '');
+  return true;
 }
 /* Пирамида или сброс в прошлый раз: веса подходов разные (все записаны с весом). Совет — по верхнему подходу (самый
    тяжёлый вес; таких подходов может быть несколько), остальные подходы — как в прошлый раз; не «оставьте верхний вес

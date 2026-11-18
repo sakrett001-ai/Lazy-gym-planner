@@ -14,7 +14,9 @@ function app(storage) {
   a.m = m;
   return a;
 }
-const FULL = ['chest', 'back', 'shoulders', 'quads', 'hams', 'glutes', 'abs'];
+/* 4.109: «Всё тело» — с группой «Приводящие» (решение владельца 15.11.2026: приводящие — своя группа плана, в заготовках
+   «Ноги» и «Всё тело» они есть, как раньше были внутри квадрицепса) */
+const FULL = ['chest', 'back', 'shoulders', 'quads', 'adductors', 'hams', 'glutes', 'abs'];
 const a = app();
 function fresh() {
   a.S.places = a.PLACE_DEFAULTS.map(p => ({ ...p, equip: p.equip.slice() })); a.S.place = 'gym'; a.S.adapt = null; a.ensurePlaces(a.S);
@@ -32,7 +34,10 @@ test('a fresh browser is a first run; anything saved before — settings, log, w
   /* настройки 4.103.0 (без времени тренировки): план собирается как раньше — 8 упражнений, цель и уровень те же */
   const b = app({ 'podhod.settings.v1': JSON.stringify(old) });
   assert.equal(b.S.dur, null); assert.equal(b.S.goal, 'strength'); assert.equal(b.S.level, 'adv');
-  assert.equal(b.buildPlan().items.length, 8);
+  /* 4.109: число упражнений — то же (8), но потолок 11 подходов на группу за тренировку (sessionCap) на грудь, спину и плечи
+     в «Силе» у опытного оставляет меньше — и под планом сказано почему (p.capped) */
+  const bp = b.buildPlan();
+  assert.equal(bp.count, 8); assert(bp.items.length === 8 || (bp.capped && bp.items.length >= 5), `${bp.items.length} exercises`);
   assert.equal(b.m.get("localStorage.getItem('podhod.planSeen.v1')"), '1', 'returning person: «plan seen» is written as before');
   /* первый запуск: отметка «план показан» — только когда мастер пройден или пропущен */
   assert.equal(a.m.get("localStorage.getItem('podhod.planSeen.v1')"), null);
@@ -43,7 +48,8 @@ test('«Skip»: beginner defaults, not «Hypertrophy»; full body, straight sets
   const s = a.firstRunApply({}, fresh());
   assert.deepEqual(plain({ goal: s.goal, level: s.level, dur: s.dur, format: s.format, mode: s.mode, protect: s.protect, groups: s.groups, place: s.place }),
     { goal: 'gentle', level: 'beg', dur: 'mid', format: 'classic', mode: 'single', protect: [], groups: FULL, place: 'gym' });
-  assert.deepEqual(plain(s.gen), { goal: 'gentle', format: 'classic', level: 'beg' }, 'the generated-plan settings follow');
+  /* 4.111: обычные планы держат в S.gen и мышцы с местом (у своих планов они свои, 11d-custom.js: PLAN_OWN) */
+  assert.deepEqual(plain(s.gen), { goal: 'gentle', format: 'classic', level: 'beg', groups: FULL, place: 'gym' }, 'the generated-plan settings follow');
   const p = a.buildPlan();
   assert(p.minutes >= a.DURATIONS.mid.lo && p.minutes <= a.DURATIONS.mid.hi, `≈${p.minutes} min`);
 });

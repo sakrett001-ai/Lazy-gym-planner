@@ -89,6 +89,7 @@ h1, h2, h3, h4 { text-wrap:balance; margin:0; }
 .seg-b small { font:500 .75rem/1.2 var(--f-mono); color:var(--muted); }
 .seg-b.on { background:var(--accent); color:var(--accent-ink); }
 .seg-b.on small { color:inherit; opacity:.8; }
+.seg-b.off { opacity:.45; cursor:not-allowed; }
 .stepper { display:flex; align-items:center; gap:10px; }
 .stepper button { width:40px; height:40px; border-radius:10px; border:1px solid var(--line); background:var(--surface-2); font:500 1.25rem/1 var(--f-mono); }
 .stepper button:disabled { opacity:.35; cursor:default; }
@@ -382,6 +383,13 @@ h1, h2, h3, h4 { text-wrap:balance; margin:0; }
 .wk button.on { border-color:var(--accent); background:var(--accent-soft); }
 .wk button.on b { color:var(--accent); }
 .wk-note { margin:0; font-size:.875rem; max-width:70ch; }
+/* неделя цикла переключается сама (weekSync, 11-planner.js) */
+.wk-auto { margin:0; font-size:.8125rem; color:var(--muted); max-width:70ch; }
+/* виды движения за неделю под полосами (kindsHtml); чего нет — заметнее */
+.kinds-note { color:var(--muted); }
+.kinds-note.kinds-miss { color:var(--ink); }
+/* «Сегодня лучше отдых» над планом (restTodayHtml, 13d-muscle-load.js) */
+.rest-today p { margin:0; font-size:.875rem; line-height:1.45; max-width:70ch; }
 .rule { margin:0; font-size:.84375rem; color:var(--muted); border-top:1px solid var(--line); padding-top:10px; max-width:70ch; }
 .rule b { color:var(--ink); font-weight:600; }
 .days { display:flex; gap:6px; overflow-x:auto; padding-bottom:2px; scrollbar-width:thin; }

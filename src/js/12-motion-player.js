@@ -602,24 +602,40 @@ function blocksText(p) {
       const side = r.uni ? ' на сторону' : '';
       if (r.static) { const kgS = r.kgPlan && loadType(it.ex) !== 'none' ? `, ${planKgText(planKgsHere(it))} ${wUnit()}` : ''; lines.push(`${it.label}. ${it.name} — ${r.series} × 3 × ${r.reps}${r.unit ? ' ' + r.unit : ''}${side}, ${tempoWords(r.tempo)}, без расслабления, отдых ${fmtRest(r.rest)}${r.series > 1 ? `, между сериями ${fmtRest(r.seriesRest)}` : ''}${kgS}`); if (r.coachNote) lines.push(`   Заметка: ${r.coachNote.replace(/\n+/g, ' ')}`); continue; }
       const kg = r.kgPlan && loadType(it.ex) !== 'none' ? `, ${planKgText(planKgsHere(it))} ${wUnit()}` : '';
-      lines.push(r.circ ? `${it.label}. ${it.name} — ${r.reps}${r.unit ? ' ' + r.unit : ''}${side}${kg}` : `${it.label}. ${it.name} — ${r.sets} × ${r.reps}${r.unit ? ' ' + r.unit : ''}${side}${kg}${b.kind === 'list' ? `, отдых ${fmtRest(r.rest)}` : ''}`);
+      /* темп, заданный в своём плане (Марина 7: в тексте не было темпа) — словами, как в карточке */
+      const tempo = r.tempoOwn && r.tempo ? `, ${'темп'}: ${tempoWords(r.tempo)}` : '';
+      lines.push(r.circ ? `${it.label}. ${it.name} — ${r.reps}${r.unit ? ' ' + r.unit : ''}${side}${kg}${tempo}` : `${it.label}. ${it.name} — ${r.sets} × ${r.reps}${r.unit ? ' ' + r.unit : ''}${side}${kg}${b.kind === 'list' ? `, отдых ${fmtRest(r.rest)}` : ''}${tempo}`);
       if (r.coachNote) lines.push(`   Заметка: ${r.coachNote.replace(/\n+/g, ' ')}`);
     }
   }
   return lines;
 }
+/* Текст плана для заметок и мессенджера — то, что видно на экране; ссылку, по которой план загружается обратно, дописывает
+   копирование (11m-plan-link.js: planCopy). Место — строкой: от него зависит снаряд (гантели или штанга) */
+function placeLine(p = placeOf()) { return `${'Место'}: ${p.name}`; }
 function planText() {
   const G = GOALS[S.goal];
   if (S.mode === 'program' && prog) {
     const out = [`${SPLITS[prog.split].name}, ${S.days} ${plural(S.days, 'тренировка', 'тренировки', 'тренировок')} в неделю — ${G.name.toLowerCase()}`,
-      `Неделя ${S.week} из 4: ${prog.week.name.toLowerCase()}. ${prog.week.note}`];
+      placeLine(), `Неделя ${S.week} из 4: ${prog.week.name.toLowerCase()}. ${prog.week.note}`];
     for (const d of prog.days) {
       out.push('', `${WD_FULL[d.wd]} — ${d.name}${d.plan.items ? `, ≈${d.plan.minutes} мин` : ''}`);
       if (d.plan.items) out.push(...blocksText(d.plan)); else out.push('нет упражнений с выбранным оборудованием');
     }
     return out.join('\n');
   }
-  return [`${titleFor()} — ${G.name.toLowerCase()}, ${FORMATS[S.format].name.toLowerCase()}, ≈${plan.minutes} мин`, ''].concat(blocksText(plan)).join('\n');
+  if (S.mode === 'custom') return customPlanText(customOf(), plan).join('\n');
+  return [`${titleFor()} — ${G.name.toLowerCase()}, ${FORMATS[S.format].name.toLowerCase()}, ≈${plan.minutes} мин`, placeLine(), ''].concat(blocksText(plan)).join('\n');
+}
+/* свой план c, собранный в p (его настройки — в S): имя, цель, место, неделя, программа, для кого, заметка, упражнения */
+function customPlanText(c, p) {
+  const G = GOALS[S.goal], wk = c.week ? WEEKS[c.week - 1] : null;
+  const head = [`${c.name} — ${G.name.toLowerCase()}, ${FORMATS[S.format].name.toLowerCase()}${p && p.items ? `, ≈${p.minutes} мин` : ''}`,
+    placeLine() + (wk ? ` · ${'неделя цикла'} ${c.week}: ${wk.name.toLowerCase()}` : '')];
+  const about = [c.group ? `${'Программа'}: ${c.group}` : '', c.for ? `${'Для кого'}: ${c.for}` : '', c.from ? `${'От кого'}: ${c.from}` : ''].filter(Boolean);
+  if (about.length) head.push(about.join(' · '));
+  if (c.note) head.push(`${'Заметка'}: ${c.note.replace(/\n+/g, ' ')}`);
+  return head.concat('', p && p.items ? blocksText(p) : ['План пока пустой.']);
 }
 
 /* ---------- события ---------- */
@@ -629,18 +645,21 @@ document.addEventListener('change', e => {
   if (e.target.id === 'place-adapt') { S.adapt = e.target.value || null; ensurePlaces(S); return regen(); }
 });
 const swapKey = () => S.mode === 'program' ? 'd' + S.day : 's';
-function regen(resetSwaps = true) { if (resetSwaps) swaps = S.swaps = {}; done = {}; planUndo = null; saveSettings(); renderSetup(); renderPlan(); }
+function regen(resetSwaps = true) { if (resetSwaps) swaps = S.swaps = {}; done = {}; planUndo = null; rerollMsg = null; if (fmtNoteFresh) fmtNoteFresh = false; else delete S.fmtNote; saveSettings(); renderSetup(); renderPlan(); }
 document.addEventListener('click', e => {
   const t = e.target.closest('button, summary');
   if (!t) return;
   if (t.dataset.set) {
     const k = t.dataset.set, prev = S.mode; S[k] = t.dataset.v;
     if (k === 'mode') { S.day = 0; switchModeSettings(prev); } else storePlanSetting(k);
+    /* выбрали «Бережно» при статодинамике — формат «Классика», и об этом сказано под планом */
+    gentleNoStatic();
     return regen();
   }
   if (t.dataset.days) { S.days = +t.dataset.days; S.split = DEFAULT_SPLIT[S.days]; S.day = 0; return regen(); }
   if (t.dataset.split) { S.split = t.dataset.split; S.day = 0; return regen(); }
-  if (t.dataset.week) { S.week = +t.dataset.week; done = {}; saveSettings(); renderPlan(); return; }
+  /* неделя цикла руками — дальше счёт от неё (weekPick, 11-planner.js) */
+  if (t.dataset.week) { weekPick(+t.dataset.week); done = {}; saveSettings(); renderPlan(); return; }
   if (t.dataset.day !== undefined) {
     S.day = +t.dataset.day; done = {}; saveSettings(); renderPlan();
     const dh = $('.day-head'); if (dh) dh.scrollIntoView({block:'nearest', behavior:reduceMotion ? 'auto' : 'smooth'});
@@ -652,29 +671,31 @@ document.addEventListener('click', e => {
     const n = shownCount(); S.dur = null;
     S.count = Math.max(3, Math.min(10, n + (t.id === 'count-plus' ? 1 : -1))); return regen();
   }
-  if (t.dataset.g) { const g = t.dataset.g; S.groups = S.groups.includes(g) ? S.groups.filter(x => x !== g) : S.groups.concat(g); S.groups.sort((a, b) => GROUPS.findIndex(x => x.id === a) - GROUPS.findIndex(x => x.id === b)); return regen(); }
-  if (t.dataset.gp) { S.groups = GROUP_PRESETS.find(p => p.id === t.dataset.gp).g.slice(); return regen(); }
+  /* мышцы и место в своём плане — его собственные (storePlanSetting, 11d-custom.js) */
+  if (t.dataset.g) { const g = t.dataset.g; S.groups = S.groups.includes(g) ? S.groups.filter(x => x !== g) : S.groups.concat(g); S.groups.sort((a, b) => GROUPS.findIndex(x => x.id === a) - GROUPS.findIndex(x => x.id === b)); storePlanSetting('groups'); return regen(); }
+  if (t.dataset.gp) { S.groups = GROUP_PRESETS.find(p => p.id === t.dataset.gp).g.slice(); storePlanSetting('groups'); return regen(); }
   if (t.dataset.e) { eqOpen = true; const id = t.dataset.e; setPlaceEquip(S.equip.includes(id) ? S.equip.filter(x => x !== id) : S.equip.concat(id)); return regen(); }
   if (t.dataset.ep) { setPlaceEquip(EQUIP_PRESETS.find(p => p.id === t.dataset.ep).eq); return regen(); }
-  if (t.dataset.place) { S.place = t.dataset.place; ensurePlaces(S); placeDel = false; return regen(); }
+  if (t.dataset.place) { S.place = t.dataset.place; ensurePlaces(S); storePlanSetting('place'); placeDel = false; return regen(); }
   if (t.dataset.placeAdd !== undefined) {
     const id = 'p' + Date.now().toString(36);
     S.places.push({id, name:'Место ' + (S.places.length + 1), auto:'place:' + (S.places.length + 1), equip:[]});
-    S.place = id; ensurePlaces(S); eqOpen = true; placeDel = false; regen();
+    S.place = id; ensurePlaces(S); storePlanSetting('place'); eqOpen = true; placeDel = false; regen();
     const inp = $('#place-name'); if (inp) { inp.focus(); inp.select(); }
     return;
   }
   if (t.dataset.placeDel !== undefined) {
     if (!placeDel) { placeDel = true; return renderSetup(); }
-    S.places = S.places.filter(p => p.id !== S.place); placeDel = false; ensurePlaces(S); return regen();
+    S.places = S.places.filter(p => p.id !== S.place); placeDel = false; ensurePlaces(S); storePlanSetting('place'); return regen();
   }
-  if (t.id === 'reroll') { S.seed = (S.seed * 48271 + 11) % 2147483647; regen(); $('#plan').scrollIntoView({behavior:reduceMotion ? 'auto' : 'smooth', block:'start'}); return; }
-  if (t.id === 'copy') {
-    const txt = planText(), msg = $('#copy-msg');
-    const fallback = () => { msg.innerHTML = 'Скопировать автоматически не удалось. Выделите текст:<textarea readonly rows="6"></textarea>'; const ta = msg.querySelector('textarea'); ta.value = txt; ta.focus(); ta.select(); };
-    try { navigator.clipboard.writeText(txt).then(() => { msg.textContent = 'Скопировано — можно вставить в заметки или мессенджер.'; }, fallback); } catch (err) { fallback(); }
+  /* «Другой вариант» — что поменялось и «Вернуть» (rerollPlan, 12c-swap.js); фокус — на «Вернуть», иначе на самой кнопке */
+  if (t.id === 'reroll') {
+    rerollPlan(); $('#plan').scrollIntoView({behavior:reduceMotion ? 'auto' : 'smooth', block:'start'});
+    const f = document.querySelector('[data-reroll-undo]') || document.getElementById('reroll'); if (f) f.focus({preventScroll:true});
     return;
   }
+  /* текст плана и ссылка на него (11m-plan-link.js) */
+  if (t.id === 'copy') { planCopy(); return; }
   /* «Заменить» — список замен под кнопкой и «Вернуть»: 12c-swap.js */
   /* порядок упражнений: ↑ ↓ на карточке (в своём плане — свои кнопки, 11d-custom.js) */
   if (t.dataset.move !== undefined) {

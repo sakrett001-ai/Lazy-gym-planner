@@ -34,38 +34,47 @@ test('time not set: the number of exercises comes from «Exercises», exactly as
 
 /* новичку не больше 8 упражнений и одного подхода сверх обычного: на 60+ он может не дотянуть до коридора — тогда
    под планом сказано почему, а тренировка не короче, чем на 45 минут */
+/* 4.109: и потолок подходов на группу за тренировку (sessionCap: новичку и в «Бережно» — 6, остальным — 11; в статодинамике —
+   одно упражнение на группу) — тренировка короче коридора, и под планом сказано почему (why 'cap') */
 const begShort = (p, level, dur, tag) => {
+  if (p.fit.why === 'cap') {
+    assert(p.minutes < a.DURATIONS[dur].lo, tag + ': the cap only makes a workout shorter');
+    assert.match(a.durationWarn(p), /^(Больше подходов на эти мышцы за одну тренировку не прибавляем: тренировка ≈\d+ мин\.|В статодинамике — одно упражнение на группу мышц: тренировка ≈\d+ мин\.)/, tag);
+    return;
+  }
   assert(level === 'beg' && dur === 'long' && p.fit.why === 'beg' && p.items.length === 8, tag);
   assert.match(a.durationWarn(p), /^Новичку больше подходов не прибавляем: тренировка ≈\d+ мин\./, tag);
 };
-const rising = (mins, level, tag) => assert(mins[0] < mins[1] && (mins[1] < mins[2] || (level === 'beg' && mins[1] <= mins[2])), `${tag}: ${mins.join(' < ')}`);
+const rising = (mins, level, tag, capped) => assert(mins[0] < mins[1] && (mins[1] < mins[2] || ((level === 'beg' || capped) && mins[1] <= mins[2])), `${tag}: ${mins.join(' < ')}`);
 
 test('straight sets: short is shorter than 45 min, 45 shorter than 60+, and each estimate lands in its corridor', () => {
   for (const place of ['gym', 'home', 'street', 'homeband']) for (const groups of [FULL, UPPER, LEGS])
     for (const goal of Object.keys(a.GOALS)) for (const level of Object.keys(a.LEVELS)) {
+      let capped = false;
       const mins = DURS.map(dur => {
         reset({ place, groups: groups.slice(), goal, level, dur });
         const p = a.buildPlan(), tag = `${place} ${groups.join('+')} ${goal} ${level} ${dur}: ≈${p.minutes} min, ${p.items.length} exercises`;
-        if (!inside(p, dur)) { begShort(p, level, dur, tag); return p.minutes; }
+        if (!inside(p, dur)) { begShort(p, level, dur, tag); capped = capped || p.fit.why === 'cap'; return p.minutes; }
         assert(p.fit && p.fit.ok && p.count === p.items.length, tag + ': fitted, no «picked N of M» warning');
         assert.equal(a.durationWarn(p), '', tag);
         return p.minutes;
       });
-      rising(mins, level, `${place} ${goal} ${level}`);
+      rising(mins, level, `${place} ${goal} ${level}`, capped);
     }
 });
 
 test('supersets, circuits, slow-tempo: inside the corridor; a beginner may stop short of 60+ — and is told why', () => {
   for (const format of ['superset', 'circuit', 'static']) for (const place of ['gym', 'home'])
     for (const goal of Object.keys(a.GOALS)) for (const level of Object.keys(a.LEVELS)) {
+      let capped = false;
       const mins = DURS.map(dur => {
         reset({ place, format, goal, level, dur });
         const p = a.buildPlan(), tag = `${format} ${place} ${goal} ${level} ${dur}: ≈${p.minutes} min`;
         if (inside(p, dur)) assert.equal(a.durationWarn(p), '', tag);
-        else begShort(p, level, dur, tag);
+        else { begShort(p, level, dur, tag); capped = capped || p.fit.why === 'cap'; }
         return p.minutes;
       });
-      rising(mins, level, `${format} ${goal} ${level}`);
+      rising(mins, level, `${format} ${goal} ${level}`, capped);
     }
 });
 
@@ -97,7 +106,8 @@ test('week program: every day fits; deload and loading weeks keep the same exerc
   for (const days of [2, 3, 4, 5]) for (const dur of DURS) {
     reset({ mode: 'program', days, split: null, dur, goal: 'mass' });
     const w1 = a.buildProgram();
-    for (const d of w1.days) assert(inside(d.plan, dur), `${days} days, ${dur}, ${d.name}: ≈${d.plan.minutes} min`);
+    /* 4.109: день короче коридора, если неделя иначе вышла бы выше «много» (weekTrim, Марина 10), — и под планом сказано почему */
+    for (const d of w1.days) assert(inside(d.plan, dur) || (d.plan.fit.why === 'week' && /^Больше подходов за неделю этим мышцам не нужно/.test(a.durationWarn(d.plan))), `${days} days, ${dur}, ${d.name}: ≈${d.plan.minutes} min`);
     a.S.week = 2; const w2 = a.buildProgram();
     a.S.week = 4; const w4 = a.buildProgram();
     w1.days.forEach((d, i) => {

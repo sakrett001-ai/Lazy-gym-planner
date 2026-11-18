@@ -341,7 +341,7 @@ await page.close();
     const after = await p.evaluate(() => ({ open: $('#first-run').open, goal: S.goal, level: S.level, dur: S.dur, place: S.place, equip: S.equip.slice().sort().join(), protect: S.protect.join(),
       groups: S.groups.length, fold: S.fold.setup, folded: $('.setup').classList.contains('folded'), planTop: $('#plan').getBoundingClientRect().top, vh: innerHeight, min: plan.minutes,
       focus: document.activeElement.className, durOn: $('#f-dur-seg [aria-pressed="true"]')?.dataset.dur, chip: [...document.querySelectorAll('.sb-chip')].map(c => c.textContent).join(' | ') }));
-    check(!after.open && after.goal === 'cut' && after.level === 'mid' && after.dur === 'short' && after.place === 'home' && after.equip === 'abwheel,db,kb' && after.protect === 'knees' && after.groups === 7,
+    check(!after.open && after.goal === 'cut' && after.level === 'mid' && after.dur === 'short' && after.place === 'home' && after.equip === 'abwheel,db,kb' && after.protect === 'knees' && after.groups === 8 /* «Всё тело» — с группой «Приводящие» (4.109) */,
       `ответы мастера — в параметрах плана (${JSON.stringify(after)})`);
     check(after.fold && after.folded && after.planTop < after.vh * .6 && after.min >= 20 && after.min <= 30 && after.durOn === 'short' && /20–30 мин/.test(after.chip),
       `после мастера параметры свёрнуты, план сверху, ≈20–30 мин (${JSON.stringify(after)})`);
@@ -368,7 +368,7 @@ await page.close();
     await p.click('#fr-skip'); await p.waitForTimeout(300);
     const s = await p.evaluate(() => ({ open: $('#first-run').open, goal: S.goal, level: S.level, dur: S.dur, format: S.format, place: S.place, groups: S.groups.join(), fold: S.fold.setup,
       seen: localStorage.getItem('podhod.planSeen.v1'), stored: !!localStorage.getItem('podhod.settings.v1'), min: plan.minutes, eyebrow: $('#plan .eyebrow').textContent }));
-    check(!s.open && s.goal === 'gentle' && s.level === 'beg' && s.dur === 'mid' && s.format === 'classic' && s.place === 'gym' && s.groups === 'chest,back,shoulders,quads,hams,glutes,abs' && s.fold && s.seen === '1' && s.stored && s.min >= 40 && s.min <= 50,
+    check(!s.open && s.goal === 'gentle' && s.level === 'beg' && s.dur === 'mid' && s.format === 'classic' && s.place === 'gym' && s.groups === 'chest,back,shoulders,quads,adductors,hams,glutes,abs' && s.fold && s.seen === '1' && s.stored && s.min >= 40 && s.min <= 50,
       `«Пропустить»: «Бережно», новичок, ≈45 мин, всё тело (${JSON.stringify(s)})`);
     await p.reload(); await p.waitForTimeout(500);
     check(await p.evaluate(() => !$('#first-run').open), '«Пропустить» — при следующем входе мастера нет');
@@ -387,7 +387,7 @@ await page.close();
     await p.evaluate(([k, v]) => { localStorage.clear(); localStorage.setItem(k, v); }, [key, val]);
     await p.reload(); await p.waitForTimeout(500);
     const s = await p.evaluate(() => ({ open: $('#first-run').open, goal: S.goal, dur: S.dur, n: plan && plan.items ? plan.items.length : 0 }));
-    check(!s.open && (key !== 'podhod.settings.v1' || (s.goal === 'strength' && s.dur === null && s.n === 7)), `${what}: мастера нет, план как раньше (${JSON.stringify(s)})`);
+    check(!s.open && (key !== 'podhod.settings.v1' || (s.goal === 'strength' && s.dur === null && s.n >= 6 && s.n <= 7 /* 4.109: потолок подходов на группу за тренировку — на три группы входит 6 упражнений из 7, под планом сказано почему */)), `${what}: мастера нет, план как раньше (${JSON.stringify(s)})`);
     await ctx.close();
   }
   {
@@ -711,7 +711,7 @@ await page.close();
   await v.close();
 }
 
-/* загрузка мышц по журналу (13d-muscle-load.js): панели нет при пустом журнале; с записями — 11 групп со статусами;
+/* загрузка мышц по журналу (13d-muscle-load.js): панели нет при пустом журнале; с записями — 12 групп (с 4.109 — и «Приводящие») со статусами;
    «Собрать тренировку на сегодня» собирает разовую тренировку с объяснением по группам; смена мышц — обычный подбор */
 {
   const seedLog = page => page.evaluate(() => {
@@ -726,7 +726,7 @@ await page.close();
   await j.evaluate(() => { S.view = 'journal'; renderSetup(); renderPlan(); });
   check(await j.evaluate(() => !document.querySelector('#ml') && !document.querySelector('[data-logpick]')), 'пустой журнал: панели «Загрузка мышц» и кнопки «По журналу» нет');
   await seedLog(j);
-  check(await shown(j, '#ml') && await j.evaluate(() => document.querySelectorAll('#ml .ml-list li').length === 11), 'журнал с записями: панель загрузки мышц видна, 11 групп');
+  check(await shown(j, '#ml') && await j.evaluate(() => document.querySelectorAll('#ml .ml-list li').length === 12), 'журнал с записями: панель загрузки мышц видна, 12 групп');
   check(await st(j, 'back') === 'loaded' && await st(j, 'biceps') === 'recovering' && await st(j, 'chest') === 'ready'
     /* 4.108: подходы того дня — тем же счётом, что полоса и план (целевая группа — целиком, остальные — половина), а не основные целиком */
     && await j.evaluate(() => { const L = muscleLoad().back.last, n = fmtNum(Math.round(L.v * 2) / 2); return new RegExp(`вчера, ${n.replace('.', '\\.')} подход`).test(document.querySelector('#ml [data-lg="back"] .ml-st').textContent) && L.v >= 4; }), 'статусы: спина вчера — нагружена, бицепс позавчера — восстанавливается, грудь — готова');
@@ -746,7 +746,7 @@ await page.close();
   check(await j.evaluate(() => plan.byLog && !!document.querySelector('.lp')), '«По журналу» в параметрах собирает заново');
   /* всё нагружено сегодня: тренировку не собираем, объясняем */
   await j.evaluate(() => {
-    for (const id of ['bbbench', 'latpull', 'ohp', 'bbcurl', 'pushdown', 'wristcurl', 'crunch', 'hipthrust', 'legext', 'legcurl', 'calfraise']) LOG.data[id] = [{ d: todayKey(), s: [[20, 10], [20, 10]] }];
+    for (const id of ['bbbench', 'latpull', 'ohp', 'bbcurl', 'pushdown', 'wristcurl', 'crunch', 'hipthrust', 'legext', 'adduction', 'legcurl', 'calfraise']) LOG.data[id] = [{ d: todayKey(), s: [[20, 10], [20, 10]] }];
     S.view = 'journal'; renderSetup(); renderPlan();
   });
   await j.click('[data-logpick="journal"]'); await j.waitForTimeout(100);
@@ -1870,8 +1870,9 @@ const fakeBluetooth = () => {
   check(await p.evaluate(() => localStorage.getItem('podhod.lang') === 'ru' && document.documentElement.lang === 'ru'), 'RU-переключатель: открыта русская версия, выбор ru запомнен');
   await p.goto(base); await p.waitForTimeout(400); await ready();
   check(new URL(p.url()).pathname === '/' && await p.evaluate(() => window.PODHOD_LANG === 'ru'), 'после выбора RU корень с en-US открывает русскую версию, без возврата на английский');
-  /* в русской версии создаются план и место по умолчанию, неделя сохраняется в свои планы */
-  await p.evaluate(() => { Object.assign(S, { mode: 'program', days: 3, split: 'full', week: 2 }); regen(); document.querySelector('#save-plan')?.click(); });
+  /* в русской версии создаются план и место по умолчанию, неделя сохраняется в свои планы; в «Моём плане» — упражнение:
+     пустую заготовку сохранение убирает (4.111, dropEmptyMy), а здесь проверяется его имя по умолчанию */
+  await p.evaluate(() => { S.customs.forEach(c => { if (c.auto === 'my' && !c.items.length) c.items.push({ id: 'squat' }); }); Object.assign(S, { mode: 'program', days: 3, split: 'full', week: 2 }); regen(); document.querySelector('#save-plan')?.click(); });
   /* кнопки «+ Место» и «+ План» — нажатием в документе: на телефоне параметры могут быть свёрнуты */
   await p.evaluate(() => document.querySelector('[data-place-add]').click()); await p.waitForTimeout(100);
   await p.evaluate(() => { openCustom(S.customs[0].id); regen(); document.querySelector('[data-cp-new]').click(); }); await p.waitForTimeout(100);
@@ -1901,6 +1902,86 @@ const fakeBluetooth = () => {
   await off.goto('file://' + path.join(dist, 'lazy-gym-planner-offline-ru.html')); await off.waitForTimeout(500);
   check(off.url().endsWith('lazy-gym-planner-offline-ru.html') && !fs.readFileSync(path.join(dist, 'lazy-gym-planner-offline-ru.html'), 'utf8').includes('PODHOD_LANGS') && !fs.readFileSync(path.join(dist, 'lazy-gym-planner-offline-en.html'), 'utf8').includes('PODHOD_LANGS'), 'офлайн-файлы без переадресации языка (Floot)');
   await off.close();
+}
+
+/* 4.111 «Свой план целиком и обмен»: теги предпросмотра ссылки и один <head>/<body> (Кира 4, 17); тренер выгружает план
+   с местом и «Коленями» — текст со ссылкой; ссылка открывает «План по ссылке» на чистом телефоне (без сервера, план после
+   «#plan=»), после «Добавить» план — вверху, с теми же упражнениями; первый запуск — вопросы, потом план; обрезанная ссылка —
+   сообщение; вставленный текст со ссылкой читается; «Поделиться итогом» сохраняет картинку 1080 × 1350, где нет Web Share */
+{
+  const dist = path.dirname(file);
+  for (const [f, lang] of [['index.html', 'ru'], ['en/index.html', 'en']]) {
+    const html = fs.readFileSync(path.join(dist, f), 'utf8'), meta = k => (new RegExp(`<meta (?:property|name)="${k}" content="([^"]*)"`).exec(html) || [])[1];
+    check(meta('og:title') && meta('og:description') && meta('og:image') === 'https://sakrett001-ai.github.io/Lazy-gym-planner/og-image.png' && meta('og:image:width') === '1200' && meta('og:image:height') === '630' && meta('twitter:card') === 'summary_large_image'
+      && (lang === 'ru' ? !/[A-Za-z]{4,} [a-z]{4,}/.test(meta('og:description')) : !/[А-Яа-яЁё]/.test(meta('og:title') + meta('og:description'))), `${f}: теги предпросмотра ссылки (og:title, og:image 1200×630, twitter:card)`);
+  }
+  for (const f of ['index.html', 'en/index.html', 'lazy-gym-planner-offline-ru.html', 'lazy-gym-planner-offline-en.html']) {
+    const html = fs.readFileSync(path.join(dist, f), 'utf8');
+    check((html.match(/<\/head>/g) || []).length === 1 && (html.match(/<body>/g) || []).length === 1, `${f}: один </head> и один <body> (Кира 17)`);
+  }
+  const png = fs.readFileSync(path.join(dist, 'og-image.png'));
+  check(png.readUInt32BE(16) === 1200 && png.readUInt32BE(20) === 630 && png.length < 400 * 1024, `og-image.png: 1200 × 630, ${Math.round(png.length / 1024)} КБ`);
+  const types = { '.html': 'text/html; charset=utf-8', '.js': 'text/javascript', '.css': 'text/css', '.bin': 'application/octet-stream', '.woff2': 'font/woff2', '.png': 'image/png', '.svg': 'image/svg+xml', '.webmanifest': 'application/manifest+json', '.json': 'application/json' };
+  const srv = http.createServer((req, res) => {
+    let u = decodeURIComponent(new URL(req.url, 'http://x').pathname); if (u.endsWith('/')) u += 'index.html';
+    const f = path.join(dist, u); if (!f.startsWith(dist) || !fs.existsSync(f) || fs.statSync(f).isDirectory()) { res.writeHead(404); res.end(); return; }
+    res.writeHead(200, { 'Content-Type': types[path.extname(f)] || 'application/octet-stream', 'Cache-Control': 'no-store' }); fs.createReadStream(f).pipe(res);
+  });
+  await new Promise(r => srv.listen(0, '127.0.0.1', r));
+  const base = `http://127.0.0.1:${srv.address().port}/`;
+  const phone = async (o = {}) => { const ctx = await browser.newContext({ viewport: { width: 390, height: 844 }, deviceScaleFactor: 2, locale: 'ru-RU', serviceWorkers: 'block', acceptDownloads: true, ...o }), pg = await ctx.newPage(); pg.on('pageerror', e => errors.push(String(e))); return { ctx, pg }; };
+  const loaded = async pg => { await pg.waitForFunction(() => typeof S === 'object' && document.querySelector('#plan .card, #plan .empty'), null, { timeout: 30000 }); await fakeFigures(pg); };
+  /* тренер: «Дом», «Колени», свой план с гоблетом */
+  const T = await phone(); await T.pg.goto(base); await loaded(T.pg);
+  await T.pg.evaluate(() => {
+    Object.assign(S, { mode: 'custom', place: 'home', protect: ['knees'], author: 'Марина', customs: [{ id: 'pa', name: 'Анна, низ', goal: 'cut', format: 'classic', level: 'beg', items: [{ id: 'goblet' }, { id: 'rdl', kg: [8] }, { id: 'dbbench', note: 'Локти под 45°' }, { id: 'bridge' }] }], custom: 'pa' });
+    ensurePlaces(S); ensureCustoms(S); loadPlanSettings(); regen();
+    window.__copied = null; Object.defineProperty(navigator, 'clipboard', { configurable: true, value: { writeText: t => { window.__copied = t; return Promise.resolve(); } } });
+  });
+  const sent = await T.pg.evaluate(() => plan.items.map(it => it.name));
+  await T.pg.evaluate(() => document.querySelector('#plan-export').click()); await T.pg.waitForTimeout(150);
+  await T.pg.evaluate(() => document.querySelector('#po-copy').click()); await T.pg.waitForFunction(() => window.__copied, null, { timeout: 10000 });
+  const text = await T.pg.evaluate(() => window.__copied), link = (text.match(/https?:\/\/\S+#plan=[A-Za-z0-9_-]+/) || [''])[0];
+  check(link.startsWith(base + '#plan=z') && /Место: Дом/.test(text) && /Локти под 45°/.test(text) && !sent.some(n => /Гоблет/.test(n)), `«Скопировать текст»: читаемый план и ссылка на этот сайт (${link.length} знаков)`);
+  check(/Скопировано: текст плана и ссылка/.test(await T.pg.textContent('#po-msg')), 'сообщение о копировании текста со ссылкой');
+  await T.ctx.close();
+  /* получатель: чистый телефон, не первый запуск */
+  const R = await phone(); await R.pg.addInitScript(() => { try { localStorage.setItem('podhod.planSeen.v1', '1'); } catch (e) {} });
+  await R.pg.goto(base + link.slice(link.indexOf('#'))); await loaded(R.pg); await R.pg.waitForSelector('#plan-in[open]', { timeout: 10000 });
+  const dlg = await R.pg.evaluate(() => ({ h: document.querySelector('#plan-in h2').textContent, n: document.querySelectorAll('#plan-in .pi-items li').length, hash: location.hash, file: !!document.querySelector('#plan-in #pi-file') }));
+  check(dlg.h === 'План по ссылке' && dlg.n === sent.length && dlg.hash === '' && !dlg.file, `ссылка: окно «План по ссылке» с упражнениями (${dlg.n}), адрес очищен`);
+  await R.pg.click('#pi-add'); await R.pg.waitForTimeout(500);
+  const got = await R.pg.evaluate(() => ({ names: plan.items.map(it => it.name), top: document.getElementById('plan').getBoundingClientRect().top, folded: S.fold.setup, place: placeOf().name, mine: S.protect.length, plans: S.customs.map(c => c.name) }));
+  check(JSON.stringify(got.names) === JSON.stringify(sent) && got.place === 'Дом' && got.mine === 0, 'по ссылке — те же упражнения, что у тренера, в месте «Дом»; свои отметки не тронуты');
+  check(Math.abs(got.top) < 100 && got.folded && got.plans.join() === 'Анна, низ', `после «Добавить»: план вверху (${Math.round(got.top)}), параметры свёрнуты, пустого «Мой план» нет`);
+  await R.ctx.close();
+  /* первый запуск со ссылкой: сначала вопросы, потом план */
+  const F = await phone({ firstRun: true }); await F.pg.goto(base + link.slice(link.indexOf('#'))); await F.pg.waitForTimeout(1200);
+  check(await F.pg.evaluate(() => document.documentElement.classList.contains('first-run') && !document.querySelector('#plan-in[open]') && /откроется план, который вам прислали/.test(document.querySelector('#fr-lead').textContent)), 'первый запуск со ссылкой: сначала вопросы, о плане сказано');
+  await F.pg.click('#fr-skip'); await F.pg.waitForTimeout(300);
+  check(await F.pg.evaluate(() => !!document.querySelector('#plan-in[open]')), 'после вопросов — окно плана по ссылке');
+  await F.ctx.close();
+  /* обрезанная ссылка; вставленный текст со ссылкой и без */
+  const X = await phone(); await X.pg.goto(base + link.slice(link.indexOf('#'), link.length - 40)); await loaded(X.pg); await X.pg.waitForTimeout(500);
+  check(await X.pg.evaluate(() => /повреждена/.test(document.querySelector('#plan-in[open] .warn')?.textContent || '')), 'обрезанная ссылка — понятное сообщение');
+  await X.pg.evaluate(() => { document.querySelector('#plan-in').close(); const prev = S.mode; S.mode = 'custom'; switchModeSettings(prev); regen(); document.querySelector('#f-custom-body [data-cp-import]').click(); });
+  await X.pg.evaluate(t => { document.querySelector('#pi-text').value = t; document.querySelector('#pi-read').click(); }, 'Держи:\n' + text);
+  await X.pg.waitForFunction(() => document.querySelector('#pi-add'), null, { timeout: 10000 });
+  await X.pg.evaluate(() => { document.querySelector('#pi-text').value = '1. Жим лёжа — 3 × 8'; document.querySelector('#pi-read').click(); }); await X.pg.waitForTimeout(300);
+  check(/нет ссылки на план/.test(await X.pg.textContent('#plan-in .warn')), 'вставленный текст со ссылкой читается, без ссылки — что делать');
+  await X.ctx.close();
+  /* картинка итога: без Web Share — «Сохранить картинку итога», файл PNG 1080 × 1350 */
+  const W = await phone(); await W.pg.goto(base); await loaded(W.pg);
+  await W.pg.evaluate(() => { document.querySelector('#start-workout').click(); });
+  await W.pg.waitForTimeout(400);
+  await W.pg.evaluate(() => { const d = todayKey(); for (const st of workout.queue.slice(0, 4)) { const ss = LOG.data[st.it.ex.id] = LOG.data[st.it.ex.id] || []; let x = ss.find(z => z.d === d); if (!x) ss.push(x = { d, s: [] }); x.s[st.k] = [40, 10]; } workout.days = [d]; workoutFinish(); });
+  await W.pg.waitForTimeout(500);
+  check(await W.pg.textContent('#wv-share') === 'Сохранить картинку итога' && await W.pg.evaluate(() => !document.querySelector('#wv-share').hidden), 'экран итога: одна кнопка «Сохранить картинку итога» (нет Web Share)');
+  const [dl] = await Promise.all([W.pg.waitForEvent('download', { timeout: 15000 }), W.pg.click('#wv-share')]);
+  const buf = fs.readFileSync(await dl.path());
+  check(/^lazy-gym-\d{4}-\d\d-\d\d\.png$/.test(dl.suggestedFilename()) && buf.readUInt32BE(16) === 1080 && buf.readUInt32BE(20) === 1350, `картинка итога сохранена: ${dl.suggestedFilename()} ${buf.readUInt32BE(16)}×${buf.readUInt32BE(20)}`);
+  await W.ctx.close();
+  srv.close();
 }
 
 /* компьютер: параметры в боковой колонке не сворачиваются */

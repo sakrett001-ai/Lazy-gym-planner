@@ -30,13 +30,13 @@ function spareRenderer(slot){if(spare.length>=SPARE_LIMIT)dropRenderer(slot);els
    по всем 146 упражнениям и пяти ракурсам кадр сдвигается не больше чем на 0,4 % своего размера, а тело и инвентарь
    всех 25 прежних положений остаются в кадре (сверка 4.24.0, tools/volume-lifecycle.test.js); первое открытие
    упражнения вдвое короче. */
-const FIT_STEPS=12;
+const FIT_STEPS=12,FADE_EVERY=3; /* точки тела для прозрачности инвентаря — с каждой третьей позы выборки (5 поз): хранятся вместе с рамкой */
 const fittedBounds=new Map(),BOUNDS_STORE='podhod.volume-bounds.v1',BOUNDS_LIMIT=256;
 let boundsLoaded=false,boundsSave=0;
 const boundsBuild=()=>window.PODHOD_BUILD||null;
 function hashText(s){let h1=0x811c9dc5,h2=0x01000193;for(let i=0;i<s.length;i++){const c=s.charCodeAt(i);h1=Math.imul(h1^c,0x01000193);h2=Math.imul(h2^c,0x5bd1e995)^(h2>>>15);}return(h1>>>0).toString(36)+(h2>>>0).toString(36);}
 /* _view — рамка свободной камеры (orbit.mjs: коробка движения и кадры предустановок с перспективой) */
-const boundsValid=b=>b&&typeof b==='object'&&Object.entries(b).every(([k,e])=>k==='_view'||e&&['minX','maxX','minY','maxY'].every(k=>Number.isFinite(e[k])));
+const boundsValid=b=>b&&typeof b==='object'&&Object.entries(b).every(([k,e])=>k==='_view'||k==='_fade'||e&&['minX','maxX','minY','maxY'].every(k=>Number.isFinite(e[k])));
 function boundsGet(key){
  if(!boundsLoaded){
   boundsLoaded=true;
@@ -146,16 +146,28 @@ export function createVolumeFigure(options){
     Мелкие детали (рамка меньше 2 л: рукояти, трос, гантели) не трогаются. Цвета и тени те же */
  let lastPose=null;const FADE_KEEP=/^(barbell|dumbbell|kettlebell|cable|line)$/,FADE_MIN=.002,fadeMats=new Map(),fadeBox=new THREE.Box3(),fadeRay=new THREE.Ray(),fadeHit=new THREE.Vector3(),fadeTo=new THREE.Vector3(),fadeFrom=new THREE.Vector3();
  const fadeOf=m=>{let f=fadeMats.get(m);if(!f){f=m.clone();f.transparent=true;f.opacity=.22;f.depthWrite=false;f.name=(m.name||'')+'-fade';fadeMats.set(m,f);}return f;};
+ /* Решение «прозрачна ли деталь» зависит только от ракурса, а не от кадра повторения (4.110.1, замечание владельца 18.11.2026:
+    в жиме лёжа «Сверху» стойки мерцали — локоть то заходил за стойку, то выходил, и материал менялся по ходу движения).
+    Точки тела берутся по всему движению — из той же выборки поз, что рамка камеры (FIT_STEPS + 1 поз, хранятся вместе с
+    рамкой: смена ракурса позы заново не считает), и текущая; решение держится, пока камера на месте; у подвижных
+    деталей оно только добавляется (деталь, однажды заслонившая человека в этом ракурсе, остаётся прозрачной). */
+ let fadePoints=null,fadeNodes=null;const fadeStates=new Map(),FADE_VIEWS=4;
+ const fadeTargets=P=>[P.head,P.sh,P.waist,P.hip,P.elL,P.elR,P.knL,P.knR].filter(Boolean).map(p=>new THREE.Vector3(...world(p)));
+ const fadeKey=cam=>{cam.updateMatrixWorld?.();return Array.from(cam.matrixWorld.elements,x=>Math.round(x*500)).join(',')+'|'+Math.round((cam.zoom||1)*100);};
  function fadeOccluders(cam){
   const P=lastPose;if(!P||!scene.propNodes)return;
-  const targets=[P.head,P.sh,P.waist,P.hip,P.elL,P.elR,P.knL,P.knR].filter(Boolean).map(p=>new THREE.Vector3(...world(p)));
+  /* инвентарь собран заново (другой вариант снаряда) — решения и точки считаются снова */
+  const nodes=scene.propNodes();if(nodes!==fadeNodes){fadeNodes=nodes;fadeStates.clear();}
+  const targets=(fadePoints||[]).concat(fadeTargets(P));
   cam.getWorldPosition(fadeFrom);
+  const key=fadeKey(cam);let state=fadeStates.get(key);
+  if(!state){state={fixed:new Map(),moving:new Set()};fadeStates.set(key,state);if(fadeStates.size>FADE_VIEWS)fadeStates.delete(fadeStates.keys().next().value);}
   /* подвижные детали — каждая своей рамкой; неподвижные слиты в сетки по материалу (staticMeshes) — проверяются рамки их
      деталей (userData.sources), а прозрачной становится вся слитая сетка */
   const list=[];
   /* снаряд в руках (гриф, гантель, гиря) и тросы с лентами не прячутся: их и показывают */
-  for(const n of scene.propNodes()){if(!n.group||!n.group.parent?.visible||FADE_KEEP.test(n.kind||''))continue;n.group.traverse(o=>{if(o.isMesh&&o.visible)list.push([o,[o]]);});}
-  for(const o of scene.staticMeshes?.()||[])if(o.isMesh&&o.visible)list.push([o,o.userData.sources||[o]]);
+  for(const n of nodes){if(!n.group||!n.group.parent?.visible||FADE_KEEP.test(n.kind||''))continue;n.group.traverse(o=>{if(o.isMesh&&o.visible)list.push([o,[o],true]);});}
+  for(const o of scene.staticMeshes?.()||[])if(o.isMesh&&o.visible)list.push([o,o.userData.sources||[o],false]);
   const blocks=src=>{
    fadeBox.setFromObject(src);const sz=fadeBox.getSize(fadeHit);if(sz.x*sz.y*sz.z<FADE_MIN)return false;
    for(const t of targets){
@@ -165,8 +177,10 @@ export function createVolumeFigure(options){
    }
    return false;
   };
-  for(const[o,sources]of list){
-   const orig=o.userData.fadeOrig||o.material,hit=sources.some(blocks);
+  for(const[o,sources,moving]of list){
+   const orig=o.userData.fadeOrig||o.material;let hit;
+   if(moving){hit=state.moving.has(o)||sources.some(blocks);if(hit)state.moving.add(o);}
+   else{hit=state.fixed.get(o);if(hit===undefined){hit=sources.some(blocks);state.fixed.set(o,hit);}}
    if(hit){if(!o.userData.fadeOrig)o.userData.fadeOrig=orig;o.material=Array.isArray(orig)?orig.map(fadeOf):fadeOf(orig);}
    else if(o.userData.fadeOrig){o.material=o.userData.fadeOrig;delete o.userData.fadeOrig;}
   }
@@ -181,12 +195,13 @@ export function createVolumeFigure(options){
     Кадры выборки — только точки (нормали кожи и областей рамке не нужны): рамка та же, считается быстрее */
  const fitKey=initial.exerciseId+'|'+hashText(JSON.stringify([initial.props,options.vectors])),savedBounds=boundsGet(fitKey);
  let fit=null;
- if(savedBounds&&Object.keys(scene.bounds).every(key=>savedBounds[key])&&validFrame(savedBounds._view,VIEW)){for(const key of Object.keys(scene.bounds))Object.assign(scene.bounds[key],savedBounds[key]);fit=savedBounds._view;}
+ if(savedBounds&&Object.keys(scene.bounds).every(key=>savedBounds[key])&&validFrame(savedBounds._view,VIEW)&&Array.isArray(savedBounds._fade)){for(const key of Object.keys(scene.bounds))Object.assign(scene.bounds[key],savedBounds[key]);fit=savedBounds._view;fadePoints=savedBounds._fade.map(p=>new THREE.Vector3(p[0],p[1],p[2]));}
  else{
   const collect=frameCollector(SETTINGS,VIEW);
-  for(let i=0;i<=FIT_STEPS;i++){apply(i/FIT_STEPS,0,true);scene.includeBounds(undefined,collect.add);}
+  fadePoints=[];
+  for(let i=0;i<=FIT_STEPS;i++){apply(i/FIT_STEPS,0,true);scene.includeBounds(undefined,collect.add);if(lastPose&&i%FADE_EVERY===0)fadePoints.push(...fadeTargets(lastPose));}
   fit=collect.data();
-  boundsSet(fitKey,{...Object.fromEntries(Object.entries(scene.bounds).map(([key,e])=>[key,{minX:round4(e.minX),maxX:round4(e.maxX),minY:round4(e.minY),maxY:round4(e.maxY)}])),...(fit?{_view:fit}:{})});
+  boundsSet(fitKey,{...Object.fromEntries(Object.entries(scene.bounds).map(([key,e])=>[key,{minX:round4(e.minX),maxX:round4(e.maxX),minY:round4(e.minY),maxY:round4(e.maxY)}])),...(fit?{_view:fit}:{}),_fade:fadePoints.map(v=>[Math.round(v.x*100)/100,Math.round(v.y*100)/100,Math.round(v.z*100)/100])});
  }
  /* вид фигуры с первого кадра (options.layers — кости и мышцы, как setLayers): без лишнего кадра манекена перед анатомией.
     Тогда и материалы прежней фигуры на этом рендерере отпускаются после кадра в нужном виде — их собранные программы

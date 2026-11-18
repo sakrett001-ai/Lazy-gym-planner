@@ -10,7 +10,9 @@ const names = a => JSON.parse(a.get('JSON.stringify({plans:S.customs.map(c=>[c.n
 
 test('defaults made in the Russian version read in English, and back again', () => {
   const ru = loadApp({lang:'ru'});
-  ru.get(`(()=>{S.customs.push(newCustomPlan());S.customs.push(newCustomPlan());S.places.push({id:'p5',name:'Место '+(S.places.length+1),auto:'place:'+(S.places.length+1),equip:[]});
+  /* в «Моём плане» — упражнение: пустая заготовка уходит, когда приходят сохранённые планы (4.111, dropEmptyMy), а здесь
+     проверяется имя по умолчанию */
+  ru.get(`(()=>{customOf().items.push({id:'squat'});S.customs.push(newCustomPlan());S.customs.push(newCustomPlan());S.places.push({id:'p5',name:'Место '+(S.places.length+1),auto:'place:'+(S.places.length+1),equip:[]});
     Object.assign(S,{mode:'program',days:3,split:'full',week:2});prog=buildProgram();savePlansFrom();
     Object.assign(S,{mode:'single',groups:['chest','back','biceps']});prog=null;plan=buildPlan({});savePlansFrom();
     S.custom=S.customs[0].id;S.mode='custom';document.dispatchEvent;saveSettings();})()`);
@@ -65,7 +67,8 @@ test('a copy and a taken name keep the key: «My plan — copy», «Plan 2 (2)»
 });
 test('plan file: the key travels next to the name both ways; earlier versions read the name, files without the key are guessed', () => {
   const ru = loadApp({lang:'ru'});
-  ru.get(`(()=>{Object.assign(S,{mode:'program',days:2,split:'ul',week:1});prog=buildProgram();savePlansFrom();saveSettings();})()`);
+  /* «Мой план» с упражнением — не пустая заготовка (её убирает сохранение, 4.111) */
+  ru.get(`(()=>{customOf().items.push({id:'squat'});Object.assign(S,{mode:'program',days:2,split:'ul',week:1});prog=buildProgram();savePlansFrom();saveSettings();})()`);
   const file = JSON.parse(ru.get('JSON.stringify(planFileObject(S.customs))'));
   assert.deepEqual(file.plans.map(p => [p.name, p.auto, p.group, p.gauto]), [['Мой план', 'my', undefined, undefined], ['Пн · Верх', 'day:0:up', 'Верх / низ · неделя 1', 'split:ul:1'], ['Чт · Низ', 'day:3:lo', 'Верх / низ · неделя 1', 'split:ul:1']]);
   /* загрузка в английской версии с одним «My plan» */
