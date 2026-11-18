@@ -36,7 +36,9 @@ const chev = '<i class="cg-chev" aria-hidden="true"></i>';
 /* ---------- карточка: мышцы и запись подходов ---------- */
 /* seen — мышцы, уже названные в плане выше: пояснение «где это» — при первом упоминании (muscleCardHtml, 00-engine.js) */
 function musFoldHead(ex, seen) {
-  const open = cardOpen('mus', ex.id), list = ms => ms.map((m, i) => muscleCardHtml(m, ex, seen, i > 0)).join(', ');
+  const open = cardOpen('mus', ex.id), 
+    /* каждая мышца — своим элементом: видимая надпись кнопки по частям входит в её имя для диктора (WCAG 2.5.3, a11y-check) */
+    list = ms => ms.map((m, i) => `<span class="mus-i">${muscleCardHtml(m, ex, seen, i > 0)}</span>`).join(', ');
   return `<button type="button" class="cg-h" data-cfold="mus" aria-expanded="${open}"><span class="cg-x"><span class="cg-t">Мышцы</span><span class="cg-s cg-mus"><span class="cg-p">${list(ex.pri)}</span>${ex.sec.length ? `<span class="cg-sec">${list(ex.sec)}</span>` : ''}</span></span>${chev}</button>`;
 }
 function logFoldBar(it, n, done) {

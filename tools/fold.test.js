@@ -8,7 +8,7 @@ const plain = x => JSON.parse(JSON.stringify(x));
 function app() {
   const m = loadModel({ fullApp: true });
   m.get('renderSetup=()=>{}; logRefresh=()=>{}; LOG.mode="local";');
-  const a = m.get(`({S,EXI,buildPlan,ensureFold,cardOpen,cardFold,cardHtml,logRows,setupSummary,loadTop,PLACE_DEFAULTS,ensurePlaces,ensureCustoms,MUSCLE_NAMES})`);
+  const a = m.get(`({S,EXI,buildPlan,ensureFold,cardOpen,cardFold,cardHtml,logRows,setupSummary,loadTop,PLACE_DEFAULTS,ensurePlaces,ensureCustoms,MUSCLE_NAMES,muscleLabel})`);
   a.S.places = a.PLACE_DEFAULTS.map(p => ({ ...p, equip: p.equip.slice() })); a.S.place = 'gym'; a.S.adapt = null; a.ensurePlaces(a.S);
   Object.assign(a.S, { mode: 'single', format: 'classic', goal: 'mass', level: 'mid', count: 5, groups: ['chest', 'back', 'shoulders'], seed: 3, fold: null });
   a.ensureCustoms(a.S); a.ensureFold(a.S);
@@ -33,8 +33,9 @@ test('cards: compact folds muscles and the set table, keeps the weight hint; a c
   let html = a.cardHtml(it, 0);
   assert.match(html, /^<li class="card" data-ex=/, 'compact: no open groups');
   assert.match(html, /data-cfold="mus" aria-expanded="false"/);
-  const main = it.ex.pri.map(m => a.MUSCLE_NAMES[m])[0];
-  assert(html.includes(`<span class="cg-p">${main}`), 'the folded line names the main muscles');
+  /* 4.112: в карточке — простые названия мышц (muscleLabel(…, true): «Пресс», «Ромбовидные»), а не термины MUSCLE_NAMES */
+  const main = a.muscleLabel(it.ex.pri[0], it.ex, true);
+  assert(html.includes(`<span class="cg-p"><span class="mus-i">${main}`), 'the folded line names the main muscles');
   const log = a.logRows(it).html;
   assert.match(log, /class="sug /, 'the hint stays outside the folded part');
   assert.match(log, /data-cfold="log" aria-expanded="false"/);
