@@ -1870,8 +1870,9 @@ const fakeBluetooth = () => {
   check(await p.evaluate(() => localStorage.getItem('podhod.lang') === 'ru' && document.documentElement.lang === 'ru'), 'RU-переключатель: открыта русская версия, выбор ru запомнен');
   await p.goto(base); await p.waitForTimeout(400); await ready();
   check(new URL(p.url()).pathname === '/' && await p.evaluate(() => window.PODHOD_LANG === 'ru'), 'после выбора RU корень с en-US открывает русскую версию, без возврата на английский');
-  /* в русской версии создаются план и место по умолчанию, неделя сохраняется в свои планы */
-  await p.evaluate(() => { Object.assign(S, { mode: 'program', days: 3, split: 'full', week: 2 }); regen(); document.querySelector('#save-plan')?.click(); });
+  /* в русской версии создаются план и место по умолчанию, неделя сохраняется в свои планы; в «Моём плане» — упражнение:
+     пустую заготовку сохранение убирает (4.111, dropEmptyMy), а здесь проверяется его имя по умолчанию */
+  await p.evaluate(() => { S.customs.forEach(c => { if (c.auto === 'my' && !c.items.length) c.items.push({ id: 'squat' }); }); Object.assign(S, { mode: 'program', days: 3, split: 'full', week: 2 }); regen(); document.querySelector('#save-plan')?.click(); });
   /* кнопки «+ Место» и «+ План» — нажатием в документе: на телефоне параметры могут быть свёрнуты */
   await p.evaluate(() => document.querySelector('[data-place-add]').click()); await p.waitForTimeout(100);
   await p.evaluate(() => { openCustom(S.customs[0].id); regen(); document.querySelector('[data-cp-new]').click(); }); await p.waitForTimeout(100);

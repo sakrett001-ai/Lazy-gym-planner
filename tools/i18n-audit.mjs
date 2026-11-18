@@ -502,6 +502,8 @@ step('9. данные из русской версии');
     const fake = () => { const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg'); return { svg, camera: 'side', at() {}, setTrace() {}, setVectors() {}, setJoints() {}, setStress() {}, setMuscles() {}, setRegion() {}, dispose() {} }; };
     window.buildFigure = fake; window.createMotionFigure = fake;
     localStorage.removeItem('podhod.settings.v1'); S.customs = []; S.places = []; ensurePlaces(S); ensureCustoms(S);
+    /* в «Моём плане» — упражнение: пустую заготовку сохранение убирает (4.111, dropEmptyMy), а здесь нужно её имя */
+    customOf().items.push({ id: 'squat' });
     Object.assign(S, { view: 'plan', mode: 'program', days: 3, split: 'full', week: 2 }); regen(); document.querySelector('#save-plan').click();
     Object.assign(S, { mode: 'single', groups: ['chest', 'back', 'biceps'] }); regen(); document.querySelector('#save-plan').click();
     document.querySelector('[data-place-add]').click();

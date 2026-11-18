@@ -99,7 +99,9 @@ function linkBase() {
   const site = SITE_URL + (typeof window !== 'undefined' && window.PODHOD_LANG === 'en' ? 'en/' : '');
   const web = loc => { try { return loc && /^https?:$/.test(loc.protocol) && loc.host ? loc.origin + loc.pathname.replace(/index\.html$/, '') : null; } catch (e) { return null; } };
   if (typeof window === 'undefined' || typeof location === 'undefined') return site;
-  if (window.PODHOD_LANGS) return web(location) || site;
+  /* страница сайта (PWA) — у неё есть манифест; у офлайн-файла и документа Floot его нет (в их коде не должно быть и
+     упоминания списка языков: tools/build-floot-release.mjs) */
+  if (document.querySelector && document.querySelector('link[rel="manifest"]')) return web(location) || site;
   try { if (window.parent && window.parent !== window && location.protocol === 'about:') return web(window.parent.location) || site; } catch (e) {}
   return site;
 }
