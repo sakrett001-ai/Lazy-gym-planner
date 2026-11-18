@@ -341,7 +341,7 @@ await page.close();
     const after = await p.evaluate(() => ({ open: $('#first-run').open, goal: S.goal, level: S.level, dur: S.dur, place: S.place, equip: S.equip.slice().sort().join(), protect: S.protect.join(),
       groups: S.groups.length, fold: S.fold.setup, folded: $('.setup').classList.contains('folded'), planTop: $('#plan').getBoundingClientRect().top, vh: innerHeight, min: plan.minutes,
       focus: document.activeElement.className, durOn: $('#f-dur-seg [aria-pressed="true"]')?.dataset.dur, chip: [...document.querySelectorAll('.sb-chip')].map(c => c.textContent).join(' | ') }));
-    check(!after.open && after.goal === 'cut' && after.level === 'mid' && after.dur === 'short' && after.place === 'home' && after.equip === 'abwheel,db,kb' && after.protect === 'knees' && after.groups === 7,
+    check(!after.open && after.goal === 'cut' && after.level === 'mid' && after.dur === 'short' && after.place === 'home' && after.equip === 'abwheel,db,kb' && after.protect === 'knees' && after.groups === 8 /* «Всё тело» — с группой «Приводящие» (4.109) */,
       `ответы мастера — в параметрах плана (${JSON.stringify(after)})`);
     check(after.fold && after.folded && after.planTop < after.vh * .6 && after.min >= 20 && after.min <= 30 && after.durOn === 'short' && /20–30 мин/.test(after.chip),
       `после мастера параметры свёрнуты, план сверху, ≈20–30 мин (${JSON.stringify(after)})`);
@@ -368,7 +368,7 @@ await page.close();
     await p.click('#fr-skip'); await p.waitForTimeout(300);
     const s = await p.evaluate(() => ({ open: $('#first-run').open, goal: S.goal, level: S.level, dur: S.dur, format: S.format, place: S.place, groups: S.groups.join(), fold: S.fold.setup,
       seen: localStorage.getItem('podhod.planSeen.v1'), stored: !!localStorage.getItem('podhod.settings.v1'), min: plan.minutes, eyebrow: $('#plan .eyebrow').textContent }));
-    check(!s.open && s.goal === 'gentle' && s.level === 'beg' && s.dur === 'mid' && s.format === 'classic' && s.place === 'gym' && s.groups === 'chest,back,shoulders,quads,hams,glutes,abs' && s.fold && s.seen === '1' && s.stored && s.min >= 40 && s.min <= 50,
+    check(!s.open && s.goal === 'gentle' && s.level === 'beg' && s.dur === 'mid' && s.format === 'classic' && s.place === 'gym' && s.groups === 'chest,back,shoulders,quads,adductors,hams,glutes,abs' && s.fold && s.seen === '1' && s.stored && s.min >= 40 && s.min <= 50,
       `«Пропустить»: «Бережно», новичок, ≈45 мин, всё тело (${JSON.stringify(s)})`);
     await p.reload(); await p.waitForTimeout(500);
     check(await p.evaluate(() => !$('#first-run').open), '«Пропустить» — при следующем входе мастера нет');
@@ -387,7 +387,7 @@ await page.close();
     await p.evaluate(([k, v]) => { localStorage.clear(); localStorage.setItem(k, v); }, [key, val]);
     await p.reload(); await p.waitForTimeout(500);
     const s = await p.evaluate(() => ({ open: $('#first-run').open, goal: S.goal, dur: S.dur, n: plan && plan.items ? plan.items.length : 0 }));
-    check(!s.open && (key !== 'podhod.settings.v1' || (s.goal === 'strength' && s.dur === null && s.n === 7)), `${what}: мастера нет, план как раньше (${JSON.stringify(s)})`);
+    check(!s.open && (key !== 'podhod.settings.v1' || (s.goal === 'strength' && s.dur === null && s.n >= 6 && s.n <= 7 /* 4.109: потолок подходов на группу за тренировку — на три группы входит 6 упражнений из 7, под планом сказано почему */)), `${what}: мастера нет, план как раньше (${JSON.stringify(s)})`);
     await ctx.close();
   }
   {
@@ -711,7 +711,7 @@ await page.close();
   await v.close();
 }
 
-/* загрузка мышц по журналу (13d-muscle-load.js): панели нет при пустом журнале; с записями — 11 групп со статусами;
+/* загрузка мышц по журналу (13d-muscle-load.js): панели нет при пустом журнале; с записями — 12 групп (с 4.109 — и «Приводящие») со статусами;
    «Собрать тренировку на сегодня» собирает разовую тренировку с объяснением по группам; смена мышц — обычный подбор */
 {
   const seedLog = page => page.evaluate(() => {
@@ -726,7 +726,7 @@ await page.close();
   await j.evaluate(() => { S.view = 'journal'; renderSetup(); renderPlan(); });
   check(await j.evaluate(() => !document.querySelector('#ml') && !document.querySelector('[data-logpick]')), 'пустой журнал: панели «Загрузка мышц» и кнопки «По журналу» нет');
   await seedLog(j);
-  check(await shown(j, '#ml') && await j.evaluate(() => document.querySelectorAll('#ml .ml-list li').length === 11), 'журнал с записями: панель загрузки мышц видна, 11 групп');
+  check(await shown(j, '#ml') && await j.evaluate(() => document.querySelectorAll('#ml .ml-list li').length === 12), 'журнал с записями: панель загрузки мышц видна, 12 групп');
   check(await st(j, 'back') === 'loaded' && await st(j, 'biceps') === 'recovering' && await st(j, 'chest') === 'ready'
     /* 4.108: подходы того дня — тем же счётом, что полоса и план (целевая группа — целиком, остальные — половина), а не основные целиком */
     && await j.evaluate(() => { const L = muscleLoad().back.last, n = fmtNum(Math.round(L.v * 2) / 2); return new RegExp(`вчера, ${n.replace('.', '\\.')} подход`).test(document.querySelector('#ml [data-lg="back"] .ml-st').textContent) && L.v >= 4; }), 'статусы: спина вчера — нагружена, бицепс позавчера — восстанавливается, грудь — готова');
@@ -746,7 +746,7 @@ await page.close();
   check(await j.evaluate(() => plan.byLog && !!document.querySelector('.lp')), '«По журналу» в параметрах собирает заново');
   /* всё нагружено сегодня: тренировку не собираем, объясняем */
   await j.evaluate(() => {
-    for (const id of ['bbbench', 'latpull', 'ohp', 'bbcurl', 'pushdown', 'wristcurl', 'crunch', 'hipthrust', 'legext', 'legcurl', 'calfraise']) LOG.data[id] = [{ d: todayKey(), s: [[20, 10], [20, 10]] }];
+    for (const id of ['bbbench', 'latpull', 'ohp', 'bbcurl', 'pushdown', 'wristcurl', 'crunch', 'hipthrust', 'legext', 'adduction', 'legcurl', 'calfraise']) LOG.data[id] = [{ d: todayKey(), s: [[20, 10], [20, 10]] }];
     S.view = 'journal'; renderSetup(); renderPlan();
   });
   await j.click('[data-logpick="journal"]'); await j.waitForTimeout(100);
