@@ -344,7 +344,7 @@ function restoreBackup(obj, opts = {}) {
       for (const k of [...Object.keys(DEFAULTS), 'places', 'place', 'placesV', 'adapt', 'swaps']) if (k in obj.settings && k !== 'view' && k !== 'logPick' && !sp.bad.includes(k)) ok[k] = sp.s[k];
       if ('lr' in ok) ok.lr = cleanLr(ok.lr);
       if ('dur' in ok && !DURATIONS[ok.dur]) ok.dur = null;
-      Object.assign(S, ok); ensurePlaces(S); ensureCustoms(S); ensureFold(S); ensureProtect(S); /* имена по умолчанию — на языке страницы */
+      Object.assign(S, ok); ensurePlaces(S); ensureCustoms(S); if (gentleNoStatic() || sp.s.fmtNote) { S.fmtNote = true; fmtNoteFresh = true; } /* «Бережно» без статодинамики — сказано под планом */ ensureFold(S); ensureProtect(S); /* имена по умолчанию — на языке страницы */
       swaps = S.swaps && typeof S.swaps === 'object' && !Array.isArray(S.swaps) ? S.swaps : (S.swaps = {});
       saveSettings(); out.settings = true; out.bad = sp.bad;
     }

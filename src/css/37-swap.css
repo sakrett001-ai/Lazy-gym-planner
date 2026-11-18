@@ -12,3 +12,6 @@ div.sw-gone { margin-top:12px; }
 @media (hover:hover) { .sw-undo:hover { background:var(--accent); color:var(--accent-ink); } }
 .sw-pick .place small.sw-j { display:flex; align-items:center; gap:6px; font-weight:600; color:color-mix(in srgb, var(--hot) 82%, var(--ink)); }
 .sw-j .stress-dot { width:8px; height:8px; margin-top:0; }
+/* «Другой вариант: A → B» и «Вернуть» над планом (rerollHtml, 12c-swap.js) — как строка после замены */
+.reroll-msg { display:flex; flex-wrap:wrap; align-items:center; gap:6px 12px; margin:10px 0 0; padding:8px 10px; border-radius:10px; background:var(--accent-soft); color:var(--ink); }
+.reroll-msg > span { flex:1 1 11.25rem; min-width:0; overflow-wrap:anywhere; }

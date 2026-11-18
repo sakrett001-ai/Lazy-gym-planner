@@ -34,10 +34,11 @@ test('filters: kind, only-here, search; sections follow muscle groups', () => {
   reset();
   const html = a.galleryHtml(), order = [...html.matchAll(/id="mv-g-(\w+)"/g)].map(x => x[1]);
   assert.deepEqual(order, plain(a.GALLERY_GROUPS.map(g => g.id).filter(g => a.EX.some(ex => a.galleryGroup(ex) === g))), 'one section per muscle group, in the usual order');
-  /* приводящие — своим разделом после квадрицепса, не среди упражнений на квадрицепс (4.110, Alex 18); группа плана прежняя */
+  /* приводящие — своим разделом после квадрицепса, не среди упражнений на квадрицепс (4.110, Alex 18); с 4.109 это и своя
+     группа плана (решение владельца 15.11.2026) — раздел витрины тот же, а ex.g — 'adductors', а не 'quads' */
   assert.deepEqual(order.slice(order.indexOf('quads'), order.indexOf('quads') + 2), ['quads', 'adductors']);
   for (const id of ['copenhagen', 'copenhagenknee', 'adduction', 'cableadduct', 'bandadduct']) {
-    assert.equal(a.galleryGroup(a.EXI[id]), 'adductors', id); assert.equal(a.EXI[id].g, 'quads', id + ': plan group unchanged');
+    assert.equal(a.galleryGroup(a.EXI[id]), 'adductors', id); assert.equal(a.EXI[id].g, 'adductors', id + ': own plan group');
     assert.match(html, new RegExp(`id="mv-g-adductors"[^]*?data-gallery-open="${id}"[^]*?id="mv-g-hams"`), id + ' in the adductors section');
   }
   assert.equal([...html.matchAll(/data-gallery-open=/g)].length, a.EX.length);

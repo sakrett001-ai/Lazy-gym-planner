@@ -645,18 +645,21 @@ document.addEventListener('change', e => {
   if (e.target.id === 'place-adapt') { S.adapt = e.target.value || null; ensurePlaces(S); return regen(); }
 });
 const swapKey = () => S.mode === 'program' ? 'd' + S.day : 's';
-function regen(resetSwaps = true) { if (resetSwaps) swaps = S.swaps = {}; done = {}; planUndo = null; saveSettings(); renderSetup(); renderPlan(); }
+function regen(resetSwaps = true) { if (resetSwaps) swaps = S.swaps = {}; done = {}; planUndo = null; rerollMsg = null; if (fmtNoteFresh) fmtNoteFresh = false; else delete S.fmtNote; saveSettings(); renderSetup(); renderPlan(); }
 document.addEventListener('click', e => {
   const t = e.target.closest('button, summary');
   if (!t) return;
   if (t.dataset.set) {
     const k = t.dataset.set, prev = S.mode; S[k] = t.dataset.v;
     if (k === 'mode') { S.day = 0; switchModeSettings(prev); } else storePlanSetting(k);
+    /* выбрали «Бережно» при статодинамике — формат «Классика», и об этом сказано под планом */
+    gentleNoStatic();
     return regen();
   }
   if (t.dataset.days) { S.days = +t.dataset.days; S.split = DEFAULT_SPLIT[S.days]; S.day = 0; return regen(); }
   if (t.dataset.split) { S.split = t.dataset.split; S.day = 0; return regen(); }
-  if (t.dataset.week) { S.week = +t.dataset.week; done = {}; saveSettings(); renderPlan(); return; }
+  /* неделя цикла руками — дальше счёт от неё (weekPick, 11-planner.js) */
+  if (t.dataset.week) { weekPick(+t.dataset.week); done = {}; saveSettings(); renderPlan(); return; }
   if (t.dataset.day !== undefined) {
     S.day = +t.dataset.day; done = {}; saveSettings(); renderPlan();
     const dh = $('.day-head'); if (dh) dh.scrollIntoView({block:'nearest', behavior:reduceMotion ? 'auto' : 'smooth'});
@@ -685,7 +688,12 @@ document.addEventListener('click', e => {
     if (!placeDel) { placeDel = true; return renderSetup(); }
     S.places = S.places.filter(p => p.id !== S.place); placeDel = false; ensurePlaces(S); storePlanSetting('place'); return regen();
   }
-  if (t.id === 'reroll') { S.seed = (S.seed * 48271 + 11) % 2147483647; regen(); $('#plan').scrollIntoView({behavior:reduceMotion ? 'auto' : 'smooth', block:'start'}); return; }
+  /* «Другой вариант» — что поменялось и «Вернуть» (rerollPlan, 12c-swap.js); фокус — на «Вернуть», иначе на самой кнопке */
+  if (t.id === 'reroll') {
+    rerollPlan(); $('#plan').scrollIntoView({behavior:reduceMotion ? 'auto' : 'smooth', block:'start'});
+    const f = document.querySelector('[data-reroll-undo]') || document.getElementById('reroll'); if (f) f.focus({preventScroll:true});
+    return;
+  }
   /* текст плана и ссылка на него (11m-plan-link.js) */
   if (t.id === 'copy') { planCopy(); return; }
   /* «Заменить» — список замен под кнопкой и «Вернуть»: 12c-swap.js */

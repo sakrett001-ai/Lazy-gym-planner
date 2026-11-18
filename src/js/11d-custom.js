@@ -89,6 +89,9 @@ function cleanPlan(c, id) {
     items:(Array.isArray(c.items) ? c.items : []).map(cleanCustomItem).filter(it => it && !ids.has(it.id) && ids.add(it.id)).slice(0, CUSTOM_MAX)};
   for (const [k, dict] of [['goal', GOALS], ['format', FORMATS], ['level', LEVELS]]) if (typeof c[k] === 'string' && dict[c[k]]) out[k] = c[k];
   for (const k of ['group', 'for', 'from']) { const v = cleanText(c[k], CUSTOM_TEXT); if (v) out[k] = v; }
+  /* неделя цикла, из которой сохранён план (savePlansFrom): запас и процент в карточках — как в программе в ту неделю
+     (Марина 3 — старое, перепроверка Игоря: в программе на неделе 2 запас «3», в сохранённом плане — «2–3») */
+  if (Number.isInteger(c.week) && c.week >= 1 && c.week <= WEEKS.length) out.week = c.week;
   const gauto = out.group && autoKey(c.gauto, out.group, 'group'); if (gauto) { out.group = autoName(gauto); out.gauto = gauto; }
   const note = cleanText(c.note, CUSTOM_NOTE, true); if (note) out.note = note;
   /* 4.111: мышцы, место (код места на этом устройстве), отметки «Что беречь», с которыми план пришёл, и неделя цикла */
@@ -142,6 +145,7 @@ function loadPlanSettings() {
   /* место плана прежних версий (или удалённое) — то, где человек сейчас */
   if (!c.place || !S.places.some(p => p.id === c.place)) c.place = S.place;
   if (S.place !== c.place) { S.place = c.place; ensurePlaces(S); }
+  gentleNoStatic();
 }
 function storePlanSetting(k) {
   if (!PLAN_ALL.includes(k)) return;
@@ -152,6 +156,7 @@ function switchModeSettings(prev) {
   else if (prev === 'custom' && S.mode !== 'custom') {
     for (const k of PLAN_ALL) if (S.gen[k] !== undefined) S[k] = planVal(S.gen[k]);
     ensurePlaces(S);
+    gentleNoStatic();
   }
 }
 /* неделя цикла своего плана (сохранённого из недели программы или пришедшего с ней); программа — своя неделя; иначе null */
@@ -168,6 +173,8 @@ function openCustom(id) {
 }
 ensureCustoms(S);
 if (S.mode === 'custom') loadPlanSettings();
+/* сообщение о замене формата при запуске держится до первого действия */
+fmtNoteFresh = false;
 
 /* ---------- избранное ---------- */
 const isFav = id => S.fav.includes(id);
@@ -280,7 +287,8 @@ function customRx(rx, o, ex) {
   const r = {...rx};
   if (!rx.static) {
     if (o.sets) r.sets = o.sets;
-    if (o.reps && !ex.kind) { r.reps = o.reps; r.work = midOf(o.reps) * GOALS[S.goal].rep * (ex.uni ? 2 : 1); }
+    /* процент от максимума — по своим повторам плана (Руслан 14; пирамида — от меньшего до большего, loadAt, 11-planner.js) */
+    if (o.reps && !ex.kind) { r.reps = o.reps; r.work = midOf(o.reps) * GOALS[S.goal].rep * (ex.uni ? 2 : 1); if (rx.loadAt) r.load = rx.loadAt(o.reps); }
     if (o.rest !== undefined) r.rest = o.rest;
     if (o.tempo && !ex.kind) { r.tempo = o.tempo; r.tempoOwn = true; }
   }

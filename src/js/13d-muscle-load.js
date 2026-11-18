@@ -208,6 +208,32 @@ document.addEventListener('click', e => {
   const from = t.dataset.logpick;
   if (applyLogPick()) { window.scrollTo({top:0}); return; }
   const msg = 'Все группы мышц нагружены меньше 48 ч назад или для них нет упражнений здесь — сегодня лучше отдохнуть.';
-  const el = from === 'journal' ? $('#ml-msg') : $('#lp-msg');
+  const el = from === 'journal' ? $('#ml-msg') : from === 'rest' ? $('#rt-msg') : $('#lp-msg');
   if (el) { el.hidden = false; el.textContent = msg; }
 });
+
+/* ---------- «Сегодня лучше отдых» (Ольга 11 — старое, Галина 22) ----------
+   Основные мышцы этой тренировки вчера уже работали (2 подхода и больше как основные, LOAD.minSets) — хотя бы половина из
+   них, а сегодня на них ещё ничего не записано: над планом спокойная строка «сегодня лучше отдых, эту тренировку — завтра»
+   и кнопка «Собрать тренировку на сегодня» (на другие мышцы, logPick). Основание — то же, что у статуса «нагружена»:
+   Morán-Navarro et al., Eur J Appl Physiol 2017 — без отказа восстановление в основном за 24–48 ч. Было: на следующий день
+   тот же план с «Начать», а «нагружена, меньше 48 ч» — только в журнале. */
+function restTodayGroups(p, data = typeof LOG !== 'undefined' ? LOG.data : null, today = todayKey()) {
+  if (!p || !p.items || !data) return [];
+  const load = muscleLoad(data, today), main = new Map();
+  for (const it of p.items) for (const g of mainGroupsOf(it.ex)) main.set(g, (main.get(g) || 0) + (it.rx.circ ? it.rounds || 1 : it.rx.sets));
+  const planG = [...main].filter(([g, n]) => n >= LOAD.minSets && load[g]).map(([g]) => g);
+  if (planG.some(g => load[g].last && load[g].last.age === 0)) return [];
+  const tired = planG.filter(g => load[g].last && load[g].last.age === 1);
+  return tired.length && tired.length * 2 >= planG.length ? tired : [];
+}
+function restTodayHtml(p) {
+  if (S.view !== 'plan') return '';
+  const tired = restTodayGroups(p); if (!tired.length) return '';
+  const list = tired.map(g => GN[g].toLowerCase()).join(', ');
+  return `<section class="ar lp rest-today" aria-labelledby="rt-h"><h2 id="rt-h">${'Сегодня лучше отдых'}</h2>
+    <p>${esc('Вчера уже работали мышцы этой тренировки: {list}. Им нужно 24–48 часов, чтобы восстановиться, — эту тренировку лучше сделать завтра.'.replace('{list}', list))}</p>
+    <p>${'Хочется позаниматься сегодня — соберите тренировку на мышцы, которые отдохнули.'}</p>
+    <p><button type="button" class="btn btn-2" data-logpick="rest">${'Собрать тренировку на сегодня →'}</button></p>
+    <p class="p-hint" id="rt-msg" role="status" hidden></p></section>`;
+}
