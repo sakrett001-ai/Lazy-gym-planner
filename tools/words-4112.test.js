@@ -15,7 +15,7 @@ test('простые слова: «фунт» вместо «фнт», «лев.
   assert.match(ru.get('unitsHtml()'), /data-units="kg"[^>]*><b>кг<\/b>.*data-units="lb" aria-pressed="true"><b>фунты<\/b>/);
   ru.get(`S.units='kg'`);
   assert.equal(ru.get(`setText([30, 8, 120, {l:[30, 10], r:[30, 8]}], EXI.dbrow)`), 'лев. 30×10 · прав. 30×8');
-  assert.deepEqual(ru.json(`(()=>{const w=weightLabel({...previewItem('pullup'),eqIds:['pullup']});return [loadType(EXI.pullup),w.full,w.short];})()`), ['extra', 'Дополнительный вес, кг', '+ вес, кг']);
+  assert.deepEqual(ru.json(`(()=>{const w=weightLabel({...previewItem('pullup'),eqIds:['pullup']});return [loadType(EXI.pullup),w.full,w.short];})()`), ['extra', 'Дополнительный вес, кг', '+ кг']);
   const html = ru.get(`(()=>{LOG.data={bbbench:[{d:'${day(1)}',s:[[60,8]]}]};LOG.canExport=true;let h='';const p={innerHTML:''};const q=document.querySelector;document.querySelector=()=>p;try{renderJournal();}finally{document.querySelector=q;}return p.innerHTML;})()`);
   assert.match(html, />Полная копия<\/button>/);
   assert.doesNotMatch(html, /JSON|Эпли|фнт|Л\/П/);

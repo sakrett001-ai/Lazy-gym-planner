@@ -67,7 +67,7 @@ function weightLabel(it) {
   const impl = itemImpl(it), n = impCount(it.ex, impl);
   if (impl === 'db') return {full:n > 1 ? `Вес одной гантели, ${u}` : `Вес гантели, ${u}`, short:`Гантель, ${u}`, n, impl};
   if (impl === 'kb') return {full:n > 1 ? `Вес одной гири, ${u}` : `Вес гири, ${u}`, short:`Гиря, ${u}`, n, impl};
-  return lt === 'extra' ? {full:`Дополнительный вес, ${u}`, short:`+ вес, ${u}`, n:1, impl} : {full:`Вес, ${u}`, short:`Вес, ${u}`, n:1, impl};
+  return lt === 'extra' ? {full:`Дополнительный вес, ${u}`, short:`+ ${u}`, n:1, impl} : {full:`Вес, ${u}`, short:`Вес, ${u}`, n:1, impl};
 }
 /* «×2 = 40 кг» — вес двух снарядов в руках */
 function pairTotalText(n, kg) { return n > 1 && kg > 0 ? `×${n} = ${fmtW(kg * n)}` : ''; }
@@ -243,7 +243,9 @@ function setText(x, ex) { const sd = setSides(x, ex); return sd ? `${'лев.'} 
    подход с Л/П не переносится посередине */
 function setsText(sets, ex) {
   const xs = sets.filter(Boolean), lr = xs.some(x => setSides(x, ex));
-  return xs.map(x => lr ? `<span class="h-lr">${setText(x, ex)}</span>` : setText(x, ex)).join(lr ? '; ' : ' · ');
+  /* «;» — внутри неразрывного куска: со словами «лев.» и «прав.» подход занимает всю строку, и точка с запятой не должна
+     переноситься на свою */
+  return xs.map((x, i) => lr ? `<span class="h-lr">${setText(x, ex)}${i < xs.length - 1 ? ';' : ''}</span>` : setText(x, ex)).join(lr ? ' ' : ' · ');
 }
 /* «слабая сторона — левая: догоняйте её» — если в записи стороны отличались и слабой всё время была одна и та же */
 function weakSideNote(ex, s) {
