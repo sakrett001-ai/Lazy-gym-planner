@@ -329,6 +329,8 @@ for (const cfg of [{ width: 390 }, { width: 390, font: 150 }, { width: 390, font
   const { ctx, page } = await open({ ...cfg, firstRun: true });
   if (cfg.theme) await page.evaluate(t => { document.documentElement.dataset.theme = t; }, cfg.theme);
   for (const [name, go] of FR_WALK) {
+    /* 4.112: нажатие в первые полсекунды после смены вопроса не считается (двойное касание) — отвечаем после этой паузы */
+    await page.waitForFunction(() => Date.now() - FR.at >= FR_GUARD);
     await go(page); await page.waitForTimeout(80);
     await page.evaluate(() => document.querySelector('#first-run').scrollTo(0, 1e5));
     const bad = await page.evaluate(LAYOUT), names = await page.evaluate(NAMES), { low } = await page.evaluate(CONTRAST);

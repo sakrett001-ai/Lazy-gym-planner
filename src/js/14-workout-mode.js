@@ -150,12 +150,14 @@ function closeWorkout(fromBack){
 let wvSayT=0;
 function wvSay(text){const el=$('#wv-say');if(!el)return;clearTimeout(wvSayT);el.textContent='';wvSayT=setTimeout(()=>{el.textContent=text;},60);}
 const stepSay=s=>`${s.it.name}, ${'подход'} ${s.k+1} ${'из'} ${s.n}`;
-/* перешли к подходу (после отдыха, с экрана итога): фокус — на название упражнения, диктору — «Следующее: …» и задание */
-function workoutAnnounceStep(){
+/* перешли к подходу (после отдыха, с экрана итога): экран — с начала, фокус — на название упражнения, диктору — «Следующее: …»
+   и задание. stay — подход без отдыха (первое упражнение суперсета): экран и фокус остаются у полей (название следующего
+   упражнения — прямо над ними), диктору — «Подход записан. Следующее: …» */
+function workoutAnnounceStep(stay){
   if(!workout||$('#wv-active').hidden)return;
   const s=workout.queue[workout.index];
-  $('#workout-view').scrollTop=0;$('#wv-title').focus({preventScroll:true});
-  wvSay(`${'Следующее:'} ${stepSay(s)}. ${'Задание:'} ${$('#wv-target').textContent}.`);
+  if(!stay){$('#workout-view').scrollTop=0;$('#wv-title').focus({preventScroll:true});}
+  wvSay(`${stay?'Подход записан'+'. ':''}${'Следующее:'} ${stepSay(s)}. ${'Задание:'} ${$('#wv-target').textContent}.`);
 }
 function workoutShow(index){
   if(!workout)return;
@@ -342,7 +344,7 @@ function commitWorkout(e,sure){
   if(next<0){workoutFinish();return;}
   if(step.rest>0){const now=Date.now();workout.next=next;workout.restTotal=step.rest;workout.restFrom=now;workout.restUntil=now+step.rest*1000;workout.restPaused=0;RestAlarm.unlock();RestAlarm.arm(workout.restUntil,{from:now});workoutShowRest({recorded:true,quick:workout.quick});}
   /* без отдыха (первое упражнение суперсета) — сразу следующий подход: диктору — что записано и что дальше */
-  else{workoutShow(next);workoutAnnounceStep();}
+  else{workoutShow(next);workoutAnnounceStep(true);}
   saveWorkout();
 }
 /* фактический отдых — от записи подхода до «Перейти к подходу» — третьим полем в запись подхода, после которого отдыхали */
@@ -678,7 +680,8 @@ function setupWorkout(){
 
 function motionCamera(ex){
  const cameras=ex.anim.catalogCameras||[],saved=motionPrefs.views?.[ex.id];
- return cameras.includes(saved)?saved:'above';
+ /* ракурс по умолчанию: «Сбоку» у новых установок с 4.112 (motionPrefs.side, 12-motion-player.js), иначе «Сверху под углом» */
+ return cameras.includes(saved)?saved:motionPrefs.side&&cameras.includes('side')?'side':'above';
 }
 function cameraButtons(ex,current){
  return (ex.anim.catalogCameras||[]).map(key=>`<button type="button" data-motion-camera="${key}" aria-pressed="${current===key}">${CAMERA3[key].label}</button>`).join('');
@@ -775,7 +778,7 @@ function mountWorkoutCameras(){
  $('#wv-stage').replaceChildren(F.f.svg);$('#wv-cameras').innerHTML=cameraButtons(ex,key);$('#wv-cameras').hidden=!ex.anim.catalogCameras;
  $('#wv-angle').textContent=CAMERA3[key].label;configureMusclePanel('wv',F.it);configureStressPanel('wv',F);workoutFigure.pace.settle();applyWorkoutView(F);paintWorkoutMotion();
 }
-/* Вид фигуры на экране тренировки — тот же выбор, что в разборе (motionPrefs.view; по умолчанию «Анатомия»): кости и мышцы
+/* Вид фигуры на экране тренировки — тот же выбор, что в разборе (motionPrefs.view; по умолчанию с 4.112 — «Манекен», у прежних установок — «Анатомия»): кости и мышцы
    в почти невидимом силуэте кожи, цвет мышц по фазам. Переключатель «Анатомия · Скелет · Манекен» — маленький, в углу
    сцены. Пока кости и мышцы грузятся — манекен с подписью; ошибка загрузки — манекен с честной подписью; без объёмной
    графики (WebGL) — как раньше, плоская схема. Кости и мышцы обновляются с частотой ступени скорости (workoutFigure.pace:

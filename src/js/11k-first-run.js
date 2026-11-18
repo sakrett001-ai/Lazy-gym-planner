@@ -162,6 +162,9 @@ function frFinish(skip) {
   for (let k = 1; k <= 3; k++) if (OverlayBack.has('fr:' + k)) { OverlayBack.closed('fr:' + k); break; }
   try { localStorage.setItem(PLAN_SEEN, '1'); } catch (e) {}
   ensureFold(S).setup = setupFoldsHere();
+  /* телефон: «Подходов на группу мышц» после первых вопросов свёрнуто — первая карточка с фигурой ближе к началу плана
+     (Кира 5); раскрывается стрелкой, выбор запоминается */
+  if (!FR.again && setupFoldsHere()) ensureFold(S).load = true;
   const d = $('#first-run'); FR.closing = true; if (d.open) d.close(); FR.closing = false;
   document.documentElement.classList.remove('first-run');
   regen(); scrollTo(0, 0);
