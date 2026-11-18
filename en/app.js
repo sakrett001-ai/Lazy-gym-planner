@@ -1,4 +1,4 @@
-window.PODHOD_VERSION='4.110.0';window.PODHOD_BUILD='4.110.0-c07ed212d62a';window.PODHOD_RENDER={"skin":"fc3bf1632e","skeleton":"d5460535c6","anatomy":"ee8effafd8"};window.PODHOD_SEARCH={"alt":{"ex":{"pushup":["Отжимания от пола"],"diamond":["Отжимания с узкой постановкой рук"],"dip":["Отжимания на брусьях"],"bbbench":["Жим штанги лёжа"],"dbbench":["Жим гантелей лёжа"],"dbincline":["Жим гантелей на наклонной скамье"],"smithincline":["Жим в машине Смита на наклонной скамье"],"dbfly":["Разводка гантелей лёжа"],"cablefly":["Сведение рук в кроссовере"],"pecdeck":["Сведение рук в тренажёре «бабочка»"],"pullup":["Подтягивания"],"bbrow":["Тяга штанги в наклоне"],"dbrow":["Тяга гантели одной рукой"],"latpull":["Тяга верхнего блока"],"latpullv":["Тяга верхнего блока V-рукоятью"],"latpulluh":["Тяга верхнего блока обратным хватом"],"cablerow":["Тяга горизонтального блока"],"cablerowwide":["Тяга горизонтального блока широким хватом"],"deadlift":["Становая тяга"],"hyper":["Гиперэкстензия"],"shrug":["Шраги с гантелями"],"bandrow":["Тяга эспандера к поясу сидя"],"dbpress":["Жим гантелей сидя"],"ohp":["Жим штанги стоя"],"latraise":["Махи гантелями в стороны"],"bandlatraise":["Махи с эспандером в стороны"],"frontraise":["Подъём гантелей перед собой"],"facepull":["Тяга каната к лицу"],"pikepush":["Отжимания в упоре углом"],"bbcurl":["Подъём штанги на бицепс"],"dbcurl":["Подъём гантелей на бицепс"],"hammer":["Молотковые сгибания"],"cablecurl":["Сгибание рук на нижнем блоке"],"ropecurl":["Сгибание рук на нижнем блоке с канатом"],"bandcurl":["Сгибание рук с эспандером"],"chinup":["Подтягивания обратным хватом"],"skull":["Французский жим лёжа"],"pushdown":["Разгибание рук на верхнем блоке"],"ropepushdown":["Разгибание рук на верхнем блоке с канатом"],"bandpushdown":["Разгибание рук с эспандером"],"benchdip":["Обратные отжимания от скамьи"],"ohext":["Разгибание гантели из-за головы"],"wristcurl":["Сгибание запястий со штангой"],"farmer":["Прогулка фермера","Прогулка фермера с гирями"],"hang":["Вис на турнике"],"crunch":["Скручивания"],"plank":["Планка на предплечьях"],"sideplank":["Боковая планка"],"legraise":["Подъём ног в висе"],"lyinglegraise":["Подъём ног лёжа"],"cablecrunch":["Скручивания на блоке стоя на коленях"],"hipthrust":["Ягодичный мост со штангой"],"bridge":["Ягодичный мостик"],"kbswing":["Махи гирей"],"kbdeadlift":["Становая тяга с гирей"],"kbswing1":["Махи гирей одной рукой"],"kbclean":["Взятие гири на грудь"],"kbpress":["Жим гири стоя одной рукой"],"kbfrontsquat":["Фронтальные приседания с гирей"],"kbrow":["Тяга гири в наклоне одной рукой"],"kbfloorpress":["Жим гири лёжа на полу"],"kbsnatch":["Рывок гири"],"kbsllift":["Румынская тяга на одной ноге с гирей"],"kbwindmill":["Мельница с гирей"],"kbhalo":["Гало с гирей"],"kbtgu":["Турецкий подъём с гирей"],"bulgarian":["Болгарские выпады"],"stepup":["Зашагивания на скамью"],"rdl":["Румынская тяга","Румынская тяга со штангой","Румынская тяга с гантелями"],"squat":["Приседания со штангой"],"goblet":["Гоблет-приседания","Гоблет-приседания с гирей"],"airsquat":["Приседания с собственным весом"],"lunge":["Сплит-приседания"],"legpress":["Жим ногами"],"legpresshigh":["Жим ногами с высокой постановкой стоп"],"legpresslow":["Жим ногами с низкой постановкой стоп"],"legext":["Разгибание ног в тренажёре"],"smithsquat":["Приседания в машине Смита"],"legcurl":["Сгибание ног лёжа в тренажёре"],"calfraise":["Подъём на носки стоя"],"lpcalf":["Подъём на носки в тренажёре для жима ногами"],"inclinebb":["Жим штанги на наклонной скамье"],"declinebb":["Жим штанги на скамье с обратным наклоном"],"closegrip":["Жим лёжа узким хватом"],"pullover":["Пуловер с гантелью"],"declinepush":["Отжимания с ногами на скамье"],"invrow":["Австралийские подтягивания"],"straightpull":["Пуловер на блоке прямыми руками"],"goodmorning":["Наклоны со штангой на плечах"],"arnold":["Жим Арнольда"],"cablelat":["Отведение руки на нижнем блоке"],"reversefly":["Обратные разведения в «бабочке»"],"bandfacepull":["Тяга эспандера к лицу"],"cableextrot":["Вращение плеча наружу на блоке"],"bandextrot":["Вращение плеча наружу с эспандером"],"preacher":["Сгибание рук на скамье Скотта"],"inclinecurl":["Сгибание рук на наклонной скамье"],"concentration":["Концентрированный подъём на бицепс"],"kickback":["Разгибание руки с гантелью в наклоне"],"declinecrunch":["Скручивания на скамье для пресса"],"captainraise":["Подъём коленей в упоре на локтях"],"hangknee":["Подъём коленей в висе"],"rollout":["Выкатывание ролика с колен"],"sidebend":["Наклоны в сторону с гантелью"],"glutekick":["Отведение ноги назад на нижнем блоке"],"bandlatpull":["Тяга эспандера сверху на коленях"],"bandlegext":["Разгибание ноги сидя с эспандером"],"bandadduct":["Сведение ноги с эспандером"],"bandabduct":["Отведение ноги с мини-петлёй стоя"],"bandbridge":["Ягодичный мостик с мини-петлёй"],"bandfloorpress":["Жим лёжа на полу с эспандером"],"bandfly":["Сведение рук с эспандером у двери"],"sissysquat":["Сисси-присед с опорой о дверной косяк"],"jumpingjack":["Прыжки «ноги врозь»"],"burpee":["Бёрпи"],"mountain":["Скалолаз"],"jumpsquat":["Приседания с выпрыгиванием"],"thruster":["Трастеры с гантелями"],"wallpush":["Отжимания от стены"],"inclinepush":["Отжимания с руками на возвышении"],"kneepush":["Отжимания с колен"],"widepush":["Отжимания с широкой постановкой рук"],"archer":["Отжимания «лучник»"],"declinepike":["Отжимания в упоре углом с ногами на возвышении"],"superman":["Лодочка"],"ytw":["Разведения лёжа «Y-T-W»"],"towelrow":["Тяга полотенца у двери"],"tablerow":["Тяга под столом"],"reversesnow":["Обратные «снежные ангелы»"],"wallsit":["Стульчик у стены"],"revlunge":["Обратные выпады"],"sidelunge":["Боковые выпады"],"copenhagen":["Копенгагенская планка"],"copenhagenknee":["Копенгагенская планка с опорой коленом"],"pistolbox":["Приседания на одной ноге на скамью"],"sllift":["Румынская тяга на одной ноге"],"glutebridge1":["Ягодичный мостик на одной ноге"],"nordic":["Скандинавские сгибания"],"calf1":["Подъём на носок на одной ноге"],"deadbug":["«Мёртвый жук»"],"birddog":["«Птица-собака»"],"hollow":["Удержание «лодочки» на спине"],"bicycle":["«Велосипед»"],"plankup":["Планка с подъёмом на руки"],"chairdip":["Отжимания от стула"],"towelcurl":["Сгибание рук с полотенцем"],"chestpressm":["Жим от груди в тренажёре"],"smithbench":["Жим лёжа в машине Смита"],"cablelowfly":["Сведение рук в кроссовере снизу"],"leverrowm":["Рычажная тяга к поясу"],"tbarrow":["Тяга Т-грифа в наклоне"],"assistpull":["Подтягивания в гравитроне"],"chestrowdb":["Тяга гантелей лёжа на наклонной скамье"],"shoulderpressm":["Жим сидя в тренажёре"],"smithohp":["Жим сидя в машине Смита"],"assistdip":["Отжимания на брусьях в гравитроне"],"cableohext":["Разгибание рук с канатом над головой"],"cablewood":["«Дровосек» на блоке"],"pullthrough":["Протяжка на блоке между ног"],"cablekickback":["Отведение ноги назад на блоке"],"abduction":["Разведение ног в тренажёре"],"adduction":["Сведение ног в тренажёре"],"cableadduct":["Сведение ноги на нижнем блоке"],"hacksquat":["Приседания в гакк-машине"],"seatedcalf":["Подъём на носки сидя"],"standcalf":["Подъём на носки стоя в тренажёре"],"treadmill":["Беговая дорожка"],"bike":["Велотренажёр"],"rower":["Гребной тренажёр"],"elliptical":["Эллиптический тренажёр"],"stairs":["Степпер / лестница"]},"groups":{"chest":["Грудь"],"back":["Спина"],"shoulders":["Плечи"],"biceps":["Бицепс"],"triceps":["Трицепс"],"forearms":["Предплечья"],"abs":["Пресс"],"glutes":["Ягодицы"],"quads":["Квадрицепс"],"hams":["Задняя поверхность бедра"],"calves":["Икры"],"cardio":["Кардио"]},"muscles":{"chest":["Грудные"],"delt_f":["Передняя дельта"],"delt_s":["Средняя дельта"],"delt_r":["Задняя дельта"],"biceps":["Бицепс"],"triceps":["Трицепс"],"forearms":["Предплечья"],"abs":["Прямая мышца живота"],"obliques":["Косые мышцы живота"],"traps":["Трапеции"],"midback":["Ромбовидные и середина спины"],"lats":["Широчайшие"],"lowback":["Разгибатели спины"],"glutes":["Ягодичные"],"quads":["Квадрицепс"],"hams":["Задняя поверхность бедра"],"calves":["Икры"],"adductors":["Приводящие бедра"],"hipflex":["Сгибатели бедра"],"serratus":["Передняя зубчатая"],"cuff":["Вращательная манжета"]}},"syn":{"ex":{"pushup":["press-up"],"diamond":["алмазные отжимания","отжимания узким хватом","diamond push-up","triangle push-up"],"widepush":["отжимания широким хватом"],"dip":["брусья","parallel bar dip","chest dip"],"bbbench":["жим лёжа","бенч","бенч-пресс","bench press","bench","flat bench press"],"dbincline":["наклонный жим гантелей"],"smithincline":["наклонный жим в Смите","incline Smith press"],"inclinebb":["наклонный жим","жим на наклонной","incline bench press","incline bench"],"declinebb":["жим головой вниз","decline bench press","decline bench"],"dbfly":["dumbbell flye"],"pecdeck":["пек-дек","butterfly","machine fly"],"bbrow":["тяга штанги к поясу","barbell row"],"dbrow":["тяга гантели в наклоне","dumbbell row","single-arm dumbbell row"],"latpull":["вертикальная тяга","тяга верхнего блока к груди","lat pull-down"],"cablerow":["горизонтальная тяга","тяга нижнего блока","seated row","cable row","low row"],"hyper":["hyperextension"],"dbpress":["жим гантелей над головой","dumbbell shoulder press"],"ohp":["армейский жим","жим над головой","жим стоя","OHP","military press","standing press"],"latraise":["разведения в стороны","разведения гантелей в стороны","side raise","side lateral raise"],"facepull":["фейс-пул"],"bbcurl":["сгибание рук со штангой"],"dbcurl":["сгибание рук с гантелями"],"hammer":["молотки","хаммер"],"skull":["skull crusher","French press"],"pushdown":["трицепс на блоке","pressdown"],"ohext":["французский жим сидя","французский жим стоя"],"farmer":["фермерская прогулка","farmer’s walk"],"cablecrunch":["молитва"],"hipthrust":["хип-траст"],"kbswing":["свинг"],"kbswing1":["свинг одной рукой"],"kbtgu":["TGU","get-up"],"bulgarian":["болгарские сплит-приседания","Bulgarian squat","rear-foot-elevated split squat","RFESS"],"stepup":["степ-ап"],"rdl":["румынка","RDL"],"squat":["присед","squat","back squat"],"airsquat":["приседания без веса","air squat"],"lunge":["выпады на месте","static lunge"],"legcurl":["hamstring curl"],"invrow":["горизонтальные подтягивания","Australian pull-up","body row"],"straightpull":["straight-arm pulldown"],"goodmorning":["гуд морнинг"],"cablelat":["махи на нижнем блоке","cable side raise"],"reversefly":["обратная бабочка","rear delt fly"],"rollout":["ролик для пресса","ab wheel","ab roller"],"glutekick":["кикбэк"],"cablekickback":["кикбэк","cable kickback"],"jumpingjack":["джампинг джек","star jump"],"burpee":["бурпи"],"mountain":["альпинист"],"superman":["супермен"],"revlunge":["выпады назад"],"sidelunge":["выпады в сторону","side lunge"],"nordic":["нордические сгибания","Nordic hamstring curl"],"chestpressm":["жим в хаммере"],"leverrowm":["тяга в хаммере","machine row"],"cablewood":["wood chop"],"abduction":["абдуктор","abductor machine","hip abductor"],"adduction":["аддуктор","adductor machine","hip adductor"],"hacksquat":["гакк-приседания"],"treadmill":["бег","running"],"rower":["гребля","rowing","erg"],"elliptical":["орбитрек","эллипс","cross trainer"],"stairs":["stepper"]},"groups":{"chest":["грудные","pecs"],"shoulders":["дельты","delts","deltoids"],"forearms":["хват","grip"],"abs":["кор","core"],"glutes":["ягодичные"],"quads":["квадры","передняя поверхность бедра","quadriceps"],"hams":["бицепс бедра","задняя группа бедра"],"calves":["икроножные","calf"]},"muscles":{"obliques":["косые"],"lowback":["поясница"],"midback":["ромбовидные","rhomboids"],"adductors":["приводящие","adductors"],"serratus":["зубчатая","serratus"],"cuff":["ротаторы","ротаторная манжета"]}},"stop":["в","во","на","с","со","и","для","к","ко","по","из","от","у","за","упражнение","упражнения","упражнений","the","a","an","of","on","with","for","and","in","to","at","exercise","exercises"],"words":{"db":["dumbbell"],"bb":["barbell"],"kb":["kettlebell"]},"layout":{"en":"`qwertyuiop[]asdfghjkl;'zxcvbnm,./","ru":"ёйцукенгшщзхъфывапролджэячсмитьбю."}};window.PODHOD_LANG='en';window.PODHOD_LOCALE={"dec":".","plural":"one","dates":"intl","units":"region"};
+window.PODHOD_VERSION='4.111.0';window.PODHOD_BUILD='4.111.0-f97afd687453';window.PODHOD_RENDER={"skin":"1e558f64f4","skeleton":"5ad1677553","anatomy":"ffc0369238"};window.PODHOD_SEARCH={"alt":{"ex":{"pushup":["Отжимания от пола"],"diamond":["Отжимания с узкой постановкой рук"],"dip":["Отжимания на брусьях"],"bbbench":["Жим штанги лёжа"],"dbbench":["Жим гантелей лёжа"],"dbincline":["Жим гантелей на наклонной скамье"],"smithincline":["Жим в машине Смита на наклонной скамье"],"dbfly":["Разводка гантелей лёжа"],"cablefly":["Сведение рук в кроссовере"],"pecdeck":["Сведение рук в тренажёре «бабочка»"],"pullup":["Подтягивания"],"bbrow":["Тяга штанги в наклоне"],"dbrow":["Тяга гантели одной рукой"],"latpull":["Тяга верхнего блока"],"latpullv":["Тяга верхнего блока V-рукоятью"],"latpulluh":["Тяга верхнего блока обратным хватом"],"cablerow":["Тяга горизонтального блока"],"cablerowwide":["Тяга горизонтального блока широким хватом"],"deadlift":["Становая тяга"],"hyper":["Гиперэкстензия"],"shrug":["Шраги с гантелями"],"bandrow":["Тяга эспандера к поясу сидя"],"dbpress":["Жим гантелей сидя"],"ohp":["Жим штанги стоя"],"latraise":["Махи гантелями в стороны"],"bandlatraise":["Махи с эспандером в стороны"],"frontraise":["Подъём гантелей перед собой"],"facepull":["Тяга каната к лицу"],"pikepush":["Отжимания в упоре углом"],"bbcurl":["Подъём штанги на бицепс"],"dbcurl":["Подъём гантелей на бицепс"],"hammer":["Молотковые сгибания"],"cablecurl":["Сгибание рук на нижнем блоке"],"ropecurl":["Сгибание рук на нижнем блоке с канатом"],"bandcurl":["Сгибание рук с эспандером"],"chinup":["Подтягивания обратным хватом"],"skull":["Французский жим лёжа"],"pushdown":["Разгибание рук на верхнем блоке"],"ropepushdown":["Разгибание рук на верхнем блоке с канатом"],"bandpushdown":["Разгибание рук с эспандером"],"benchdip":["Обратные отжимания от скамьи"],"ohext":["Разгибание гантели из-за головы"],"wristcurl":["Сгибание запястий со штангой"],"farmer":["Прогулка фермера","Прогулка фермера с гирями"],"hang":["Вис на турнике"],"crunch":["Скручивания"],"plank":["Планка на предплечьях"],"sideplank":["Боковая планка"],"legraise":["Подъём ног в висе"],"lyinglegraise":["Подъём ног лёжа"],"cablecrunch":["Скручивания на блоке стоя на коленях"],"hipthrust":["Ягодичный мост со штангой"],"bridge":["Ягодичный мостик"],"kbswing":["Махи гирей"],"kbdeadlift":["Становая тяга с гирей"],"kbswing1":["Махи гирей одной рукой"],"kbclean":["Взятие гири на грудь"],"kbpress":["Жим гири стоя одной рукой"],"kbfrontsquat":["Фронтальные приседания с гирей"],"kbrow":["Тяга гири в наклоне одной рукой"],"kbfloorpress":["Жим гири лёжа на полу"],"kbsnatch":["Рывок гири"],"kbsllift":["Румынская тяга на одной ноге с гирей"],"kbwindmill":["Мельница с гирей"],"kbhalo":["Гало с гирей"],"kbtgu":["Турецкий подъём с гирей"],"bulgarian":["Болгарские выпады"],"stepup":["Зашагивания на скамью"],"rdl":["Румынская тяга","Румынская тяга со штангой","Румынская тяга с гантелями"],"squat":["Приседания со штангой"],"goblet":["Гоблет-приседания","Гоблет-приседания с гирей"],"airsquat":["Приседания с собственным весом"],"lunge":["Сплит-приседания"],"legpress":["Жим ногами"],"legpresshigh":["Жим ногами с высокой постановкой стоп"],"legpresslow":["Жим ногами с низкой постановкой стоп"],"legext":["Разгибание ног в тренажёре"],"smithsquat":["Приседания в машине Смита"],"legcurl":["Сгибание ног лёжа в тренажёре"],"calfraise":["Подъём на носки стоя"],"lpcalf":["Подъём на носки в тренажёре для жима ногами"],"inclinebb":["Жим штанги на наклонной скамье"],"declinebb":["Жим штанги на скамье с обратным наклоном"],"closegrip":["Жим лёжа узким хватом"],"pullover":["Пуловер с гантелью"],"declinepush":["Отжимания с ногами на скамье"],"invrow":["Австралийские подтягивания"],"straightpull":["Пуловер на блоке прямыми руками"],"goodmorning":["Наклоны со штангой на плечах"],"arnold":["Жим Арнольда"],"cablelat":["Отведение руки на нижнем блоке"],"reversefly":["Обратные разведения в «бабочке»"],"bandfacepull":["Тяга эспандера к лицу"],"cableextrot":["Вращение плеча наружу на блоке"],"bandextrot":["Вращение плеча наружу с эспандером"],"preacher":["Сгибание рук на скамье Скотта"],"inclinecurl":["Сгибание рук на наклонной скамье"],"concentration":["Концентрированный подъём на бицепс"],"kickback":["Разгибание руки с гантелью в наклоне"],"declinecrunch":["Скручивания на скамье для пресса"],"captainraise":["Подъём коленей в упоре на локтях"],"hangknee":["Подъём коленей в висе"],"rollout":["Выкатывание ролика с колен"],"sidebend":["Наклоны в сторону с гантелью"],"glutekick":["Отведение ноги назад на нижнем блоке"],"bandlatpull":["Тяга эспандера сверху на коленях"],"bandlegext":["Разгибание ноги сидя с эспандером"],"bandadduct":["Сведение ноги с эспандером"],"bandabduct":["Отведение ноги с мини-петлёй стоя"],"bandbridge":["Ягодичный мостик с мини-петлёй"],"bandfloorpress":["Жим лёжа на полу с эспандером"],"bandfly":["Сведение рук с эспандером у двери"],"sissysquat":["Сисси-присед с опорой о дверной косяк"],"jumpingjack":["Прыжки «ноги врозь»"],"burpee":["Бёрпи"],"mountain":["Скалолаз"],"jumpsquat":["Приседания с выпрыгиванием"],"thruster":["Трастеры с гантелями"],"wallpush":["Отжимания от стены"],"inclinepush":["Отжимания с руками на возвышении"],"kneepush":["Отжимания с колен"],"widepush":["Отжимания с широкой постановкой рук"],"archer":["Отжимания «лучник»"],"declinepike":["Отжимания в упоре углом с ногами на возвышении"],"superman":["Лодочка"],"ytw":["Разведения лёжа «Y-T-W»"],"towelrow":["Тяга полотенца у двери"],"tablerow":["Тяга под столом"],"reversesnow":["Обратные «снежные ангелы»"],"wallsit":["Стульчик у стены"],"revlunge":["Обратные выпады"],"sidelunge":["Боковые выпады"],"copenhagen":["Копенгагенская планка"],"copenhagenknee":["Копенгагенская планка с опорой коленом"],"pistolbox":["Приседания на одной ноге на скамью"],"sllift":["Румынская тяга на одной ноге"],"glutebridge1":["Ягодичный мостик на одной ноге"],"nordic":["Скандинавские сгибания"],"calf1":["Подъём на носок на одной ноге"],"deadbug":["«Мёртвый жук»"],"birddog":["«Птица-собака»"],"hollow":["Удержание «лодочки» на спине"],"bicycle":["«Велосипед»"],"plankup":["Планка с подъёмом на руки"],"chairdip":["Отжимания от стула"],"towelcurl":["Сгибание рук с полотенцем"],"chestpressm":["Жим от груди в тренажёре"],"smithbench":["Жим лёжа в машине Смита"],"cablelowfly":["Сведение рук в кроссовере снизу"],"leverrowm":["Рычажная тяга к поясу"],"tbarrow":["Тяга Т-грифа в наклоне"],"assistpull":["Подтягивания в гравитроне"],"chestrowdb":["Тяга гантелей лёжа на наклонной скамье"],"shoulderpressm":["Жим сидя в тренажёре"],"smithohp":["Жим сидя в машине Смита"],"assistdip":["Отжимания на брусьях в гравитроне"],"cableohext":["Разгибание рук с канатом над головой"],"cablewood":["«Дровосек» на блоке"],"pullthrough":["Протяжка на блоке между ног"],"cablekickback":["Отведение ноги назад на блоке"],"abduction":["Разведение ног в тренажёре"],"adduction":["Сведение ног в тренажёре"],"cableadduct":["Сведение ноги на нижнем блоке"],"hacksquat":["Приседания в гакк-машине"],"seatedcalf":["Подъём на носки сидя"],"standcalf":["Подъём на носки стоя в тренажёре"],"treadmill":["Беговая дорожка"],"bike":["Велотренажёр"],"rower":["Гребной тренажёр"],"elliptical":["Эллиптический тренажёр"],"stairs":["Степпер / лестница"]},"groups":{"chest":["Грудь"],"back":["Спина"],"shoulders":["Плечи"],"biceps":["Бицепс"],"triceps":["Трицепс"],"forearms":["Предплечья"],"abs":["Пресс"],"glutes":["Ягодицы"],"quads":["Квадрицепс"],"adductors":["Приводящие"],"hams":["Задняя поверхность бедра"],"calves":["Икры"],"cardio":["Кардио"]},"muscles":{"chest":["Грудные"],"delt_f":["Передняя дельта"],"delt_s":["Средняя дельта"],"delt_r":["Задняя дельта"],"biceps":["Бицепс"],"triceps":["Трицепс"],"forearms":["Предплечья"],"abs":["Прямая мышца живота"],"obliques":["Косые мышцы живота"],"traps":["Трапеции"],"midback":["Ромбовидные и середина спины"],"lats":["Широчайшие"],"lowback":["Разгибатели спины"],"glutes":["Ягодичные"],"quads":["Квадрицепс"],"hams":["Задняя поверхность бедра"],"calves":["Икры"],"adductors":["Приводящие бедра"],"hipflex":["Сгибатели бедра"],"serratus":["Передняя зубчатая"],"cuff":["Вращательная манжета"]}},"syn":{"ex":{"pushup":["press-up"],"diamond":["алмазные отжимания","отжимания узким хватом","diamond push-up","triangle push-up"],"widepush":["отжимания широким хватом"],"dip":["брусья","parallel bar dip","chest dip"],"bbbench":["жим лёжа","бенч","бенч-пресс","bench press","bench","flat bench press"],"dbincline":["наклонный жим гантелей"],"smithincline":["наклонный жим в Смите","incline Smith press"],"inclinebb":["наклонный жим","жим на наклонной","incline bench press","incline bench"],"declinebb":["жим головой вниз","decline bench press","decline bench"],"dbfly":["dumbbell flye"],"pecdeck":["пек-дек","butterfly","machine fly"],"bbrow":["тяга штанги к поясу","barbell row"],"dbrow":["тяга гантели в наклоне","dumbbell row","single-arm dumbbell row"],"latpull":["вертикальная тяга","тяга верхнего блока к груди","lat pull-down"],"cablerow":["горизонтальная тяга","тяга нижнего блока","seated row","cable row","low row"],"hyper":["hyperextension"],"dbpress":["жим гантелей над головой","dumbbell shoulder press"],"ohp":["армейский жим","жим над головой","жим стоя","OHP","military press","standing press"],"latraise":["разведения в стороны","разведения гантелей в стороны","side raise","side lateral raise"],"facepull":["фейс-пул"],"bbcurl":["сгибание рук со штангой"],"dbcurl":["сгибание рук с гантелями"],"hammer":["молотки","хаммер"],"skull":["skull crusher","French press"],"pushdown":["трицепс на блоке","pressdown"],"ohext":["французский жим сидя","французский жим стоя"],"farmer":["фермерская прогулка","farmer’s walk"],"cablecrunch":["молитва"],"hipthrust":["хип-траст"],"kbswing":["свинг"],"kbswing1":["свинг одной рукой"],"kbtgu":["TGU","get-up"],"bulgarian":["болгарские сплит-приседания","Bulgarian squat","rear-foot-elevated split squat","RFESS"],"stepup":["степ-ап"],"rdl":["румынка","RDL"],"squat":["присед","squat","back squat"],"airsquat":["приседания без веса","air squat"],"lunge":["выпады на месте","static lunge"],"legcurl":["hamstring curl"],"invrow":["горизонтальные подтягивания","Australian pull-up","body row"],"straightpull":["straight-arm pulldown"],"goodmorning":["гуд морнинг"],"cablelat":["махи на нижнем блоке","cable side raise"],"reversefly":["обратная бабочка","rear delt fly"],"rollout":["ролик для пресса","ab wheel","ab roller"],"glutekick":["кикбэк"],"cablekickback":["кикбэк","cable kickback"],"jumpingjack":["джампинг джек","star jump"],"burpee":["бурпи"],"mountain":["альпинист"],"superman":["супермен"],"revlunge":["выпады назад"],"sidelunge":["выпады в сторону","side lunge"],"nordic":["нордические сгибания","Nordic hamstring curl"],"chestpressm":["жим в хаммере"],"leverrowm":["тяга в хаммере","machine row"],"cablewood":["wood chop"],"abduction":["абдуктор","abductor machine","hip abductor"],"adduction":["аддуктор","adductor machine","hip adductor"],"hacksquat":["гакк-приседания"],"treadmill":["бег","running"],"rower":["гребля","rowing","erg"],"elliptical":["орбитрек","эллипс","cross trainer"],"stairs":["stepper"]},"groups":{"chest":["грудные","pecs"],"shoulders":["дельты","delts","deltoids"],"forearms":["хват","grip"],"abs":["кор","core"],"glutes":["ягодичные"],"quads":["квадры","передняя поверхность бедра","quadriceps"],"hams":["бицепс бедра","задняя группа бедра"],"calves":["икроножные","calf"]},"muscles":{"obliques":["косые"],"lowback":["поясница"],"midback":["ромбовидные","rhomboids"],"adductors":["приводящие","adductors"],"serratus":["зубчатая","serratus"],"cuff":["ротаторы","ротаторная манжета"]}},"stop":["в","во","на","с","со","и","для","к","ко","по","из","от","у","за","упражнение","упражнения","упражнений","the","a","an","of","on","with","for","and","in","to","at","exercise","exercises"],"words":{"db":["dumbbell"],"bb":["barbell"],"kb":["kettlebell"]},"layout":{"en":"`qwertyuiop[]asdfghjkl;'zxcvbnm,./","ru":"ёйцукенгшщзхъфывапролджэячсмитьбю."}};window.PODHOD_LANG='en';window.PODHOD_LOCALE={"dec":".","plural":"one","dates":"intl","units":"region"};
 /* ===================== SVG-ФИГУРА: общие помощники ===================== */
 const D2R = Math.PI / 180;
 const SVGNS = 'http://www.w3.org/2000/svg';
@@ -337,20 +337,26 @@ const EQUIP_PRESETS = [
 const GROUPS = [
   {id:'chest', name:'Chest'}, {id:'back', name:'Back'}, {id:'shoulders', name:'Shoulders'}, {id:'biceps', name:'Biceps'},
   {id:'triceps', name:'Triceps'}, {id:'forearms', name:'Forearms'}, {id:'abs', name:'Abs'}, {id:'glutes', name:'Glutes'},
-  {id:'quads', name:'Quads'}, {id:'hams', name:'Hamstrings'}, {id:'calves', name:'Calves'}, {id:'cardio', name:'Cardio'}
+  {id:'quads', name:'Quads'}, {id:'adductors', name:'Adductors'}, {id:'hams', name:'Hamstrings'}, {id:'calves', name:'Calves'},
+  {id:'cardio', name:'Cardio'}
 ];
 const GROUP_PRESETS = [
   {id:'push', name:'Push', g:['chest', 'shoulders', 'triceps']},
   {id:'pull', name:'Pull', g:['back', 'biceps', 'forearms']},
-  {id:'legs', name:'Legs', g:['quads', 'hams', 'glutes', 'calves']},
+  {id:'legs', name:'Legs', g:['quads', 'adductors', 'hams', 'glutes', 'calves']},
   {id:'upper', name:'Upper', g:['chest', 'back', 'shoulders', 'biceps', 'triceps']},
-  {id:'full', name:'Full body', g:['chest', 'back', 'shoulders', 'quads', 'hams', 'glutes', 'abs']}
+  {id:'full', name:'Full body', g:['chest', 'back', 'shoulders', 'quads', 'adductors', 'hams', 'glutes', 'abs']}
 ];
+/* Приводящие бедра — своя группа плана (4.109, решение владельца 15.11.2026 по ревью 4.110; Alex 18, замечание анатома:
+   приводящие — не квадрицепс). Было: MUSCLE_GROUP.adductors = 'quads' — выбрав «Квадрицепс», можно было получить сведение
+   ног. В «Ногах» и «Всём теле» они есть, как раньше были внутри квадрицепса; сохранённые настройки, где выбран квадрицепс,
+   получают и приводящие (cleanSettings, groupsV), имена планов по прежним ключам групп — те же (groupsTitle). В недельной
+   программе они — группа дней «Низ» и «Ноги»: одно упражнение в день, цель недели (DAY_T, dayTargets, 11-planner.js) */
 const MUSCLE_GROUP = {chest:'chest', delt_f:'shoulders', delt_s:'shoulders', delt_r:'shoulders', biceps:'biceps', triceps:'triceps',
   forearms:'forearms', abs:'abs', obliques:'abs', traps:'back', midback:'back', lats:'back', lowback:'back', glutes:'glutes',
   quads:'quads', hams:'hams', calves:'calves',
-  /* новые мышцы — к группам, в которых их тренируют: сведение ног — среди упражнений на бёдра, подъёмы ног — в прессе */
-  adductors:'quads', hipflex:'abs', serratus:'chest', cuff:'shoulders'};
+  /* новые мышцы — к группам, в которых их тренируют: подъёмы ног — в прессе; приводящие — своя группа (4.109) */
+  adductors:'adductors', hipflex:'abs', serratus:'chest', cuff:'shoulders'};
 
 /* ---------- упражнения ---------- */
 const EX = [
@@ -1253,7 +1259,7 @@ EX.push(
  breath:'Exhale as you straighten, inhale as you bend.',
  note:'A home alternative to the leg extension machine. The band loads most near a straight knee, the machine closer to a bent one; in the lifting phase the quadriceps work about the same.',
  anim:{}},
-{id:'bandadduct', name:'Band hip adduction', eq:[['band']], g:'quads', pri:['adductors'], sec:['obliques'], type:'i', lvl:1, uni:true,
+{id:'bandadduct', name:'Band hip adduction', eq:[['band']], g:'adductors', pri:['adductors'], sec:['obliques'], type:'i', lvl:1, uni:true,
  tech:['Anchor the middle of the band at the bottom of the door and clip both ends to an ankle strap on the leg nearer the door.',
    'Stand side-on to the door so the band is taut with the leg out to the side. Hands on your hips.',
    'Bring the almost straight leg to the standing leg and slightly past it, in front of the standing foot.',
@@ -1480,7 +1486,7 @@ EX.push(
    Scand J Med Sci Sports 2016; 26(11):1334–1342; doi:10.1111/sms.12585). Опора коленом (короткий рычаг) — облегчённые
    ступени программ на приводящие (Polglass et al., BMJ Open Sport Exerc Med 2019; 5(1):e000570; doi:10.1136/bmjsem-2019-000570).
    Приводящие работают на обеих ногах, поэтому без деления по сторонам (09d, CATALOG_LATERALITY); косые — помощники. */
-{id:'copenhagen', name:'Copenhagen plank', eq:[['bench']], g:'quads', pri:['adductors'], sec:['obliques'], type:'i', lvl:3, dose:'ctrl', uni:true,
+{id:'copenhagen', name:'Copenhagen plank', eq:[['bench']], g:'adductors', pri:['adductors'], sec:['obliques'], type:'i', lvl:3, dose:'ctrl', uni:true,
  tech:['Lie on your side on your forearm, elbow under your shoulder. Rest the inside of your top ankle on a bench; your bottom leg goes under the bench.',
    'Lift your hips until your body is a straight line from shoulders to feet, and bring your bottom leg up to the underside of the bench.',
    'Lower your hips about halfway, until your bottom foot touches the floor, and lift again. Then switch sides.'],
@@ -1488,7 +1494,7 @@ EX.push(
  breath:'Exhale on the way up, inhale on the way down.',
  note:'Support at the ankle is a long lever: the load on the adductors and on the knee is high. Start with 3–5 reps per side in the first week and add a little at a time. If your knee bothers you or you can’t do it yet, support the knee instead.',
  anim:{}},
-{id:'copenhagenknee', name:'Short-lever Copenhagen plank', eq:[['bench']], g:'quads', pri:['adductors'], sec:['obliques'], type:'i', lvl:2, dose:'ctrl', uni:true,
+{id:'copenhagenknee', name:'Short-lever Copenhagen plank', eq:[['bench']], g:'adductors', pri:['adductors'], sec:['obliques'], type:'i', lvl:2, dose:'ctrl', uni:true,
  tech:['Lie on your side on your forearm, elbow under your shoulder. Bend your top leg and rest the inside of the knee and shin on a bench; bend your bottom leg the same way, knee on the floor under the bench.',
    'Lift your hips until your body is a straight line from shoulders to knee, and bring your bent bottom leg up to the underside of the bench.',
    'Lower your hips about halfway until the bottom knee touches the floor, and lift again. Then switch sides.'],
@@ -1697,7 +1703,7 @@ EX.push(
  err:['Leaning the torso forward', 'Jerky reps', 'Too much weight — hips lifting off the seat'],
  breath:'Exhale as you push out, inhale as you bring them back.',
  anim:{}},
-{id:'adduction', name:'Hip adduction machine', eq:[['abductor']], g:'quads', pri:['adductors'], sec:[], type:'i', lvl:1,
+{id:'adduction', name:'Hip adduction machine', eq:[['abductor']], g:'adductors', pri:['adductors'], sec:[], type:'i', lvl:1,
  tech:['Sit with the pads against the inside of your knees, legs spread until you feel a stretch in the adductors.',
    'Squeeze your knees together using your inner thighs and hold.',
    'Open slowly back to the starting stretch.'],
@@ -1709,7 +1715,7 @@ EX.push(
    приводящие упражнений, вместе с копенгагенским и сведением в тренажёре (Serner et al., Br J Sports Med 2014; 48(14):1108–1114;
    doi:10.1136/bjsports-2012-091746); у блока сопротивление ровнее по амплитуде. Косые и прямая мышца живота в этих
    упражнениях работают слабо — косые здесь стабилизатор корпуса на одной ноге. */
-{id:'cableadduct', name:'Standing cable hip adduction', eq:[['cable']], g:'quads', pri:['adductors'], sec:['obliques'], type:'i', lvl:1, uni:true,
+{id:'cableadduct', name:'Standing cable hip adduction', eq:[['cable']], g:'adductors', pri:['adductors'], sec:['obliques'], type:'i', lvl:1, uni:true,
  tech:['Strap the cuff to the ankle nearest the pulley. Stand side-on to the machine, about an arm’s length away, and hold it with your near hand.',
    'From out to the side, bring your nearly straight leg to your standing leg and a little past it, in front of your standing foot.',
    'Return the leg slowly without letting the cable yank it. Keep your torso upright and the foot off the floor. Then switch sides.'],
@@ -11772,6 +11778,36 @@ const reserveDo = r => 'leave {n} in the tank'.replace('{n}', reserveReps(r));
 const NEAR_LIMIT = 'to the last clean rep', NOT_LIMIT = 'not to your limit';
 /* «≈ 70–80% от максимума на 1 повтор» */
 const pctText = p => '{p} of your one-rep max'.replace('{p}', p);
+/* Процент от максимума на 1 повтор — по самим повторам и запасу, той же формулой Эпли, что расчётный максимум в журнале
+   (e1rm, 13-log.js): подход «N повторов и ещё R в запасе» — это N + R повторов до предела, вес ≈ максимум / (1 + (N + R) / 30).
+   Было: проценты задавались отдельно от повторов и спорили с ними — неделя «Вход» в «Силе»: 3–5 повторов с запасом 3 — это
+   6–8 повторов до предела, ≈79–83%, а писалось 75–80% (Руслан 14); «Сила» в круговой — 6–8 повторов с запасом 1–2 при
+   «≈80–90%», на деле ≈75–81% (Игорь 9). «До последнего чистого повтора» — запас 0–1. Разгрузка — на 10–15% ниже первой
+   недели цикла (WEEKS[3].note; DELOAD_PCT). */
+const epleyPct = n => 100 / (1 + n / 30);
+function repRange(r) {
+  const s = String(r);
+  /* пирамида своего плана «8/5/3/1» — от меньшего до большего */
+  if (s.includes('/')) { const l = s.split('/').map(Number).filter(v => v > 0); if (l.length) return [Math.min(...l), Math.max(...l)]; }
+  const m = s.match(/(\d+)\D+(\d+)/); if (m) return [+m[1], +m[2]]; const n = parseInt(s, 10) || 0; return [n, n];
+}
+/* [нижний, верхний] процент: больше повторов и запаса — меньше процент */
+function pctNums(reps, rir) { const [lo, hi] = repRange(reps), r = rir || {lo:0, hi:1}; return [Math.round(epleyPct(hi + r.hi)), Math.round(epleyPct(lo + r.lo))]; }
+const pctStr = ([a, b]) => a === b ? `≈ ${a}%` : `≈ ${a}–${b}%`;
+const DELOAD_PCT = [0.85, 0.9];
+/* Таблица Прилепина — пересказ: Hristov H., «Prilepin's chart», 2005 (elitefts.com): таблица составлена по дневникам
+   тренировок тяжелоатлетов; первоисточник (А. С. Прилепин, 1970-е) не нашёл. При 70–79% от максимума — 3–6 повторов
+   в подходе и 12–24 за упражнение, при 80–89% — 2–4 и 10–20, от 90% — 1–2 и 4–10. У тяжёлой базы подходов столько, чтобы
+   верхняя граница повторов × подходы не выходила за верх зоны (было: «Сила», опытный — три жима по 6×3–5 при 80–90%,
+   до 30 повторов в каждом, Игорь 5). Таблица — о подходах до 6 повторов: у «Массы» (6–10 повторов) не применяется. */
+const PRILEPIN = [{from:90, max:10}, {from:80, max:20}, {from:70, max:24}];
+function prilepinSets(reps, pct) {
+  const hi = repRange(reps)[1]; if (!hi || hi > 6) return null;
+  const z = PRILEPIN.find(z => (pct[0] + pct[1]) / 2 >= z.from);
+  return z ? Math.max(1, Math.floor(z.max / hi)) : null;
+}
+/* тяжёлое упражнение тренировки — при 80% от максимума и выше (середина диапазона) */
+const HEAVY_PCT = 80;
 /* «3-0-1-0» (опускание – пауза – подъём – пауза, секунды; X — быстро) → «усилие 1 с, возврат 3 с». Усилие — подъём
    веса (или тяга, жим), возврат — опускание: так верно для любого упражнения, и для тяги сверху тоже. Паузы — если не 0 */
 function tempoWords(code) {
@@ -11786,9 +11822,9 @@ const FORMATS = {classic:{name:'Straight sets', hint:'set by set'}, superset:{na
 const LEVELS = {beg:{name:'Beginner', ask:'Beginner', about:'Just starting or back after a long break'},
   mid:{name:'Intermediate', ask:'Intermediate', about:'I train regularly and know the main exercises'},
   adv:{name:'Advanced', ask:'Advanced', about:'Training for over a year, solid technique'}};
-const GROUP_W = {chest:1.3, back:1.5, shoulders:1, biceps:0.8, triceps:0.8, forearms:0.5, abs:0.8, glutes:1, quads:1.3, hams:1, calves:0.6, cardio:0.9};
-const GROUP_ORDER = {quads:0, glutes:0, hams:1, back:2, chest:3, shoulders:4, triceps:5, biceps:5, forearms:6, calves:7, cardio:7.5, abs:8};
-const REGION = {quads:'low', glutes:'low', hams:'low', calves:'low', chest:'push', shoulders:'push', triceps:'push', back:'pull', biceps:'pull', forearms:'pull', abs:'core', cardio:'cardio'};
+const GROUP_W = {chest:1.3, back:1.5, shoulders:1, biceps:0.8, triceps:0.8, forearms:0.5, abs:0.8, glutes:1, quads:1.3, adductors:0.3, hams:1, calves:0.6, cardio:0.9};
+const GROUP_ORDER = {quads:0, glutes:0, hams:1, adductors:1, back:2, chest:3, shoulders:4, triceps:5, biceps:5, forearms:6, calves:7, cardio:7.5, abs:8};
+const REGION = {quads:'low', glutes:'low', hams:'low', adductors:'low', calves:'low', chest:'push', shoulders:'push', triceps:'push', back:'pull', biceps:'pull', forearms:'pull', abs:'core', cardio:'cardio'};
 const ANTAGONIST = {chest:'back', back:'chest', biceps:'triceps', triceps:'biceps', quads:'hams', hams:'quads', shoulders:'back', glutes:'abs', abs:'glutes'};
 const PATTERN = {};
 [['squat', 'squat goblet airsquat smithsquat legpress legpresshigh legpresslow'], ['hinge', 'deadlift rdl kbswing hyper goodmorning sllift nordic'],
@@ -11869,9 +11905,11 @@ const weighId = id => id !== 'gravitron' && (WEIGHABLE.has(id) || MACH_EQ.has(id
      (McGill S., Strength Cond J 2010; 32(3):33–46). doseReps — свои повторы при любой цели: турецкий подъём — 1–3
      на сторону, каждый повтор ≈25 с (repSec; Tsatsouline 2019 — по одному, медленно), мельница — 3–5;
    · iso — прицельные (type 'i') — как раньше; упражнения на время и дистанцию — по времени и дистанции. */
+/* · ecc — уступающее движение на пределе силы: скандинавские сгибания (ECC ниже) — мало повторов при любой цели. */
 function schemeOf(ex) {
   if (ex.kind) return ex.kind;
   if (ex.g === 'cardio') return 'cardio';
+  if (ECC[ex.id]) return 'ecc';
   if (ex.dose) return ex.dose;
   if (ex.type !== 'c') return 'iso';
   return !ex.uni && !ex.assist && ex.eq.some(g => g.every(weighId)) ? 'heavy' : 'mod';
@@ -11912,11 +11950,21 @@ const DAY_T = {
   fb:{name:'Full body', g:['hams', 'glutes', 'back', 'chest', 'triceps', 'abs']},
   fc:{name:'Full body', g:['quads', 'glutes', 'back', 'shoulders', 'chest', 'calves']},
   up:{name:'Upper', g:['chest', 'back', 'shoulders', 'biceps', 'triceps']},
-  lo:{name:'Lower', g:['quads', 'hams', 'glutes', 'calves', 'abs']},
+  lo:{name:'Lower', g:['quads', 'adductors', 'hams', 'glutes', 'calves', 'abs']},
   push:{name:'Push', g:['chest', 'shoulders', 'triceps']},
   pull:{name:'Pull', g:['back', 'biceps', 'forearms']},
-  legs:{name:'Legs', g:['quads', 'hams', 'glutes', 'calves', 'abs']}
+  legs:{name:'Legs', g:['quads', 'adductors', 'hams', 'glutes', 'calves', 'abs']}
 };
+/* Приводящие в днях «Низ» и «Ноги» — группа дня с целью недели (решение владельца 18.11.2026 по вопросу 7 ревью 4.109):
+   одно упражнение на них в день (pickExercises), потолок подходов и отметки суставов — общие. Где своего упражнения на
+   приводящие нет (нет тренажёра, блока, ленты, скамьи — или всё, что есть, не подходит отметкам), они остаются попутной
+   группой без оценки «мало»: программа их и не может нагрузить отдельно */
+function dayTargets(tid) {
+  const g = DAY_T[tid].g;
+  if (!g.includes('adductors')) return g;
+  const E = effEquip(programEquip() || S.equip), lvlMax = S.level === 'beg' ? 2 : 3;
+  return EX.some(ex => ex.g === 'adductors' && available(ex, E) && ex.lvl <= lvlMax && fitsBody(ex)) ? g : g.filter(x => x !== 'adductors');
+}
 const SPLITS = {
   full:{name:'Full body', hint:'all at once', note:'Every workout hits the whole body, and exercises change from day to day. The best option for beginners and for 2–3 workouts a week.',
     days:{2:['fa', 'fb'], 3:['fa', 'fb', 'fc'], 4:['fa', 'fb', 'fc', 'fa']}},
@@ -11932,23 +11980,47 @@ const WD_FULL = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturd
 /* мезоцикл: 4 недели с ростом нагрузки и разгрузкой; запас повторов в описании недели — тот же, что в строке нагрузки
    (reserveOf: цель и уровень открытого плана) */
 const WEEKS = [
-  {name:'Intro', rir:3, add:0, pct:{strength:'≈ 75–80%', mass:'≈ 65–70%', cut:'≈ 55–60%', gentle:'≈ 40–50%'},
+  /* проценты недель — по повторам и запасу недели (pctNums): у «Силы» 3–5 повторов с запасом 3, 2 и 1 — ≈79–83, 81–86
+     и 83–88% (было: 75–80, 80–85, 85–90 — не по повторам, Руслан 14) */
+  {name:'Intro', rir:3, add:0,
     get note() { return `Choose working weights that leave ${reserveText(reserveOf(this))} in every set. Log weight and reps: the progress over the next weeks builds on them.`; }},
-  {name:'Loading', rir:2, add:1, pct:{strength:'≈ 80–85%', mass:'≈ 70–75%', cut:'≈ 60–65%', gentle:'≈ 45–55%'},
-    /* двойная прогрессия — простыми словами: сначала повторы до верхней границы, потом вес */
+  {name:'Loading', rir:2, add:1,
+    /* двойная прогрессия — простыми словами: сначала повторы до верхней границы, потом вес. Подход добавляется всем
+       упражнениям на несколько мышц, кроме своей дозы (скандинавские сгибания, подвижность, махи); у тяжёлой базы «Силы»
+       первая неделя на подход короче, чтобы со второй уложиться в таблицу Прилепина (prescribe) */
     get note() { return `Exercises that work several muscles get an extra set. Build reps up to the top of the range first, then add weight; ${reserveDo(reserveOf(this))}.`; }},
-  {name:'Peak', rir:1, add:1, pct:{strength:'≈ 85–90%', mass:'≈ 75–80%', cut:'≈ 65–70%', gentle:'≈ 50–60%'},
+  {name:'Peak', rir:1, add:1,
     get note() { return `The hardest week of the cycle: ${reserveDo(reserveOf(this))}, clean technique. If your sleep or well-being is poor, stay at the week 2 load.`; }},
-  {name:'Deload', rir:4, deload:true, pct:{strength:'≈ 65–70%', mass:'≈ 55–60%', cut:'≈ 50–55%', gentle:'≈ 40%'},
-    note:'About 40% fewer sets, weight 10–15% lower. This is recovery before a new cycle, not a skipped week: muscles grow when they have time to recover.'}
+  /* разгрузка: подходов — 60% от первой недели (deloadSets, buildPlanAt), процент — на 10–15% ниже первой недели
+     (было: «на 40% меньше», а выходило от 0 до 50%, в «Бережно» — без изменений; Игорь 18) */
+  {name:'Deload', rir:4, deload:true,
+    note:'About 40% fewer sets than in week 1, weight 10–15% lower. This is recovery before a new cycle, not a skipped week: muscles grow when they have time to recover.'}
 ];
+
+/* Неделя цикла переключается сама (Руслан 15: «всё ещё 1 из 4 — переключается только руками»): S.weekFrom — понедельник первой
+   недели цикла, каждый понедельник — следующая неделя, после разгрузки — снова «Вход». Неделю выбрали руками — счёт пойдёт от
+   неё (weekPick). Настройки прежних версий (weekFrom нет) — открытая неделя считается этой. Даты — ключи 'YYYY-MM-DD'
+   (todayKey, 13-log.js), без часовых поясов */
+function mondayKey(key) { const [y, m, d] = key.split('-').map(Number), t = new Date(Date.UTC(y, m - 1, d)); t.setUTCDate(t.getUTCDate() - (t.getUTCDay() + 6) % 7); return t.toISOString().slice(0, 10); }
+function shiftKey(key, days) { const [y, m, d] = key.split('-').map(Number); return new Date(Date.UTC(y, m - 1, d + days)).toISOString().slice(0, 10); }
+/* вернёт true, если неделя сменилась */
+function weekSync(today = todayKey()) {
+  const mon = mondayKey(today);
+  if (!S.weekFrom) { S.weekFrom = shiftKey(mon, -(S.week - 1) * 7); return false; }
+  const n = Math.floor(Math.round((Date.parse(mon) - Date.parse(S.weekFrom)) / 864e5) / 7), w = ((n % WEEKS.length) + WEEKS.length) % WEEKS.length + 1;
+  if (w === S.week) return false;
+  S.week = w; return true;
+}
+function weekPick(w, today = todayKey()) { S.week = w; S.weekFrom = shiftKey(mondayKey(today), -(w - 1) * 7); }
 
 const DEFAULTS = {goal:'mass', format:'classic', level:'mid', count:6, groups:['chest', 'back', 'shoulders'], equip:EQUIP.map(e => e.id), seed:7,
   mode:'single', days:3, split:'full', week:1, day:0, view:'plan', atlasM:'chest', focus:null, fav:[], customs:[], custom:null, gen:null, author:'', fold:null, protect:[],
   cpLast:null /* свой план, куда последним добавляли из атласа или разбора (11d-custom.js) */,
   lr:{} /* «Л/П отдельно» по упражнениям: {exId:true} (13a-sets.js) */,
   units:null /* единицы веса: 'kg' | 'lb'; null — по языку и региону браузера (13-log.js: wu) */,
-  dur:null /* время на тренировку: 'short' | 'mid' | 'long' (11j-duration.js); null — число упражнений из «Упражнений» (count) */};
+  dur:null /* время на тренировку: 'short' | 'mid' | 'long' (11j-duration.js); null — число упражнений из «Упражнений» (count) */,
+  weekFrom:null /* понедельник первой недели цикла 'YYYY-MM-DD' (weekSync): неделя цикла переключается сама */,
+  groupsV:1 /* версия списка групп: 1 — с 4.109, есть группа «Приводящие» (cleanSettings) */};
 const STORE = 'podhod.settings.v1';
 /* Самый первый запуск: в этом браузере ещё нет ни настроек, ни журнала, ни начатой тренировки, ни отметки «план показан»
    (11f-fold.js). Тогда вместо параметров — короткий мастер из нескольких вопросов (11k-first-run.js). Проверяется до того,
@@ -11967,8 +12039,21 @@ const SETTINGS_LABEL = {goal:'goal', format:'format', level:'level', count:'numb
   seed:'selection variant', mode:'what to build', days:'workouts per week', split:'split', week:'cycle week', day:'day of the week',
   view:'section', atlasM:'muscle in the atlas', focus:'focus', fav:'favorites', customs:'custom plans', custom:'open custom plan',
   gen:'settings of regular plans', author:'plan author name', fold:'collapsed blocks', protect:'“Protect joints”', cpLast:'last custom plan',
-  lr:'“L/R separately”', units:'weight units', dur:'workout time', places:'places', place:'place', placesV:'places', adapt:'“like another place”',
+  lr:'“L/R separately”', units:'weight units', dur:'workout time', weekFrom:'cycle start', groupsV:'muscles', places:'places', place:'place', placesV:'places', adapt:'“like another place”',
   swaps:'exercise swaps', logPick:'workout from the log', health:'“Health”', pain:'exercises marked as painful'};
+/* «Бережно» — без статодинамики (решение владельца 18.11.2026 по вопросу 3 ревью 4.109): долгое напряжение без расслабления
+   поднимает давление сильнее обычных подходов, а врач этот режим не смотрел. В выборе формата кнопка недоступна, под ней —
+   причина (renderSetup); сохранённое так (настройки, копия, свой план, файл плана) — формат «Классика», и один раз об этом
+   сказано под планом (S.fmtNote, warnHtml; снимается первым же действием — regen). */
+const GENTLE_NO_STATIC = 'Gentle mode has no static-dynamic format: holding tension without relaxing raises blood pressure.';
+const GENTLE_STATIC_FIXED = 'The format was changed to Straight sets: gentle mode no longer offers static-dynamic — holding tension without relaxing raises blood pressure.';
+let fmtNoteFresh = false;
+function gentleNoStatic(s = S) {
+  if (s.goal !== 'gentle' || s.format !== 'static') return false;
+  s.format = 'classic'; s.fmtNote = true; fmtNoteFresh = true;
+  if (s === S && typeof storePlanSetting === 'function') storePlanSetting('format');
+  return true;
+}
 function cleanSettings(raw) {
   const s = raw && typeof raw === 'object' && !Array.isArray(raw) ? {...raw} : {}, bad = new Set();
   if (!raw || typeof raw !== 'object' || Array.isArray(raw)) bad.add('*');
@@ -11984,11 +12069,26 @@ function cleanSettings(raw) {
   fix('week', int(1, WEEKS.length)); fix('day', int(0, 6)); fix('view', v => ['plan', 'atlas', 'journal'].includes(v));
   fix('atlasM', v => typeof v === 'string' && v.length <= 40); fix('focus', v => v === null || (typeof v === 'string' && !!MUSCLE_NAMES[v]));
   ids('groups', GROUPS.map(g => g.id)); ids('equip', EQUIP.map(e => e.id));
+  /* настройки прежних версий (без groupsV): упражнения на приводящие были в группе «Квадрицепс» — выбран квадрицепс, выбраны
+     и приводящие, чтобы тренировки не поменялись молча (решение владельца 15.11.2026). Так же — в резервной копии
+     (restoreSettingsPlan) и в настройках другой вкладки прежней версии (settingsMerge) */
+  fix('groupsV', int(0, 99));
+  if (!(s.groupsV >= 1)) {
+    if (Array.isArray(s.groups) && s.groups.includes('quads') && !s.groups.includes('adductors'))
+      s.groups = s.groups.concat('adductors').sort((a, b) => GROUPS.findIndex(x => x.id === a) - GROUPS.findIndex(x => x.id === b));
+    s.groupsV = 1;
+  }
   fix('fav', Array.isArray); fix('customs', Array.isArray); fix('custom', strOrNull(40)); fix('gen', v => v === null || obj(v));
   fix('author', v => typeof v === 'string'); fix('fold', v => v === null || obj(v)); fix('protect', v => Array.isArray(v) && v.every(x => typeof x === 'string'));
   /* 4.106: ответы о здоровье и пометки «больно» (11l-health.js, 11g-gentle.js — ensureHealth, ensurePain дочищают по спискам) */
   fix('health', v => Array.isArray(v) && v.every(x => typeof x === 'string')); fix('pain', v => v === null || obj(v));
   fix('cpLast', strOrNull(40)); fix('lr', obj); fix('units', v => v === null || v === 'kg' || v === 'lb'); fix('dur', strOrNull(12));
+  fix('weekFrom', v => v === null || (typeof v === 'string' && /^\d{4}-\d\d-\d\d$/.test(v)));
+  /* «Бережно» со статодинамикой из прежних версий — «Классика», с пометкой для сообщения (gentleNoStatic); то же в
+     параметрах обычных планов (gen) */
+  if ('fmtNote' in s && s.fmtNote !== true) delete s.fmtNote;
+  if (s.goal === 'gentle' && s.format === 'static') { s.format = 'classic'; s.fmtNote = true; }
+  if (obj(s.gen) && s.gen.goal === 'gentle' && s.gen.format === 'static') { s.gen = {...s.gen, format:'classic'}; s.fmtNote = true; }
   fix('places', Array.isArray); fix('place', v => typeof v === 'string' && v.length <= 40);
   fix('placesV', v => Number.isInteger(v) && v >= 0 && v < 1000); fix('adapt', strOrNull(40));
   fix('swaps', v => obj(v) && Object.values(v).every(x => obj(x) || Array.isArray(x))); fix('logPick', v => v === null || obj(v));
@@ -12096,10 +12196,15 @@ function propHas(ex, E) {
   const ch = new Set(chosenEquip(ex, E));
   return id => ch.has(id) || ((ex.opt || []).includes(id) && E.has(id));
 }
+/* Подручные предметы, без которых упражнение без снаряжения не сделать, — в строке инвентаря карточки, а не «Без снаряжения»
+   (Галина 20: в плане «Без снаряжения» — «Тяга полотенца у двери»). Отдельного «своего инвентаря» (стул, бутылки) нет —
+   решение владельца 8: отложить */
+const HOUSEHOLD = {towelrow:'a towel and a closed door', towelcurl:'a towel', tablerow:'a sturdy table', chairdip:'a stable chair',
+  sissysquat:'a door frame to hold on to', nordic:'something to anchor your feet, or a partner'};
 function equipLine(ex, E) {
   const ch = [...new Set(chosenEquip(ex, E).map(eqName))];
   const opt = (ex.opt || []).filter(id => E.has(id)).map(id => eqName(id).toLowerCase() + ' optional');
-  if (!ch.length) return ['No equipment'].concat(opt).join(' · ');
+  if (!ch.length) return [HOUSEHOLD[ex.id] ? 'You need: {what}'.replace('{what}', HOUSEHOLD[ex.id]) : 'No equipment'].concat(opt).join(' · ');
   return ch.concat(opt).join(' · ');
 }
 /* группы упражнения: целевая и группы основных мышц (только для чтения: множество общее, считается один раз) */
@@ -12130,11 +12235,14 @@ function splitFor(days) { return SPLITS[S.split] && SPLITS[S.split].days[days] ?
    должно быть после этого дня, hi — верх шкалы «много», sets(ex) — подходов упражнения в этот день. Упражнение тем
    желаннее, чем больше закрывает недобора до aim, и уступает, если вывело бы группу (и вспомогательной работой) выше
    «много». opt.pp — жимы и тяги прошлых дней: день тяги без груди и плеч добирает тяги за день жима. */
+/* opt.need — виды движения, которые этот день недели должен закрыть (квота недели, buildProgram); в отдельной тренировке —
+   свои (singleNeeds). opt.chain — ступени цепочек прогрессии (PROG_CHAIN), уже стоящие в прошлых днях недели новичка. */
 function pickExercises(E, rand, groups, count, avoid, opt) {
   const G = new Set(groups);
   const lvlMax = S.level === 'beg' ? 2 : 3;
-  /* в круговой — без медленных навыков со своими повторами (турецкий подъём, мельница): в круге они превращаются в 15–20 повторов */
-  const pool = EX.filter(ex => available(ex, E) && ex.lvl <= lvlMax && (ex.g !== 'cardio' || G.has('cardio')) && (S.format !== 'static' || staticOk(ex)) && (S.format !== 'circuit' || !ex.doseReps) && fitsBody(ex));
+  /* в круговой — без медленных навыков со своими повторами (турецкий подъём, мельница, скандинавские сгибания): в круге они
+     превращаются в 15–20 повторов */
+  const pool = EX.filter(ex => available(ex, E) && ex.lvl <= lvlMax && (ex.g !== 'cardio' || G.has('cardio')) && (S.format !== 'static' || staticOk(ex)) && (S.format !== 'circuit' || (!ex.doseReps && !ECC[ex.id])) && fitsBody(ex));
   const beg = S.level === 'beg', PB = typeof PROG_BEG_HARD !== 'undefined' ? PROG_BEG_HARD : null;
   /* движения, для которых здесь есть вариант с весом: облегчённые без веса им уступают */
   const loaded = new Set(pool.filter(ex => !ex.assist && weighable(ex, E) && PATTERN[ex.id]).map(ex => famOf(PATTERN[ex.id])));
@@ -12178,36 +12286,85 @@ function pickExercises(E, rand, groups, count, avoid, opt) {
   const focus = S.focus && MUSCLE_NAMES[S.focus] ? S.focus : null;
   const focusNeed = focus && G.has(MUSCLE_GROUP[focus]) ? (S.mode === 'program' ? Math.max(1, Math.round(count / 5)) : Math.ceil(count / 3)) : 0;
   const jitter = pool.map(() => rand());
+  /* потолок подходов на группу за тренировку (sessionCap; дробный счёт groupShare): упражнение, которое вывело бы свою
+     целевую группу выше потолка больше чем на 2 подхода, не берётся — лишние подходы срезает capTrim (buildPlanAt); за
+     вспомогательную работу сверх потолка — минус. В статодинамике — одно упражнение на группу мышц (STATIC_ONE) */
+  const sCap = sessionCap(), staticOne = S.format === 'static';
+  /* виды движения: в программе — квота недели этого дня (opt.need), в отдельной тренировке — свои (singleNeeds) */
+  const needs = (opt && opt.need ? opt.need : !vol && !(opt && opt.weights) ? singleNeeds(G, count, pool, E) : []).filter(k => pool.some(KIND_TEST[k]));
+  /* день со спиной и грудью или плечами от 4 упражнений — хотя бы одна тяга и один жим, даже когда группа за неделю уже
+     набрала своё (было: дом, опытный, 5 дней — день «Верх» без жима и тяги, одни прицельные) */
+  if (ppOn && count >= 3) for (const k of ['pull', 'push']) if (!needs.includes(k) && pool.some(KIND_TEST[k])) needs.push(k);
+  /* тяги разного рисунка: вторая тяга того же рисунка (две тяги сверху) уступает, если есть другая (Игорь 20) */
+  const pullPats = new Set(pool.filter(ex => sideOf(ex) === 'pull' && !lightAlt(ex)).map(ex => PATTERN[ex.id]));
+  /* новичку там, где есть тренажёры: тренажёры и блок — раньше, гиря, штанга второго уровня и стойка на одной ноге с весом
+     уступают (ACSM, Ratamess et al., MSSE 2009; 41(3):687–708, с. 691: тренажёры «считаются безопаснее и легче в
+     освоении»; новичку — и свободные веса, и тренажёры). Было: «Зал / Масса / Новичок» — фронтальный присед с гирей,
+     румынская тяга на одной ноге с гирей, тяга Т-грифа, жим штанги на наклонной (Артём 5) */
+  const begGym = beg && pool.some(machineLike);
+  /* новичку в неделе — одна ступень цепочки (отжимания с колен во все дни, а не «с колен» в среду и «широкие» в пятницу:
+     Марина 16) */
+  const chainUsed = beg && opt && opt.chain ? opt.chain : null;
+  /* новичку: движения, у которых здесь есть ступень полегче, — тяжёлая ступень (брусья, отжимания от пола) только после неё:
+     при потолке подходов в тренировку входит одно упражнение на группу, и это должна быть ступень полегче */
+  const easyFam = new Set(beg && PB ? pool.filter(ex => !PB.has(ex.id) && PATTERN[ex.id]).map(ex => famOf(PATTERN[ex.id])) : []);
+  let capSkip = false;
+  /* сколько дало бы упражнение, урезанное до двух подходов (capTrim не режет ниже): если и так какая-то из выбранных групп
+     выше потолка больше чем на полподхода — упражнение не берётся (вспомогательная работа многих упражнений) */
+  const minSets = ex => Math.min(2, setsOf(ex));
   /* strict — второй проход, если жимов вышло больше тяг (тяга так и не нашлась, например спина уже «много»): тогда жим —
      только после тяги */
   const run = strict => {
   pushN = carry; pullN = 0; pressN = 0; spineN = 0; hingeN = 0; proj = vol ? {...vol.have} : null; picked = []; usedPat = {}; quota = {};
+  const sess = {}, sessMin = {}, met = new Set(), pullUsed = new Set(); capSkip = false;
   for (const g of groups) quota[g] = count * GW[g] / totalW;
   while (picked.length < count) {
     let best = null, bestScore = -1e9;
     const focusShort = !!focus && picked.filter(p => p.pri.includes(focus)).length < focusNeed;
     /* весь недобор до целей дня — верхняя граница плюса за объём у любого упражнения */
     let defTot = 0; if (vol) for (const g in vol.aim) defTot += Math.max(0, vol.aim[g] - (proj[g] || 0));
+    const open = needs.filter(k => !met.has(k));
+    let skipNow = false, inG = false;
     pool.forEach((ex, i) => {
       if (picked.includes(ex)) return;
       /* тяжёлая база с нагрузкой на позвоночник — не больше cap за тренировку, тяга с пола или наклон — одна */
       if (HEAVY_SPINE.has(ex.id) && (spineN >= cap || (PATTERN[ex.id] === 'hinge' && hingeN >= 1))) return;
+      /* в дне программы — одно упражнение на приводящие (малая группа; остальное она добирает попутно) */
+      if (vol && ex.g === 'adductors' && picked.some(p => p.g === 'adductors')) return;
+      /* запас сверх потолка — то, что потом срежет capTrim: в классике по подходу у двух упражнений, в паре суперсета — один
+         (подходы пары общие), в круговой — нисколько (круги одни на все станции) */
+      if (staticOne ? picked.some(p => p.g === ex.g) : G.has(ex.g) && (sess[ex.g] || 0) + setsOf(ex) > sCap + ({circuit:0, superset:1}[S.format] ?? 2)) { capSkip = skipNow = true; return; }
+      /* попутные группы: в классике и суперсетах — по наименьшему числу подходов (лишнее срежет capTrim), в круговой — по
+         кругам (они одни на все станции и не срезаются) */
+      if (!staticOne && shareList(ex).some(([g, x]) => G.has(g) && (S.format === 'circuit' ? (sess[g] || 0) + x * setsOf(ex) : (sessMin[g] || 0) + x * minSets(ex)) > sCap + 0.5)) { capSkip = skipNow = true; return; }
       const gs = groupsOf(ex);
       let gain = 0;
-      if (G.has(ex.g)) gain += Math.max(quota[ex.g], 0) * 1.6 + 0.4;
+      /* плюс выбранной группе и после её доли; у малой группы (вес ниже 0,5 — приводящие) — меньше: в «Всём теле» сведение
+         ног не вытесняет упражнение на большие группы */
+      if (G.has(ex.g)) gain += Math.max(quota[ex.g], 0) * 1.6 + 0.4 * Math.min(1, GW[ex.g] / 0.5);
       for (const g of gs) if (g !== ex.g && G.has(g)) gain += Math.max(quota[g], 0) * 0.5;
       if (gain <= 0) return;
       /* новичку начальные ступени цепочек — без скидки желательности, ступени выше уступают (отжимания с колен — раньше,
          чем от пола и на брусьях) */
       const ew = beg && PB && PROG_BEG_START.has(ex.id) ? 1 : EX_W[ex.id] ?? 1;
       let sc = gain + (ex.type === 'c' ? compBonus : 0) + jitter[i] * 0.5 + (ew - 1) * 1.4;
+      /* новичку ступень цепочки выше той, что уже стоит в этой тренировке или неделе, — нет (было: дома без инвентаря в одном
+         дне отжимания с колен и широкие, Марина 16) */
+      if (beg && PB && PB.has(ex.id) && typeof PROG_CHAIN !== 'undefined' && PROG_CHAIN[ex.id] !== undefined
+        && (picked.some(p => PROG_CHAIN[p.id] === PROG_CHAIN[ex.id] && !PB.has(p.id)) || (chainUsed && chainUsed.has(PROG_CHAIN[ex.id]) && !PB.has(chainUsed.get(PROG_CHAIN[ex.id]))))) return;
+      /* есть ступень полегче того же движения — тяжёлая ступень новичку не подбирается (дальше поведёт подсказка «Следующая
+         ступень» под карточкой) */
+      if (beg && PB && PB.has(ex.id) && easyFam.has(famOf(PATTERN[ex.id]))) return;
       if (beg && PB && PB.has(ex.id)) sc -= 0.9;
       if (lightAlt(ex)) sc -= ex.assist ? 1.5 : 1.2;
       if (FRONT_RAISE.has(ex.id) && picked.some(p => sideOf(p) === 'push')) sc -= 1;
       const side = ppOn ? sideOf(ex) : null;
       /* жим — только если после него остаётся место, чтобы тяг стало не меньше; тяга, пока их меньше, — с большим плюсом;
          когда тяг уже больше, ещё одна — с минусом (поровну, а не вдвое) */
-      if (side === 'push' && (strict ? pushN + setsOf(ex) > pullN : pushN + setsOf(ex) - pullN > (count - picked.length - 1) * maxS)) sc -= strict ? 50 : 3;
+      /* второй проход: жим, после которого тяг станет меньше, — только если больше нечего; в статодинамике (одно упражнение на
+         группу, тяг мало) не берётся вовсе — лучше упражнением меньше */
+      if (side === 'push' && strict && pushN + setsOf(ex) > pullN) { if (staticOne) return; sc -= 50; }
+      if (side === 'push' && !strict && pushN + setsOf(ex) - pullN > (count - picked.length - 1) * maxS) sc -= 3;
       if (side === 'pull') sc += pullN < pushN ? 1 + 0.5 * Math.min(3, (pushN - pullN) / maxS) : pullN > pushN && pushDay ? -0.8 : 0;
       /* в тренировке со спиной и грудью или плечами от 4 упражнений — хотя бы одна тяга и один жим (основа тренировки всего
          тела и верха: ноги, жим, тяга — NSCA Essentials, 2016, гл. 17), а не только прицельные на мелкие группы */
@@ -12226,9 +12383,21 @@ function pickExercises(E, rand, groups, count, avoid, opt) {
       const pat = PATTERN[ex.id] || 'solo:' + ex.id;
       if (usedPat[pat]) sc -= 0.7 * usedPat[pat] + (picked.some(p => PATTERN[p.id] === pat && p.g === ex.g) ? 0.4 : 0);
       if (!G.has(ex.g)) sc -= 0.6;
-      if (avoid && avoid.has(ex.id)) sc -= 1.1;
+      const chain = typeof PROG_CHAIN !== 'undefined' ? PROG_CHAIN[ex.id] : undefined, sameStep = chainUsed && chain !== undefined && chainUsed.get(chain) === ex.id;
+      if (avoid && avoid.has(ex.id) && !sameStep) sc -= 1.1;
+      if (chainUsed && chain !== undefined && chainUsed.has(chain) && !sameStep) sc -= 1.5;
       if (focus) sc += ex.pri.includes(focus) ? (focusShort ? 3 : 0.6) + (ex.pri[0] === focus ? 0.3 : 0) : ex.sec.includes(focus) ? 0.35 : 0;
-      if (typeof PROG_CHAIN !== 'undefined' && PROG_CHAIN[ex.id] !== undefined && picked.some(p => PROG_CHAIN[p.id] === PROG_CHAIN[ex.id])) sc -= 1.5;
+      if (chain !== undefined && picked.some(p => PROG_CHAIN[p.id] === chain)) sc -= 1.5;
+      /* вид движения, которого дню ещё не хватает, — с большим плюсом за каждый (тяга к поясу закрывает и «тягу», и «тягу к
+         поясу» — она раньше тяги сверху) */
+      if (open.length) sc += 10 * open.filter(k => KIND_TEST[k](ex)).length;
+      /* день программы от 5 упражнений, где приводящие — группа дня («Низ», «Ноги»): одно упражнение на них входит наверняка,
+         после главных многосуставных (в коротком дне из 3–4 упражнений они остаются попутными) */
+      if (vol && ex.g === 'adductors' && G.has('adductors') && count >= 5 && picked.length >= 3 && !picked.some(p => p.g === 'adductors')) sc += 10;
+      if (sideOf(ex) === 'pull' && pullUsed.has(PATTERN[ex.id]) && [...pullPats].some(p => !pullUsed.has(p))) sc -= 2;
+      if (begGym) sc += begHard(ex) ? -1.2 : machineLike(ex) ? 0.5 : 0;
+      /* сверх потолка подходов группы за тренировку — вспомогательной работой */
+      { const s0 = setsOf(ex); let o = 0; for (const [g, x] of shareList(ex)) { const v = sess[g] || 0; o += Math.max(0, v + x * s0 - sCap) - Math.max(0, v - sCap); } sc -= 0.4 * o; }
       /* объём недели — последним: плюс за недобор не больше 0,25 × подходы × доли групп, и если даже с ним упражнение
          не лучше уже найденного, считать не нужно */
       if (vol) {
@@ -12236,11 +12405,18 @@ function pickExercises(E, rand, groups, count, avoid, opt) {
         if (sc + 0.25 * Math.min(defTot, vol.sets(ex) * shareSum.get(ex)) <= bestScore) return;
         const [f, o, e] = volGain(ex); sc += 0.25 * f - 0.6 * o - 0.5 * e;
       }
+      if (G.has(ex.g)) inG = true;
       if (sc > bestScore) { bestScore = sc; best = ex; }
     });
     if (!best) break;
+    /* выбранные мышцы упёрлись в потолок — упражнением на другую группу место не добирается (было: новичку в круговой
+       «Верх» — планка с подъёмом на руки и прогулка фермера) */
+    if (skipNow && !inG && !G.has(best.g)) break;
     picked.push(best);
+    { const s0 = setsOf(best), m0 = minSets(best); for (const [g, x] of shareList(best)) { sess[g] = (sess[g] || 0) + x * s0; sessMin[g] = (sessMin[g] || 0) + x * m0; } }
+    for (const k of needs) if (KIND_TEST[k](best)) met.add(k);
     const bs = sideOf(best); if (ppOn && bs === 'push') pushN += setsOf(best); else if (ppOn && bs === 'pull') pullN += setsOf(best);
+    if (bs === 'pull') pullUsed.add(PATTERN[best.id]);
     if (bs === 'push') pressN++;
     if (HEAVY_SPINE.has(best.id)) { spineN++; if (PATTERN[best.id] === 'hinge') hingeN++; }
     if (vol) { const s = vol.sets(best); for (const [g, x] of shareList(best)) proj[g] = (proj[g] || 0) + x * s; }
@@ -12250,15 +12426,71 @@ function pickExercises(E, rand, groups, count, avoid, opt) {
   }
   };
   run(false);
-  if (ppOn && pushN > pullN) run(true);
-  return {picked, pool};
+  /* жимов вышло больше, чем тяг: в классике небольшой перевес выравнивают подходы (ppBalance, buildPlanAt), большой — второй
+     проход; в суперсетах, круговой и статодинамике подходы общие для пар и кругов — второй проход всегда */
+  if (ppOn && pushN > pullN && (!pullN || pushN > pullN * 1.5 || S.format !== 'classic')) run(true);
+  /* меньше упражнений, чем просили, из-за потолка подходов на группу — причина в предупреждении (warnHtml) */
+  return {picked, pool, capped:capSkip && picked.length < count};
+}
+/* Потолок подходов на группу мышц за одну тренировку — дробным счётом, как неделя (groupShare):
+   · уже тренируюсь и опытный — 11: Remmert J.F., Pelland J.C., Robinson Z.P., Hinson S.R., Zourdos M.C., «Is There Too
+     Much of a Good Thing? Meta-Regressions of the Effect of Per-Session Volume on Hypertrophy and Strength», SportRxiv
+     2025, doi 10.51224/SRXIV.537 (препринт, аннотация): для роста мышц после ≈11 «дробных» подходов за тренировку прибавка
+     уже не отличима; данных о больших объёмах мало;
+   · новичок и «Бережно» — 6: верх недели 12 (volScale; Garber et al., MSSE 2011 — 2–4 подхода на группу 2–3 раза в
+     неделю) на две тренировки;
+   · статодинамика — одно упражнение на группу мышц: Tanimoto M. et al., J Strength Cond Res 2008; 22(6):1926–1938 —
+     пять упражнений на всё тело, по одному на группу, 3 подхода, 2 раза в неделю.
+   Было: статодинамика «грудь + трицепс» — 54 подхода, грудные 45; новичку «ноги» — 22 подхода, ягодичные 16; суперсеты
+   «Тяга» опытному — широчайшие 22,5 (Игорь 4, 6, 14). Своего плана потолок не касается. */
+function sessionCap(level = S.level, goal = S.goal) { return level === 'beg' || goal === 'gentle' ? 6 : 11; }
+/* тренажёр или блок: всё обязательное — тренажёры (EQUIP.cat 'mach') или блок */
+const machineLike = ex => ex.eq.length > 0 && ex.eq.every(g => g.every(id => MACH_EQ.has(id) || id === 'cable'));
+/* новичку тяжело: второй уровень, гиря, наклон на одной ноге с весом */
+const begHard = ex => ex.lvl >= 2 || /^kb/.test(ex.id) || (!!ex.uni && PATTERN[ex.id] === 'hinge' && (ex.eq.length > 0 || (ex.opt || []).length > 0));
+/* Виды движения (квота недели — Игорь 1–3, 13, 20; Марина 12, 18): горизонтальная тяга, жим над головой, жим лёжа (на грудь,
+   со скамьёй или тренажёром), присед или жим ногами, наклон с прямой спиной двумя ногами (румынская и становая тяга,
+   наклоны со штангой, становая с гирей, протяжка на блоке, гиперэкстензия). NSCA, Haff & Triplett, Essentials of Strength
+   Training and Conditioning, 4-е изд., 2016, гл. 17: упражнения подбирают по рисунку движения, жимы уравновешивают тягами.
+   g — группы дня, в которые вид движения встаёт. Счёт видов в замере сетки — тот же (g109-work/scripts/grid.js) */
+const KINDS = {
+  hrow:{name:'horizontal row', g:['back']},
+  vpush:{name:'overhead press', g:['shoulders']},
+  bench:{name:'bench press', g:['chest']},
+  squat:{name:'squat or leg press', g:['quads']},
+  hinge2:{name:'hip hinge with a straight back', g:['hams', 'glutes']}
+};
+const KIND_TEST = {
+  hrow:ex => PATTERN[ex.id] === 'hrow',
+  vpush:ex => PATTERN[ex.id] === 'vpush',
+  /* жим лёжа — на горизонтальной скамье или в тренажёре от груди (наклонная скамья — свой вид, «жим под углом»; Игорь 20:
+     «обычного жима лёжа нет, только узким хватом») */
+  bench:ex => PATTERN[ex.id] === 'hpush' && ex.g === 'chest' && ex.eq.length > 0 && !ex.eq.some(g => g.includes('dipbars') || g.includes('gravitron')),
+  squat:ex => PATTERN[ex.id] === 'squat',
+  hinge2:ex => PATTERN[ex.id] === 'hinge' && !ex.uni && !['ballistic', 'ecc'].includes(schemeOf(ex)),
+  /* стороны тренировки всего тела */
+  leg:ex => ex.type === 'c' && (LEG_G.has(ex.g) || LEG_P.has(PATTERN[ex.id])),
+  push:ex => sideOf(ex) === 'push',
+  pull:ex => sideOf(ex) === 'pull'
+};
+/* Отдельная тренировка: всё тело от 3 упражнений — ноги, жим и тяга (NSCA Essentials, 2016, гл. 17; было: «Масса», дом без
+   инвентаря, 20–30 мин — две ноги и тяга без жима, Игорь 10); где есть жим лёжа и тяга к поясу с весом — они (было: «Верх»
+   в зале — тяга сверху и подтягивания обратным хватом без тяги к поясу, жим только узким хватом, Игорь 20) */
+function singleNeeds(G, count, pool, E) {
+  const out = [], weighted = k => pool.some(ex => KIND_TEST[k](ex) && weighable(ex, E));
+  const full = [...LEG_G].some(g => G.has(g)) && G.has('back') && (G.has('chest') || G.has('shoulders'));
+  if (full && count >= 3) out.push('leg', 'pull', 'push');
+  if (G.has('chest') && count >= 3 && weighted('bench')) out.push('bench');
+  if (G.has('back') && count >= 3 && weighted('hrow')) out.push('hrow');
+  return out;
 }
 /* Порядок: многосуставные раньше прицельных, пресс — в конце; ноги и тяга с пола — первыми; жимы и тяги верха
    чередуются, первым — более сложное из них (тяжёлая база, выше уровень), при равенстве — тяга; внутри группы мышц
    сложное — раньше. NSCA Essentials, 2016, гл. 17: сначала основные упражнения на крупные мышцы, затем
    вспомогательные; чередование жимов и тяг. Было: подтягивания обратным хватом (группа «бицепс») стояли после всех
    жимов (Марина п. 12). */
-const demandOf = ex => (schemeOf(ex) === 'heavy' ? 2 : 0) + ex.lvl;
+/* скандинавские сгибания (своя доза, ECC) — после остальных многосуставных на ноги: они вспомогательные */
+const demandOf = ex => schemeOf(ex) === 'ecc' ? -1 : (schemeOf(ex) === 'heavy' ? 2 : 0) + ex.lvl;
 function orderClassic(list) {
   /* многосуставные на ноги (и тяга с пола) — одним рядом, первым — тяжёлое; жимы и тяги верха — следующим рядом */
   const rank = ex => ex.type !== 'c' ? GROUP_ORDER[ex.g] : sideOf(ex) ? 2.5 : LEG_G.has(ex.g) || LEG_P.has(PATTERN[ex.id]) ? 0 : GROUP_ORDER[ex.g];
@@ -12279,27 +12511,48 @@ function orderClassic(list) {
   }
   return out;
 }
+/* Суперсет — не одно движение дважды (было: тяга верхнего блока обратным хватом и сразу подтягивания обратным хватом) и в
+   тренировке, где есть не только ноги, — не «нога + нога» (было в «всё тело»: румынская тяга на одной ноге и гоблет подряд,
+   Игорь 6): пары — из мышц-антагонистов или верх + низ (NSCA Essentials, 2016, гл. 17: суперсет — два упражнения на
+   противоположные группы мышц) */
 function pairSupersets(list) {
-  const rest = orderClassic(list);
-  const pairs = [];
-  while (rest.length) {
-    const a = rest.shift();
-    if (!rest.length) { pairs.push([a]); break; }
-    let bi = 0, bs = -1e9;
-    rest.forEach((b, i) => {
-      let s = 0;
-      if (ANTAGONIST[a.g] === b.g) s += 3;
-      if (b.g !== a.g) s += 1;
-      /* жим — в пару с тягой: в паре подходов поровну (по большему), так баланс жимов и тяг не сбивается */
-      const sa = sideOf(a), sb = sideOf(b);
-      if (sa && sb && sa !== sb) s += 2; else if (sa !== sb && (sa || sb)) s -= 4;
-      const ga = groupsOf(a); for (const g of groupsOf(b)) if (ga.has(g)) s -= 1.2;
-      s -= i * 0.15;
-      if (s > bs) { bs = s; bi = i; }
-    });
-    pairs.push([a, rest.splice(bi, 1)[0]]);
-  }
-  return pairs;
+  const ord = orderClassic(list), n = ord.length;
+  const legOf = ex => LEG_G.has(ex.g) || LEG_P.has(PATTERN[ex.id]), mixed = list.some(ex => !legOf(ex) && ex.g !== 'abs');
+  /* жим и тяга в одной тренировке — тогда «жим + не тяга» сбивает их баланс (подходы пары общие) */
+  const both = list.some(ex => sideOf(ex) === 'push') && list.some(ex => sideOf(ex) === 'pull');
+  /* оценка пары i < j (по порядку тренировки): антагонисты и «жим + тяга» — плюс, одно движение и «нога + нога» — большой
+     минус, общие группы мышц — минус, дальние по порядку — чуть хуже */
+  const score = (i, j) => {
+    const a = ord[i], b = ord[j]; let s = 0;
+    if (PATTERN[a.id] && PATTERN[a.id] === PATTERN[b.id]) s -= 14;
+    /* «нога + нога» во всём теле — без плюса антагонистам (выпад и скандинавские сгибания — квадрицепс и бицепс бедра, а пара
+       всё равно ножная) */
+    if (mixed && legOf(a) && legOf(b)) s -= 12;
+    else if (ANTAGONIST[a.g] === b.g || ANTAGONIST[b.g] === a.g) s += 3;
+    if (b.g !== a.g) s += 1;
+    /* жим — в пару с тягой: в паре подходов поровну (по большему), так баланс жимов и тяг не сбивается */
+    const sa = sideOf(a), sb = sideOf(b);
+    if (sa && sb && sa !== sb) s += 2; else if (both && sa !== sb && (sa || sb)) s -= legOf(sa ? b : a) ? 2 : 4;
+    const ga = groupsOf(a); for (const g of groupsOf(b)) if (ga.has(g)) s -= 1.2;
+    return s - (j - i - 1) * 0.15;
+  };
+  /* лучшее разбиение на пары целиком (до 10 упражнений — перебором): жадный выбор оставлял в конце пару из двух сгибаний на
+     бицепс или двух подъёмов на носки, хотя их можно было развести по разным парам */
+  let best = null, bestS = -1e9;
+  const go = (left, acc, s) => {
+    if (!left.length) { if (s > bestS) { bestS = s; best = acc.slice(); } return; }
+    const [i, ...rest] = left;
+    /* нечётное число — одно упражнение без пары, при прочих равных последним (как раньше). Ещё одно без пары — за 4,5 очка:
+       дешевле, чем пара из одного движения или «нога + нога» во всём теле, но дороже любой обычной пары (было: дома без
+       инвентаря «грудь + трицепс» — четыре вида отжиманий, и два из них в одной паре) */
+    const odd = n % 2 && acc.every(p => p.length === 2);
+    acc.push([i]); go(rest, acc, s - (odd ? 0 : 4.5) - 0.3 * rest.length); acc.pop();
+    if (!rest.length) return;
+    rest.forEach((j, k) => { acc.push([i, j]); go(rest.filter((_, x) => x !== k), acc, s + score(i, j)); acc.pop(); });
+  };
+  if (n <= 10) go(ord.map((_, i) => i), [], 0);
+  else { best = []; for (let i = 0; i < n; i += 2) best.push(i + 1 < n ? [i, i + 1] : [i]); }
+  return best.sort((x, y) => x[0] - y[0]).map(p => p.map(i => ord[i]));
 }
 function orderCircuit(list) {
   const by = {low:[], push:[], pull:[], core:[], cardio:[]};
@@ -12321,29 +12574,43 @@ const BEG_HOLD = '20–30 s';
 /* Новичку в «Силе» тяжёлая база — 6–8 повторов при ≈70–80% от максимума (запас — как у новичка, 2–3 повтора), а не 3–5:
    ACSM, Ratamess N.A. et al., MSSE 2009; 41(3):687–708 — новичкам 60–70% и 8–12 повторов, к тяжёлым 80–100% и 1–6 — постепенно,
    с опытом. В цикле — проценты недель «Массы» (65–70 → 75–80%). Прицельные и остальные схемы — как у всех в «Силе» */
-const BEG_STRENGTH = {reps:'6–8', pct:'≈ 70–80%'};
+const BEG_STRENGTH = {reps:'6–8'};
 const begStrength = sch => S.goal === 'strength' && S.level === 'beg' && sch === 'heavy';
 const CTRL_LOAD = 'slowly and under control, no jerking, not to your limit', BALL_LOAD = 'explosively, driven by the hips, back flat; end the set before the swing slows down';
-/* extra — подходов сверх обычного или меньше (доводка объёма недели, volTopUp): до недели цикла, не меньше 2 и не больше 6 */
-function prescribe(ex, week, E, extra = 0) {
+/* Скандинавские сгибания — уступающее движение на пределе силы задней поверхности бедра: мало повторов при любой цели
+   (было: «Рельеф» 4×12–15 «до последнего чистого повтора», Игорь 8). Mjølsnes R., Arnason A., Østhagen T., Raastad T.,
+   Bahr R., Scand J Med Sci Sports 2004; 14(5):311–317 (аннотация): хорошо тренированные футболисты начинали с 2 подходов
+   по 6 повторов и за 4 недели дошли до 3 по 8–12. В плане без истории — начало: 2 подхода (опытному 3) по 4–6, повтор ≈5 с */
+const ECC = {nordic:{sets:2, reps:'4–6', rest:120, sec:5}};
+const ECC_LOAD = 'lower as slowly as you can; when you can no longer hold it, catch yourself with your hands, not to your limit';
+/* Прицельные с длинным рычагом у плеча — разведения, сведения, пуловер, махи — в «Силе» не в тяжёлом диапазоне: 10–12
+   повторов умеренным весом, как в «Массе» (было: разводка, пуловер и сведение в кроссовере 6–8 «тяжело», Игорь 17).
+   Длинный рычаг в разведениях — нагрузка на плечо: Fees M. et al., Am J Sports Med 1998; 26(5):732–742 — то же основание,
+   что у красной метки «плечи» (09f-joint-stress.js). */
+const LEVER_ISO = new Set(['fly', 'pullover', 'raise']);
+/* extra — подходов сверх обычного или меньше (доводка объёма недели, volTopUp): до недели цикла, не меньше 2 и не больше 6.
+   opts.assist — тяжёлая база сверх двух за тренировку (heavyKeep, buildPlanAt): дозируется как вспомогательное
+   многосуставное «Силы» — 3×6–8, отдых 2 мин, процент по своим повторам (≈75–81%, ниже 80%). */
+function prescribe(ex, week, E, extra = 0, opts = {}) {
   const G = GOALS[S.goal];
   /* схема по типу упражнения (schemeOf): тяжёлая база, махи и многосуставные вне «Силы» дозируются как многосуставные,
      подвижность и стабилизация, прицельные и многосуставные без тяжёлого максимума в «Силе» — как вспомогательные */
-  const sch = schemeOf(ex), strongMod = sch === 'mod' && !!G.mod;
+  const sch0 = schemeOf(ex), assist = !!opts.assist && sch0 === 'heavy' && !!G.mod && !begStrength(sch0);
+  const sch = assist ? 'mod' : sch0, strongMod = sch === 'mod' && !!G.mod, ecc = sch === 'ecc' ? ECC[ex.id] : null;
   const t = ex.kind || ex.g === 'cardio' ? ex.type : sch === 'heavy' || sch === 'ballistic' || (sch === 'mod' && !strongMod) ? 'c' : 'i';
-  let sets = strongMod ? G.mod.sets : G.sets[t];
+  let sets = ecc ? ecc.sets : strongMod ? G.mod.sets : G.sets[t];
   if (S.level === 'beg') sets = Math.max(2, sets - 1);
-  if (S.level === 'adv' && t === 'c') sets = Math.min(6, sets + 1);
+  if (S.level === 'adv' && (t === 'c' || ecc)) sets = Math.min(6, sets + 1);
   if (extra) sets = Math.max(2, Math.min(6, sets + extra));
-  const bs = begStrength(sch), weekPct = w => w.pct[bs ? 'mass' : S.goal];
-  let reps = sch === 'ctrl' ? ex.doseReps || G.ctrl : sch === 'ballistic' ? G.ball : strongMod ? G.mod.reps : bs ? BEG_STRENGTH.reps : G.reps[t], unit = 'reps';
+  const bs = begStrength(sch), lever = S.goal === 'strength' && t === 'i' && sch === 'iso' && LEVER_ISO.has(PATTERN[ex.id]);
+  let reps = ecc ? ecc.reps : sch === 'ctrl' ? ex.doseReps || G.ctrl : sch === 'ballistic' ? G.ball : strongMod ? G.mod.reps : bs ? BEG_STRENGTH.reps : lever ? GOALS.mass.reps.i : G.reps[t], unit = 'reps';
   if (ex.kind === 'time') { reps = S.level === 'beg' && ex.g !== 'cardio' ? BEG_HOLD : G.time; unit = ''; }
   if (ex.kind === 'dist') { reps = G.dist; unit = ''; }
   const bodyweight = !ex.eq.length && !(ex.opt || []).length;
   /* процент от 1ПМ — только у тяжёлой базы (schemeOf: heavy): штанга, гантели, тренажёр, блок обеими руками или ногами.
      Для резины, противовеса, собственного веса, гири одной рукой и подвижности — запас повторов без процента:
      подбирается натяжение ленты, противовес, вариант упражнения или вес, с которым держится техника. */
-  const pct = sch === 'heavy' && S.goal !== 'gentle';
+  const pct = sch0 === 'heavy' && S.goal !== 'gentle';
   const band = ex.eq.length && ex.eq.every(g => g.every(id => id === 'band')), assisted = ex.eq.some(g => g.includes('gravitron'));
   const how = band ? 'band tension: ' : assisted ? 'counterweight: ' : weighable(ex, E) ? '' : 'easier or harder variation: ';
   const easy = band ? 'band tension: lighter than usual, not to your limit' : assisted ? 'counterweight: more than usual, not to your limit' : weighable(ex, E) ? 'light weight, not to your limit' : 'an easier variation, not to your limit';
@@ -12352,14 +12619,21 @@ function prescribe(ex, week, E, extra = 0) {
   const rir = reserveOf(week);
   const tail = rir ? reserveDo(rir) + (S.goal === 'gentle' ? ', pain-free' : '') : NEAR_LIMIT;
   const withPct = (s, p) => `${s} (${pctText(p)})`;
-  const fixed = sch === 'ctrl' ? CTRL_LOAD + (S.goal === 'gentle' ? ', pain-free' : '') : sch === 'ballistic' ? BALL_LOAD : '';
-  let load = fixed || (pct ? withPct(tail, bs ? BEG_STRENGTH.pct : G.load.c) : sch === 'mod' ? how + tail : !G.rir ? G.load.i : G.load.i ? `${G.load.i}, ${tail}` : tail);
+  const fixed = ecc ? ECC_LOAD : sch === 'ctrl' ? CTRL_LOAD + (S.goal === 'gentle' ? ', pain-free' : '') : sch === 'ballistic' ? BALL_LOAD : '';
+  /* процент — по повторам и запасу (pctNums); в разгрузку — на 10–15% ниже первой недели */
+  const pctFor = r => week && week.deload ? (n => [Math.round(n[0] * DELOAD_PCT[0]), Math.round(n[1] * DELOAD_PCT[1])])(pctNums(r, reserveOf(WEEKS[0]))) : pctNums(r, rir);
+  const pctN = pct ? pctFor(reps) : null;
+  let load = fixed || (pct ? withPct(tail, pctStr(pctN)) : sch === 'mod' ? how + tail : lever ? (rir ? `moderate weight, ${tail}` : 'moderate weight, ' + NEAR_LIMIT) : !G.rir ? G.load.i : G.load.i ? `${G.load.i}, ${tail}` : tail);
+  /* таблица Прилепина: в цикле первая неделя на подход короче — со второй прибавляется подход, и он тоже в границах */
+  const prMax = pct && sch === 'heavy' ? prilepinSets(reps, pctN) : null;
+  if (prMax) sets = Math.min(sets, prMax - (week && !week.deload ? 1 : 0));
   if (week) {
     const reserve = rir ? reserveDo(rir) : '';
-    if (week.deload) { sets = Math.max(2, Math.round(sets * 0.6)); if (!fixed) load = pct ? withPct('light weight, not to your limit', weekPct(week)) : sch === 'mod' ? easy : 'light weight, not to your limit'; }
+    /* подходы разгрузки одного упражнения — 60% (в тренировке их делит deloadSets от первой недели) */
+    if (week.deload) { sets = Math.max(1, Math.round(sets * 0.6)); if (!fixed) load = pct ? withPct('light weight, not to your limit', pctStr(pctN)) : sch === 'mod' ? easy : 'light weight, not to your limit'; }
     else {
-      if (week.add && t === 'c') sets = Math.min(6, sets + week.add);
-      if (!fixed) load = pct ? withPct(reserve, weekPct(week)) : sch === 'mod' ? how + reserve : reserve;
+      if (week.add && (t === 'c' || strongMod) && !ecc) sets = Math.min(prMax || 6, 6, sets + week.add);
+      if (!fixed) load = pct ? withPct(reserve, pctStr(pctN)) : sch === 'mod' ? how + reserve : lever ? 'moderate weight, ' + reserve : reserve;
     }
   }
   if (ex.kind === 'time') load = ex.g === 'cardio' ? (S.goal === 'gentle' ? 'moderate pace: you can talk without gasping' : 'fast pace without losing technique') : S.goal === 'strength' ? 'weighted or with a harder variation' : 'steady, without losing form';
@@ -12370,13 +12644,16 @@ function prescribe(ex, week, E, extra = 0) {
   const notes = [];
   if (bodyweight && sch === 'mod' && S.goal === 'strength') notes.push('If the range feels easy, add weight or slow the lowering to 4 s.');
   /* махи гирей — отдых не дольше 2 мин: вес средний, подход короткий */
-  const rest = strongMod ? G.mod.rest : sch === 'ballistic' ? Math.min(120, G.rest[t]) : G.rest[t];
-  /* время подхода: повтор махов ≈2 с, турецкого подъёма ≈25 с (repSec в каталоге), остальное — по цели */
-  const work = ex.kind === 'time' ? midOf(reps) : ex.kind === 'dist' ? 30 : midOf(reps) * (ex.repSec || (sch === 'ballistic' ? 2 : G.rep)) * (ex.uni ? 2 : 1);
-  /* темп: у подвижности, махов и кардио его нет (медленно и под контролем; мах и прыжок — одним движением); быстрое усилие
-     «Силы» — только у тяжёлой базы, у остальных (разводка, махи в стороны, отжимания) — подъём за 1 с */
-  const tempo = ex.kind || sch === 'ctrl' || sch === 'ballistic' || sch === 'cardio' ? null : sch !== 'heavy' && /X/.test(G.tempo) ? '2-0-1-0' : G.tempo;
-  const rx = {sets, reps, unit, rest, load, rir, tempo, notes, work, uni:!!ex.uni, scheme:sch};
+  const rest = ecc ? Math.max(ecc.rest, G.rest.i) : strongMod ? G.mod.rest : sch === 'ballistic' ? Math.min(120, G.rest[t]) : G.rest[t];
+  /* время подхода: повтор махов ≈2 с, турецкого подъёма ≈25 с (repSec в каталоге), скандинавских — ≈5 с, остальное — по цели */
+  const work = ex.kind === 'time' ? midOf(reps) : ex.kind === 'dist' ? 30 : midOf(reps) * (ex.repSec || (ecc ? ecc.sec : sch === 'ballistic' ? 2 : G.rep)) * (ex.uni ? 2 : 1);
+  /* темп: у подвижности, махов, уступающих и кардио его нет (медленно и под контролем; мах и прыжок — одним движением);
+     быстрое усилие «Силы» — только у тяжёлой базы, у остальных (разводка, махи в стороны, отжимания) — подъём за 1 с */
+  const tempo = ex.kind || ecc || sch === 'ctrl' || sch === 'ballistic' || sch === 'cardio' ? null : sch !== 'heavy' && /X/.test(G.tempo) ? '2-0-1-0' : G.tempo;
+  /* pctN — процент этой строки нагрузки; loadAt(r) — та же строка для других повторов (круговая: свои повторы, buildPlanAt);
+     setsMax — потолок подходов по таблице Прилепина (уступка по времени и пары суперсета его не превышают) */
+  const loadAt = pct && !fixed && ex.kind !== 'time' && ex.kind !== 'dist' ? r => withPct(week && week.deload ? 'light weight, not to your limit' : week ? (rir ? reserveDo(rir) : NEAR_LIMIT) : tail, pctStr(pctFor(r))) : null;
+  const rx = {sets, reps, unit, rest, load, rir, tempo, notes, work, uni:!!ex.uni, scheme:sch, pctN, loadAt, setsMax:prMax || null, assist};
   return S.format === 'static' && staticOk(ex) ? staticRx(rx, ex, week, E) : rx;
 }
 
@@ -12394,9 +12671,9 @@ function noBarbell(E) { const o = new Set(E); o.delete('bb'); return o; }
 const FIXED_EQ = new Set(EQUIP.filter(e => e.cat !== 'free').map(e => e.id)), CIRC_MOVE = 30;
 /* подходов упражнения для счёта недели — обычная неделя (без нагрузки, пика и разгрузки), с уступкой по времени; в круговой —
    круги (как в gvol) */
-function volSets(ex, E, dose, extra = 0) {
+function volSets(ex, E, dose, extra = 0, assist = false) {
   if (S.format === 'circuit') { const c = GOALS[S.goal].circ; let r = c.rounds + (S.level === 'beg' ? -1 : S.level === 'adv' ? 1 : 0); if (dose && dose.s) r = Math.max(Math.min(2, r), Math.min(DOSE_MAX_ROUNDS, r + dose.s)); return Math.max(2, r); }
-  return applyDose(prescribe(ex, null, E, extra), dose).sets;
+  return applyDose(prescribe(ex, null, E, extra, {assist}), dose).sets;
 }
 /* Доводка объёма дня недельной программы подходами — как у методиста:
    · главное многосуставное дня — первое тяжёлое на ноги и первое тяжёлое на верх в порядке тренировки (если тяжёлого
@@ -12412,22 +12689,22 @@ function volSets(ex, E, dose, extra = 0) {
    число кругов на все станции, в статодинамике серии заданы методом. Счёт — по подбору до замен, обычной недели: в неделях
    цикла доводка та же. Было (4.104.0, «верх / низ» ×4, «Низ Б»): приседания со штангой и румынская на одной ноге 2×6–10 при
    икрах 4×10–12. */
-const LEG_G = new Set(['quads', 'glutes', 'hams', 'calves']), LEG_P = new Set(['squat', 'hinge', 'lunge', 'bridge']);
-const isCompound = ex => ex.type === 'c' && ex.g !== 'abs' && ex.g !== 'cardio' && !ex.kind && !['ctrl', 'ballistic'].includes(schemeOf(ex));
+const LEG_G = new Set(['quads', 'glutes', 'hams', 'adductors', 'calves']), LEG_P = new Set(['squat', 'hinge', 'lunge', 'bridge']);
+const isCompound = ex => ex.type === 'c' && ex.g !== 'abs' && ex.g !== 'cardio' && !ex.kind && !['ctrl', 'ballistic', 'ecc'].includes(schemeOf(ex));
 /* главные многосуставные дня: первое тяжёлое на ноги и первое тяжёлое на верх в порядке тренировки */
 function mainCompounds(list) {
   const order = orderClassic(list).filter(isCompound), lower = ex => LEG_G.has(ex.g) || LEG_P.has(PATTERN[ex.id]);
   const first = test => order.find(ex => test(ex) && schemeOf(ex) === 'heavy') || order.find(test);
   return new Set([first(lower), first(ex => !lower(ex))].filter(Boolean));
 }
-function volTopUp(list, vol, E, dose) {
+function volTopUp(list, vol, E, dose, asg = new Set()) {
   const add = list.map(() => 0);
   if (!vol || S.format === 'circuit' || S.format === 'static') return add;
-  const memo = list.map(() => ({})), sets = (ex, k) => memo[k][add[k]] ?? (memo[k][add[k]] = volSets(ex, E, dose, add[k])), share = list.map(groupShare), proj = {...vol.have};
+  const memo = list.map(() => ({})), sets = (ex, k) => memo[k][add[k]] ?? (memo[k][add[k]] = volSets(ex, E, dose, add[k], asg.has(ex))), share = list.map(groupShare), proj = {...vol.have};
   list.forEach((ex, k) => { for (const [g, x] of Object.entries(share[k])) proj[g] = (proj[g] || 0) + x * sets(ex, k); });
   const mains = mainCompounds(list), isMain = k => mains.has(list[k]);
   /* ниже скольких подходов не урезать: главное — 3 (или обычное, если оно меньше), остальные — 2 */
-  const base = list.map((ex, k) => volSets(ex, E, dose, 0)), floor = k => isMain(k) ? Math.min(3, base[k]) : 2;
+  const base = list.map((ex, k) => volSets(ex, E, dose, 0, asg.has(ex))), floor = k => isMain(k) ? Math.min(3, base[k]) : 2;
   const mainMin = () => mains.size ? Math.min(...list.map((ex, k) => isMain(k) ? sets(ex, k) : Infinity)) : Infinity;
   const step = (k, d) => { const s0 = sets(list[k], k); add[k] += d; const s1 = sets(list[k], k); for (const [h, x] of Object.entries(share[k])) proj[h] = (proj[h] || 0) + x * (s1 - s0); return s1 !== s0; };
   const free = ex => !sideOf(ex) && !ex.kind && ex.g !== 'cardio';
@@ -12470,7 +12747,8 @@ function buildPlanAt(ctx = {}) {
   /* тренировка на сегодня по журналу: группы уже в S.groups, отсюда — доли групп, отдых и облегчение (13d-muscle-load.js) */
   const lp = !custom && !ctx.groups && S.mode === 'single' ? logPickCtx() : null;
   const base = !!ctx.fitBase, dose = ctx.dose || null;
-  const groups = ctx.groups || S.groups, count = custom ? custom.items.length : ctx.count || (lp ? lp.count : S.count), week = base ? null : ctx.week || null;
+  /* неделя цикла своего плана — та, из которой он сохранён (Марина 3): запас и процент в строке нагрузки — как в программе */
+  const groups = ctx.groups || S.groups, count = custom ? custom.items.length : ctx.count || (lp ? lp.count : S.count), week = base ? null : ctx.week || (custom && custom.week ? WEEKS[custom.week - 1] || null : null);
   const sw = custom ? {} : ctx.swaps || {};
   /* круговая (кроме своего плана) — без штанги: становая, присед и жим штанги «до последнего чистого повтора» с 15 с на
      переход — техника разваливается от усталости, а страховать некому (Марина п. 15). В круг — тренажёры, гантели, гиря,
@@ -12478,7 +12756,9 @@ function buildPlanAt(ctx = {}) {
      нагрузкой; NSCA Essentials, 2016, гл. 17 — в круговой станции с коротким отдыхом, тяжёлые основные упражнения —
      отдельно и со свежими силами. Румынская тяга в круге — с гантелями */
   const noBar = S.format === 'circuit' && !custom, E = noBar ? noBarbell(effEquip(S.equip)) : effEquip(S.equip);
-  const rand = rng((ctx.seed ?? S.seed) * 9973 + count * 31 + groups.length * 7);
+  /* приводящие (своя группа с 4.109) в зерно не входят: у настроек прежних версий, к которым они прибавлены (cleanSettings),
+     тот же вариант подбора */
+  const rand = rng((ctx.seed ?? S.seed) * 9973 + count * 31 + groups.filter(g => g !== 'adductors').length * 7);
   if (custom && !custom.items.length) return {empty:'custom', groups};
   if (!groups.length && !custom) return {empty:'groups'};
   /* программа другого места: подбор под его инвентарь, затем недоступное здесь заменяется аналогами;
@@ -12487,7 +12767,8 @@ function buildPlanAt(ctx = {}) {
   /* подбор дня недельной программы: объём недели и жимы/тяги прошлых дней (buildProgram) */
   const vsets = new Map(), vs = ex => { let n = vsets.get(ex); if (n === undefined) vsets.set(ex, n = volSets(ex, PE, dose)); return n; };
   const wk = ctx.vol ? {weights:ctx.vol.weights, vol:{have:ctx.vol.have, aim:ctx.vol.aim, hi:ctx.vol.hi, sets:vs}, pp:ctx.pp} : ctx.pp ? {pp:ctx.pp} : null;
-  let picked = custom ? custom.items.map(it => EXI[it.id]) : pickExercises(PE, rand, groups, count, ctx.avoid, {...(lp || wk || {}), sets:vs}).picked;
+  const pk = custom ? null : pickExercises(PE, rand, groups, count, ctx.avoid, {...(lp || wk || {}), sets:vs, need:ctx.need, chain:ctx.chain});
+  let picked = custom ? custom.items.map(it => EXI[it.id]) : pk.picked;
   /* «можно здесь»: есть инвентарь, и упражнение не нагружает суставы, которые бережём (11g-gentle.js) */
   const usable = ex => available(ex, E) && fitsBody(ex);
   const pool = EX.filter(usable);
@@ -12506,41 +12787,75 @@ function buildPlanAt(ctx = {}) {
     slots = keep;
   }
   /* подбор до замен: по нему неделя обходит повторы (buildProgram), и замена в одном дне не меняет другие дни */
-  const picks = picked.map(ex => ex.id);
+  const picks = picked.map(ex => ex.id), demPick = custom ? new Set() : heavyDemote(picked);
   /* доводка объёма недели подходами — по номеру упражнения (после замены та же) */
-  const extra = !custom && ctx.vol ? volTopUp(picked, ctx.vol, PE, dose) : picked.map(() => 0);
+  const extra = !custom && ctx.vol ? volTopUp(picked, ctx.vol, PE, dose, demPick) : picked.map(() => 0);
   /* замены записаны по номеру упражнения (slot): в программе другого места часть упражнений может не войти в план */
+  const swappedK = new Set();
   for (const [i, id] of Object.entries(sw)) {
     const ex = EXI[id], k = slots.indexOf(+i);
-    if (k >= 0 && picked[k] && ex && usable(ex) && !picked.includes(ex)) picked[k] = ex;
+    if (k >= 0 && picked[k] && ex && usable(ex) && !picked.includes(ex)) { picked[k] = ex; swappedK.add(k); }
   }
+  /* «Заменить» в классике: у остальных упражнений подходы те же, что в плане до замены (без неё — тот же подбор); потолок
+     тренировки срезает только у замены. Было: тягу заменили приседом с гирей — и у жима лёжа стало 2 подхода вместо 4
+     (баланс жимов и тяг считался заново) */
+  const base0 = !custom && swappedK.size && S.format === 'classic' && !ctx.noSwapBase ? buildPlanAt({...ctx, swaps:{}, noSwapBase:true}) : null;
   if (!picked.length) return {empty:'none', pool, groups, lost};
   const G = GOALS[S.goal];
+  /* не больше двух тяжёлых упражнений за тренировку (heavyDemote); разгрузка — 60% подходов первой недели (deloadSets).
+     После «Заменить» тяжёлые — те же, что до замены (heavySwap) */
+  const dem = custom ? new Set() : heavySwap(picked, picks.map(id => EXI[id]), demPick);
+  const dlNorm = week && week.deload && !custom && S.format !== 'circuit' && S.format !== 'static'
+    ? picked.map((ex, k) => applyDose(prescribe(ex, WEEKS[0], E, extra[k], {assist:dem.has(ex)}), dose).sets) : null, dl = dlNorm && deloadSets(dlNorm);
   const items = picked.map((ex, k) => {
-    const slot = slots[k], dosed = applyDose(prescribe(ex, week, E, extra[k]), dose), rx = base ? dosed : applyLight(dosed, ex);
+    const slot = slots[k]; let dosed = applyDose(prescribe(ex, week, E, extra[k], {assist:dem.has(ex)}), dose);
+    /* sets0 — подходы обычной недели (без нагрузки, пика и разгрузки): по ним потолок тренировки и недели (capTrim, weekTrim,
+       weekFill) — правка одна на все недели цикла, и неделя 2 так и прибавляет подход */
+    const sets0 = week && !dosed.static ? applyDose(prescribe(ex, null, E, extra[k], {assist:dem.has(ex)}), dose).sets : dosed.sets;
+    /* setsW1 — подходы первой недели: правки потолка и недели (setsStep) идут и по ним, и разгрузка пересчитывается от них
+       (deloadRefit) */
+    if (dl && !dosed.static) dosed = {...dosed, sets:dl[k], setsW1:dlNorm[k]};
+    dosed = {...dosed, sets0};
+    const rx = base ? dosed : applyLight(dosed, ex);
     if (lp && lp.light.has(ex.g) && !base) easeRx(rx);
     return {ex, slot, rx:custom ? customRx(rx, custom.items[slot], ex) : rx, name:exName(ex, E), eqLine:equipLine(ex, E), eqIds:chosenEquip(ex, E), has:propHas(ex, E), sub:subs.get(ex) || null};
   });
   const bySlot = new Map(items.map(it => [it.ex, it]));
-  let blocks = [], minutes = 0, totalSets = 0;
+  let blocks = [], minutes = 0, totalSets = 0, trimmed = false;
   if (S.format === 'classic' || S.format === 'static') {
     const ord = byOrder((custom ? picked : orderClassic(picked)).map(ex => bySlot.get(ex)), custom ? null : ctx.order, it => [it.slot]);
     ord.forEach((it, i) => { it.label = String(i + 1); });
     blocks = [{kind:'list', items:ord}];
+    if (!custom && S.format === 'classic' && base0 && base0.items) {
+      const by = new Map(base0.items.map(it => [it.slot, it])), same = it => by.get(it.slot) && by.get(it.slot).ex === it.ex;
+      for (const it of ord) if (same(it)) { const b = by.get(it.slot).rx; it.rx.sets = b.sets; it.rx.sets0 = b.sets0; if (b.setsW1 != null) it.rx.setsW1 = b.setsW1; }
+      const us = ord.map(it => ({items:[it]}));
+      trimmed = capTrim(us, groups, new Set(us.filter(u => !same(u.items[0]))));
+    } else if (!custom && S.format === 'classic') { const us = ord.map(it => ({items:[it]})); trimmed = capTrim(us, groups); ppBalance(us, groups); }
+    if (dl && !base0) deloadRefit(blocks);
     for (const it of ord) { minutes += it.rx.static ? staticSeconds(it.rx) : it.rx.sets * (it.rx.work + it.rx.rest) + 60; totalSets += it.rx.sets; }
   } else if (S.format === 'superset') {
-    /* в своём плане пары — соседние упражнения по порядку человека */
-    const pairs = custom ? picked.reduce((a, ex, i) => (i % 2 ? a[a.length - 1].push(ex) : a.push([ex]), a), []) : byOrder(pairSupersets(picked), ctx.order, pr => pr.map(ex => bySlot.get(ex).slot));
+    /* в своём плане пары — соседние упражнения по порядку человека; «не в паре со следующим» (ss: false) — отдельное
+       упражнение со своим отдыхом (customPairs, 11d-custom.js); подходов у каждого — свои (было: в паре с тягой на 5
+       подходов жим «8/5/3/1» становился «5 × 8/5/3/1» с лишним синглом, Руслан 6); в подобранном — поровну, по большему,
+       но не выше потолка таблицы Прилепина у тяжёлой базы (setsMax) */
+    const pairs = custom ? customPairs(picked, k => custom.items[slots[k]]) : byOrder(pairSupersets(picked), ctx.order, pr => pr.map(ex => bySlot.get(ex).slot));
     pairs.forEach((pr, pi) => {
       const L = String.fromCharCode(65 + pi);
       const its = pr.map((ex, j) => { const it = bySlot.get(ex); it.label = pr.length > 1 ? L + (j + 1) : L; return it; });
-      const sets = Math.max(...its.map(it => it.rx.sets));
+      const most = Math.max(...its.map(it => it.rx.sets)), sets = custom ? most : Math.min(most, ...its.map(it => it.rx.setsMax || most));
+      const most0 = Math.max(...its.map(it => it.rx.sets0)), sets0 = Math.min(most0, ...its.map(it => it.rx.setsMax || most0));
       const rest = pr.length > 1 ? doseRest(G.ss.rest, dose) : its[0].rx.rest;
-      its.forEach(it => { it.rx.sets = sets; it.rx.restShown = pr.length > 1 ? (it === its[its.length - 1] ? rest : 0) : rest; });
+      const w1 = its.every(it => it.rx.setsW1 != null) ? Math.min(Math.max(...its.map(it => it.rx.setsW1)), ...its.map(it => it.rx.setsMax || 99)) : null;
+      its.forEach(it => { if (!custom) { it.rx.sets = sets; it.rx.sets0 = sets0; if (w1 != null) it.rx.setsW1 = w1; } it.rx.restShown = pr.length > 1 ? (it === its[its.length - 1] ? rest : 0) : rest; });
       blocks.push({kind:'pair', letter:L, items:its, sets, rest});
-      minutes += sets * (its.reduce((a, it) => a + it.rx.work, 0) + 15 + rest) + 60;
-      totalSets += sets * its.length;
     });
+    if (!custom) { const us = blocks.map(b => ({items:b.items, block:b})); trimmed = capTrim(us, groups); ppBalance(us, groups); }
+    if (dl) deloadRefit(blocks);
+    for (const b of blocks) {
+      for (let k = 0; k < b.sets; k++) { const on = b.items.filter(it => k < it.rx.sets); minutes += on.reduce((a, it) => a + it.rx.work, 0) + 15 + b.rest; }
+      minutes += 60; totalSets += b.items.reduce((a, it) => a + Math.min(it.rx.sets, b.sets), 0);
+    }
   } else {
     const ord = byOrder((custom ? picked : orderCircuit(picked)).map(ex => bySlot.get(ex)), custom ? null : ctx.order, it => [it.slot]);
     const c = dose ? {...G.circ, rest:doseRest(G.circ.rest, dose), roundRest:doseRest(G.circ.roundRest, dose)} : {...G.circ};
@@ -12552,8 +12867,8 @@ function buildPlanAt(ctx = {}) {
     let rounds = c.rounds + (S.level === 'beg' ? -1 : S.level === 'adv' ? 1 : 0);
     /* время на тренировку: кругов больше или меньше (не меньше двух и не больше шести) */
     if (dose && dose.s) rounds = Math.max(Math.min(2, rounds), Math.min(DOSE_MAX_ROUNDS, rounds + dose.s));
-    if (week && week.deload) rounds -= 1;
-    else if (week && week.add) rounds += 0;
+    /* разгрузка — 60% кругов (как подходов в классике: «примерно на 40% меньше») */
+    if (week && week.deload) rounds = Math.round(rounds * 0.6);
     rounds = Math.max(2, rounds);
     if (AR.light && S.mode !== 'program' && !base) rounds = Math.max(1, Math.round(rounds * .6));
     ord.forEach((it, i) => {
@@ -12561,6 +12876,8 @@ function buildPlanAt(ctx = {}) {
       it.rounds = rounds;
       /* подвижность и стабилизация в круге — со своими повторами (ролик для пресса — не 15–20) */
       if (!it.ex.kind && it.rx.scheme !== 'ctrl' && !(custom && custom.items[it.slot]?.reps)) it.rx.reps = c.reps;
+      /* процент — по повторам круга (было: «Сила» в круговой — 6–8 повторов при «≈80–90%», Игорь 9) */
+      if (it.rx.loadAt) it.rx.load = it.rx.loadAt(it.rx.reps);
       it.rx.circ = true;
       it.rx.work = it.ex.kind === 'time' ? c.work : it.ex.kind === 'dist' ? 30 : midOf(it.rx.reps) * (it.ex.repSec || G.rep) * (it.ex.uni ? 2 : 1);
     });
@@ -12581,11 +12898,113 @@ function buildPlanAt(ctx = {}) {
      объём — упражнения не меняются ни от недели к неделе, ни от замены в другом дне */
   const ppBase = {push:0, pull:0};
   for (const [k, id] of picks.entries()) {
-    const ex = EXI[id], kb = volSets(ex, E, dose, extra[k]), sd = sideOf(ex);
+    const ex = EXI[id], kb = volSets(ex, E, dose, extra[k], demPick.has(ex)), sd = sideOf(ex);
     for (const [g, x] of Object.entries(groupShare(ex))) gvolBase[g] = (gvolBase[g] || 0) + kb * x;
     if (sd) ppBase[sd] += kb;
   }
-  return {blocks, items, minutes:Math.round(minutes / 60), totalSets, missing:custom ? [] : missing, load, gvol, gvolBase, ppBase, pool, E, groups, count, lost, custom:!!custom, byLog:!!lp, picks};
+  return {blocks, items, minutes:Math.round(minutes / 60), totalSets, missing:custom ? [] : missing, load, gvol, gvolBase, ppBase, pool, E, groups, count, lost, custom:!!custom, byLog:!!lp, picks,
+    capped:!!(pk && pk.capped), trimmed, heavyAssist:items.filter(it => it.rx.assist).map(it => it.ex.id)};
+}
+/* Не больше двух тяжёлых упражнений (≥80% от максимума) за тренировку — на любые мышцы, не только на позвоночник: в «Силе»
+   тяжёлая база сверх двух первых по порядку тренировки дозируется как вспомогательная (prescribe, opts.assist: 3×6–8,
+   ≈75–81%). Основания: NSCA Essentials, 2016, гл. 17 — основные упражнения дня тяжёлые, остальные вспомогательные с меньшей
+   нагрузкой; таблица Прилепина (PRILEPIN) — в зоне 80–89% 10–20 повторов на упражнение. Было: «Сила», опытный, «Жим» —
+   жим на наклонной, узким хватом и стоя, все 6×3–5 при 80–90% (Игорь 5); присед, тяга в наклоне и жим на наклонной 5×3–5
+   (Марина 13). Новичку в «Силе» 6–8 повторов (≈73–79%), в круговой и статодинамике — свои повторы: там тяжёлых нет. */
+function heavyDemote(list) {
+  const out = new Set();
+  if (S.goal !== 'strength' || S.level === 'beg' || S.format === 'circuit' || S.format === 'static') return out;
+  /* тяжёлыми остаются главные многосуставные дня — первое на ноги и первое на верх (mainCompounds), а если тяжёлые только
+     с одной стороны — два первых по порядку (было бы: присед и ягодичный мост тяжёлые, а тяга и жим — вспомогательные) */
+  const heavy = orderClassic(list).filter(ex => schemeOf(ex) === 'heavy'), keep = new Set([...mainCompounds(list)].filter(ex => schemeOf(ex) === 'heavy'));
+  for (const ex of heavy) if (keep.size < 2) keep.add(ex);
+  for (const ex of heavy) if (!keep.has(ex)) out.add(ex);
+  return out;
+}
+/* «Заменить» меняет одно упражнение: у остальных роль та же, что до замены (тяжёлое остаётся тяжёлым, вспомогательное —
+   вспомогательным); новое тяжёлое — тяжёлым на месте тяжёлого и пока их не больше двух. Было: замена приседа на гоблет
+   делала тяжёлым ягодичный мост (3 × 6–8 → 4 × 3–5) */
+function heavySwap(list, before, demBefore) {
+  const out = new Set();
+  if (S.goal !== 'strength' || S.level === 'beg' || S.format === 'circuit' || S.format === 'static') return out;
+  let kept = 0;
+  list.forEach((ex, k) => { if (ex === before[k]) { if (demBefore.has(ex)) out.add(ex); else if (schemeOf(ex) === 'heavy') kept++; } });
+  list.forEach((ex, k) => { if (ex !== before[k] && schemeOf(ex) === 'heavy') { if (demBefore.has(before[k]) || kept >= 2) out.add(ex); else kept++; } });
+  return out;
+}
+/* подходы разгрузки: 60% от первой недели на всю тренировку (не меньше подхода на упражнение), остаток — тем, у кого
+   больше дробная часть (так «примерно на 40% меньше» и выходит; было: от 0 до 50%, в «Бережно» по 2 подхода — без изменений) */
+function deloadSets(norm) {
+  const want = norm.map(n => n * 0.6), out = want.map(w => Math.max(1, Math.floor(w)));
+  let left = Math.round(norm.reduce((a, b) => a + b, 0) * 0.6) - out.reduce((a, b) => a + b, 0);
+  for (const k of want.map((w, k) => k).sort((a, b) => (want[b] - out[b]) - (want[a] - out[a]))) { if (left <= 0) break; if (out[k] < norm[k]) { out[k]++; left--; } }
+  return out;
+}
+/* Разгрузка после правок потолка тренировки и недели (capTrim, weekTrim, weekFill): 60% подходов первой недели с теми же
+   правками (setsW1), по упражнению или паре суперсета; было: разгрузка считалась от первой недели до правок, и где неделя
+   добирала подходы, разгрузка выходила больше чем на 40% меньше (новичок, «Сила», 3 дня: 19 из 39) */
+function deloadRefit(blocks) {
+  const units = blocks.flatMap(b => b.kind === 'pair' ? [b.items] : b.items.map(it => [it])).filter(u => u.every(it => it.rx.setsW1 != null));
+  if (!units.length) return;
+  const dl = deloadSets(units.map(u => u[0].rx.setsW1));
+  units.forEach((u, k) => { for (const it of u) it.rx.sets = dl[k]; });
+  for (const b of blocks) if (b.kind === 'pair') b.sets = Math.max(...b.items.map(it => it.rx.sets));
+}
+/* Потолок подходов на группу за тренировку (sessionCap): пока какая-то группа выше — подход меньше у упражнения (или пары
+   суперсета), которое её нагружает: сначала то, где она целевая, среди них прицельные, потом больше подходов; не меньше двух
+   подходов; если так тяг стало меньше, чем жимов, — подход меньше и у жима. Счёт — по подходам обычной недели (sets0), правка
+   та же во всех неделях цикла. Вернёт true, если потолок что-то срезал или упёрся (тогда под планом — почему). */
+function capTrim(units, groups, only = null) {
+  const cap = sessionCap(), sets = u => u.items[0].rx.sets0, gv = () => { const v = {}; for (const u of units) for (const it of u.items) for (const [g, x] of Object.entries(groupShare(it.ex))) if (g !== 'cardio') v[g] = (v[g] || 0) + x * it.rx.sets0; return v; };
+  const G = new Set(groups), pp = G.has('back') && (G.has('chest') || G.has('shoulders'));
+  const side = sd => units.reduce((a, u) => a + u.items.filter(it => sideOf(it.ex) === sd).reduce((b, it) => b + it.rx.sets0, 0), 0);
+  const iso = u => u.items.every(it => it.ex.type !== 'c');
+  /* у главного многосуставного дня (mainCompounds) меньше трёх подходов — прицельным не больше, чем у него (как volTopUp);
+     само главное — не меньше трёх (у тяжёлой базы «Силы» первая неделя на подход короче, setsMax) */
+  const mains = mainCompounds(units.flatMap(u => u.items.map(it => it.ex)));
+  const can = u => u.items.every(it => !it.rx.static && it.ex.g !== 'cardio' && it.rx.sets0 - (it.rx.setsMax ? 1 : 0) > (mains.has(it.ex) ? 3 : 2));
+  let cut = false; const stuck = new Set(), blocked = new Set();
+  for (let n = 0; n < 60; n++) {
+    const v = gv(), g = Object.keys(v).filter(h => v[h] > cap + 0.01 && !stuck.has(h)).sort((a, b) => v[b] - v[a])[0]; if (!g) break;
+    const sh = u => Math.max(...u.items.map(it => groupShare(it.ex)[g] || 0));
+    /* сначала те, у кого это целевая группа, среди них — прицельные, потом больше подходов */
+    const u = units.filter(x => sh(x) > 0 && can(x) && !blocked.has(x) && (!only || only.has(x))).sort((a, b) => ((sh(b) >= 1) - (sh(a) >= 1)) || (iso(b) - iso(a)) || sets(b) - sets(a))[0];
+    if (!u) { stuck.add(g); continue; }
+    setsStep(u, -1); cut = true;
+    if (pp && !only && side('pull') < side('push')) {
+      const pushOnly = x => x.items.some(it => sideOf(it.ex) === 'push') && !x.items.some(it => sideOf(it.ex) === 'pull');
+      const p = units.filter(x => x !== u && can(x) && pushOnly(x)).sort((a, b) => iso(b) - iso(a) || sets(b) - sets(a))[0];
+      if (!p) { setsStep(u, 1); blocked.add(u); continue; }
+      setsStep(p, -1);
+    }
+  }
+  if (cut && !only) {
+    const mm = Math.min(...units.filter(u => u.items.some(it => mains.has(it.ex))).map(sets));
+    if (mm < 3) for (const u of units) if (iso(u) && sets(u) > mm) setsStep(u, mm - sets(u));
+  }
+  return cut || stuck.size > 0;
+}
+/* Тяг не меньше, чем жимов (в тренировке со спиной и грудью или плечами): небольшой перевес жимов после подбора — подход тягам
+   (до 6, не выше потолка тренировки и таблицы Прилепина), иначе подход меньше у жимов (не меньше двух). Было: второй проход
+   подбора выбрасывал жим целиком, если у тяжёлой тяги на подход меньше, — день без жима над головой (4.109, квота недели) */
+function ppBalance(units, groups) {
+  const G = new Set(groups); if (!G.has('back') || !(G.has('chest') || G.has('shoulders'))) return;
+  const side = sd => units.reduce((a, u) => a + u.items.filter(it => sideOf(it.ex) === sd).reduce((b, it) => b + it.rx.sets0, 0), 0);
+  const only = (u, sd) => u.items.some(it => sideOf(it.ex) === sd) && !u.items.some(it => sideOf(it.ex) && sideOf(it.ex) !== sd);
+  const cap = sessionCap(), gv = g => units.reduce((a, u) => a + u.items.reduce((b, it) => b + (groupShare(it.ex)[g] || 0) * it.rx.sets0, 0), 0);
+  for (let n = 0; n < 12 && side('push') > side('pull'); n++) {
+    const up = units.filter(u => only(u, 'pull') && u.items.every(it => it.rx.sets0 < (it.rx.setsMax || 6) && it.rx.sets < (it.rx.setsMax || 6) && !it.rx.static)
+      && u.items.every(it => Object.entries(groupShare(it.ex)).every(([g, x]) => gv(g) + x <= cap + 0.01))).sort((a, b) => a.items[0].rx.sets0 - b.items[0].rx.sets0)[0];
+    if (up) { setsStep(up, 1); continue; }
+    const dn = units.filter(u => only(u, 'push') && u.items.every(it => it.rx.sets0 > 2 && !it.rx.static)).sort((a, b) => b.items[0].rx.sets0 - a.items[0].rx.sets0)[0];
+    if (!dn) break;
+    setsStep(dn, -1);
+  }
+}
+/* подходы упражнения или пары на d: обычной недели (sets0), первой (setsW1 — в разгрузку) и этой (не меньше одного) */
+function setsStep(u, d) {
+  for (const it of u.items) { it.rx.sets0 += d; it.rx.sets = Math.max(1, it.rx.sets + d); if (it.rx.setsW1 != null) it.rx.setsW1 = Math.max(1, it.rx.setsW1 + d); }
+  if (u.block) u.block.sets = Math.max(...u.block.items.map(it => it.rx.sets));
 }
 
 /* ---------- сборка недели ---------- */
@@ -12597,7 +13016,7 @@ function buildProgram() {
   const seen = {};
   /* день «всё тело» включает мышцу акцента, даже если по шаблону её группы в этот день нет */
   const fg = S.focus && MUSCLE_GROUP[S.focus];
-  const dayGroups = tid => DAY_T[tid].name === 'Full body' && fg && !DAY_T[tid].g.includes(fg) ? DAY_T[tid].g.concat(fg) : DAY_T[tid].g;
+  const dayGroups = tid => { const g = dayTargets(tid); return DAY_T[tid].name === 'Full body' && fg && !g.includes(fg) ? g.concat(fg) : g; };
   /* Объём недели попадает в шкалу «мало / в норме / много» по уровню (volScale; Alex п. 25: в своей же программе «Спина 28
      и Плечи 25,5 — много, Икры 1,5 — мало»). Цель группы на неделю — 40% коридора от нижней границы; каждый день
      добирает свою долю того, что осталось до цели, поровну на оставшиеся дни с этой группой; доли групп дня — корень из веса
@@ -12609,7 +13028,11 @@ function buildProgram() {
      или бицепс (только в дне А) набирали бы недельный объём за одну тренировку */
   const fullT = t => DAY_T[t].name === 'Full body', fullAll = [...new Set(tmpl.filter(fullT).flatMap(dayGroups))];
   const pickGroups = t => fullT(t) ? dayGroups(t).concat(fullAll.filter(x => !dayGroups(t).includes(x))) : dayGroups(t);
+  /* квота видов движения недели (weekKinds): день, куда вид движения назначен, — и последний подходящий день, если он так
+     и не встал раньше */
+  const kinds = weekKinds(tmpl, dayGroups), metW = new Set(), chain = new Map();
   const out = tmpl.map((tid, i) => {
+    const need = [...new Set(kinds.assign[i].concat(kinds.on.filter(k => Math.max(...kinds.elig(k)) === i)))].filter(k => !metW.has(k));
     seen[tid] = (seen[tid] || 0) + 1;
     const own = dayGroups(tid), g = pickGroups(tid);
     const share = {};
@@ -12625,10 +13048,12 @@ function buildProgram() {
       return [x, sc.hi * done / all];
     })) : null;
     const p = buildPlan({groups:g, count:durationOf() ? undefined : S.count, seed:S.seed * 131 + i * 977 + 13, avoid:new Set(avoid), week, swaps:swaps['d' + i] || {}, order:swaps.__order?.['d' + i],
-      vol:{have:{...have}, aim:aimDay, hi:sc.hi, weights, cap}, pp:{...pp}});
-    /* следующие дни обходят и подобранное, и поставленное заменой: замена в одном дне не меняет остальные */
+      vol:{have:{...have}, aim:aimDay, hi:sc.hi, weights, cap}, pp:{...pp}, need, chain:new Map(chain)});
+    /* следующие дни обходят подобранное (до замен): замена в одном дне не меняет остальные; повторить упражнение другого
+       дня замена и так не даёт — его нет в списке «Чем заменить» (swapTaken, 12c-swap.js) */
     if (p.items) {
-      p.items.forEach(it => avoid.add(it.ex.id)); p.picks.forEach(id => avoid.add(id));
+      p.picks.forEach(id => avoid.add(id));
+      for (const id of p.picks) { const ex = EXI[id]; for (const k of kinds.on) if (KIND_TEST[k](ex)) metW.add(k); if (PROG_CHAIN[id] !== undefined && !chain.has(PROG_CHAIN[id])) chain.set(PROG_CHAIN[id], id); }
       for (const [x, v] of Object.entries(p.gvolBase)) have[x] = (have[x] || 0) + v;
       pp.push += p.ppBase.push; pp.pull += p.ppBase.pull;
     }
@@ -12644,6 +13069,12 @@ function buildProgram() {
     d.li = isFull ? (fullTotal > 1 ? fullIdx : 0) : (same > 1 ? k : 0); /* номер буквы дня — для ключа имени сохранённого плана (11a-names.js) */
     d.name = DAY_T[d.tid].name + (d.li ? ' ' + letters[d.li - 1] : '');
   }
+  /* неделя не выше «много» по шкале самого приложения (weekTrim; Марина 10: опытный, 5 дней — спина и плечи 23,5) */
+  /* и в разгрузку: правки — по подходам обычной недели, а разгрузка — 60% первой недели после них (deloadRefit) */
+  if (S.format === 'classic' || S.format === 'superset') {
+    weekTrim(out, sc.hi); weekFill(out, sc);
+    if (week.deload) for (const d of out) if (d.plan.items && !d.plan.custom) { deloadRefit(d.plan.blocks); planTotals(d.plan); }
+  }
   const gvol = {}, load = {};
   let minutes = 0, sets = 0;
   for (const d of out) {
@@ -12652,7 +13083,146 @@ function buildProgram() {
     for (const [g, v] of Object.entries(d.plan.gvol)) gvol[g] = (gvol[g] || 0) + v;
     for (const [m, v] of Object.entries(d.plan.load)) load[m] = (load[m] || 0) + v;
   }
-  return {days:out, split, week, gvol, load, minutes, sets};
+  /* виды движения недели — по тому, что в плане (после замен): чего нет, видно под полосами (kindsHtml) */
+  const inWeek = new Set(); for (const d of out) for (const it of d.plan.items || []) for (const k of Object.keys(KINDS)) if (KIND_TEST[k](it.ex)) inWeek.add(k);
+  return {days:out, split, week, gvol, load, minutes, sets, kinds:{on:kinds.on, off:kinds.off, have:inWeek}};
+}
+/* Неделя выше «много» (верх шкалы volScale) — подходов меньше там, где группа набирает больше всего: сначала у упражнений,
+   где она целевая, среди них — у прицельных, затем в дне, где её больше; не меньше двух подходов, у главного многосуставного
+   дня — не меньше трёх; если в дне со спиной и грудью или плечами тяг стало меньше, чем жимов, — подход меньше и у жима,
+   а нельзя — эта группа остаётся как есть. Подбор недели (volGain, volTopUp) видит прошлые дни, а вспомогательную работу
+   следующих — нет: так спина у опытного на 5 днях набирала 23,5 (Марина 10). Время и счёт дня пересчитываются. */
+function weekTrim(days, hi) {
+  const units = [];
+  for (const d of days) {
+    const p = d.plan; if (!p.items || p.custom) continue;
+    const mains = mainCompounds(p.items.map(it => it.ex));
+    for (const b of p.blocks) {
+      if (b.kind === 'pair') units.push({d, p, items:b.items, block:b, main:b.items.some(it => mains.has(it.ex))});
+      else if (b.kind === 'list') for (const it of b.items) units.push({d, p, items:[it], main:mains.has(it.ex)});
+    }
+  }
+  /* счёт — по подходам обычной недели (sets0): правка одна на все недели цикла */
+  const setsU = u => u.items[0].rx.sets0, gv = () => { const v = {}; for (const u of units) for (const it of u.items) for (const [g, x] of Object.entries(groupShare(it.ex))) if (g !== 'cardio') v[g] = (v[g] || 0) + x * it.rx.sets0; return v; };
+  const dayG = (p, g) => p.items.reduce((a, it) => a + (groupShare(it.ex)[g] || 0) * it.rx.sets0, 0);
+  /* у тяжёлой базы «Силы» первая неделя цикла на подход короче обычной (setsMax, таблица Прилепина) — порог и для неё;
+     новичку и в «Бережно» главное многосуставное — до двух подходов (ACSM 2009: новичку 1–3 подхода на упражнение) */
+  const mainFloor = S.level === 'beg' || S.goal === 'gentle' ? 2 : 3;
+  const can = u => u.items.every(it => !it.rx.static && it.ex.g !== 'cardio' && it.rx.sets0 - (it.rx.setsMax ? 1 : 0) > (u.main ? mainFloor : 2));
+  const iso = u => u.items.every(it => it.ex.type !== 'c');
+  const side = (p, sd) => p.items.reduce((a, it) => a + (sideOf(it.ex) === sd ? it.rx.sets0 : 0), 0), wkSide = sd => units.reduce((a, u) => a + u.items.reduce((b, it) => b + (sideOf(it.ex) === sd ? it.rx.sets0 : 0), 0), 0);
+  const both = p => { const G = new Set(p.groups || []); return G.has('back') && (G.has('chest') || G.has('shoulders')); };
+  const stuck = new Set(), blocked = new Set();
+  for (let n = 0; n < 80; n++) {
+    const v = gv(), g = Object.keys(v).filter(h => Math.round(v[h] * 2) / 2 > hi && !stuck.has(h)).sort((a, b) => v[b] - v[a])[0]; if (!g) break;
+    const sh = u => Math.max(...u.items.map(it => groupShare(it.ex)[g] || 0));
+    /* заданное время дня: сначала там, где день и после этого остаётся в своём коридоре */
+    const keepsTime = x => !x.p.fit || !DURATIONS[x.p.fit.dur] || baseMin(x.p) - stepSec(x) / 60 >= DURATIONS[x.p.fit.dur].lo;
+    const u = units.filter(x => sh(x) > 0 && can(x) && !blocked.has(x)).sort((a, b) => (keepsTime(b) - keepsTime(a)) || ((sh(b) >= 1) - (sh(a) >= 1)) || (iso(b) - iso(a)) || dayG(b.p, g) - dayG(a.p, g) || setsU(b) - setsU(a))[0];
+    if (!u) { stuck.add(g); continue; }
+    /* жимы и тяги: в дне со спиной и грудью или плечами — тяг не меньше; за неделю перевес жимов не растёт */
+    const gap0 = wkSide('pull') - wkSide('push');
+    setsStep(u, -1); u.p.wtrim = true;
+    const dayBad = both(u.p) && side(u.p, 'pull') < side(u.p, 'push'), weekBad = wkSide('pull') - wkSide('push') < Math.min(0, gap0);
+    if (dayBad || weekBad) {
+      const pushOnly = x => (!dayBad || x.p === u.p) && x !== u && can(x) && x.items.some(it => sideOf(it.ex) === 'push') && !x.items.some(it => sideOf(it.ex) === 'pull');
+      const q = units.filter(pushOnly).sort((a, b) => iso(b) - iso(a) || setsU(b) - setsU(a))[0];
+      /* жим урезать нельзя — это упражнение остаётся, пробуем другое */
+      if (q) { setsStep(q, -1); q.p.wtrim = true; } else { setsStep(u, 1); blocked.add(u); }
+    }
+  }
+  /* у главного меньше трёх подходов — прицельным дня не больше, чем у него (как volTopUp, capTrim) */
+  for (const d of days) if (d.plan.wtrim) {
+    const us = units.filter(u => u.p === d.plan), mm = Math.min(...us.filter(u => u.main).map(setsU));
+    if (mm < 3) for (const u of us) if (iso(u) && setsU(u) > mm) setsStep(u, mm - setsU(u));
+    planTotals(d.plan);
+  }
+}
+/* сколько секунд даёт один подход (круг пары) упражнения или пары; минуты дня по подходам обычной недели */
+const stepSec = u => u.block ? u.items.reduce((a, it) => a + it.rx.work, 0) + 15 + u.block.rest : u.items.reduce((a, it) => a + it.rx.work + it.rx.rest, 0);
+function baseMin(p) {
+  let sec = 0;
+  for (const b of p.blocks) {
+    if (b.kind === 'list') for (const it of b.items) sec += it.rx.sets0 * (it.rx.work + it.rx.rest) + 60;
+    else if (b.kind === 'pair') { const n = Math.max(...b.items.map(it => it.rx.sets0)); for (let k = 0; k < n; k++) sec += b.items.filter(it => k < it.rx.sets0).reduce((a, it) => a + it.rx.work, 0) + 15 + b.rest; sec += 60; }
+  }
+  return sec / 60;
+}
+/* Неделя ниже «мало» у группы, у которой в неделе есть своё прицельное или многосуставное без жима и тяги (икры, пресс, бицепс,
+   ягодицы) — по подходу ему, пока группа не дотянет до нижней границы: не больше 6 подходов, не выше потолка тренировки
+   (sessionCap) и верха недели ни у одной группы, не за верх заданного времени дня; прицельному — не больше, чем у главного
+   многосуставного дня, если у того меньше трёх. Жимы и тяги не трогаются (их баланс подобран по подходам), пары суперсетов —
+   тоже. Счёт — по подходам обычной недели (sets0). Было: квота видов движения занимает места прицельных в коротких днях, и
+   «всё тело» ×3 оставляло икры на 7,5 подхода. */
+function weekFill(days, sc) {
+  const units = [];
+  for (const d of days) {
+    const p = d.plan; if (!p.items || p.custom) continue;
+    const mains = mainCompounds(p.items.map(it => it.ex)), mm = () => Math.min(...p.items.filter(it => mains.has(it.ex)).map(it => it.rx.sets0));
+    /* своя доза — махи и взятия гири, подвижность, скандинавские сгибания — не добирается подходами */
+    for (const b of p.blocks) if (b.kind === 'list') for (const it of b.items) if (!sideOf(it.ex) && !it.rx.static && it.ex.g !== 'cardio' && !mains.has(it.ex) && !['ecc', 'ctrl', 'ballistic'].includes(schemeOf(it.ex))) units.push({p, items:[it], it, mm});
+  }
+  const cap = sessionCap(), wk = () => { const v = {}; for (const d of days) for (const it of d.plan.items || []) for (const [g, x] of Object.entries(groupShare(it.ex))) v[g] = (v[g] || 0) + x * it.rx.sets0; return v; };
+  const dayG = (p, g) => p.items.reduce((a, it) => a + (groupShare(it.ex)[g] || 0) * it.rx.sets0, 0), stuck = new Set();
+  const targets = new Set(days.flatMap(d => dayTargets(d.tid)));
+  for (let n = 0; n < 40; n++) {
+    const v = wk(), g = [...targets].filter(h => h !== 'cardio' && (v[h] || 0) < sc.lo && !stuck.has(h)).sort((a, b) => (v[a] || 0) - (v[b] || 0))[0]; if (!g) break;
+    const ok = u => u.it.ex.g === g && u.it.rx.sets0 < (u.it.rx.setsMax || 6) && u.it.rx.sets < (u.it.rx.setsMax || 6) && dayG(u.p, g) + 1 <= cap && (u.it.ex.type !== 'i' || u.mm() >= 3 || u.it.rx.sets0 + 1 <= u.mm())
+      && Object.entries(groupShare(u.it.ex)).every(([h, x]) => (v[h] || 0) + x <= sc.hi);
+    /* заданное время дня — подход не выводит день за верх коридора */
+    const fits = x => !x.p.fit || !DURATIONS[x.p.fit.dur] || baseMin(x.p) + (x.it.rx.work + x.it.rx.rest) / 60 <= DURATIONS[x.p.fit.dur].hi;
+    const u = units.filter(x => ok(x) && fits(x)).sort((a, b) => a.it.rx.sets0 - b.it.rx.sets0 || dayG(a.p, g) - dayG(b.p, g))[0];
+    if (!u) { stuck.add(g); continue; }
+    setsStep(u, 1); u.p.wtrim = true;
+  }
+  for (const d of days) if (d.plan.wtrim) planTotals(d.plan);
+}
+/* время, подходы и нагрузка дня после правки подходов (классика и суперсеты — как в buildPlanAt) */
+function planTotals(p) {
+  let minutes = 0, totalSets = 0;
+  for (const b of p.blocks) {
+    if (b.kind === 'list') for (const it of b.items) { minutes += it.rx.sets * (it.rx.work + it.rx.rest) + 60; totalSets += it.rx.sets; }
+    else if (b.kind === 'pair') {
+      b.sets = Math.max(...b.items.map(it => it.rx.sets));
+      for (let k = 0; k < b.sets; k++) { const on = b.items.filter(it => k < it.rx.sets); minutes += on.reduce((a, it) => a + it.rx.work, 0) + 15 + b.rest; }
+      minutes += 60; totalSets += b.items.reduce((a, it) => a + it.rx.sets, 0);
+    }
+  }
+  const load = {}, gvol = {};
+  for (const it of p.items) {
+    for (const m of it.ex.pri) load[m] = (load[m] || 0) + it.rx.sets;
+    for (const m of it.ex.sec) load[m] = (load[m] || 0) + it.rx.sets * 0.5;
+    for (const [g, x] of Object.entries(groupShare(it.ex))) gvol[g] = (gvol[g] || 0) + it.rx.sets * x;
+  }
+  Object.assign(p, {minutes:Math.round(minutes / 60), totalSets, load, gvol});
+  /* заданное время: подрезка недели сделала день короче коридора — под планом сказано почему (durationWarn, 'week') */
+  if (p.fit && DURATIONS[p.fit.dur]) { const D = DURATIONS[p.fit.dur], m0 = Math.round(baseMin(p)), was = p.fit.ok; p.fit.ok = m0 >= D.lo && m0 <= D.hi; if (!p.fit.ok && m0 < D.lo && (was || !p.fit.why)) p.fit.why = 'week'; }
+}
+/* Квота видов движения недели (KINDS): действует, где для вида движения есть упражнение с весом (зал, дом с гантелями и
+   скамьёй) — как в зале у тренера. Нет инвентаря — квоты нет. Есть, но всё нагружает суставы, которые бережём, или не подходит
+   бережному режиму, — квота при этой отметке не действует, и под полосами сказано почему (off; запрещённое не возвращается).
+   Каждый вид — в день, где есть его группа мышц (KINDS.g), начиная с видов, у которых таких дней меньше, в день с меньшим
+   числом назначенных. dayG(t) — группы шаблона дня. Было: «Масса» и «Сила» в зале на 2–4 дня — ни одной горизонтальной тяги
+   за неделю, жима над головой нет, у опытного на 5 днях из ног — гоблет и тяга на одной ноге (Игорь 1–3, 13; Марина 12) */
+function weekKinds(tmpl, dayG) {
+  const ref = programEquip(), E0 = effEquip(ref || S.equip), E = S.format === 'circuit' ? noBarbell(E0) : E0, lvlMax = S.level === 'beg' ? 2 : 3;
+  const fmtOk = ex => (S.format !== 'static' || staticOk(ex)) && (S.format !== 'circuit' || (!ex.doseReps && !ECC[ex.id]));
+  const elig = k => tmpl.map((t, i) => i).filter(i => KINDS[k].g.some(g => dayG(tmpl[i]).includes(g)));
+  const on = [], off = [];
+  for (const k of Object.keys(KINDS)) {
+    const byEq = EX.filter(ex => KIND_TEST[k](ex) && available(ex, E) && weighable(ex, E) && ex.lvl <= lvlMax && fmtOk(ex));
+    if (!byEq.length || !elig(k).length) continue;
+    if (!byEq.some(fitsBody)) { off.push({k, why:unfitWhy(byEq[0])}); continue; }
+    on.push(k);
+  }
+  /* жимы (жим лёжа, над головой) — по разным дням, если можно: два жима в одном дне требуют двух тяг, и короткий день теряет
+     один из них (было: «всё тело» ×2 у новичка без жима над головой) */
+  const SIDE = {hrow:'pull', vpush:'push', bench:'push'}, load = tmpl.map(() => 0), assign = tmpl.map(() => []);
+  const same = (d, k) => assign[d].filter(x => SIDE[x] && SIDE[x] === SIDE[k]).length;
+  for (const k of on.slice().sort((a, b) => elig(a).length - elig(b).length)) {
+    const d = elig(k).sort((a, b) => same(a, k) - same(b, k) || load[a] - load[b] || a - b)[0]; assign[d].push(k); load[d]++;
+  }
+  return {on, off, assign, elig};
 }
 
 /* ---------- отрисовка ---------- */
@@ -12697,6 +13267,11 @@ function renderSetup() {
   $('#f-goal').innerHTML = seg('goal', GOALS, S.goal);
   $('#goal-note').textContent = GOALS[S.goal].about;
   $('#f-format').innerHTML = seg('format', FORMATS, S.format);
+  { /* «Бережно»: статодинамика недоступна, причина — под переключателем */
+    const off = S.goal === 'gentle', b = $('#f-format [data-v="static"]'), n = $('#fmt-note');
+    if (b) { b.disabled = off; b.classList.toggle('off', off); if (off) b.setAttribute('aria-describedby', 'fmt-note'); }
+    if (n) { n.hidden = !off; n.textContent = off ? GENTLE_NO_STATIC : ''; }
+  }
   $('#f-level').innerHTML = seg('level', LEVELS, S.level);
   renderProtect();
   if (typeof renderHealth === 'function') renderHealth();
@@ -12721,6 +13296,8 @@ function renderSetup() {
     + (S.places.length > 1 ? `<button type="button" class="place-del${placeDel ? ' armed' : ''}" data-place-del="1">${placeDel ? 'Are you sure?' : 'Delete place'}</button>` : '')
     + (others.length ? `<label class="place-adapt">Program<select id="place-adapt"><option value="">Built for this place</option>${others.map(p => `<option value="${p.id}"${S.adapt === p.id ? ' selected' : ''}>As in “${esc(p.name)}”, with substitutes</option>`).join('')}</select></label>
       <p class="f-note">${S.adapt ? `Exercises are chosen for “${esc(placeOf(S, S.adapt).name)}”; anything missing here is replaced with the closest alternative — same movement, same muscles.` : 'The program is built from what this place has.'}</p>` : '')
+    /* место своего плана — его собственное (4.111): выбранное здесь запоминается у открытого плана */
+    + (custom ? `<p class="f-note">${'A custom plan opens at its own place: the place chosen here is saved with this plan.'}</p>` : '')
     + (typeof placeWeightsHtml === 'function' ? placeWeightsHtml(cur) : '');
   const es = new Set(S.equip);
   $('#e-presets').innerHTML = '<span class="pres-l">Presets:</span>' + EQUIP_PRESETS.map(p => {
@@ -12760,7 +13337,9 @@ function titleFor() {
 const GROUPS_AND = ' and ';
 function groupsTitle(groups) {
   const gs = new Set(groups);
-  const p = GROUP_PRESETS.find(p => p.g.length === gs.size && p.g.every(g => gs.has(g)));
+  /* ключ прежних версий (до 4.109 группы «Приводящие» не было): «Ноги» и «Всё тело» без неё — те же заготовки */
+  const same = list => list.length === gs.size && list.every(g => gs.has(g));
+  const p = GROUP_PRESETS.find(p => same(p.g) || (!gs.has('adductors') && same(p.g.filter(g => g !== 'adductors'))));
   if (p) return p.id === 'full' ? 'Full body' : p.id === 'legs' ? 'Legs & glutes' : p.id === 'push' ? 'Chest, shoulders, triceps' : p.id === 'pull' ? 'Back, biceps, grip' : 'Upper body';
   const names = groups.map(g => GN[g].toLowerCase());
   const s = names.length > 1 ? names.slice(0, -1).join(', ') + GROUPS_AND + names[names.length - 1] : names[0] || '';
@@ -12923,11 +13502,19 @@ function movePlanItem(slot, d) {
   swaps.__order = swaps.__order || {}; swaps.__order[swapKey()] = units.flat();
   return true;
 }
+/* в паре своего плана подходов у упражнений может быть разное число (Руслан 6): « · A1 — 4 подхода» */
+function pairShort(b) {
+  const short = b.items.filter(it => it.rx.sets < b.sets);
+  return short.map(it => ' · {label} — {n}'.replace('{label}', it.label).replace('{n}', `${it.rx.sets} ${plural(it.rx.sets, 'set', 'sets', 'sets')}`)).join('');
+}
 function blocksHtml(p) {
   MOVE_UNITS = S.mode === 'custom' ? [] : planUnits(p);
   let html = `<p class="phase"><b>Warm-up, 8–10 min.</b> Easy cardio until you break a light sweat, joint mobility, then 1–2 warm-up sets with a light weight in the first exercise.</p>`;
   html += cardsViewHtml();
-  if (S.format === 'static') html += `<p class="phase phase-static"><b>Static-dynamic.</b> Weight — about half of your one-rep max. Slowly: 3 s down and 3 s up, no pauses; don’t lock out at the top and don’t relax at the bottom — the muscle stays tense the whole time. By the end of a set (30–40 s) the muscle burns hard, but you can still do reps. Three sets with 30 s rest make one series.</p>`;
+  /* в «Бережно» — тот же счёт, что в карточках (staticRx: одна серия, лёгкий вес, без сильного жжения) */
+  if (S.format === 'static') html += S.goal === 'gentle'
+    ? `<p class="phase phase-static"><b>Static-dynamic.</b> Light weight. Slowly: 3 s down and 3 s up, no pauses; don’t lock out at the top and don’t relax at the bottom. By the end of the set (30–40 s) the muscle burns slightly, not hard; every rep feels easy and pain-free. Three sets with 30 s rest make one series; in gentle mode there is just one.</p>`
+    : `<p class="phase phase-static"><b>Static-dynamic.</b> Weight — about half of your one-rep max. Slowly: 3 s down and 3 s up, no pauses; don’t lock out at the top and don’t relax at the bottom — the muscle stays tense the whole time. By the end of a set (30–40 s) the muscle burns hard, but you can still do reps. Three sets with 30 s rest make one series.</p>`;
   let idx = 0;
   /* «Убрано: … Вернуть» — на месте убранной карточки своего плана (12c-swap.js) */
   let gone = rmGoneHtml();
@@ -12939,7 +13526,7 @@ function blocksHtml(p) {
       const many = b.items.length > 1;
       html += `<section class="block">
         <header class="b-head"><h2><span class="b-letter">${b.letter}</span>${many ? 'Superset' : 'Single exercise'}</h2>
-        <p>${many ? `${b.sets} ${plural(b.sets, 'round', 'rounds', 'rounds')}: ${b.items.map(it => it.label).join(' → ')} with no break, then rest ${fmtRest(b.rest)}` : `${b.sets} ${plural(b.sets, 'set', 'sets', 'sets')}, rest ${fmtRest(b.rest)}`}</p></header>
+        <p>${many ? `${b.sets} ${plural(b.sets, 'round', 'rounds', 'rounds')}: ${b.items.map(it => it.label).join(' → ')} with no break, then rest ${fmtRest(b.rest)}${pairShort(b)}` : `${b.sets} ${plural(b.sets, 'set', 'sets', 'sets')}, rest ${fmtRest(b.rest)}`}</p></header>
         <ol class="cards">${b.items.map(card).join('')}</ol></section>`;
     } else {
       const rd = done.__rounds || 0;
@@ -12962,13 +13549,18 @@ const DOCTOR_LINE = 'The app does not replace a doctor. With a heart condition, 
 const LEGEND = `<p class="legend">One-rep max (1RM) is the weight you can lift only once. Tempo: effort is lifting the weight, return is lowering it, in seconds. In the “Tempo” field of your own plan, use four numbers: lowering, pause at the bottom, lifting, pause at the top; X means lift fast.</p><p class="legend legend-med">${DOCTOR_LINE}</p>`;
 function warnHtml(p) {
   const warn = [];
-  const gentle = S.goal === 'gentle' || S.protect.length > 0;
-  if (p.items.length < p.count) warn.push(`Selected ${p.items.length} ${plural(p.items.length, 'exercise', 'exercises', 'exercises')} of ${p.count}: ${gentle ? 'there are no other options for these muscles and equipment in gentle mode.' : 'there are no other options for these muscles and equipment.'}`);
+  const gentle = S.goal === 'gentle' || protectOn(S).length > 0;
+  /* меньше упражнений из-за потолка подходов на группу за тренировку (sessionCap) — так и сказано */
+  if (p.items.length < p.count) warn.push(`Selected ${p.items.length} ${plural(p.items.length, 'exercise', 'exercises', 'exercises')} of ${p.count}: ${p.capped ? (S.format === 'static' ? 'static-dynamic uses one exercise per muscle group.' : sessionCap() < 11 ? 'for a beginner and in gentle mode, up to 6 sets per muscle group per workout.' : 'more than 11 sets per muscle group in one workout isn’t needed — beyond that, muscles grow no faster.') : gentle ? 'there are no other options for these muscles and equipment in gentle mode.' : 'there are no other options for these muscles and equipment.'}`);
   if (p.lost && p.lost.length) warn.push(`No substitute here for: ${p.lost.map(ex => ex.name).join(', ')}. ${p.lost.length > 1 ? 'They' : 'It'} can be done at: ${placeOf(S, S.adapt).name}.`);
   /* мышца без упражнений: не хватает инвентаря — или всё, что есть, нагружает суставы, которые бережём */
-  const byBody = p.missing.filter(g => EX.some(ex => available(ex, p.E) && groupsOf(ex).has(g))), byEq = p.missing.filter(g => !byBody.includes(g));
+  /* группа без своего упражнения здесь, но с работой попутно в этом плане (от подхода и больше, дробный счёт) — не «без
+     упражнений»: приводящие в «Всём теле» на улице работают в выпадах и приседаниях (4.109, своя группа) */
+  const miss = p.missing.filter(g => (p.gvol[g] || 0) < 1);
+  const byBody = miss.filter(g => EX.some(ex => available(ex, p.E) && groupsOf(ex).has(g))), byEq = miss.filter(g => !byBody.includes(g));
   if (byEq.length) warn.push(`No exercises left for: ${byEq.map(g => GN[g].toLowerCase()).join(', ')}. They need different equipment.`);
   if (byBody.length) warn.push(`Left without exercises in gentle mode: ${byBody.map(g => GN[g].toLowerCase()).join(', ')}. Everything available for them puts load on what you are protecting.`);
+  if (S.fmtNote) warn.unshift(GENTLE_STATIC_FIXED);
   const dw = durationWarn(p); if (dw) warn.push(dw);
   if (S.goal === 'strength' && S.level === 'beg' && p.items.some(it => begStrength(schemeOf(it.ex)))) warn.push('Beginners on “Strength” do 6–8 reps with some in reserve: move to heavy sets of 3–5 once your technique is steady — pick the “Intermediate” level.');
   return warn.length ? `<div class="warn">${warn.map(w => `<p>${esc(w)}</p>`).join('')}</div>` : '';
@@ -12985,6 +13577,7 @@ function headButtons(copyLabel) {
           : `<button type="button" class="btn btn-2" id="save-plan">${ICON.save}<span>${S.mode === 'program' ? 'Save the week' : 'Save as custom plan'}</span></button>`}
       </div>
       ${w.own ? `<p class="p-hint wk-own">${'The workout follows the list it was started with.'}</p>` : ''}
+      ${typeof rerollHtml === 'function' ? rerollHtml() : ''}
       <p class="p-hint" id="copy-msg" role="status"></p>
       <p class="p-hint" id="save-msg" role="status"></p>`;
 }
@@ -12998,10 +13591,13 @@ function norm(load) { const mx = Math.max(1, ...Object.values(load)); const o = 
 /* диктор: #plan не живая область (весь план зачитывался при каждом нажатии, отчёт тестера п. 10) — после пересборки
    коротко: «План обновлён: 6 упражнений, ≈33 мин» (#plan-status, role="status"); при первом показе — молча */
 let planSaid = null;
+/* planNote — что сказать вместо «План обновлён» один раз («Другой вариант: A → B», 12c-swap.js) */
+let planNote = '';
 function announcePlan() {
   const box = $('#plan-status'); if (!box || S.view !== 'plan') return;
   const n = plan && plan.items ? plan.items.length : 0, empty = $('#plan .empty h2');
-  const text = n ? `Plan updated: ${n} ${plural(n, 'exercise', 'exercises', 'exercises')}, ≈${plan.minutes} min` : empty ? empty.textContent : '';
+  const text = planNote || (n ? `Plan updated: ${n} ${plural(n, 'exercise', 'exercises', 'exercises')}, ≈${plan.minutes} min` : empty ? empty.textContent : '');
+  planNote = '';
   if (planSaid === null) { planSaid = text; return; }
   planSaid = text; box.textContent = ''; /* то же сообщение подряд тоже объявляется: сначала очистить, затем вписать */
   clearTimeout(announcePlan.t); announcePlan.t = setTimeout(() => { box.textContent = text; }, 80);
@@ -13073,20 +13669,41 @@ function renderPlanView() {
   </header>`;
   if (plan.custom) {
     const hints = customHints(plan), lost = lostMessages(plan.lost, plan.E);
-    html += autoregHtml() + healthHtml() + gentleHtml() + (lost.length ? `<div class="warn">${lost.map(w => `<p>${esc(w)}</p>`).join('')}</div>` : '')
+    html += restTodayHtml(plan) + autoregHtml() + healthHtml() + gentleHtml() + (lost.length ? `<div class="warn">${lost.map(w => `<p>${esc(w)}</p>`).join('')}</div>` : '')
       + (hints.length ? `<div class="cp-hints">${hints.map(w => `<p>${esc(w)}</p>`).join('')}</div>` : '') + blocksHtml(plan) + customAddHtml() + LEGEND;
-  } else html += logPickHtml(plan) + autoregHtml() + healthHtml() + gentleHtml() + warnHtml(plan) + blocksHtml(plan) + LEGEND;
+  } else html += logPickHtml(plan) + restTodayHtml(plan) + autoregHtml() + healthHtml() + gentleHtml() + warnHtml(plan) + blocksHtml(plan) + LEGEND;
   root.innerHTML = html;
   mountFigures();
 }
 
+/* Виды движения за неделю — под полосами подходов (Игорь 1: счётчик «в норме» не видел, что горизонтальной тяги нет):
+   что есть, чего нет и почему квота не действует (weekKinds.off — отметки суставов, бережный режим) */
+function kindsHtml(k) {
+  if (!k || (!k.on.length && !k.off.length)) return '';
+  const name = id => KINDS[id].name, have = k.on.filter(id => k.have.has(id)), miss = k.on.filter(id => !k.have.has(id));
+  const parts = [];
+  if (have.length) parts.push('This week has: {list}.'.replace('{list}', have.map(name).join(', ')));
+  if (miss.length) parts.push('Missing: {list} — there was no room in the workouts; add an exercise or another day.'.replace('{list}', miss.map(name).join(', ')));
+  for (const o of k.off) parts.push('{kind} is not picked: {why}.'.replace('{kind}', name(o.k).charAt(0).toUpperCase() + name(o.k).slice(1)).replace('{why}', o.why || 'not suitable for gentle mode'));
+  return `<p class="lb-note kinds-note${miss.length ? ' kinds-miss' : ''}">${esc(parts.join(' '))}</p>`;
+}
+/* Новичку больше трёх тренировок в неделю — с предупреждением (Игорь 19): ACSM, Ratamess et al., MSSE 2009; 41(3):687–708
+   (аннотация и с. 693) — новичкам 2–3 тренировки в неделю на всё тело */
+/* то же в «Бережно»: каждой крупной группе мышц — 2–3 раза в неделю по 2–4 подхода (Garber et al., MSSE 2011; 43(7):1334–1359) */
+function begDaysHtml() {
+  if ((S.level !== 'beg' && S.goal !== 'gentle') || S.days <= 3) return '';
+  const t = S.level === 'beg' ? 'Two or three full-body workouts a week are usually enough for a beginner: muscles and joints need time to get used to the load. With {n} workouts, keep an eye on how you feel, and if you get tired, choose 3 days.'
+    : 'In gentle mode, 2–3 workouts a week are usually enough: each muscle group 2–3 times with 2–4 sets. With {n} workouts, keep an eye on how you feel, and if you get tired, choose 3 days.';
+  return `<div class="warn"><p>${esc(t.replace('{n}', S.days))}</p></div>`;
+}
 function renderProgram() {
+  if (weekSync()) saveSettings();
   prog = buildProgram();
   if (S.day >= prog.days.length) S.day = 0;
   const day = prog.days[S.day];
   plan = day.plan;
   const G = GOALS[S.goal], wk = prog.week;
-  const allGroups = new Set(prog.days.flatMap(d => DAY_T[d.tid].g));
+  const allGroups = new Set(prog.days.flatMap(d => dayTargets(d.tid)));
   const sp = SPLITS[prog.split];
   const lf = ensureFold(S).load, volRows = Object.entries(prog.gvol).filter(([g, v]) => g !== 'cardio' && v >= 1).sort((a, b) => b[1] - a[1]).map(([g, v]) => [GN[g], Math.round(v * 2) / 2]);
   let html = `<header class="p-head${lf ? ' load-folded' : ''}">
@@ -13106,6 +13723,7 @@ function renderProgram() {
       <figcaption>
         ${loadFoldHead('Sets per group per week', loadTop(volRows))}
         <ul class="vbars">${volBars(prog.gvol, allGroups)}</ul>
+        ${kindsHtml(prog.kinds)}
         <p class="lb-note">${volScaleText()} A set counts in full for the target group and as half for the other working muscles. ${S.goal === 'strength' ? 'Volume is lower in a strength cycle — that’s normal.' : S.goal === 'gentle' ? 'Joints and technique come first.' : ''}</p>
       </figcaption>
     </figure>
@@ -13114,15 +13732,17 @@ function renderProgram() {
     <h2>4-week cycle</h2>
     <div class="wk" role="group" aria-label="Cycle week">${WEEKS.map((w, i) => `<button type="button" class="${i + 1 === S.week ? 'on' : ''}" data-week="${i + 1}" aria-pressed="${i + 1 === S.week}"><b>${i + 1}</b><small>${w.name}</small></button>`).join('')}</div>
     <p class="wk-note"><b>${wk.name}.</b> ${esc(wk.note)}</p>
+    <p class="wk-auto">${'The cycle week moves on by itself every Monday. Pick another one, and counting starts from it.'}</p>
     <details class="rule"><summary>How to add weight</summary><p>Work within the rep range on the card. Once you hit the top of the range in every set, add weight next time — ${unitRange([1, 2.5], [2.5, 5])} for the upper body, ${unitRange([2.5, 5], [5, 10])} for legs — and start again from the bottom of the range. If you log your sets on the cards, the planner will tell you when to increase. After the deload, repeat the cycle with the new weights.</p></details>
   </section>
+  ${begDaysHtml()}
   <nav class="days" role="tablist" aria-label="Days of the week">${prog.days.map((d, i) => `<button type="button" role="tab" class="${i === S.day ? 'on' : ''}" data-day="${i}" aria-selected="${i === S.day}"><b>${WD[d.wd]}</b><span>${esc(d.name)}</span><small>${d.plan.items ? `≈${d.plan.minutes} min` : 'no exercises'}</small></button>`).join('')}</nav>
   <div class="day-head"><h2>${WD_FULL[day.wd]} — ${esc(day.name)}</h2>
     <p>${(plan.groups || DAY_T[day.tid].g).map(g => GN[g].toLowerCase()).join(', ')}${plan.items ? ` · ≈${plan.minutes} min · ${plan.totalSets} ${plural(plan.totalSets, 'set', 'sets', 'sets')}` : ''}</p></div>`;
   const bodyDay = !plan.items && emptyBodyGroups(plan.groups || DAY_T[day.tid].g);
   if (!plan.items) html += bodyDay ? `<div class="empty"><h2>No exercises for this day</h2><p>${esc('For these muscles ({g}) {what}, there are no suitable exercises with this equipment: all of them put load on what you protect.'.replace('{g}', bodyDay.map(g => GN[g].toLowerCase()).join(', ')).replace('{what}', 'in gentle mode'))}</p><p>Choose another split or place; you can change what you protect in the settings.</p></div>${gentleHtml()}`
     : `<div class="empty"><h2>No exercises for this day</h2><p>The selected equipment has nothing to load these muscles. Add equipment or pick a different split.</p></div>`;
-  else html += autoregHtml() + healthHtml() + gentleHtml() + warnHtml(plan) + blocksHtml(plan);
+  else html += restTodayHtml(plan) + autoregHtml() + healthHtml() + gentleHtml() + warnHtml(plan) + blocksHtml(plan);
   html += LEGEND;
   $('#plan').innerHTML = html;
   if (plan.items) mountFigures();
@@ -13268,11 +13888,15 @@ const LOAD_KIND_NOTE = {
   machine:'machine guides the path: less stabilization',
   cable:'cable: more even load through the range'
 };
+/* Вес тела на опоре — «вес тела», даже если опора — гриф тренажёра: австралийские подтягивания под грифом машины Смита
+   (было: «тренажёр ведёт траекторию: меньше стабилизации» — а это вес тела на перекладине; Игорь 16, Mike 9). Тренажёр —
+   только там, где сопротивление даёт он сам (стек, противовес гравитрона, кардиотренажёр) */
 function loadKind(ex, E) {
   const ids = E ? chosenEquip(ex, E) : ex.eq.map(g => g[0]);
   const cat = id => (EQUIP.find(e => e.id === id) || {}).cat;
   if (ids.some(id => id === 'cable')) return 'cable';
-  if (ids.some(id => cat(id) === 'mach' || cat(id) === 'cardio')) return 'machine';
+  const onBar = !ex.assist && ex.g !== 'cardio' && !weighable(ex, E) && !ids.some(id => id === 'band');
+  if (!onBar && ids.some(id => cat(id) === 'mach' || cat(id) === 'cardio')) return 'machine';
   if (ids.some(id => id === 'band')) return 'band';
   if (ids.some(id => ['db', 'bb', 'kb'].includes(id)) || (E && (ex.opt || []).some(id => ['db', 'kb'].includes(id) && E.has(id)))) return 'free';
   return 'body';
@@ -13387,17 +14011,23 @@ function staticOk(ex) {
   return !['jump', 'burpee', 'climb'].includes(PATTERN[ex.id]);
 }
 /* назначение в статодинамике поверх обычного: серии по три подхода, медленный темп, нагрузка по жжению */
+/* «Бережно» в статодинамике — одна серия, лёгкий вес, без сильного жжения и без процента от максимума: тот же счёт, что
+   в плашке «Бережно» (gentleHtml, STATIC_GENTLE) — было: в шапке «12–15 повторов лёгким весом, силы ещё на 3–4», а в
+   карточках «2 × 3 × 5–7, мышца сильно горит» (Игорь 7) */
+const STATIC_GENTLE = 'light weight: by the end of the set the muscle burns slightly, every rep feels easy and pain-free';
 function staticRx(rx, ex, week, E) {
-  let series = STATIC.series[S.level] || 2;
+  const gentle = S.goal === 'gentle';
+  let series = gentle ? 1 : STATIC.series[S.level] || 2;
   if (week && week.deload) series = Math.max(1, series - 1);
   const band = ex.eq.length && ex.eq.every(g => g.every(id => id === 'band')), assisted = ex.eq.some(g => g.includes('gravitron'));
   /* простыми словами (11-planner.js: pctText): «не отказ» — «повторы ещё получаются» */
-  const load = weighable(ex, E) ? `the muscle burns hard by the end of the set, but you can still do reps (${pctText('≈ 40–60%')})`
+  const load = gentle ? (band ? 'band tension: ' : assisted ? 'counterweight: ' : !weighable(ex, E) ? 'body weight: ' : '') + STATIC_GENTLE
+    : weighable(ex, E) ? `the muscle burns hard by the end of the set, but you can still do reps (${pctText('≈ 40–60%')})`
     : band ? 'band tension: the muscle burns hard by the end of the set, but you can still do reps'
     : assisted ? 'counterweight: the muscle burns hard by the end of the set, but you can still do reps'
     : 'body weight: if there is no burn, go slower and don’t rest at the end points';
   return {...rx, sets:series * STATIC.perSeries, series, reps:STATIC.reps, unit:'reps', rest:STATIC.rest, seriesRest:STATIC.seriesRest[S.level] || 180,
-    tempo:STATIC.tempo, load, work:STATIC.work * (ex.uni ? 2 : 1), static:true, partial:STATIC.partial,
+    tempo:STATIC.tempo, load, work:STATIC.work * (ex.uni ? 2 : 1), static:true, partial:STATIC.partial, pctN:null, loadAt:null, setsMax:null,
     notes:[...rx.notes, 'A set lasts ≈ 30–40 s: 3 s down and 3 s up with no pauses; don’t lock out and don’t relax at the bottom.']};
 }
 /* отдых после подхода k (с нуля): внутри серии коротко, между сериями долго, после последнего — переход к следующему */
@@ -13420,6 +14050,26 @@ const CUSTOM_MAX = 12, CUSTOM_NAME = 40, CUSTOM_TEXT = 40, CUSTOM_NOTE = 400, IT
 const CUSTOM_REPS = /^(\d{1,3})(?:\s*[–-]\s*(\d{1,3}))?$/;
 const CUSTOM_TEMPO = /^[0-9X]{1,2}-[0-9X]{1,2}-[0-9X]{1,2}-[0-9X]{1,2}$/;
 const PLAN_KEYS = ['goal', 'format', 'level'];
+/* у каждого своего плана — ещё свои мышцы и место (4.111; Дмитрий 9: мышцы были общими для всех своих планов, «Верх А»
+   упрекал «не нагружены: квадрицепс», «Низ А» — «грудь, плечи»; Марина 1: место не сохранялось в план, и у ученика вместо
+   гантелей дома была штанга зала). Как цель, формат и уровень: переключатели в параметрах правят открытый план, обычная
+   тренировка и неделя держат свои (S.gen). Отметки «Что беречь» плана (protect) и неделя цикла (week) в S не переносятся —
+   их читает сборка плана (buildPlanAt, protectOn в 11g-gentle.js) */
+const PLAN_OWN = ['groups', 'place'], PLAN_ALL = PLAN_KEYS.concat(PLAN_OWN);
+const planVal = v => Array.isArray(v) ? v.slice() : v;
+/* мышцы плана: известные группы в порядке параметров; не список — null */
+function cleanGroups(v) { return Array.isArray(v) ? GROUPS.map(g => g.id).filter(id => v.includes(id)) : null; }
+/* мышцы по упражнениям плана (планы прежних версий): целевые группы его упражнений; пустой план — null */
+function groupsOfItems(items) {
+  const set = new Set((items || []).map(it => EXI[it.id] && EXI[it.id].g).filter(Boolean));
+  return set.size ? GROUPS.map(g => g.id).filter(id => set.has(id)) : null;
+}
+/* отметки «Что беречь» плана: до загрузки 11g-gentle.js — строки как есть, потом — только известные (planProtectClean там же) */
+function cleanPlanProtect(v) {
+  if (!Array.isArray(v)) return [];
+  const list = [...new Set(v.filter(x => typeof x === 'string' && /^\w{1,20}$/.test(x)))];
+  return typeof protectNorm === 'function' ? protectNorm(list) : list;
+}
 let cpTab = null, cpOpen = new Set(), cpDel = false;
 /* поиск в «Добавить упражнение» (searchExercises, 11i-search.js): запрос держится до перезагрузки страницы */
 let cpQ = '';
@@ -13464,6 +14114,8 @@ function cleanCustomItem(it) {
   if (!it || !EXI[it.id]) return null;
   const o = {id:it.id};
   if (Number.isInteger(it.sets) && it.sets >= 1 && it.sets <= 10) o.sets = it.sets;
+  /* суперсет своего плана: false — не в паре со следующим (Дмитрий 15: пары выбирает человек); без поля — пары по порядку */
+  if (it.ss === false) o.ss = false;
   const reps = cleanReps(it.reps); if (reps) o.reps = reps;
   if (Number.isInteger(it.rest) && it.rest >= 0 && it.rest <= 600) o.rest = it.rest;
   const kg = it.kg != null ? cleanKg(it.kg) : null; if (kg) o.kg = kg;
@@ -13480,8 +14132,16 @@ function cleanPlan(c, id) {
     items:(Array.isArray(c.items) ? c.items : []).map(cleanCustomItem).filter(it => it && !ids.has(it.id) && ids.add(it.id)).slice(0, CUSTOM_MAX)};
   for (const [k, dict] of [['goal', GOALS], ['format', FORMATS], ['level', LEVELS]]) if (typeof c[k] === 'string' && dict[c[k]]) out[k] = c[k];
   for (const k of ['group', 'for', 'from']) { const v = cleanText(c[k], CUSTOM_TEXT); if (v) out[k] = v; }
+  /* неделя цикла, из которой сохранён план (savePlansFrom): запас и процент в карточках — как в программе в ту неделю
+     (Марина 3 — старое, перепроверка Игоря: в программе на неделе 2 запас «3», в сохранённом плане — «2–3») */
+  if (Number.isInteger(c.week) && c.week >= 1 && c.week <= WEEKS.length) out.week = c.week;
   const gauto = out.group && autoKey(c.gauto, out.group, 'group'); if (gauto) { out.group = autoName(gauto); out.gauto = gauto; }
   const note = cleanText(c.note, CUSTOM_NOTE, true); if (note) out.note = note;
+  /* 4.111: мышцы, место (код места на этом устройстве), отметки «Что беречь», с которыми план пришёл, и неделя цикла */
+  const gs = cleanGroups(c.groups); if (gs) out.groups = gs;
+  if (typeof c.place === 'string' && /^[\w-]{1,40}$/.test(c.place)) out.place = c.place;
+  const pr = cleanPlanProtect(c.protect); if (pr.length) out.protect = pr;
+  if (Number.isInteger(c.week) && c.week >= 1 && c.week <= WEEKS.length) out.week = c.week;
   return out;
 }
 /* настройки из хранилища или резервной копии: только известные упражнения и разумные значения */
@@ -13497,20 +14157,58 @@ function ensureCustoms(s) {
   s.author = cleanText(s.author, CUSTOM_TEXT);
   /* цель, формат и уровень обычных планов, пока открыт свой план (у своего — свои) */
   const g = s.gen && typeof s.gen === 'object' ? s.gen : {};
-  s.gen = {goal:GOALS[g.goal] ? g.goal : s.goal, format:FORMATS[g.format] ? g.format : s.format, level:LEVELS[g.level] ? g.level : s.level};
+  s.gen = {goal:GOALS[g.goal] ? g.goal : s.goal, format:FORMATS[g.format] ? g.format : s.format, level:LEVELS[g.level] ? g.level : s.level,
+    /* мышцы и место обычных планов (4.111); прежние версии их не хранили — общие, какие есть */
+    groups:cleanGroups(g.groups) || (Array.isArray(s.groups) ? s.groups.slice() : []), place:typeof g.place === 'string' && /^[\w-]{1,40}$/.test(g.place) ? g.place : s.place};
   return s;
+}
+/* Пустой «Мой план» — заготовка: он есть, только пока своих планов нет. Пришли планы (загрузка, сохранение) — заготовка
+   уходит, первым в списке и открытым становится пришедший (Кира 11, Дмитрий 23: «выбран пустой „Мой план“, сохранённый —
+   второй кнопкой», «на новом телефоне остаётся пустой „Мой план“»). Переименованный или с упражнениями — не заготовка. */
+function dropEmptyMy(s = S) {
+  const idle = c => c.auto === 'my' && !c.items.length && !c.group && !c.for && !c.note && !c.from;
+  if (s.customs.length < 2 || !s.customs.some(idle)) return false;
+  const was = s.custom;
+  s.customs = s.customs.filter(c => !idle(c));
+  if (!s.customs.some(c => c.id === was)) s.custom = s.customs[0].id;
+  if (!s.customs.some(c => c.id === s.cpLast)) s.cpLast = null;
+  return true;
 }
 function newPlanId() { let id; do id = 'c' + Date.now().toString(36) + Math.floor(Math.random() * 1296).toString(36); while (S.customs.some(c => c.id === id)); return id; }
 function customOf(s = S) { return s.customs.find(c => c.id === s.custom) || s.customs[0]; }
 
 /* У каждого своего плана свои цель, формат и уровень: план выглядит одинаково у тренера и у ученика.
    Переключатели в параметрах правят открытый план; обычная тренировка и неделя держат свои (S.gen). */
-function loadPlanSettings() { const c = customOf(); for (const k of PLAN_KEYS) { if (!c[k]) c[k] = S[k]; S[k] = c[k]; } }
-function storePlanSetting(k) { if (S.mode === 'custom' && PLAN_KEYS.includes(k)) customOf()[k] = S[k]; else if (PLAN_KEYS.includes(k)) S.gen[k] = S[k]; }
-function switchModeSettings(prev) {
-  if (prev !== 'custom' && S.mode === 'custom') { for (const k of PLAN_KEYS) S.gen[k] = S[k]; loadPlanSettings(); }
-  else if (prev === 'custom' && S.mode !== 'custom') for (const k of PLAN_KEYS) S[k] = S.gen[k];
+function loadPlanSettings() {
+  const c = customOf();
+  for (const k of PLAN_KEYS) { if (!c[k]) c[k] = S[k]; S[k] = c[k]; }
+  /* мышцы плана прежних версий — по его упражнениям; пустой план — те, что выбраны сейчас */
+  if (!Array.isArray(c.groups)) c.groups = groupsOfItems(c.items) || S.groups.slice();
+  S.groups = c.groups.slice();
+  /* место плана прежних версий (или удалённое) — то, где человек сейчас */
+  if (!c.place || !S.places.some(p => p.id === c.place)) c.place = S.place;
+  if (S.place !== c.place) { S.place = c.place; ensurePlaces(S); }
+  gentleNoStatic();
 }
+function storePlanSetting(k) {
+  if (!PLAN_ALL.includes(k)) return;
+  if (S.mode === 'custom') customOf()[k] = planVal(S[k]); else S.gen[k] = planVal(S[k]);
+}
+function switchModeSettings(prev) {
+  if (prev !== 'custom' && S.mode === 'custom') { for (const k of PLAN_ALL) S.gen[k] = planVal(S[k]); loadPlanSettings(); }
+  else if (prev === 'custom' && S.mode !== 'custom') {
+    for (const k of PLAN_ALL) if (S.gen[k] !== undefined) S[k] = planVal(S.gen[k]);
+    ensurePlaces(S);
+    gentleNoStatic();
+  }
+}
+/* неделя цикла своего плана (сохранённого из недели программы или пришедшего с ней); программа — своя неделя; иначе null */
+function planWeek() {
+  if (S.mode === 'program') return WEEKS[S.week - 1] || null;
+  const c = S.mode === 'custom' ? customOf() : null;
+  return c && c.week ? WEEKS[c.week - 1] || null : null;
+}
+function planWeekNo() { const w = planWeek(); return w ? WEEKS.indexOf(w) + 1 : null; }
 function openCustom(id) {
   const prev = S.mode; if (id) S.custom = id;
   S.mode = 'custom'; S.view = 'plan'; S.day = 0; cpOpen = new Set(); cpDel = false;
@@ -13518,6 +14216,8 @@ function openCustom(id) {
 }
 ensureCustoms(S);
 if (S.mode === 'custom') loadPlanSettings();
+/* сообщение о замене формата при запуске держится до первого действия */
+fmtNoteFresh = false;
 
 /* ---------- избранное ---------- */
 const isFav = id => S.fav.includes(id);
@@ -13559,7 +14259,7 @@ function customAdd(id) {
 function newCustomPlan() {
   const c = customOf(), taken = new Set(S.customs.map(p => p.name));
   let n = S.customs.length + 1; while (taken.has('Plan ' + n)) n++;
-  return {id:newPlanId(), name:'Plan ' + n, auto:'plan:' + n, items:[], ...(S.mode === 'custom' && c.group ? {group:c.group, ...(c.gauto ? {gauto:c.gauto} : {})} : {}), ...Object.fromEntries(PLAN_KEYS.map(k => [k, S[k]]))};
+  return {id:newPlanId(), name:'Plan ' + n, auto:'plan:' + n, items:[], ...(S.mode === 'custom' && c.group ? {group:c.group, ...(c.gauto ? {gauto:c.gauto} : {})} : {}), ...Object.fromEntries(PLAN_ALL.map(k => [k, planVal(S[k])]))};
 }
 /* «+ В свой план» в атласе и в разборе: в выбранный план (planId) или в новый (planId пустой). Открытый план, режим
    и вид не меняются (S.custom, S.mode, S.view). Добавленное запоминает план первым в списке (S.cpLast). */
@@ -13613,15 +14313,27 @@ function customSetReps(slot, text) {
   if (ok.reps.includes('/')) customSet(slot, 'sets', ok.reps.split('/').length);
   return true;
 }
+/* Пары суперсетов своего плана (Дмитрий 15: «хочу выбрать пары сам, остальное — классикой»): по порядку плана упражнение
+   берёт в пару следующее, если у него нет «не в паре со следующим» (ss: false); такое — отдельное упражнение со своими
+   подходами и отдыхом. Без отметок — соседние пары, как раньше. list — упражнения плана по порядку, itemOf(k) — его запись */
+function customPairs(list, itemOf) {
+  const out = [];
+  for (let k = 0; k < list.length;) {
+    const o = itemOf(k) || {};
+    if (o.ss !== false && k + 1 < list.length) { out.push([list[k], list[k + 1]]); k += 2; } else { out.push([list[k]]); k++; }
+  }
+  return out;
+}
 /* дозировка по цели и формату, поверх — правка человека (кроме статодинамики: там серии заданы методом) */
 function customRx(rx, o, ex) {
   if (!o) return rx;
   const r = {...rx};
   if (!rx.static) {
     if (o.sets) r.sets = o.sets;
-    if (o.reps && !ex.kind) { r.reps = o.reps; r.work = midOf(o.reps) * GOALS[S.goal].rep * (ex.uni ? 2 : 1); }
+    /* процент от максимума — по своим повторам плана (Руслан 14; пирамида — от меньшего до большего, loadAt, 11-planner.js) */
+    if (o.reps && !ex.kind) { r.reps = o.reps; r.work = midOf(o.reps) * GOALS[S.goal].rep * (ex.uni ? 2 : 1); if (rx.loadAt) r.load = rx.loadAt(o.reps); }
     if (o.rest !== undefined) r.rest = o.rest;
-    if (o.tempo && !ex.kind) r.tempo = o.tempo;
+    if (o.tempo && !ex.kind) { r.tempo = o.tempo; r.tempoOwn = true; }
   }
   /* вес и заметка тренера — и в статодинамике */
   if (o.kg) { r.kgPlan = o.kg; r.kgU = o.ku || 'kg'; }
@@ -13742,7 +14454,7 @@ function customToolsHtml(it) {
   const restOpts = [0, 15, 30, 45, 60, 75, 90, 120, 150, 180, 240, 300];
   if (!restOpts.includes(r.rest)) restOpts.push(r.rest), restOpts.sort((a, b) => a - b);
   const edit = r.static ? `<p class="f-note">In static-dynamics the series, tempo and rest are set by the method — change the goal or level instead.</p>`
-    : `<div class="cp-fields">
+    : `${cpPairHtml(it)}<div class="cp-fields">
         ${r.circ ? '' : `<div class="cp-f"><span>Sets</span><div class="stepper sm"><button type="button" data-cp-step="${slot}" data-d="-1" aria-label="Fewer sets"${r.sets <= 1 ? ' disabled' : ''}>−</button><output>${r.sets}</output><button type="button" data-cp-step="${slot}" data-d="1" aria-label="More sets"${r.sets >= 10 ? ' disabled' : ''}>+</button></div></div>`}
         ${it.ex.kind ? '' : `<label class="cp-f"><span>Reps</span><input type="text" inputmode="text" maxlength="40" data-cp-reps="${slot}" value="${esc(r.reps)}" aria-label="Reps: 8–12, or per set separated by “/”, e.g. 10/8/6/5" autocomplete="off"></label>`}
         ${r.circ ? '' : `<label class="cp-f"><span>Rest</span><select data-cp-rest="${slot}">${restOpts.map(s => `<option value="${s}"${s === r.rest ? ' selected' : ''}>${s ? fmtRest(s) : 'no rest'}</option>`).join('')}</select></label>`}
@@ -13760,6 +14472,16 @@ function customToolsHtml(it) {
     <button type="button" class="btn-ghost${r.edited ? ' cp-edited' : ''}" data-cp-edit="${slot}" aria-expanded="${open}">Sets, weight, note${r.edited ? '<i class="cp-dot" aria-label="edited"></i>' : ''}</button>
     <button type="button" class="btn-ghost cp-rm" data-cp-rm="${slot}">Remove</button>
   </div>${open ? `<div class="cp-edit">${edit}${extra}</div>` : ''}`;
+}
+/* «В паре со следующим» (формат «Суперсеты», Дмитрий 15) — у первого упражнения пары и у отдельного, за которым есть ещё
+   упражнение: снятая галочка делает упражнение отдельным, со своими подходами и отдыхом (customPairs) */
+function cpPairHtml(it) {
+  if (S.format !== 'superset' || !plan || !plan.blocks) return '';
+  const bi = plan.blocks.findIndex(b => b.items.includes(it)), b = plan.blocks[bi];
+  if (!b || b.items[0] !== it) return '';
+  const on = b.items.length > 1, next = on ? b.items[1] : plan.blocks[bi + 1] && plan.blocks[bi + 1].items[0];
+  if (!next) return '';
+  return `<label class="cp-ss"><input type="checkbox" data-cp-ss="${it.slot}"${on ? ' checked' : ''}><span>${esc('Superset with the next one: {name}'.replace('{name}', next.name))}</span></label>`;
 }
 /* Вес по подходам — поле на подход с цифровой клавиатурой (Дмитрий 24, Руслан 13: «60 / 62,5 / 65» в одном поле требовало
    обычной клавиатуры, а «5000», «−20», «абв» молча оставляли прежний вес). Вписан только первый — тот же вес во всех
@@ -13797,8 +14519,11 @@ function customEmptyHtml() {
 }
 /* под названием своего плана: программа, для кого, от кого и заметка */
 function customHeadHtml() {
-  /* название программы само может содержать «·», поэтому части разделены отступом, а значения выделены */
-  const c = customOf(), sub = [c.group ? `<span>Program: <b>${esc(c.group)}</b></span>` : '', c.for ? `<span>For: <b>${esc(c.for)}</b></span>` : '', c.from ? `<span>From: <b>${esc(c.from)}</b></span>` : ''].filter(Boolean);
+  /* название программы само может содержать «·», поэтому части разделены отступом, а значения выделены; место и неделя
+     цикла — свои у плана (4.111): у ученика видно, где и в какой неделе он задуман */
+  const c = customOf(), wk = c.week ? WEEKS[c.week - 1] : null;
+  const sub = [`<span>Place: <b>${esc(placeOf().name)}</b></span>`, wk ? `<span>Cycle week: <b>${c.week} · ${esc(wk.name.toLowerCase())}</b></span>` : '',
+    c.group ? `<span>Program: <b>${esc(c.group)}</b></span>` : '', c.for ? `<span>For: <b>${esc(c.for)}</b></span>` : '', c.from ? `<span>From: <b>${esc(c.from)}</b></span>` : ''].filter(Boolean);
   return (sub.length ? `<p class="cp-sub">${sub.join('')}</p>` : '') + (c.note ? `<p class="c-note cp-pn">${esc(c.note)}</p>` : '');
 }
 
@@ -13820,14 +14545,26 @@ function freezePlan(p) {
     return cleanCustomItem(o);
   }).filter(Boolean).slice(0, CUSTOM_MAX);
 }
-function savePlansFrom() {
-  const set = Object.fromEntries(PLAN_KEYS.map(k => [k, S[k]])), added = [];
+/* собранная тренировка или неделя — своими планами, как их видно сейчас (без кодов): для «Сохранить как свой план» и для
+   ссылки и текста (11m-plan-link.js). Вместе с планом — мышцы, место и неделя цикла (4.111, Марина 3: в программе
+   «4 в запасе, ≈55–60 %», в сохранённом плане — «почти до отказа, ≈55–65 %») */
+function frozenPlans(taken = S.customs.map(c => c.name)) {
+  const set = Object.fromEntries(PLAN_KEYS.map(k => [k, S[k]])), out = [], names = () => taken.concat(out.map(c => c.name));
   if (S.mode === 'program' && prog) {
     /* имена и программа — с ключами (11a-names.js): в другом языке они пишутся на нём */
     const gauto = `split:${prog.split}:${S.week}`, group = cleanText(autoName(gauto) || `${SPLITS[prog.split].name} · week ${S.week}`, CUSTOM_TEXT);
-    for (const d of prog.days) if (d.plan.items) added.push({id:newPlanId(), ...namedPlan(`${WD[d.wd]} · ${d.name}`, `day:${d.wd}:${d.tid}${d.li ? ':' + d.li : ''}`, S.customs.map(c => c.name).concat(added.map(c => c.name))), group, gauto, ...set, items:freezePlan(d.plan)});
-  } else if (plan && plan.items) added.push({id:newPlanId(), ...namedPlan(titleFor(), S.mode === 'custom' ? customOf().auto : S.groups.length ? 'groups:' + S.groups.join(',') : null), ...set, items:freezePlan(plan)});
-  S.customs.push(...added); saveSettings();
+    for (const d of prog.days) if (d.plan.items) out.push({...namedPlan(`${WD[d.wd]} · ${d.name}`, `day:${d.wd}:${d.tid}${d.li ? ':' + d.li : ''}`, names()), group, gauto, ...set,
+      groups:DAY_T[d.tid].g.slice(), place:S.place, week:S.week, items:freezePlan(d.plan)});
+  } else if (plan && plan.items) out.push({...namedPlan(titleFor(), S.mode === 'custom' ? customOf().auto : S.groups.length ? 'groups:' + S.groups.join(',') : null, names()), ...set,
+    groups:S.groups.slice(), place:S.place, items:freezePlan(plan)});
+  return out;
+}
+function savePlansFrom() {
+  const added = frozenPlans().map(c => ({id:newPlanId(), ...c}));
+  S.customs.push(...added);
+  /* сохранённый — открытым своим планом: «Свой план» в параметрах откроет его, а не пустую заготовку (Кира 11) */
+  if (added.length) { S.custom = added[0].id; dropEmptyMy(); }
+  saveSettings();
   return added;
 }
 
@@ -13937,6 +14674,7 @@ document.addEventListener('change', e => {
     items[s] = ok; planUndo = null;
     return customRerender(`[data-cp-kg="${s}"][data-k="${t.dataset.k || 0}"]`);
   }
+  if (t.dataset.cpSs !== undefined) { const s = +t.dataset.cpSs; customSet(s, 'ss', t.checked ? null : false); return customRerender(`[data-cp-ss="${s}"]`); }
   if (t.dataset.cpTempo !== undefined) {
     const s = +t.dataset.cpTempo, v = t.value.trim().toUpperCase().replace(/[–—]/g, '-');
     if (v && !CUSTOM_TEMPO.test(v)) { t.setAttribute('aria-invalid', 'true'); return; }
@@ -13961,7 +14699,11 @@ document.addEventListener('keydown', e => {
 /* ===================== ФАЙЛЫ ПЛАНОВ =====================
    Свои планы выгружаются в JSON и загружаются обратно — свои, от тренера, для ученика. Формат описан в docs/plan-format.md.
    Упражнения хранятся кодами каталога (общими для русской и английской версий), название — для чтения человеком.
-   Подходы, повторы и отдых пишутся явно, как их видно в плане, — у получателя план выглядит так же. */
+   Подходы, повторы и отдых пишутся явно, как их видно в плане, — у получателя план выглядит так же. С 4.111 план несёт
+   и то, от чего зависят его упражнения (Марина 1, 2, перепроверка Ксении: у ученика были «Зал» вместо «Дома» и гоблет
+   вместо приседа без веса): мышцы, место с инвентарём и наборами гантелей и гирь, отметки «Что беречь» (свои и плана) и
+   неделю цикла. Свои отметки получателя действуют поверх отметок плана (protectOn, 11g-gentle.js). Ссылка на план —
+   11m-plan-link.js: в ней тот же план, но без отметок «Что беречь» (упражнения в ней уже с заменами). */
 const PLAN_FILE = 'lazy-gym-planner/plans', PLAN_FILE_V = 1, PLAN_FILE_MAX = 256 * 1024, PLAN_FILE_PLANS = 50;
 let planIn = null;
 
@@ -13982,23 +14724,45 @@ function exportItem(c, item) {
     } else if (item.sets) o.sets = item.sets; /* статодинамика: число серий человек задаёт сам, остальное — метод */
     if (item.kg) o.kg = item.kg.length === 1 ? item.kg[0] : item.kg.slice();
     if (item.note) o.note = item.note;
+    if (item.ss === false) o.ss = false;
     return o;
   });
 }
-function exportPlan(c) {
+/* место для файла: имя (с ключом имени по умолчанию), инвентарь, наборы гантелей и гирь (4.108: dw) */
+function placeFile(p) {
+  const o = {name:p.name};
+  if (p.auto) o.auto = p.auto;
+  o.equip = EQUIP.map(e => e.id).filter(id => p.equip.includes(id));
+  const dw = {}; for (const impl of ['db', 'kb']) { const a = typeof availOf === 'function' ? availOf(p, impl) : null; if (a) dw[impl] = a; }
+  if (Object.keys(dw).length) o.dw = dw;
+  return o;
+}
+/* место плана: своё (c.place) или, у плана прежних версий, то, где человек сейчас */
+function planPlace(c) { return S.places.find(p => p.id === c.place) || placeOf(); }
+/* отметки «Что беречь», под которые собран план у владельца: его свои и пришедшие с планом */
+function planProtect(c) { return protectNorm(ensureProtect(S).concat(c.protect || [])); }
+/* opts.items — упражнения вместо c.items (ссылка: с заменами, как их видно); opts.link — без отметок «Что беречь»
+   (решение владельца 3: в ссылке нет данных о здоровье) и без названий упражнений (ссылка короче) */
+function exportPlan(c, opts = {}) {
   const o = {name:c.name};
   /* ключ имени по умолчанию (11a-names.js): получатель увидит имя на своём языке; прежние версии ключ пропускают */
   if (c.auto) o.auto = c.auto;
   for (const k of ['group', 'for', 'note']) if (c[k]) o[k] = c[k];
   if (c.group && c.gauto) o.gauto = c.gauto;
   for (const k of PLAN_KEYS) o[k] = c[k] || S.gen[k] || S[k];
-  o.items = c.items.map(it => exportItem(c, it));
+  const gs = Array.isArray(c.groups) ? c.groups : groupsOfItems(c.items); if (gs) o.groups = gs.slice();
+  o.place = placeFile(planPlace(c));
+  if (c.week) o.week = c.week;
+  if (!opts.link) { const pr = planProtect(c); if (pr.length) o.protect = pr; }
+  o.items = (opts.items || c.items).map(it => exportItem(c, it));
+  if (opts.link) for (const it of o.items) delete it.name;
   return o;
 }
-function planFileObject(plans, from) {
-  const o = {format:PLAN_FILE, version:PLAN_FILE_V, app:typeof window !== 'undefined' && window.PODHOD_VERSION || '', exported:new Date().toISOString().slice(0, 10)};
+function planFileObject(plans, from, opts = {}) {
+  const o = {format:PLAN_FILE, version:PLAN_FILE_V};
+  if (!opts.link) Object.assign(o, {app:typeof window !== 'undefined' && window.PODHOD_VERSION || '', exported:new Date().toISOString().slice(0, 10)});
   if (from) o.from = from;
-  o.plans = plans.map(exportPlan);
+  o.plans = plans.map((c, i) => exportPlan(c, {...opts, items:opts.items ? opts.items[i] : undefined}));
   return o;
 }
 /* имя файла латиницей: браузеры подменяют имя с кириллицей на «download» */
@@ -14006,7 +14770,8 @@ const TRANSLIT = {а:'a', б:'b', в:'v', г:'g', д:'d', е:'e', ё:'e', ж:'zh
 function planFileName(plans) {
   const slug = v => String(v).toLowerCase().replace(/[а-яё]/g, ch => TRANSLIT[ch] ?? '').replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '').slice(0, 40) || 'plan';
   const c = plans[0], group = plans.length > 1 && plans.every(p => p.group && p.group === c.group) ? c.group : null;
-  return `lazy-gym-${plans.length > 1 ? (group ? 'program-' + slug(group) : 'plans') : 'plan-' + slug(c.name)}.json`;
+  /* с датой: файлы разных дней не путаются и не перезаписывают друг друга (Дмитрий 23) */
+  return `lazy-gym-${plans.length > 1 ? (group ? 'program-' + slug(group) : 'plans') : 'plan-' + slug(c.name)}-${dayKey(new Date())}.json`;
 }
 
 /* ---------- чтение файла: только известные поля, разумные значения, понятные ошибки ---------- */
@@ -14025,7 +14790,9 @@ function readPlanFile(text) {
     const items = Array.isArray(p.items) ? p.items : [];
     for (const it of items) if (it && !EXI[it.id]) unknown.push(cleanText(it.name, 60) || cleanText(String(it.id || ''), 30) || '?');
     const prep = items.map(it => it && typeof it === 'object' ? {...it, sets:Number.isInteger(it.sets) ? it.sets : undefined, rest:Number.isInteger(it.rest) ? it.rest : undefined} : it);
-    const c = cleanPlan({...p, items:prep}, '');
+    /* место в файле — имя и инвентарь (код места у получателя свой: его подберёт addPlans) */
+    const c = cleanPlan({...p, place:undefined, items:prep}, ''), pin = cleanPlaceIn(p.place);
+    if (pin) c.placeIn = pin;
     /* в своём плане — не больше CUSTOM_MAX упражнений: остальные не пропадают молча (Ксения 11) — сказано, сколько войдёт,
        и можно разбить план на несколько (all — все упражнения плана по порядку) */
     const ids = new Set(), all = prep.map(cleanCustomItem).filter(it => it && !ids.has(it.id) && ids.add(it.id));
@@ -14043,10 +14810,39 @@ function splitPlan(p) {
   for (let i = 0; i < n; i++) { const c = {...p, name:`${base} (${i + 1}/${n})`, items:p.all.slice(i * CUSTOM_MAX, (i + 1) * CUSTOM_MAX)}; delete c.all; delete c.auto; out.push(c); }
   return out;
 }
-/* добавление: всегда новыми планами, занятые имена получают «(2)» */
+/* место из файла: имя, ключ имени по умолчанию, известный инвентарь, наборы гантелей и гирь; не место — null */
+function cleanPlaceIn(v) {
+  if (!v || typeof v !== 'object' || Array.isArray(v) || !Array.isArray(v.equip)) return null;
+  const known = new Set(EQUIP.map(e => e.id)), name = cleanText(v.name, 24) || 'Place', o = {name, equip:EQUIP.map(e => e.id).filter(id => known.has(id) && v.equip.includes(id))};
+  const auto = autoKey(v.auto, name, 'place'); if (auto) { o.auto = auto; o.name = autoName(auto); }
+  const dw = {}; if (v.dw && typeof v.dw === 'object') for (const impl of ['db', 'kb']) { const a = typeof availOf === 'function' ? availOf({dw:v.dw}, impl) : null; if (a) dw[impl] = a; }
+  if (Object.keys(dw).length) o.dw = dw;
+  return o;
+}
+/* Место плана у получателя: своё место с тем же инвентарём и теми же наборами гантелей и гирь (одноимённое — первым);
+   такого нет — новое место с именем из файла. Свои места не меняются (dryRun — только узнать, какое место будет) */
+function placeForIn(pin, dryRun = false) {
+  const key = p => JSON.stringify([EQUIP.map(e => e.id).filter(id => p.equip.includes(id)), placeFile(p).dw || null]), want = key({equip:pin.equip, dw:pin.dw, name:pin.name});
+  const same = S.places.filter(p => key(p) === want);
+  const hit = same.find(p => p.name === pin.name) || same[0];
+  if (hit || dryRun) return {place:hit || null, isNew:!hit};
+  const names = new Set(S.places.map(p => p.name));
+  let name = pin.name; for (let k = 2; names.has(name); k++) name = `${pin.name.slice(0, 20)} (${k})`;
+  const p = {id:'p' + Date.now().toString(36) + Math.floor(Math.random() * 1296).toString(36), name, equip:pin.equip.slice(), ...(pin.dw ? {dw:JSON.parse(JSON.stringify(pin.dw))} : {})};
+  if (pin.auto && name === pin.name) p.auto = pin.auto;
+  S.places.push(p);
+  return {place:p, isNew:true};
+}
+/* добавление: всегда новыми планами, занятые имена получают «(2)»; место из файла — своё такое же или новое; пустая
+   заготовка «Мой план» уходит (dropEmptyMy) */
 function addPlans(plans) {
   const taken = S.customs.map(c => c.name), added = [];
-  for (const p of plans) { const c = {...p, id:newPlanId()}; delete c.auto; delete c.all; Object.assign(c, namedPlan(p.name, p.auto, taken)); taken.push(c.name); S.customs.push(c); added.push(c); }
+  for (const p of plans) {
+    const c = {...p, id:newPlanId()}; delete c.auto; delete c.all; delete c.placeIn;
+    if (p.placeIn) c.place = placeForIn(p.placeIn).place.id;
+    Object.assign(c, namedPlan(p.name, p.auto, taken)); taken.push(c.name); S.customs.push(c); added.push(c);
+  }
+  dropEmptyMy();
   saveSettings(); return added;
 }
 
@@ -14058,11 +14854,13 @@ function planOutScope(scope) {
 function planOutHtml() {
   const c = customOf(), group = c.group ? S.customs.filter(p => p.group === c.group).length : 0, all = S.customs.filter(p => p.items.length).length;
   const radio = (v, label, on, dis) => `<label class="po-opt"><input type="radio" name="po-scope" value="${v}"${on ? ' checked' : ''}${dis ? ' disabled' : ''}><span>${label}</span></label>`;
-  const share = typeof navigator !== 'undefined' && navigator.canShare && typeof File === 'function';
+  /* «Поделиться» — текст со ссылкой через системное меню (Кира 1): его умеют и телефоны без отправки файлов */
+  const share = typeof navigator !== 'undefined' && typeof navigator.share === 'function';
   return `<form method="dialog" class="gear po">
-    <h2>Export plan</h2>
-    <p class="gear-hint">The .json file opens in Lazy Gym Planner on any phone or computer: “Custom plan” → “Import plan”. The log and logged weights are not included.</p>
-    <fieldset class="po-set"><legend>What to export</legend>
+    <h2>${'Export plan'}</h2>
+    <p class="gear-hint">${'The .json file opens in Lazy Gym Planner on any device: “Custom plan” → “Import plan”. It includes the place and the “Protect joints” marks; the log is not included.'}</p>
+    <p class="gear-hint">${'The text and “Share” come with a link that opens the plan right away, no file needed. The link has no “Protect joints” marks — its exercises already include the swaps.'}</p>
+    <fieldset class="po-set"><legend>${'What to export'}</legend>
       ${radio('one', `This plan: ${esc(c.name)}`, true)}
       ${group > 1 ? radio('group', `The whole program (${esc(c.group)}): ${group} ${plural(group, 'plan', 'plans', 'plans')}`) : ''}
       ${all > 1 ? radio('all', `All custom plans: ${all}`) : ''}
@@ -14093,63 +14891,107 @@ function planOutPayload() {
   for (const p of plans) { if (forWho) p.for = forWho; else delete p.for; }
   saveSettings();
   const obj = planFileObject(plans, from);
-  return {plans, text:JSON.stringify(obj, null, 1) + '\n', name:planFileName(plans)};
+  return {plans, from, text:JSON.stringify(obj, null, 1) + '\n', name:planFileName(plans)};
 }
 async function planOutAction(kind) {
-  const msg = $('#po-msg'), {plans, text, name} = planOutPayload();
+  const msg = $('#po-msg'), {plans, from, text, name} = planOutPayload();
   if (!plans.length || plans.every(p => !p.items.length)) { msg.textContent = 'The plan has no exercises — nothing to export.'; return; }
+  /* текст и ссылка: план, как его видно (11m-plan-link.js) */
   if (kind === 'copy') {
-    try { await navigator.clipboard.writeText(text); msg.textContent = 'The file text is copied. Paste it into “Import plan” on another device.'; }
-    catch (e) { msg.innerHTML = 'Automatic copy failed. Select the text:<textarea readonly rows="5"></textarea>'; const ta = msg.querySelector('textarea'); ta.value = text; ta.focus(); ta.select(); }
+    const made = plansShareText(plans, from);
+    const r = await clipText(made.then(m => m.text));
+    if (r === true) msg.textContent = 'Copied: the plan text and a link. The link opens the plan right away; the whole text can also be pasted into “Import plan”.';
+    else clipFallback(msg, r);
     return;
   }
   if (kind === 'share') {
     try {
-      const file = new File([text], name, {type:'application/json'});
-      if (!navigator.canShare({files:[file]})) throw new Error('no files');
-      await navigator.share({files:[file], title:plans.length > 1 ? 'Workout plans' : plans[0].name});
+      const m = await plansShareText(plans, from);
+      await navigator.share({title:plans.length > 1 ? 'Workout plans' : plans[0].name, text:m.body, url:m.url});
       msg.textContent = 'Sent.';
-    } catch (e) { msg.textContent = e && e.name === 'AbortError' ? 'Sharing canceled.' : 'Sharing the file failed — save it and send it manually.'; }
+    } catch (e) { msg.textContent = e && e.name === 'AbortError' ? 'Sharing canceled.' : 'Couldn’t share — copy the text or save the file.'; }
     return;
   }
   const r = await saveFile(name, text, 'application/json');
   msg.textContent = r === 'ok' ? `File saved: ${name}` : r === 'declined' ? 'Save canceled.' : 'Saving the file failed.';
 }
 
-/* ---------- окно загрузки ---------- */
+/* ---------- окно загрузки: файл, вставленный текст или ссылка ---------- */
+/* что будет у плана: цель, формат, уровень, место, неделя цикла, отметки «Что беречь» */
+function planInSetup(p) {
+  const out = [GOALS[p.goal]?.name, FORMATS[p.format]?.name, LEVELS[p.level]?.name].filter(Boolean).map(x => x.toLowerCase());
+  if (p.placeIn) { const f = placeForIn(p.placeIn, true); out.push(f.isNew ? 'new place: {name}'.replace('{name}', p.placeIn.name) : 'place: {name}'.replace('{name}', f.place.name)); }
+  if (p.week && WEEKS[p.week - 1]) out.push('cycle week {n}: {name}'.replace('{n}', p.week).replace('{name}', WEEKS[p.week - 1].name.toLowerCase()));
+  if (p.protect && p.protect.length) out.push('protects: {what}'.replace('{what}', hitsText(protectNorm(p.protect).map(id => PROTECT_BY[id]))));
+  return out.join(', ');
+}
+/* упражнения плана — как их увидит получатель: названия по инвентарю места плана, подходы и повторы из файла */
+function planInItems(p) {
+  const E = effEquip(p.placeIn ? p.placeIn.equip : S.equip), all = effEquip(EQUIP.map(e => e.id));
+  return p.items.map(it => {
+    const ex = EXI[it.id], name = exName(ex, available(ex, E) ? E : all), dose = it.sets && it.reps ? `${it.sets} × ${it.reps}` : it.reps || (it.sets ? `${it.sets} ${plural(it.sets, 'set', 'sets', 'sets')}` : '');
+    return `<li>${esc(name)}${dose ? ` <small>${esc(dose)}</small>` : ''}${planInSwap(ex, p, E) ? ` <em class="pi-swap">${'needs a swap'}</em>` : ''}</li>`;
+  }).join('');
+}
+/* упражнение плана не подойдёт у получателя: в месте плана нет снаряда или оно нагружает то, что бережёт план или сам
+   человек (те же правила, что в сборке своего плана: protectHits, strictHit, kneeDeepBlocked) — в плане будет замена
+   или, если её нет, оно не войдёт; подробно — на странице плана */
+function planInSwap(ex, p, E) {
+  if (!available(ex, E)) return true;
+  const on = protectNorm(ensureProtect(S).concat(p.protect || []));
+  if (!on.length) return false;
+  const ids = stressIdsOf(ex);
+  return on.some(id => PROTECT_BY[id].rules.some(r => ids.includes(r)) || (STRICT[id] && STRICT[id].test(ex)))
+    || (on.includes('knees') && typeof stressKneeDeep === 'function' && stressKneeDeep(ex));
+}
 function planInHtml() {
-  const r = planIn;
+  const r = planIn, link = !!(r && r.link);
   let body = '';
   if (r && r.error) body = `<p class="warn">${esc(r.error)}</p>`;
   else if (r) {
     /* общая программа и адресат — один раз сверху; у плана — только то, что отличает его от соседей */
     const groups = [...new Set(r.plans.map(p => p.group || ''))], common = groups.length === 1 && groups[0];
     const meta = [common ? `<span>Program: <b>${esc(common)}</b></span>` : '', r.from ? `<span>From: <b>${esc(r.from)}</b></span>` : '', r.plans[0].for ? `<span>For: <b>${esc(r.plans[0].for)}</b></span>` : ''].join('');
-    const setup = p => [GOALS[p.goal]?.name, FORMATS[p.format]?.name, LEVELS[p.level]?.name].filter(Boolean).join(', ').toLowerCase();
+    /* один план — список упражнений сразу открыт: человек видит, что ему прислали (решение владельца 3) */
+    const one = r.plans.length === 1;
     body = `${meta ? `<p class="cp-sub pi-meta">${meta}</p>` : ''}${r.note ? `<p class="c-note">${esc(r.note)}</p>` : ''}
-      ${r.newer ? '<p class="warn">The file was made in a newer version of the app: anything this version doesn’t know will be skipped. Update the app.</p>' : ''}
+      ${r.newer ? `<p class="warn">${link || r.fromLink ? 'The link was made in a newer version of the app: anything this version doesn’t know will be skipped. Update the app.' : 'The file was made in a newer version of the app: anything this version doesn’t know will be skipped. Update the app.'}</p>` : ''}
       ${r.unknown.length ? `<p class="warn">This version of the app doesn’t know these exercises: ${esc(r.unknown.join(', '))}. They will be skipped.</p>` : ''}
       ${r.cut ? `<p class="warn">The file has more than ${PLAN_FILE_PLANS} plans — the first ones will be imported: ${PLAN_FILE_PLANS}.</p>` : ''}
       ${r.plans.filter(p => p.all).map(p => { const i = r.plans.indexOf(p), n = Math.ceil(p.all.length / CUSTOM_MAX); return `<div class="warn pi-over"><p>${`The plan “${esc(p.name)}” — ${p.all.length} ${plural(p.all.length, 'exercise', 'exercises', 'exercises')}, but one custom plan holds ${CUSTOM_MAX}: the first ${CUSTOM_MAX}will be added, the other ${p.all.length - CUSTOM_MAX} won't.`}</p><label class="pi-split"><input type="checkbox" data-pi-split="${i}"> ${`Split into ${n} ${plural(n, 'plan', 'plans', 'plans')} — all exercises will be added`}</label></div>`; }).join('')}
-      <fieldset class="po-set"><legend>Plans in the file</legend>${r.plans.map((p, i) => `<label class="po-opt pi-plan"><input type="checkbox" data-pi="${i}" checked><span><b>${esc(p.name)}</b><small>${p.items.length} ${plural(p.items.length, 'exercise', 'exercises', 'exercises')}${p.all ? ` ${'of'} ${p.all.length}` : ''}${setup(p) ? ` — ${setup(p)}` : ''}</small>${!common && p.group ? `<small>program: ${esc(p.group)}</small>` : ''}</span></label>`).join('')}</fieldset>`;
+      <fieldset class="po-set"><legend>${link || r.fromLink ? 'Plans in the link' : 'Plans in the file'}</legend>${r.plans.map((p, i) => `<div class="pi-row"><label class="po-opt pi-plan"><input type="checkbox" data-pi="${i}" checked><span><b>${esc(p.name)}</b><small>${p.items.length} ${plural(p.items.length, 'exercise', 'exercises', 'exercises')}${p.all ? ` ${'of'} ${p.all.length}` : ''}${planInSetup(p) ? ` — ${esc(planInSetup(p))}` : ''}</small>${!common && p.group ? `<small>program: ${esc(p.group)}</small>` : ''}</span></label>`
+        + (p.items.length ? `<details class="pi-items"${one ? ' open' : ''}><summary>${'Exercises'}</summary><ol>${planInItems(p)}</ol></details>` : '') + `</div>`).join('')}</fieldset>`;
   }
   return `<form method="dialog" class="gear pi">
-    <h2>Import plan</h2>
-    <p class="gear-hint">Choose a .json file exported from Lazy Gym Planner — your own or from a coach. The plans are added to yours; nothing is overwritten.</p>
-    <label class="btn btn-2 pi-file" for="pi-file">Choose file</label><input type="file" id="pi-file" accept=".json,application/json,text/plain" hidden>
-    <details class="pi-paste"${r && r.pasted && r.error ? ' open' : ''}><summary>or paste the file text</summary><textarea id="pi-text" rows="4" placeholder='{"format": "lazy-gym-planner/plans", …}'></textarea><button type="button" class="btn btn-2" id="pi-read">Load</button></details>
+    <h2>${link ? 'Plan from a link' : 'Import plan'}</h2>
+    <p class="gear-hint">${link ? 'Someone sent you a plan. It will be added to your plans: your plans and log stay as they are. Your “Protect joints” marks apply to it too.'
+      : 'Choose a .json file exported from Lazy Gym Planner — your own or from a coach — or paste the plan text with its link. The plans are added to yours; nothing is overwritten.'}</p>
+    ${link ? '' : `<label class="btn btn-2 pi-file" for="pi-file">${'Choose file'}</label><input type="file" id="pi-file" accept=".json,application/json,text/plain" hidden>
+    <details class="pi-paste"${r && r.pasted && r.error ? ' open' : ''}><summary>${'or paste the plan text'}</summary><textarea id="pi-text" rows="4" placeholder="${esc('Text with a plan link, or the text of a .json file')}"></textarea><button type="button" class="btn btn-2" id="pi-read">${'Read'}</button></details>`}
     ${body}
     <p class="p-hint" id="pi-msg" role="status"></p>
     <div class="gear-btns"><button type="button" class="btn btn-2" id="pi-close">Close</button>${r && r.plans ? `<button type="button" class="btn" id="pi-add">Add to my plans</button>` : ''}</div>
   </form>`;
 }
-function openPlanIn() {
-  planIn = null;
+function openPlanIn(result = null) {
+  planIn = result;
   let d = $('#plan-in');
   if (!d) { d = document.createElement('dialog'); d.id = 'plan-in'; d.className = 'gear-view'; d.setAttribute('aria-label', 'Import plan'); document.body.appendChild(d); }
-  d.innerHTML = planInHtml(); d.showModal();
+  d.setAttribute('aria-label', result && result.link ? 'Plan from a link' : 'Import plan');
+  d.innerHTML = planInHtml(); if (!d.open) d.showModal();
+  if (result) { const f = $('#pi-add') || $('#pi-close'); if (f) f.focus(); }
 }
 function showPlanIn(result) { planIn = result; $('#plan-in').innerHTML = planInHtml(); const f = $('#pi-add') || $('#pi-close'); if (f) f.focus(); }
+/* Добавленные планы — сразу на экране (Марина 8, Кира: после «Добавить» на телефоне были развёрнутые параметры, а план —
+   на 2–3 экрана ниже): открыт первый добавленный, параметры на телефоне свёрнуты, план — вверху экрана, фокус на названии */
+function showAddedPlan(id) {
+  openCustom(id);
+  if (typeof setupFoldsHere === 'function') ensureFold(S).setup = setupFoldsHere();
+  regen();
+  const root = $('#plan'), h = $('#plan .p-title, #plan .empty h2');
+  if (root) root.scrollIntoView({block:'start'});
+  if (h) { h.setAttribute('tabindex', '-1'); h.focus({preventScroll:true}); }
+}
 
 document.addEventListener('click', e => {
   const t = e.target.closest('button'); if (!t) return;
@@ -14160,13 +15002,13 @@ document.addEventListener('click', e => {
   if (t.id === 'po-copy') { planOutAction('copy'); return; }
   if (t.dataset.cpImport !== undefined) { openPlanIn(); return; }
   if (t.id === 'pi-close') { $('#plan-in').close(); return; }
-  if (t.id === 'pi-read') { showPlanIn({...readPlanFile($('#pi-text').value), pasted:true}); return; }
+  if (t.id === 'pi-read') { const v = $('#pi-text').value; readPlanAny(v).then(r => showPlanIn({...r, pasted:true})); return; }
   if (t.id === 'pi-add') {
     const split = new Set([...document.querySelectorAll('[data-pi-split]')].filter(x => x.checked).map(x => +x.dataset.piSplit));
     const pick = [...document.querySelectorAll('[data-pi]')].filter(x => x.checked).flatMap(x => { const p = planIn.plans[+x.dataset.pi]; if (split.has(+x.dataset.pi)) return splitPlan(p); const c = {...p}; delete c.all; return [c]; });
     if (!pick.length) { $('#pi-msg').textContent = 'Select at least one plan.'; return; }
     const added = addPlans(pick); $('#plan-in').close(); planIn = null;
-    openCustom(added[0].id); regen(); window.scrollTo({top:0});
+    showAddedPlan(added[0].id);
     return;
   }
 });
@@ -14175,7 +15017,7 @@ document.addEventListener('change', e => {
   const f = e.target.files && e.target.files[0]; if (!f) return;
   if (f.size > PLAN_FILE_MAX) { showPlanIn({error:'The file is too large for a plan.'}); return; }
   const rd = new FileReader();
-  rd.onload = () => showPlanIn(readPlanFile(String(rd.result || '')));
+  rd.onload = () => readPlanAny(String(rd.result || '')).then(showPlanIn);
   rd.onerror = () => showPlanIn({error:'The file can’t be read.'});
   rd.readAsText(f);
 });
@@ -14272,7 +15114,7 @@ function setupSummary() {
   const D = typeof durationOf === 'function' ? durationOf() : null;
   if (D) go('#f-dur', D.say);
   if (S.mode === 'single') { if (!D) go('#count-l', `${S.count} ${plural(S.count, 'exercise', 'exercises', 'exercises')}`); go('#f-muscles', S.groups.length ? titleFor() : 'No muscles selected'); }
-  if (typeof PROTECT_BY !== 'undefined' && S.protect && S.protect.length) go('#f-joints', 'Protecting ' + hitsText(S.protect.map(id => PROTECT_BY[id])));
+  if (typeof PROTECT_BY !== 'undefined' && protectOn(S).length) go('#f-joints', 'Protecting ' + hitsText(protectOn(S).map(id => PROTECT_BY[id])));
   go('#e-places', placeOf().name);
   return out.join('');
 }
@@ -14373,15 +15215,23 @@ const STRICT = {
   disc:{why:'impact load on the spine', test:ex => stressIdsOf(ex).includes('landing')}
 };
 
-function ensureProtect(s) {
-  const list = Array.isArray(s.protect) ? s.protect : [];
-  /* строгая отметка включает обычную */
-  const on = new Set(list.filter(id => PROTECT_BY[id])); for (const id of [...on]) if (PROTECT_BY[id].base) on.add(PROTECT_BY[id].base);
-  s.protect = PROTECT.map(p => p.id).filter(id => on.has(id));
-  return s.protect;
+/* известные отметки в порядке списка; строгая отметка включает обычную */
+function protectNorm(list) {
+  const on = new Set((Array.isArray(list) ? list : []).filter(id => PROTECT_BY[id])); for (const id of [...on]) if (PROTECT_BY[id].base) on.add(PROTECT_BY[id].base);
+  return PROTECT.map(p => p.id).filter(id => on.has(id));
 }
+function ensureProtect(s) { s.protect = protectNorm(s.protect); return s.protect; }
+/* Что бережём сейчас: свои отметки человека (S.protect, для всех планов) и, в своём плане, — отметки, с которыми план пришёл
+   из файла (c.protect: тренер берёг колени ученика — у ученика без отметок план тот же, Марина 2, перепроверка Ксении).
+   Свои отметки действуют всегда: план из файла или по ссылке им подчиняется */
+function protectOn(s = S) {
+  const own = ensureProtect(s), c = s.mode === 'custom' && Array.isArray(s.customs) && typeof customOf === 'function' ? customOf(s) : null;
+  return c && c.protect && c.protect.length ? protectNorm(own.concat(c.protect)) : own;
+}
+/* отметки, которые пришли с открытым своим планом, а у человека их нет */
+function protectFromPlan(s = S) { const own = new Set(ensureProtect(s)); return protectOn(s).filter(id => !own.has(id)); }
 /* что показать словами: строгая отметка вместо своей обычной («колено после операции», а не «колени и колено…») */
-function protectShown(list = ensureProtect(S)) { const strict = new Set(list.map(id => PROTECT_BY[id].base).filter(Boolean)); return list.filter(id => !strict.has(id)).map(id => PROTECT_BY[id]); }
+function protectShown(list = protectOn(S)) { const strict = new Set(list.map(id => PROTECT_BY[id].base).filter(Boolean)); return list.filter(id => !strict.has(id)).map(id => PROTECT_BY[id]); }
 
 /* ---------- «Пропустить → больно» (14-workout-mode.js): упражнение не возвращается в план само ----------
    S.pain = {off: [id] — убраны из подбора и замен до «Вернуть», log: [{d, id, how: 'removed' | 'swapped', to}] — пометки
@@ -14416,6 +15266,8 @@ function painDayHtml(d) {
   return marks.map(x => `<p class="j-pain"><b>${'Painful:'}</b> ${esc(exNameHere(EXI[x.id]))} — ${x.how === 'swapped' && x.to ? `${'replaced with'} ${esc(exNameHere(EXI[x.to]))}` : 'removed from the plan'}</p>`).join('');
 }
 ensureProtect(S); ensurePain(S);
+/* отметки своих планов, прочитанные до этого файла (11d-custom.js: cleanPlanProtect), — только известные */
+for (const c of S.customs) if (c.protect) { c.protect = protectNorm(c.protect); if (!c.protect.length) delete c.protect; }
 /* отмеченное посреди прошлой тренировки, если приложение закрыли, не закрыв её */
 if (S.pain.pend.length) { S.pain.off = [...new Set(S.pain.off.concat(S.pain.pend))]; S.pain.pend = []; }
 
@@ -14456,14 +15308,15 @@ function prefetchStressIds() {
 }
 
 /* ---------- подходит ли упражнение при выбранных суставах и цели ---------- */
-function protectRules() { const set = new Set(); for (const id of ensureProtect(S)) for (const r of PROTECT_BY[id].rules) set.add(r); return set; }
+function protectRules() { const set = new Set(); for (const id of protectOn(S)) for (const r of PROTECT_BY[id].rules) set.add(r); return set; }
 function protectHits(ex) {
-  if (!ensureProtect(S).length) return [];
+  const on = protectOn(S);
+  if (!on.length) return [];
   const ids = stressIdsOf(ex);
-  return S.protect.map(id => PROTECT_BY[id]).filter(p => p.rules.some(r => ids.includes(r)));
+  return on.map(id => PROTECT_BY[id]).filter(p => p.rules.some(r => ids.includes(r)));
 }
 /* строгая отметка, правило которой нарушает упражнение (первая) */
-function strictHit(ex) { for (const id of ensureProtect(S)) if (STRICT[id] && STRICT[id].test(ex)) return id; return null; }
+function strictHit(ex) { for (const id of protectOn(S)) if (STRICT[id] && STRICT[id].test(ex)) return id; return null; }
 function jointOk(ex) { return !protectHits(ex).length && !strictHit(ex); }
 function gentleOk(ex) { return S.goal !== 'gentle' || (ex.lvl <= 2 && !GENTLE_SKIP.has(ex.id) && !GENTLE_SKIP_PATTERNS.has(PATTERN[ex.id]) && !HEAVY_SPINE.has(ex.id)); }
 /* «Беречь колени»: кроме меток — никакого приседа и выпада стоя глубже порога правила колен (85°, на одной ноге 80°;
@@ -14471,7 +15324,7 @@ function gentleOk(ex) { return S.goal !== 'gentle' || (ex.lvl <= 2 && !GENTLE_SK
    ни в замене, ни в своём плане. Решение владельца 12.11.2026: «по коленям надо максимально застраховаться от того, что
    человек травмирует колено по нашей рекомендации». Гоблет-присед → присед без веса снимает лишь гантель, сгиб остаётся
    тем же (stressKneeDepth); подходят меньший сгиб или упражнения без опоры на стопы (мостик, сгибания ног) */
-function kneeDeepBlocked(ex) { return ensureProtect(S).includes('knees') && typeof stressKneeDeep === 'function' && stressKneeDeep(ex); }
+function kneeDeepBlocked(ex) { return protectOn(S).includes('knees') && typeof stressKneeDeep === 'function' && stressKneeDeep(ex); }
 function fitsBody(ex) { return gentleOk(ex) && jointOk(ex) && !kneeDeepBlocked(ex) && !painOff(ex) && (typeof healthOk !== 'function' || healthOk(ex)); }
 /* замена (в своём плане, в программе другого места, кнопкой «Заменить») — по тем же правилам, что подбор */
 function swapFits(ex) { return fitsBody(ex); }
@@ -14509,12 +15362,14 @@ function lostMessages(lost, E) {
 
 /* ---------- настройки: «Беречь суставы» ---------- */
 function renderProtect() {
-  const on = new Set(ensureProtect(S));
+  /* в своём плане отмечены и отметки, с которыми план пришёл: снять их можно той же кнопкой (снимается и в плане) */
+  const list = protectOn(S), on = new Set(list), fromPlan = protectShown(protectFromPlan(S));
   $('#j-chips').innerHTML = PROTECT.map(p => `<button type="button" class="chip${p.base ? ' chip-strict' : ''}${on.has(p.id) ? ' on' : ''}" data-protect="${p.id}" aria-pressed="${on.has(p.id)}">${ICON.check}<span>${p.name}</span></button>`).join('');
   const strict = [...on].filter(id => PROTECT_BY[id].base);
   $('#j-note').textContent = on.size
-    ? `Exercises with peak load on ${hitsText(S.protect.map(id => PROTECT_BY[id]))} are not picked; in a custom plan they are replaced with similar ones.`
+    ? `Exercises with peak load on ${hitsText(list.map(id => PROTECT_BY[id]))} are not picked; in a custom plan they are replaced with similar ones.`
       + (strict.length ? ' ' + strict.map(id => STRICT_NOTE[id]).join(' ') : '')
+      + (fromPlan.length ? ' ' + 'These marks came with this plan: {list}.'.replace('{list}', fromPlan.map(p => '“' + p.name + '”').join(', ')) : '')
     : 'Mark the joints that hurt or are recovering: the plan will avoid exercises with peak load on them — by the same rules as the red marks on the mannequin.';
   const box = $('#j-pain'); if (box) box.innerHTML = painListHtml();
 }
@@ -14537,8 +15392,13 @@ function gentleHtml() {
   const gentle = S.goal === 'gentle', prot = protectShown();
   if (!gentle && !prot.length) return '';
   /* запас — тот же, что в строке нагрузки карточек (reserveOf: неделя цикла, уровень) */
-  const rir = gentle ? reserveOf(S.mode === 'program' ? WEEKS[S.week - 1] : null) : null;
-  const lead = gentle
+  const rir = gentle ? reserveOf(planWeek()) : null;
+  /* в статодинамике — её счёт (staticRx, 11c-static.js): одна серия из трёх подходов по 5–7 медленных повторов, а не 12–15
+     (Игорь 7: в шапке «12–15 повторов», в карточках «2 × 3 × 5–7, сильно горит») */
+  const stat = gentle && S.format === 'static';
+  const lead = stat
+    ? `<p><b>Gentle.</b> ${'Static-dynamic: one series of three sets of 5–7 slow reps with a light weight; by the end of the set the muscle burns slightly, not hard, and every rep feels easy.'} Jumps, ballistic and advanced exercises, heavy barbell work on the back and head-down exercises are not picked.${prot.length ? ` No peak load on ${hitsText(prot)}.` : ''}</p>`
+    : gentle
     ? `<p><b>Gentle.</b> 12–15 reps with a light weight — one that lets every rep feel easy${rir ? ' and ' + '{n} still in the tank'.replace('{n}', reserveReps(rir)) : `, ${NOT_LIMIT}`}; slow, no jerks. Jumps, ballistic and advanced exercises, heavy barbell work on the back and head-down exercises are not picked.${prot.length ? ` No peak load on ${hitsText(prot)}.` : ''}</p>`
     : `<p><b>No peak load on ${hitsText(prot)}.</b> Such exercises are not picked, and in a custom plan they are replaced with similar ones.</p>`;
   return `<details class="gentle-box"${ensureFold(S).gentle ? '' : ' open'}><summary>Gentle mode: the pain rule and when to stop</summary>${lead}
@@ -14549,15 +15409,20 @@ function gentleHtml() {
 /* беговая дорожка при «Коленях» и «Грыже диска»: шаг без бега (отчёт Елены, п. 14) — у бега есть фаза полёта и удар стопы:
    давление в диске при беге трусцой до 0,95 МПа против 0,5 стоя (Wilke et al. 1999); после пластики ПКС бег — только после
    критериев (Aspetar, см. 09f-joint-stress.js). На дорожке скорость задаёт человек, поэтому упражнение остаётся — шагом */
-function treadmillWalk(ex) { const on = ensureProtect(S); return (on.includes('knees') || on.includes('disc')) && typeof stressFlight === 'function' && stressFlight(ex); }
+function treadmillWalk(ex) { const on = protectOn(S); return (on.includes('knees') || on.includes('disc')) && typeof stressFlight === 'function' && stressFlight(ex); }
 
 document.addEventListener('click', e => {
   const t = e.target.closest('button'); if (!t) return;
   if (t.dataset.painBack) { painReturn(t.dataset.painBack); regen(); return; }
   if (!t.dataset.protect) return;
   const id = t.dataset.protect; if (!PROTECT_BY[id]) return;
-  /* снять обычную отметку — снять и строгую, которая её включает */
-  S.protect = S.protect.includes(id) ? S.protect.filter(x => x !== id && (PROTECT_BY[x].base !== id)) : S.protect.concat(id);
+  /* снять обычную отметку — снять и строгую, которая её включает; отмеченная планом снимается и в нём */
+  const drop = list => list.filter(x => x !== id && (PROTECT_BY[x].base !== id));
+  if (protectOn(S).includes(id)) {
+    S.protect = drop(S.protect);
+    const c = S.mode === 'custom' ? customOf() : null;
+    if (c && c.protect) { c.protect = drop(c.protect); if (!c.protect.length) delete c.protect; }
+  } else S.protect = S.protect.concat(id);
   ensureProtect(S); regen();
 });
 document.addEventListener('toggle', e => {
@@ -14904,7 +15769,8 @@ function applyDose(rx, dose) {
     const series = Math.max(Math.min(1, rx.series), Math.min(DOSE_MAX_SERIES, rx.series + dose.s));
     return {...rx, series, sets:series * STATIC.perSeries, seriesRest:doseRest(rx.seriesRest, dose)};
   }
-  return {...rx, sets:Math.max(Math.min(DOSE_MIN_SETS, rx.sets), Math.min(DOSE_MAX_SETS, rx.sets + dose.s)), rest:doseRest(rx.rest, dose)};
+  /* у тяжёлой базы — не выше потолка таблицы Прилепина (setsMax, 11-planner.js) */
+  return {...rx, sets:Math.max(Math.min(DOSE_MIN_SETS, rx.sets), Math.min(DOSE_MAX_SETS, rx.setsMax || DOSE_MAX_SETS, rx.sets + dose.s)), rest:doseRest(rx.rest, dose)};
 }
 
 /* Тренировка с учётом времени. Не задано, свой план или число упражнений передано явно — как раньше. */
@@ -14932,14 +15798,21 @@ function volOver(p, vol) {
    при равенстве — больше упражнений; не попал никто — ближайший к коридору. С потолком объёма недели (новичок) —
    только варианты в его пределах: в коридоре — как обычно, иначе самый длинный из них */
 function fitDuration(ctx, D) {
-  const all = [], capped = !!(ctx.vol && ctx.vol.cap);
+  const all = [], capped = !!(ctx.vol && ctx.vol.cap), baseN = new Map();
+  let lostStations = false;
   const run = dose => {
     const got = [];
     for (const c of doseCounts()) {
-      const p = buildPlanAt({...ctx, count:c, dose, fitBase:true});
+      /* подбор по времени — без замен и своего порядка: «Заменить» меняет одно упражнение, а не число упражнений и подходы
+         всего плана (было: замена приседа на гоблет в «Сила · 60+» перестроила план из 5 упражнений в 6, Игорь 12) */
+      const p = buildPlanAt({...ctx, swaps:{}, order:null, count:c, dose, fitBase:true});
       if (!p.items) return null;
       /* упражнений меньше, чем просили (всё доступное уже в плане), — та же тренировка, что при меньшем числе */
-      const r = {c, dose, m:p.minutes, n:p.items.length, over:capped ? volOver(p, ctx.vol) : 0};
+      const r = {c, dose, m:p.minutes, n:p.items.length, over:capped ? volOver(p, ctx.vol) : 0, cap:p.capped || p.trimmed};
+      if (!dose.s && dose.r === 1) baseN.set(c, r.n);
+      /* круговая: лишний круг не ценой станций — при потолке подходов за тренировку (sessionCap, 11-planner.js) каждый круг
+         добавляет подход всем группам, и вместо круга из четырёх станций выходили две станции по шесть кругов */
+      if (S.format === 'circuit' && dose.s > 0 && r.n < (baseN.get(c) ?? 0)) { lostStations = true; if (p.items.length < c) break; continue; }
       all.push(r); got.push(r);
       if (p.items.length < c) break;
     }
@@ -14967,7 +15840,8 @@ function fitDuration(ctx, D) {
      новичку больше не прибавляем */
   const counts = doseCounts(), most = counts[counts.length - 1];
   const volCut = capped && near.m < D.lo && all.some(r => r.over > 0.2 && r.m > near.m);
-  return {...near, why:near.m > D.hi ? 'long' : volCut ? 'begvol' : S.level === 'beg' && near.n >= most ? 'beg' : 'few'};
+  /* потолок подходов на группу за тренировку (sessionCap, 11-planner.js): упражнений и подходов больше не прибавляем */
+  return {...near, why:near.m > D.hi ? 'long' : volCut ? 'begvol' : near.cap || lostStations || all.some(r => r.cap) ? 'cap' : S.level === 'beg' && near.n >= most ? 'beg' : 'few'};
 }
 /* сколько упражнений показать в «Упражнений»: при заданном времени — сколько подобрано в открытой тренировке */
 function shownCount() {
@@ -14975,11 +15849,20 @@ function shownCount() {
   const p = S.mode === 'program' && prog ? prog.days[S.day] && prog.days[S.day].plan : plan;
   return p && p.items ? p.items.length : S.count;
 }
+/* потолок подходов на группу (sessionCap): почему тренировка короче заданного времени или упражнений меньше. Фразы с {n}
+   переводятся целиком (i18n/en.json) */
+function capWhy(minutes) {
+  if (S.format === 'static') return 'Static-dynamic uses one exercise per muscle group: the workout is ≈{n} min.'.replace('{n}', minutes);
+  return (sessionCap() < 11 ? 'We don’t add more sets for these muscles in one workout: the workout is ≈{n} min. For a beginner and in gentle mode it’s up to 6 sets per group at a time; use the rest of the time to warm up and cool down.'
+    : 'We don’t add more sets for these muscles in one workout: the workout is ≈{n} min. Beyond 11 sets per group at a time, muscles grow no faster — another workout a week is the better option.').replace('{n}', minutes);
+}
 /* строка под планом, если время не уложилось в коридор: не хватило упражнений или короче не получается */
 function durationWarn(p) {
   const f = p && p.fit; if (!f || f.ok) return '';
   const D = DURATIONS[f.dur];
   return f.why === 'begvol' ? `We don’t add more sets for a beginner: the workout is ≈${p.minutes} min, otherwise your muscles would get more than 12 sets a week. Use the rest of the time for warm-up, cool-down and easy walking.`
+    : f.why === 'cap' ? capWhy(p.minutes)
+    : f.why === 'week' ? 'These muscles don’t need more sets this week: the workout is ≈{n} min. Use the rest of the time to warm up and cool down.'.replace('{n}', p.minutes)
     : f.why === 'long' ? `This goal can’t fit in less than ≈${p.minutes} min: every exercise already has the fewest sets.`
     : f.why === 'beg' ? `We don’t add more sets for a beginner: the workout is ≈${p.minutes} min. Use the rest of the time for warm-up, cool-down and easy walking.`
     : `For ${D.say} there aren’t enough exercises for this equipment and these muscles: the workout is ≈${p.minutes} min.`;
@@ -15028,7 +15911,7 @@ function firstRunApply(A = {}, s = S) {
   const goal = health.length ? 'gentle' : GOALS[A.goal] ? A.goal : FIRST_DEFAULTS.goal, level = LEVELS[A.level] ? A.level : FIRST_DEFAULTS.level;
   Object.assign(s, {mode:'single', view:'plan', goal, level, format:'classic', dur:DURATIONS[A.dur] ? A.dur : FIRST_DEFAULTS.dur,
     protect:Array.isArray(A.protect) ? A.protect.slice() : FIRST_DEFAULTS.protect.slice(), health, groups:FIRST_GROUPS(), focus:null, day:0});
-  s.gen = {...(s.gen || {}), goal, format:'classic', level};
+  s.gen = {...(s.gen || {}), goal, format:'classic', level, groups:s.groups.slice(), place:s.place};
   ensureProtect(s); ensureDur(s); ensureHealth(s);
   return s;
 }
@@ -15082,7 +15965,9 @@ function frRender(focus = true) {
   const id = steps[FR.i], st = FR_STEP[id], last = FR.i === steps.length - 1;
   $('#fr-count').textContent = `Step ${FR.i + 1} of ${steps.length}`;
   $('#fr-title').textContent = st.title;
-  $('#fr-lead').textContent = st.lead; $('#fr-lead').hidden = !st.lead;
+  /* прислали ссылку на план — в первом шаге сказано, что он откроется после вопросов (11m-plan-link.js) */
+  const note = FR.i === 0 && typeof planLinkNote === 'function' ? planLinkNote() : '';
+  $('#fr-lead').textContent = st.lead + (note ? ' ' + note : ''); $('#fr-lead').hidden = !st.lead && !note;
   $('#fr-body').innerHTML = st.body();
   $('#fr-back').hidden = FR.i === 0; $('#fr-skip').hidden = last;
   $('#fr-next').hidden = !st.next; $('#fr-next').textContent = st.next || '';
@@ -15116,6 +16001,8 @@ function frFinish(skip) {
   /* фокус — на название плана: диктор начинает с него */
   const h = $('#plan .p-title, #plan .empty h2'); if (h) { h.setAttribute('tabindex', '-1'); h.focus({preventScroll:true}); }
   FR.skipped = !!skip;
+  /* план по ссылке, открытой в первый запуск, — после вопросов */
+  if (typeof planLinkShow === 'function') planLinkShow();
 }
 function openFirstRun() {
   const d = $('#first-run');
@@ -15134,6 +16021,7 @@ function firstRunClose() {
   const d = $('#first-run'); FR.closing = true; if (d && d.open) d.close(); FR.closing = false;
   document.documentElement.classList.remove('first-run');
   if (S.view === 'plan') renderPlanView();
+  if (typeof planLinkShow === 'function') planLinkShow();
 }
 function setupFirstRun() {
   const d = $('#first-run'); if (!d) return;
@@ -15288,6 +16176,215 @@ document.addEventListener('toggle', e => {
   if (!e.target.classList || !e.target.classList.contains('health-box')) return;
   ensureFold(S).health = !e.target.open; saveSettings();
 }, true);
+
+/* ===================== ССЫЛКА НА ПЛАН И ТЕКСТ ПЛАНА =====================
+   Решение владельца 15.11.2026 (решение 3; Кира 1, 2, 4; Марина 7): ссылка на план без сервера — план целиком в адресе
+   ссылки, после «#plan=». Эта часть адреса остаётся в браузере и не уходит на сервер (ни GitHub Pages, ни Floot её не
+   получают), поэтому сервер не нужен и ничего не хранит.
+   · В ссылке — только план: упражнения с подходами, повторами, отдыхом, темпом, весом по плану и заметками, имя, цель,
+     формат, уровень, мышцы, место с инвентарём и неделя цикла, «для кого» и «от кого», если их вписали. Отметок «Что
+     беречь», ответов о здоровье, пульса, возраста, журнала и веса тела в ней нет: упражнения в ссылке — те, что видит
+     отправитель, уже с заменами под его отметки (exportPlan, 11e-plan-files.js). Файл .json, наоборот, несёт и отметки.
+   · Формат: «z» и base64url (буквы, цифры, «-» и «_» — без экранирования в мессенджерах) сжатого deflate-raw JSON файла плана
+     без названий упражнений; где браузер не умеет сжимать (CompressionStream: Chrome 103+, Safari 16.4+, Firefox 113+),
+     «j» и тот же JSON без сжатия. Читается тем же readPlanFile, что и файл, — те же проверки и пределы; распакованный
+     текст — не больше предела файла плана (PLAN_FILE_MAX), ссылка — не длиннее PLAN_LINK_MAX знаков.
+   · Открыли ссылку — то же окно, что у загрузки файла: что в плане, «Добавить в свои планы»; планы добавляются новыми,
+     свои планы и журнал не меняются, свои отметки «Что беречь» действуют и в пришедшем плане (protectOn). Адрес сразу
+     очищается от плана (перезагрузка не спросит снова). Самый первый запуск — сначала короткие вопросы (там и вопрос
+     о здоровье), план — после них. Битая, обрезанная или чужая ссылка — понятное сообщение.
+   · «Скопировать план» и «Выгрузить» → «Скопировать текст» дают читаемый текст плана и ссылку в конце; этот текст целиком
+     (или одна ссылка) вставляется в «Загрузить план» (readPlanAny). «Поделиться» — тот же текст со ссылкой через меню
+     системы. Тесты — tools/plan-link.test.js, в браузере — tools/ui-check.mjs. */
+const SITE_URL = 'https://sakrett001-ai.github.io/Lazy-gym-planner/';
+const PLAN_HASH = '#plan=', PLAN_LINK_MAX = 100000;
+const LINK_BAD = 'The plan link is damaged: it may have been cut off when forwarded. Ask for it again — in full, or as a file.';
+const LINK_NOT_PLAN = 'This link is not a Lazy Gym Planner plan.';
+
+/* ---------- base64url ---------- */
+const B64U = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_';
+function b64uEncode(bytes) {
+  let out = '';
+  for (let i = 0; i < bytes.length; i += 3) {
+    const n = bytes[i] << 16 | (bytes[i + 1] || 0) << 8 | (bytes[i + 2] || 0), k = Math.min(3, bytes.length - i);
+    out += B64U[n >> 18 & 63] + B64U[n >> 12 & 63] + (k > 1 ? B64U[n >> 6 & 63] : '') + (k > 2 ? B64U[n & 63] : '');
+  }
+  return out;
+}
+/* неверный знак или длина — null */
+function b64uDecode(str) {
+  if (typeof str !== 'string' || str.length % 4 === 1) return null;
+  const out = new Uint8Array(Math.floor(str.length * 3 / 4));
+  let j = 0;
+  for (let i = 0; i < str.length; i += 4) {
+    let n = 0, k = 0;
+    for (; k < 4 && i + k < str.length; k++) { const v = B64U.indexOf(str[i + k]); if (v < 0) return null; n |= v << 18 - 6 * k; }
+    out[j++] = n >> 16 & 255; if (k > 2) out[j++] = n >> 8 & 255; if (k > 3) out[j++] = n & 255;
+  }
+  return out.slice(0, j);
+}
+
+/* ---------- сжатие ---------- */
+async function streamBytes(stream, max) {
+  const rd = stream.getReader(), parts = []; let n = 0;
+  for (;;) {
+    const {done, value} = await rd.read(); if (done) break;
+    n += value.length; if (n > max) { try { rd.cancel(); } catch (e) {} return {big:true}; }
+    parts.push(value);
+  }
+  const out = new Uint8Array(n); let at = 0; for (const p of parts) { out.set(p, at); at += p.length; }
+  return {bytes:out};
+}
+async function deflateBytes(bytes) {
+  const CS = globalThis.CompressionStream; if (typeof CS !== 'function' || typeof Blob !== 'function') return null;
+  try { return (await streamBytes(new Blob([bytes]).stream().pipeThrough(new CS('deflate-raw')), Infinity)).bytes; } catch (e) { return null; }
+}
+async function inflateBytes(bytes, max) {
+  const DS = globalThis.DecompressionStream; if (typeof DS !== 'function' || typeof Blob !== 'function') return {old:true};
+  try { return await streamBytes(new Blob([bytes]).stream().pipeThrough(new DS('deflate-raw')), max); } catch (e) { return {bad:true}; }
+}
+
+/* ---------- ссылка ---------- */
+async function planLinkEncode(obj) {
+  const raw = new TextEncoder().encode(JSON.stringify(obj)), z = await deflateBytes(raw);
+  return z ? 'z' + b64uEncode(z) : 'j' + b64uEncode(raw);
+}
+/* код после «#plan=» → результат readPlanFile или {error} */
+async function readPlanLink(code) {
+  if (typeof code !== 'string' || !code) return {error:LINK_BAD};
+  if (code.length > PLAN_LINK_MAX) return {error:'The link is too long for a plan.'};
+  const kind = code[0];
+  if (kind !== 'z' && kind !== 'j') return {error:'This link is not a Lazy Gym Planner plan, or it was made in a newer version of the app. Update the app.'};
+  const bytes = b64uDecode(code.slice(1)); if (!bytes || !bytes.length) return {error:LINK_BAD};
+  let raw = bytes;
+  if (kind === 'z') {
+    const r = await inflateBytes(bytes, PLAN_FILE_MAX);
+    if (r.old) return {error:'This browser can’t open compressed plan links. Update the browser — or ask for the plan as a file.'};
+    if (r.big) return {error:'The link is too long for a plan.'};
+    if (!r.bytes) return {error:LINK_BAD};
+    raw = r.bytes;
+  }
+  let text = '', o = null;
+  try { text = new TextDecoder('utf-8', {fatal:true}).decode(raw); o = JSON.parse(text); } catch (e) { return {error:LINK_BAD}; }
+  if (!o || typeof o !== 'object' || Array.isArray(o)) return {error:LINK_NOT_PLAN};
+  const r = readPlanFile(text);
+  if (r.error) return {error:/резервная копия/.test(r.error) ? r.error : /нет планов/.test(r.error) ? 'The link has no plans.' : LINK_NOT_PLAN};
+  return {...r, fromLink:true};
+}
+/* Адрес страницы, на которую ведёт ссылка: сайт, на котором человек сейчас (GitHub Pages и его сборка — своя страница;
+   Floot — его страница: приложение там в окне srcdoc с тем же адресом сайта), а для офлайн-файла и встроенных копий —
+   сайт на GitHub Pages; английская версия — её папка */
+function linkBase() {
+  const site = SITE_URL + (typeof window !== 'undefined' && window.PODHOD_LANG === 'en' ? 'en/' : '');
+  const web = loc => { try { return loc && /^https?:$/.test(loc.protocol) && loc.host ? loc.origin + loc.pathname.replace(/index\.html$/, '') : null; } catch (e) { return null; } };
+  if (typeof window === 'undefined' || typeof location === 'undefined') return site;
+  /* страница сайта (PWA) — у неё есть манифест; у офлайн-файла и документа Floot его нет (в их коде не должно быть и
+     упоминания списка языков: tools/build-floot-release.mjs) */
+  if (document.querySelector && document.querySelector('link[rel="manifest"]')) return web(location) || site;
+  try { if (window.parent && window.parent !== window && location.protocol === 'about:') return web(window.parent.location) || site; } catch (e) {}
+  return site;
+}
+const LINK_CACHE = new Map();
+async function planLinkUrl(obj) {
+  const key = JSON.stringify(obj);
+  if (!LINK_CACHE.has(key)) { if (LINK_CACHE.size > 20) LINK_CACHE.clear(); LINK_CACHE.set(key, await planLinkEncode(obj)); }
+  return linkBase() + PLAN_HASH + LINK_CACHE.get(key);
+}
+const linkLine = url => `${'Open the plan in Lazy Gym Planner'}: ${url}`;
+
+/* ---------- план, как его видно ---------- */
+/* fn(p) над своим планом c, собранным с его целью, форматом, уровнем, мышцами, местом и отметками (как если бы его открыли);
+   открытый сейчас — без пересборки. Параметры, план и место после — прежние */
+function withPlanView(c, fn) {
+  if (S.mode === 'custom' && customOf() === c && plan && plan.custom) return fn(plan);
+  const keys = ['mode', 'custom', 'goal', 'format', 'level', 'groups', 'place', 'equip', 'adapt', 'gen'];
+  const keep = Object.fromEntries(keys.map(k => [k, S[k]])), keepPlan = plan;
+  try {
+    S.gen = {...S.gen};
+    if (S.mode !== 'custom') for (const k of PLAN_ALL) S.gen[k] = planVal(S[k]);
+    S.mode = 'custom'; S.custom = c.id; loadPlanSettings();
+    plan = buildPlan({});
+    return fn(plan);
+  } finally { Object.assign(S, keep); plan = keepPlan; }
+}
+/* упражнения своего плана, как их видно в p: с заменами (бережный режим, инвентарь места), без не вошедших; дозировка,
+   вес, заметка и пара — от упражнения плана на этом месте */
+function viewItems(c, p) {
+  if (!p || !p.items) return [];
+  return p.blocks.flatMap(b => b.items).map(it => { const o = {...(c.items[it.slot] || {}), id:it.ex.id}; delete o.all; return o; });
+}
+/* свои планы → читаемый текст, ссылка и текст со ссылкой */
+async function plansShareText(plans, from) {
+  const views = plans.map(c => withPlanView(c, p => ({lines:customPlanText(c, p), items:viewItems(c, p)})));
+  const url = await planLinkUrl(planFileObject(plans, from, {link:true, items:views.map(v => v.items)}));
+  const body = views.map(v => v.lines.join('\n')).join('\n\n');
+  return {body, url, text:body + '\n\n' + linkLine(url)};
+}
+/* то, что открыто: свой план — он сам; тренировка и неделя — как при «Сохранить как свой план» (frozenPlans) */
+function currentLinkObject() {
+  if (S.mode === 'custom') { const c = customOf(); return planFileObject([c], c.from || S.author || '', {link:true, items:[viewItems(c, plan)]}); }
+  return planFileObject(frozenPlans([]), S.author || '', {link:true});
+}
+
+/* ---------- копирование ---------- */
+/* Текст готовится не сразу (ссылка сжимается асинхронно): ClipboardItem с обещанием — так браузер (Safari) принимает запись,
+   готовую после ожидания, в рамках того же нажатия; иначе — writeText по готовности. true — скопировано, иначе — текст */
+async function clipText(made) {
+  const cb = typeof navigator !== 'undefined' && navigator.clipboard;
+  if (cb && typeof ClipboardItem === 'function' && typeof cb.write === 'function') {
+    try { await cb.write([new ClipboardItem({'text/plain':made.then(t => new Blob([t], {type:'text/plain'}))})]); return true; } catch (e) {}
+  }
+  const text = await made;
+  try { await cb.writeText(text); return true; } catch (e) { return text; }
+}
+function clipFallback(msg, text) {
+  msg.innerHTML = 'Couldn’t copy automatically. Select the text:<textarea readonly rows="6"></textarea>';
+  const ta = msg.querySelector('textarea'); ta.value = text; ta.focus(); ta.select();
+}
+/* «Скопировать план» над планом: текст и ссылка */
+async function planCopy() {
+  const msg = $('#copy-msg'); if (!plan && !prog) return;
+  const text = planText(), r = await clipText(planLinkUrl(currentLinkObject()).then(url => text + '\n\n' + linkLine(url)));
+  if (r === true) msg.textContent = 'Copied: the plan text and a link to it. The link opens the plan right away — paste it into your notes or a chat.';
+  else clipFallback(msg, r);
+}
+
+/* ---------- вставленный текст: файл .json, текст со ссылкой или одна ссылка ---------- */
+async function readPlanAny(text) {
+  const t = typeof text === 'string' ? text.trim() : '';
+  if (!t || t[0] === '{' || t[0] === '[') return readPlanFile(text);
+  const m = t.match(/#plan=([A-Za-z0-9_-]+)/);
+  if (m) return readPlanLink(m[1]);
+  return {error:'The text has no plan link. Copy the plan again (“Copy plan” or “Export” → “Copy text”): the link will be at the end of the text. Or choose a .json file.'};
+}
+
+/* ---------- открыли ссылку ---------- */
+/* код плана из адреса (или из адреса страницы Floot вокруг окна приложения); адрес — без плана */
+function planHashTake() {
+  const grab = w => { try { const h = w.location.hash || ''; return h.startsWith(PLAN_HASH) ? h.slice(PLAN_HASH.length) : null; } catch (e) { return null; } };
+  let w = typeof window !== 'undefined' ? window : null, code = w ? grab(w) : null;
+  if (code == null && w) try { if (w.parent && w.parent !== w && location.protocol === 'about:') { code = grab(w.parent); if (code != null) w = w.parent; } } catch (e) {}
+  if (code == null) return null;
+  try { w.history.replaceState(w.history.state, '', w.location.pathname + w.location.search); } catch (e) {}
+  return code;
+}
+let planLinkPending = null;
+async function planHashOpen() {
+  const code = planHashTake(); if (code == null) return false;
+  const r = await readPlanLink(code);
+  planLinkPending = {...r, link:true};
+  /* первый запуск: вопросы первыми (11k-first-run.js: frFinish покажет план) */
+  if (typeof FIRST_RUN !== 'undefined' && FIRST_RUN && typeof FR !== 'undefined' && !FR.done && document.documentElement.classList.contains('first-run')) { if (typeof frRender === 'function') frRender(false); return true; }
+  planLinkShow();
+  return true;
+}
+function planLinkShow() { const r = planLinkPending; planLinkPending = null; if (r) openPlanIn(r); }
+/* строка в первом шаге вопросов: план по ссылке откроется после них */
+function planLinkNote() {
+  const r = planLinkPending; if (!r || !r.plans || !r.plans.length) return '';
+  return 'After these questions, the plan you were sent will open: “{name}”.'.replace('{name}', r.plans[0].name);
+}
+if (typeof window !== 'undefined' && window.addEventListener) window.addEventListener('hashchange', () => { if (String(location.hash).startsWith(PLAN_HASH)) planHashOpen(); });
 
 /* ---------- «Анатомия» вне разбора: экран тренировки и карточки плана (этап 2) — правила без страницы ----------
    Здесь — только расчёты (их проверяет tools/anatomy-cards.test.js без браузера): какой вид фигуры показать, с какой
@@ -16103,24 +17200,40 @@ function blocksText(p) {
       const side = r.uni ? ' per side' : '';
       if (r.static) { const kgS = r.kgPlan && loadType(it.ex) !== 'none' ? `, ${planKgText(planKgsHere(it))} ${wUnit()}` : ''; lines.push(`${it.label}. ${it.name} — ${r.series} × 3 × ${r.reps}${r.unit ? ' ' + r.unit : ''}${side}, ${tempoWords(r.tempo)}, without relaxing, rest ${fmtRest(r.rest)}${r.series > 1 ? `, between series ${fmtRest(r.seriesRest)}` : ''}${kgS}`); if (r.coachNote) lines.push(`   Note: ${r.coachNote.replace(/\n+/g, ' ')}`); continue; }
       const kg = r.kgPlan && loadType(it.ex) !== 'none' ? `, ${planKgText(planKgsHere(it))} ${wUnit()}` : '';
-      lines.push(r.circ ? `${it.label}. ${it.name} — ${r.reps}${r.unit ? ' ' + r.unit : ''}${side}${kg}` : `${it.label}. ${it.name} — ${r.sets} × ${r.reps}${r.unit ? ' ' + r.unit : ''}${side}${kg}${b.kind === 'list' ? `, rest ${fmtRest(r.rest)}` : ''}`);
+      /* темп, заданный в своём плане (Марина 7: в тексте не было темпа) — словами, как в карточке */
+      const tempo = r.tempoOwn && r.tempo ? `, ${'tempo'}: ${tempoWords(r.tempo)}` : '';
+      lines.push(r.circ ? `${it.label}. ${it.name} — ${r.reps}${r.unit ? ' ' + r.unit : ''}${side}${kg}${tempo}` : `${it.label}. ${it.name} — ${r.sets} × ${r.reps}${r.unit ? ' ' + r.unit : ''}${side}${kg}${b.kind === 'list' ? `, rest ${fmtRest(r.rest)}` : ''}${tempo}`);
       if (r.coachNote) lines.push(`   Note: ${r.coachNote.replace(/\n+/g, ' ')}`);
     }
   }
   return lines;
 }
+/* Текст плана для заметок и мессенджера — то, что видно на экране; ссылку, по которой план загружается обратно, дописывает
+   копирование (11m-plan-link.js: planCopy). Место — строкой: от него зависит снаряд (гантели или штанга) */
+function placeLine(p = placeOf()) { return `${'Place'}: ${p.name}`; }
 function planText() {
   const G = GOALS[S.goal];
   if (S.mode === 'program' && prog) {
     const out = [`${SPLITS[prog.split].name}, ${S.days} ${plural(S.days, 'workout', 'workouts', 'workouts')} per week — ${G.name.toLowerCase()}`,
-      `Week ${S.week} of 4: ${prog.week.name.toLowerCase()}. ${prog.week.note}`];
+      placeLine(), `Week ${S.week} of 4: ${prog.week.name.toLowerCase()}. ${prog.week.note}`];
     for (const d of prog.days) {
       out.push('', `${WD_FULL[d.wd]} — ${d.name}${d.plan.items ? `, ≈${d.plan.minutes} min` : ''}`);
       if (d.plan.items) out.push(...blocksText(d.plan)); else out.push('no exercises with the selected equipment');
     }
     return out.join('\n');
   }
-  return [`${titleFor()} — ${G.name.toLowerCase()}, ${FORMATS[S.format].name.toLowerCase()}, ≈${plan.minutes} min`, ''].concat(blocksText(plan)).join('\n');
+  if (S.mode === 'custom') return customPlanText(customOf(), plan).join('\n');
+  return [`${titleFor()} — ${G.name.toLowerCase()}, ${FORMATS[S.format].name.toLowerCase()}, ≈${plan.minutes} min`, placeLine(), ''].concat(blocksText(plan)).join('\n');
+}
+/* свой план c, собранный в p (его настройки — в S): имя, цель, место, неделя, программа, для кого, заметка, упражнения */
+function customPlanText(c, p) {
+  const G = GOALS[S.goal], wk = c.week ? WEEKS[c.week - 1] : null;
+  const head = [`${c.name} — ${G.name.toLowerCase()}, ${FORMATS[S.format].name.toLowerCase()}${p && p.items ? `, ≈${p.minutes} min` : ''}`,
+    placeLine() + (wk ? ` · ${'cycle week'} ${c.week}: ${wk.name.toLowerCase()}` : '')];
+  const about = [c.group ? `${'Program'}: ${c.group}` : '', c.for ? `${'For'}: ${c.for}` : '', c.from ? `${'From'}: ${c.from}` : ''].filter(Boolean);
+  if (about.length) head.push(about.join(' · '));
+  if (c.note) head.push(`${'Note'}: ${c.note.replace(/\n+/g, ' ')}`);
+  return head.concat('', p && p.items ? blocksText(p) : ['The plan is empty so far.']);
 }
 
 /* ---------- события ---------- */
@@ -16130,18 +17243,21 @@ document.addEventListener('change', e => {
   if (e.target.id === 'place-adapt') { S.adapt = e.target.value || null; ensurePlaces(S); return regen(); }
 });
 const swapKey = () => S.mode === 'program' ? 'd' + S.day : 's';
-function regen(resetSwaps = true) { if (resetSwaps) swaps = S.swaps = {}; done = {}; planUndo = null; saveSettings(); renderSetup(); renderPlan(); }
+function regen(resetSwaps = true) { if (resetSwaps) swaps = S.swaps = {}; done = {}; planUndo = null; rerollMsg = null; if (fmtNoteFresh) fmtNoteFresh = false; else delete S.fmtNote; saveSettings(); renderSetup(); renderPlan(); }
 document.addEventListener('click', e => {
   const t = e.target.closest('button, summary');
   if (!t) return;
   if (t.dataset.set) {
     const k = t.dataset.set, prev = S.mode; S[k] = t.dataset.v;
     if (k === 'mode') { S.day = 0; switchModeSettings(prev); } else storePlanSetting(k);
+    /* выбрали «Бережно» при статодинамике — формат «Классика», и об этом сказано под планом */
+    gentleNoStatic();
     return regen();
   }
   if (t.dataset.days) { S.days = +t.dataset.days; S.split = DEFAULT_SPLIT[S.days]; S.day = 0; return regen(); }
   if (t.dataset.split) { S.split = t.dataset.split; S.day = 0; return regen(); }
-  if (t.dataset.week) { S.week = +t.dataset.week; done = {}; saveSettings(); renderPlan(); return; }
+  /* неделя цикла руками — дальше счёт от неё (weekPick, 11-planner.js) */
+  if (t.dataset.week) { weekPick(+t.dataset.week); done = {}; saveSettings(); renderPlan(); return; }
   if (t.dataset.day !== undefined) {
     S.day = +t.dataset.day; done = {}; saveSettings(); renderPlan();
     const dh = $('.day-head'); if (dh) dh.scrollIntoView({block:'nearest', behavior:reduceMotion ? 'auto' : 'smooth'});
@@ -16153,29 +17269,31 @@ document.addEventListener('click', e => {
     const n = shownCount(); S.dur = null;
     S.count = Math.max(3, Math.min(10, n + (t.id === 'count-plus' ? 1 : -1))); return regen();
   }
-  if (t.dataset.g) { const g = t.dataset.g; S.groups = S.groups.includes(g) ? S.groups.filter(x => x !== g) : S.groups.concat(g); S.groups.sort((a, b) => GROUPS.findIndex(x => x.id === a) - GROUPS.findIndex(x => x.id === b)); return regen(); }
-  if (t.dataset.gp) { S.groups = GROUP_PRESETS.find(p => p.id === t.dataset.gp).g.slice(); return regen(); }
+  /* мышцы и место в своём плане — его собственные (storePlanSetting, 11d-custom.js) */
+  if (t.dataset.g) { const g = t.dataset.g; S.groups = S.groups.includes(g) ? S.groups.filter(x => x !== g) : S.groups.concat(g); S.groups.sort((a, b) => GROUPS.findIndex(x => x.id === a) - GROUPS.findIndex(x => x.id === b)); storePlanSetting('groups'); return regen(); }
+  if (t.dataset.gp) { S.groups = GROUP_PRESETS.find(p => p.id === t.dataset.gp).g.slice(); storePlanSetting('groups'); return regen(); }
   if (t.dataset.e) { eqOpen = true; const id = t.dataset.e; setPlaceEquip(S.equip.includes(id) ? S.equip.filter(x => x !== id) : S.equip.concat(id)); return regen(); }
   if (t.dataset.ep) { setPlaceEquip(EQUIP_PRESETS.find(p => p.id === t.dataset.ep).eq); return regen(); }
-  if (t.dataset.place) { S.place = t.dataset.place; ensurePlaces(S); placeDel = false; return regen(); }
+  if (t.dataset.place) { S.place = t.dataset.place; ensurePlaces(S); storePlanSetting('place'); placeDel = false; return regen(); }
   if (t.dataset.placeAdd !== undefined) {
     const id = 'p' + Date.now().toString(36);
     S.places.push({id, name:'Place ' + (S.places.length + 1), auto:'place:' + (S.places.length + 1), equip:[]});
-    S.place = id; ensurePlaces(S); eqOpen = true; placeDel = false; regen();
+    S.place = id; ensurePlaces(S); storePlanSetting('place'); eqOpen = true; placeDel = false; regen();
     const inp = $('#place-name'); if (inp) { inp.focus(); inp.select(); }
     return;
   }
   if (t.dataset.placeDel !== undefined) {
     if (!placeDel) { placeDel = true; return renderSetup(); }
-    S.places = S.places.filter(p => p.id !== S.place); placeDel = false; ensurePlaces(S); return regen();
+    S.places = S.places.filter(p => p.id !== S.place); placeDel = false; ensurePlaces(S); storePlanSetting('place'); return regen();
   }
-  if (t.id === 'reroll') { S.seed = (S.seed * 48271 + 11) % 2147483647; regen(); $('#plan').scrollIntoView({behavior:reduceMotion ? 'auto' : 'smooth', block:'start'}); return; }
-  if (t.id === 'copy') {
-    const txt = planText(), msg = $('#copy-msg');
-    const fallback = () => { msg.innerHTML = 'Couldn’t copy automatically. Select the text:<textarea readonly rows="6"></textarea>'; const ta = msg.querySelector('textarea'); ta.value = txt; ta.focus(); ta.select(); };
-    try { navigator.clipboard.writeText(txt).then(() => { msg.textContent = 'Copied — you can paste it into notes or a messaging app.'; }, fallback); } catch (err) { fallback(); }
+  /* «Другой вариант» — что поменялось и «Вернуть» (rerollPlan, 12c-swap.js); фокус — на «Вернуть», иначе на самой кнопке */
+  if (t.id === 'reroll') {
+    rerollPlan(); $('#plan').scrollIntoView({behavior:reduceMotion ? 'auto' : 'smooth', block:'start'});
+    const f = document.querySelector('[data-reroll-undo]') || document.getElementById('reroll'); if (f) f.focus({preventScroll:true});
     return;
   }
+  /* текст плана и ссылка на него (11m-plan-link.js) */
+  if (t.id === 'copy') { planCopy(); return; }
   /* «Заменить» — список замен под кнопкой и «Вернуть»: 12c-swap.js */
   /* порядок упражнений: ↑ ↓ на карточке (в своём плане — свои кнопки, 11d-custom.js) */
   if (t.dataset.move !== undefined) {
@@ -16479,8 +17597,19 @@ function swapPool(cur, p) {
   const taken = swapTaken(p), lvlMax = S.level === 'beg' || S.goal === 'gentle' ? 2 : 3, pat = PATTERN[cur.id];
   for (const x of variantsFor(cur, p.E, taken)) taken.add(x.ex.id);
   taken.add(cur.id);
+  /* уже тренирующемуся и опытному облегчённые варианты (гравитрон, отжимания и тяги без веса там, где есть то же движение
+     с весом) — после вариантов с весом, как в подборе плана (lightAlt, 11-planner.js). Было: для тяги верхнего блока V первым
+     стоял гравитрон, для жима узким — брусья в гравитроне (Игорь 15) */
+  const lightLast = S.level !== 'beg' ? swapLight(p.E) : () => false;
   return EX.filter(ex => !taken.has(ex.id) && available(ex, p.E) && ex.lvl <= lvlMax && (ex.g === cur.g || (!!pat && PATTERN[ex.id] === pat)) && (S.format !== 'static' || staticOk(ex)))
-    .map(ex => ({ex, score:analogScore(cur, ex)})).sort((a, b) => b.score - a.score);
+    /* на одной ноге или руке вместо упражнения двумя — дальше (Марина 18: для румынской тяги — гиперэкстензия и наклоны, а не
+       только тяга на одной ноге) */
+    .map(ex => ({ex, score:analogScore(cur, ex) - (lightLast(ex) ? 0.25 : 0) - (!cur.uni && ex.uni ? 0.08 : 0)})).sort((a, b) => b.score - a.score);
+}
+/* облегчённое там, где есть то же движение с весом: противовес гравитрона, многосуставное без веса */
+function swapLight(E) {
+  const loaded = new Set(EX.filter(ex => !ex.assist && available(ex, E) && weighable(ex, E) && PATTERN[ex.id]).map(ex => famOf(PATTERN[ex.id])));
+  return ex => !!PATTERN[ex.id] && loaded.has(famOf(PATTERN[ex.id])) && (ex.assist || (ex.type === 'c' && !ex.kind && ex.g !== 'cardio' && !weighable(ex, E) && !BAR_STAPLE.has(ex.id)));
 }
 /* все замены, которые можно предложить, от самых похожих (проверка бережного режима — tools/gentle.test.js) */
 function swapCandidates(cur, p) { return swapPool(cur, p).filter(r => swapFits(r.ex)).map(r => r.ex); }
@@ -16669,6 +17798,69 @@ document.addEventListener('keydown', e => {
   e.preventDefault(); swapToggle(btn, false); btn.focus();
 });
 
+/* ---------- «Другой вариант» (Елена 11, Галина 4, Виктор 22) ----------
+   Новый вариант подбора — до 8 попыток, пока не поменяется набор упражнений (в программе — хотя бы в одном дне). Не поменялся —
+   «Других вариантов нет», подбор остаётся прежним (порядок не перемешивается, замены не теряются). Поменялся — строка над
+   планом «Другой вариант: A → B» и «Вернуть» (прежний подбор с прежними заменами); диктору — то же. Строка держится до
+   следующего изменения плана (regen) или перезагрузки. Было: «Другой вариант» менял порядок тех же упражнений или молча менял
+   планку на «снежных ангелов», вернуть было нечем, диктор слышал «План обновлён: 4 упражнения». */
+let rerollMsg = null;
+const REROLL_TRIES = 8;
+function rerollIds() {
+  if (S.mode === 'program') return buildProgram().days.map(d => (d.plan.items || []).map(it => it.ex.id));
+  const p = buildPlan({swaps:swaps.s || {}, order:swaps.__order?.s});
+  return [(p.items || []).map(it => it.ex.id)];
+}
+function rerollDiff(a, b) {
+  const out = [];
+  a.forEach((ids, d) => { const now = b[d] || [], gone = ids.filter(id => !now.includes(id)), came = now.filter(id => !ids.includes(id)); if (gone.length || came.length) out.push({d, gone, came}); });
+  return out.length ? out : null;
+}
+/* вернёт true, если подбор поменялся */
+function rerollPlan() {
+  const before = rerollIds(), seed0 = S.seed, sw0 = JSON.parse(JSON.stringify(swaps || {}));
+  let diff = null, after = null;
+  for (let i = 0; i < REROLL_TRIES && !diff; i++) {
+    S.seed = (S.seed * 48271 + 11) % 2147483647; swaps = S.swaps = {};
+    diff = rerollDiff(before, after = rerollIds());
+  }
+  if (!diff) { S.seed = seed0; swaps = S.swaps = sw0; }
+  rerollMsg = diff ? {diff, after, seed:seed0, swaps:sw0, now:S.seed, mode:S.mode} : {none:true, now:S.seed, mode:S.mode};
+  done = {}; planUndo = null; saveSettings(); renderSetup();
+  planNote = rerollText(); renderPlan();
+  return !!diff;
+}
+function rerollBack() {
+  const u = rerollMsg; if (!u || !u.diff || u.now !== S.seed) return false;
+  S.seed = u.seed; swaps = S.swaps = u.swaps; rerollMsg = null;
+  done = {}; planUndo = null; saveSettings(); renderSetup();
+  planNote = 'The previous version is back.'; renderPlan();
+  return true;
+}
+const rerollName = id => EXI[id] ? exNameHere(EXI[id]) : id;
+/* «Другой вариант: Планка на предплечьях → Обратные «снежные ангелы».» — по дню, открытому сейчас; в программе — и сколько
+   поменялось в других днях */
+function rerollText() {
+  const u = rerollMsg; if (!u || u.now !== S.seed || u.mode !== S.mode) return '';
+  if (u.none) return 'No other options: for these muscles, this place and these settings the same exercises come up.';
+  const day = S.mode === 'program' ? S.day : 0, here = u.diff.find(x => x.d === day), other = u.diff.filter(x => x.d !== day).length;
+  /* одно-два — «было → стало», больше — сколько новых и какие (длинная строка «A, B, C, D → E, F, G, H» не читается) */
+  const total = (u.after && u.after[day] || []).length;
+  const first = !here ? 'Another version: this day keeps the same exercises.'
+    : here.gone.length <= 2 ? 'Another version: {list}.'.replace('{list}', `${here.gone.map(rerollName).join(', ') || '—'} → ${here.came.map(rerollName).join(', ') || '—'}`)
+    : 'Another version: {n} new exercises out of {m} — {list}.'.replace('{n}', here.came.length).replace('{m}', total || here.came.length).replace('{list}', here.came.map(rerollName).join(', '));
+  return first + (other ? ' ' + 'Other days of the week changed too: {n}.'.replace('{n}', other) : '');
+}
+function rerollHtml() {
+  const t = rerollText(); if (!t) return '';
+  const back = rerollMsg.diff ? `<button type="button" class="sw-undo" data-reroll-undo="1" aria-describedby="reroll-t">${'Undo'}</button>` : '';
+  return `<p class="p-hint reroll-msg"><span id="reroll-t">${esc(t)}</span>${back}</p>`;
+}
+document.addEventListener('click', e => {
+  const t = e.target.closest('button'); if (!t || t.dataset.rerollUndo === undefined) return;
+  if (rerollBack()) { const b = document.getElementById('reroll'); if (b) b.focus({preventScroll:true}); }
+});
+
 /* ===================== СИСТЕМНАЯ «НАЗАД» НА ОКНАХ ПОВЕРХ ПЛАНА =====================
    Экран тренировки и разбор движения — окна <dialog> поверх плана. Без записи в истории системная «Назад» телефона уводила
    со страницы (в установленном приложении — закрывала его). Окно, открытое нажатием, кладёт в историю свою запись
@@ -16734,7 +17926,7 @@ const LOG_KEY = 'podhod.log.v1';
 /* foreign — записи упражнений, которых нет в этой версии: хранятся и уходят в копию, не показываются (13a-sets.js: checkLog) */
 const LOG = {mode:'connecting', data:{}, foreign:{}, col:null, pending:{}, writing:{}, again:{}, timers:{}, err:'', dl:null, canExport:false, undo:null};
 const WEIGHTED = new Set(['db', 'bb', 'kb', 'cable', 'smith', 'legpress', 'legext', 'legcurl', 'pecdeck', 'hack', 'chestpress', 'shoulderpress', 'leverrow', 'tbar', 'abductor', 'calfseat', 'calfstand']);
-const LOWER_G = new Set(['quads', 'hams', 'glutes', 'calves']);
+const LOWER_G = new Set(['quads', 'adductors', 'hams', 'glutes', 'calves']);
 const MACHINE = new Set(['cable', 'smith', 'legext', 'legcurl', 'pecdeck', 'chestpress', 'shoulderpress', 'leverrow', 'abductor', 'calfseat', 'calfstand', 'gravitron', 'hack', 'tbar']);
 const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
@@ -17047,7 +18239,8 @@ function todaySession(id, create) {
   if (!s && create) {
     /* at — когда начато упражнение: порядок выполнения внутри дня (выгрузка для Excel) */
     s = {d, s:[], at:Date.now()};
-    if (S.mode === 'program') s.wk = S.week;
+    /* неделя цикла: программы или своего плана, сохранённого из недели (planWeekNo, 11d-custom.js) */
+    const wk = typeof planWeekNo === 'function' ? planWeekNo() : S.mode === 'program' ? S.week : null; if (wk) s.wk = wk;
     ss.push(s); ss.sort((a, b) => a.d < b.d ? -1 : 1);
   }
   return s;
@@ -17132,7 +18325,7 @@ function suggestBase(it) {
   /* цель подхода k (с нуля): [нижняя, верхняя]; у пирамиды повторов — своё число подхода */
   const tgt = k => { if (!rp) return [lo, hi]; const v = rp[Math.min(k, rp.length - 1)]; return [v, v]; };
   const unit = ex.kind === 'time' ? ' s' : ex.kind === 'dist' ? ' m' : '';
-  const week = S.mode === 'program' ? WEEKS[S.week - 1] : null;
+  const week = typeof planWeek === 'function' ? planWeek() : S.mode === 'program' ? WEEKS[S.week - 1] : null;
   const step = stepFor(it);
   const res = {tone:'new', kg:null, reps:[], text:'', prev:null};
   /* вес по плану (свой план, план тренера) — цель вместо подсказки по прогрессии */
@@ -17248,6 +18441,7 @@ function suggestBase(it) {
   if (allTop) {
     if (lt === 'kg' && work) {
       res.tone = 'up'; res.kg = up; res.reps = sets.map((x, i) => tgt(i)[0]);
+      if (weekReserve(it, res, past, step, week, prevList)) return res;
       res.text = rp ? `Increase to ${fmtKg(res.kg)} ${wUnit()} (+${fmtKg(res.kg - work)}). Last time all sets matched the plan: ${prevList}.` : `Increase to ${fmtKg(res.kg)} ${wUnit()} (+${fmtKg(res.kg - work)}). Last time all sets were at the top of the range: ${prevList}.`;
     } else if (lt === 'assist' && work) {
       res.tone = 'up'; res.kg = stepDown(work, step, gridFor(it)); res.reps = sets.map((x, i) => tgt(i)[0]);
@@ -17280,7 +18474,30 @@ function suggestBase(it) {
   }
   res.tone = 'same'; res.kg = work; res.reps = sets.map((x, i) => Math.min(tgt(i)[1], x[1] + 1));
   res.text = `${work ? `${lt === 'assist' ? 'Same counterweight' : 'Same weight'} — ${fmtKg(work)} ${wUnit()}` : 'Same variation'}, aim for 1${unit || ' rep'} more: last time ${prevList}.`;
+  if (lt === 'kg' && work) weekReserve(it, res, past, step, week, prevList);
   return res;
+}
+/* Неделя «Вход» (первая неделя цикла, запас повторов WEEKS[0].rir): совет «тот же вес, на повтор больше» или «прибавьте» не
+   должен требовать больше,
+   чем даёт расчётный максимум по журналу (Руслан 11: неделя «Вход», в прошлый раз 200×3 — «тот же вес, цель 4» — это 200×4 и
+   ещё 3 в запасе, 7 повторов до предела, ≈247 кг расчётного максимума при его 225). Тогда — вес от лучшего расчётного
+   максимума (e1rm, Эпли), чтобы нижняя граница повторов оставляла запас недели: максимум / (1 + (повторы + запас) / 30) — та же
+   формула, что процент в карточке (pctNums, 11-planner.js). Допуск — 3%. Только в «Вход»: с него веса подбираются заново, а в
+   неделях нагрузки и пика двойная прогрессия идёт от весов «Входа» (расчётный максимум по подходам с запасом занижен).
+   Вернёт true, если совет заменён. */
+function weekReserve(it, res, all, step, week, prevList) {
+  const rir = it.rx.rir;
+  if (!week || week !== WEEKS[0] || !rir || !res.kg || it.rx.static || it.ex.kind) return false;
+  const best = Math.max(0, ...all.flatMap(s => s.s.filter(x => x && x[0] > 0 && x[1] > 0).map(x => e1rm(x[0], x[1]))));
+  const reps = Math.max(0, ...res.reps.filter(v => v > 0)), [lo, hi] = parseRange(it.rx.reps);
+  if (!best || !reps || e1rm(res.kg, reps + rir.lo) <= best * 1.03) return false;
+  const kg = Math.floor(best / (1 + (lo + rir.lo) / 30) / step + 1e-9) * step;
+  if (!(kg > 0) || kg >= res.kg) return false;
+  res.tone = 'same'; res.kg = kg; res.reps = res.reps.map(() => lo);
+  const r = lo === hi ? String(lo) : lo + '–' + hi;
+  res.text = '“{w}” week: {kg} — with this weight, {r} reps leave {n} in the tank (estimated max from your log ≈{max}). Last time: {prev}.'
+    .replace(/\{(\w+)\}/g, (_, k) => ({w:week.name, kg:fmtKg(kg) + ' ' + wUnit(), r, n:reserveNum(rir), max:fmtKg(Math.round(best / step) * step) + ' ' + wUnit(), prev:prevList})[k] ?? '');
+  return true;
 }
 /* Пирамида или сброс в прошлый раз: веса подходов разные (все записаны с весом). Совет — по верхнему подходу (самый
    тяжёлый вес; таких подходов может быть несколько), остальные подходы — как в прошлый раз; не «оставьте верхний вес
@@ -18734,6 +19951,7 @@ function setFocus(m) {
   S.focus = m && MUSCLE_NAMES[m] ? m : null;
   if (S.focus && S.mode !== 'program' && !S.groups.includes(MUSCLE_GROUP[S.focus])) {
     S.groups = S.groups.concat(MUSCLE_GROUP[S.focus]).sort((a, b) => GROUPS.findIndex(x => x.id === a) - GROUPS.findIndex(x => x.id === b));
+    if (typeof storePlanSetting === 'function') storePlanSetting('groups'); /* в своём плане — его мышцы (11d-custom.js) */
   }
 }
 /* ракурс превью, с которого мышцу видно: сравниваем направление на камеру с нормалью груди в середине повторения */
@@ -18962,11 +20180,11 @@ function galleryEmptyHtml() {
   const near = R.near.map(ex => `<button type="button" class="btn-ghost" data-gallery-q="${esc(exNameHere(ex))}">${esc(exNameHere(ex))}</button>`).join('');
   return `<div class="mv-gempty">${near ? `<p>Similar spelling:</p><div class="mv-gnear">${near}</div>` : '<p>Check the spelling or try another word: “press”, “row”, “squat”.</p>'}</div>`;
 }
-/* Разделы витрины — группы плана, а упражнения на приводящие (сведение ног, копенгагенская планка) — своим разделом после
-   квадрицепса (4.110; Alex 18, замечание анатома: приводящие — не квадрицепс). В плане они по-прежнему в группе «Квадрицепс»
-   (MUSCLE_GROUP.adductors) — id групп и сохранённые настройки не меняются */
-const GALLERY_GROUPS = GROUPS.flatMap(g => g.id === 'quads' ? [g, {id:'adductors', name:'Hip adductors'}] : [g]);
-const galleryGroup = ex => ex.g === 'quads' && ex.pri[0] === 'adductors' ? 'adductors' : ex.g;
+/* Разделы витрины — группы плана; упражнения на приводящие (сведение ног, копенгагенская планка) — своим разделом после
+   квадрицепса (4.110; Alex 18, замечание анатома: приводящие — не квадрицепс). С 4.109 приводящие — и своя группа плана
+   (GROUPS, 01-exercises-base.js); название раздела — полное, как в атласе */
+const GALLERY_GROUPS = GROUPS.map(g => g.id === 'adductors' ? {...g, name:'Hip adductors'} : g);
+const galleryGroup = ex => ex.g;
 function galleryHtml() {
   const E = effEquip(S.equip), all = effEquip(EQUIP.map(e => e.id)), list = galleryList(), R = searchExercises(gallery.q);
   const chips = WORK_KINDS.map(k => `<button type="button" class="${gallery.kind === k.id ? 'on' : ''}" data-gallery-kind="${k.id}" aria-pressed="${gallery.kind === k.id}">${esc(k.name)} <small>${galleryList(k.id).length}</small></button>`).join('');
@@ -19367,9 +20585,35 @@ document.addEventListener('click', e => {
   const from = t.dataset.logpick;
   if (applyLogPick()) { window.scrollTo({top:0}); return; }
   const msg = 'Every muscle group was worked under 48 h ago or has no exercises here — better rest today.';
-  const el = from === 'journal' ? $('#ml-msg') : $('#lp-msg');
+  const el = from === 'journal' ? $('#ml-msg') : from === 'rest' ? $('#rt-msg') : $('#lp-msg');
   if (el) { el.hidden = false; el.textContent = msg; }
 });
+
+/* ---------- «Сегодня лучше отдых» (Ольга 11 — старое, Галина 22) ----------
+   Основные мышцы этой тренировки вчера уже работали (2 подхода и больше как основные, LOAD.minSets) — хотя бы половина из
+   них, а сегодня на них ещё ничего не записано: над планом спокойная строка «сегодня лучше отдых, эту тренировку — завтра»
+   и кнопка «Собрать тренировку на сегодня» (на другие мышцы, logPick). Основание — то же, что у статуса «нагружена»:
+   Morán-Navarro et al., Eur J Appl Physiol 2017 — без отказа восстановление в основном за 24–48 ч. Было: на следующий день
+   тот же план с «Начать», а «нагружена, меньше 48 ч» — только в журнале. */
+function restTodayGroups(p, data = typeof LOG !== 'undefined' ? LOG.data : null, today = todayKey()) {
+  if (!p || !p.items || !data) return [];
+  const load = muscleLoad(data, today), main = new Map();
+  for (const it of p.items) for (const g of mainGroupsOf(it.ex)) main.set(g, (main.get(g) || 0) + (it.rx.circ ? it.rounds || 1 : it.rx.sets));
+  const planG = [...main].filter(([g, n]) => n >= LOAD.minSets && load[g]).map(([g]) => g);
+  if (planG.some(g => load[g].last && load[g].last.age === 0)) return [];
+  const tired = planG.filter(g => load[g].last && load[g].last.age === 1);
+  return tired.length && tired.length * 2 >= planG.length ? tired : [];
+}
+function restTodayHtml(p) {
+  if (S.view !== 'plan') return '';
+  const tired = restTodayGroups(p); if (!tired.length) return '';
+  const list = tired.map(g => GN[g].toLowerCase()).join(', ');
+  return `<section class="ar lp rest-today" aria-labelledby="rt-h"><h2 id="rt-h">${'Better to rest today'}</h2>
+    <p>${esc('The muscles of this workout already worked yesterday: {list}. They need 24–48 hours to recover — better do this workout tomorrow.'.replace('{list}', list))}</p>
+    <p>${'If you want to train today, build a workout for the muscles that have rested.'}</p>
+    <p><button type="button" class="btn btn-2" data-logpick="rest">${'Build today’s workout →'}</button></p>
+    <p class="p-hint" id="rt-msg" role="status" hidden></p></section>`;
+}
 
 /* ===================== АТЛАС ДВИЖЕНИЙ: МИНИАТЮРЫ В «АНАТОМИИ» (этап 3) =====================
    В выбранном виде фигуры (motionPrefs.view; по умолчанию «Анатомия») миниатюры витрины — кадры костей и мышц в почти
@@ -20200,6 +21444,9 @@ function workoutFinish(){
   $('#wv-finish-text').textContent=`Completed ${n} ${plural(n,'set','sets','sets')} in ${worked} ${plural(worked,'exercise','exercises','exercises')}.`+(total>0?` Volume — ${fmtTon(total)} ${wUnit()}.`:'');
   Heart.finish();
   $('#wv-summary').innerHTML=rows.map((r,i)=>`<p><span>${esc(r.name)}${r.swapped?` <small>${'swapped'}</small>`:''}</span><strong>${tons[i]>0?`<small>${fmtTon(tons[i])+' '+wUnit()}</small>`:''}${!r.n&&r.skip?`<small>${'skipped'}</small>`:r.n+' ✓'}</strong></p>`).join('');saveWorkout();workoutTick();
+  /* картинка итога для «Поделиться» (14c-share-card.js): дата, название, упражнения, подходы, объём — без пульса и веса тела */
+  const wd=workout.days.length?workout.days[workout.days.length-1]:todayKey(),title=S.mode==='program'&&prog&&prog.days[S.day]?prog.days[S.day].name:titleFor();
+  shareSummarySet({day:wd,title,n,worked,total,rows:rows.map((r,i)=>({name:r.name,n:r.n,ton:tons[i],skip:!r.n&&!!r.skip}))});
 }
 function workoutTick(){
   if(!workout)return;
@@ -21251,6 +22498,116 @@ const Heart = (() => {
 })();
 heartLoad();
 
+/* ===================== КАРТИНКА ИТОГА ТРЕНИРОВКИ =====================
+   Решение владельца 15.11.2026 (решение 4 — «скромно»; Кира 3: «после тренировки нечем похвастаться»): на экране
+   «Тренировка завершена» — одна кнопка. Она отдаёт картинку итога системному «Поделиться» (Web Share с файлом: телефоны
+   на Android и iPhone), а где его нет (компьютер, встроенное окно без разрешения) — сохраняет картинку файлом. Новых экранов
+   нет. На картинке — дата, название тренировки, упражнения с подходами и объёмом, итог: подходы, упражнения, объём (как
+   на экране итога). Пульса и веса тела нет — человек этого не выбирал. Похвалы и даты следующей тренировки нет: решение 11
+   владелец не утверждал. В списке — сделанные упражнения. Картинка рисуется сразу, когда показан итог: «Поделиться» потом вызывается в том же нажатии, без
+   ожидания (Safari отпускает его только сразу после нажатия). Размер — 1080 × 1350 (4:5): целиком видна и в ленте,
+   и в историях. Проверки — tools/ui-check.mjs. */
+const CARD_W = 1080, CARD_H = 1350;
+const CARD_MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+const CARD_SITE = 'sakrett001-ai.github.io/Lazy-gym-planner';
+let shareSum = null, shareBlob = null, shareMaking = null;
+/* итог для картинки: {day, title, rows:[{name, n, ton, skip}], n, worked, total} — из workoutFinish (14-workout-mode.js) */
+function shareSummarySet(sum) {
+  shareSum = sum && sum.n > 0 ? sum : null; shareBlob = null; shareMaking = null;
+  paintShareButton();
+  if (shareSum) { const mine = shareSum; shareMaking = shareCardBlob(mine).then(b => { if (shareSum === mine) shareBlob = b; return b; }, () => null); }
+}
+function canShareFiles() {
+  try { return typeof navigator !== 'undefined' && typeof navigator.share === 'function' && typeof navigator.canShare === 'function' && typeof File === 'function' && navigator.canShare({files:[new File([''], 'lazy-gym.png', {type:'image/png'})]}); }
+  catch (e) { return false; }
+}
+function paintShareButton() {
+  const b = $('#wv-share'), m = $('#wv-share-msg'); if (!b) return;
+  b.hidden = !shareSum; b.textContent = canShareFiles() ? 'Share the summary' : 'Save the summary picture';
+  if (m) m.textContent = '';
+}
+/* «18 ноября 2026»; в английской сборке — по языку браузера («November 18, 2026») */
+function cardDate(k) {
+  const [y, m, d] = k.split('-').map(Number);
+  if (localeOf().dates === 'intl' && typeof Intl !== 'undefined') { try { return new Intl.DateTimeFormat(localeTag(), {day:'numeric', month:'long', year:'numeric'}).format(new Date(y, m - 1, d, 12)); } catch (e) {} }
+  return `${d} ${CARD_MONTHS[m - 1]} ${y}`;
+}
+/* строка, обрезанная по ширине с многоточием */
+function cardFit(g, text, w) {
+  if (g.measureText(text).width <= w) return text;
+  let s = text; while (s.length > 1 && g.measureText(s + '…').width > w) s = s.slice(0, -1);
+  return s.trimEnd() + '…';
+}
+async function cardFonts() {
+  if (typeof document === 'undefined' || !document.fonts || !document.fonts.load) return;
+  const sample = 'Workout Lazy Gym 0123456789';
+  try { await Promise.all(["400 60px 'Russo One'", "600 40px 'Golos Text'", "500 36px 'Golos Text'", "500 30px 'JetBrains Mono'"].map(f => document.fonts.load(f, sample))); } catch (e) {}
+}
+async function shareCardBlob(sum) {
+  await cardFonts();
+  const cv = document.createElement('canvas'); cv.width = CARD_W; cv.height = CARD_H;
+  const g = cv.getContext('2d'); if (!g) return null;
+  const C = {bg:'#ECEFF3', card:'#FFFFFF', ink:'#141A23', muted:'#5B6574', line:'#DCE1E8', hot:'#C92723', accent:'#2347C8', good:'#1B7749', soft:'#E2F4EA'};
+  const DISP = "'Russo One', 'Arial Black', sans-serif", BODY = "'Golos Text', system-ui, sans-serif", MONO = "'JetBrains Mono', ui-monospace, monospace";
+  const X = 72, W = CARD_W - 2 * X;
+  g.fillStyle = C.bg; g.fillRect(0, 0, CARD_W, CARD_H);
+  /* карточка */
+  const round = (x, y, w, h, r) => { g.beginPath(); g.moveTo(x + r, y); g.arcTo(x + w, y, x + w, y + h, r); g.arcTo(x + w, y + h, x, y + h, r); g.arcTo(x, y + h, x, y, r); g.arcTo(x, y, x + w, y, r); g.closePath(); };
+  g.fillStyle = C.card; round(40, 40, CARD_W - 80, CARD_H - 80, 36); g.fill();
+  g.textBaseline = 'alphabetic';
+  /* логотип: Lazy Gym Planner, «Gym» — красным, как в шапке приложения */
+  g.font = `400 52px ${DISP}`; let x = X;
+  for (const [t, c] of [['Lazy', C.ink], ['Gym', C.hot], ['Planner', C.ink]]) { g.fillStyle = c; g.fillText(t, x, 136); x += g.measureText(t).width + 2; }
+  g.fillStyle = C.muted; g.font = `500 36px ${BODY}`; g.fillText(cardDate(sum.day), X, 214);
+  g.fillStyle = C.ink; g.font = `400 64px ${DISP}`; g.fillText(cardFit(g, 'Workout complete', W), X, 316);
+  if (sum.title) { g.fillStyle = C.muted; g.font = `600 40px ${BODY}`; g.fillText(cardFit(g, sum.title, W), X, 378); }
+  /* итог: подходы, упражнения, объём */
+  const tiles = [[String(sum.n), plural(sum.n, 'set', 'sets', 'sets')], [String(sum.worked), plural(sum.worked, 'exercise', 'exercises', 'exercises')]];
+  if (sum.total > 0) tiles.push([fmtTon(sum.total), `${'volume'}, ${wUnit()}`]);
+  const tw = (W - 24 * (tiles.length - 1)) / tiles.length, ty = 430, th = 196;
+  tiles.forEach(([v, l], i) => {
+    const tx = X + i * (tw + 24);
+    g.fillStyle = C.soft; round(tx, ty, tw, th, 24); g.fill();
+    g.fillStyle = C.good; g.font = `400 ${v.length > 6 ? 64 : 84}px ${DISP}`; g.fillText(cardFit(g, v, tw - 48), tx + 24, ty + 112);
+    g.fillStyle = C.ink; g.font = `500 32px ${BODY}`; g.fillText(cardFit(g, l, tw - 48), tx + 24, ty + 164);
+  });
+  /* упражнения — сделанные (на экране итога видны и пропущенные, на картинке — то, что сделано) */
+  const rows = sum.rows.filter(r => r.n > 0), top = 702, rh = 72, fit = Math.floor((1210 - top) / rh), shown = rows.length > fit ? rows.slice(0, fit - 1) : rows;
+  g.strokeStyle = C.line; g.lineWidth = 2;
+  shown.forEach((r, i) => {
+    const y = top + i * rh;
+    g.beginPath(); g.moveTo(X, y - 46); g.lineTo(X + W, y - 46); g.stroke();
+    const right = `${r.n} ${plural(r.n, 'set', 'sets', 'sets')}${r.ton > 0 ? ` · ${fmtTon(r.ton)} ${wUnit()}` : ''}`;
+    g.font = `500 32px ${BODY}`; const rw = g.measureText(right).width;
+    g.fillStyle = C.muted; g.textAlign = 'right'; g.fillText(right, X + W, y); g.textAlign = 'left';
+    g.font = `500 36px ${BODY}`; g.fillStyle = C.ink; g.fillText(cardFit(g, r.name, W - rw - 32), X, y);
+  });
+  if (shown.length < rows.length) { const y = top + shown.length * rh; g.fillStyle = C.muted; g.font = `500 34px ${BODY}`; g.fillText('and {n} more'.replace('{n}', rows.length - shown.length), X, y); }
+  g.fillStyle = C.muted; g.font = `500 28px ${MONO}`; g.fillText(CARD_SITE, X, CARD_H - 92);
+  return await new Promise(res => { try { cv.toBlob(b => res(b), 'image/png'); } catch (e) { res(null); } });
+}
+/* сохранить картинку файлом: ссылка с download (как журнал, 13-log.js: saveFile) */
+function saveBlob(name, blob) {
+  try {
+    const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = name;
+    document.body.appendChild(a); a.click(); setTimeout(() => { URL.revokeObjectURL(a.href); a.remove(); }, 1500);
+    return 'ok';
+  } catch (e) { return 'fail'; }
+}
+async function shareCard() {
+  const msg = $('#wv-share-msg'), sum = shareSum; if (!sum) return;
+  const blob = shareBlob || await shareMaking;
+  if (!blob) { if (msg) msg.textContent = 'Couldn’t draw the picture.'; return; }
+  const name = `lazy-gym-${sum.day}.png`, file = typeof File === 'function' ? new File([blob], name, {type:'image/png'}) : null;
+  if (file && canShareFiles()) {
+    try { await navigator.share({files:[file], title:'Workout complete'}); if (msg) msg.textContent = ''; return; }
+    catch (e) { if (e && e.name === 'AbortError') return; /* отправить не дали (встроенное окно) — сохраняем */ }
+  }
+  const r = saveBlob(name, blob);
+  if (msg) msg.textContent = r === 'ok' ? 'Picture saved: {name}'.replace('{name}', name) : 'Couldn’t save the picture.';
+}
+document.addEventListener('click', e => { const t = e.target.closest && e.target.closest('#wv-share'); if (t) shareCard(); });
+
 /* ===================== АВТОРЕГУЛИРОВКА ===================== */
 /* Решения принимаются по журналу. Правила:
    1. Застой: 3 последние тренировки по упражнению без роста расчётного максимума (±1%) и без выхода на верх диапазона → заменить упражнение или поработать в другом диапазоне.
@@ -22061,7 +23418,7 @@ function restoreBackup(obj, opts = {}) {
       for (const k of [...Object.keys(DEFAULTS), 'places', 'place', 'placesV', 'adapt', 'swaps']) if (k in obj.settings && k !== 'view' && k !== 'logPick' && !sp.bad.includes(k)) ok[k] = sp.s[k];
       if ('lr' in ok) ok.lr = cleanLr(ok.lr);
       if ('dur' in ok && !DURATIONS[ok.dur]) ok.dur = null;
-      Object.assign(S, ok); ensurePlaces(S); ensureCustoms(S); ensureFold(S); ensureProtect(S); /* имена по умолчанию — на языке страницы */
+      Object.assign(S, ok); ensurePlaces(S); ensureCustoms(S); if (gentleNoStatic() || sp.s.fmtNote) { S.fmtNote = true; fmtNoteFresh = true; } /* «Бережно» без статодинамики — сказано под планом */ ensureFold(S); ensureProtect(S); /* имена по умолчанию — на языке страницы */
       swaps = S.swaps && typeof S.swaps === 'object' && !Array.isArray(S.swaps) ? S.swaps : (S.swaps = {});
       saveSettings(); out.settings = true; out.bad = sp.bad;
     }
@@ -22097,9 +23454,13 @@ function motionClean(o) {
    и начатая тренировка идёт по своему списку */
 function planCtx() {
   const c = S.mode === 'custom' && typeof customOf === 'function' ? customOf() : null;
-  return JSON.stringify([S.mode, S.day, S.week, S.days, S.split, S.goal, S.format, S.level, S.count, [...S.groups].sort(), [...S.equip].sort(), S.seed,
+  /* в своём плане состав задал человек, мышцы плана (4.111) на него не влияют: в отметке — мышцы обычных планов (S.gen),
+     как до 4.111, когда мышцы были общими, — тренировка, начатая до обновления, идёт по своему списку. Неделя и отметки
+     плана — только когда они есть (у планов прежних версий их нет — отметка та же) */
+  const groups = c && S.gen && Array.isArray(S.gen.groups) ? S.gen.groups : S.groups;
+  return JSON.stringify([S.mode, S.day, S.week, S.days, S.split, S.goal, S.format, S.level, S.count, [...groups].sort(), [...S.equip].sort(), S.seed,
     S.focus, S.dur, [...(S.protect || [])].sort(), S.place, S.adapt || null, S.swaps || {}, S.logPick ? S.logPick.d + JSON.stringify(S.logPick.groups) : null,
-    c ? [c.id, c.items, c.goal, c.format, c.level] : null, !!(typeof AR !== 'undefined' && AR.light)]);
+    c ? [c.id, c.items, c.goal, c.format, c.level, ...(c.week ? [c.week] : []), ...(c.protect ? [c.protect] : [])] : null, !!(typeof AR !== 'undefined' && AR.light)]);
 }
 /* очередь подходов → {ctx, items:[упражнение с дозировкой], q:[[номер упражнения, подход, подходов, отдых, этап]]} */
 function workoutSnap(queue) {
@@ -22944,4 +24305,6 @@ if (!BOOT.failed) {
   logInit();
   /* самый первый запуск — несколько вопросов вместо параметров (11k-first-run.js) */
   if (FIRST_RUN) openFirstRun();
+  /* открыли ссылку на план (11m-plan-link.js): окно с планом — сразу, а в первый запуск — после вопросов */
+  planHashOpen();
 }

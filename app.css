@@ -100,6 +100,7 @@ h1, h2, h3, h4 { text-wrap:balance; margin:0; }
 .seg-b small { font:500 .75rem/1.2 var(--f-mono); color:var(--muted); }
 .seg-b.on { background:var(--accent); color:var(--accent-ink); }
 .seg-b.on small { color:inherit; opacity:.8; }
+.seg-b.off { opacity:.45; cursor:not-allowed; }
 .stepper { display:flex; align-items:center; gap:10px; }
 .stepper button { width:40px; height:40px; border-radius:10px; border:1px solid var(--line); background:var(--surface-2); font:500 1.25rem/1 var(--f-mono); }
 .stepper button:disabled { opacity:.35; cursor:default; }
@@ -393,6 +394,13 @@ h1, h2, h3, h4 { text-wrap:balance; margin:0; }
 .wk button.on { border-color:var(--accent); background:var(--accent-soft); }
 .wk button.on b { color:var(--accent); }
 .wk-note { margin:0; font-size:.875rem; max-width:70ch; }
+/* неделя цикла переключается сама (weekSync, 11-planner.js) */
+.wk-auto { margin:0; font-size:.8125rem; color:var(--muted); max-width:70ch; }
+/* виды движения за неделю под полосами (kindsHtml); чего нет — заметнее */
+.kinds-note { color:var(--muted); }
+.kinds-note.kinds-miss { color:var(--ink); }
+/* «Сегодня лучше отдых» над планом (restTodayHtml, 13d-muscle-load.js) */
+.rest-today p { margin:0; font-size:.875rem; line-height:1.45; max-width:70ch; }
 .rule { margin:0; font-size:.84375rem; color:var(--muted); border-top:1px solid var(--line); padding-top:10px; max-width:70ch; }
 .rule b { color:var(--ink); font-weight:600; }
 .days { display:flex; gap:6px; overflow-x:auto; padding-bottom:2px; scrollbar-width:thin; }
@@ -770,6 +778,10 @@ html.workout-open{overflow:hidden}
 .illus:not(.anatomy-on)>canvas.card-anatomy,.illus.anatomy-on>svg.fig{visibility:hidden}
 .figure-tile-note{font-size:.75rem;line-height:1.4;color:var(--muted);padding:0 10px 8px;margin:0}
 @media(max-width:380px){.wv-figure button{padding:4px 6px;font-size:.75rem}}
+/* 4.111: «Поделиться итогом» на экране «Тренировка завершена» (14c-share-card.js) — вторая кнопка, спокойнее главной */
+.wv-share{width:100%;min-height:48px;margin-top:10px;border:1px solid var(--line);border-radius:12px;background:var(--surface);color:var(--accent);padding:12px 20px;font:600 .9375rem var(--f-body);cursor:pointer}
+.wv-share[hidden]{display:none}
+#wv-share-msg:empty{display:none}
 
 .spatial-floor{fill:var(--surface);fill-opacity:.28;stroke:var(--line);stroke-width:1}
 .spatial-grid{stroke:var(--line);stroke-width:.55;opacity:.5}
@@ -1092,6 +1104,14 @@ button.link { border:0; background:none; padding:0; color:var(--accent); font:in
 .sug-planup { margin-top:6px; background:var(--accent-soft); }
 .sug-planup b { background:var(--accent); color:var(--accent-ink); }
 .sug-planup button { grid-column:2; justify-self:start; min-height:44px; text-align:left; }
+/* 4.111: загрузка — что в плане (упражнения списком), пара суперсета в своём плане */
+.pi-row { display:grid; gap:2px; }
+.pi-items summary { cursor:pointer; font-size:.8125rem; color:var(--accent); font-weight:600; padding:4px 12px; min-height:32px; display:flex; align-items:center; }
+.pi-items ol { margin:2px 0 4px; padding-left:2.4em; display:grid; gap:3px; font-size:.84375rem; color:var(--ink); }
+.pi-items small { color:var(--muted); font-family:var(--f-mono); font-size:.75rem; margin-left:6px; white-space:nowrap; }
+.pi-items .pi-swap { color:var(--warn-ink); font-style:normal; font-size:.75rem; margin-left:6px; white-space:nowrap; }
+.cp-ss { display:flex; align-items:center; gap:10px; min-height:44px; margin:0 0 8px; font-size:.875rem; color:var(--ink); cursor:pointer; }
+.cp-ss input { width:20px; height:20px; margin:0; flex:none; accent-color:var(--accent); }
 
 /* Сворачиваемые блоки: заголовок-кнопка со сводкой и шевроном (11f-fold.js). */
 .cg-h { display:flex; align-items:center; gap:10px; width:100%; min-height:40px; border:0; background:transparent; padding:6px 4px; margin:0; text-align:left; color:var(--ink); font:inherit; cursor:pointer; border-radius:8px; }
@@ -1535,6 +1555,9 @@ div.sw-gone { margin-top:12px; }
 @media (hover:hover) { .sw-undo:hover { background:var(--accent); color:var(--accent-ink); } }
 .sw-pick .place small.sw-j { display:flex; align-items:center; gap:6px; font-weight:600; color:color-mix(in srgb, var(--hot) 82%, var(--ink)); }
 .sw-j .stress-dot { width:8px; height:8px; margin-top:0; }
+/* «Другой вариант: A → B» и «Вернуть» над планом (rerollHtml, 12c-swap.js) — как строка после замены */
+.reroll-msg { display:flex; flex-wrap:wrap; align-items:center; gap:6px 12px; margin:10px 0 0; padding:8px 10px; border-radius:10px; background:var(--accent-soft); color:var(--ink); }
+.reroll-msg > span { flex:1 1 11.25rem; min-width:0; overflow-wrap:anywhere; }
 
 /* пульсометр на экране тренировки (src/js/14b-heart.js): плашка под полосой прогресса, пульс на отдыхе, «Конец отдыха» */
 .wv-hr{display:flex;align-items:center;flex-wrap:wrap;gap:6px 12px;margin-top:12px;min-height:42px}
