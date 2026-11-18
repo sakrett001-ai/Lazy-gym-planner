@@ -143,6 +143,20 @@ function closeWorkout(fromBack){
   /* вид фигуры мог смениться на экране тренировки — карточки плана берут его же */
   if(figs.some(F=>F.card))applyCardsView();
 }
+/* ---------- диктор (Галина 1, 2, 17) ----------
+   Объявления экрана тренировки — в одной живой области внутри окна (#wv-say): то, что вне модального окна, диктору
+   недоступно, а область, скрытая вместе с экраном отдыха, молчит. Текст ставится с короткой задержкой после очистки: одинаковая
+   фраза подряд («Подход записан…») тоже звучит. Настоящий звук — дело диктора; здесь только слова. */
+let wvSayT=0;
+function wvSay(text){const el=$('#wv-say');if(!el)return;clearTimeout(wvSayT);el.textContent='';wvSayT=setTimeout(()=>{el.textContent=text;},60);}
+const stepSay=s=>`${s.it.name}, ${'подход'} ${s.k+1} ${'из'} ${s.n}`;
+/* перешли к подходу (после отдыха, с экрана итога): фокус — на название упражнения, диктору — «Следующее: …» и задание */
+function workoutAnnounceStep(){
+  if(!workout||$('#wv-active').hidden)return;
+  const s=workout.queue[workout.index];
+  $('#workout-view').scrollTop=0;$('#wv-title').focus({preventScroll:true});
+  wvSay(`${'Следующее:'} ${stepSay(s)}. ${'Задание:'} ${$('#wv-target').textContent}.`);
+}
 function workoutShow(index){
   if(!workout)return;
   workout.index=Math.max(0,Math.min(workout.queue.length-1,index));workout.restUntil=0;workout.restFrom=0;workout.restPaused=0;workout.next=-1;workout.sideNote='';workout.holdPair=null;RestAlarm.cancel();paintRestPhase(false);workoutAskHide();
@@ -181,6 +195,21 @@ function workoutFill(s,sg,prev){
   $('#wv-weight-label').hidden=lt==='none';$('#wv-weight-caption').textContent=wl?wl.full:`Вес, ${wUnit()}`;$('#wv-rep-caption').textContent=side&&!ex.kind?'Повторы на каждую сторону':repLabel(ex);
   $('#wv-lr-fields').classList.toggle('wv-lr-nokg',lt==='none');$('#wv-lr-kg-cap').textContent=wl?wl.full:`Вес, ${wUnit()}`;$('#wv-lr-rep-cap').textContent=repLabel(ex);
   for(const id of ['wv-reps','wv-reps-l','wv-reps-r'])$('#'+id).setAttribute('inputmode',ex.kind==='dist'?'decimal':'numeric');
+  /* что стоит в полях — workoutDefaults (те же числа — у «Подход выполнен» на экране отдыха) */
+  const D=workoutDefaults(s,sg,prev),from=D.from;
+  $('#wv-kg').value=D.kg;$('#wv-reps').value=D.reps;$('#wv-reps').placeholder=D.goal;
+  for(const k of ['l','r']){$('#wv-kg-'+k).value=D[k].kg;$('#wv-reps-'+k).value=D[k].reps;$('#wv-reps-'+k).placeholder=D.goal;}
+  workout.rFollow=$('#wv-kg-r').value===$('#wv-kg-l').value;
+  workoutPairTotal();
+  $('#wv-input-hint').textContent=hold?(lt==='extra'?'Доп. вес можно оставить пустым. ':'')+'«Стоп» запишет секунды и начнёт отдых. Секунды можно ввести и вручную.'
+    :lt==='extra'?(wl.impl==='db'?'Без гантелей оставьте вес пустым. Введите фактический результат.':'Дополнительный вес можно оставить пустым. Введите фактический результат.'):lt==='none'?'Укажите фактический результат подхода.':workoutKgHint(from,it,sg,prev);
+  workoutWarmup(s,from==='stored'||from==='draft'&&stored?null:parseKg($('#wv-kg').value));
+  $('#wv-error').textContent='';for(const id of ['wv-kg','wv-reps','wv-kg-l','wv-reps-l','wv-kg-r','wv-reps-r'])$('#'+id).removeAttribute('aria-invalid');
+}
+/* что подставить в поля подхода: вес и повторы общие (kg, reps) и по сторонам (l, r), откуда вес (from), подсказка-цель (goal).
+   Строки — как в полях. Нужны и форме подхода (workoutFill), и «Подход выполнен» на экране отдыха (workoutQuick) */
+function workoutDefaults(s,sg,prev){
+  const it=s.it,ex=it.ex,stored=workoutValue(s);
   /* подходы упражнения в этой тренировке (продолженной — и вчерашние), в выбранной единице: по ним вес на следующие подходы */
   const draft=workout.drafts[workoutDraftKey(s)],today=workoutSetsOf(ex.id,it),ses=stored?workoutSession(s):null,here=stored?hereSet(stored,ses&&ses.u,it):null;
   /* вес: записанный сегодня в подходе выше (carriedKg — то же правило, что в карточке: свой вес подхода по плану или
@@ -190,27 +219,21 @@ function workoutFill(s,sg,prev){
   const tip=sg.kg!=null&&sg.kg>0?sg.kg:null;
   /* откуда вес в поле — о том и подпись под ним (workoutKgHint): Руслан 16 — «из последней записи», а подставлен вес плана */
   const from=draft?'draft':here?'stored':carried!=null?'carried':planned!=null?(it.rx.kgPlan?(sg.layoff?'deload':'plan'):['deload','up','down'].includes(sg.tone)?sg.tone:'pyramid'):tip!=null?sg.tone:prev?.[0]!=null?'same':'none';
-  $('#wv-kg').value=draft?draft.kg:here?kgText(here[0]):carried!=null?fmtKg(carried):planned!=null?fmtKg(planned):tip!=null?fmtKg(tip):prev?.[0]!=null?fmtKg(prev[0]):'';
+  const kg=draft?draft.kg:here?kgText(here[0]):carried!=null?fmtKg(carried):planned!=null?fmtKg(planned):tip!=null?fmtKg(tip):prev?.[0]!=null?fmtKg(prev[0]):'';
   /* подсказка повторов — цель подхода со словом «цель»: серое «12–15» без него выглядело введённым. Цель — одно число (задание
      своего плана, пирамида, цель подсказки «на 1 повтор больше») — она и в поле (Руслан 9: 5×3 по 200 — «3» вписывать каждый раз);
      диапазон без истории — поле пустое: впишите, сколько сделали. Удержание — секунды пишет таймер */
   const goal='цель '+planReps(it.rx,s.k),aim=workoutRepsAim(it,sg,s.k);
-  $('#wv-reps').value=draft?draft.reps:here?String(here[1]):aim;$('#wv-reps').placeholder=goal;
+  const out={from,goal,aim,kg,reps:draft?draft.reps:here?String(here[1]):aim};
   /* Л/П: записанные стороны, иначе — общий вес; вес стороны по умолчанию — из подхода выше по своей стороне, из прошлых
      сторон, если они были; правая сторона идёт за левой, пока её не правили (workout.rFollow — Руслан 2: одна гантель
      записалась как Л 52,5 / П 50) */
   const ssd=here&&setSides(here,ex),psd=prev&&setSides(prev,ex);
   for(const k of ['l','r']){
     const ck=carriedKg(it,today,s.k,k,own),kgDef=ck!=null?fmtKg(ck):planned!=null?fmtKg(planned):psd?kgText(psd[k][0]):tip!=null?fmtKg(tip):prev?.[0]!=null?fmtKg(prev[0]):'';
-    $('#wv-kg-'+k).value=draft&&draft['k'+k]!==undefined?draft['k'+k]:ssd?kgText(ssd[k][0]):here?kgText(here[0]):kgDef;
-    $('#wv-reps-'+k).value=draft&&draft['r'+k]!==undefined?draft['r'+k]:ssd?String(ssd[k][1]):here?String(here[1]):aim;$('#wv-reps-'+k).placeholder=goal;
+    out[k]={kg:draft&&draft['k'+k]!==undefined?draft['k'+k]:ssd?kgText(ssd[k][0]):here?kgText(here[0]):kgDef,reps:draft&&draft['r'+k]!==undefined?draft['r'+k]:ssd?String(ssd[k][1]):here?String(here[1]):aim};
   }
-  workout.rFollow=$('#wv-kg-r').value===$('#wv-kg-l').value;
-  workoutPairTotal();
-  $('#wv-input-hint').textContent=hold?(lt==='extra'?'Доп. вес можно оставить пустым. ':'')+'«Стоп» запишет секунды и начнёт отдых. Секунды можно ввести и вручную.'
-    :lt==='extra'?(wl.impl==='db'?'Без гантелей оставьте вес пустым. Введите фактический результат.':'Дополнительный вес можно оставить пустым. Введите фактический результат.'):lt==='none'?'Укажите фактический результат подхода.':workoutKgHint(from,it,sg,prev);
-  workoutWarmup(s,from==='stored'||from==='draft'&&stored?null:parseKg($('#wv-kg').value));
-  $('#wv-error').textContent='';for(const id of ['wv-kg','wv-reps','wv-kg-l','wv-reps-l','wv-kg-r','wv-reps-r'])$('#'+id).removeAttribute('aria-invalid');
+  return out;
 }
 /* повторы в поле: цель подхода, если это одно число — цель подсказки (sg.reps), у пирамиды и задания своего плана — число
    подхода; диапазон без истории, удержание, секунды и метры — пусто */
@@ -317,8 +340,9 @@ function commitWorkout(e,sure){
   Heart.setDone(step);
   const next=workoutFirstOpen(workout.queue,workout.index);
   if(next<0){workoutFinish();return;}
-  if(step.rest>0){const now=Date.now();workout.next=next;workout.restTotal=step.rest;workout.restFrom=now;workout.restUntil=now+step.rest*1000;workout.restPaused=0;RestAlarm.unlock();RestAlarm.arm(workout.restUntil,{from:now});workoutShowRest();}
-  else workoutShow(next);
+  if(step.rest>0){const now=Date.now();workout.next=next;workout.restTotal=step.rest;workout.restFrom=now;workout.restUntil=now+step.rest*1000;workout.restPaused=0;RestAlarm.unlock();RestAlarm.arm(workout.restUntil,{from:now});workoutShowRest({recorded:true,quick:workout.quick});}
+  /* без отдыха (первое упражнение суперсета) — сразу следующий подход: диктору — что записано и что дальше */
+  else{workoutShow(next);workoutAnnounceStep();}
   saveWorkout();
 }
 /* фактический отдых — от записи подхода до «Перейти к подходу» — третьим полем в запись подхода, после которого отдыхали */
@@ -329,14 +353,60 @@ function workoutRestTaken(){
   const v=workoutValue(step);
   if(Array.isArray(v)){v[2]=sec;logTouch(step.it.ex.id);}
 }
-function workoutShowRest(){
+/* o.recorded — только что записан подход: диктору «Подход записан. Отдых 1 мин 30 с. Далее: …»; o.quick — записан кнопкой
+   экрана отдыха: фокус остаётся на ней */
+function workoutShowRest(o={}){
   holdStop();$('#wv-active').hidden=true;$('#wv-rest').hidden=false;$('#wv-finish').hidden=true;RestAlarm.paintButton($('#wv-sound'));RestAlarm.paintPrefs();
   const next=workout.queue[workout.next];
   $('#wv-next-name').textContent=next.it.name;$('#wv-next-detail').textContent=`${next.phase} · подход ${next.k+1} из ${next.n} · ${planReps(next.it.rx,next.k)}${next.it.ex.kind?'':' повторов'}`;
   $('#wv-rest-note').textContent=workout.sideNote||restNote();workout.sideNote='';workout.restOver=null;paintRestPause();workoutTick();
   /* экран отдыха — с начала, фокус на «Перейти к подходу»; при крупном масштабе кнопка докручивается в окно, а таймер
      остаётся сверху (.wv-rest-clock прилипает к верху — 40-workout-flow.css) */
-  $('#workout-view').scrollTop=0;const go=$('#wv-continue');go.focus({preventScroll:true});go.scrollIntoView({block:'nearest'});
+  paintQuick();
+  $('#workout-view').scrollTop=0;const quick=$('#wv-quick'),go=o.quick&&quick&&!quick.hidden?quick:$('#wv-continue');go.focus({preventScroll:true});go.scrollIntoView({block:'nearest'});
+  if(o.recorded){
+    wvSay(`${'Подход записан'}${typeof o.quick==='string'?': '+o.quick:''}. ${'Отдых'} ${fmtRest(workout.restTotal)}. ${'Далее:'} ${stepSay(next)}.`);
+  }
+}
+/* ---------- «Подход выполнен» прямо на экране отдыха (Руслан 9) ----------
+   После 4.108 подход по заданию — два нажатия: «Подход выполнен» и после отдыха «Перейти к подходу». Теперь следующий подход
+   того же веса и повторов записывается с экрана отдыха одним нажатием: кнопка «Подход выполнен: 200 кг × 3» под «Перейти к
+   подходу». Она есть, только когда числа известны и уже подтверждены в этой тренировке: у упражнения сегодня записан хотя бы
+   один подход, вес и повторы следующего стоят в полях без вопросов (не удержание, не «Л/П отдельно», нет сомнений в весе).
+   Первый подход упражнения — всегда через его экран: там разминка, техника и подсказка по весу. Нажатие — то же, что
+   «Перейти к подходу» и «Подход выполнен» подряд: любая заминка (другая вкладка записала подход, вопрос о весе) оставляет
+   человека на экране подхода с объяснением. Нажатие в первые 1,5 с отдыха не считается — двойное касание не запишет подход,
+   которого не было. Фактический отдых при этом не пишется: нажимают уже после подхода, и время отдыха неизвестно.
+   Автопереход по концу отдыха не выбран: он уводил бы экран из-под рук и у диктора, а фактический отдых (журнал 4.108)
+   считается до нажатия «Перейти к подходу» — без нажатия он стал бы равен плановому. */
+const WV_QUICK_GUARD=1500;
+function workoutQuickSet(){
+  if(!workout||!(workout.next>=0))return null;
+  const s=workout.queue[workout.next];if(!s||workoutValue(s))return null;
+  const it=s.it,ex=it.ex;
+  if(isHold(ex)||lrOn(ex)||!workoutSetsOf(ex.id).filter(Boolean).length)return null;
+  const sg=suggest(it),prev=sg.prev?.s[s.k]||sg.prev?.s.filter(Boolean).slice(-1)[0],D=workoutDefaults(s,sg,prev);
+  if(!String(D.reps).trim())return null;
+  const r=readSetInput(loadType(ex)==='none'?'':D.kg,D.reps,ex);
+  if(r.bad||setDoubt(it,[r.kg],[r.reps],s.k))return null;
+  /* числа — как в полях подхода (вес — в выбранной единице) */
+  return{s,text:r.kg!=null?`${String(D.kg).trim()} ${wUnit()} × ${String(D.reps).trim()}`:`${String(D.reps).trim()} ${ex.kind==='time'?'с':ex.kind==='dist'?'м':'повт.'}`};
+}
+function paintQuick(){
+  const b=$('#wv-quick'),note=$('#wv-quick-note');if(!b)return;
+  const q=workoutQuickSet();b.hidden=!q;if(note)note.hidden=!q;
+  if(q){const t=`${'Подход выполнен:'} ${q.text}`;if(b.textContent!==t)b.textContent=t;}
+  workout.quickText=q?q.text:'';workout.quickAt=Date.now();
+}
+function workoutQuick(){
+  if(!workout||Date.now()-(workout.quickAt||0)<WV_QUICK_GUARD||!workoutQuickSet())return;
+  /* как «Перейти к подходу», но отдых в запись не идёт; дальше — обычная запись подхода с экрана подхода */
+  const said=workout.quickText;
+  Heart.restDone();workout.restFrom=0;workout.restPaused=0;
+  workoutShow(workout.next);workout.quick=said||true;
+  try{commitWorkout();}finally{workout.quick=false;}
+  /* запись не прошла (вопрос, ошибка) — человек на экране подхода: фокус уже на вопросе или поле; иначе — на названии */
+  if(!$('#wv-active').hidden&&$('#wv-kg-ask').hidden&&!$('#wv-error').textContent)workoutAnnounceStep();
 }
 /* после подхода: общий вес подхода, если он считается (внешний вес), и слабая сторона, если стороны отличались */
 function restNote(){
@@ -384,6 +454,8 @@ function workoutFinish(){
   /* картинка итога для «Поделиться» (14c-share-card.js): дата, название, упражнения, подходы, объём — без пульса и веса тела */
   const wd=workout.days.length?workout.days[workout.days.length-1]:todayKey(),title=S.mode==='program'&&prog&&prog.days[S.day]?prog.days[S.day].name:titleFor();
   shareSummarySet({day:wd,title,n,worked,total,rows:rows.map((r,i)=>({name:r.name,n:r.n,ton:tons[i],skip:!r.n&&!!r.skip}))});
+  /* диктор (Галина 2): фокус — на «Тренировка завершена», итог — вслух */
+  $('#workout-view').scrollTop=0;$('#wv-finish-heading').focus({preventScroll:true});wvSay(`${'Тренировка завершена.'} ${$('#wv-finish-text').textContent}`);
 }
 function workoutTick(){
   if(!workout)return;
@@ -439,7 +511,15 @@ function paintHold(now=Date.now()){
   const running=!!st&&st.phase!=='done';go.classList.toggle('is-stop',running);$('#wv-hold-reset').hidden=!running||st.phase==='lead';$('#wv-done').disabled=running;
   /* вибрация (Android) на «пошли» и на достижении цели — по смене фазы */
   const key=st?st.phase+(st.mode||'')+st.side:'idle';
-  if(H.last!==key){if(st?.phase==='hold'&&(st.mode==='over'?H.last===`holdto${st.side}`:/^(lead|switch)/.test(H.last||'')))RestAlarm.buzz(st.mode==='over'?'end':'go');H.last=key;}
+  if(H.last!==key){
+    if(st?.phase==='hold'&&(st.mode==='over'?H.last===`holdto${st.side}`:/^(lead|switch)/.test(H.last||''))){
+      RestAlarm.buzz(st.mode==='over'?'end':'go');
+      /* диктор (Галина 17): отсчёт и конец удержания — словами, не только сигналом */
+      wvSay(st.mode==='over'?`${'Цель достигнута:'} ${holdText(H.target.sec)}. ${'«Стоп» запишет подход.'}`:(two?sideName(st.side)+'. ':'')+'Удержание началось.');
+    }
+    else if(st?.phase==='switch'&&H.last!==key)wvSay('Смена стороны.');
+    H.last=key;
+  }
 }
 function holdGo(){
   const H=workout?.hold;if(!H)return;
@@ -571,10 +651,11 @@ function setupWorkout(){
     if(!workout||!$('#workout-view').open)return;
     if(t.id==='wv-close'||t.id==='wv-finish-close'){closeWorkout();return;}
     if(t.id==='wv-prev'||t.id==='wv-next'){workoutCapture();workoutShow(workout.index+(t.id==='wv-next'?1:-1));return;}
-    if(t.dataset.wvIndex!==undefined){workoutCapture();workoutShow(Number(t.dataset.wvIndex));return;}
-    if(t.id==='wv-review'){workoutShow(0);return;}
-    if(t.id==='wv-undo'){workoutShow(workout.last);return;}
-    if(t.id==='wv-continue'){workoutRestTaken();workoutShow(workout.next);return;}
+    if(t.dataset.wvIndex!==undefined){workoutCapture();workoutShow(Number(t.dataset.wvIndex));$('#wv-set-chips [aria-current="step"]')?.focus();return;}
+    if(t.id==='wv-review'){workoutShow(0);workoutAnnounceStep();return;}
+    if(t.id==='wv-undo'){workoutShow(workout.last);$('#workout-view').scrollTop=0;$('#wv-title').focus({preventScroll:true});wvSay(`${'Исправление записи:'} ${stepSay(workout.queue[workout.index])}.`);return;}
+    if(t.id==='wv-continue'){workoutRestTaken();workoutShow(workout.next);workoutAnnounceStep();return;}
+    if(t.id==='wv-quick'){workoutQuick();return;}
     if(t.id==='wv-lr'){workoutLrToggle();return;}
     if(t.id==='wv-kg-yes'){commitWorkout(null,true);return;}
     if(t.id==='wv-kg-fix'){workoutAskFix();return;}

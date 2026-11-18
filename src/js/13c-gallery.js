@@ -193,6 +193,8 @@ function showGallery(focusId) {
   $('#motion-view').classList.add('mv-mode-gallery');
   $('#mv-detail').hidden = true; $('#mv-gallery').hidden = false;
   $('#mv-title').textContent = 'Все упражнения';
+  /* диктор (Галина 16): в списке кнопка закрывает атлас, в разборе — разбор */
+  $('#mv-close').setAttribute('aria-label', 'Закрыть атлас');
   renderGallery();
   const tile = focusId && $('#mv-gallery').querySelector(`[data-gallery-open="${focusId}"]`);
   if (tile) { tile.scrollIntoView({block:'center'}); tile.focus({preventScroll:true}); }
@@ -203,6 +205,7 @@ function showDetail() {
   galleryPickClose(false); galleryMsgHide();
   $('#motion-view').classList.remove('mv-mode-gallery');
   $('#mv-gallery').hidden = true; $('#mv-detail').hidden = false;
+  $('#mv-close').setAttribute('aria-label', 'Закрыть разбор');
   if (galleryIO) galleryIO.disconnect(); cancelAnimationFrame(galleryRaf); galleryRaf = 0; galleryQueue = [];
   if (was) galleryAnatStop();
 }

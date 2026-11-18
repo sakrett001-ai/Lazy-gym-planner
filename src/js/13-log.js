@@ -1153,7 +1153,7 @@ function renderJournal() {
   const broken = Keep.broken().length;
   const tools = `<div class="j-tools">
       ${LOG.canExport ? `<button type="button" class="btn btn-2" id="exp-json">Полная копия (JSON)</button><button type="button" class="btn btn-2" id="exp-csv">Журнал для Excel</button><button type="button" class="btn btn-2" id="exp-body">Замеры для Excel</button>` : ''}
-      <label class="btn btn-2" for="imp-file">Восстановить из копии</label><input type="file" id="imp-file" accept=".json,application/json" hidden>
+      <button type="button" class="btn btn-2" data-file-pick="imp-file">Восстановить из копии</button><input type="file" id="imp-file" accept=".json,application/json" hidden tabindex="-1" aria-hidden="true">
       ${broken ? `<button type="button" class="btn btn-2" data-keep="broken">${'Испорченные данные'} (${broken})</button>` : ''}
     </div>${restorePanelHtml()}${unitsHtml()}<p class="p-hint" id="j-msg" role="status" tabindex="-1">${esc(LOG.msg || '')}</p>
     <p class="p-hint">Полная копия — настройки, инвентарь, журнал и замеры одним файлом: перенесёт всё на другой телефон или вернёт после очистки браузера.</p>${privacyHtml()}`;
@@ -1663,6 +1663,12 @@ document.addEventListener('click', e => {
   if (t.dataset.units) { S.units = t.dataset.units === 'lb' ? 'lb' : 'kg'; saveSettings(); renderJournal(); const b = document.querySelector(`[data-units="${S.units}"]`); if (b) b.focus(); return; }
   if (t.id === 'exp-csv') { exportLog('csv'); return; }
   if (t.id === 'exp-json') { exportLog('json'); return; }
+});
+/* выбор файла — настоящей кнопкой (Галина 5): надпись <label> над скрытым полем Tab перескакивал, а диктор читал её как
+   простой текст. Кнопка открывает то же поле; «Восстановить из копии» в журнале и «Выбрать файл» в окне плана */
+document.addEventListener('click', e => {
+  const t = e.target.closest && e.target.closest('[data-file-pick]'); if (!t) return;
+  const f = document.getElementById(t.dataset.filePick); if (f) f.click();
 });
 document.addEventListener('change', e => {
   if (e.target.id === 'imp-file' && e.target.files && e.target.files[0]) { importLog(e.target.files[0]); e.target.value = ''; }

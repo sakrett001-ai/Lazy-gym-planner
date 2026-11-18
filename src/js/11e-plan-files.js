@@ -268,7 +268,7 @@ function planInHtml() {
     <h2>${link ? 'План по ссылке' : 'Загрузить план'}</h2>
     <p class="gear-hint">${link ? 'Вам прислали план. Он добавится к вашим планам: ваши планы и журнал не изменятся. Ваши отметки «Что беречь» действуют и в нём.'
       : 'Выберите файл .json, который выгрузили из Lazy Gym Planner, — свой или от тренера, или вставьте текст плана со ссылкой. Планы добавятся к вашим, ничего не перезапишется.'}</p>
-    ${link ? '' : `<label class="btn btn-2 pi-file" for="pi-file">${'Выбрать файл'}</label><input type="file" id="pi-file" accept=".json,application/json,text/plain" hidden>
+    ${link ? '' : `<button type="button" class="btn btn-2 pi-file" data-file-pick="pi-file">${'Выбрать файл'}</button><input type="file" id="pi-file" accept=".json,application/json,text/plain" hidden tabindex="-1" aria-hidden="true">
     <details class="pi-paste"${r && r.pasted && r.error ? ' open' : ''}><summary>${'или вставить текст плана'}</summary><textarea id="pi-text" rows="4" placeholder="${esc('Текст со ссылкой на план или текст файла .json')}"></textarea><button type="button" class="btn btn-2" id="pi-read">${'Прочитать'}</button></details>`}
     ${body}
     <p class="p-hint" id="pi-msg" role="status"></p>
