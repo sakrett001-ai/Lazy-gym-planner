@@ -20,7 +20,9 @@ const skipFirstRun = () => addEventListener('DOMContentLoaded', () => { try { if
   /* 4.112: у тех, кто открывает приложение впервые, вид фигуры по умолчанию — «Манекен» сбоку (12-motion-player.js: motionFresh).
      Прежние проверки написаны для «Анатомии» сверху под углом — она остаётся у всех, у кого настройки показа уже были: страницы
      проверок открываются с такими (пустыми) настройками. Новое значение по умолчанию проверяется отдельно ({ freshMotion: true }). */
-  const oldMotion = () => { try { if (localStorage.getItem('podhod.motion.v2') == null) localStorage.setItem('podhod.motion.v2', '{}'); } catch (e) {} };
+  /* только при первом открытии страницы (отметка в sessionStorage): обращение к localStorage в самом начале перезагруженной
+     страницы изредка читало хранилище до записи, сделанной перед перезагрузкой, — проверки «прежних версий» теряли журнал */
+  const oldMotion = () => { try { if (sessionStorage.getItem('lgp-old-motion')) return; sessionStorage.setItem('lgp-old-motion', '1'); if (localStorage.getItem('podhod.motion.v2') == null) localStorage.setItem('podhod.motion.v2', '{}'); } catch (e) {} };
   browser.newContext = async (o = {}) => { const { firstRun, freshMotion, ...rest } = o; const c = await newContext(rest); if (!freshMotion) await c.addInitScript(oldMotion); if (!firstRun) await c.addInitScript(skipFirstRun); return c; };
   browser.newPage = async (o = {}) => { const c = await browser.newContext(o), pg = await c.newPage(); pg.on('close', () => c.close().catch(() => {})); return pg; };
 }

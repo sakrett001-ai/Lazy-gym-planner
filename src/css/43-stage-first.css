@@ -11,14 +11,12 @@
 /* ---------- разбор на телефоне: фигура остаётся на экране, пока листают переключатели (Кира 6) ----------
    «Фигура», «Суставы», «Мышцы по фазам» — на экран ниже сцены: нажали — а фигура уже уехала вверх. На высоком экране сцена
    прилипает к верху, пока листается всё, что ею управляет (ракурсы, положение, скорость, вид фигуры, флажки, списки мышц
-   и суставов); сцена чуть ниже прежней, чтобы под ней оставалось место. Порог высоты — в rem: при крупном шрифте телефона
+   и суставов); высота сцены прежняя. Порог высоты — в rem: при крупном шрифте телефона
    сцена не прилипает (текст важнее). Два ракурса — тоже без прилипания: две сцены займут весь экран. */
 @media (max-width:700px) and (min-height:44rem) {
   #mv-projections:not(.is-dual) { position:sticky; top:0; z-index:6; background:var(--surface); padding-bottom:2px; }
-  #mv-projections:not(.is-dual) #mv-stage { height:clamp(260px, 44vh, 420px); height:clamp(260px, 44svh, 420px); }
   /* фокус с клавиатуры и диктора не прячется под прилипшей сценой */
-  .motion-view:has(#mv-projections:not(.is-dual)) { scroll-padding-top:calc(clamp(260px, 44svh, 420px) + 92px); }
-  .motion-view.mv-mode-gallery { scroll-padding-top:0; }
+  .motion-view:not(.mv-mode-gallery):has(#mv-projections:not(.is-dual)) { scroll-padding-top:calc(clamp(300px, 54svh, 480px) + 92px); }
 }
 
 /* ---------- крупный шрифт и масштаб ---------- */
@@ -79,4 +77,7 @@
 /* «Ступени: легче · тяжелее» (Виктор 21) и другие ссылки-кнопки в тексте: поле нажатия 44 × 44 без сдвига строки */
 @media (pointer:coarse) {
   .lk { display:inline-flex; align-items:center; justify-content:center; min-width:44px; min-height:44px; padding:0 4px; margin:0; }
+}
+@media (pointer:coarse) {
+  .place-adapt select, .c-top .motion-bar button, .motion-bar button, .c-joints-b, .vr-seg button, .var-seg button, .c-var button { min-height:44px; }
 }
