@@ -707,11 +707,11 @@ await page.close();
   check(await v.evaluate(() => JSON.stringify(LOG.data.dbrow[0].s[1]) === '[28,12,null,{"l":[28,12],"r":[30,11]}]'), 'карточка: исправление стороны пересчитывает слабую');
   await v.click('.card[data-ex="dbrow"] [data-lr]');
   check(await v.evaluate(() => !S.lr.dbrow && !document.querySelector('.card[data-ex="dbrow"] .lt-r.lt-lr') && document.querySelector('.card[data-ex="dbrow"] .lt-r[data-k="1"] [data-f="reps"]').value === '12'), 'карточка: выключили Л/П — в строке слабая сторона');
-  /* журнал: последние тренировки с общим весом, история «Л … · П …» */
+  /* журнал: последние тренировки с общим весом, история «лев. … · прав. …» (4.112, Галина 10: было «Л … · П …») */
   await v.evaluate(() => { S.view = 'journal'; renderSetup(); renderPlan(); });
   const j = await v.evaluate(() => ({ day: document.querySelector('.j-days li')?.textContent || '', hist: [...document.querySelectorAll('.j-row')].find(li => li.querySelector('[data-del="dbrow"]'))?.textContent || '' }));
   check(/сегодня/.test(j.day) && /3 упражнения · 4 подхода/.test(j.day) && /1 846\s*кг/.test(j.day), `журнал: тренировка дня — упражнения, подходы, общий вес (${j.day})`);
-  check(/Л 30×10 · П 30×8; Л 28×12 · П 30×11/.test(j.hist) && /объём 1 206 кг/.test(j.hist), `журнал: история — «Л … · П …» и общий вес (${j.hist.replace(/\s+/g, ' ').slice(0, 200)})`);
+  check(/лев\. 30×10 · прав\. 30×8; лев\. 28×12 · прав\. 30×11/.test(j.hist) && /объём 1 206 кг/.test(j.hist), `журнал: история — «лев. … · прав. …» и общий вес (${j.hist.replace(/\s+/g, ' ').slice(0, 200)})`);
   await v.close();
 }
 
@@ -1669,7 +1669,8 @@ for (const lang of ['ru', 'en']) {
    под планом 1ПМ назван только после простого объяснения. Строки нагрузки во всех режимах — tools/plain-words.test.js */
 {
   const JARGON = { ru: /1ПМ|отказ|базов|изолирующ|ЭМГ|региональн|изометри|в запасе|с запасом \d|выраженного жжения|двойной прогресс/i,
-    en: /1RM|failure|\bcompound\b|\bisolation\b|\bEMG\b|regional emphasis|isometr|in reserve|reserve of|educational|double progression|Another option|Load cue|Go to set|no main work/i };
+    /* 4.112 (Mike 6, план 4.112): compound / isolation — принятые слова зала (NSCA), из списка жаргона убраны; см. tools/plain-words.test.js */
+    en: /1RM|failure|\bEMG\b|regional emphasis|isometr|in reserve|reserve of|educational|double progression|Another option|Load cue|Go to set|no main work/i };
   const CODE = /\b\d{1,2}-\d{1,2}-[\dX]{1,2}-\d{1,2}\b/;
   for (const lang of ['ru', 'en']) {
     const g = await browser.newPage({ viewport: { width: 390, height: 844 } });
@@ -2002,7 +2003,7 @@ const fakeBluetooth = () => {
   const w = await open(412, 900);
   await w.evaluate(() => { Object.assign(S, { goal: 'strength', level: 'mid', groups: ['chest', 'back', 'quads'], count: 5, seed: 3 }); regen(); document.querySelector('.card [data-cfold="log"]').click(); });
   const t = await w.evaluate(() => {
-    const h = [...document.querySelectorAll('.card .lt-h span')].map(s => ({ t: s.textContent, lines: Math.round(s.getBoundingClientRect().height / parseFloat(getComputedStyle(s).lineHeight)), cut: s.scrollWidth > s.clientWidth + 1 }));
+    const h = [...document.querySelector('.card .lt-h').querySelectorAll('span')].map(s => ({ t: s.textContent, lines: Math.round(s.getBoundingClientRect().height / parseFloat(getComputedStyle(s).lineHeight)), cut: s.scrollWidth > s.clientWidth + 1 }));
     const dots = [...document.querySelectorAll('.c-meta i')].map(i => { const prev = i.previousElementSibling.getClientRects(), last = prev[prev.length - 1], r = i.getBoundingClientRect(); return Math.abs(r.top - last.top) < 6 && r.left >= last.right - 2; });
     return { h, dots, start: document.querySelector('.card [data-workout]').textContent.replace(/\s+/g, ' ').trim(), nb: /\d с/.test(document.querySelector('.c-meta').textContent) };
   });
