@@ -106,7 +106,8 @@ test('export writes explicit dosage as the owner sees it; import brings the same
 test('reading files: clear errors, unknown exercises and bad values dropped, text cleaned', () => {
   const a = app();
   assert.match(a.readPlanFile('').error, /пустой/);
-  assert.match(a.readPlanFile('{"plans":[').error, /не читается как JSON/);
+  /* 4.112: в сообщении нет слова «JSON» (Виктор 14, Галина 10) */
+  assert.match(a.readPlanFile('{"plans":[').error, /^Это не файл плана: его не удалось прочитать\. Возможно, файл обрезан/);
   assert.match(a.readPlanFile(JSON.stringify(plain(a.m.get('backupObject()')))).error, /резервная копия/);
   assert.match(a.readPlanFile('{"format":"other","plans":[]}').error, /не файл плана/);
   assert.match(a.readPlanFile(' '.repeat(300 * 1024) + '{}').error, /слишком большой/);

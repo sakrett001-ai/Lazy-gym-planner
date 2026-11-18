@@ -7,13 +7,14 @@ The app is a workout planner (vanilla JS). Russian UI strings are replaced at bu
 - Keep HTML tags, entities, `·`, `—`, `→`, `×`, `≈`, `%`, digits, line breaks (`\n`) and ` ` where they appear. Translate only the words.
 - Many keys are **fragments** of longer sentences (template literals split at `${…}`), e.g. `"даются с запасом в 2 повтора."` or `"Разминка к"`. The input value gives the surrounding template as context (may be empty). Translate the fragment so that it reads naturally when the pieces are re-joined in the same order; keep leading/trailing lowercase and punctuation semantics (a fragment beginning lowercase stays lowercase).
 - Russian plural triplets appear as separate keys (nominative singular, genitive singular, genitive plural), e.g. `подход / подхода / подходов`. Translate singular → singular (`set`), both other forms → plural (`sets`). The app picks form 1 for n = 1 and form 3 otherwise.
-- Units: кг → kg, фнт → lb, см → cm, дюйм → in, м → m, с → s (seconds), мин → min. Weights are not written into sentences as numbers with «кг»: the code inserts the number and the unit chosen by the person (kg or lb), so translate the words around them only.
+- Units: кг → kg, фунт / фунты → lb, см → cm, дюйм → in, м → m, с → s (seconds), мин → min. Weights are not written into sentences as numbers with «кг»: the code inserts the number and the unit chosen by the person (kg or lb), so translate the words around them only.
 - UI labels stay short (similar length to Russian). Buttons: imperative ("Save", "Close"). Coaching cues: concise second-person imperative, the tone of a good trainer; US spelling (color, program, canceled), “toward” (not “towards”).
 - Typography: quotation marks “ ” (the build turns «» into “ ” in English strings, including pieces of templates), apostrophe ’ (don’t, farmer’s).
 - Strings with placeholders `{n}`, `{t}`, `{name}` are whole sentences: move the placeholder where English word order needs it (`Ещё {n}` → `{n} more`).
 - Exercise names: standard gym terminology (see below), **singular** (Push-up, Dumbbell lateral raise, Seated calf raise), the same name everywhere. Muscle names: common English gym names.
 - Camera angles: Top · Angle · Side · Front · Back (Back angle); motion positions: Start · Middle · End · Return.
-- Goals: Strength · Hypertrophy · Muscular endurance · Easy. «Беречь суставы» → Protect joints & tendons.
+- Goals: Strength · Hypertrophy · Muscular endurance · Easy. «Бережный режим» → Easy mode (never “gentle”: one name for the goal and the mode). «Беречь суставы» → Protect joints & tendons.
+- Gym wording, not word-for-word: exercise type «много мышц / прицельное» → compound / isolation (NSCA); tempo «усилие 1 с, возврат 3 с» → lift in 1 s, lower in 3 s; «расчётный максимум» → Est. 1RM; «реабилитолог» → physical therapist; «дополнительный вес» → added weight.
 - Do not translate anything that is not Russian text; do not translate words inside `${…}` (they never appear in keys anyway).
 - Output **only** valid JSON (UTF-8, no comments, no trailing commas).
 

@@ -154,7 +154,7 @@ function workoutShow(index){
   $('#wv-set-label').textContent=`${s.phase} · подход ${s.k+1} из ${s.n}`;
   $('#wv-equipment').textContent=it.eqLine;
   /* цель подхода: у пирамиды повторов своего плана — число этого подхода */
-  $('#wv-target').textContent=planReps(it.rx,s.k)+(ex.kind?'':' повторов');
+  $('#wv-target').textContent=planReps(it.rx,s.k)+(ex.kind?'':' '+repsWord(planReps(it.rx,s.k)));
   const unit=ex.kind==='time'?'с':ex.kind==='dist'?'м':'повт.',psd=prev&&setSides(prev,ex);
   /* прошлых тренировок нет: «Первая запись», пока в тренировке ничего не записано, потом — «—» */
   const todayN=workoutSetsOf(ex.id).filter(Boolean).length;
@@ -207,7 +207,7 @@ function workoutFill(s,sg,prev){
   }
   workout.rFollow=$('#wv-kg-r').value===$('#wv-kg-l').value;
   workoutPairTotal();
-  $('#wv-input-hint').textContent=hold?(lt==='extra'?'Доп. вес можно оставить пустым. ':'')+'«Стоп» запишет секунды и начнёт отдых. Секунды можно ввести и вручную.'
+  $('#wv-input-hint').textContent=hold?(lt==='extra'?'Дополнительный вес можно оставить пустым. ':'')+'«Стоп» запишет секунды и начнёт отдых. Секунды можно ввести и вручную.'
     :lt==='extra'?(wl.impl==='db'?'Без гантелей оставьте вес пустым. Введите фактический результат.':'Дополнительный вес можно оставить пустым. Введите фактический результат.'):lt==='none'?'Укажите фактический результат подхода.':workoutKgHint(from,it,sg,prev);
   workoutWarmup(s,from==='stored'||from==='draft'&&stored?null:parseKg($('#wv-kg').value));
   $('#wv-error').textContent='';for(const id of ['wv-kg','wv-reps','wv-kg-l','wv-reps-l','wv-kg-r','wv-reps-r'])$('#'+id).removeAttribute('aria-invalid');
@@ -332,7 +332,7 @@ function workoutRestTaken(){
 function workoutShowRest(){
   holdStop();$('#wv-active').hidden=true;$('#wv-rest').hidden=false;$('#wv-finish').hidden=true;RestAlarm.paintButton($('#wv-sound'));RestAlarm.paintPrefs();
   const next=workout.queue[workout.next];
-  $('#wv-next-name').textContent=next.it.name;$('#wv-next-detail').textContent=`${next.phase} · подход ${next.k+1} из ${next.n} · ${planReps(next.it.rx,next.k)}${next.it.ex.kind?'':' повторов'}`;
+  $('#wv-next-name').textContent=next.it.name;$('#wv-next-detail').textContent=`${next.phase} · подход ${next.k+1} из ${next.n} · ${planReps(next.it.rx,next.k)}${next.it.ex.kind?'':' '+repsWord(planReps(next.it.rx,next.k))}`;
   $('#wv-rest-note').textContent=workout.sideNote||restNote();workout.sideNote='';workout.restOver=null;paintRestPause();workoutTick();
   /* экран отдыха — с начала, фокус на «Перейти к подходу»; при крупном масштабе кнопка докручивается в окно, а таймер
      остаётся сверху (.wv-rest-clock прилипает к верху — 40-workout-flow.css) */

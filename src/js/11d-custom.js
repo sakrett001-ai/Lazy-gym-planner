@@ -230,6 +230,14 @@ function customAddTo(id, planId) {
   saveSettings();
   return {plan:c, added:!has && !full, created, has, full};
 }
+/* «Открыть план →» под сообщением; у только что созданного плана — «Открыть и назвать →»: план открывается с курсором
+   в поле имени, имя выделено — как у «+ План» в параметрах (Дмитрий 16: из атласа создавался «План 2», а переименовать
+   можно было только найдя поле в параметрах) */
+function cpGoLabel(btn, created, short) {
+  if (!btn) return;
+  if (created) btn.dataset.cpName = '1'; else delete btn.dataset.cpName;
+  btn.textContent = short ? (created ? 'Открыть и назвать' : 'Открыть план') : created ? 'Открыть и назвать →' : 'Открыть план →';
+}
 function customAddMsg(r) {
   const name = r.plan.name;
   return r.created ? `Создан план «${name}», упражнение добавлено.` : r.added ? `Добавлено в план: ${name}.`
@@ -418,7 +426,7 @@ function customToolsHtml(it) {
         ${it.ex.kind ? '' : `<label class="cp-f"><span>Темп</span><input type="text" maxlength="11" data-cp-tempo="${slot}" value="${esc(o.tempo || '')}" placeholder="${esc(r.tempo || '3-0-1-0')}" aria-label="Темп: опускание, пауза, подъём, пауза — например 3-0-1-0" autocomplete="off"></label>`}
         ${o.sets || o.reps || o.rest !== undefined || o.tempo ? `<button type="button" class="btn-ghost cp-reset" data-cp-reset="${slot}">Как по цели</button>` : ''}
       </div>`;
-  const lt = loadType(it.ex), u = wUnit(), kgLabel = lt === 'assist' ? `Противовес, ${u}` : lt === 'extra' ? `Доп. вес, ${u}` : `Вес, ${u}`;
+  const lt = loadType(it.ex), u = wUnit(), kgLabel = lt === 'assist' ? `Противовес, ${u}` : lt === 'extra' ? `Дополнительный вес, ${u}` : `Вес, ${u}`;
   const extra = `<div class="cp-fields">
       ${lt === 'none' ? '' : cpKgFieldsHtml(it, kgLabel)}
       <label class="cp-f cp-note"><span>Заметка к упражнению</span><textarea rows="2" maxlength="${ITEM_NOTE}" data-cp-note="${slot}" placeholder="Например: пауза 1 с на груди">${esc(o.note || '')}</textarea></label>
@@ -565,7 +573,7 @@ document.addEventListener('click', e => {
     const box = t.closest('.cp-pick'), btn = box.parentElement.querySelector('[data-cp-add]'), r = customAddTo(btn.dataset.cpAdd, t.dataset.cpTo || null);
     cpAfterAdd(r); cpPickToggle(btn, false); btn.focus();
     const m = box.parentElement.querySelector('.cp-msg');
-    if (r && m) { m.hidden = false; m.querySelector('span').textContent = customAddMsg(r); m.querySelector('[data-cp-go]').dataset.cpGo = r.plan.id; }
+    if (r && m) { m.hidden = false; m.querySelector('span').textContent = customAddMsg(r); const go = m.querySelector('[data-cp-go]'); go.dataset.cpGo = r.plan.id; cpGoLabel(go, r.created); }
     return;
   }
   if (t.id === 'save-plan') {
@@ -573,7 +581,14 @@ document.addEventListener('click', e => {
     if (msg && added.length) msg.innerHTML = `Сохранено в свои планы: ${esc(added.map(c => c.name).join(', '))}. <button type="button" class="link" data-cp-go="${added[0].id}">Открыть →</button>`;
     return;
   }
-  if (t.dataset.cpGo !== undefined) { if (document.querySelector('#motion-view')?.open) closeMotion(); openCustom(S.customs.some(c => c.id === t.dataset.cpGo) ? t.dataset.cpGo : null); regen(); window.scrollTo({top:0}); return; }
+  if (t.dataset.cpGo !== undefined) {
+    const name = t.dataset.cpName === '1' && S.customs.some(c => c.id === t.dataset.cpGo);
+    if (document.querySelector('#motion-view')?.open) closeMotion(); openCustom(S.customs.some(c => c.id === t.dataset.cpGo) ? t.dataset.cpGo : null);
+    if (name && S.fold) S.fold.setup = false; /* поле имени — в параметрах: на телефоне они свёрнуты */
+    regen(); window.scrollTo({top:0});
+    if (name) { const inp = $('#cp-name'); if (inp) { inp.scrollIntoView({block:'center'}); inp.focus(); inp.select(); } }
+    return;
+  }
   if (t.dataset.cpOpen) { openMotionItem(previewItem(t.dataset.cpOpen)); return; }
   if (t.dataset.cpMore) { for (const li of document.querySelectorAll(`[data-cp-g="${t.dataset.cpMore}"]`)) li.hidden = false; t.closest('li').remove(); return; }
   if (t.dataset.cpTab) { cpTab = t.dataset.cpTab; cpQ = ''; const q = $('#cp-q'); if (q) q.value = ''; for (const b of document.querySelectorAll('[data-cp-tab]')) { const on = b === t; b.classList.toggle('on', on); b.setAttribute('aria-selected', String(on)); } $('#cp-list').innerHTML = customListHtml(); return; }

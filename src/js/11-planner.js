@@ -315,7 +315,7 @@ const SETTINGS_LABEL = {goal:'цель', format:'формат', level:'уров�
   seed:'вариант подбора', mode:'что собрать', days:'тренировок в неделю', split:'сплит', week:'неделя цикла', day:'день недели',
   view:'раздел', atlasM:'мышца в атласе', focus:'акцент', fav:'избранное', customs:'свои планы', custom:'открытый свой план',
   gen:'параметры обычных планов', author:'имя автора планов', fold:'свёрнутые блоки', protect:'«Беречь суставы»', cpLast:'последний свой план',
-  lr:'«Л/П отдельно»', units:'единицы веса', dur:'время на тренировку', weekFrom:'начало цикла', groupsV:'мышцы', places:'места', place:'место', placesV:'места', adapt:'«как в другом месте»',
+  lr:'«Левая и правая отдельно»', units:'единицы веса', dur:'время на тренировку', weekFrom:'начало цикла', groupsV:'мышцы', places:'места', place:'место', placesV:'места', adapt:'«как в другом месте»',
   swaps:'замены упражнений', logPick:'тренировка по журналу', health:'«Здоровье»', pain:'упражнения с пометкой «больно»'};
 /* «Бережно» — без статодинамики (решение владельца 18.11.2026 по вопросу 3 ревью 4.109): долгое напряжение без расслабления
    поднимает давление сильнее обычных подходов, а врач этот режим не смотрел. В выборе формата кнопка недоступна, под ней —
@@ -1516,6 +1516,30 @@ const ICON = {
   check:'<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3.5 8.5l3 3 6-7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>'
 };
 
+/* место в списке: до трёх снарядов — названиями («гантели, эспандер-лента, ролик для пресса»), больше — числом. Было
+   «Дом · 3 снаряда» рядом с «Дома с эспандером · 1 снаряд»: чем места отличаются, не видно (Ольга 19) */
+function placeGearText(p) {
+  const n = p.equip.length;
+  if (!n) return 'без снаряжения';
+  if (n <= 3) { const names = EQUIP.filter(e => p.equip.includes(e.id)).map(e => e.name.toLowerCase()); if (names.length === n) return names.join(', '); }
+  return n + ' ' + plural(n, 'снаряд', 'снаряда', 'снарядов');
+}
+/* кнопка карточки начинает (или продолжает) тренировку с этого упражнения — так и подписана: было семь одинаковых
+   «Начать тренировку →», и на идущей тренировке тоже (Ольга 17) */
+function cardStartHtml(it, going = typeof workoutPlanState === 'function' && workoutPlanState().kind === 'continue') {
+  return `${going ? 'Продолжить отсюда' : 'Начать отсюда'}<span class="vh">${going ? ' — продолжить тренировку с упражнения' : ' — начать тренировку с упражнения'}: ${esc(it.name)}</span> <span aria-hidden="true">→</span>`;
+}
+/* после выхода из тренировки карточки не пересобираются — подписи кнопок обновляются на месте */
+function paintCardStarts() {
+  if (typeof plan === 'undefined' || !plan || !plan.items) return;
+  const going = typeof workoutPlanState === 'function' && workoutPlanState().kind === 'continue';
+  for (const b of document.querySelectorAll('.card [data-workout]')) {
+    const it = plan.items.find(x => x.ex.id === b.dataset.workout); if (!it) continue;
+    const html = cardStartHtml(it, going); if (b.innerHTML !== html) b.innerHTML = html;
+  }
+}
+if (typeof document !== 'undefined' && document.addEventListener) document.addEventListener('close', e => { if (e.target && e.target.id === 'workout-view') paintCardStarts(); }, true);
+
 function renderSetup() {
   const seg = (name, dict, cur) => Object.entries(dict).map(([k, v]) =>
     `<button type="button" class="seg-b${k === cur ? ' on' : ''}" data-set="${name}" data-v="${k}" aria-pressed="${k === cur}"><b>${v.name}</b>${v.hint ? `<small>${v.hint}</small>` : ''}</button>`).join('');
@@ -1525,6 +1549,7 @@ function renderSetup() {
   $('.setup').hidden = jv; $('.layout').classList.toggle('solo', jv);
   renderSetupFold();
   $('#f-mode').innerHTML = seg('mode', MODES, S.mode);
+  { const fu = $('#f-units-seg'); if (fu && typeof unitsHtml === 'function') fu.innerHTML = unitsHtml(); }
   $('#f-prog').hidden = !prog;
   $('#f-custom').hidden = !custom;
   if (custom) $('#f-custom-body').innerHTML = customSetupHtml();
@@ -1565,13 +1590,13 @@ function renderSetup() {
   const lpMsg = $('#lp-msg'); if (lpMsg) lpMsg.hidden = true;
   $('#g-chips').innerHTML = GROUPS.map(g => `<button type="button" class="chip${gs.has(g.id) ? ' on' : ''}" data-g="${g.id}" aria-pressed="${gs.has(g.id)}">${ICON.check}<span>${g.name}</span></button>`).join('');
   const cur = placeOf();
-  $('#e-places').innerHTML = S.places.map(p => `<button type="button" class="place${p.id === S.place ? ' on' : ''}" data-place="${p.id}" aria-pressed="${p.id === S.place}"><b>${esc(p.name)}</b><small>${p.equip.length ? p.equip.length + ' ' + plural(p.equip.length, 'снаряд', 'снаряда', 'снарядов') : 'без снаряжения'}</small></button>`).join('')
+  $('#e-places').innerHTML = S.places.map(p => `<button type="button" class="place${p.id === S.place ? ' on' : ''}" data-place="${p.id}" aria-pressed="${p.id === S.place}"><b>${esc(p.name)}</b><small>${placeGearText(p)}</small></button>`).join('')
     + `<button type="button" class="place place-add" data-place-add="1">+ Место</button>`;
   const others = S.places.filter(p => p.id !== S.place);
   $('#e-place-tools').innerHTML = `<label class="place-name">Название<input id="place-name" type="text" maxlength="24" value="${esc(cur.name)}" autocomplete="off"></label>`
     + (S.places.length > 1 ? `<button type="button" class="place-del${placeDel ? ' armed' : ''}" data-place-del="1">${placeDel ? 'Точно удалить?' : 'Удалить место'}</button>` : '')
-    + (others.length ? `<label class="place-adapt">Программа<select id="place-adapt"><option value="">Своя для этого места</option>${others.map(p => `<option value="${p.id}"${S.adapt === p.id ? ' selected' : ''}>Как в «${esc(p.name)}», с заменами</option>`).join('')}</select></label>
-      <p class="f-note">${S.adapt ? `Упражнения подобраны под «${esc(placeOf(S, S.adapt).name)}»; то, чего здесь нет, заменено ближайшим аналогом — по тому же движению и тем же мышцам.` : 'Программа собирается из того, что есть в этом месте.'}</p>` : '')
+    + (others.length ? `<label class="place-adapt">Упражнения для этого места<select id="place-adapt"><option value="">Свои — под это место</option>${others.map(p => `<option value="${p.id}"${S.adapt === p.id ? ' selected' : ''}>Те же, что в «${esc(p.name)}», с заменами</option>`).join('')}</select></label>
+      <p class="f-note">${S.adapt ? `Упражнения подобраны под «${esc(placeOf(S, S.adapt).name)}»; то, чего здесь нет, заменено ближайшим аналогом — по тому же движению и тем же мышцам.` : 'Упражнения подбираются из того, что есть в этом месте. Можно взять те же, что в другом месте: чего здесь нет, заменится похожим.'}</p>` : '')
     /* место своего плана — его собственное (4.111): выбранное здесь запоминается у открытого плана */
     + (custom ? `<p class="f-note">${'Свой план открывается в своём месте: выбранное здесь запоминается у этого плана.'}</p>` : '')
     + (typeof placeWeightsHtml === 'function' ? placeWeightsHtml(cur) : '');
@@ -1707,15 +1732,22 @@ document.addEventListener('click', e => {
   b.setAttribute('aria-expanded', String(open)); if (box) box.hidden = !open;
   if (open) PEAK_OPEN.add(b.dataset.peak); else PEAK_OPEN.delete(b.dataset.peak);
 });
+/* мышцы, уже названные в карточках плана выше: сбрасывается перед отрисовкой плана (renderPlanView) */
+let cardSeen = new Set();
 function cardHtml(it, idx) {
   const ex = it.ex, r = it.rx;
   const lvl = {};
   for (const m of ex.pri) lvl[m] = 1;
   for (const m of ex.sec) if (!lvl[m]) lvl[m] = 0.38;
-  const mus = ex.pri.map(m => `<li class="p">${MUSCLE_NAMES[m]}</li>`).join('') + ex.sec.map(m => `<li class="s">${MUSCLE_NAMES[m]}</li>`).join('');
+  /* названия мышц — простыми словами, с пояснением при первом упоминании в плане (cardSeen; 00-engine.js: muscleCardHtml).
+     Строка свёрнутой карточки и список раскрытой — одно упоминание: пояснения в них одинаковые */
+  const seenRow = new Set(cardSeen), seenList = new Set(cardSeen);
+  const mus = ex.pri.map(m => `<li class="p">${muscleCardHtml(m, ex, seenList)}</li>`).join('') + ex.sec.map(m => `<li class="s">${muscleCardHtml(m, ex, seenList)}</li>`).join('');
+  const musHead = musFoldHead(ex, seenRow);
+  for (const m of seenList) cardSeen.add(m);
   /* темп — словами (запись числами — в подсказке, опытным), за ним нагрузка — как и раньше, в одной строке */
   const meta = [];
-  if (r.tempo) meta.push(`<span title="${esc(r.tempo)}: опускание – пауза – подъём – пауза, секунды; X — быстро">темп: ${tempoWords(r.tempo)}</span>`);
+  if (r.tempo) meta.push(`<span title="${esc(r.tempo)}: опускание – пауза – подъём – пауза, секунды; X — быстро">темп: ${tempoWords(r.tempo).replace(/(\d) /g, '$1\u00a0')}</span>`); /* число и «с» не разрываются (Артём 10) */
   if (r.load) meta.push(`<span>${r.load}</span>`);
   /* «изометрия» в фитнесе — статика (замечание тестера): подпись — объёмный вид */
   const view = '3D-вид · 5 ракурсов';
@@ -1728,14 +1760,14 @@ function cardHtml(it, idx) {
       <p class="c-eq">${esc(it.eqLine)}</p>
       ${it.sub ? `<p class="c-sub"><b>Вместо: ${esc(exName(it.sub.from, effEquip(programEquip() || S.equip)))}</b>${it.sub.note ? ` · ${esc(it.sub.note)}` : ''}</p>` : ''}
       ${rxHtml(it)}
-      ${meta.length ? `<p class="c-meta">${meta.join('<i>·</i>')}</p>` : ''}
+      ${meta.length ? `<p class="c-meta">${meta.join('<i>\u00a0·</i> ')}</p>` : ''}
       ${r.coachNote ? `<p class="c-note"><b>Заметка:</b> ${esc(r.coachNote)}</p>` : ''}
     </div>
   </div>
   ${variantRowHtml(it)}
   <div class="c-mus">
-    ${musFoldHead(ex)}
-    <div class="c-map">${muscleMapSvg(lvl, {aria:'Работающие мышцы: ' + ex.pri.map(m => MUSCLE_NAMES[m]).join(', ')})}</div>
+    ${musHead}
+    <div class="c-map">${muscleMapSvg(lvl, {aria:'Работающие мышцы: ' + ex.pri.map(m => muscleLabel(m, ex, true)).join(', ')})}</div>
     <ul class="mus">${mus}</ul>
   </div>
   ${jointsLine(ex, idx)}
@@ -1744,7 +1776,7 @@ function cardHtml(it, idx) {
   <div class="c-warm">${warmupHtml(it, workWeightOf(it, null))}</div>
   <div class="c-prog">${progressionHint(it)}</div>
   <div class="c-act">
-    <button type="button" class="btn-ghost" data-workout="${ex.id}" aria-haspopup="dialog" aria-controls="workout-view">Начать тренировку<span class="vh">: ${esc(it.name)}</span> <span aria-hidden="true">→</span></button>
+    <button type="button" class="btn-ghost" data-workout="${ex.id}" aria-haspopup="dialog" aria-controls="workout-view">${cardStartHtml(it)}</button>
     <span class="c-act-r">${S.mode === 'custom' ? '' : moveButtons(it)}<button type="button" class="btn-ghost" data-swap="${it.slot}" aria-expanded="false" aria-controls="sw-pick-${it.slot}">${ICON.swap}<span>Заменить</span><span class="vh">: ${esc(it.name)}</span></button></span>
     <div class="cp-pick sw-pick" id="sw-pick-${it.slot}" role="group" aria-labelledby="sw-pick-${it.slot}-h" hidden></div>
     ${swapDoneHtml(it)}
@@ -1792,6 +1824,7 @@ function blocksHtml(p) {
     ? `<p class="phase phase-static"><b>Статодинамика.</b> Лёгкий вес. Медленно: 3 с вниз и 3 с вверх, без пауз; не выпрямляйтесь до конца и не расслабляйтесь внизу. К концу подхода (30–40 с) мышца слегка горит, а не сильно; все повторы даются спокойно, без боли. Три подхода с отдыхом 30 с — одна серия, в бережном режиме она одна.</p>`
     : `<p class="phase phase-static"><b>Статодинамика.</b> Вес — около половины от максимума на 1 повтор. Медленно: 3 с вниз и 3 с вверх, без пауз; не выпрямляйтесь до конца и не расслабляйтесь внизу — мышца всё время напряжена. К концу подхода (30–40 с) мышца сильно горит, но повторы ещё получаются. Три подхода с отдыхом 30 с — одна серия.</p>`;
   let idx = 0;
+  cardSeen = new Set();
   /* «Убрано: … Вернуть» — на месте убранной карточки своего плана (12c-swap.js) */
   let gone = rmGoneHtml();
   const card = it => { let pre = ''; if (gone && it.slot >= planUndo.slot) { pre = gone; gone = ''; } return pre + cardHtml(it, idx++); };

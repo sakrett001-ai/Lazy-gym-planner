@@ -123,7 +123,7 @@ function galleryAddMsg(r) {
 }
 function galleryMsgShow(r) {
   const box = $('#mv-gmsg'), text = galleryAddMsg(r);
-  box.querySelector('#mv-gmsg-t').textContent = text; box.querySelector('[data-cp-go]').dataset.cpGo = r.plan.id;
+  box.querySelector('#mv-gmsg-t').textContent = text; { const go = box.querySelector('[data-cp-go]'); go.dataset.cpGo = r.plan.id; cpGoLabel(go, r.created, true); }
   box.hidden = false; $('#motion-view').classList.add('mv-has-msg');
   const live = $('#mv-glive'); live.textContent = ''; requestAnimationFrame(() => { live.textContent = text; });
 }
