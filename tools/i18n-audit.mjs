@@ -53,6 +53,8 @@ const t0 = Date.now(), step = name => { if (process.env.I18N_AUDIT_VERBOSE) cons
 /* 0. мастер первого запуска (11k-first-run.js): все шаги и подписи; после «Показать план» — время тренировки в параметрах
    и предупреждения, когда время не уложилось; дальше — как раньше, без времени (число упражнений из «Exercises») */
 step('0. первый запуск');
+/* 4.112: нажатие в первые полсекунды после смены вопроса не считается (двойное касание) — отвечаем после этой паузы */
+{ const click = page.click.bind(page); page.click = async (sel, ...a) => { if (/fr-/.test(sel)) await page.waitForFunction(() => typeof FR === 'undefined' || FR.done || Date.now() - FR.at >= FR_GUARD); return click(sel, ...a); }; }
 await scan('first run: where');
 await page.click('[data-fr-place="home"]'); await scan('first run: equipment');
 await page.click('[data-fr-eq="db"]'); await page.click('[data-fr-eq="band"]'); await page.click('[data-fr-eq="abwheel"]'); await scan('first run: nothing checked');
