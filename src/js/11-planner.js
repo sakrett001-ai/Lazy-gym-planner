@@ -1874,19 +1874,26 @@ function warnHtml(p) {
   if (S.goal === 'strength' && S.level === 'beg' && p.items.some(it => begStrength(schemeOf(it.ex)))) warn.push('Новичку в «Силе» — 6–8 повторов с запасом: к тяжёлым 3–5 переходите, когда техника устоится, — выберите уровень «Уже тренируюсь».');
   return warn.length ? `<div class="warn">${warn.map(w => `<p>${esc(w)}</p>`).join('')}</div>` : '';
 }
-function headButtons(copyLabel) {
-  /* начатая и не законченная тренировка: «Продолжить тренировку →»; прошлого дня — вопрос над кнопками (14-workout-mode.js) */
+function headButtons() {
+  /* начатая и не законченная тренировка: «Продолжить тренировку →»; прошлого дня — вопрос над кнопками (14-workout-mode.js).
+     Под «Начать тренировку» — только «Другой вариант»; «Скопировать», «Сохранить», «Выгрузить», «В календарь» — под карточками
+     (tailButtons): на телефоне три строки кнопок отодвигали первую карточку с фигурой за первый экран (4.112, вопрос 3, Кира 5) */
   const w = workoutPlanState();
   return `${workoutAskHtml(w)}<div class="p-btns">
         <button type="button" class="btn" id="start-workout" aria-haspopup="dialog" aria-controls="workout-view">${workoutStartHtml(w)}</button>
         ${S.mode === 'custom' ? '' : `<button type="button" class="btn btn-2" id="reroll">${ICON.dice}<span>Другой вариант</span></button>`}
+      </div>
+      ${w.own ? `<p class="p-hint wk-own">${'Тренировка идёт по списку, с которого её начали.'}</p>` : ''}
+      ${typeof rerollHtml === 'function' ? rerollHtml() : ''}`;
+}
+/* что сделать с планом целиком — под карточками */
+function tailButtons(copyLabel) {
+  return `<div class="p-btns p-tail">
         <button type="button" class="btn btn-2" id="copy">${ICON.copy}<span>${copyLabel}</span></button>
         ${S.mode === 'program' ? `<button type="button" class="btn btn-2" id="ics-open">${ICON.cal}<span>В календарь</span></button>` : ''}
         ${S.mode === 'custom' ? `<button type="button" class="btn btn-2" id="plan-export">${ICON.share}<span>Выгрузить</span></button>`
           : `<button type="button" class="btn btn-2" id="save-plan">${ICON.save}<span>${S.mode === 'program' ? 'Сохранить неделю' : 'Сохранить как свой план'}</span></button>`}
       </div>
-      ${w.own ? `<p class="p-hint wk-own">${'Тренировка идёт по списку, с которого её начали.'}</p>` : ''}
-      ${typeof rerollHtml === 'function' ? rerollHtml() : ''}
       <p class="p-hint" id="copy-msg" role="status"></p>
       <p class="p-hint" id="save-msg" role="status"></p>`;
 }
@@ -1965,7 +1972,7 @@ function renderPlanView() {
         <div><dt>${setsWord}</dt><dd>${plan.totalSets}</dd></div>
         <div><dt>${plural(plan.items.length, 'упражнение', 'упражнения', 'упражнений')}</dt><dd>${plan.items.length}</dd></div>
       </dl>
-      ${headButtons('Скопировать план')}
+      ${headButtons()}
     </div>
     <figure class="p-load${lf ? ' folded' : ''}">
       <div class="p-map">${muscleMapSvg(norm(plan.load), {labels:true, aria:'Карта нагрузки тренировки'})}</div>
@@ -1979,8 +1986,8 @@ function renderPlanView() {
   if (plan.custom) {
     const hints = customHints(plan), lost = lostMessages(plan.lost, plan.E);
     html += restTodayHtml(plan) + autoregHtml() + healthHtml() + gentleHtml() + (lost.length ? `<div class="warn">${lost.map(w => `<p>${esc(w)}</p>`).join('')}</div>` : '')
-      + (hints.length ? `<div class="cp-hints">${hints.map(w => `<p>${esc(w)}</p>`).join('')}</div>` : '') + blocksHtml(plan) + customAddHtml() + LEGEND;
-  } else html += logPickHtml(plan) + restTodayHtml(plan) + autoregHtml() + healthHtml() + gentleHtml() + warnHtml(plan) + blocksHtml(plan) + LEGEND;
+      + (hints.length ? `<div class="cp-hints">${hints.map(w => `<p>${esc(w)}</p>`).join('')}</div>` : '') + blocksHtml(plan) + customAddHtml() + tailButtons('Скопировать план') + LEGEND;
+  } else html += logPickHtml(plan) + restTodayHtml(plan) + autoregHtml() + healthHtml() + gentleHtml() + warnHtml(plan) + blocksHtml(plan) + tailButtons('Скопировать план') + LEGEND;
   root.innerHTML = html;
   mountFigures();
 }
@@ -2025,7 +2032,7 @@ function renderProgram() {
         <div><dt>${plural(prog.sets, 'подход', 'подхода', 'подходов')} в неделю</dt><dd>${prog.sets}</dd></div>
         <div><dt>неделя цикла</dt><dd>${S.week}<small>из 4</small></dd></div>
       </dl>
-      ${headButtons('Скопировать неделю')}
+      ${headButtons()}
     </div>
     <figure class="p-load${lf ? ' folded' : ''}">
       <div class="p-map">${muscleMapSvg(norm(prog.load), {labels:true, aria:'Карта недельной нагрузки'})}</div>
@@ -2052,7 +2059,7 @@ function renderProgram() {
   if (!plan.items) html += bodyDay ? `<div class="empty"><h2>Для этого дня нет упражнений</h2><p>${esc('Для этих мышц ({g}) {what} подходящих упражнений с этим оборудованием нет: все дают нагрузку, которую вы бережёте.'.replace('{g}', bodyDay.map(g => GN[g].toLowerCase()).join(', ')).replace('{what}', 'в бережном режиме'))}</p><p>Выберите другой сплит или место; отметки можно поменять в параметрах.</p></div>${gentleHtml()}`
     : `<div class="empty"><h2>Для этого дня нет упражнений</h2><p>С выбранным оборудованием нечем нагрузить эти мышцы. Добавьте оборудование или выберите другой сплит.</p></div>`;
   else html += restTodayHtml(plan) + autoregHtml() + healthHtml() + gentleHtml() + warnHtml(plan) + blocksHtml(plan);
-  html += LEGEND;
+  html += tailButtons('Скопировать неделю') + LEGEND;
   $('#plan').innerHTML = html;
   if (plan.items) mountFigures();
 }
