@@ -234,7 +234,7 @@ function placeWeightsHtml(place) {
   const has = id => place.equip.includes(id), rows = [['db', 'Гантели'], ['kb', 'Гири']].filter(([id]) => has(id));
   if (!rows.length) return '';
   return rows.map(([id, name]) => {
-    const a = availOf(place, id), u = a ? a.u : wu(), unit = u === 'lb' ? 'фнт' : 'кг', step = GEAR_UNITS[u][id === 'kb' ? 'kbStep' : 'dbStep'];
+    const a = availOf(place, id), u = a ? a.u : wu(), unit = u === 'lb' ? 'фунт' : 'кг', step = GEAR_UNITS[u][id === 'kb' ? 'kbStep' : 'dbStep'];
     return `<label class="place-w">${name} ${'в этом месте'}, ${unit}<input id="place-w-${id}" data-place-w="${id}" data-u="${u}" type="text" autocomplete="off" value="${esc(availText(a))}" placeholder="${'все, через'} ${fmtU(step)}" aria-describedby="place-w-${id}-h"></label>`
       + `<p class="f-note" id="place-w-${id}-h">${'Через пробел: 5 — одна пара; 4 6 8 10; или ряд: 2–30 через 2. «Прибавьте» ведёт до самого тяжёлого из списка, дальше — повторами. Пусто — любые, шагом'} ${fmtU(step)} ${unit}.</p>`;
   }).join('');

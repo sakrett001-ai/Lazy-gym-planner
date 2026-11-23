@@ -41,7 +41,9 @@ const ATLAS_SUPPORT = new Set(['serratus']);
 const ATLAS_BACK = new Set(['delt_r', 'triceps', 'traps', 'midback', 'lats', 'lowback', 'glutes', 'hams', 'calves', 'cuff']);
 let atlasEx = null, atlasCam = null;
 /* ракурсы превью: «спереди» и «сзади» — три четверти, так видно и мышцу, и движение */
-const ATLAS_CAMS = {angle:'Спереди', rear:'Со спины', side:'Сбоку', above:'Сверху'};
+/* порядок и слова — как у ракурсов разбора и тренировки («Сверху · … · Сбоку · Спереди · Сзади»; Mike 19, Alex 14):
+   было «Спереди · Со спины · Сбоку · Сверху» */
+const ATLAS_CAMS = {above:'Сверху', side:'Сбоку', angle:'Спереди', rear:'Сзади'};
 
 /* пик учебной кривой участия мышцы в упражнении (0…1) */
 function atlasPeak(ex, m) {
@@ -171,7 +173,7 @@ function renderAtlas() {
   if (first) {
     const it = previewItem(atlasEx);
     html += `<div class="motion-tile at-tile" id="at-preview">
-        <button type="button" class="illus" data-fig="0" aria-haspopup="dialog" aria-controls="motion-view" aria-label="Разобрать движение: ${esc(it.name)}"><span class="at-stage"></span><span class="illus-zoom" aria-hidden="true">Разобрать ↗</span></button>
+        <button type="button" class="illus" data-fig="0" aria-haspopup="dialog" aria-controls="motion-view" aria-label="Разобрать движение: ${esc(it.name)}"><span class="at-stage"></span><span class="illus-zoom" aria-hidden="true">Разобрать технику ↗</span></button>
         <div class="motion-bar"><span class="motion-caption">Исходное положение</span><button type="button" data-motion-pause="0">Пауза</button></div>
       </div>
       <div class="at-under"><p class="at-pv"><b id="at-pv-name">${esc(it.name)}</b></p><div class="at-cams" role="group" aria-label="Ракурс">${Object.entries(ATLAS_CAMS).map(([c, label]) => `<button type="button" data-atlas-cam="${c}" aria-pressed="false">${label}</button>`).join('')}</div></div>

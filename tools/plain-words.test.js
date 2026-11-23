@@ -2,7 +2,7 @@
 /* Простые слова вместо жаргона (замечания тестеров к 4.94.0: Ольга п. 7, Виктор п. 14, Alex п. 15–16).
    В тексте карточки, разбора и тренировки нет «1ПМ», «отказа», «БАЗОВОЕ / ИЗОЛИРУЮЩЕЕ», «ЭМГ», «изометрии», «запаса»
    канцелярским оборотом и темпа числами «2-0-1-0»; в английской версии — «1RM», «failure», «reps in reserve», «EMG»,
-   «compound / isolation» и кальки из списка тестера. Числа те же: меняются только слова.
+   и кальки из списка тестера («compound / isolation» с 4.112 — принятые слова зала, см. JARGON). Числа те же: меняются только слова.
    Расшифровка для знающих обозначения — под планом (LEGEND: «Максимум на 1 повтор (1ПМ)…») и в подсказке у темпа.
    Видимый текст в браузере на телефоне — tools/ui-check.mjs (блок «простые слова»). Модель — tools/lang-model.js. */
 const { test } = require('node:test');
@@ -12,7 +12,10 @@ const { loadApp } = require('./lang-model');
 
 const JARGON = {
   ru: /1ПМ|отказ|базов|изолирующ|ЭМГ|региональн|изометри|в запасе|с запасом \d|выраженного жжения|двойной прогресс/i,
-  en: /1RM|failure|\bcompound\b|\bisolation\b|\bEMG\b|regional emphasis|isometr|in reserve|reserve of|educational|double progression/i
+  /* 4.112 (Mike 6, план 4.112 «Кальки»): значок типа упражнения в английской версии — compound / isolation, как говорят
+     в зале (NSCA’s Guide to Program Design); «multi-muscle / targeted» носитель читает как кальку. Из списка жаргона убраны
+     только эти два слова */
+  en: /1RM|failure|\bEMG\b|regional emphasis|isometr|in reserve|reserve of|educational|double progression/i
 };
 /* темп числами — только в подсказке (title) и в поле «Темп» своего плана */
 const TEMPO_CODE = /\b\d{1,2}-\d{1,2}-[\dX]{1,2}-\d{1,2}\b/;
@@ -62,7 +65,8 @@ for (const lang of ['ru', 'en']) {
     const tw = a.json(`['3-0-1-0','4-1-1-0','2-0-X-0','3-0-3-1'].map(tempoWords)`);
     assert.deepEqual(tw, lang === 'ru'
       ? ['усилие 1 с, возврат 3 с', 'усилие 1 с, возврат 4 с, пауза 1 с', 'быстрое усилие, возврат 2 с', 'усилие 3 с, пауза 1 с, возврат 3 с']
-      : ['effort 1 s, return 3 s', 'effort 1 s, return 4 s, pause 1 s', 'fast effort, return 2 s', 'effort 3 s, pause 1 s, return 3 s']);
+      /* 4.112 (Mike 6): «fast effort, return 2 s» — калька; в зале говорят lift / lower */
+      : ['lift in 1 s, lower in 3 s', 'lift in 1 s, lower in 4 s, pause 1 s', 'lift fast, lower in 2 s', 'lift in 3 s, pause 1 s, lower in 3 s']);
     /* источники («Подробнее о технике») и пояснения к мышцам по фазам у всех упражнений */
     const bad = a.json(`(()=>{const out=[];for(const ex of EX){const pr=motionProfile(ex.anim);
       const txt=[...(SOURCES_BY_EX[ex.id]||[]).map(s=>s[0]),...(pr?.sources||[]).map(s=>s[0]),...Object.values(pr?.notes||{})];
@@ -77,7 +81,7 @@ for (const lang of ['ru', 'en']) {
   test(`${lang}: the legend under the plan names 1RM only after saying it in plain words`, () => {
     const a = app(lang), legend = textOf(a.get('LEGEND'));
     if (lang === 'ru') assert.match(legend, /^ ?Максимум на 1 повтор \(1ПМ\) — вес, который вы можете поднять только один раз\. Темп: усилие — подъём веса, возврат — опускание/);
-    else assert.match(legend, /^ ?One-rep max \(1RM\) is the weight you can lift only once\. Tempo: effort is lifting the weight, return is lowering it/);
+    else assert.match(legend, /^ ?One-rep max \(1RM\) is the weight you can lift only once\. Tempo: how many seconds to lift the weight and to lower it/); /* 4.112: без «effort / return» */
   });
 }
 

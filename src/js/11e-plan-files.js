@@ -80,7 +80,7 @@ function planFileName(plans) {
 function readPlanFile(text) {
   if (typeof text !== 'string' || !text.trim()) return {error:'Файл пустой.'};
   if (text.length > PLAN_FILE_MAX) return {error:'Файл слишком большой для плана.'};
-  let o; try { o = JSON.parse(text); } catch (e) { return {error:'Это не файл плана: текст не читается как JSON. Возможно, файл обрезан при пересылке.'}; }
+  let o; try { o = JSON.parse(text); } catch (e) { return {error:'Это не файл плана: его не удалось прочитать. Возможно, файл обрезан при пересылке.'}; }
   if (!o || typeof o !== 'object' || Array.isArray(o)) return {error:'Это не файл плана.'};
   if (o.v && (o.log || o.settings || o.body)) return {error:'Это резервная копия приложения, а не план. Её восстанавливают в разделе «Журнал».'};
   const raw = Array.isArray(o.plans) ? o.plans : Array.isArray(o.items) ? [o] : null;

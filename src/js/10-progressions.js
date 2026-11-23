@@ -42,9 +42,9 @@ function progressionHint(it) {
   const step = (id, map) => { let x = map[id]; while (x && typeof fitsBody === 'function' && EXI[x] && !fitsBody(EXI[x])) x = map[x]; return x; };
   const nextId = step(ex.id, PROG_NEXT), prevId = step(ex.id, PROG_PREV);
   const lowTwice = past.length >= 2 && past.slice(-2).every(s => { const sets = s.s.filter(Boolean); return sets.length && sets.some(x => x[1] < lo); });
-  if (topTwice && nextId && EXI[nextId]) return `<p class="prog prog-up"><b>↑</b><span>Две тренировки подряд на верхней границе. Следующая ступень: <button type="button" class="lk" data-prog="${nextId}">${esc(EXI[nextId].name)}</button>.</span></p>`;
-  if (lowTwice && prevId && EXI[prevId]) return `<p class="prog prog-down"><b>↓</b><span>Дважды не дотянули до ${lo} повторов. Ступень легче: <button type="button" class="lk" data-prog="${prevId}">${esc(EXI[prevId].name)}</button>.</span></p>`;
-  if (nextId || prevId) return `<p class="prog"><span>Ступени: ${prevId ? `<button type="button" class="lk" data-prog="${prevId}">легче</button>` : ''}${prevId && nextId ? ' · ' : ''}${nextId ? `<button type="button" class="lk" data-prog="${nextId}">тяжелее</button>` : ''}</span></p>`;
+  if (topTwice && nextId && EXI[nextId]) return `<p class="prog prog-up"><b>↑</b><span>Две тренировки подряд на верхней границе. Вариант сложнее: <button type="button" class="lk" data-prog="${nextId}">${esc(EXI[nextId].name)}</button>.</span></p>`;
+  if (lowTwice && prevId && EXI[prevId]) return `<p class="prog prog-down"><b>↓</b><span>Дважды не дотянули до ${lo} повторов. Вариант легче: <button type="button" class="lk" data-prog="${prevId}">${esc(EXI[prevId].name)}</button>.</span></p>`;
+  if (nextId || prevId) return `<p class="prog"><span>Другой вариант: ${prevId ? `<button type="button" class="lk" data-prog="${prevId}">легче</button>` : ''}${prevId && nextId ? ' · ' : ''}${nextId ? `<button type="button" class="lk" data-prog="${nextId}">тяжелее</button>` : ''}</span></p>`;
   return '';
 }
 document.addEventListener('click', e => {

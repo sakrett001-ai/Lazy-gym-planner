@@ -70,8 +70,9 @@ const isLb = () => wu() === 'lb';
 /* килограммы ↔ выбранные единицы; введённое в фунтах — в килограммы с точностью 0,00001 кг */
 const toU = kg => isLb() ? kg / LB_KG : kg;
 const fromU = v => isLb() ? Math.round(v * LB_KG * 1e5) / 1e5 : v;
-/* подписи: «кг» / «фнт» (в английской сборке — kg / lb), обхваты — «см» / «дюйм» (cm / in) */
-const wUnit = () => isLb() ? 'фнт' : 'кг';
+/* подписи: «кг» / «фунт» (в английской сборке — kg / lb), обхваты — «см» / «дюйм» (cm / in). 4.112 (Галина 10): было
+   «фнт» — так фунт не сокращают; русское обозначение единицы — «фунт», международное — lb */
+const wUnit = () => isLb() ? 'фунт' : 'кг';
 const lUnit = () => isLb() ? 'дюйм' : 'см';
 /* число в единицах показа: до сотых, без лишних нулей; fmtU1 — до десятых */
 const fmtU = v => (Math.round(v * 100) / 100).toString().replace('.', DEC);
@@ -373,6 +374,9 @@ function stepDown(w, st, g) {
    диапазон или одно число — null */
 function repsPlanOf(r) { const s = String(r ?? ''); if (!s.includes('/')) return null; const l = s.split('/').map(Number); return l.length > 1 && l.every(v => v > 0) ? l : null; }
 /* цель подхода k (с нуля): у пирамиды — своё число (подходов больше списка — последнее), иначе диапазон как есть */
+/* слово к числу повторов задания: «3 повтора», «5 повторов», «1 повтор»; диапазон («8–12») и прочее — «повторов»
+   (Руслан 19: было «Задание 3 повторов») */
+function repsWord(r) { const s = String(r).trim(); return /^\d+$/.test(s) ? plural(+s, 'повтор', 'повтора', 'повторов') : 'повторов'; }
 function planReps(rx, k) { const l = repsPlanOf(rx.reps); return l ? String(l[Math.min(k, l.length - 1)]) : String(rx.reps); }
 /* границы повторов: «8–12» → [8, 12]; у пирамиды — от меньшего до большего */
 function parseRange(r) { const l = repsPlanOf(r); if (l) return [Math.min(...l), Math.max(...l)]; const m = String(r).match(/(\d+)\D+(\d+)/); if (m) return [+m[1], +m[2]]; const n = parseInt(r, 10); return [n || 0, n || 0]; }
@@ -416,7 +420,7 @@ function suggestBase(it) {
   if (it.rx.kgPlan && lt !== 'none') {
     const prev = past[past.length - 1] || null, ps = prev ? prev.s.filter(Boolean) : [], plan = planKgsHere(it);
     res.tone = 'plan'; res.kgs = plan; res.kg = plan[0]; res.prev = prev;
-    const what = lt === 'assist' ? 'Противовес по плану' : lt === 'extra' ? 'Доп. вес по плану' : 'Вес по плану';
+    const what = lt === 'assist' ? 'Противовес по плану' : lt === 'extra' ? 'Дополнительный вес по плану' : 'Вес по плану';
     res.text = `${what}: ${planKgText(plan)} ${wUnit()}.` + (rp ? ` Повторы по плану: ${rp.join(' / ')}.` : '') + (ps.length ? ` В прошлый раз: ${ps.map(x => (x[0] ? fmtKg(x[0]) + '×' : '') + x[1]).join(', ')}.` : '');
     /* после перерыва — и вес по плану ниже, на то же число (layoffInfo, 15-autoreg.js); противовес — не трогаем */
     const lay = past.length && lt === 'kg' && typeof layoffInfo === 'function' ? layoffInfo() : null;
@@ -680,7 +684,7 @@ function logRows(it) {
   const fields = (k, side, val, phKg, phR) => `${lt === 'none' ? '' : `<input class="lt-in" id="kg-${ex.id}-${k}${side ? '-' + side : ''}" data-f="kg"${side ? ` data-side="${side}"` : ''} type="text" inputmode="decimal" autocomplete="off" aria-label="${wl.full}${side ? ', ' + SIDE[side] : ''}, подход ${k + 1}" placeholder="${carryPh(carriedKg(it, tset, k, side, own), phKg)}" data-ph="${phKg}" value="${val && val[0] != null ? fmtKg(val[0]) : ''}">`}
       <input class="lt-in" id="rp-${ex.id}-${k}${side ? '-' + side : ''}" data-f="reps"${side ? ` data-side="${side}"` : ''} type="text" inputmode="numeric" autocomplete="off" aria-label="${repLabel(ex)}${side ? ', ' + SIDE[side] : ''}, подход ${k + 1}" placeholder="${phR}" value="${val ? val[1] : ''}">`;
   const prevText = p => (p[0] ? fmtKg(p[0]) + ' × ' : '') + p[1];
-  const sideTag = side => `<b class="lt-sd" aria-hidden="true">${side === 'l' ? 'Л' : 'П'}</b><span class="vh">${side === 'l' ? 'Левая:' : 'Правая:'}</span>`;
+  const sideTag = side => `<b class="lt-sd" aria-hidden="true">${side === 'l' ? 'лев.' : 'прав.'}</b><span class="vh">${side === 'l' ? 'Левая:' : 'Правая:'}</span>`;
   let rows = '';
   for (let k = 0; k < n; k++) {
     const v = tset[k];
@@ -712,7 +716,7 @@ function logRows(it) {
   const doneN = tset.slice(0, n).filter(Boolean).length;
   /* вес одной гантели: подсказка «×2 = 40 кг» — по первому заполненному полю (пока не вводили — по подсказке) */
   const x2 = wl && wl.n > 1 && !lr ? `<span class="lt-x2" data-n="${wl.n}">${wl.impl === 'kb' ? 'вес — одной гири' : 'вес — одной гантели'}<b>${pairTotalText(wl.n, firstKg(tset, sg, own))}</b></span>` : '';
-  const lrBtn = perSide(ex) ? `<button type="button" class="lt-lrb" data-lr="${ex.id}" aria-pressed="${lr}">${'Л/П отдельно'}</button>` : '';
+  const lrBtn = perSide(ex) ? `<button type="button" class="lt-lrb" data-lr="${ex.id}" aria-pressed="${lr}">${'Левая и правая отдельно'}</button>` : '';
   const perSideNote = perSide(ex) ? `<span>${ex.kind === 'time' ? 'секунды — на каждую сторону' : 'повторы — на каждую сторону'}</span>` : '';
   return {sg, html:`<p class="sug sug-${sg.tone}"><b aria-hidden="true">${SUG_ICON[sg.tone]}</b><span>${esc(sg.text)}</span></p>${planUpHtml(it, sg)}
     ${logFoldBar(it, n, doneN)}
@@ -848,7 +852,7 @@ function logBlock(it) { return `<div class="c-log" data-log="${it.ex.id}">${logR
    противовес гравитрона — 150 кг (стек — около 100 кг, противовес больше веса тела не нужен). */
 const KG_LIMIT = {db:100, kb:100, bb:500, press:1000, machine:300, extra:200, assist:150};
 const KG_LIMIT_NOTE = {db:'Для одной гантели это необычно много.', kb:'Для одной гири это необычно много.', bb:'Для штанги это необычно много.',
-  press:'Для тренажёра это необычно много.', machine:'Для тренажёра это необычно много.', extra:'Для доп. веса это необычно много.', assist:'Для противовеса это необычно много.'};
+  press:'Для тренажёра это необычно много.', machine:'Для тренажёра это необычно много.', extra:'Для дополнительного веса это необычно много.', assist:'Для противовеса это необычно много.'};
 function kgLimitOf(it) {
   const lt = loadType(it.ex), ids = it.eqIds || [];
   if (lt === 'assist') return 'assist';
@@ -1020,7 +1024,7 @@ function histSets(ex, s) {
 function origNote(ex, s) {
   const here = wu(), xs = s.s.filter(x => x && x[0] > 0 && unitOfKg(x[0], s.u) !== here); if (!xs.length) return '';
   const own = v => fmtU(Math.round((here === 'kg' ? v / LB_KG : v) * 100) / 100), side = p => (p[0] > 0 ? own(p[0]) + '×' : '') + p[1];
-  const text = xs.map(x => { const sd = setSides(x, ex); return sd ? `${'Л'} ${side(sd.l)} · ${'П'} ${side(sd.r)}` : side(x); }).join(xs.some(x => setSides(x, ex)) ? '; ' : ' · ');
+  const text = xs.map(x => { const sd = setSides(x, ex); return sd ? `${'лев.'} ${side(sd.l)} · ${'прав.'} ${side(sd.r)}` : side(x); }).join(xs.some(x => setSides(x, ex)) ? '; ' : ' · ');
   return `<small class="h-u">${here === 'kg' ? 'вписано в фунтах:' : 'вписано в килограммах:'} ${text}</small>`;
 }
 /* записи упражнения «по свежести» и, пока не истекло время, место удалённой записи («Удалено · Вернуть») */
@@ -1113,13 +1117,23 @@ function daysHtml(by = trainingDays(), limit = 5) {
   if (!days.length) return '';
   return `<div class="j-days"><p class="lb-h">${'Последние тренировки · объём'}</p><ul>${days.map(x => `<li><span class="j-dd">${fmtDay(x.d, true)}</span><span class="j-dn">${x.sets ? `${x.ex} ${plural(x.ex, 'упражнение', 'упражнения', 'упражнений')} · ${x.sets} ${plural(x.sets, 'подход', 'подхода', 'подходов')}${heartDayHtml(x.d)}` : ''}${pain(x.d)}</span><b class="j-dt">${x.t > 0 ? fmtTon(x.t) + `<small>${wUnit()}</small>` : '—'}</b></li>`).join('')}</ul></div>`;
 }
+/* Неделя календаря активности начинается с воскресенья там, где так принято (Mike 18: en-US). Только в сборке с датами
+   по языку браузера (английская; русская — всегда с понедельника): по региону из navigator.language — США, Канада,
+   Мексика, Бразилия, Япония и др. (список — из CLDR, supplemental/weekData, firstDay = sun; Австралия, Великобритания и Европа — с понедельника). Без региона («en») — с понедельника, как раньше */
+const SUNDAY_REGIONS = new Set(['US', 'CA', 'MX', 'BR', 'JP', 'KR', 'TW', 'HK', 'IL', 'IN', 'PH', 'ZA', 'CO', 'PE', 'VE', 'SA', 'TH', 'ID', 'SG', 'PK']);
+function weekFromSunday() {
+  if (localeOf().dates !== 'intl') return false;
+  const tag = typeof navigator === 'undefined' ? '' : navigator.language || (navigator.languages || [])[0] || '';
+  const m = /^[a-z]{2,3}(?:[-_][a-z]{4})?[-_]([a-z]{2})(?:$|[-_])/i.exec(String(tag));
+  return !!m && SUNDAY_REGIONS.has(m[1].toUpperCase());
+}
 function heatmap(today = new Date(), by = trainingDays()) {
   const byDay = {};
   for (const x of Object.values(by)) byDay[x.d] = x.sets;
   /* подписи месяцев и дней растут вместе со шрифтом (Галина 13): им — место слева и сверху в K раз больше */
   const K = fontK(), W = 12, cell = 15, gap = 3, LX = 22 * K, TY = 16 * K;
   const now = new Date(today); now.setHours(12, 0, 0, 0);
-  const dow = (now.getDay() + 6) % 7;
+  const sun = weekFromSunday(), dow = sun ? now.getDay() : (now.getDay() + 6) % 7;
   const start = new Date(now); start.setDate(now.getDate() - dow - (W - 1) * 7);
   let cells = '', lastM = -1;
   const marks = [];
@@ -1137,7 +1151,7 @@ function heatmap(today = new Date(), by = trainingDays()) {
   const months = marks.filter(([w], i) => i + 1 >= marks.length || marks[i + 1][0] - w >= 2)
     .map(([w, m]) => w < W - 1 ? `<text class="hm-l"${svgFs(9.5, K)} x="${LX + w * (cell + gap)}" y="${10 * K}">${MONTHS[m]}</text>`
       : `<text class="hm-l"${svgFs(9.5, K)} x="${LX + W * (cell + gap) - gap}" y="${10 * K}" text-anchor="end">${MONTHS[m]}</text>`).join(''); /* в последней колонке — по правому краю, не обрезается */
-  const days = ['Пн', '', 'Ср', '', 'Пт', '', ''].map((t, i) => t ? `<text class="hm-l"${svgFs(9.5, K)} x="0" y="${TY + i * (cell + gap) + (K > 1 ? Math.min(cell + gap, 7.5 + 3.5 * K) : 11)}">${t}</text>` : '').join('');
+  const days = (sun ? ['', 'Пн', '', 'Ср', '', 'Пт', ''] : ['Пн', '', 'Ср', '', 'Пт', '', '']).map((t, i) => t ? `<text class="hm-l"${svgFs(9.5, K)} x="0" y="${TY + i * (cell + gap) + (K > 1 ? Math.min(cell + gap, 7.5 + 3.5 * K) : 11)}">${t}</text>` : '').join('');
   const w = LX + W * (cell + gap), h = TY + 7 * (cell + gap);
   return `<svg class="heat" viewBox="0 0 ${w} ${h}" role="img" aria-label="Тренировочные дни за 12 недель">${months}${days}${cells}</svg>
     <p class="hm-legend"><span>меньше</span><i class="hm0"></i><i class="hm1"></i><i class="hm2"></i><i class="hm3"></i><span>больше подходов за день</span></p>`;
@@ -1154,11 +1168,11 @@ function renderJournal() {
   entries.sort((a, b) => recentKey(a[1][a[1].length - 1].d, today) < recentKey(b[1][b[1].length - 1].d, today) ? 1 : -1);
   const broken = Keep.broken().length;
   const tools = `<div class="j-tools">
-      ${LOG.canExport ? `<button type="button" class="btn btn-2" id="exp-json">Полная копия (JSON)</button><button type="button" class="btn btn-2" id="exp-csv">Журнал для Excel</button><button type="button" class="btn btn-2" id="exp-body">Замеры для Excel</button>` : ''}
+      ${LOG.canExport ? `<button type="button" class="btn btn-2" id="exp-json">Полная копия</button><button type="button" class="btn btn-2" id="exp-csv">Журнал для Excel</button><button type="button" class="btn btn-2" id="exp-body">Замеры для Excel</button>` : ''}
       <button type="button" class="btn btn-2" data-file-pick="imp-file">Восстановить из копии</button><input type="file" id="imp-file" accept=".json,application/json" hidden tabindex="-1" aria-hidden="true">
       ${broken ? `<button type="button" class="btn btn-2" data-keep="broken">${'Испорченные данные'} (${broken})</button>` : ''}
-    </div>${restorePanelHtml()}${unitsHtml()}<p class="p-hint" id="j-msg" role="status" tabindex="-1">${esc(LOG.msg || '')}</p>
-    <p class="p-hint">Полная копия — настройки, инвентарь, журнал и замеры одним файлом: перенесёт всё на другой телефон или вернёт после очистки браузера.</p>${privacyHtml()}`;
+    </div>${restorePanelHtml()}<p class="p-hint" id="j-msg" role="status" tabindex="-1">${esc(LOG.msg || '')}</p>
+    <p class="p-hint">Полная копия — настройки, инвентарь, журнал и замеры одним файлом: перенесёт всё на другой телефон или вернёт после очистки браузера.</p>${privacyHtml()}${versionHtml()}`;
   LOG.msg = '';
   let html = `<header class="p-head j-head">
     <div class="p-sum">
@@ -1194,16 +1208,22 @@ function renderJournal() {
       </li>`;
     }).join('')}</ul>
     <p class="legend">Справа — рабочий вес и лучшие повторы с ним в последней тренировке, ниже — расчётный максимум и изменение с первой записи: по весу, а при том же весе — по повторам. У гантелей и гирь вес — одного снаряда.</p>
-    <p class="legend">Расчётный максимум — вес, который вы, по формуле Эпли, подняли бы один раз: вес × (1 + повторы / 30). Он растёт и когда прибавляете вес, и когда делаете больше повторов с тем же весом, но повторы сверх 12 в нём не учитываются. Подход в один повтор — это и есть максимум: сам вес. Если вес во всех записях один, график показывает повторы с ним.</p>
-    <p class="legend">Объём — сумма «вес × повторы» по всем снарядам и сторонам: ${tonnageExample()}. Считается только внешний вес: гантели, гири, штанга, тренажёр, доп. вес; вес тела, противовес гравитрона, удержания на время и дистанция не входят. Л/П — подход с левой и правой стороной отдельно: прогресс и рекорды — по слабой стороне.</p>`;
+    <p class="legend">Расчётный максимум — оценка веса, который вы подняли бы один раз: вес × (1 + повторы / 30). Он растёт и когда прибавляете вес, и когда делаете больше повторов с тем же весом, но повторы сверх 12 в нём не учитываются. Подход в один повтор — это и есть максимум: сам вес. Если вес во всех записях один, график показывает повторы с ним.</p>
+    <p class="legend">Объём — сумма «вес × повторы» по всем снарядам и сторонам: ${tonnageExample()}. Считается только внешний вес: гантели, гири, штанга, тренажёр, дополнительный вес; вес тела, противовес гравитрона, удержания на время и дистанция не входят. «Лев.» и «прав.» — подход, где левая и правая сторона записаны отдельно: прогресс и рекорды — по слабой стороне.</p>`;
   }
   LOG.openId = null;
   $('#plan').innerHTML = html;
 }
-/* единицы веса — рядом с копией и выгрузкой: общая настройка приложения (S.units) */
+/* единицы веса — общая настройка приложения (S.units). С 4.112 — в параметрах (#f-units, renderSetup), а не в журнале
+   между кнопками копии: там её не находили (Mike 12) */
 function unitsHtml() {
-  const u = wu(), b = (v, label) => `<button type="button" class="pre${u === v ? ' on' : ''}" data-units="${v}" aria-pressed="${u === v}">${label}</button>`;
-  return `<div class="pres j-units" role="group" aria-labelledby="j-units-l"><span class="pres-l" id="j-units-l">Единицы веса</span>${b('kg', 'кг')}${b('lb', 'фнт')}</div>`;
+  const u = wu(), b = (v, label) => `<button type="button" class="seg-b${u === v ? ' on' : ''}" data-units="${v}" aria-pressed="${u === v}"><b>${label}</b></button>`;
+  return b('kg', 'кг') + b('lb', 'фунты');
+}
+/* номер версии — в журнале, рядом с копией и выгрузкой (в заголовке атласа его больше нет: Галина 10, Кира 12) */
+function versionHtml() {
+  const v = typeof window !== 'undefined' && window.PODHOD_VERSION;
+  return v ? `<p class="p-hint j-ver">${'Версия приложения:'} ${esc(v)}</p>` : '';
 }
 /* пример общего веса в пояснении журнала — в выбранных единицах: гантели 2 × 20 кг (2 × 45 фнт), тяга 30 кг (65 фнт) */
 function tonnageExample() {
@@ -1213,7 +1233,7 @@ function tonnageExample() {
 function viewTabs() {
   const n = journalDays(), v = ['atlas', 'journal'].includes(S.view) ? S.view : 'plan';
   const tab = (id, label, extra = '') => `<button type="button" role="tab" data-view="${id}" aria-selected="${v === id}" class="${v === id ? 'on' : ''}">${label}${extra}</button>`;
-  return tab('plan', 'План') + tab('atlas', 'Мышцы') + tab('journal', 'Журнал', ` <small>${n || ''}</small>`);
+  return tab('plan', 'План') + tab('atlas', 'Мышцы') + tab('journal', 'Журнал', n ? ` <small aria-hidden="true" title="${n} ${plural(n, 'тренировка', 'тренировки', 'тренировок')} ${'в журнале'}">${n}</small><span class="vh">, ${n} ${plural(n, 'тренировка', 'тренировки', 'тренировок')}</span>` : ' <small></small>');
 }
 
 /* ---------- экспорт и восстановление ---------- */
@@ -1662,7 +1682,7 @@ document.addEventListener('click', e => {
   if (t.id === 'jr-go') { restoreApply(); return; }
   if (t.id === 'jr-cancel') { restorePending = null; LOG.msg = 'Восстановление отменено — ничего не изменилось.'; renderJournalKeep('#j-msg'); return; }
   if (t.dataset.view) { S.view = t.dataset.view; saveSettings(); renderSetup(); renderPlan(); window.scrollTo({top:0}); return; }
-  if (t.dataset.units) { S.units = t.dataset.units === 'lb' ? 'lb' : 'kg'; saveSettings(); renderJournal(); const b = document.querySelector(`[data-units="${S.units}"]`); if (b) b.focus(); return; }
+  if (t.dataset.units) { S.units = t.dataset.units === 'lb' ? 'lb' : 'kg'; saveSettings(); if (S.view === 'journal') renderJournal(); else { renderSetup(); renderPlan(); } const b = document.querySelector(`[data-units="${S.units}"]`); if (b) b.focus(); return; }
   if (t.id === 'exp-csv') { exportLog('csv'); return; }
   if (t.id === 'exp-json') { exportLog('json'); return; }
 });

@@ -242,7 +242,8 @@ for (const theme of ['light', 'dark']) {
     return { nm, start: label('[data-workout]'), hist: label('[data-hist]'), swap: label('[data-swap]'), zoom: label('.illus'), pause: label('[data-motion-pause]') };
   }));
   for (const k of ['start', 'hist', 'swap', 'zoom', 'pause']) check(new Set(cards.map(c => c[k])).size === cards.length, `одинаковые кнопки карточек различаются для диктора: ${k} (${cards.map(c => c[k]).join(' | ')})`);
-  check(cards.every(c => c.start.startsWith('Начать тренировку') && c.start.includes(c.nm) && c.hist.startsWith('История') && c.hist.includes(c.nm) && c.swap.startsWith('Заменить') && c.swap.includes(c.nm)
+  /* 4.112 (Ольга 17): кнопка карточки — «Начать отсюда — начать тренировку с упражнения: …» (было «Начать тренировку: …») */
+  check(cards.every(c => c.start.startsWith('Начать отсюда') && c.start.includes(c.nm) && c.hist.startsWith('История') && c.hist.includes(c.nm) && c.swap.startsWith('Заменить') && c.swap.includes(c.nm)
     && c.zoom.startsWith('Увеличить: ') && c.zoom.includes(c.nm) && /^(Пауза|Пуск): /.test(c.pause) && c.pause.includes(c.nm)), `кнопки карточки: имя начинается с надписи и называет упражнение (${JSON.stringify(cards[0])})`);
   check(await page.evaluate(() => !document.querySelector('[data-motion-pause][aria-pressed], #mv-play[aria-pressed], #wv-motion[aria-pressed]')), '«Пауза» и «Пуск» меняют надпись — без aria-pressed (WCAG 4.1.2)');
 

@@ -433,8 +433,8 @@ function selectMotion(it, clock=0) {
   $('#mv-tempo').textContent=it.ex.anim.hold?'Удерживайте положение и дышите ровно.':it.ex.anim.timing||it.ex.g==='cardio'||it.ex.kind?'Ритм показан схематично. Замедление помогает разобрать движение.':it.rx.static?`Статодинамика: ${tempoWords(it.rx.tempo)}, без пауз; показана рабочая часть амплитуды — без выпрямления до конца и без расслабления внизу.`:tempoWords(it.rx.tempo)?`Темп по плану: ${tempoWords(it.rx.tempo)}. Скорость просмотра темп не меняет.`:'Темп — плавно, без рывков. Скорость просмотра темп не меняет.';
   const level={};it.ex.pri.forEach(m=>level[m]=1);it.ex.sec.forEach(m=>{if(!level[m])level[m]=.38;});
   $('#mv-muscles').innerHTML=muscleMapSvg(level,{labels:true,aria:'Основные и вспомогательные мышцы'});
-  $('#mv-primary').textContent=it.ex.pri.map(m=>MUSCLE_NAMES[m]).join(', ');
-  $('#mv-secondary').textContent=it.ex.sec.length?it.ex.sec.map(m=>MUSCLE_NAMES[m]).join(', '):'—';
+  $('#mv-primary').textContent=it.ex.pri.map(m=>muscleLabel(m,it.ex)).join(', ');
+  $('#mv-secondary').textContent=it.ex.sec.length?it.ex.sec.map(m=>muscleLabel(m,it.ex)).join(', '):'—';
   $('#mv-steps').innerHTML=it.ex.tech.map(x=>`<li>${esc(x)}</li>`).join('');
   $('#mv-errors').innerHTML=it.ex.err.map(x=>`<li>${esc(x)}</li>`).join('');
   $('#mv-breath').textContent=it.ex.breath;

@@ -77,7 +77,8 @@ test('подпись веса: одна гантель из двух, одна �
   assert.deepEqual(L('rdl', ['bb']), ['Вес, кг', 1], 'штанга — общий вес');
   assert.deepEqual(L('rdl', ['db']), ['Вес одной гантели, кг', 2]);
   assert.deepEqual(L('lunge', ['db']), ['Вес одной гантели, кг', 2]);
-  assert.deepEqual(L('lunge', []), ['Доп. вес, кг', 1]);
+  /* 4.112: «Доп. вес» — полным словом, «Дополнительный вес» (Галина 10: сокращение непонятно) */
+  assert.deepEqual(L('lunge', []), ['Дополнительный вес, кг', 1]);
   assert.deepEqual(L('latpull', ['cable']), ['Вес, кг', 1]);
   assert.deepEqual(L('assistpull', ['gravitron']), ['Противовес, кг', 1]);
   assert.equal(L('bandextrot', ['band']), null, 'резинка — без веса');
@@ -178,13 +179,14 @@ test('поле сторон: старые записи, с отдыхом и б�
   assert.deepEqual(plain(A.mergeSessions([], ss)), ss);
 });
 
-test('текст подхода: «Л 12×10 · П 12×8»; подходы с Л/П разделены «; »', () => {
+/* 4.112: стороны — словами «лев.» и «прав.» вместо букв «Л» и «П» (Галина 10: «Л/П» непонятно); хранение подхода прежнее */
+test('текст подхода: «лев. 12×10 · прав. 12×8»; подходы со сторонами разделены «; »', () => {
   const ex = A.EXI.dbcurl;
-  assert.equal(A.setText([12, 8, null, {l:[12, 10], r:[12, 8]}], ex), 'Л 12×10 · П 12×8');
+  assert.equal(A.setText([12, 8, null, {l:[12, 10], r:[12, 8]}], ex), 'лев. 12×10 · прав. 12×8');
   assert.equal(A.setText([12, 8], ex), '12×8');
   assert.equal(strip(A.setsText([[12, 10], null, [12, 8]], ex)), '12×10 · 12×8');
-  assert.equal(strip(A.setsText([[12, 10], [12, 8, null, {l:[12, 10], r:[12, 8]}]], ex)), '12×10; Л 12×10 · П 12×8');
-  assert.equal(A.setText([null, 38, null, {l:[null, 42], r:[null, 38]}], A.EXI.sideplank), 'Л 42 · П 38');
+  assert.equal(strip(A.setsText([[12, 10], [12, 8, null, {l:[12, 10], r:[12, 8]}]], ex)), '12×10; лев. 12×10 · прав. 12×8');
+  assert.equal(A.setText([null, 38, null, {l:[null, 42], r:[null, 38]}], A.EXI.sideplank), 'лев. 42 · прав. 38');
   assert.equal(A.weakSideNote(ex, {s:[[12, 8, null, {l:[12, 10], r:[12, 8]}], [12, 9, null, {l:[12, 10], r:[12, 9]}]]}), 'Слабая сторона — правая: догоняйте её.');
   assert.equal(A.weakSideNote(ex, {s:[[12, 8, null, {l:[12, 10], r:[12, 8]}], [12, 8, null, {l:[12, 8], r:[12, 10]}]]}), '', 'слабая сторона меняется — без подсказки');
   assert.equal(A.weakSideNote(ex, {s:[[12, 10, null, {l:[12, 10], r:[12, 10]}]]}), '', 'стороны равны');
@@ -208,9 +210,9 @@ test('подсказки и загрузка мышц — по слабой ст
   const t = a.todayKey();
   a.LOG.data = {dbrow:[{d:t, s:[[30, 8, null, {l:[30, 10], r:[30, 8]}], [30, 9]]}]};
   assert.equal(a.muscleLoad(a.LOG.data, t).back.v, 2);
-  /* история: «Л … · П …» и объём (4.108: «общий вес» → «объём») */
+  /* история: «лев. … · прав. …» (4.112) и объём (4.108: «общий вес» → «объём») */
   const h = strip(a.histHtml(a.EXI.dbrow));
-  assert(h.includes('Л 30×10 · П 30×8; 30×9'), h);
+  assert(h.includes('лев. 30×10 · прав. 30×8; 30×9'), h);
   assert(h.includes('объём 1 080 кг'), h);
 });
 
