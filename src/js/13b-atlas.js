@@ -103,6 +103,7 @@ const ATLAS_SPLIT = {
   delt_r:[['delt_r', [[67, 36], [73, 36.8], [76, 46], [76.5, 55.5], [72, 48]]], ['delt_s', [[73, 36.8], [75, 37], [81, 43], [82, 53], [78, 58], [76.5, 55.5], [76, 46]]]]
 };
 function atlasMapSvg(sel, counts) {
+  const K = fontK();
   const neutral = new Set(['head', 'neck', 'hand', 'pelvis', 'knee', 'foot', 'flank']);
   const view = (shapes, dx, label) => {
     const by = new Map(), base = [];
@@ -119,9 +120,9 @@ function atlasMapSvg(sel, counts) {
       const on = id === sel, none = !counts[id];
       s += `<g class="am-m${on ? ' on' : ''}${none ? ' none' : ''}" data-atlas-m="${id}" role="button" tabindex="0" aria-pressed="${on}" aria-label="${esc(MUSCLE_NAMES[id])}"><title>${esc(MUSCLE_NAMES[id])}</title>${list.join('')}</g>`;
     }
-    return s + `<text x="50" y="216" class="mm-l">${label}</text></g>`;
+    return s + `<text x="50" y="${207 + 9 * K}" class="mm-l"${svgFs(10, K)}>${label}</text></g>`;
   };
-  return `<svg viewBox="0 0 206 222" class="mmap amap" aria-label="Схема мышц: нажмите на мышцу">${view(MAP_FRONT, 0, 'спереди')}${view(MAP_BACK, 106, 'сзади')}</svg>`;
+  return `<svg viewBox="0 0 206 ${207 + 15 * K}" class="mmap amap" aria-label="Схема мышц: нажмите на мышцу">${view(MAP_FRONT, 0, 'спереди')}${view(MAP_BACK, 106, 'сзади')}</svg>`;
 }
 
 function atlasRow(r, m, sel) {

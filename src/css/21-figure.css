@@ -24,8 +24,12 @@ html.workout-open{overflow:hidden}
 .wv-select select{min-width:0;max-width:100%;width:100%;height:44px;border:1px solid var(--line);border-radius:9px;background:var(--surface);color:var(--ink);font:500 .875rem var(--f-body);padding:0 10px}
 .wv-select button:disabled{opacity:.35;cursor:default}
 /* запись подхода идёт в разметке первой (на телефоне она сразу под выбором упражнения); на широком экране техника — слева */
-.wv-grid{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);grid-template-areas:"visual record";gap:28px;align-items:start}
-.wv-visual{grid-area:visual}.wv-record{grid-area:record}
+/* Экран подхода (4.112, Кира 5, Ольга 8): в разметке — фигура, название, запись подхода, остальное (ракурсы, мышцы, подсказки):
+   на телефоне они идут друг за другом — фигура выше полей, название прямо над полями, порядок фокуса тот же. На компьютере — две колонки, как раньше:
+   слева фигура и под ней остальное, справа название и запись подхода (обтекание: колонки разной высоты не раздвигают друг друга). */
+.wv-grid{display:flow-root;--wv-gap:28px;--wv-left:calc((100% - var(--wv-gap))*1.1/2.1);--wv-right:calc((100% - var(--wv-gap))/2.1)}
+.wv-headline,.wv-record{float:right;clear:right;width:var(--wv-right)}
+.wv-visual,.wv-more{float:left;clear:left;width:var(--wv-left)}
 .wv-stage-wrap{position:relative;border:1px solid var(--line);border-radius:18px;background:radial-gradient(ellipse at 45% 38%,var(--surface),var(--illus));overflow:hidden}
 #wv-stage{height:338px;padding:34px 12px 45px;display:grid;place-items:center}#wv-stage svg{width:100%;height:100%}
 #wv-angle{position:absolute;top:13px;left:15px;font-size:.75rem;color:var(--muted)}
@@ -93,7 +97,7 @@ html.workout-open{overflow:hidden}
 #wv-done:disabled{opacity:.45;cursor:default}
 .wv-finish-mark{display:grid;place-items:center;width:62px;height:62px;border-radius:50%;background:var(--good-soft);color:var(--good);font-size:1.8125rem;margin:0 auto 22px}
 #wv-summary{text-align:left;border-block:1px solid var(--line);padding:10px 0;margin:24px 0}#wv-summary p{display:flex;justify-content:space-between;gap:15px;font-size:.8125rem;margin:12px 0}#wv-summary strong{white-space:nowrap;color:var(--good)}
-@media(max-width:700px){.workout-view{width:100vw;height:100dvh;max-height:100dvh;margin:0;border-radius:0;border:0}.wv-shell{padding:16px 16px max(20px,env(safe-area-inset-bottom))}.wv-grid{grid-template-columns:1fr;grid-template-areas:none;gap:16px}.wv-visual,.wv-record{grid-area:auto}.wv-head button{padding:8px 10px}.wv-select{margin:14px 0}.wv-progress-line{margin-top:15px}#wv-stage{height:246px;padding-top:28px}.wv-cue{min-height:0;font-size:.8125rem}.wv-visual .wv-guide{margin-top:0}#wv-title{font-size:1.4375rem}.wv-set-chips{margin:12px 0}.wv-fields{margin-top:15px}.wv-fields input{height:60px;font-size:1.5625rem}.wv-rest{margin-top:32px}.wv-record{padding-bottom:8px}.wv-primary{min-height:56px}.wv-target strong{font-size:.9375rem}}
+@media(max-width:700px){.workout-view{width:100vw;height:100dvh;max-height:100dvh;margin:0;border-radius:0;border:0}.wv-shell{padding:16px 16px max(20px,env(safe-area-inset-bottom))}.wv-grid{display:grid;grid-template-columns:minmax(0,1fr);gap:14px}.wv-headline,.wv-visual,.wv-record,.wv-more{float:none;width:auto}.wv-headline #wv-title{margin-bottom:4px}.wv-headline .wv-muted{margin:4px 0 0}.wv-head button{padding:8px 10px}.wv-select{margin:14px 0}.wv-progress-line{margin-top:15px}#wv-stage{height:246px;padding-top:28px}.wv-cue{min-height:0;font-size:.8125rem}.wv-more .wv-guide{margin-top:0}.wv-more .motion-cameras{margin-top:10px}.wv-record .wv-set-chips{margin-top:0}#wv-title{font-size:1.4375rem}.wv-set-chips{margin:12px 0}.wv-fields{margin-top:15px}.wv-fields input{height:60px;font-size:1.5625rem}.wv-rest{margin-top:32px}.wv-record{padding-bottom:8px}.wv-primary{min-height:56px}.wv-target strong{font-size:.9375rem}}
 @media(max-width:380px){.wv-shell{padding:12px}.wv-figure-tools button{font-size:.75rem}.wv-select select{font-size:.8125rem}#wv-stage{height:225px}.wv-target{padding:11px}.wv-target strong{font-size:.875rem}}
 @media print{#start-workout,[data-workout],.workout-view,.motion-view{display:none!important}}
 /* «Анатомия» вне разбора (этап 2). Экран тренировки: выбор фигуры — маленький переключатель в правом верхнем углу

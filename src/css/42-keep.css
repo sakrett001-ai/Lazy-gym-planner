@@ -49,3 +49,21 @@
 .pi-over p { margin:0; }
 .gear .pi-split { display:flex; align-items:center; gap:8px; font-size:.875rem; font-weight:600; color:var(--warn-ink); cursor:pointer; }
 .gear .pi-split input { width:18px; height:18px; margin:0; accent-color:var(--accent); }
+
+/* ---------- заставка загрузки (00a-keep.js: bootSplashOff; разметка — в начале body.html) ----------
+   Во весь экран поверх каркаса страницы, цвета темы; полоса «идёт загрузка» — бегущая, при «меньше движения» стоит.
+   Размеры — в rem: при крупном шрифте текст растёт и переносится. */
+.boot-splash { position:fixed; inset:0; z-index:2000; display:grid; place-items:center; padding:24px; background:var(--bg); color:var(--ink); }
+.bs-in { display:grid; justify-items:center; gap:14px; width:min(100%, 22rem); text-align:center; }
+.bs-logo { margin:0; font:400 2rem/1.1 var(--f-display); letter-spacing:.02em; overflow-wrap:anywhere; }
+.bs-logo span { color:var(--hot); }
+.bs-text { margin:0; font:500 1rem/1.4 var(--f-body); }
+.bs-note { margin:0; color:var(--muted); font-size:.875rem; line-height:1.4; }
+.bs-bar { width:min(100%, 13rem); height:4px; border-radius:4px; background:var(--line); overflow:hidden; }
+.bs-bar[hidden], .bs-text[hidden], .bs-note[hidden], .bs-fail[hidden] { display:none; }
+.bs-bar i { display:block; width:40%; height:100%; border-radius:4px; background:var(--accent); animation:bs-run 1.2s ease-in-out infinite alternate; }
+@keyframes bs-run { from { transform:translateX(-20%); } to { transform:translateX(170%); } }
+@media (prefers-reduced-motion:reduce) { .bs-bar i { animation:none; width:100%; opacity:.5; } }
+.bs-fail { display:grid; justify-items:center; gap:12px; }
+.bs-fail p { margin:0; font-size:1rem; line-height:1.45; }
+.bs-reload { min-height:48px; padding:10px 20px; border:0; border-radius:12px; background:var(--accent); color:var(--accent-ink); font:600 1rem var(--f-body); cursor:pointer; }

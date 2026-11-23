@@ -987,7 +987,8 @@ const metricFmt = m => m.w ? v => fmtKgR(v) : v => fmtU(Math.round(v * 2) / 2);
 /* fmt — подпись значения точки (метрика: metricFmt; вес тела — 18-measures.js) */
 function sparkSvg(pts, unit, fmt = v => fmtU(Math.round(v * 2) / 2)) {
   if (!pts.length) return '';
-  const W = 300, H = 74, L = 6, R = 40, T = 12, B = 14;
+  /* подписи значения и дат растут вместе со шрифтом (Галина 13): поля рисунка — в K раз больше */
+  const K = fontK(), W = 300, L = 6, R = 40 * K, T = 12 * K, B = 14 * K, H = 48 + T + B;
   const vs = pts.map(p => p.v);
   let mn = Math.min(...vs), mx = Math.max(...vs);
   if (mx - mn < 1e-9) { mn -= 1; mx += 1; }
@@ -1004,8 +1005,8 @@ function sparkSvg(pts, unit, fmt = v => fmtU(Math.round(v * 2) / 2)) {
     ${area ? `<path class="sp-area" d="${area}"/>` : ''}
     ${pts.length > 1 ? `<path class="sp-line" d="${line}"/>` : ''}
     <circle class="sp-end" cx="${x(pts.length - 1).toFixed(1)}" cy="${y(last.v).toFixed(1)}" r="4"/>
-    <text class="sp-lab" x="${(x(pts.length - 1) + 8).toFixed(1)}" y="${(y(last.v) + 4).toFixed(1)}">${fv(last.v)}</text>
-    ${pts.length > 1 ? `<text class="sp-d" x="${L}" y="${H - 2}">${fmtDay(first.d, true)}</text><text class="sp-d" x="${W - R}" y="${H - 2}" text-anchor="end">${fmtDay(last.d, true)}</text>` : ''}
+    <text class="sp-lab"${svgFs(11, K)} x="${(x(pts.length - 1) + 8).toFixed(1)}" y="${(y(last.v) + 4).toFixed(1)}">${fv(last.v)}</text>
+    ${pts.length > 1 ? `<text class="sp-d"${svgFs(9.5, K)} x="${L}" y="${H - 2}">${fmtDay(first.d, true)}</text><text class="sp-d"${svgFs(9.5, K)} x="${W - R}" y="${H - 2}" text-anchor="end">${fmtDay(last.d, true)}</text>` : ''}
     <line class="sp-x" x1="0" x2="0" y1="${T - 4}" y2="${H - B}" visibility="hidden"/><circle class="sp-dot" r="4" cx="0" cy="0" visibility="hidden"/>
   </svg>`;
 }
@@ -1115,7 +1116,8 @@ function daysHtml(by = trainingDays(), limit = 5) {
 function heatmap(today = new Date(), by = trainingDays()) {
   const byDay = {};
   for (const x of Object.values(by)) byDay[x.d] = x.sets;
-  const W = 12, cell = 15, gap = 3, LX = 22, TY = 16;
+  /* подписи месяцев и дней растут вместе со шрифтом (Галина 13): им — место слева и сверху в K раз больше */
+  const K = fontK(), W = 12, cell = 15, gap = 3, LX = 22 * K, TY = 16 * K;
   const now = new Date(today); now.setHours(12, 0, 0, 0);
   const dow = (now.getDay() + 6) % 7;
   const start = new Date(now); start.setDate(now.getDate() - dow - (W - 1) * 7);
@@ -1133,9 +1135,9 @@ function heatmap(today = new Date(), by = trainingDays()) {
   /* подпись месяца — над его первой неделей; хвост прошлого месяца в первой колонке подписывается, только если до
      следующей подписи не меньше двух колонок (иначе подписи наезжают: «июлавг») */
   const months = marks.filter(([w], i) => i + 1 >= marks.length || marks[i + 1][0] - w >= 2)
-    .map(([w, m]) => w < W - 1 ? `<text class="hm-l" x="${LX + w * (cell + gap)}" y="10">${MONTHS[m]}</text>`
-      : `<text class="hm-l" x="${LX + W * (cell + gap) - gap}" y="10" text-anchor="end">${MONTHS[m]}</text>`).join(''); /* в последней колонке — по правому краю, не обрезается */
-  const days = ['Пн', '', 'Ср', '', 'Пт', '', ''].map((t, i) => t ? `<text class="hm-l" x="0" y="${TY + i * (cell + gap) + 11}">${t}</text>` : '').join('');
+    .map(([w, m]) => w < W - 1 ? `<text class="hm-l"${svgFs(9.5, K)} x="${LX + w * (cell + gap)}" y="${10 * K}">${MONTHS[m]}</text>`
+      : `<text class="hm-l"${svgFs(9.5, K)} x="${LX + W * (cell + gap) - gap}" y="${10 * K}" text-anchor="end">${MONTHS[m]}</text>`).join(''); /* в последней колонке — по правому краю, не обрезается */
+  const days = ['Пн', '', 'Ср', '', 'Пт', '', ''].map((t, i) => t ? `<text class="hm-l"${svgFs(9.5, K)} x="0" y="${TY + i * (cell + gap) + (K > 1 ? Math.min(cell + gap, 7.5 + 3.5 * K) : 11)}">${t}</text>` : '').join('');
   const w = LX + W * (cell + gap), h = TY + 7 * (cell + gap);
   return `<svg class="heat" viewBox="0 0 ${w} ${h}" role="img" aria-label="Тренировочные дни за 12 недель">${months}${days}${cells}</svg>
     <p class="hm-legend"><span>меньше</span><i class="hm0"></i><i class="hm1"></i><i class="hm2"></i><i class="hm3"></i><span>больше подходов за день</span></p>`;
@@ -1153,7 +1155,7 @@ function renderJournal() {
   const broken = Keep.broken().length;
   const tools = `<div class="j-tools">
       ${LOG.canExport ? `<button type="button" class="btn btn-2" id="exp-json">Полная копия (JSON)</button><button type="button" class="btn btn-2" id="exp-csv">Журнал для Excel</button><button type="button" class="btn btn-2" id="exp-body">Замеры для Excel</button>` : ''}
-      <label class="btn btn-2" for="imp-file">Восстановить из копии</label><input type="file" id="imp-file" accept=".json,application/json" hidden>
+      <button type="button" class="btn btn-2" data-file-pick="imp-file">Восстановить из копии</button><input type="file" id="imp-file" accept=".json,application/json" hidden tabindex="-1" aria-hidden="true">
       ${broken ? `<button type="button" class="btn btn-2" data-keep="broken">${'Испорченные данные'} (${broken})</button>` : ''}
     </div>${restorePanelHtml()}${unitsHtml()}<p class="p-hint" id="j-msg" role="status" tabindex="-1">${esc(LOG.msg || '')}</p>
     <p class="p-hint">Полная копия — настройки, инвентарь, журнал и замеры одним файлом: перенесёт всё на другой телефон или вернёт после очистки браузера.</p>${privacyHtml()}`;
@@ -1663,6 +1665,12 @@ document.addEventListener('click', e => {
   if (t.dataset.units) { S.units = t.dataset.units === 'lb' ? 'lb' : 'kg'; saveSettings(); renderJournal(); const b = document.querySelector(`[data-units="${S.units}"]`); if (b) b.focus(); return; }
   if (t.id === 'exp-csv') { exportLog('csv'); return; }
   if (t.id === 'exp-json') { exportLog('json'); return; }
+});
+/* выбор файла — настоящей кнопкой (Галина 5): надпись <label> над скрытым полем Tab перескакивал, а диктор читал её как
+   простой текст. Кнопка открывает то же поле; «Восстановить из копии» в журнале и «Выбрать файл» в окне плана */
+document.addEventListener('click', e => {
+  const t = e.target.closest && e.target.closest('[data-file-pick]'); if (!t) return;
+  const f = document.getElementById(t.dataset.filePick); if (f) f.click();
 });
 document.addEventListener('change', e => {
   if (e.target.id === 'imp-file' && e.target.files && e.target.files[0]) { importLog(e.target.files[0]); e.target.value = ''; }

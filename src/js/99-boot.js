@@ -23,4 +23,6 @@ if (!BOOT.failed) {
   if (FIRST_RUN) openFirstRun();
   /* открыли ссылку на план (11m-plan-link.js): окно с планом — сразу, а в первый запуск — после вопросов */
   planHashOpen();
+  /* запуск закончен — заставка загрузки уходит (00a-keep.js) */
+  bootSplashOff();
 }

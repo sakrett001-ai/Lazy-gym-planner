@@ -107,7 +107,14 @@ function shapeSvg(kind, d, attrs) {
   if (kind === 'e') return `<ellipse cx="${d[0]}" cy="${d[1]}" rx="${d[2]}" ry="${d[3]}" ${a}/>`;
 }
 /* level: {muscle: 0..1}. delt_s подсвечивает переднюю и заднюю дельту частично */
+/* Подписи внутри рисунков SVG (карта мышц, график активности, динамика) заданы в единицах рисунка и сами со шрифтом не растут
+   (Галина 13). fontK — во сколько раз шрифт страницы крупнее обычного (1–2; настройка шрифта браузера или телефона);
+   рисунок оставляет подписям столько же раз больше места. svgFs — размер подписи, если шрифт крупнее обычного. */
+function fontK() { try { const v = parseFloat(getComputedStyle(document.documentElement).fontSize) / 16; return v > 1.05 ? Math.min(2, Math.round(v * 20) / 20) : 1; } catch (e) { return 1; } }
+const svgFs = (px, k) => k > 1 ? ` style="font-size:${+(px * k).toFixed(1)}px"` : '';
+
 function muscleMapSvg(level, opts = {}) {
+  const K = fontK(); /* подписи «спереди / сзади» растут вместе со шрифтом (Галина 13) */
   const lv = m => {
     if (m === 'delt_f') return Math.max(level.delt_f || 0, (level.delt_s || 0) * 0.8);
     if (m === 'delt_r') return Math.max(level.delt_r || 0, (level.delt_s || 0) * 0.8);
@@ -123,9 +130,9 @@ function muscleMapSvg(level, opts = {}) {
         if (v > 0) s += shapeSvg(kind, dd, {class:'mm-h', 'fill-opacity':(0.18 + 0.82 * v).toFixed(2)});
       }
     }
-    if (opts.labels) s += `<text x="50" y="216" class="mm-l">${label}</text>`;
+    if (opts.labels) s += `<text x="50" y="${207 + 9 * K}" class="mm-l"${svgFs(10, K)}>${label}</text>`;
     return s + '</g>';
   };
-  const H = opts.labels ? 222 : 207;
+  const H = opts.labels ? 207 + 15 * K : 207;
   return `<svg viewBox="0 0 206 ${H}" class="mmap" role="img" aria-label="${opts.aria || 'Карта мышц'}">${view(MAP_FRONT, 0, 'спереди')}${view(MAP_BACK, 106, 'сзади')}</svg>`;
 }

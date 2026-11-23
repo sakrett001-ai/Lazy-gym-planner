@@ -33,9 +33,9 @@ for(const lang of ['ru','en']){
  w.eval(fs.readFileSync(path.join(root,'dist/volume.js'),'utf8'));w.dispatchEvent(new w.Event('gym-volume'));
  assert(d.querySelector('#mv-stage .volume-figure svg path'),'3D engine replaces the flat figure');assert.equal(q.getMotion().clock,earlyClock);q.closeMotion();
  console.log('  3D engine arrived after the first screen');
- q.openMotionItem(q.previewItem('bbbench'));assert(d.querySelector('#mv-stage .volume-figure svg path'));assert.equal(d.querySelector('#mv-stage .volume-figure').dataset.camera,'above');
+ q.openMotionItem(q.previewItem('bbbench'));assert(d.querySelector('#mv-stage .volume-figure svg path'));/* 4.112: при первом открытии приложения ракурс по умолчанию — «Сбоку» (было «Сверху под углом»; решение владельца 15.11.2026) */assert.equal(d.querySelector('#mv-stage .volume-figure').dataset.camera,'side');
  const slider=d.getElementById('mv-progress');slider.value='470';slider.dispatchEvent(new w.Event('input'));const clock=q.getMotion().clock,pose=d.querySelector('#mv-stage .volume-figure').dataset.pose;
- d.querySelector('#mv-cameras [data-motion-camera=side]').click();assert.equal(q.getMotion().clock,clock);assert.equal(d.querySelector('#mv-stage .volume-figure').dataset.pose,pose);
+ d.querySelector('#mv-cameras [data-motion-camera=above]').click();assert.equal(q.getMotion().clock,clock);assert.equal(d.querySelector('#mv-stage .volume-figure').dataset.pose,pose);
  const dual=d.getElementById('mv-dual');dual.checked=true;dual.dispatchEvent(new w.Event('change'));assert.equal(d.querySelectorAll('#mv-projections .volume-figure').length,2);assert.equal(q.getMotion().clock,clock);
  console.log('  Main and second views rendered');
  const region=d.getElementById('mv-region'),before=d.querySelector('#mv-stage svg').outerHTML;region.value='pec_clavicular';region.dispatchEvent(new w.Event('change'));assert.equal(q.motionPrefs.regions.bbbench,'pec_clavicular');assert.notEqual(d.querySelector('#mv-stage svg').outerHTML,before);assert.equal(q.getMotion().clock,clock);

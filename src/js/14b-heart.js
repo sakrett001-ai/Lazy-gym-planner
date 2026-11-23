@@ -411,7 +411,6 @@ const Heart = (() => {
       + `<div class="wv-hr-text"><p id="wv-hr-note" class="wv-hr-note" role="status"></p><p id="wv-hr-meta" class="wv-hr-meta"></p></div>`
       + `<p id="wv-hr-warn" class="wv-hr-warn" role="alert" hidden></p>`
       + `<p id="wv-hr-safe" class="wv-hr-safe" hidden>${'Нет предупреждения — это ещё не значит, что нагрузка безопасна. При боли в груди, головокружении, необычной одышке — остановитесь.'}</p>`
-      + `<p id="wv-hr-line" class="wv-hr-line" hidden><span class="wv-hr-heart" aria-hidden="true">♥</span> <span id="wv-hr-line-t"></span></p>`
       + `<p id="wv-hr-help" class="wv-hr-help" hidden>${'Часов нет в списке? Включите на них трансляцию пульса: на Galaxy Watch — приложение, которое транслирует пульс как датчик.'} <button type="button" id="wv-hr-all" class="wv-hr-all">${'Показать все устройства'}</button></p>`);
     prog.after(row);
     const over = q('#wv-rest-over');
@@ -428,6 +427,10 @@ const Heart = (() => {
       + `<p id="wv-hr-age-note" class="wv-signal-note">${'По желанию: тогда предупреждение о слишком высоком пульсе — по вашему возрасту (расчётный максимум 208 − 0,7 × возраст, у разных людей ±10 уд/мин). Это средняя оценка, а не безопасный предел для вас.'}</p>`
       + `<p class="wv-signal-note wv-hr-med">${'Если вы принимаете лекарства, которые снижают пульс (например, бета-блокаторы), пульс не показывает нагрузку — ориентируйтесь на дыхание и самочувствие.'}</p>`
       + (typeof HEART_STOP === 'string' ? `<p class="wv-signal-note wv-hr-med">${HEART_STOP}</p>` : '')));
+    /* Пульсометр недоступен (нет Web Bluetooth — все iPhone, Firefox; не https; встроенное окно): строка об этом — только
+       в настройках конца отдыха, где был бы выбор «Время · Пульс». Раньше она висела над каждым подходом и над итогом
+       (Галина 9, Mike 11, Кира 7) */
+    if (signal) signal.append(el('p', {id:'wv-hr-line', class:'wv-hr-line', hidden:''}, `<span class="wv-hr-heart" aria-hidden="true">♥</span> <span id="wv-hr-line-t"></span>`));
     const fin = q('#wv-finish-text');
     if (fin) fin.after(el('p', {id:'wv-hr-finish', class:'wv-hr-finish', hidden:''}, `<span class="wv-hr-heart" aria-hidden="true">♥</span> <span id="wv-hr-finish-t"></span>`));
     mounted = true; paintPrefs(); return true;
@@ -439,10 +442,10 @@ const Heart = (() => {
     if (!mounted) return;
     const sup = support(), row = q('#wv-hr');
     if (!sup.ok) {
-      row.dataset.state = 'unsupported'; show('#wv-hr-btn', false); show('.wv-hr-text', false); show('#wv-hr-help', false);
+      row.dataset.state = 'unsupported'; row.hidden = true; show('#wv-hr-btn', false); show('.wv-hr-text', false); show('#wv-hr-help', false);
       text('#wv-hr-line-t', sup.line); show('#wv-hr-line', true); show('#wv-hr-rest', false); show('#wv-hr-set', false); return;
     }
-    show('#wv-hr-btn', true); show('.wv-hr-text', true); show('#wv-hr-line', false); show('#wv-hr-set', true);
+    row.hidden = false; show('#wv-hr-btn', true); show('.wv-hr-text', true); show('#wv-hr-line', false); show('#wv-hr-set', true);
     const c = C(), st = c ? c.state : 'idle', bpm = live(now), name = c && c.name || 'датчик';
     let view = st, val = 'Пульс', note = '', meta = '';
     if (st === 'live' && bpm == null) view = 'waiting';
