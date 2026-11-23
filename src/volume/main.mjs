@@ -152,7 +152,10 @@ export function createVolumeFigure(options){
     рамкой: смена ракурса позы заново не считает), и текущая; решение держится, пока камера на месте; у подвижных
     деталей оно только добавляется (деталь, однажды заслонившая человека в этом ракурсе, остаётся прозрачной). */
  let fadePoints=null,fadeNodes=null;const fadeStates=new Map(),FADE_VIEWS=4;
- const fadeTargets=P=>[P.head,P.sh,P.waist,P.hip,P.elL,P.elR,P.knL,P.knR].filter(Boolean).map(p=>new THREE.Vector3(...world(p)));
+ /* Повод для прозрачности — только голова и туловище (4.112, вопрос владельца 19.11.2026): в жиме лёжа «Сверху под углом»
+    стойка закрывала один локоть, а прозрачной становилась вся рама — она слита в одну сетку. Руки и ноги не считаются:
+    их и так видно, а заслонённый локоть — не повод прятать тренажёр. */
+ const fadeTargets=P=>[P.head,P.sh,P.waist,P.hip].filter(Boolean).map(p=>new THREE.Vector3(...world(p)));
  const fadeKey=cam=>{cam.updateMatrixWorld?.();return Array.from(cam.matrixWorld.elements,x=>Math.round(x*500)).join(',')+'|'+Math.round((cam.zoom||1)*100);};
  function fadeOccluders(cam){
   const P=lastPose;if(!P||!scene.propNodes)return;
