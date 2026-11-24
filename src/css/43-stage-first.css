@@ -80,4 +80,6 @@
 }
 @media (pointer:coarse) {
   .place-adapt select, .c-top .motion-bar button, .motion-bar button, .c-joints-b, .vr-seg button, .var-seg button, .c-var button { min-height:44px; }
+  /* «+ Место», «+ План» и переключатель единиц веса в параметрах (с 4.112 — не в журнале) */
+  .place-add, .seg-b { min-height:44px; }
 }
