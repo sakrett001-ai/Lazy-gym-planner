@@ -223,7 +223,9 @@ test('the cycle week moves on by itself every Monday; picked by hand — countin
 
 test('«Intro» week advice does not ask for more than the logged max allows (Ruslan 11)', () => {
   reset({ mode: 'program', goal: 'strength', level: 'adv', week: 1, units: 'kg' });
-  m.get('LOG.data = {squat:[{d:"2026-11-01", s:[[205,3],[205,3]]},{d:"2026-11-08", s:[[200,3],[200,3],[200,3]]}]}');
+  /* даты — от сегодняшнего дня: с жёсткими датами (01.11 и 08.11) тест с 22.11 видел перерыв больше двух недель, и совет
+     «Входа» заменялся советом после перерыва (layoffInfo) — проверялось уже не то */
+  m.get('LOG.data = {squat:[{d:dayKey(new Date(Date.now() - 10 * 864e5)), s:[[205,3],[205,3]]},{d:dayKey(new Date(Date.now() - 3 * 864e5)), s:[[200,3],[200,3],[200,3]]}]}');
   m.get('var IT = {ex:EXI.squat, rx:prescribe(EXI.squat, WEEKS[0], effEquip(EQUIP.map(e => e.id))), eqIds:["bb"], slot:0}');
   const r = m.get('suggest(IT)');
   assert(r.kg < 200 && /^Неделя «Вход»: 185 кг/.test(r.text), r.text);
