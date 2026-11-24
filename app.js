@@ -1,4 +1,4 @@
-window.PODHOD_VERSION='4.111.0';window.PODHOD_BUILD='4.111.0-f97afd687453';window.PODHOD_RENDER={"skin":"1e558f64f4","skeleton":"5ad1677553","anatomy":"ffc0369238"};window.PODHOD_SEARCH={"alt":{"ex":{"pushup":["Push-up"],"diamond":["Close-grip push-up"],"dip":["Dip"],"bbbench":["Barbell bench press"],"dbbench":["Dumbbell bench press"],"dbincline":["Incline dumbbell press"],"smithincline":["Smith machine incline press"],"dbfly":["Dumbbell fly"],"cablefly":["Cable crossover fly"],"pecdeck":["Pec deck fly"],"pullup":["Pull-up"],"bbrow":["Bent-over row"],"dbrow":["One-arm dumbbell row"],"latpull":["Lat pulldown"],"latpullv":["V-handle lat pulldown"],"latpulluh":["Underhand lat pulldown"],"cablerow":["Seated cable row"],"cablerowwide":["Wide-grip seated cable row"],"deadlift":["Deadlift"],"hyper":["Back extension"],"shrug":["Dumbbell shrug"],"bandrow":["Seated band row"],"dbpress":["Seated dumbbell press"],"ohp":["Overhead press"],"latraise":["Dumbbell lateral raise"],"bandlatraise":["Band lateral raise"],"frontraise":["Dumbbell front raise"],"facepull":["Cable face pull"],"pikepush":["Pike push-up"],"bbcurl":["Barbell biceps curl"],"dbcurl":["Dumbbell biceps curl"],"hammer":["Hammer curl"],"cablecurl":["Cable curl"],"ropecurl":["Rope cable curl"],"bandcurl":["Resistance band curl"],"chinup":["Chin-up"],"skull":["Lying triceps extension"],"pushdown":["Cable triceps pushdown"],"ropepushdown":["Rope triceps pushdown"],"bandpushdown":["Resistance band pushdown"],"benchdip":["Bench dip"],"ohext":["Overhead dumbbell triceps extension"],"wristcurl":["Barbell wrist curl"],"farmer":["Farmer’s carry","Kettlebell farmer’s carry"],"hang":["Dead hang"],"crunch":["Crunch"],"plank":["Forearm plank"],"sideplank":["Side plank"],"legraise":["Hanging leg raise"],"lyinglegraise":["Lying leg raise"],"cablecrunch":["Kneeling cable crunch"],"hipthrust":["Barbell hip thrust"],"bridge":["Glute bridge"],"kbswing":["Kettlebell swing"],"kbdeadlift":["Kettlebell deadlift"],"kbswing1":["One-arm kettlebell swing"],"kbclean":["Kettlebell clean"],"kbpress":["One-arm standing kettlebell press"],"kbfrontsquat":["Kettlebell front squat"],"kbrow":["One-arm bent-over kettlebell row"],"kbfloorpress":["Kettlebell floor press"],"kbsnatch":["Kettlebell snatch"],"kbsllift":["Single-leg kettlebell Romanian deadlift"],"kbwindmill":["Kettlebell windmill"],"kbhalo":["Kettlebell halo"],"kbtgu":["Kettlebell Turkish get-up"],"bulgarian":["Bulgarian split squat"],"stepup":["Step-up"],"rdl":["Romanian deadlift","Barbell Romanian deadlift","Dumbbell Romanian deadlift"],"squat":["Barbell squat"],"goblet":["Goblet squat","Kettlebell goblet squat"],"airsquat":["Bodyweight squat"],"lunge":["Split squat"],"legpress":["Leg press"],"legpresshigh":["Leg press, feet high"],"legpresslow":["Leg press, feet low"],"legext":["Leg extension"],"smithsquat":["Smith machine squat"],"legcurl":["Lying leg curl"],"calfraise":["Standing calf raise"],"lpcalf":["Leg press calf raise"],"inclinebb":["Incline barbell bench press"],"declinebb":["Decline barbell bench press"],"closegrip":["Close-grip bench press"],"pullover":["Dumbbell pullover"],"declinepush":["Decline push-up (feet on bench)"],"invrow":["Inverted row"],"straightpull":["Straight-arm cable pullover"],"goodmorning":["Barbell good morning"],"arnold":["Arnold press"],"cablelat":["Cable lateral raise"],"reversefly":["Reverse pec deck fly"],"bandfacepull":["Resistance band face pull"],"cableextrot":["Cable shoulder external rotation"],"bandextrot":["Resistance band shoulder external rotation"],"preacher":["Preacher curl"],"inclinecurl":["Incline dumbbell curl"],"concentration":["Concentration curl"],"kickback":["Dumbbell triceps kickback"],"declinecrunch":["Ab bench crunch"],"captainraise":["Captain’s chair knee raise"],"hangknee":["Hanging knee raise"],"rollout":["Kneeling ab wheel rollout"],"sidebend":["Dumbbell side bend"],"glutekick":["Cable glute kickback"],"bandlatpull":["Kneeling band lat pulldown"],"bandlegext":["Seated band leg extension"],"bandadduct":["Band hip adduction"],"bandabduct":["Standing mini-band hip abduction"],"bandbridge":["Mini-band glute bridge"],"bandfloorpress":["Band floor press"],"bandfly":["Band chest fly at the door"],"sissysquat":["Door-frame assisted sissy squat"],"jumpingjack":["Jumping jack"],"burpee":["Burpee"],"mountain":["Mountain climber"],"jumpsquat":["Jump squat"],"thruster":["Dumbbell thruster"],"wallpush":["Wall push-up"],"inclinepush":["Incline push-up"],"kneepush":["Knee push-up"],"widepush":["Wide push-up"],"archer":["Archer push-up"],"declinepike":["Feet-elevated pike push-up"],"superman":["Superman hold"],"ytw":["Prone Y-T-W raise"],"towelrow":["Door towel row"],"tablerow":["Under-table row"],"reversesnow":["Reverse snow angel"],"wallsit":["Wall sit"],"revlunge":["Reverse lunge"],"sidelunge":["Lateral lunge"],"copenhagen":["Copenhagen plank"],"copenhagenknee":["Short-lever Copenhagen plank"],"pistolbox":["Single-leg box squat"],"sllift":["Single-leg Romanian deadlift"],"glutebridge1":["Single-leg glute bridge"],"nordic":["Nordic curl"],"calf1":["Single-leg calf raise"],"deadbug":["Dead bug"],"birddog":["Bird dog"],"hollow":["Hollow hold"],"bicycle":["Bicycle crunch"],"plankup":["Plank up-down"],"chairdip":["Chair dip"],"towelcurl":["Towel curl"],"chestpressm":["Machine chest press"],"smithbench":["Smith machine bench press"],"cablelowfly":["Low-to-high cable crossover fly"],"leverrowm":["Chest-supported lever row"],"tbarrow":["T-bar row"],"assistpull":["Assisted pull-up"],"chestrowdb":["Chest-supported incline dumbbell row"],"shoulderpressm":["Machine shoulder press"],"smithohp":["Seated Smith machine press"],"assistdip":["Assisted dip"],"cableohext":["Overhead cable rope triceps extension"],"cablewood":["Cable woodchopper"],"pullthrough":["Cable pull-through"],"cablekickback":["Straight-leg cable glute kickback"],"abduction":["Hip abduction machine"],"adduction":["Hip adduction machine"],"cableadduct":["Standing cable hip adduction"],"hacksquat":["Hack squat"],"seatedcalf":["Seated calf raise"],"standcalf":["Standing machine calf raise"],"treadmill":["Treadmill"],"bike":["Stationary bike"],"rower":["Rowing machine"],"elliptical":["Elliptical"],"stairs":["Stair climber"]},"groups":{"chest":["Chest"],"back":["Back"],"shoulders":["Shoulders"],"biceps":["Biceps"],"triceps":["Triceps"],"forearms":["Forearms"],"abs":["Abs"],"glutes":["Glutes"],"quads":["Quads"],"adductors":["Adductors"],"hams":["Hamstrings"],"calves":["Calves"],"cardio":["Cardio"]},"muscles":{"chest":["Chest"],"delt_f":["Front delt"],"delt_s":["Side delt"],"delt_r":["Rear delt"],"biceps":["Biceps"],"triceps":["Triceps"],"forearms":["Forearms"],"abs":["Abs (rectus abdominis)"],"obliques":["Obliques"],"traps":["Traps"],"midback":["Rhomboids & mid-back"],"lats":["Lats"],"lowback":["Spinal erectors"],"glutes":["Glutes"],"quads":["Quads"],"hams":["Hamstrings"],"calves":["Calves"],"adductors":["Hip adductors"],"hipflex":["Hip flexors"],"serratus":["Serratus anterior"],"cuff":["Rotator cuff"]}},"syn":{"ex":{"pushup":["press-up"],"diamond":["алмазные отжимания","отжимания узким хватом","diamond push-up","triangle push-up"],"widepush":["отжимания широким хватом"],"dip":["брусья","parallel bar dip","chest dip"],"bbbench":["жим лёжа","бенч","бенч-пресс","bench press","bench","flat bench press"],"dbincline":["наклонный жим гантелей"],"smithincline":["наклонный жим в Смите","incline Smith press"],"inclinebb":["наклонный жим","жим на наклонной","incline bench press","incline bench"],"declinebb":["жим головой вниз","decline bench press","decline bench"],"dbfly":["dumbbell flye"],"pecdeck":["пек-дек","butterfly","machine fly"],"bbrow":["тяга штанги к поясу","barbell row"],"dbrow":["тяга гантели в наклоне","dumbbell row","single-arm dumbbell row"],"latpull":["вертикальная тяга","тяга верхнего блока к груди","lat pull-down"],"cablerow":["горизонтальная тяга","тяга нижнего блока","seated row","cable row","low row"],"hyper":["hyperextension"],"dbpress":["жим гантелей над головой","dumbbell shoulder press"],"ohp":["армейский жим","жим над головой","жим стоя","OHP","military press","standing press"],"latraise":["разведения в стороны","разведения гантелей в стороны","side raise","side lateral raise"],"facepull":["фейс-пул"],"bbcurl":["сгибание рук со штангой"],"dbcurl":["сгибание рук с гантелями"],"hammer":["молотки","хаммер"],"skull":["skull crusher","French press"],"pushdown":["трицепс на блоке","pressdown"],"ohext":["французский жим сидя","французский жим стоя"],"farmer":["фермерская прогулка","farmer’s walk"],"cablecrunch":["молитва"],"hipthrust":["хип-траст"],"kbswing":["свинг"],"kbswing1":["свинг одной рукой"],"kbtgu":["TGU","get-up"],"bulgarian":["болгарские сплит-приседания","Bulgarian squat","rear-foot-elevated split squat","RFESS"],"stepup":["степ-ап"],"rdl":["румынка","RDL"],"squat":["присед","squat","back squat"],"airsquat":["приседания без веса","air squat"],"lunge":["выпады на месте","static lunge"],"legcurl":["hamstring curl"],"invrow":["горизонтальные подтягивания","Australian pull-up","body row"],"straightpull":["straight-arm pulldown"],"goodmorning":["гуд морнинг"],"cablelat":["махи на нижнем блоке","cable side raise"],"reversefly":["обратная бабочка","rear delt fly"],"rollout":["ролик для пресса","ab wheel","ab roller"],"glutekick":["кикбэк"],"cablekickback":["кикбэк","cable kickback"],"jumpingjack":["джампинг джек","star jump"],"burpee":["бурпи"],"mountain":["альпинист"],"superman":["супермен"],"revlunge":["выпады назад"],"sidelunge":["выпады в сторону","side lunge"],"nordic":["нордические сгибания","Nordic hamstring curl"],"chestpressm":["жим в хаммере"],"leverrowm":["тяга в хаммере","machine row"],"cablewood":["wood chop"],"abduction":["абдуктор","abductor machine","hip abductor"],"adduction":["аддуктор","adductor machine","hip adductor"],"hacksquat":["гакк-приседания"],"treadmill":["бег","running"],"rower":["гребля","rowing","erg"],"elliptical":["орбитрек","эллипс","cross trainer"],"stairs":["stepper"]},"groups":{"chest":["грудные","pecs"],"shoulders":["дельты","delts","deltoids"],"forearms":["хват","grip"],"abs":["кор","core"],"glutes":["ягодичные"],"quads":["квадры","передняя поверхность бедра","quadriceps"],"hams":["бицепс бедра","задняя группа бедра"],"calves":["икроножные","calf"]},"muscles":{"obliques":["косые"],"lowback":["поясница"],"midback":["ромбовидные","rhomboids"],"adductors":["приводящие","adductors"],"serratus":["зубчатая","serratus"],"cuff":["ротаторы","ротаторная манжета"]}},"stop":["в","во","на","с","со","и","для","к","ко","по","из","от","у","за","упражнение","упражнения","упражнений","the","a","an","of","on","with","for","and","in","to","at","exercise","exercises"],"words":{"db":["dumbbell"],"bb":["barbell"],"kb":["kettlebell"]},"layout":{"en":"`qwertyuiop[]asdfghjkl;'zxcvbnm,./","ru":"ёйцукенгшщзхъфывапролджэячсмитьбю."}};window.PODHOD_LANG='ru';window.PODHOD_LOCALE={"dec":",","plural":"ru","dates":"ru","units":"kg"};
+window.PODHOD_VERSION='4.112.0';window.PODHOD_BUILD='4.112.0-36fe26e0bbca';window.PODHOD_RENDER={"skin":"4a45cbc13b","skeleton":"d30993e562","anatomy":"3e31bfcddf"};window.PODHOD_SEARCH={"alt":{"ex":{"pushup":["Push-up"],"diamond":["Close-grip push-up"],"dip":["Dip"],"bbbench":["Barbell bench press"],"dbbench":["Dumbbell bench press"],"dbincline":["Incline dumbbell press"],"smithincline":["Smith machine incline press"],"dbfly":["Dumbbell fly"],"cablefly":["Cable crossover"],"pecdeck":["Pec deck fly"],"pullup":["Pull-up"],"bbrow":["Bent-over row"],"dbrow":["One-arm dumbbell row"],"latpull":["Lat pulldown"],"latpullv":["V-handle lat pulldown"],"latpulluh":["Underhand lat pulldown"],"cablerow":["Seated cable row"],"cablerowwide":["Wide-grip seated cable row"],"deadlift":["Deadlift"],"hyper":["Back extension"],"shrug":["Dumbbell shrug"],"bandrow":["Seated band row"],"dbpress":["Seated dumbbell press"],"ohp":["Overhead press"],"latraise":["Dumbbell lateral raise"],"bandlatraise":["Band lateral raise"],"frontraise":["Dumbbell front raise"],"facepull":["Cable face pull"],"pikepush":["Pike push-up"],"bbcurl":["Barbell curl"],"dbcurl":["Dumbbell curl"],"hammer":["Hammer curl"],"cablecurl":["Cable curl"],"ropecurl":["Rope cable curl"],"bandcurl":["Band curl"],"chinup":["Chin-up"],"skull":["Lying triceps extension"],"pushdown":["Triceps pushdown"],"ropepushdown":["Rope triceps pushdown"],"bandpushdown":["Band pushdown"],"benchdip":["Bench dip"],"ohext":["Overhead dumbbell triceps extension"],"wristcurl":["Barbell wrist curl"],"farmer":["Farmer’s carry","Kettlebell farmer’s carry"],"hang":["Dead hang"],"crunch":["Crunch"],"plank":["Forearm plank"],"sideplank":["Side plank"],"legraise":["Hanging leg raise"],"lyinglegraise":["Lying leg raise"],"cablecrunch":["Kneeling cable crunch"],"hipthrust":["Barbell hip thrust"],"bridge":["Glute bridge"],"kbswing":["Kettlebell swing"],"kbdeadlift":["Kettlebell deadlift"],"kbswing1":["One-arm kettlebell swing"],"kbclean":["Kettlebell clean"],"kbpress":["One-arm kettlebell press"],"kbfrontsquat":["Kettlebell front squat"],"kbrow":["One-arm bent-over kettlebell row"],"kbfloorpress":["Kettlebell floor press"],"kbsnatch":["Kettlebell snatch"],"kbsllift":["Single-leg kettlebell Romanian deadlift"],"kbwindmill":["Kettlebell windmill"],"kbhalo":["Kettlebell halo"],"kbtgu":["Kettlebell Turkish get-up"],"bulgarian":["Bulgarian split squat"],"stepup":["Step-up"],"rdl":["Romanian deadlift","Barbell Romanian deadlift","Dumbbell Romanian deadlift"],"squat":["Barbell squat"],"goblet":["Goblet squat","Kettlebell goblet squat"],"airsquat":["Bodyweight squat"],"lunge":["Split squat"],"legpress":["Leg press"],"legpresshigh":["Leg press, feet high"],"legpresslow":["Leg press, feet low"],"legext":["Leg extension"],"smithsquat":["Smith machine squat"],"legcurl":["Lying leg curl"],"calfraise":["Standing calf raise"],"lpcalf":["Leg press calf raise"],"inclinebb":["Incline barbell bench press"],"declinebb":["Decline barbell bench press"],"closegrip":["Close-grip bench press"],"pullover":["Dumbbell pullover"],"declinepush":["Decline push-up"],"invrow":["Inverted row"],"straightpull":["Straight-arm cable pullover"],"goodmorning":["Barbell good morning"],"arnold":["Arnold press"],"cablelat":["Cable lateral raise"],"reversefly":["Reverse pec deck fly"],"bandfacepull":["Band face pull"],"cableextrot":["Cable external rotation"],"bandextrot":["Band external rotation"],"preacher":["Preacher curl"],"inclinecurl":["Incline dumbbell curl"],"concentration":["Concentration curl"],"kickback":["Dumbbell triceps kickback"],"declinecrunch":["Decline crunch"],"captainraise":["Captain’s chair knee raise"],"hangknee":["Hanging knee raise"],"rollout":["Ab wheel rollout"],"sidebend":["Dumbbell side bend"],"glutekick":["Cable glute kickback"],"bandlatpull":["Band lat pulldown"],"bandlegext":["Seated band leg extension"],"bandadduct":["Band hip adduction"],"bandabduct":["Standing mini-band hip abduction"],"bandbridge":["Mini-band glute bridge"],"bandfloorpress":["Band floor press"],"bandfly":["Band chest fly"],"sissysquat":["Assisted sissy squat"],"jumpingjack":["Jumping jack"],"burpee":["Burpee"],"mountain":["Mountain climber"],"jumpsquat":["Jump squat"],"thruster":["Dumbbell thruster"],"wallpush":["Wall push-up"],"inclinepush":["Incline push-up"],"kneepush":["Knee push-up"],"widepush":["Wide push-up"],"archer":["Archer push-up"],"declinepike":["Feet-elevated pike push-up"],"superman":["Superman hold"],"ytw":["Prone Y-T-W raise"],"towelrow":["Door towel row"],"tablerow":["Under-table row"],"reversesnow":["Reverse snow angel"],"wallsit":["Wall sit"],"revlunge":["Reverse lunge"],"sidelunge":["Lateral lunge"],"copenhagen":["Copenhagen plank"],"copenhagenknee":["Short-lever Copenhagen plank"],"pistolbox":["Single-leg box squat"],"sllift":["Single-leg Romanian deadlift"],"glutebridge1":["Single-leg glute bridge"],"nordic":["Nordic curl"],"calf1":["Single-leg calf raise"],"deadbug":["Dead bug"],"birddog":["Bird dog"],"hollow":["Hollow hold"],"bicycle":["Bicycle crunch"],"plankup":["Plank up-down"],"chairdip":["Chair dip"],"towelcurl":["Towel curl"],"chestpressm":["Machine chest press"],"smithbench":["Smith machine bench press"],"cablelowfly":["Low-to-high cable crossover"],"leverrowm":["Chest-supported machine row"],"tbarrow":["T-bar row"],"assistpull":["Assisted pull-up"],"chestrowdb":["Chest-supported incline dumbbell row"],"shoulderpressm":["Machine shoulder press"],"smithohp":["Smith machine shoulder press"],"assistdip":["Assisted dip"],"cableohext":["Overhead rope triceps extension"],"cablewood":["Cable woodchopper"],"pullthrough":["Cable pull-through"],"cablekickback":["Straight-leg cable glute kickback"],"abduction":["Hip abduction machine"],"adduction":["Hip adduction machine"],"cableadduct":["Standing cable hip adduction"],"hacksquat":["Hack squat"],"seatedcalf":["Seated calf raise"],"standcalf":["Standing machine calf raise"],"treadmill":["Treadmill"],"bike":["Stationary bike"],"rower":["Rowing machine"],"elliptical":["Elliptical"],"stairs":["Stair climber"]},"groups":{"chest":["Chest"],"back":["Back"],"shoulders":["Shoulders"],"biceps":["Biceps"],"triceps":["Triceps"],"forearms":["Forearms"],"abs":["Abs"],"glutes":["Glutes"],"quads":["Quads"],"adductors":["Adductors"],"hams":["Hamstrings"],"calves":["Calves"],"cardio":["Cardio"]},"muscles":{"chest":["Chest"],"delt_f":["Front delt"],"delt_s":["Side delt"],"delt_r":["Rear delt"],"biceps":["Biceps"],"triceps":["Triceps"],"forearms":["Forearms"],"abs":["Abs (rectus abdominis)"],"obliques":["Obliques"],"traps":["Traps"],"midback":["Rhomboids & mid-back"],"lats":["Lats"],"lowback":["Spinal erectors"],"glutes":["Glutes"],"quads":["Quads"],"hams":["Hamstrings"],"calves":["Calves"],"adductors":["Hip adductors"],"hipflex":["Hip flexors"],"serratus":["Serratus anterior"],"cuff":["Rotator cuff"]}},"syn":{"ex":{"pushup":["press-up"],"diamond":["алмазные отжимания","отжимания узким хватом","diamond push-up","triangle push-up"],"widepush":["отжимания широким хватом"],"dip":["брусья","parallel bar dip","chest dip"],"bbbench":["жим лёжа","бенч","бенч-пресс","bench press","bench","flat bench press"],"dbincline":["наклонный жим гантелей"],"smithincline":["наклонный жим в Смите","incline Smith press"],"inclinebb":["наклонный жим","жим на наклонной","incline bench press","incline bench"],"declinebb":["жим головой вниз","decline bench press","decline bench"],"dbfly":["dumbbell flye","pec fly","chest fly"],"cablefly":["cable fly","cable crossover fly","pec fly","chest fly"],"cablelowfly":["low cable fly","pec fly","chest fly"],"closegrip":["JM press"],"pecdeck":["пек-дек","butterfly","machine fly"],"bbrow":["тяга штанги к поясу","barbell row"],"dbrow":["тяга гантели в наклоне","dumbbell row","single-arm dumbbell row"],"latpull":["вертикальная тяга","тяга верхнего блока к груди","lat pull-down","lat pull down"],"latpullv":["lat pull down"],"latpulluh":["lat pull down"],"bandlatpull":["lat pull down","kneeling band lat pulldown"],"cablerow":["горизонтальная тяга","тяга нижнего блока","seated row","cable row","low row"],"hyper":["hyperextension"],"dbpress":["жим гантелей над головой","dumbbell shoulder press"],"ohp":["армейский жим","жим над головой","жим стоя","OHP","military press","standing press"],"latraise":["разведения в стороны","разведения гантелей в стороны","side raise","side lateral raise"],"facepull":["фейс-пул"],"bbcurl":["сгибание рук со штангой","barbell biceps curl"],"dbcurl":["сгибание рук с гантелями","dumbbell biceps curl"],"hammer":["молотки","хаммер"],"skull":["skull crusher","French press","JM press"],"pushdown":["трицепс на блоке","pressdown","cable triceps pushdown"],"ohext":["французский жим сидя","французский жим стоя"],"farmer":["фермерская прогулка","farmer’s walk"],"cablecrunch":["молитва"],"hipthrust":["хип-траст"],"kbswing":["свинг"],"kbswing1":["свинг одной рукой"],"kbtgu":["TGU","get-up"],"bulgarian":["болгарские сплит-приседания","Bulgarian squat","rear-foot-elevated split squat","RFESS","BSS"],"stepup":["степ-ап"],"rdl":["румынка","RDL"],"squat":["присед","squat","back squat"],"airsquat":["приседания без веса","air squat"],"lunge":["выпады на месте","static lunge"],"legcurl":["hamstring curl"],"invrow":["горизонтальные подтягивания","Australian pull-up","body row"],"straightpull":["straight-arm pulldown"],"goodmorning":["гуд морнинг"],"cablelat":["махи на нижнем блоке","cable side raise"],"reversefly":["обратная бабочка","rear delt fly"],"rollout":["ролик для пресса","ab wheel","ab roller","kneeling ab wheel rollout"],"glutekick":["кикбэк"],"cablekickback":["кикбэк","cable kickback"],"jumpingjack":["джампинг джек","star jump"],"burpee":["бурпи"],"mountain":["альпинист"],"superman":["супермен"],"revlunge":["выпады назад"],"sidelunge":["выпады в сторону","side lunge"],"nordic":["нордические сгибания","Nordic hamstring curl"],"chestpressm":["жим в хаммере"],"bandcurl":["resistance band curl"],"bandpushdown":["resistance band pushdown"],"bandfacepull":["resistance band face pull"],"bandextrot":["resistance band shoulder external rotation"],"cableextrot":["cable shoulder external rotation"],"declinecrunch":["ab bench crunch"],"cableohext":["overhead cable triceps extension"],"kbpress":["standing kettlebell press"],"smithohp":["seated Smith machine press"],"sissysquat":["door-frame sissy squat"],"declinepush":["feet on bench push-up"],"bandfly":["door band fly"],"leverrowm":["тяга в хаммере","machine row","lever row","chest-supported lever row"],"cablewood":["wood chop"],"abduction":["абдуктор","abductor machine","hip abductor"],"adduction":["аддуктор","adductor machine","hip adductor"],"hacksquat":["гакк-приседания"],"treadmill":["бег","running"],"rower":["гребля","rowing","erg"],"elliptical":["орбитрек","эллипс","cross trainer"],"stairs":["stepper"]},"groups":{"chest":["грудные","pecs"],"shoulders":["дельты","delts","deltoids"],"forearms":["хват","grip"],"abs":["кор","core"],"glutes":["ягодичные"],"quads":["квадры","передняя поверхность бедра","quadriceps"],"hams":["бицепс бедра","задняя группа бедра"],"calves":["икроножные","calf"]},"muscles":{"obliques":["косые"],"lowback":["поясница"],"midback":["ромбовидные","rhomboids"],"adductors":["приводящие","adductors"],"serratus":["зубчатая","serratus"],"cuff":["ротаторы","ротаторная манжета"]}},"stop":["в","во","на","с","со","и","для","к","ко","по","из","от","у","за","упражнение","упражнения","упражнений","the","a","an","of","on","with","for","and","in","to","at","exercise","exercises"],"words":{"db":["dumbbell"],"bb":["barbell"],"kb":["kettlebell"]},"layout":{"en":"`qwertyuiop[]asdfghjkl;'zxcvbnm,./","ru":"ёйцукенгшщзхъфывапролджэячсмитьбю."}};window.PODHOD_LANG='ru';window.PODHOD_LOCALE={"dec":",","plural":"ru","dates":"ru","units":"kg"};
 /* ===================== SVG-ФИГУРА: общие помощники ===================== */
 const D2R = Math.PI / 180;
 const SVGNS = 'http://www.w3.org/2000/svg';
@@ -94,6 +94,32 @@ const MUSCLE_NAMES = {chest:'Грудные', delt_f:'Передняя дель�
 /* 4.110 (замечание анатома 8): «Бицепс бедра» — лишь одна из трёх мышц задней группы бедра (двуглавая, полусухожильная,
    полуперепончатая), группа называется «Задняя поверхность бедра», как в разделе суставов; английское — Hamstrings.
    Названия во множественном числе — для согласования глагола («Квадрицепс участвует», «Грудные участвуют») */
+/* 4.112. Понятные названия мышц в карточке плана (решение владельца 15.11.2026 по ревью 4.110, вопрос 8): простые слова
+   с пояснением «где это» при первом упоминании в плане («Ромбовидные — между лопатками»); дальше в том же плане — без
+   пояснения. В разборе движения — анатомическая терминология, как раньше (MUSCLE_NAMES, 4.110). Ключи мышц и групп прежние:
+   это только подписи. MUSCLE_CARD — название в карточке, если оно проще термина; MUSCLE_WHERE — пояснение (нет — название
+   понятно и так: «Бицепс», «Икры») */
+const MUSCLE_CARD = {abs:'Пресс', midback:'Ромбовидные'};
+const MUSCLE_WHERE = {delt_f:'передняя часть плеча', delt_s:'боковая часть плеча', delt_r:'задняя часть плеча',
+  obliques:'по бокам живота', traps:'от шеи к плечам и лопаткам', midback:'между лопатками', lats:'по бокам спины, ниже лопаток',
+  lowback:'вдоль позвоночника', quads:'передняя поверхность бедра', adductors:'внутренняя поверхность бедра',
+  hipflex:'спереди, где бедро соединяется с тазом', serratus:'на рёбрах под подмышкой', cuff:'мышцы, которые держат плечо в суставе'};
+/* «Молот» (решение владельца по ревью 4.110, вопрос 6): в «Работающих мышцах» — «Бицепс и плечевая», без новой группы мышц.
+   В нейтральном хвате локоть сгибают плечевая и плечелучевая, двуглавая работает слабее (ЭМГ — Kleiber и др., 2015; Boland
+   и др., 2008 — доли в REGION_FACTORS, 09d-catalog-muscles.js). Подпись — только у этого упражнения; ключ мышцы — biceps */
+const MUSCLE_LABEL_EX = {hammer:{biceps:'Бицепс и плечевая'}};
+/* название мышцы у упражнения: в разборе (термин) и в карточке плана (card — простые слова) */
+function muscleLabel(m, ex, card) {
+  const own = ex && MUSCLE_LABEL_EX[ex.id] && MUSCLE_LABEL_EX[ex.id][m];
+  return own || (card && MUSCLE_CARD[m]) || MUSCLE_NAMES[m];
+}
+/* подпись в карточке плана: seen — мышцы, уже названные в этом плане выше (пояснение — только в первый раз) */
+function muscleCardHtml(m, ex, seen, low) {
+  const name = muscleLabel(m, ex, true), first = seen && !seen.has(m);
+  if (seen) seen.add(m);
+  const n = low ? name.charAt(0).toLowerCase() + name.slice(1) : name;
+  return first && MUSCLE_WHERE[m] ? `${n}<span class="mus-w"> — ${MUSCLE_WHERE[m]}</span>` : n;
+}
 const MUSCLE_PLURAL = new Set(['chest', 'forearms', 'obliques', 'traps', 'midback', 'lats', 'lowback', 'glutes', 'calves', 'adductors', 'hipflex']);
 
 function mirrorShape(kind, d) {
@@ -108,7 +134,14 @@ function shapeSvg(kind, d, attrs) {
   if (kind === 'e') return `<ellipse cx="${d[0]}" cy="${d[1]}" rx="${d[2]}" ry="${d[3]}" ${a}/>`;
 }
 /* level: {muscle: 0..1}. delt_s подсвечивает переднюю и заднюю дельту частично */
+/* Подписи внутри рисунков SVG (карта мышц, график активности, динамика) заданы в единицах рисунка и сами со шрифтом не растут
+   (Галина 13). fontK — во сколько раз шрифт страницы крупнее обычного (1–2; настройка шрифта браузера или телефона);
+   рисунок оставляет подписям столько же раз больше места. svgFs — размер подписи, если шрифт крупнее обычного. */
+function fontK() { try { const v = parseFloat(getComputedStyle(document.documentElement).fontSize) / 16; return v > 1.05 ? Math.min(2, Math.round(v * 20) / 20) : 1; } catch (e) { return 1; } }
+const svgFs = (px, k) => k > 1 ? ` style="font-size:${+(px * k).toFixed(1)}px"` : '';
+
 function muscleMapSvg(level, opts = {}) {
+  const K = fontK(); /* подписи «спереди / сзади» растут вместе со шрифтом (Галина 13) */
   const lv = m => {
     if (m === 'delt_f') return Math.max(level.delt_f || 0, (level.delt_s || 0) * 0.8);
     if (m === 'delt_r') return Math.max(level.delt_r || 0, (level.delt_s || 0) * 0.8);
@@ -124,10 +157,10 @@ function muscleMapSvg(level, opts = {}) {
         if (v > 0) s += shapeSvg(kind, dd, {class:'mm-h', 'fill-opacity':(0.18 + 0.82 * v).toFixed(2)});
       }
     }
-    if (opts.labels) s += `<text x="50" y="216" class="mm-l">${label}</text>`;
+    if (opts.labels) s += `<text x="50" y="${207 + 9 * K}" class="mm-l"${svgFs(10, K)}>${label}</text>`;
     return s + '</g>';
   };
-  const H = opts.labels ? 222 : 207;
+  const H = opts.labels ? 207 + 15 * K : 207;
   return `<svg viewBox="0 0 206 ${H}" class="mmap" role="img" aria-label="${opts.aria || 'Карта мышц'}">${view(MAP_FRONT, 0, 'спереди')}${view(MAP_BACK, 106, 'сзади')}</svg>`;
 }
 
@@ -286,7 +319,19 @@ function rescueDownload(name) {
   setTimeout(() => { URL.revokeObjectURL(a.href); a.remove(); }, 1500);
 }
 /* экран спасения: без функций приложения (они могли не загрузиться) */
+/* Заставка загрузки (Артём 7, Кира 8, Виктор 11): пока код приложения грузится и запускается, вместо полупустого каркаса с
+   кнопками, которые не работают, — заставка «Загружаем приложение…» (разметка и короткий сценарий — в начале src/body.html:
+   через 8 с — «Сеть медленная…», код так и не пришёл — «Приложение не загрузилось» и «Обновить страницу»). Каркас под ней
+   недоступен ни пальцу, ни клавиатуре, ни диктору (inert). Запуск закончен (99-boot.js) или показан экран спасения — заставка
+   убирается. */
+function bootSplashOff() {
+  try {
+    const s = document.getElementById('boot-splash'); if (s) s.remove();
+    const w = document.querySelector('.wrap'); if (w) w.removeAttribute('inert');
+  } catch (e) {}
+}
 function rescueScreen(msg) {
+  bootSplashOff();
   try {
     const box = document.createElement('section');
     box.className = 'rescue'; box.setAttribute('role', 'alert');
@@ -11705,9 +11750,9 @@ function progressionHint(it) {
   const step = (id, map) => { let x = map[id]; while (x && typeof fitsBody === 'function' && EXI[x] && !fitsBody(EXI[x])) x = map[x]; return x; };
   const nextId = step(ex.id, PROG_NEXT), prevId = step(ex.id, PROG_PREV);
   const lowTwice = past.length >= 2 && past.slice(-2).every(s => { const sets = s.s.filter(Boolean); return sets.length && sets.some(x => x[1] < lo); });
-  if (topTwice && nextId && EXI[nextId]) return `<p class="prog prog-up"><b>↑</b><span>Две тренировки подряд на верхней границе. Следующая ступень: <button type="button" class="lk" data-prog="${nextId}">${esc(EXI[nextId].name)}</button>.</span></p>`;
-  if (lowTwice && prevId && EXI[prevId]) return `<p class="prog prog-down"><b>↓</b><span>Дважды не дотянули до ${lo} повторов. Ступень легче: <button type="button" class="lk" data-prog="${prevId}">${esc(EXI[prevId].name)}</button>.</span></p>`;
-  if (nextId || prevId) return `<p class="prog"><span>Ступени: ${prevId ? `<button type="button" class="lk" data-prog="${prevId}">легче</button>` : ''}${prevId && nextId ? ' · ' : ''}${nextId ? `<button type="button" class="lk" data-prog="${nextId}">тяжелее</button>` : ''}</span></p>`;
+  if (topTwice && nextId && EXI[nextId]) return `<p class="prog prog-up"><b>↑</b><span>Две тренировки подряд на верхней границе. Вариант сложнее: <button type="button" class="lk" data-prog="${nextId}">${esc(EXI[nextId].name)}</button>.</span></p>`;
+  if (lowTwice && prevId && EXI[prevId]) return `<p class="prog prog-down"><b>↓</b><span>Дважды не дотянули до ${lo} повторов. Вариант легче: <button type="button" class="lk" data-prog="${prevId}">${esc(EXI[prevId].name)}</button>.</span></p>`;
+  if (nextId || prevId) return `<p class="prog"><span>Другой вариант: ${prevId ? `<button type="button" class="lk" data-prog="${prevId}">легче</button>` : ''}${prevId && nextId ? ' · ' : ''}${nextId ? `<button type="button" class="lk" data-prog="${nextId}">тяжелее</button>` : ''}</span></p>`;
   return '';
 }
 document.addEventListener('click', e => {
@@ -12039,7 +12084,7 @@ const SETTINGS_LABEL = {goal:'цель', format:'формат', level:'уров�
   seed:'вариант подбора', mode:'что собрать', days:'тренировок в неделю', split:'сплит', week:'неделя цикла', day:'день недели',
   view:'раздел', atlasM:'мышца в атласе', focus:'акцент', fav:'избранное', customs:'свои планы', custom:'открытый свой план',
   gen:'параметры обычных планов', author:'имя автора планов', fold:'свёрнутые блоки', protect:'«Беречь суставы»', cpLast:'последний свой план',
-  lr:'«Л/П отдельно»', units:'единицы веса', dur:'время на тренировку', weekFrom:'начало цикла', groupsV:'мышцы', places:'места', place:'место', placesV:'места', adapt:'«как в другом месте»',
+  lr:'«Левая и правая отдельно»', units:'единицы веса', dur:'время на тренировку', weekFrom:'начало цикла', groupsV:'мышцы', places:'места', place:'место', placesV:'места', adapt:'«как в другом месте»',
   swaps:'замены упражнений', logPick:'тренировка по журналу', health:'«Здоровье»', pain:'упражнения с пометкой «больно»'};
 /* «Бережно» — без статодинамики (решение владельца 18.11.2026 по вопросу 3 ревью 4.109): долгое напряжение без расслабления
    поднимает давление сильнее обычных подходов, а врач этот режим не смотрел. В выборе формата кнопка недоступна, под ней —
@@ -13240,6 +13285,30 @@ const ICON = {
   check:'<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3.5 8.5l3 3 6-7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>'
 };
 
+/* место в списке: до трёх снарядов — названиями («гантели, эспандер-лента, ролик для пресса»), больше — числом. Было
+   «Дом · 3 снаряда» рядом с «Дома с эспандером · 1 снаряд»: чем места отличаются, не видно (Ольга 19) */
+function placeGearText(p) {
+  const n = p.equip.length;
+  if (!n) return 'без снаряжения';
+  if (n <= 3) { const names = EQUIP.filter(e => p.equip.includes(e.id)).map(e => e.name.toLowerCase()); if (names.length === n) return names.join(', '); }
+  return n + ' ' + plural(n, 'снаряд', 'снаряда', 'снарядов');
+}
+/* кнопка карточки начинает (или продолжает) тренировку с этого упражнения — так и подписана: было семь одинаковых
+   «Начать тренировку →», и на идущей тренировке тоже (Ольга 17) */
+function cardStartHtml(it, going = typeof workoutPlanState === 'function' && workoutPlanState().kind === 'continue') {
+  return `${going ? 'Продолжить отсюда' : 'Начать отсюда'}<span class="vh">${going ? ' — продолжить тренировку с упражнения' : ' — начать тренировку с упражнения'}: ${esc(it.name)}</span> <span aria-hidden="true">→</span>`;
+}
+/* после выхода из тренировки карточки не пересобираются — подписи кнопок обновляются на месте */
+function paintCardStarts() {
+  if (typeof plan === 'undefined' || !plan || !plan.items) return;
+  const going = typeof workoutPlanState === 'function' && workoutPlanState().kind === 'continue';
+  for (const b of document.querySelectorAll('.card [data-workout]')) {
+    const it = plan.items.find(x => x.ex.id === b.dataset.workout); if (!it) continue;
+    const html = cardStartHtml(it, going); if (b.innerHTML !== html) b.innerHTML = html;
+  }
+}
+if (typeof document !== 'undefined' && document.addEventListener) document.addEventListener('close', e => { if (e.target && e.target.id === 'workout-view') paintCardStarts(); }, true);
+
 function renderSetup() {
   const seg = (name, dict, cur) => Object.entries(dict).map(([k, v]) =>
     `<button type="button" class="seg-b${k === cur ? ' on' : ''}" data-set="${name}" data-v="${k}" aria-pressed="${k === cur}"><b>${v.name}</b>${v.hint ? `<small>${v.hint}</small>` : ''}</button>`).join('');
@@ -13249,6 +13318,7 @@ function renderSetup() {
   $('.setup').hidden = jv; $('.layout').classList.toggle('solo', jv);
   renderSetupFold();
   $('#f-mode').innerHTML = seg('mode', MODES, S.mode);
+  { const fu = $('#f-units-seg'); if (fu && typeof unitsHtml === 'function') fu.innerHTML = unitsHtml(); }
   $('#f-prog').hidden = !prog;
   $('#f-custom').hidden = !custom;
   if (custom) $('#f-custom-body').innerHTML = customSetupHtml();
@@ -13289,13 +13359,13 @@ function renderSetup() {
   const lpMsg = $('#lp-msg'); if (lpMsg) lpMsg.hidden = true;
   $('#g-chips').innerHTML = GROUPS.map(g => `<button type="button" class="chip${gs.has(g.id) ? ' on' : ''}" data-g="${g.id}" aria-pressed="${gs.has(g.id)}">${ICON.check}<span>${g.name}</span></button>`).join('');
   const cur = placeOf();
-  $('#e-places').innerHTML = S.places.map(p => `<button type="button" class="place${p.id === S.place ? ' on' : ''}" data-place="${p.id}" aria-pressed="${p.id === S.place}"><b>${esc(p.name)}</b><small>${p.equip.length ? p.equip.length + ' ' + plural(p.equip.length, 'снаряд', 'снаряда', 'снарядов') : 'без снаряжения'}</small></button>`).join('')
+  $('#e-places').innerHTML = S.places.map(p => `<button type="button" class="place${p.id === S.place ? ' on' : ''}" data-place="${p.id}" aria-pressed="${p.id === S.place}"><b>${esc(p.name)}</b><small>${placeGearText(p)}</small></button>`).join('')
     + `<button type="button" class="place place-add" data-place-add="1">+ Место</button>`;
   const others = S.places.filter(p => p.id !== S.place);
   $('#e-place-tools').innerHTML = `<label class="place-name">Название<input id="place-name" type="text" maxlength="24" value="${esc(cur.name)}" autocomplete="off"></label>`
     + (S.places.length > 1 ? `<button type="button" class="place-del${placeDel ? ' armed' : ''}" data-place-del="1">${placeDel ? 'Точно удалить?' : 'Удалить место'}</button>` : '')
-    + (others.length ? `<label class="place-adapt">Программа<select id="place-adapt"><option value="">Своя для этого места</option>${others.map(p => `<option value="${p.id}"${S.adapt === p.id ? ' selected' : ''}>Как в «${esc(p.name)}», с заменами</option>`).join('')}</select></label>
-      <p class="f-note">${S.adapt ? `Упражнения подобраны под «${esc(placeOf(S, S.adapt).name)}»; то, чего здесь нет, заменено ближайшим аналогом — по тому же движению и тем же мышцам.` : 'Программа собирается из того, что есть в этом месте.'}</p>` : '')
+    + (others.length ? `<label class="place-adapt">Упражнения для этого места<select id="place-adapt"><option value="">Свои — под это место</option>${others.map(p => `<option value="${p.id}"${S.adapt === p.id ? ' selected' : ''}>Те же, что в «${esc(p.name)}», с заменами</option>`).join('')}</select></label>
+      <p class="f-note">${S.adapt ? `Упражнения подобраны под «${esc(placeOf(S, S.adapt).name)}»; то, чего здесь нет, заменено ближайшим аналогом — по тому же движению и тем же мышцам.` : 'Упражнения подбираются из того, что есть в этом месте. Можно взять те же, что в другом месте: чего здесь нет, заменится похожим.'}</p>` : '')
     /* место своего плана — его собственное (4.111): выбранное здесь запоминается у открытого плана */
     + (custom ? `<p class="f-note">${'Свой план открывается в своём месте: выбранное здесь запоминается у этого плана.'}</p>` : '')
     + (typeof placeWeightsHtml === 'function' ? placeWeightsHtml(cur) : '');
@@ -13431,15 +13501,22 @@ document.addEventListener('click', e => {
   b.setAttribute('aria-expanded', String(open)); if (box) box.hidden = !open;
   if (open) PEAK_OPEN.add(b.dataset.peak); else PEAK_OPEN.delete(b.dataset.peak);
 });
+/* мышцы, уже названные в карточках плана выше: сбрасывается перед отрисовкой плана (renderPlanView) */
+let cardSeen = new Set();
 function cardHtml(it, idx) {
   const ex = it.ex, r = it.rx;
   const lvl = {};
   for (const m of ex.pri) lvl[m] = 1;
   for (const m of ex.sec) if (!lvl[m]) lvl[m] = 0.38;
-  const mus = ex.pri.map(m => `<li class="p">${MUSCLE_NAMES[m]}</li>`).join('') + ex.sec.map(m => `<li class="s">${MUSCLE_NAMES[m]}</li>`).join('');
+  /* названия мышц — простыми словами, с пояснением при первом упоминании в плане (cardSeen; 00-engine.js: muscleCardHtml).
+     Строка свёрнутой карточки и список раскрытой — одно упоминание: пояснения в них одинаковые */
+  const seenRow = new Set(cardSeen), seenList = new Set(cardSeen);
+  const mus = ex.pri.map(m => `<li class="p">${muscleCardHtml(m, ex, seenList)}</li>`).join('') + ex.sec.map(m => `<li class="s">${muscleCardHtml(m, ex, seenList)}</li>`).join('');
+  const musHead = musFoldHead(ex, seenRow);
+  for (const m of seenList) cardSeen.add(m);
   /* темп — словами (запись числами — в подсказке, опытным), за ним нагрузка — как и раньше, в одной строке */
   const meta = [];
-  if (r.tempo) meta.push(`<span title="${esc(r.tempo)}: опускание – пауза – подъём – пауза, секунды; X — быстро">темп: ${tempoWords(r.tempo)}</span>`);
+  if (r.tempo) meta.push(`<span title="${esc(r.tempo)}: опускание – пауза – подъём – пауза, секунды; X — быстро">темп: ${tempoWords(r.tempo).replace(/(\d) /g, '$1\u00a0')}</span>`); /* число и «с» не разрываются (Артём 10) */
   if (r.load) meta.push(`<span>${r.load}</span>`);
   /* «изометрия» в фитнесе — статика (замечание тестера): подпись — объёмный вид */
   const view = '3D-вид · 5 ракурсов';
@@ -13452,14 +13529,14 @@ function cardHtml(it, idx) {
       <p class="c-eq">${esc(it.eqLine)}</p>
       ${it.sub ? `<p class="c-sub"><b>Вместо: ${esc(exName(it.sub.from, effEquip(programEquip() || S.equip)))}</b>${it.sub.note ? ` · ${esc(it.sub.note)}` : ''}</p>` : ''}
       ${rxHtml(it)}
-      ${meta.length ? `<p class="c-meta">${meta.join('<i>·</i>')}</p>` : ''}
+      ${meta.length ? `<p class="c-meta">${meta.join('<i>\u00a0·</i> ')}</p>` : ''}
       ${r.coachNote ? `<p class="c-note"><b>Заметка:</b> ${esc(r.coachNote)}</p>` : ''}
     </div>
   </div>
   ${variantRowHtml(it)}
   <div class="c-mus">
-    ${musFoldHead(ex)}
-    <div class="c-map">${muscleMapSvg(lvl, {aria:'Работающие мышцы: ' + ex.pri.map(m => MUSCLE_NAMES[m]).join(', ')})}</div>
+    ${musHead}
+    <div class="c-map">${muscleMapSvg(lvl, {aria:'Работающие мышцы: ' + ex.pri.map(m => muscleLabel(m, ex, true)).join(', ')})}</div>
     <ul class="mus">${mus}</ul>
   </div>
   ${jointsLine(ex, idx)}
@@ -13468,7 +13545,7 @@ function cardHtml(it, idx) {
   <div class="c-warm">${warmupHtml(it, workWeightOf(it, null))}</div>
   <div class="c-prog">${progressionHint(it)}</div>
   <div class="c-act">
-    <button type="button" class="btn-ghost" data-workout="${ex.id}" aria-haspopup="dialog" aria-controls="workout-view">Начать тренировку<span class="vh">: ${esc(it.name)}</span> <span aria-hidden="true">→</span></button>
+    <button type="button" class="btn-ghost" data-workout="${ex.id}" aria-haspopup="dialog" aria-controls="workout-view">${cardStartHtml(it)}</button>
     <span class="c-act-r">${S.mode === 'custom' ? '' : moveButtons(it)}<button type="button" class="btn-ghost" data-swap="${it.slot}" aria-expanded="false" aria-controls="sw-pick-${it.slot}">${ICON.swap}<span>Заменить</span><span class="vh">: ${esc(it.name)}</span></button></span>
     <div class="cp-pick sw-pick" id="sw-pick-${it.slot}" role="group" aria-labelledby="sw-pick-${it.slot}-h" hidden></div>
     ${swapDoneHtml(it)}
@@ -13516,6 +13593,7 @@ function blocksHtml(p) {
     ? `<p class="phase phase-static"><b>Статодинамика.</b> Лёгкий вес. Медленно: 3 с вниз и 3 с вверх, без пауз; не выпрямляйтесь до конца и не расслабляйтесь внизу. К концу подхода (30–40 с) мышца слегка горит, а не сильно; все повторы даются спокойно, без боли. Три подхода с отдыхом 30 с — одна серия, в бережном режиме она одна.</p>`
     : `<p class="phase phase-static"><b>Статодинамика.</b> Вес — около половины от максимума на 1 повтор. Медленно: 3 с вниз и 3 с вверх, без пауз; не выпрямляйтесь до конца и не расслабляйтесь внизу — мышца всё время напряжена. К концу подхода (30–40 с) мышца сильно горит, но повторы ещё получаются. Три подхода с отдыхом 30 с — одна серия.</p>`;
   let idx = 0;
+  cardSeen = new Set();
   /* «Убрано: … Вернуть» — на месте убранной карточки своего плана (12c-swap.js) */
   let gone = rmGoneHtml();
   const card = it => { let pre = ''; if (gone && it.slot >= planUndo.slot) { pre = gone; gone = ''; } return pre + cardHtml(it, idx++); };
@@ -13565,19 +13643,26 @@ function warnHtml(p) {
   if (S.goal === 'strength' && S.level === 'beg' && p.items.some(it => begStrength(schemeOf(it.ex)))) warn.push('Новичку в «Силе» — 6–8 повторов с запасом: к тяжёлым 3–5 переходите, когда техника устоится, — выберите уровень «Уже тренируюсь».');
   return warn.length ? `<div class="warn">${warn.map(w => `<p>${esc(w)}</p>`).join('')}</div>` : '';
 }
-function headButtons(copyLabel) {
-  /* начатая и не законченная тренировка: «Продолжить тренировку →»; прошлого дня — вопрос над кнопками (14-workout-mode.js) */
+function headButtons() {
+  /* начатая и не законченная тренировка: «Продолжить тренировку →»; прошлого дня — вопрос над кнопками (14-workout-mode.js).
+     Под «Начать тренировку» — только «Другой вариант»; «Скопировать», «Сохранить», «Выгрузить», «В календарь» — под карточками
+     (tailButtons): на телефоне три строки кнопок отодвигали первую карточку с фигурой за первый экран (4.112, вопрос 3, Кира 5) */
   const w = workoutPlanState();
   return `${workoutAskHtml(w)}<div class="p-btns">
         <button type="button" class="btn" id="start-workout" aria-haspopup="dialog" aria-controls="workout-view">${workoutStartHtml(w)}</button>
         ${S.mode === 'custom' ? '' : `<button type="button" class="btn btn-2" id="reroll">${ICON.dice}<span>Другой вариант</span></button>`}
+      </div>
+      ${w.own ? `<p class="p-hint wk-own">${'Тренировка идёт по списку, с которого её начали.'}</p>` : ''}
+      ${typeof rerollHtml === 'function' ? rerollHtml() : ''}`;
+}
+/* что сделать с планом целиком — под карточками */
+function tailButtons(copyLabel) {
+  return `<div class="p-btns p-tail">
         <button type="button" class="btn btn-2" id="copy">${ICON.copy}<span>${copyLabel}</span></button>
         ${S.mode === 'program' ? `<button type="button" class="btn btn-2" id="ics-open">${ICON.cal}<span>В календарь</span></button>` : ''}
         ${S.mode === 'custom' ? `<button type="button" class="btn btn-2" id="plan-export">${ICON.share}<span>Выгрузить</span></button>`
           : `<button type="button" class="btn btn-2" id="save-plan">${ICON.save}<span>${S.mode === 'program' ? 'Сохранить неделю' : 'Сохранить как свой план'}</span></button>`}
       </div>
-      ${w.own ? `<p class="p-hint wk-own">${'Тренировка идёт по списку, с которого её начали.'}</p>` : ''}
-      ${typeof rerollHtml === 'function' ? rerollHtml() : ''}
       <p class="p-hint" id="copy-msg" role="status"></p>
       <p class="p-hint" id="save-msg" role="status"></p>`;
 }
@@ -13656,7 +13741,7 @@ function renderPlanView() {
         <div><dt>${setsWord}</dt><dd>${plan.totalSets}</dd></div>
         <div><dt>${plural(plan.items.length, 'упражнение', 'упражнения', 'упражнений')}</dt><dd>${plan.items.length}</dd></div>
       </dl>
-      ${headButtons('Скопировать план')}
+      ${headButtons()}
     </div>
     <figure class="p-load${lf ? ' folded' : ''}">
       <div class="p-map">${muscleMapSvg(norm(plan.load), {labels:true, aria:'Карта нагрузки тренировки'})}</div>
@@ -13670,8 +13755,8 @@ function renderPlanView() {
   if (plan.custom) {
     const hints = customHints(plan), lost = lostMessages(plan.lost, plan.E);
     html += restTodayHtml(plan) + autoregHtml() + healthHtml() + gentleHtml() + (lost.length ? `<div class="warn">${lost.map(w => `<p>${esc(w)}</p>`).join('')}</div>` : '')
-      + (hints.length ? `<div class="cp-hints">${hints.map(w => `<p>${esc(w)}</p>`).join('')}</div>` : '') + blocksHtml(plan) + customAddHtml() + LEGEND;
-  } else html += logPickHtml(plan) + restTodayHtml(plan) + autoregHtml() + healthHtml() + gentleHtml() + warnHtml(plan) + blocksHtml(plan) + LEGEND;
+      + (hints.length ? `<div class="cp-hints">${hints.map(w => `<p>${esc(w)}</p>`).join('')}</div>` : '') + blocksHtml(plan) + customAddHtml() + tailButtons('Скопировать план') + LEGEND;
+  } else html += logPickHtml(plan) + restTodayHtml(plan) + autoregHtml() + healthHtml() + gentleHtml() + warnHtml(plan) + blocksHtml(plan) + tailButtons('Скопировать план') + LEGEND;
   root.innerHTML = html;
   mountFigures();
 }
@@ -13716,7 +13801,7 @@ function renderProgram() {
         <div><dt>${plural(prog.sets, 'подход', 'подхода', 'подходов')} в неделю</dt><dd>${prog.sets}</dd></div>
         <div><dt>неделя цикла</dt><dd>${S.week}<small>из 4</small></dd></div>
       </dl>
-      ${headButtons('Скопировать неделю')}
+      ${headButtons()}
     </div>
     <figure class="p-load${lf ? ' folded' : ''}">
       <div class="p-map">${muscleMapSvg(norm(prog.load), {labels:true, aria:'Карта недельной нагрузки'})}</div>
@@ -13743,7 +13828,7 @@ function renderProgram() {
   if (!plan.items) html += bodyDay ? `<div class="empty"><h2>Для этого дня нет упражнений</h2><p>${esc('Для этих мышц ({g}) {what} подходящих упражнений с этим оборудованием нет: все дают нагрузку, которую вы бережёте.'.replace('{g}', bodyDay.map(g => GN[g].toLowerCase()).join(', ')).replace('{what}', 'в бережном режиме'))}</p><p>Выберите другой сплит или место; отметки можно поменять в параметрах.</p></div>${gentleHtml()}`
     : `<div class="empty"><h2>Для этого дня нет упражнений</h2><p>С выбранным оборудованием нечем нагрузить эти мышцы. Добавьте оборудование или выберите другой сплит.</p></div>`;
   else html += restTodayHtml(plan) + autoregHtml() + healthHtml() + gentleHtml() + warnHtml(plan) + blocksHtml(plan);
-  html += LEGEND;
+  html += tailButtons('Скопировать неделю') + LEGEND;
   $('#plan').innerHTML = html;
   if (plan.items) mountFigures();
 }
@@ -14273,6 +14358,14 @@ function customAddTo(id, planId) {
   saveSettings();
   return {plan:c, added:!has && !full, created, has, full};
 }
+/* «Открыть план →» под сообщением; у только что созданного плана — «Открыть и назвать →»: план открывается с курсором
+   в поле имени, имя выделено — как у «+ План» в параметрах (Дмитрий 16: из атласа создавался «План 2», а переименовать
+   можно было только найдя поле в параметрах) */
+function cpGoLabel(btn, created, short) {
+  if (!btn) return;
+  if (created) btn.dataset.cpName = '1'; else delete btn.dataset.cpName;
+  btn.textContent = short ? (created ? 'Открыть и назвать' : 'Открыть план') : created ? 'Открыть и назвать →' : 'Открыть план →';
+}
 function customAddMsg(r) {
   const name = r.plan.name;
   return r.created ? `Создан план «${name}», упражнение добавлено.` : r.added ? `Добавлено в план: ${name}.`
@@ -14461,7 +14554,7 @@ function customToolsHtml(it) {
         ${it.ex.kind ? '' : `<label class="cp-f"><span>Темп</span><input type="text" maxlength="11" data-cp-tempo="${slot}" value="${esc(o.tempo || '')}" placeholder="${esc(r.tempo || '3-0-1-0')}" aria-label="Темп: опускание, пауза, подъём, пауза — например 3-0-1-0" autocomplete="off"></label>`}
         ${o.sets || o.reps || o.rest !== undefined || o.tempo ? `<button type="button" class="btn-ghost cp-reset" data-cp-reset="${slot}">Как по цели</button>` : ''}
       </div>`;
-  const lt = loadType(it.ex), u = wUnit(), kgLabel = lt === 'assist' ? `Противовес, ${u}` : lt === 'extra' ? `Доп. вес, ${u}` : `Вес, ${u}`;
+  const lt = loadType(it.ex), u = wUnit(), kgLabel = lt === 'assist' ? `Противовес, ${u}` : lt === 'extra' ? `Дополнительный вес, ${u}` : `Вес, ${u}`;
   const extra = `<div class="cp-fields">
       ${lt === 'none' ? '' : cpKgFieldsHtml(it, kgLabel)}
       <label class="cp-f cp-note"><span>Заметка к упражнению</span><textarea rows="2" maxlength="${ITEM_NOTE}" data-cp-note="${slot}" placeholder="Например: пауза 1 с на груди">${esc(o.note || '')}</textarea></label>
@@ -14608,7 +14701,7 @@ document.addEventListener('click', e => {
     const box = t.closest('.cp-pick'), btn = box.parentElement.querySelector('[data-cp-add]'), r = customAddTo(btn.dataset.cpAdd, t.dataset.cpTo || null);
     cpAfterAdd(r); cpPickToggle(btn, false); btn.focus();
     const m = box.parentElement.querySelector('.cp-msg');
-    if (r && m) { m.hidden = false; m.querySelector('span').textContent = customAddMsg(r); m.querySelector('[data-cp-go]').dataset.cpGo = r.plan.id; }
+    if (r && m) { m.hidden = false; m.querySelector('span').textContent = customAddMsg(r); const go = m.querySelector('[data-cp-go]'); go.dataset.cpGo = r.plan.id; cpGoLabel(go, r.created); }
     return;
   }
   if (t.id === 'save-plan') {
@@ -14616,7 +14709,14 @@ document.addEventListener('click', e => {
     if (msg && added.length) msg.innerHTML = `Сохранено в свои планы: ${esc(added.map(c => c.name).join(', '))}. <button type="button" class="link" data-cp-go="${added[0].id}">Открыть →</button>`;
     return;
   }
-  if (t.dataset.cpGo !== undefined) { if (document.querySelector('#motion-view')?.open) closeMotion(); openCustom(S.customs.some(c => c.id === t.dataset.cpGo) ? t.dataset.cpGo : null); regen(); window.scrollTo({top:0}); return; }
+  if (t.dataset.cpGo !== undefined) {
+    const name = t.dataset.cpName === '1' && S.customs.some(c => c.id === t.dataset.cpGo);
+    if (document.querySelector('#motion-view')?.open) closeMotion(); openCustom(S.customs.some(c => c.id === t.dataset.cpGo) ? t.dataset.cpGo : null);
+    if (name && S.fold) S.fold.setup = false; /* поле имени — в параметрах: на телефоне они свёрнуты */
+    regen(); window.scrollTo({top:0});
+    if (name) { const inp = $('#cp-name'); if (inp) { inp.scrollIntoView({block:'center'}); inp.focus(); inp.select(); } }
+    return;
+  }
   if (t.dataset.cpOpen) { openMotionItem(previewItem(t.dataset.cpOpen)); return; }
   if (t.dataset.cpMore) { for (const li of document.querySelectorAll(`[data-cp-g="${t.dataset.cpMore}"]`)) li.hidden = false; t.closest('li').remove(); return; }
   if (t.dataset.cpTab) { cpTab = t.dataset.cpTab; cpQ = ''; const q = $('#cp-q'); if (q) q.value = ''; for (const b of document.querySelectorAll('[data-cp-tab]')) { const on = b === t; b.classList.toggle('on', on); b.setAttribute('aria-selected', String(on)); } $('#cp-list').innerHTML = customListHtml(); return; }
@@ -14778,7 +14878,7 @@ function planFileName(plans) {
 function readPlanFile(text) {
   if (typeof text !== 'string' || !text.trim()) return {error:'Файл пустой.'};
   if (text.length > PLAN_FILE_MAX) return {error:'Файл слишком большой для плана.'};
-  let o; try { o = JSON.parse(text); } catch (e) { return {error:'Это не файл плана: текст не читается как JSON. Возможно, файл обрезан при пересылке.'}; }
+  let o; try { o = JSON.parse(text); } catch (e) { return {error:'Это не файл плана: его не удалось прочитать. Возможно, файл обрезан при пересылке.'}; }
   if (!o || typeof o !== 'object' || Array.isArray(o)) return {error:'Это не файл плана.'};
   if (o.v && (o.log || o.settings || o.body)) return {error:'Это резервная копия приложения, а не план. Её восстанавливают в разделе «Журнал».'};
   const raw = Array.isArray(o.plans) ? o.plans : Array.isArray(o.items) ? [o] : null;
@@ -14966,7 +15066,7 @@ function planInHtml() {
     <h2>${link ? 'План по ссылке' : 'Загрузить план'}</h2>
     <p class="gear-hint">${link ? 'Вам прислали план. Он добавится к вашим планам: ваши планы и журнал не изменятся. Ваши отметки «Что беречь» действуют и в нём.'
       : 'Выберите файл .json, который выгрузили из Lazy Gym Planner, — свой или от тренера, или вставьте текст плана со ссылкой. Планы добавятся к вашим, ничего не перезапишется.'}</p>
-    ${link ? '' : `<label class="btn btn-2 pi-file" for="pi-file">${'Выбрать файл'}</label><input type="file" id="pi-file" accept=".json,application/json,text/plain" hidden>
+    ${link ? '' : `<button type="button" class="btn btn-2 pi-file" data-file-pick="pi-file">${'Выбрать файл'}</button><input type="file" id="pi-file" accept=".json,application/json,text/plain" hidden tabindex="-1" aria-hidden="true">
     <details class="pi-paste"${r && r.pasted && r.error ? ' open' : ''}><summary>${'или вставить текст плана'}</summary><textarea id="pi-text" rows="4" placeholder="${esc('Текст со ссылкой на план или текст файла .json')}"></textarea><button type="button" class="btn btn-2" id="pi-read">${'Прочитать'}</button></details>`}
     ${body}
     <p class="p-hint" id="pi-msg" role="status"></p>
@@ -15058,8 +15158,11 @@ const upFirst = s => s ? s.charAt(0).toUpperCase() + s.slice(1) : s;
 const chev = '<i class="cg-chev" aria-hidden="true"></i>';
 
 /* ---------- карточка: мышцы и запись подходов ---------- */
-function musFoldHead(ex) {
-  const open = cardOpen('mus', ex.id), list = ms => ms.map((m, i) => i ? lowFirst(MUSCLE_NAMES[m]) : MUSCLE_NAMES[m]).join(', ');
+/* seen — мышцы, уже названные в плане выше: пояснение «где это» — при первом упоминании (muscleCardHtml, 00-engine.js) */
+function musFoldHead(ex, seen) {
+  const open = cardOpen('mus', ex.id), 
+    /* каждая мышца — своим элементом: видимая надпись кнопки по частям входит в её имя для диктора (WCAG 2.5.3, a11y-check) */
+    list = ms => ms.map((m, i) => `<span class="mus-i">${muscleCardHtml(m, ex, seen, i > 0)}</span>`).join(', ');
   return `<button type="button" class="cg-h" data-cfold="mus" aria-expanded="${open}"><span class="cg-x"><span class="cg-t">Мышцы</span><span class="cg-s cg-mus"><span class="cg-p">${list(ex.pri)}</span>${ex.sec.length ? `<span class="cg-sec">${list(ex.sec)}</span>` : ''}</span></span>${chev}</button>`;
 }
 function logFoldBar(it, n, done) {
@@ -15916,11 +16019,40 @@ function firstRunApply(A = {}, s = S) {
   return s;
 }
 
-const FR = {A:{}, i:0, done:false, closing:false};
-/* шаги для текущих ответов: в зале вопроса об инвентаре нет (место не выбрано — считаем с ним: «Шаг 1 из 4») */
+const FR = {A:{}, i:0, done:false, closing:false, again:false, at:0};
+/* шаги для текущих ответов: в зале вопроса об инвентаре нет */
 function frSteps() {
   const p = FR.A.place ? placeOf(S, FR.A.place) : null;
   return ['place'].concat(!p || !placeHasAll(p) ? ['equip'] : [], ['goal', 'more']);
+}
+/* Счётчик шагов (Игорь 21, Руслан 18, Артём 8, Mike 10, Кира 10): вопросов всегда четыре, у каждого свой номер. В зале вопрос
+   об инвентаре не нужен — после «Шаг 1 из 4» идёт «Шаг 3 из 4», и на нём сказано, почему. Раньше число шагов менялось на
+   ходу: «1 из 4 → 2 из 3». */
+const FR_ORDER = ['place', 'equip', 'goal', 'more'];
+/* Двойное касание (Артём 1, 2): второе касание попадало уже в следующий вопрос — выбирало цель или снимало галочку
+   инвентаря. Нажатия в первые FR_GUARD мс после смены вопроса не считаются (у Артёма — до 250 мс между касаниями). */
+const FR_GUARD = 500;
+/* Незаконченные вопросы (Артём 11): ответы и шаг — в хранилище; закрыли вкладку — продолжение с того же вопроса.
+   Пройдено или пропущено — запись стирается. */
+const FR_DRAFT = 'podhod.firstRun.v1';
+function frDraftSave() { if (FR.again) return; try { localStorage.setItem(FR_DRAFT, JSON.stringify({A:FR.A, step:frSteps()[FR.i]})); } catch (e) {} }
+function frDraftClear() { try { localStorage.removeItem(FR_DRAFT); } catch (e) {} }
+function frDraftLoad() {
+  let o = null; try { o = JSON.parse(localStorage.getItem(FR_DRAFT) || 'null'); } catch (e) {}
+  if (!o || typeof o !== 'object' || !o.A || typeof o.A !== 'object') return false;
+  const A = {}, a = o.A, list = v => Array.isArray(v) ? v.filter(x => typeof x === 'string') : null;
+  if (S.places.some(p => p.id === a.place)) A.place = a.place;
+  if (A.place && a.equipFor === A.place && list(a.equip)) { A.equipFor = A.place; A.equip = list(a.equip).filter(id => EQN[id]); }
+  if (GOALS[a.goal]) A.goal = a.goal;
+  if (DURATIONS[a.dur]) A.dur = a.dur;
+  if (LEVELS[a.level]) A.level = a.level;
+  if (list(a.protect)) A.protect = list(a.protect).filter(id => PROTECT_BY[id]);
+  if (list(a.health)) A.health = list(a.health).filter(id => HEALTH_BY[id]);
+  FR.A = A;
+  /* шаг — не дальше первого вопроса без ответа */
+  const steps = frSteps(), want = steps.indexOf(o.step), open = !A.place ? 0 : !A.goal ? steps.indexOf('goal') : steps.length - 1;
+  FR.i = Math.max(0, Math.min(want < 0 ? 0 : want, open));
+  return true;
 }
 const frPressed = on => ` aria-pressed="${on}"${on ? ' class="on"' : ''}`;
 function frOpt(attr, on, title, about) {
@@ -15944,11 +16076,13 @@ const FR_STEP = {
     body:() => `<div class="fr-opts">${Object.entries(GOALS).map(([k, g]) => frOpt(`data-fr-goal="${k}"`, FR.A.goal === k, g.name, g.about)).join('')}</div>`},
   more:{title:'Время и опыт', lead:'', next:'Показать план',
     body:() => {
-      const on = new Set(FR.A.protect || []);
+      /* время и опыт: ничего не выбрано — отмечено то, с чем соберётся план (Артём 9: план собирался на «45 мин · Новичок»,
+         а на экране ничего не было выделено) */
+      const on = new Set(FR.A.protect || []), dur = FR.A.dur || FIRST_DEFAULTS.dur, level = FR.A.level || FIRST_DEFAULTS.level;
       return frQ('fr-q-dur', 'Сколько времени на одну тренировку?',
-          `<div class="fr-seg">${Object.entries(DURATIONS).map(([k, d]) => `<button type="button" data-fr-dur="${k}"${frPressed(FR.A.dur === k)}><b>${d.name}</b><small>${d.hint}</small></button>`).join('')}</div>`,
+          `<div class="fr-seg">${Object.entries(DURATIONS).map(([k, d]) => `<button type="button" data-fr-dur="${k}"${frPressed(dur === k)}><b>${d.name}</b><small>${d.hint}</small></button>`).join('')}</div>`,
           'Без разминки и заминки — на них ещё 10–15 минут.')
-        + frQ('fr-q-lvl', 'Ваш опыт', `<div class="fr-opts">${Object.entries(LEVELS).map(([k, l]) => frOpt(`data-fr-level="${k}"`, FR.A.level === k, l.ask, l.about)).join('')}</div>`)
+        + frQ('fr-q-lvl', 'Ваш опыт', `<div class="fr-opts">${Object.entries(LEVELS).map(([k, l]) => frOpt(`data-fr-level="${k}"`, level === k, l.ask, l.about)).join('')}</div>`)
         + frQ('fr-q-joint', `${'Что беречь?'} <em>${'Необязательно'}</em>`,
           `<div class="chips">${FIRST_PROTECT.map(id => PROTECT_BY[id]).map(p => `<button type="button" class="chip${on.has(p.id) ? ' on' : ''}" data-fr-protect="${p.id}" aria-pressed="${on.has(p.id)}">${ICON.check}<span>${p.name}</span></button>`).join('')}</div>`,
           'Отметьте, что болит или восстанавливается: в план не попадут упражнения с сильной нагрузкой на эти места.')
@@ -15963,13 +16097,17 @@ const frQ = (id, title, inner, note = '') => `<section class="fr-q" role="group"
 function frRender(focus = true) {
   const steps = frSteps(); FR.i = Math.min(FR.i, steps.length - 1);
   const id = steps[FR.i], st = FR_STEP[id], last = FR.i === steps.length - 1;
-  $('#fr-count').textContent = `Шаг ${FR.i + 1} из ${steps.length}`;
+  $('#fr-count').textContent = `Шаг ${FR_ORDER.indexOf(id) + 1} из ${FR_ORDER.length}`;
   $('#fr-title').textContent = st.title;
   /* прислали ссылку на план — в первом шаге сказано, что он откроется после вопросов (11m-plan-link.js) */
-  const note = FR.i === 0 && typeof planLinkNote === 'function' ? planLinkNote() : '';
-  $('#fr-lead').textContent = st.lead + (note ? ' ' + note : ''); $('#fr-lead').hidden = !st.lead && !note;
+  const note = FR.i === 0 && typeof planLinkNote === 'function' && !FR.again ? planLinkNote() : '';
+  /* «Пройти вопросы заново»: что изменят ответы; зал — почему нет вопроса об инвентаре */
+  const lead = FR.again && FR.i === 0 ? 'Ответы заменят место, цель, время, опыт и мышцы в параметрах. Журнал и свои планы останутся.'
+    : id === 'goal' && !steps.includes('equip') ? 'В зале есть всё оборудование — вопрос об инвентаре пропущен. Цель можно сменить в любой момент.' : st.lead;
+  $('#fr-lead').textContent = lead + (note ? ' ' + note : ''); $('#fr-lead').hidden = !lead && !note;
   $('#fr-body').innerHTML = st.body();
-  $('#fr-back').hidden = FR.i === 0; $('#fr-skip').hidden = last;
+  $('#fr-back').hidden = FR.i === 0; $('#fr-skip').hidden = last && !FR.again; $('#fr-skip').textContent = FR.again ? 'Отмена' : 'Пропустить';
+  FR.at = Date.now(); frDraftSave();
   $('#fr-next').hidden = !st.next; $('#fr-next').textContent = st.next || '';
   $('#first-run').dataset.step = id;
   /* диктор: заголовок шага (с «Шаг N из M» в описании) — сразу после смены шага; окно прокручено к началу */
@@ -15990,11 +16128,16 @@ function frBack(fromHistory) {
 }
 function frFinish(skip) {
   if (FR.done) return;
-  FR.done = true;
+  /* «Пройти вопросы заново» → «Отмена» (и Esc с первого вопроса): ничего не меняется */
+  if (FR.again && skip) return frCancel();
+  FR.done = true; frDraftClear();
   firstRunApply(FR.A);
   for (let k = 1; k <= 3; k++) if (OverlayBack.has('fr:' + k)) { OverlayBack.closed('fr:' + k); break; }
   try { localStorage.setItem(PLAN_SEEN, '1'); } catch (e) {}
   ensureFold(S).setup = setupFoldsHere();
+  /* телефон: «Подходов на группу мышц» после первых вопросов свёрнуто — первая карточка с фигурой ближе к началу плана
+     (Кира 5); раскрывается стрелкой, выбор запоминается */
+  if (!FR.again && setupFoldsHere()) ensureFold(S).load = true;
   const d = $('#first-run'); FR.closing = true; if (d.open) d.close(); FR.closing = false;
   document.documentElement.classList.remove('first-run');
   regen(); scrollTo(0, 0);
@@ -16004,10 +16147,32 @@ function frFinish(skip) {
   /* план по ссылке, открытой в первый запуск, — после вопросов */
   if (typeof planLinkShow === 'function') planLinkShow();
 }
+/* «Отмена» повторных вопросов: окно закрывается, параметры прежние, фокус — на кнопку, с которой открыли */
+function frCancel() {
+  FR.done = true;
+  for (let k = 1; k <= 3; k++) if (OverlayBack.has('fr:' + k)) { OverlayBack.closed('fr:' + k); break; }
+  const d = $('#first-run'); FR.closing = true; if (d.open) d.close(); FR.closing = false;
+  document.documentElement.classList.remove('first-run');
+  if (S.view === 'plan') renderPlanView();
+  $('#fr-again')?.focus();
+}
+/* «Пройти вопросы заново» в параметрах (Галина 6: после «Пропустить» вернуть вопросы было нечем): те же вопросы, отмечены
+   нынешние ответы; «Отмена» ничего не меняет */
+function firstRunAgain() {
+  const d = $('#first-run'); if (!d || typeof d.showModal !== 'function' || d.open) return false;
+  const p = placeOf(S, S.place);
+  FR.A = {place:S.place, goal:S.goal, level:S.level, dur:S.dur || FIRST_DEFAULTS.dur, protect:(S.protect || []).slice(), health:(S.health || []).slice()};
+  if (p) { FR.A.equipFor = p.id; FR.A.equip = p.equip.slice(); }
+  FR.i = 0; FR.done = false; FR.again = true;
+  stopFigures(); document.documentElement.classList.add('first-run');
+  d.showModal(); frRender();
+  return true;
+}
 function openFirstRun() {
   const d = $('#first-run');
   if (!FIRST_RUN || FR.done || !d || typeof d.showModal !== 'function') return false;
-  FR.A = {}; FR.i = 0;
+  FR.A = {}; FR.i = 0; FR.again = false;
+  frDraftLoad(); /* закрыли вкладку посреди вопросов — с того же вопроса */
   stopFigures(); /* фигуры плана под окном не крутятся */
   document.documentElement.classList.add('first-run');
   d.showModal(); frRender();
@@ -16016,7 +16181,7 @@ function openFirstRun() {
 /* для проверок: закрыть окно, ничего не меняя в параметрах, — приложение как при первом запуске прежних версий
    (план по умолчанию, его фигуры запущены, в хранилище — только отметка «план показан») */
 function firstRunClose() {
-  if (FR.done) return; FR.done = true;
+  if (FR.done) return; FR.done = true; frDraftClear();
   try { localStorage.setItem(PLAN_SEEN, '1'); } catch (e) {}
   const d = $('#first-run'); FR.closing = true; if (d && d.open) d.close(); FR.closing = false;
   document.documentElement.classList.remove('first-run');
@@ -16027,6 +16192,8 @@ function setupFirstRun() {
   const d = $('#first-run'); if (!d) return;
   d.addEventListener('click', e => {
     const t = e.target.closest('button'); if (!t || !d.contains(t)) return;
+    /* двойное касание: нажатие сразу после смены вопроса — не ответ на новый вопрос */
+    if (Date.now() - FR.at < FR_GUARD) return;
     const A = FR.A;
     if (t.id === 'fr-back') return frBack();
     if (t.id === 'fr-skip') return frFinish(true);
@@ -16040,12 +16207,12 @@ function setupFirstRun() {
       A.equip = on ? A.equip.concat(id) : A.equip.filter(x => x !== id);
       t.classList.toggle('on', on); t.setAttribute('aria-pressed', String(on));
       $('#fr-eq-note').textContent = A.equip.some(x => firstEquipList(p).includes(x)) ? '' : 'Ничего не отмечено — план из упражнений с весом тела.';
-      return;
+      frDraftSave(); return;
     }
     /* последний шаг: время и опыт — один ответ, суставы — сколько угодно */
     const one = (key, attr) => { A[key] = t.dataset[attr]; d.querySelectorAll(`[data-${attr.replace(/[A-Z]/g, c => '-' + c.toLowerCase())}]`).forEach(b => { const on = b === t; b.classList.toggle('on', on); b.setAttribute('aria-pressed', String(on)); }); };
-    if (t.dataset.frDur) return one('dur', 'frDur');
-    if (t.dataset.frLevel) return one('level', 'frLevel');
+    if (t.dataset.frDur) { one('dur', 'frDur'); return frDraftSave(); }
+    if (t.dataset.frLevel) { one('level', 'frLevel'); return frDraftSave(); }
     if (t.dataset.frProtect) {
       const id = t.dataset.frProtect, list = A.protect || [], on = !list.includes(id);
       /* строгая отметка включает обычную, снятая обычная снимает строгую (как в параметрах, 11g-gentle.js) */
@@ -16058,7 +16225,10 @@ function setupFirstRun() {
       A.health = on ? list.concat(id) : list.filter(x => x !== id);
       t.classList.toggle('on', on); t.setAttribute('aria-pressed', String(on));
     }
+    frDraftSave();
   });
+  /* «Пройти вопросы заново» — внизу параметров */
+  document.addEventListener('click', e => { const t = e.target.closest && e.target.closest('#fr-again'); if (t) firstRunAgain(); });
   /* Esc и системная «Назад» там, где она закрывает окно (Chrome на Android), — на предыдущий шаг; с первого — пропустить */
   d.addEventListener('cancel', e => { e.preventDefault(); if (FR.i > 0) frBack(); else frFinish(true); });
   /* окно закрылось само (браузер не дал отменить закрытие) — как «Пропустить» */
@@ -16599,6 +16769,8 @@ function thumbModeFor(pref,{gl='ready',skin=true,state='ready',slow=false,coarse
 /* ---------- Проигрыватель движений: карточки и увеличенный разбор ---------- */
 let figs = [], rafId = 0, io = null;
 const reduceMotion = !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+/* настроек показа ещё нет — приложение открыто здесь впервые (или хранилище недоступно): см. motionFresh ниже */
+const motionFresh = (() => {try {return localStorage.getItem('podhod.motion.v2') == null;}catch(e){return true;}})();
 const motionPrefs = (() => {try {return Object.assign({speed:.5,joints:true,trace:false,vectors:false,muscles:true,view:'anatomy'},JSON.parse(localStorage.getItem('podhod.motion.v2') || '{}'));}catch(e){return {speed:.5,joints:true,trace:false,vectors:false,muscles:true,view:'anatomy'};}})();
 /* с 4.29.0 векторы движения по умолчанию выключены (мешали разглядывать технику); сохранённое «включено» прежних версий
    было значением по умолчанию — выключаем один раз, дальше выбор человека запоминается как раньше */
@@ -16609,6 +16781,12 @@ if(typeof motionPrefs.stress!=='boolean')motionPrefs.stress=true;
 /* с 4.30.0 основной вид разбора — «Анатомия» (кости и мышцы в почти невидимом силуэте); прежние флажки «Скелет» и
    «Анатомия мышц» заменены выбором вида — один раз ставим анатомию, дальше выбор человека запоминается */
 if (motionPrefs.viewV !== 1) { motionPrefs.view = 'anatomy'; motionPrefs.viewV = 1; delete motionPrefs.skeleton; delete motionPrefs.anatomy; try { localStorage.setItem('podhod.motion.v2', JSON.stringify(motionPrefs)); } catch (e) {} }
+/* с 4.112 по умолчанию — «Манекен» сбоку: в карточках плана, первом разборе и на экране тренировки (решение владельца
+   15.11.2026; Кира, Галина 21, Ольга 8 — «Анатомия» сверху под углом новичку непонятна и пугает). Только для тех, кто
+   открывает приложение впервые: у остальных вид и ракурсы остаются как были — выбор, который человек уже сделал, не
+   трогается (а отличить его от прежнего значения по умолчанию нельзя). side — ракурс по умолчанию «Сбоку» там, где он есть
+   (motionCamera, 14-workout-mode.js); выбранный для упражнения ракурс запоминается, как раньше. */
+if (motionFresh) { motionPrefs.view = 'mannequin'; motionPrefs.side = true; try { localStorage.setItem('podhod.motion.v2', JSON.stringify(motionPrefs)); } catch (e) {} }
 let detailMotion = null, detailReturn = null, lastMotionNow = null;
 function saveMotionPrefs() {try {localStorage.setItem('podhod.motion.v2',JSON.stringify(motionPrefs));}catch(e){}}
 function motionDurations(it) {
@@ -17023,8 +17201,8 @@ function selectMotion(it, clock=0) {
   $('#mv-tempo').textContent=it.ex.anim.hold?'Удерживайте положение и дышите ровно.':it.ex.anim.timing||it.ex.g==='cardio'||it.ex.kind?'Ритм показан схематично. Замедление помогает разобрать движение.':it.rx.static?`Статодинамика: ${tempoWords(it.rx.tempo)}, без пауз; показана рабочая часть амплитуды — без выпрямления до конца и без расслабления внизу.`:tempoWords(it.rx.tempo)?`Темп по плану: ${tempoWords(it.rx.tempo)}. Скорость просмотра темп не меняет.`:'Темп — плавно, без рывков. Скорость просмотра темп не меняет.';
   const level={};it.ex.pri.forEach(m=>level[m]=1);it.ex.sec.forEach(m=>{if(!level[m])level[m]=.38;});
   $('#mv-muscles').innerHTML=muscleMapSvg(level,{labels:true,aria:'Основные и вспомогательные мышцы'});
-  $('#mv-primary').textContent=it.ex.pri.map(m=>MUSCLE_NAMES[m]).join(', ');
-  $('#mv-secondary').textContent=it.ex.sec.length?it.ex.sec.map(m=>MUSCLE_NAMES[m]).join(', '):'—';
+  $('#mv-primary').textContent=it.ex.pri.map(m=>muscleLabel(m,it.ex)).join(', ');
+  $('#mv-secondary').textContent=it.ex.sec.length?it.ex.sec.map(m=>muscleLabel(m,it.ex)).join(', '):'—';
   $('#mv-steps').innerHTML=it.ex.tech.map(x=>`<li>${esc(x)}</li>`).join('');
   $('#mv-errors').innerHTML=it.ex.err.map(x=>`<li>${esc(x)}</li>`).join('');
   $('#mv-breath').textContent=it.ex.breath;
@@ -17986,8 +18164,9 @@ const isLb = () => wu() === 'lb';
 /* килограммы ↔ выбранные единицы; введённое в фунтах — в килограммы с точностью 0,00001 кг */
 const toU = kg => isLb() ? kg / LB_KG : kg;
 const fromU = v => isLb() ? Math.round(v * LB_KG * 1e5) / 1e5 : v;
-/* подписи: «кг» / «фнт» (в английской сборке — kg / lb), обхваты — «см» / «дюйм» (cm / in) */
-const wUnit = () => isLb() ? 'фнт' : 'кг';
+/* подписи: «кг» / «фунт» (в английской сборке — kg / lb), обхваты — «см» / «дюйм» (cm / in). 4.112 (Галина 10): было
+   «фнт» — так фунт не сокращают; русское обозначение единицы — «фунт», международное — lb */
+const wUnit = () => isLb() ? 'фунт' : 'кг';
 const lUnit = () => isLb() ? 'дюйм' : 'см';
 /* число в единицах показа: до сотых, без лишних нулей; fmtU1 — до десятых */
 const fmtU = v => (Math.round(v * 100) / 100).toString().replace('.', DEC);
@@ -18289,6 +18468,9 @@ function stepDown(w, st, g) {
    диапазон или одно число — null */
 function repsPlanOf(r) { const s = String(r ?? ''); if (!s.includes('/')) return null; const l = s.split('/').map(Number); return l.length > 1 && l.every(v => v > 0) ? l : null; }
 /* цель подхода k (с нуля): у пирамиды — своё число (подходов больше списка — последнее), иначе диапазон как есть */
+/* слово к числу повторов задания: «3 повтора», «5 повторов», «1 повтор»; диапазон («8–12») и прочее — «повторов»
+   (Руслан 19: было «Задание 3 повторов») */
+function repsWord(r) { const s = String(r).trim(); return /^\d+$/.test(s) ? plural(+s, 'повтор', 'повтора', 'повторов') : 'повторов'; }
 function planReps(rx, k) { const l = repsPlanOf(rx.reps); return l ? String(l[Math.min(k, l.length - 1)]) : String(rx.reps); }
 /* границы повторов: «8–12» → [8, 12]; у пирамиды — от меньшего до большего */
 function parseRange(r) { const l = repsPlanOf(r); if (l) return [Math.min(...l), Math.max(...l)]; const m = String(r).match(/(\d+)\D+(\d+)/); if (m) return [+m[1], +m[2]]; const n = parseInt(r, 10); return [n || 0, n || 0]; }
@@ -18332,7 +18514,7 @@ function suggestBase(it) {
   if (it.rx.kgPlan && lt !== 'none') {
     const prev = past[past.length - 1] || null, ps = prev ? prev.s.filter(Boolean) : [], plan = planKgsHere(it);
     res.tone = 'plan'; res.kgs = plan; res.kg = plan[0]; res.prev = prev;
-    const what = lt === 'assist' ? 'Противовес по плану' : lt === 'extra' ? 'Доп. вес по плану' : 'Вес по плану';
+    const what = lt === 'assist' ? 'Противовес по плану' : lt === 'extra' ? 'Дополнительный вес по плану' : 'Вес по плану';
     res.text = `${what}: ${planKgText(plan)} ${wUnit()}.` + (rp ? ` Повторы по плану: ${rp.join(' / ')}.` : '') + (ps.length ? ` В прошлый раз: ${ps.map(x => (x[0] ? fmtKg(x[0]) + '×' : '') + x[1]).join(', ')}.` : '');
     /* после перерыва — и вес по плану ниже, на то же число (layoffInfo, 15-autoreg.js); противовес — не трогаем */
     const lay = past.length && lt === 'kg' && typeof layoffInfo === 'function' ? layoffInfo() : null;
@@ -18596,7 +18778,7 @@ function logRows(it) {
   const fields = (k, side, val, phKg, phR) => `${lt === 'none' ? '' : `<input class="lt-in" id="kg-${ex.id}-${k}${side ? '-' + side : ''}" data-f="kg"${side ? ` data-side="${side}"` : ''} type="text" inputmode="decimal" autocomplete="off" aria-label="${wl.full}${side ? ', ' + SIDE[side] : ''}, подход ${k + 1}" placeholder="${carryPh(carriedKg(it, tset, k, side, own), phKg)}" data-ph="${phKg}" value="${val && val[0] != null ? fmtKg(val[0]) : ''}">`}
       <input class="lt-in" id="rp-${ex.id}-${k}${side ? '-' + side : ''}" data-f="reps"${side ? ` data-side="${side}"` : ''} type="text" inputmode="numeric" autocomplete="off" aria-label="${repLabel(ex)}${side ? ', ' + SIDE[side] : ''}, подход ${k + 1}" placeholder="${phR}" value="${val ? val[1] : ''}">`;
   const prevText = p => (p[0] ? fmtKg(p[0]) + ' × ' : '') + p[1];
-  const sideTag = side => `<b class="lt-sd" aria-hidden="true">${side === 'l' ? 'Л' : 'П'}</b><span class="vh">${side === 'l' ? 'Левая:' : 'Правая:'}</span>`;
+  const sideTag = side => `<b class="lt-sd" aria-hidden="true">${side === 'l' ? 'лев.' : 'прав.'}</b><span class="vh">${side === 'l' ? 'Левая:' : 'Правая:'}</span>`;
   let rows = '';
   for (let k = 0; k < n; k++) {
     const v = tset[k];
@@ -18628,7 +18810,7 @@ function logRows(it) {
   const doneN = tset.slice(0, n).filter(Boolean).length;
   /* вес одной гантели: подсказка «×2 = 40 кг» — по первому заполненному полю (пока не вводили — по подсказке) */
   const x2 = wl && wl.n > 1 && !lr ? `<span class="lt-x2" data-n="${wl.n}">${wl.impl === 'kb' ? 'вес — одной гири' : 'вес — одной гантели'}<b>${pairTotalText(wl.n, firstKg(tset, sg, own))}</b></span>` : '';
-  const lrBtn = perSide(ex) ? `<button type="button" class="lt-lrb" data-lr="${ex.id}" aria-pressed="${lr}">${'Л/П отдельно'}</button>` : '';
+  const lrBtn = perSide(ex) ? `<button type="button" class="lt-lrb" data-lr="${ex.id}" aria-pressed="${lr}">${'Левая и правая отдельно'}</button>` : '';
   const perSideNote = perSide(ex) ? `<span>${ex.kind === 'time' ? 'секунды — на каждую сторону' : 'повторы — на каждую сторону'}</span>` : '';
   return {sg, html:`<p class="sug sug-${sg.tone}"><b aria-hidden="true">${SUG_ICON[sg.tone]}</b><span>${esc(sg.text)}</span></p>${planUpHtml(it, sg)}
     ${logFoldBar(it, n, doneN)}
@@ -18764,7 +18946,7 @@ function logBlock(it) { return `<div class="c-log" data-log="${it.ex.id}">${logR
    противовес гравитрона — 150 кг (стек — около 100 кг, противовес больше веса тела не нужен). */
 const KG_LIMIT = {db:100, kb:100, bb:500, press:1000, machine:300, extra:200, assist:150};
 const KG_LIMIT_NOTE = {db:'Для одной гантели это необычно много.', kb:'Для одной гири это необычно много.', bb:'Для штанги это необычно много.',
-  press:'Для тренажёра это необычно много.', machine:'Для тренажёра это необычно много.', extra:'Для доп. веса это необычно много.', assist:'Для противовеса это необычно много.'};
+  press:'Для тренажёра это необычно много.', machine:'Для тренажёра это необычно много.', extra:'Для дополнительного веса это необычно много.', assist:'Для противовеса это необычно много.'};
 function kgLimitOf(it) {
   const lt = loadType(it.ex), ids = it.eqIds || [];
   if (lt === 'assist') return 'assist';
@@ -18903,7 +19085,8 @@ const metricFmt = m => m.w ? v => fmtKgR(v) : v => fmtU(Math.round(v * 2) / 2);
 /* fmt — подпись значения точки (метрика: metricFmt; вес тела — 18-measures.js) */
 function sparkSvg(pts, unit, fmt = v => fmtU(Math.round(v * 2) / 2)) {
   if (!pts.length) return '';
-  const W = 300, H = 74, L = 6, R = 40, T = 12, B = 14;
+  /* подписи значения и дат растут вместе со шрифтом (Галина 13): поля рисунка — в K раз больше */
+  const K = fontK(), W = 300, L = 6, R = 40 * K, T = 12 * K, B = 14 * K, H = 48 + T + B;
   const vs = pts.map(p => p.v);
   let mn = Math.min(...vs), mx = Math.max(...vs);
   if (mx - mn < 1e-9) { mn -= 1; mx += 1; }
@@ -18920,8 +19103,8 @@ function sparkSvg(pts, unit, fmt = v => fmtU(Math.round(v * 2) / 2)) {
     ${area ? `<path class="sp-area" d="${area}"/>` : ''}
     ${pts.length > 1 ? `<path class="sp-line" d="${line}"/>` : ''}
     <circle class="sp-end" cx="${x(pts.length - 1).toFixed(1)}" cy="${y(last.v).toFixed(1)}" r="4"/>
-    <text class="sp-lab" x="${(x(pts.length - 1) + 8).toFixed(1)}" y="${(y(last.v) + 4).toFixed(1)}">${fv(last.v)}</text>
-    ${pts.length > 1 ? `<text class="sp-d" x="${L}" y="${H - 2}">${fmtDay(first.d, true)}</text><text class="sp-d" x="${W - R}" y="${H - 2}" text-anchor="end">${fmtDay(last.d, true)}</text>` : ''}
+    <text class="sp-lab"${svgFs(11, K)} x="${(x(pts.length - 1) + 8).toFixed(1)}" y="${(y(last.v) + 4).toFixed(1)}">${fv(last.v)}</text>
+    ${pts.length > 1 ? `<text class="sp-d"${svgFs(9.5, K)} x="${L}" y="${H - 2}">${fmtDay(first.d, true)}</text><text class="sp-d"${svgFs(9.5, K)} x="${W - R}" y="${H - 2}" text-anchor="end">${fmtDay(last.d, true)}</text>` : ''}
     <line class="sp-x" x1="0" x2="0" y1="${T - 4}" y2="${H - B}" visibility="hidden"/><circle class="sp-dot" r="4" cx="0" cy="0" visibility="hidden"/>
   </svg>`;
 }
@@ -18935,7 +19118,7 @@ function histSets(ex, s) {
 function origNote(ex, s) {
   const here = wu(), xs = s.s.filter(x => x && x[0] > 0 && unitOfKg(x[0], s.u) !== here); if (!xs.length) return '';
   const own = v => fmtU(Math.round((here === 'kg' ? v / LB_KG : v) * 100) / 100), side = p => (p[0] > 0 ? own(p[0]) + '×' : '') + p[1];
-  const text = xs.map(x => { const sd = setSides(x, ex); return sd ? `${'Л'} ${side(sd.l)} · ${'П'} ${side(sd.r)}` : side(x); }).join(xs.some(x => setSides(x, ex)) ? '; ' : ' · ');
+  const text = xs.map(x => { const sd = setSides(x, ex); return sd ? `${'лев.'} ${side(sd.l)} · ${'прав.'} ${side(sd.r)}` : side(x); }).join(xs.some(x => setSides(x, ex)) ? '; ' : ' · ');
   return `<small class="h-u">${here === 'kg' ? 'вписано в фунтах:' : 'вписано в килограммах:'} ${text}</small>`;
 }
 /* записи упражнения «по свежести» и, пока не истекло время, место удалённой записи («Удалено · Вернуть») */
@@ -19028,12 +19211,23 @@ function daysHtml(by = trainingDays(), limit = 5) {
   if (!days.length) return '';
   return `<div class="j-days"><p class="lb-h">${'Последние тренировки · объём'}</p><ul>${days.map(x => `<li><span class="j-dd">${fmtDay(x.d, true)}</span><span class="j-dn">${x.sets ? `${x.ex} ${plural(x.ex, 'упражнение', 'упражнения', 'упражнений')} · ${x.sets} ${plural(x.sets, 'подход', 'подхода', 'подходов')}${heartDayHtml(x.d)}` : ''}${pain(x.d)}</span><b class="j-dt">${x.t > 0 ? fmtTon(x.t) + `<small>${wUnit()}</small>` : '—'}</b></li>`).join('')}</ul></div>`;
 }
+/* Неделя календаря активности начинается с воскресенья там, где так принято (Mike 18: en-US). Только в сборке с датами
+   по языку браузера (английская; русская — всегда с понедельника): по региону из navigator.language — США, Канада,
+   Мексика, Бразилия, Япония и др. (список — из CLDR, supplemental/weekData, firstDay = sun; Австралия, Великобритания и Европа — с понедельника). Без региона («en») — с понедельника, как раньше */
+const SUNDAY_REGIONS = new Set(['US', 'CA', 'MX', 'BR', 'JP', 'KR', 'TW', 'HK', 'IL', 'IN', 'PH', 'ZA', 'CO', 'PE', 'VE', 'SA', 'TH', 'ID', 'SG', 'PK']);
+function weekFromSunday() {
+  if (localeOf().dates !== 'intl') return false;
+  const tag = typeof navigator === 'undefined' ? '' : navigator.language || (navigator.languages || [])[0] || '';
+  const m = /^[a-z]{2,3}(?:[-_][a-z]{4})?[-_]([a-z]{2})(?:$|[-_])/i.exec(String(tag));
+  return !!m && SUNDAY_REGIONS.has(m[1].toUpperCase());
+}
 function heatmap(today = new Date(), by = trainingDays()) {
   const byDay = {};
   for (const x of Object.values(by)) byDay[x.d] = x.sets;
-  const W = 12, cell = 15, gap = 3, LX = 22, TY = 16;
+  /* подписи месяцев и дней растут вместе со шрифтом (Галина 13): им — место слева и сверху в K раз больше */
+  const K = fontK(), W = 12, cell = 15, gap = 3, LX = 22 * K, TY = 16 * K;
   const now = new Date(today); now.setHours(12, 0, 0, 0);
-  const dow = (now.getDay() + 6) % 7;
+  const sun = weekFromSunday(), dow = sun ? now.getDay() : (now.getDay() + 6) % 7;
   const start = new Date(now); start.setDate(now.getDate() - dow - (W - 1) * 7);
   let cells = '', lastM = -1;
   const marks = [];
@@ -19049,9 +19243,9 @@ function heatmap(today = new Date(), by = trainingDays()) {
   /* подпись месяца — над его первой неделей; хвост прошлого месяца в первой колонке подписывается, только если до
      следующей подписи не меньше двух колонок (иначе подписи наезжают: «июлавг») */
   const months = marks.filter(([w], i) => i + 1 >= marks.length || marks[i + 1][0] - w >= 2)
-    .map(([w, m]) => w < W - 1 ? `<text class="hm-l" x="${LX + w * (cell + gap)}" y="10">${MONTHS[m]}</text>`
-      : `<text class="hm-l" x="${LX + W * (cell + gap) - gap}" y="10" text-anchor="end">${MONTHS[m]}</text>`).join(''); /* в последней колонке — по правому краю, не обрезается */
-  const days = ['Пн', '', 'Ср', '', 'Пт', '', ''].map((t, i) => t ? `<text class="hm-l" x="0" y="${TY + i * (cell + gap) + 11}">${t}</text>` : '').join('');
+    .map(([w, m]) => w < W - 1 ? `<text class="hm-l"${svgFs(9.5, K)} x="${LX + w * (cell + gap)}" y="${10 * K}">${MONTHS[m]}</text>`
+      : `<text class="hm-l"${svgFs(9.5, K)} x="${LX + W * (cell + gap) - gap}" y="${10 * K}" text-anchor="end">${MONTHS[m]}</text>`).join(''); /* в последней колонке — по правому краю, не обрезается */
+  const days = (sun ? ['', 'Пн', '', 'Ср', '', 'Пт', ''] : ['Пн', '', 'Ср', '', 'Пт', '', '']).map((t, i) => t ? `<text class="hm-l"${svgFs(9.5, K)} x="0" y="${TY + i * (cell + gap) + (K > 1 ? Math.min(cell + gap, 7.5 + 3.5 * K) : 11)}">${t}</text>` : '').join('');
   const w = LX + W * (cell + gap), h = TY + 7 * (cell + gap);
   return `<svg class="heat" viewBox="0 0 ${w} ${h}" role="img" aria-label="Тренировочные дни за 12 недель">${months}${days}${cells}</svg>
     <p class="hm-legend"><span>меньше</span><i class="hm0"></i><i class="hm1"></i><i class="hm2"></i><i class="hm3"></i><span>больше подходов за день</span></p>`;
@@ -19068,11 +19262,11 @@ function renderJournal() {
   entries.sort((a, b) => recentKey(a[1][a[1].length - 1].d, today) < recentKey(b[1][b[1].length - 1].d, today) ? 1 : -1);
   const broken = Keep.broken().length;
   const tools = `<div class="j-tools">
-      ${LOG.canExport ? `<button type="button" class="btn btn-2" id="exp-json">Полная копия (JSON)</button><button type="button" class="btn btn-2" id="exp-csv">Журнал для Excel</button><button type="button" class="btn btn-2" id="exp-body">Замеры для Excel</button>` : ''}
-      <label class="btn btn-2" for="imp-file">Восстановить из копии</label><input type="file" id="imp-file" accept=".json,application/json" hidden>
+      ${LOG.canExport ? `<button type="button" class="btn btn-2" id="exp-json">Полная копия</button><button type="button" class="btn btn-2" id="exp-csv">Журнал для Excel</button><button type="button" class="btn btn-2" id="exp-body">Замеры для Excel</button>` : ''}
+      <button type="button" class="btn btn-2" data-file-pick="imp-file">Восстановить из копии</button><input type="file" id="imp-file" accept=".json,application/json" hidden tabindex="-1" aria-hidden="true">
       ${broken ? `<button type="button" class="btn btn-2" data-keep="broken">${'Испорченные данные'} (${broken})</button>` : ''}
-    </div>${restorePanelHtml()}${unitsHtml()}<p class="p-hint" id="j-msg" role="status" tabindex="-1">${esc(LOG.msg || '')}</p>
-    <p class="p-hint">Полная копия — настройки, инвентарь, журнал и замеры одним файлом: перенесёт всё на другой телефон или вернёт после очистки браузера.</p>${privacyHtml()}`;
+    </div>${restorePanelHtml()}<p class="p-hint" id="j-msg" role="status" tabindex="-1">${esc(LOG.msg || '')}</p>
+    <p class="p-hint">Полная копия — настройки, инвентарь, журнал и замеры одним файлом: перенесёт всё на другой телефон или вернёт после очистки браузера.</p>${privacyHtml()}${versionHtml()}`;
   LOG.msg = '';
   let html = `<header class="p-head j-head">
     <div class="p-sum">
@@ -19108,16 +19302,22 @@ function renderJournal() {
       </li>`;
     }).join('')}</ul>
     <p class="legend">Справа — рабочий вес и лучшие повторы с ним в последней тренировке, ниже — расчётный максимум и изменение с первой записи: по весу, а при том же весе — по повторам. У гантелей и гирь вес — одного снаряда.</p>
-    <p class="legend">Расчётный максимум — вес, который вы, по формуле Эпли, подняли бы один раз: вес × (1 + повторы / 30). Он растёт и когда прибавляете вес, и когда делаете больше повторов с тем же весом, но повторы сверх 12 в нём не учитываются. Подход в один повтор — это и есть максимум: сам вес. Если вес во всех записях один, график показывает повторы с ним.</p>
-    <p class="legend">Объём — сумма «вес × повторы» по всем снарядам и сторонам: ${tonnageExample()}. Считается только внешний вес: гантели, гири, штанга, тренажёр, доп. вес; вес тела, противовес гравитрона, удержания на время и дистанция не входят. Л/П — подход с левой и правой стороной отдельно: прогресс и рекорды — по слабой стороне.</p>`;
+    <p class="legend">Расчётный максимум — оценка веса, который вы подняли бы один раз: вес × (1 + повторы / 30). Он растёт и когда прибавляете вес, и когда делаете больше повторов с тем же весом, но повторы сверх 12 в нём не учитываются. Подход в один повтор — это и есть максимум: сам вес. Если вес во всех записях один, график показывает повторы с ним.</p>
+    <p class="legend">Объём — сумма «вес × повторы» по всем снарядам и сторонам: ${tonnageExample()}. Считается только внешний вес: гантели, гири, штанга, тренажёр, дополнительный вес; вес тела, противовес гравитрона, удержания на время и дистанция не входят. «Лев.» и «прав.» — подход, где левая и правая сторона записаны отдельно: прогресс и рекорды — по слабой стороне.</p>`;
   }
   LOG.openId = null;
   $('#plan').innerHTML = html;
 }
-/* единицы веса — рядом с копией и выгрузкой: общая настройка приложения (S.units) */
+/* единицы веса — общая настройка приложения (S.units). С 4.112 — в параметрах (#f-units, renderSetup), а не в журнале
+   между кнопками копии: там её не находили (Mike 12) */
 function unitsHtml() {
-  const u = wu(), b = (v, label) => `<button type="button" class="pre${u === v ? ' on' : ''}" data-units="${v}" aria-pressed="${u === v}">${label}</button>`;
-  return `<div class="pres j-units" role="group" aria-labelledby="j-units-l"><span class="pres-l" id="j-units-l">Единицы веса</span>${b('kg', 'кг')}${b('lb', 'фнт')}</div>`;
+  const u = wu(), b = (v, label) => `<button type="button" class="seg-b${u === v ? ' on' : ''}" data-units="${v}" aria-pressed="${u === v}"><b>${label}</b></button>`;
+  return b('kg', 'кг') + b('lb', 'фунты');
+}
+/* номер версии — в журнале, рядом с копией и выгрузкой (в заголовке атласа его больше нет: Галина 10, Кира 12) */
+function versionHtml() {
+  const v = typeof window !== 'undefined' && window.PODHOD_VERSION;
+  return v ? `<p class="p-hint j-ver">${'Версия приложения:'} ${esc(v)}</p>` : '';
 }
 /* пример общего веса в пояснении журнала — в выбранных единицах: гантели 2 × 20 кг (2 × 45 фнт), тяга 30 кг (65 фнт) */
 function tonnageExample() {
@@ -19127,7 +19327,7 @@ function tonnageExample() {
 function viewTabs() {
   const n = journalDays(), v = ['atlas', 'journal'].includes(S.view) ? S.view : 'plan';
   const tab = (id, label, extra = '') => `<button type="button" role="tab" data-view="${id}" aria-selected="${v === id}" class="${v === id ? 'on' : ''}">${label}${extra}</button>`;
-  return tab('plan', 'План') + tab('atlas', 'Мышцы') + tab('journal', 'Журнал', ` <small>${n || ''}</small>`);
+  return tab('plan', 'План') + tab('atlas', 'Мышцы') + tab('journal', 'Журнал', n ? ` <small aria-hidden="true" title="${n} ${plural(n, 'тренировка', 'тренировки', 'тренировок')} ${'в журнале'}">${n}</small><span class="vh">, ${n} ${plural(n, 'тренировка', 'тренировки', 'тренировок')}</span>` : ' <small></small>');
 }
 
 /* ---------- экспорт и восстановление ---------- */
@@ -19576,9 +19776,15 @@ document.addEventListener('click', e => {
   if (t.id === 'jr-go') { restoreApply(); return; }
   if (t.id === 'jr-cancel') { restorePending = null; LOG.msg = 'Восстановление отменено — ничего не изменилось.'; renderJournalKeep('#j-msg'); return; }
   if (t.dataset.view) { S.view = t.dataset.view; saveSettings(); renderSetup(); renderPlan(); window.scrollTo({top:0}); return; }
-  if (t.dataset.units) { S.units = t.dataset.units === 'lb' ? 'lb' : 'kg'; saveSettings(); renderJournal(); const b = document.querySelector(`[data-units="${S.units}"]`); if (b) b.focus(); return; }
+  if (t.dataset.units) { S.units = t.dataset.units === 'lb' ? 'lb' : 'kg'; saveSettings(); if (S.view === 'journal') renderJournal(); else { renderSetup(); renderPlan(); } const b = document.querySelector(`[data-units="${S.units}"]`); if (b) b.focus(); return; }
   if (t.id === 'exp-csv') { exportLog('csv'); return; }
   if (t.id === 'exp-json') { exportLog('json'); return; }
+});
+/* выбор файла — настоящей кнопкой (Галина 5): надпись <label> над скрытым полем Tab перескакивал, а диктор читал её как
+   простой текст. Кнопка открывает то же поле; «Восстановить из копии» в журнале и «Выбрать файл» в окне плана */
+document.addEventListener('click', e => {
+  const t = e.target.closest && e.target.closest('[data-file-pick]'); if (!t) return;
+  const f = document.getElementById(t.dataset.filePick); if (f) f.click();
 });
 document.addEventListener('change', e => {
   if (e.target.id === 'imp-file' && e.target.files && e.target.files[0]) { importLog(e.target.files[0]); e.target.value = ''; }
@@ -19667,12 +19873,12 @@ const impPerRep = (ex, impl) => armsAlternate(ex) ? 1 : impCount(ex, impl);
 function weightLabel(it) {
   const lt = loadType(it.ex);
   if (lt === 'none') return null;
-  const u = wUnit(); /* «кг» или «фнт» (13-log.js) */
+  const u = wUnit(); /* «кг» или «фунт» (13-log.js) */
   if (lt === 'assist') return {full:`Противовес, ${u}`, short:'Противовес', n:1, impl:null};
   const impl = itemImpl(it), n = impCount(it.ex, impl);
   if (impl === 'db') return {full:n > 1 ? `Вес одной гантели, ${u}` : `Вес гантели, ${u}`, short:`Гантель, ${u}`, n, impl};
   if (impl === 'kb') return {full:n > 1 ? `Вес одной гири, ${u}` : `Вес гири, ${u}`, short:`Гиря, ${u}`, n, impl};
-  return lt === 'extra' ? {full:`Доп. вес, ${u}`, short:`Доп. ${u}`, n:1, impl} : {full:`Вес, ${u}`, short:`Вес, ${u}`, n:1, impl};
+  return lt === 'extra' ? {full:`Дополнительный вес, ${u}`, short:`+ ${u}`, n:1, impl} : {full:`Вес, ${u}`, short:`Вес, ${u}`, n:1, impl};
 }
 /* «×2 = 40 кг» — вес двух снарядов в руках */
 function pairTotalText(n, kg) { return n > 1 && kg > 0 ? `×${n} = ${fmtW(kg * n)}` : ''; }
@@ -19842,13 +20048,15 @@ function fmtTon(v) { return String(Math.round(toU(v))).replace(/\B(?=(\d{3})+(?!
 
 /* ---------- текст подхода ---------- */
 const pairText = p => (p[0] ? fmtKg(p[0]) + '×' : '') + p[1];
-/* «20×10», с Л/П — «Л 12×10 · П 12×8» */
-function setText(x, ex) { const sd = setSides(x, ex); return sd ? `${'Л'} ${pairText(sd.l)} · ${'П'} ${pairText(sd.r)}` : pairText(x); }
+/* «20×10», со сторонами — «лев. 12×10 · прав. 12×8» (4.112: было «Л 12×10 · П 12×8» — Галина 10) */
+function setText(x, ex) { const sd = setSides(x, ex); return sd ? `${'лев.'} ${pairText(sd.l)} · ${'прав.'} ${pairText(sd.r)}` : pairText(x); }
 /* подходы записи (разметка): через « · »; если есть подход с Л/П — через «; », чтобы стороны не путались с подходами;
    подход с Л/П не переносится посередине */
 function setsText(sets, ex) {
   const xs = sets.filter(Boolean), lr = xs.some(x => setSides(x, ex));
-  return xs.map(x => lr ? `<span class="h-lr">${setText(x, ex)}</span>` : setText(x, ex)).join(lr ? '; ' : ' · ');
+  /* «;» — внутри неразрывного куска: со словами «лев.» и «прав.» подход занимает всю строку, и точка с запятой не должна
+     переноситься на свою */
+  return xs.map((x, i) => lr ? `<span class="h-lr">${setText(x, ex)}${i < xs.length - 1 ? ';' : ''}</span>` : setText(x, ex)).join(lr ? ' ' : ' · ');
 }
 /* «слабая сторона — левая: догоняйте её» — если в записи стороны отличались и слабой всё время была одна и та же */
 function weakSideNote(ex, s) {
@@ -19915,7 +20123,9 @@ const ATLAS_SUPPORT = new Set(['serratus']);
 const ATLAS_BACK = new Set(['delt_r', 'triceps', 'traps', 'midback', 'lats', 'lowback', 'glutes', 'hams', 'calves', 'cuff']);
 let atlasEx = null, atlasCam = null;
 /* ракурсы превью: «спереди» и «сзади» — три четверти, так видно и мышцу, и движение */
-const ATLAS_CAMS = {angle:'Спереди', rear:'Со спины', side:'Сбоку', above:'Сверху'};
+/* порядок и слова — как у ракурсов разбора и тренировки («Сверху · … · Сбоку · Спереди · Сзади»; Mike 19, Alex 14):
+   было «Спереди · Со спины · Сбоку · Сверху» */
+const ATLAS_CAMS = {above:'Сверху', side:'Сбоку', angle:'Спереди', rear:'Сзади'};
 
 /* пик учебной кривой участия мышцы в упражнении (0…1) */
 function atlasPeak(ex, m) {
@@ -19977,6 +20187,7 @@ const ATLAS_SPLIT = {
   delt_r:[['delt_r', [[67, 36], [73, 36.8], [76, 46], [76.5, 55.5], [72, 48]]], ['delt_s', [[73, 36.8], [75, 37], [81, 43], [82, 53], [78, 58], [76.5, 55.5], [76, 46]]]]
 };
 function atlasMapSvg(sel, counts) {
+  const K = fontK();
   const neutral = new Set(['head', 'neck', 'hand', 'pelvis', 'knee', 'foot', 'flank']);
   const view = (shapes, dx, label) => {
     const by = new Map(), base = [];
@@ -19993,9 +20204,9 @@ function atlasMapSvg(sel, counts) {
       const on = id === sel, none = !counts[id];
       s += `<g class="am-m${on ? ' on' : ''}${none ? ' none' : ''}" data-atlas-m="${id}" role="button" tabindex="0" aria-pressed="${on}" aria-label="${esc(MUSCLE_NAMES[id])}"><title>${esc(MUSCLE_NAMES[id])}</title>${list.join('')}</g>`;
     }
-    return s + `<text x="50" y="216" class="mm-l">${label}</text></g>`;
+    return s + `<text x="50" y="${207 + 9 * K}" class="mm-l"${svgFs(10, K)}>${label}</text></g>`;
   };
-  return `<svg viewBox="0 0 206 222" class="mmap amap" aria-label="Схема мышц: нажмите на мышцу">${view(MAP_FRONT, 0, 'спереди')}${view(MAP_BACK, 106, 'сзади')}</svg>`;
+  return `<svg viewBox="0 0 206 ${207 + 15 * K}" class="mmap amap" aria-label="Схема мышц: нажмите на мышцу">${view(MAP_FRONT, 0, 'спереди')}${view(MAP_BACK, 106, 'сзади')}</svg>`;
 }
 
 function atlasRow(r, m, sel) {
@@ -20044,7 +20255,7 @@ function renderAtlas() {
   if (first) {
     const it = previewItem(atlasEx);
     html += `<div class="motion-tile at-tile" id="at-preview">
-        <button type="button" class="illus" data-fig="0" aria-haspopup="dialog" aria-controls="motion-view" aria-label="Разобрать движение: ${esc(it.name)}"><span class="at-stage"></span><span class="illus-zoom" aria-hidden="true">Разобрать ↗</span></button>
+        <button type="button" class="illus" data-fig="0" aria-haspopup="dialog" aria-controls="motion-view" aria-label="Разобрать движение: ${esc(it.name)}"><span class="at-stage"></span><span class="illus-zoom" aria-hidden="true">Разобрать технику ↗</span></button>
         <div class="motion-bar"><span class="motion-caption">Исходное положение</span><button type="button" data-motion-pause="0">Пауза</button></div>
       </div>
       <div class="at-under"><p class="at-pv"><b id="at-pv-name">${esc(it.name)}</b></p><div class="at-cams" role="group" aria-label="Ракурс">${Object.entries(ATLAS_CAMS).map(([c, label]) => `<button type="button" data-atlas-cam="${c}" aria-pressed="false">${label}</button>`).join('')}</div></div>
@@ -20238,7 +20449,7 @@ function galleryAddMsg(r) {
 }
 function galleryMsgShow(r) {
   const box = $('#mv-gmsg'), text = galleryAddMsg(r);
-  box.querySelector('#mv-gmsg-t').textContent = text; box.querySelector('[data-cp-go]').dataset.cpGo = r.plan.id;
+  box.querySelector('#mv-gmsg-t').textContent = text; { const go = box.querySelector('[data-cp-go]'); go.dataset.cpGo = r.plan.id; cpGoLabel(go, r.created, true); }
   box.hidden = false; $('#motion-view').classList.add('mv-has-msg');
   const live = $('#mv-glive'); live.textContent = ''; requestAnimationFrame(() => { live.textContent = text; });
 }
@@ -20308,6 +20519,8 @@ function showGallery(focusId) {
   $('#motion-view').classList.add('mv-mode-gallery');
   $('#mv-detail').hidden = true; $('#mv-gallery').hidden = false;
   $('#mv-title').textContent = 'Все упражнения';
+  /* диктор (Галина 16): в списке кнопка закрывает атлас, в разборе — разбор */
+  $('#mv-close').setAttribute('aria-label', 'Закрыть атлас');
   renderGallery();
   const tile = focusId && $('#mv-gallery').querySelector(`[data-gallery-open="${focusId}"]`);
   if (tile) { tile.scrollIntoView({block:'center'}); tile.focus({preventScroll:true}); }
@@ -20318,6 +20531,7 @@ function showDetail() {
   galleryPickClose(false); galleryMsgHide();
   $('#motion-view').classList.remove('mv-mode-gallery');
   $('#mv-gallery').hidden = true; $('#mv-detail').hidden = false;
+  $('#mv-close').setAttribute('aria-label', 'Закрыть разбор');
   if (galleryIO) galleryIO.disconnect(); cancelAnimationFrame(galleryRaf); galleryRaf = 0; galleryQueue = [];
   if (was) galleryAnatStop();
 }
@@ -21206,6 +21420,22 @@ function closeWorkout(fromBack){
   /* вид фигуры мог смениться на экране тренировки — карточки плана берут его же */
   if(figs.some(F=>F.card))applyCardsView();
 }
+/* ---------- диктор (Галина 1, 2, 17) ----------
+   Объявления экрана тренировки — в одной живой области внутри окна (#wv-say): то, что вне модального окна, диктору
+   недоступно, а область, скрытая вместе с экраном отдыха, молчит. Текст ставится с короткой задержкой после очистки: одинаковая
+   фраза подряд («Подход записан…») тоже звучит. Настоящий звук — дело диктора; здесь только слова. */
+let wvSayT=0;
+function wvSay(text){const el=$('#wv-say');if(!el)return;clearTimeout(wvSayT);el.textContent='';wvSayT=setTimeout(()=>{el.textContent=text;},60);}
+const stepSay=s=>`${s.it.name}, ${'подход'} ${s.k+1} ${'из'} ${s.n}`;
+/* перешли к подходу (после отдыха, с экрана итога): экран — с начала, фокус — на название упражнения, диктору — «Следующее: …»
+   и задание. stay — подход без отдыха (первое упражнение суперсета): экран и фокус остаются у полей (название следующего
+   упражнения — прямо над ними), диктору — «Подход записан. Следующее: …» */
+function workoutAnnounceStep(stay){
+  if(!workout||$('#wv-active').hidden)return;
+  const s=workout.queue[workout.index];
+  if(!stay){$('#workout-view').scrollTop=0;$('#wv-title').focus({preventScroll:true});}
+  wvSay(`${stay?'Подход записан'+'. ':''}${'Следующее:'} ${stepSay(s)}. ${'Задание:'} ${$('#wv-target').textContent}.`);
+}
 function workoutShow(index){
   if(!workout)return;
   workout.index=Math.max(0,Math.min(workout.queue.length-1,index));workout.restUntil=0;workout.restFrom=0;workout.restPaused=0;workout.next=-1;workout.sideNote='';workout.holdPair=null;RestAlarm.cancel();paintRestPhase(false);workoutAskHide();
@@ -21217,7 +21447,7 @@ function workoutShow(index){
   $('#wv-set-label').textContent=`${s.phase} · подход ${s.k+1} из ${s.n}`;
   $('#wv-equipment').textContent=it.eqLine;
   /* цель подхода: у пирамиды повторов своего плана — число этого подхода */
-  $('#wv-target').textContent=planReps(it.rx,s.k)+(ex.kind?'':' повторов');
+  $('#wv-target').textContent=planReps(it.rx,s.k)+(ex.kind?'':' '+repsWord(planReps(it.rx,s.k)));
   const unit=ex.kind==='time'?'с':ex.kind==='dist'?'м':'повт.',psd=prev&&setSides(prev,ex);
   /* прошлых тренировок нет: «Первая запись», пока в тренировке ничего не записано, потом — «—» */
   const todayN=workoutSetsOf(ex.id).filter(Boolean).length;
@@ -21244,6 +21474,21 @@ function workoutFill(s,sg,prev){
   $('#wv-weight-label').hidden=lt==='none';$('#wv-weight-caption').textContent=wl?wl.full:`Вес, ${wUnit()}`;$('#wv-rep-caption').textContent=side&&!ex.kind?'Повторы на каждую сторону':repLabel(ex);
   $('#wv-lr-fields').classList.toggle('wv-lr-nokg',lt==='none');$('#wv-lr-kg-cap').textContent=wl?wl.full:`Вес, ${wUnit()}`;$('#wv-lr-rep-cap').textContent=repLabel(ex);
   for(const id of ['wv-reps','wv-reps-l','wv-reps-r'])$('#'+id).setAttribute('inputmode',ex.kind==='dist'?'decimal':'numeric');
+  /* что стоит в полях — workoutDefaults (те же числа — у «Подход выполнен» на экране отдыха) */
+  const D=workoutDefaults(s,sg,prev),from=D.from;
+  $('#wv-kg').value=D.kg;$('#wv-reps').value=D.reps;$('#wv-reps').placeholder=D.goal;
+  for(const k of ['l','r']){$('#wv-kg-'+k).value=D[k].kg;$('#wv-reps-'+k).value=D[k].reps;$('#wv-reps-'+k).placeholder=D.goal;}
+  workout.rFollow=$('#wv-kg-r').value===$('#wv-kg-l').value;
+  workoutPairTotal();
+  $('#wv-input-hint').textContent=hold?(lt==='extra'?'Дополнительный вес можно оставить пустым. ':'')+'«Стоп» запишет секунды и начнёт отдых. Секунды можно ввести и вручную.'
+    :lt==='extra'?(wl.impl==='db'?'Без гантелей оставьте вес пустым. Введите фактический результат.':'Дополнительный вес можно оставить пустым. Введите фактический результат.'):lt==='none'?'Укажите фактический результат подхода.':workoutKgHint(from,it,sg,prev);
+  workoutWarmup(s,from==='stored'||from==='draft'&&stored?null:parseKg($('#wv-kg').value));
+  $('#wv-error').textContent='';for(const id of ['wv-kg','wv-reps','wv-kg-l','wv-reps-l','wv-kg-r','wv-reps-r'])$('#'+id).removeAttribute('aria-invalid');
+}
+/* что подставить в поля подхода: вес и повторы общие (kg, reps) и по сторонам (l, r), откуда вес (from), подсказка-цель (goal).
+   Строки — как в полях. Нужны и форме подхода (workoutFill), и «Подход выполнен» на экране отдыха (workoutQuick) */
+function workoutDefaults(s,sg,prev){
+  const it=s.it,ex=it.ex,stored=workoutValue(s);
   /* подходы упражнения в этой тренировке (продолженной — и вчерашние), в выбранной единице: по ним вес на следующие подходы */
   const draft=workout.drafts[workoutDraftKey(s)],today=workoutSetsOf(ex.id,it),ses=stored?workoutSession(s):null,here=stored?hereSet(stored,ses&&ses.u,it):null;
   /* вес: записанный сегодня в подходе выше (carriedKg — то же правило, что в карточке: свой вес подхода по плану или
@@ -21253,27 +21498,21 @@ function workoutFill(s,sg,prev){
   const tip=sg.kg!=null&&sg.kg>0?sg.kg:null;
   /* откуда вес в поле — о том и подпись под ним (workoutKgHint): Руслан 16 — «из последней записи», а подставлен вес плана */
   const from=draft?'draft':here?'stored':carried!=null?'carried':planned!=null?(it.rx.kgPlan?(sg.layoff?'deload':'plan'):['deload','up','down'].includes(sg.tone)?sg.tone:'pyramid'):tip!=null?sg.tone:prev?.[0]!=null?'same':'none';
-  $('#wv-kg').value=draft?draft.kg:here?kgText(here[0]):carried!=null?fmtKg(carried):planned!=null?fmtKg(planned):tip!=null?fmtKg(tip):prev?.[0]!=null?fmtKg(prev[0]):'';
+  const kg=draft?draft.kg:here?kgText(here[0]):carried!=null?fmtKg(carried):planned!=null?fmtKg(planned):tip!=null?fmtKg(tip):prev?.[0]!=null?fmtKg(prev[0]):'';
   /* подсказка повторов — цель подхода со словом «цель»: серое «12–15» без него выглядело введённым. Цель — одно число (задание
      своего плана, пирамида, цель подсказки «на 1 повтор больше») — она и в поле (Руслан 9: 5×3 по 200 — «3» вписывать каждый раз);
      диапазон без истории — поле пустое: впишите, сколько сделали. Удержание — секунды пишет таймер */
   const goal='цель '+planReps(it.rx,s.k),aim=workoutRepsAim(it,sg,s.k);
-  $('#wv-reps').value=draft?draft.reps:here?String(here[1]):aim;$('#wv-reps').placeholder=goal;
+  const out={from,goal,aim,kg,reps:draft?draft.reps:here?String(here[1]):aim};
   /* Л/П: записанные стороны, иначе — общий вес; вес стороны по умолчанию — из подхода выше по своей стороне, из прошлых
      сторон, если они были; правая сторона идёт за левой, пока её не правили (workout.rFollow — Руслан 2: одна гантель
      записалась как Л 52,5 / П 50) */
   const ssd=here&&setSides(here,ex),psd=prev&&setSides(prev,ex);
   for(const k of ['l','r']){
     const ck=carriedKg(it,today,s.k,k,own),kgDef=ck!=null?fmtKg(ck):planned!=null?fmtKg(planned):psd?kgText(psd[k][0]):tip!=null?fmtKg(tip):prev?.[0]!=null?fmtKg(prev[0]):'';
-    $('#wv-kg-'+k).value=draft&&draft['k'+k]!==undefined?draft['k'+k]:ssd?kgText(ssd[k][0]):here?kgText(here[0]):kgDef;
-    $('#wv-reps-'+k).value=draft&&draft['r'+k]!==undefined?draft['r'+k]:ssd?String(ssd[k][1]):here?String(here[1]):aim;$('#wv-reps-'+k).placeholder=goal;
+    out[k]={kg:draft&&draft['k'+k]!==undefined?draft['k'+k]:ssd?kgText(ssd[k][0]):here?kgText(here[0]):kgDef,reps:draft&&draft['r'+k]!==undefined?draft['r'+k]:ssd?String(ssd[k][1]):here?String(here[1]):aim};
   }
-  workout.rFollow=$('#wv-kg-r').value===$('#wv-kg-l').value;
-  workoutPairTotal();
-  $('#wv-input-hint').textContent=hold?(lt==='extra'?'Доп. вес можно оставить пустым. ':'')+'«Стоп» запишет секунды и начнёт отдых. Секунды можно ввести и вручную.'
-    :lt==='extra'?(wl.impl==='db'?'Без гантелей оставьте вес пустым. Введите фактический результат.':'Дополнительный вес можно оставить пустым. Введите фактический результат.'):lt==='none'?'Укажите фактический результат подхода.':workoutKgHint(from,it,sg,prev);
-  workoutWarmup(s,from==='stored'||from==='draft'&&stored?null:parseKg($('#wv-kg').value));
-  $('#wv-error').textContent='';for(const id of ['wv-kg','wv-reps','wv-kg-l','wv-reps-l','wv-kg-r','wv-reps-r'])$('#'+id).removeAttribute('aria-invalid');
+  return out;
 }
 /* повторы в поле: цель подхода, если это одно число — цель подсказки (sg.reps), у пирамиды и задания своего плана — число
    подхода; диапазон без истории, удержание, секунды и метры — пусто */
@@ -21380,8 +21619,9 @@ function commitWorkout(e,sure){
   Heart.setDone(step);
   const next=workoutFirstOpen(workout.queue,workout.index);
   if(next<0){workoutFinish();return;}
-  if(step.rest>0){const now=Date.now();workout.next=next;workout.restTotal=step.rest;workout.restFrom=now;workout.restUntil=now+step.rest*1000;workout.restPaused=0;RestAlarm.unlock();RestAlarm.arm(workout.restUntil,{from:now});workoutShowRest();}
-  else workoutShow(next);
+  if(step.rest>0){const now=Date.now();workout.next=next;workout.restTotal=step.rest;workout.restFrom=now;workout.restUntil=now+step.rest*1000;workout.restPaused=0;RestAlarm.unlock();RestAlarm.arm(workout.restUntil,{from:now});workoutShowRest({recorded:true,quick:workout.quick});}
+  /* без отдыха (первое упражнение суперсета) — сразу следующий подход: диктору — что записано и что дальше */
+  else{workoutShow(next);workoutAnnounceStep(true);}
   saveWorkout();
 }
 /* фактический отдых — от записи подхода до «Перейти к подходу» — третьим полем в запись подхода, после которого отдыхали */
@@ -21392,14 +21632,60 @@ function workoutRestTaken(){
   const v=workoutValue(step);
   if(Array.isArray(v)){v[2]=sec;logTouch(step.it.ex.id);}
 }
-function workoutShowRest(){
+/* o.recorded — только что записан подход: диктору «Подход записан. Отдых 1 мин 30 с. Далее: …»; o.quick — записан кнопкой
+   экрана отдыха: фокус остаётся на ней */
+function workoutShowRest(o={}){
   holdStop();$('#wv-active').hidden=true;$('#wv-rest').hidden=false;$('#wv-finish').hidden=true;RestAlarm.paintButton($('#wv-sound'));RestAlarm.paintPrefs();
   const next=workout.queue[workout.next];
-  $('#wv-next-name').textContent=next.it.name;$('#wv-next-detail').textContent=`${next.phase} · подход ${next.k+1} из ${next.n} · ${planReps(next.it.rx,next.k)}${next.it.ex.kind?'':' повторов'}`;
+  $('#wv-next-name').textContent=next.it.name;$('#wv-next-detail').textContent=`${next.phase} · подход ${next.k+1} из ${next.n} · ${planReps(next.it.rx,next.k)}${next.it.ex.kind?'':' '+repsWord(planReps(next.it.rx,next.k))}`;
   $('#wv-rest-note').textContent=workout.sideNote||restNote();workout.sideNote='';workout.restOver=null;paintRestPause();workoutTick();
   /* экран отдыха — с начала, фокус на «Перейти к подходу»; при крупном масштабе кнопка докручивается в окно, а таймер
      остаётся сверху (.wv-rest-clock прилипает к верху — 40-workout-flow.css) */
-  $('#workout-view').scrollTop=0;const go=$('#wv-continue');go.focus({preventScroll:true});go.scrollIntoView({block:'nearest'});
+  paintQuick();
+  $('#workout-view').scrollTop=0;const quick=$('#wv-quick'),go=o.quick&&quick&&!quick.hidden?quick:$('#wv-continue');go.focus({preventScroll:true});go.scrollIntoView({block:'nearest'});
+  if(o.recorded){
+    wvSay(`${'Подход записан'}${typeof o.quick==='string'?': '+o.quick:''}. ${'Отдых'} ${fmtRest(workout.restTotal)}. ${'Далее:'} ${stepSay(next)}.`);
+  }
+}
+/* ---------- «Подход выполнен» прямо на экране отдыха (Руслан 9) ----------
+   После 4.108 подход по заданию — два нажатия: «Подход выполнен» и после отдыха «Перейти к подходу». Теперь следующий подход
+   того же веса и повторов записывается с экрана отдыха одним нажатием: кнопка «Подход выполнен: 200 кг × 3» под «Перейти к
+   подходу». Она есть, только когда числа известны и уже подтверждены в этой тренировке: у упражнения сегодня записан хотя бы
+   один подход, вес и повторы следующего стоят в полях без вопросов (не удержание, не «Л/П отдельно», нет сомнений в весе).
+   Первый подход упражнения — всегда через его экран: там разминка, техника и подсказка по весу. Нажатие — то же, что
+   «Перейти к подходу» и «Подход выполнен» подряд: любая заминка (другая вкладка записала подход, вопрос о весе) оставляет
+   человека на экране подхода с объяснением. Нажатие в первые 1,5 с отдыха не считается — двойное касание не запишет подход,
+   которого не было. Фактический отдых при этом не пишется: нажимают уже после подхода, и время отдыха неизвестно.
+   Автопереход по концу отдыха не выбран: он уводил бы экран из-под рук и у диктора, а фактический отдых (журнал 4.108)
+   считается до нажатия «Перейти к подходу» — без нажатия он стал бы равен плановому. */
+const WV_QUICK_GUARD=1500;
+function workoutQuickSet(){
+  if(!workout||!(workout.next>=0))return null;
+  const s=workout.queue[workout.next];if(!s||workoutValue(s))return null;
+  const it=s.it,ex=it.ex;
+  if(isHold(ex)||lrOn(ex)||!workoutSetsOf(ex.id).filter(Boolean).length)return null;
+  const sg=suggest(it),prev=sg.prev?.s[s.k]||sg.prev?.s.filter(Boolean).slice(-1)[0],D=workoutDefaults(s,sg,prev);
+  if(!String(D.reps).trim())return null;
+  const r=readSetInput(loadType(ex)==='none'?'':D.kg,D.reps,ex);
+  if(r.bad||setDoubt(it,[r.kg],[r.reps],s.k))return null;
+  /* числа — как в полях подхода (вес — в выбранной единице) */
+  return{s,text:r.kg!=null?`${String(D.kg).trim()} ${wUnit()} × ${String(D.reps).trim()}`:`${String(D.reps).trim()} ${ex.kind==='time'?'с':ex.kind==='dist'?'м':'повт.'}`};
+}
+function paintQuick(){
+  const b=$('#wv-quick'),note=$('#wv-quick-note');if(!b)return;
+  const q=workoutQuickSet();b.hidden=!q;if(note)note.hidden=!q;
+  if(q){const t=`${'Подход выполнен:'} ${q.text}`;if(b.textContent!==t)b.textContent=t;}
+  workout.quickText=q?q.text:'';workout.quickAt=Date.now();
+}
+function workoutQuick(){
+  if(!workout||Date.now()-(workout.quickAt||0)<WV_QUICK_GUARD||!workoutQuickSet())return;
+  /* как «Перейти к подходу», но отдых в запись не идёт; дальше — обычная запись подхода с экрана подхода */
+  const said=workout.quickText;
+  Heart.restDone();workout.restFrom=0;workout.restPaused=0;
+  workoutShow(workout.next);workout.quick=said||true;
+  try{commitWorkout();}finally{workout.quick=false;}
+  /* запись не прошла (вопрос, ошибка) — человек на экране подхода: фокус уже на вопросе или поле; иначе — на названии */
+  if(!$('#wv-active').hidden&&$('#wv-kg-ask').hidden&&!$('#wv-error').textContent)workoutAnnounceStep();
 }
 /* после подхода: общий вес подхода, если он считается (внешний вес), и слабая сторона, если стороны отличались */
 function restNote(){
@@ -21447,6 +21733,8 @@ function workoutFinish(){
   /* картинка итога для «Поделиться» (14c-share-card.js): дата, название, упражнения, подходы, объём — без пульса и веса тела */
   const wd=workout.days.length?workout.days[workout.days.length-1]:todayKey(),title=S.mode==='program'&&prog&&prog.days[S.day]?prog.days[S.day].name:titleFor();
   shareSummarySet({day:wd,title,n,worked,total,rows:rows.map((r,i)=>({name:r.name,n:r.n,ton:tons[i],skip:!r.n&&!!r.skip}))});
+  /* диктор (Галина 2): фокус — на «Тренировка завершена», итог — вслух */
+  $('#workout-view').scrollTop=0;$('#wv-finish-heading').focus({preventScroll:true});wvSay(`${'Тренировка завершена.'} ${$('#wv-finish-text').textContent}`);
 }
 function workoutTick(){
   if(!workout)return;
@@ -21502,7 +21790,15 @@ function paintHold(now=Date.now()){
   const running=!!st&&st.phase!=='done';go.classList.toggle('is-stop',running);$('#wv-hold-reset').hidden=!running||st.phase==='lead';$('#wv-done').disabled=running;
   /* вибрация (Android) на «пошли» и на достижении цели — по смене фазы */
   const key=st?st.phase+(st.mode||'')+st.side:'idle';
-  if(H.last!==key){if(st?.phase==='hold'&&(st.mode==='over'?H.last===`holdto${st.side}`:/^(lead|switch)/.test(H.last||'')))RestAlarm.buzz(st.mode==='over'?'end':'go');H.last=key;}
+  if(H.last!==key){
+    if(st?.phase==='hold'&&(st.mode==='over'?H.last===`holdto${st.side}`:/^(lead|switch)/.test(H.last||''))){
+      RestAlarm.buzz(st.mode==='over'?'end':'go');
+      /* диктор (Галина 17): отсчёт и конец удержания — словами, не только сигналом */
+      wvSay(st.mode==='over'?`${'Цель достигнута:'} ${holdText(H.target.sec)}. ${'«Стоп» запишет подход.'}`:(two?sideName(st.side)+'. ':'')+'Удержание началось.');
+    }
+    else if(st?.phase==='switch'&&H.last!==key)wvSay('Смена стороны.');
+    H.last=key;
+  }
 }
 function holdGo(){
   const H=workout?.hold;if(!H)return;
@@ -21634,10 +21930,11 @@ function setupWorkout(){
     if(!workout||!$('#workout-view').open)return;
     if(t.id==='wv-close'||t.id==='wv-finish-close'){closeWorkout();return;}
     if(t.id==='wv-prev'||t.id==='wv-next'){workoutCapture();workoutShow(workout.index+(t.id==='wv-next'?1:-1));return;}
-    if(t.dataset.wvIndex!==undefined){workoutCapture();workoutShow(Number(t.dataset.wvIndex));return;}
-    if(t.id==='wv-review'){workoutShow(0);return;}
-    if(t.id==='wv-undo'){workoutShow(workout.last);return;}
-    if(t.id==='wv-continue'){workoutRestTaken();workoutShow(workout.next);return;}
+    if(t.dataset.wvIndex!==undefined){workoutCapture();workoutShow(Number(t.dataset.wvIndex));$('#wv-set-chips [aria-current="step"]')?.focus();return;}
+    if(t.id==='wv-review'){workoutShow(0);workoutAnnounceStep();return;}
+    if(t.id==='wv-undo'){workoutShow(workout.last);$('#workout-view').scrollTop=0;$('#wv-title').focus({preventScroll:true});wvSay(`${'Исправление записи:'} ${stepSay(workout.queue[workout.index])}.`);return;}
+    if(t.id==='wv-continue'){workoutRestTaken();workoutShow(workout.next);workoutAnnounceStep();return;}
+    if(t.id==='wv-quick'){workoutQuick();return;}
     if(t.id==='wv-lr'){workoutLrToggle();return;}
     if(t.id==='wv-kg-yes'){commitWorkout(null,true);return;}
     if(t.id==='wv-kg-fix'){workoutAskFix();return;}
@@ -21660,7 +21957,8 @@ function setupWorkout(){
 
 function motionCamera(ex){
  const cameras=ex.anim.catalogCameras||[],saved=motionPrefs.views?.[ex.id];
- return cameras.includes(saved)?saved:'above';
+ /* ракурс по умолчанию: «Сбоку» у новых установок с 4.112 (motionPrefs.side, 12-motion-player.js), иначе «Сверху под углом» */
+ return cameras.includes(saved)?saved:motionPrefs.side&&cameras.includes('side')?'side':'above';
 }
 function cameraButtons(ex,current){
  return (ex.anim.catalogCameras||[]).map(key=>`<button type="button" data-motion-camera="${key}" aria-pressed="${current===key}">${CAMERA3[key].label}</button>`).join('');
@@ -21757,7 +22055,7 @@ function mountWorkoutCameras(){
  $('#wv-stage').replaceChildren(F.f.svg);$('#wv-cameras').innerHTML=cameraButtons(ex,key);$('#wv-cameras').hidden=!ex.anim.catalogCameras;
  $('#wv-angle').textContent=CAMERA3[key].label;configureMusclePanel('wv',F.it);configureStressPanel('wv',F);workoutFigure.pace.settle();applyWorkoutView(F);paintWorkoutMotion();
 }
-/* Вид фигуры на экране тренировки — тот же выбор, что в разборе (motionPrefs.view; по умолчанию «Анатомия»): кости и мышцы
+/* Вид фигуры на экране тренировки — тот же выбор, что в разборе (motionPrefs.view; по умолчанию с 4.112 — «Манекен», у прежних установок — «Анатомия»): кости и мышцы
    в почти невидимом силуэте кожи, цвет мышц по фазам. Переключатель «Анатомия · Скелет · Манекен» — маленький, в углу
    сцены. Пока кости и мышцы грузятся — манекен с подписью; ошибка загрузки — манекен с честной подписью; без объёмной
    графики (WebGL) — как раньше, плоская схема. Кости и мышцы обновляются с частотой ступени скорости (workoutFigure.pace:
@@ -22316,7 +22614,6 @@ const Heart = (() => {
       + `<div class="wv-hr-text"><p id="wv-hr-note" class="wv-hr-note" role="status"></p><p id="wv-hr-meta" class="wv-hr-meta"></p></div>`
       + `<p id="wv-hr-warn" class="wv-hr-warn" role="alert" hidden></p>`
       + `<p id="wv-hr-safe" class="wv-hr-safe" hidden>${'Нет предупреждения — это ещё не значит, что нагрузка безопасна. При боли в груди, головокружении, необычной одышке — остановитесь.'}</p>`
-      + `<p id="wv-hr-line" class="wv-hr-line" hidden><span class="wv-hr-heart" aria-hidden="true">♥</span> <span id="wv-hr-line-t"></span></p>`
       + `<p id="wv-hr-help" class="wv-hr-help" hidden>${'Часов нет в списке? Включите на них трансляцию пульса: на Galaxy Watch — приложение, которое транслирует пульс как датчик.'} <button type="button" id="wv-hr-all" class="wv-hr-all">${'Показать все устройства'}</button></p>`);
     prog.after(row);
     const over = q('#wv-rest-over');
@@ -22333,6 +22630,10 @@ const Heart = (() => {
       + `<p id="wv-hr-age-note" class="wv-signal-note">${'По желанию: тогда предупреждение о слишком высоком пульсе — по вашему возрасту (расчётный максимум 208 − 0,7 × возраст, у разных людей ±10 уд/мин). Это средняя оценка, а не безопасный предел для вас.'}</p>`
       + `<p class="wv-signal-note wv-hr-med">${'Если вы принимаете лекарства, которые снижают пульс (например, бета-блокаторы), пульс не показывает нагрузку — ориентируйтесь на дыхание и самочувствие.'}</p>`
       + (typeof HEART_STOP === 'string' ? `<p class="wv-signal-note wv-hr-med">${HEART_STOP}</p>` : '')));
+    /* Пульсометр недоступен (нет Web Bluetooth — все iPhone, Firefox; не https; встроенное окно): строка об этом — только
+       в настройках конца отдыха, где был бы выбор «Время · Пульс». Раньше она висела над каждым подходом и над итогом
+       (Галина 9, Mike 11, Кира 7) */
+    if (signal) signal.append(el('p', {id:'wv-hr-line', class:'wv-hr-line', hidden:''}, `<span class="wv-hr-heart" aria-hidden="true">♥</span> <span id="wv-hr-line-t"></span>`));
     const fin = q('#wv-finish-text');
     if (fin) fin.after(el('p', {id:'wv-hr-finish', class:'wv-hr-finish', hidden:''}, `<span class="wv-hr-heart" aria-hidden="true">♥</span> <span id="wv-hr-finish-t"></span>`));
     mounted = true; paintPrefs(); return true;
@@ -22344,10 +22645,10 @@ const Heart = (() => {
     if (!mounted) return;
     const sup = support(), row = q('#wv-hr');
     if (!sup.ok) {
-      row.dataset.state = 'unsupported'; show('#wv-hr-btn', false); show('.wv-hr-text', false); show('#wv-hr-help', false);
+      row.dataset.state = 'unsupported'; row.hidden = true; show('#wv-hr-btn', false); show('.wv-hr-text', false); show('#wv-hr-help', false);
       text('#wv-hr-line-t', sup.line); show('#wv-hr-line', true); show('#wv-hr-rest', false); show('#wv-hr-set', false); return;
     }
-    show('#wv-hr-btn', true); show('.wv-hr-text', true); show('#wv-hr-line', false); show('#wv-hr-set', true);
+    row.hidden = false; show('#wv-hr-btn', true); show('.wv-hr-text', true); show('#wv-hr-line', false); show('#wv-hr-set', true);
     const c = C(), st = c ? c.state : 'idle', bpm = live(now), name = c && c.name || 'датчик';
     let view = st, val = 'Пульс', note = '', meta = '';
     if (st === 'live' && bpm == null) view = 'waiting';
@@ -23050,7 +23351,7 @@ function placeWeightsHtml(place) {
   const has = id => place.equip.includes(id), rows = [['db', 'Гантели'], ['kb', 'Гири']].filter(([id]) => has(id));
   if (!rows.length) return '';
   return rows.map(([id, name]) => {
-    const a = availOf(place, id), u = a ? a.u : wu(), unit = u === 'lb' ? 'фнт' : 'кг', step = GEAR_UNITS[u][id === 'kb' ? 'kbStep' : 'dbStep'];
+    const a = availOf(place, id), u = a ? a.u : wu(), unit = u === 'lb' ? 'фунт' : 'кг', step = GEAR_UNITS[u][id === 'kb' ? 'kbStep' : 'dbStep'];
     return `<label class="place-w">${name} ${'в этом месте'}, ${unit}<input id="place-w-${id}" data-place-w="${id}" data-u="${u}" type="text" autocomplete="off" value="${esc(availText(a))}" placeholder="${'все, через'} ${fmtU(step)}" aria-describedby="place-w-${id}-h"></label>`
       + `<p class="f-note" id="place-w-${id}-h">${'Через пробел: 5 — одна пара; 4 6 8 10; или ряд: 2–30 через 2. «Прибавьте» ведёт до самого тяжёлого из списка, дальше — повторами. Пусто — любые, шагом'} ${fmtU(step)} ${unit}.</p>`;
   }).join('');
@@ -23691,6 +23992,72 @@ function storageLineHtml() {
   return parts.length ? ' ' + parts.join(' ') : '';
 }
 
+/* ===================== ПОДСКАЗКА «УСТАНОВИТЬ» (4.112; Ольга 26, Кира 16) =====================
+   Как поставить приложение на телефон — по делу, один раз, с возможностью закрыть.
+   · Кому: телефон или планшет (iPhone, iPad, Android), страница сайта (http/https, не файл и не встроенное окно),
+     приложение ещё не установлено (isStandalone, 18a-data-keep.js) и подсказку не закрывали.
+   · Когда: в журнале уже есть тренировка — человек пользуется приложением, и ему есть что терять (на iPhone Safari стирает
+     данные сайта после 7 дней без захода, если приложение не на экране «Домой»). В первый запуск подсказки нет.
+   · Шаги разные: iPhone и iPad — «Поделиться» → «На экран „Домой“» (своего окна установки у Safari нет); Android — кнопка
+     «Установить», если браузер дал событие beforeinstallprompt (Chrome, Edge, Samsung Internet), иначе — где это в меню.
+   · «Понятно» закрывает навсегда (podhod.install.v1 в хранилище браузера: в копию и на другие устройства не переносится —
+     там своя установка); после установки (appinstalled) подсказка исчезает сама.
+   Кнопка «Установить» — единственная новая кнопка: это и есть действие подсказки, без неё на Android пришлось бы искать
+   пункт в меню браузера. */
+const INSTALL_KEY = 'podhod.install.v1';
+const INSTALL = {evt:null, closed:false};
+try { INSTALL.closed = !!(JSON.parse(localStorage.getItem(INSTALL_KEY) || 'null') || {}).closed; } catch (e) {}
+const isAndroid = () => typeof navigator !== 'undefined' && /Android/i.test(navigator.userAgent || '');
+/* можно ли здесь установить: страница сайта, не во встроенном окне */
+function installPlace() {
+  if (typeof location === 'undefined' || !/^https?:$/.test(location.protocol)) return false;
+  try { return window.self === window.top; } catch (e) { return false; }
+}
+/* какая подсказка нужна: 'ios', 'android' или null (не нужна). days — тренировок в журнале */
+function installKind(days = typeof journalDays === 'function' ? journalDays() : 0) {
+  if (INSTALL.closed || !installPlace() || isStandalone() || days < 1) return null;
+  return isIOS() ? 'ios' : isAndroid() ? 'android' : null;
+}
+function installHintHtml(kind = installKind(), canPrompt = !!INSTALL.evt) {
+  if (!kind) return '';
+  const close = `<button type="button" class="btn btn-2" data-install="close">${'Понятно'}</button>`;
+  if (kind === 'ios') return `<div class="keep-note install-note" role="note"><p><b>${'Поставьте приложение на экран «Домой».'}</b> ${'Оно будет открываться как обычное приложение, и Safari не сотрёт журнал. В Safari нажмите «Поделиться» (квадрат со стрелкой вверх), затем «На экран „Домой“».'}</p><div class="keep-b">${close}</div></div>`;
+  return `<div class="keep-note install-note" role="note"><p><b>${'Установите приложение на телефон.'}</b> ${canPrompt ? 'Значок появится на главном экране, приложение работает и без интернета.' : 'Значок появится на главном экране, приложение работает и без интернета. Откройте меню браузера (⋮) и выберите «Установить приложение» или «Добавить на главный экран».'}</p><div class="keep-b">${canPrompt ? `<button type="button" class="btn" data-install="go">${'Установить'}</button>` : ''}${close}</div></div>`;
+}
+function installPaint() {
+  if (typeof document === 'undefined' || !document.body || !document.querySelector) return;
+  /* первый запуск и окна поверх страницы подсказку не получают: она — на странице плана и журнала */
+  const html = document.querySelector('#first-run[open]') ? '' : installHintHtml();
+  let box = document.getElementById('install-hint');
+  if (!box) { if (!html) return; box = document.createElement('div'); box.id = 'install-hint'; const main = document.querySelector('main'); if (main && main.parentNode) main.parentNode.insertBefore(box, main); else return; }
+  if (box.innerHTML !== html) box.innerHTML = html;
+}
+function installClose() {
+  INSTALL.closed = true;
+  try { localStorage.setItem(INSTALL_KEY, JSON.stringify({closed:true})); } catch (e) {}
+  installPaint();
+}
+if (typeof window !== 'undefined' && window.addEventListener) {
+  /* Chrome на Android: событие с окном установки. Своё окно браузера (полоска внизу) отменяется, только когда показана
+     наша подсказка с кнопкой — иначе всё как раньше. Если окно по сохранённому событию не открылось, подсказка
+     остаётся — с тем, где это в меню браузера */
+  window.addEventListener('beforeinstallprompt', e => {
+    INSTALL.evt = e;
+    if (installKind() === 'android') { e.preventDefault(); installPaint(); }
+  });
+  window.addEventListener('appinstalled', () => { INSTALL.evt = null; installClose(); });
+  window.addEventListener('load', () => setTimeout(installPaint, 600));
+  document.addEventListener('click', e => {
+    const t = e.target.closest && e.target.closest('[data-install]'); if (!t) return;
+    if (t.dataset.install === 'close') { installClose(); const f = document.querySelector('#views button[aria-selected="true"]'); if (f) f.focus(); return; }
+    const ev = INSTALL.evt; if (!ev || typeof ev.prompt !== 'function') return;
+    INSTALL.evt = null;
+    Promise.resolve().then(() => ev.prompt()).then(() => ev.userChoice).then(c => { if (c && c.outcome === 'accepted') installClose(); else installPaint(); }).catch(() => installPaint());
+  });
+  /* после тренировки (окно закрылось) в журнале появилась первая запись — подсказка к месту */
+  document.addEventListener('close', e => { if (e.target && e.target.id === 'workout-view') installPaint(); }, true);
+}
+
 /* ---------- Замер скорости на настоящем телефоне: скрытая панель ?perf (П8) ----------
    Включение: адрес с ?perf (или ?perf=1) включает панель и запоминает это (localStorage 'podhod.perf'), ?perf=0 —
    выключает; кнопка «Выключить» на панели — тоже. Во Floot приложение работает в iframe (srcdoc) — флаг читается и
@@ -24307,4 +24674,6 @@ if (!BOOT.failed) {
   if (FIRST_RUN) openFirstRun();
   /* открыли ссылку на план (11m-plan-link.js): окно с планом — сразу, а в первый запуск — после вопросов */
   planHashOpen();
+  /* запуск закончен — заставка загрузки уходит (00a-keep.js) */
+  bootSplashOff();
 }
