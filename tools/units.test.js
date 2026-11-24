@@ -18,7 +18,7 @@ test('the default unit follows the region of navigator.language in English and s
   assert.equal(unit('en', ['de-DE', 'en-US']), 'kg', 'by navigator.language, the first one');
   assert.equal(unit('ru', ['en-US']), 'kg', 'the Russian version defaults to kilograms');
   const ru = loadApp({lang:'ru'}); ru.get(`S.units='lb'`);
-  assert.deepEqual(ru.json('[wu(), wUnit(), lUnit(), fmtW(fromU(135))]'), ['lb', 'фнт', 'дюйм', '135 фнт'], 'the choice is available in Russian too');
+  assert.deepEqual(ru.json('[wu(), wUnit(), lUnit(), fmtW(fromU(135))]'), ['lb', 'фунт', 'дюйм', '135 фунт'], 'the choice is available in Russian too'); /* 4.112: «фунт» вместо «фнт» (Галина 10) */
   const us = loadApp({lang:'en', nav:['en-US']}); us.get(`S.units='kg'`);
   assert.equal(us.get('fmtW(62.5)'), '62.5 kg');
 });
@@ -102,7 +102,8 @@ test('weight question, journal, CSV and body measurements in pounds and inches',
   assert.match(csv, /"Weight, lb"/); assert.match(csv, /"Volume per set, lb"/); assert.match(csv, /,135,10,/);
   assert.match(en.get(`journalVal(EXI.bbbench, LOG.data.bbbench)`), /135<small>lb<\/small> × 10/);
   assert.match(en.get('histHtml(EXI.bbbench)'), /volume 2,700 lb/);
-  assert.match(en.get('unitsHtml()'), /data-units="lb" aria-pressed="true">lb</);
+  /* 4.112: переключатель единиц — в параметрах, кнопками вида «сегмент» (Mike 12) */
+  assert.match(en.get('unitsHtml()'), /data-units="lb" aria-pressed="true"><b>lb</);
   /* вес тела 180 фнт и талия 34 дюйма: хранятся в кг и см, показываются теми же числами */
   en.get(`(()=>{BODY.rows=mergeBodyRows([], [cleanBodyRow({d:'${day(1)}', kg:bodyFromU(BODY_FIELDS[0], 180), waist:bodyFromU(BODY_FIELDS[1], 34)})]);})()`);
   const row = en.json('BODY.rows[0]');

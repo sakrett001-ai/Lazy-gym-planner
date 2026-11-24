@@ -153,7 +153,19 @@ function rescueDownload(name) {
   setTimeout(() => { URL.revokeObjectURL(a.href); a.remove(); }, 1500);
 }
 /* экран спасения: без функций приложения (они могли не загрузиться) */
+/* Заставка загрузки (Артём 7, Кира 8, Виктор 11): пока код приложения грузится и запускается, вместо полупустого каркаса с
+   кнопками, которые не работают, — заставка «Загружаем приложение…» (разметка и короткий сценарий — в начале src/body.html:
+   через 8 с — «Сеть медленная…», код так и не пришёл — «Приложение не загрузилось» и «Обновить страницу»). Каркас под ней
+   недоступен ни пальцу, ни клавиатуре, ни диктору (inert). Запуск закончен (99-boot.js) или показан экран спасения — заставка
+   убирается. */
+function bootSplashOff() {
+  try {
+    const s = document.getElementById('boot-splash'); if (s) s.remove();
+    const w = document.querySelector('.wrap'); if (w) w.removeAttribute('inert');
+  } catch (e) {}
+}
 function rescueScreen(msg) {
+  bootSplashOff();
   try {
     const box = document.createElement('section');
     box.className = 'rescue'; box.setAttribute('role', 'alert');

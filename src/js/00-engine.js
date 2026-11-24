@@ -93,6 +93,32 @@ const MUSCLE_NAMES = {chest:'Грудные', delt_f:'Передняя дель�
 /* 4.110 (замечание анатома 8): «Бицепс бедра» — лишь одна из трёх мышц задней группы бедра (двуглавая, полусухожильная,
    полуперепончатая), группа называется «Задняя поверхность бедра», как в разделе суставов; английское — Hamstrings.
    Названия во множественном числе — для согласования глагола («Квадрицепс участвует», «Грудные участвуют») */
+/* 4.112. Понятные названия мышц в карточке плана (решение владельца 15.11.2026 по ревью 4.110, вопрос 8): простые слова
+   с пояснением «где это» при первом упоминании в плане («Ромбовидные — между лопатками»); дальше в том же плане — без
+   пояснения. В разборе движения — анатомическая терминология, как раньше (MUSCLE_NAMES, 4.110). Ключи мышц и групп прежние:
+   это только подписи. MUSCLE_CARD — название в карточке, если оно проще термина; MUSCLE_WHERE — пояснение (нет — название
+   понятно и так: «Бицепс», «Икры») */
+const MUSCLE_CARD = {abs:'Пресс', midback:'Ромбовидные'};
+const MUSCLE_WHERE = {delt_f:'передняя часть плеча', delt_s:'боковая часть плеча', delt_r:'задняя часть плеча',
+  obliques:'по бокам живота', traps:'от шеи к плечам и лопаткам', midback:'между лопатками', lats:'по бокам спины, ниже лопаток',
+  lowback:'вдоль позвоночника', quads:'передняя поверхность бедра', adductors:'внутренняя поверхность бедра',
+  hipflex:'спереди, где бедро соединяется с тазом', serratus:'на рёбрах под подмышкой', cuff:'мышцы, которые держат плечо в суставе'};
+/* «Молот» (решение владельца по ревью 4.110, вопрос 6): в «Работающих мышцах» — «Бицепс и плечевая», без новой группы мышц.
+   В нейтральном хвате локоть сгибают плечевая и плечелучевая, двуглавая работает слабее (ЭМГ — Kleiber и др., 2015; Boland
+   и др., 2008 — доли в REGION_FACTORS, 09d-catalog-muscles.js). Подпись — только у этого упражнения; ключ мышцы — biceps */
+const MUSCLE_LABEL_EX = {hammer:{biceps:'Бицепс и плечевая'}};
+/* название мышцы у упражнения: в разборе (термин) и в карточке плана (card — простые слова) */
+function muscleLabel(m, ex, card) {
+  const own = ex && MUSCLE_LABEL_EX[ex.id] && MUSCLE_LABEL_EX[ex.id][m];
+  return own || (card && MUSCLE_CARD[m]) || MUSCLE_NAMES[m];
+}
+/* подпись в карточке плана: seen — мышцы, уже названные в этом плане выше (пояснение — только в первый раз) */
+function muscleCardHtml(m, ex, seen, low) {
+  const name = muscleLabel(m, ex, true), first = seen && !seen.has(m);
+  if (seen) seen.add(m);
+  const n = low ? name.charAt(0).toLowerCase() + name.slice(1) : name;
+  return first && MUSCLE_WHERE[m] ? `${n}<span class="mus-w"> — ${MUSCLE_WHERE[m]}</span>` : n;
+}
 const MUSCLE_PLURAL = new Set(['chest', 'forearms', 'obliques', 'traps', 'midback', 'lats', 'lowback', 'glutes', 'calves', 'adductors', 'hipflex']);
 
 function mirrorShape(kind, d) {
@@ -107,7 +133,14 @@ function shapeSvg(kind, d, attrs) {
   if (kind === 'e') return `<ellipse cx="${d[0]}" cy="${d[1]}" rx="${d[2]}" ry="${d[3]}" ${a}/>`;
 }
 /* level: {muscle: 0..1}. delt_s подсвечивает переднюю и заднюю дельту частично */
+/* Подписи внутри рисунков SVG (карта мышц, график активности, динамика) заданы в единицах рисунка и сами со шрифтом не растут
+   (Галина 13). fontK — во сколько раз шрифт страницы крупнее обычного (1–2; настройка шрифта браузера или телефона);
+   рисунок оставляет подписям столько же раз больше места. svgFs — размер подписи, если шрифт крупнее обычного. */
+function fontK() { try { const v = parseFloat(getComputedStyle(document.documentElement).fontSize) / 16; return v > 1.05 ? Math.min(2, Math.round(v * 20) / 20) : 1; } catch (e) { return 1; } }
+const svgFs = (px, k) => k > 1 ? ` style="font-size:${+(px * k).toFixed(1)}px"` : '';
+
 function muscleMapSvg(level, opts = {}) {
+  const K = fontK(); /* подписи «спереди / сзади» растут вместе со шрифтом (Галина 13) */
   const lv = m => {
     if (m === 'delt_f') return Math.max(level.delt_f || 0, (level.delt_s || 0) * 0.8);
     if (m === 'delt_r') return Math.max(level.delt_r || 0, (level.delt_s || 0) * 0.8);
@@ -123,9 +156,9 @@ function muscleMapSvg(level, opts = {}) {
         if (v > 0) s += shapeSvg(kind, dd, {class:'mm-h', 'fill-opacity':(0.18 + 0.82 * v).toFixed(2)});
       }
     }
-    if (opts.labels) s += `<text x="50" y="216" class="mm-l">${label}</text>`;
+    if (opts.labels) s += `<text x="50" y="${207 + 9 * K}" class="mm-l"${svgFs(10, K)}>${label}</text>`;
     return s + '</g>';
   };
-  const H = opts.labels ? 222 : 207;
+  const H = opts.labels ? 207 + 15 * K : 207;
   return `<svg viewBox="0 0 206 ${H}" class="mmap" role="img" aria-label="${opts.aria || 'Карта мышц'}">${view(MAP_FRONT, 0, 'спереди')}${view(MAP_BACK, 106, 'сзади')}</svg>`;
 }

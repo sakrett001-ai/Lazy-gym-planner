@@ -41,7 +41,9 @@ const ATLAS_SUPPORT = new Set(['serratus']);
 const ATLAS_BACK = new Set(['delt_r', 'triceps', 'traps', 'midback', 'lats', 'lowback', 'glutes', 'hams', 'calves', 'cuff']);
 let atlasEx = null, atlasCam = null;
 /* ракурсы превью: «спереди» и «сзади» — три четверти, так видно и мышцу, и движение */
-const ATLAS_CAMS = {angle:'Спереди', rear:'Со спины', side:'Сбоку', above:'Сверху'};
+/* порядок и слова — как у ракурсов разбора и тренировки («Сверху · … · Сбоку · Спереди · Сзади»; Mike 19, Alex 14):
+   было «Спереди · Со спины · Сбоку · Сверху» */
+const ATLAS_CAMS = {above:'Сверху', side:'Сбоку', angle:'Спереди', rear:'Сзади'};
 
 /* пик учебной кривой участия мышцы в упражнении (0…1) */
 function atlasPeak(ex, m) {
@@ -103,6 +105,7 @@ const ATLAS_SPLIT = {
   delt_r:[['delt_r', [[67, 36], [73, 36.8], [76, 46], [76.5, 55.5], [72, 48]]], ['delt_s', [[73, 36.8], [75, 37], [81, 43], [82, 53], [78, 58], [76.5, 55.5], [76, 46]]]]
 };
 function atlasMapSvg(sel, counts) {
+  const K = fontK();
   const neutral = new Set(['head', 'neck', 'hand', 'pelvis', 'knee', 'foot', 'flank']);
   const view = (shapes, dx, label) => {
     const by = new Map(), base = [];
@@ -119,9 +122,9 @@ function atlasMapSvg(sel, counts) {
       const on = id === sel, none = !counts[id];
       s += `<g class="am-m${on ? ' on' : ''}${none ? ' none' : ''}" data-atlas-m="${id}" role="button" tabindex="0" aria-pressed="${on}" aria-label="${esc(MUSCLE_NAMES[id])}"><title>${esc(MUSCLE_NAMES[id])}</title>${list.join('')}</g>`;
     }
-    return s + `<text x="50" y="216" class="mm-l">${label}</text></g>`;
+    return s + `<text x="50" y="${207 + 9 * K}" class="mm-l"${svgFs(10, K)}>${label}</text></g>`;
   };
-  return `<svg viewBox="0 0 206 222" class="mmap amap" aria-label="Схема мышц: нажмите на мышцу">${view(MAP_FRONT, 0, 'спереди')}${view(MAP_BACK, 106, 'сзади')}</svg>`;
+  return `<svg viewBox="0 0 206 ${207 + 15 * K}" class="mmap amap" aria-label="Схема мышц: нажмите на мышцу">${view(MAP_FRONT, 0, 'спереди')}${view(MAP_BACK, 106, 'сзади')}</svg>`;
 }
 
 function atlasRow(r, m, sel) {
@@ -170,7 +173,7 @@ function renderAtlas() {
   if (first) {
     const it = previewItem(atlasEx);
     html += `<div class="motion-tile at-tile" id="at-preview">
-        <button type="button" class="illus" data-fig="0" aria-haspopup="dialog" aria-controls="motion-view" aria-label="Разобрать движение: ${esc(it.name)}"><span class="at-stage"></span><span class="illus-zoom" aria-hidden="true">Разобрать ↗</span></button>
+        <button type="button" class="illus" data-fig="0" aria-haspopup="dialog" aria-controls="motion-view" aria-label="Разобрать движение: ${esc(it.name)}"><span class="at-stage"></span><span class="illus-zoom" aria-hidden="true">Разобрать технику ↗</span></button>
         <div class="motion-bar"><span class="motion-caption">Исходное положение</span><button type="button" data-motion-pause="0">Пауза</button></div>
       </div>
       <div class="at-under"><p class="at-pv"><b id="at-pv-name">${esc(it.name)}</b></p><div class="at-cams" role="group" aria-label="Ракурс">${Object.entries(ATLAS_CAMS).map(([c, label]) => `<button type="button" data-atlas-cam="${c}" aria-pressed="false">${label}</button>`).join('')}</div></div>

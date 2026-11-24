@@ -62,12 +62,12 @@ const impPerRep = (ex, impl) => armsAlternate(ex) ? 1 : impCount(ex, impl);
 function weightLabel(it) {
   const lt = loadType(it.ex);
   if (lt === 'none') return null;
-  const u = wUnit(); /* «кг» или «фнт» (13-log.js) */
+  const u = wUnit(); /* «кг» или «фунт» (13-log.js) */
   if (lt === 'assist') return {full:`Противовес, ${u}`, short:'Противовес', n:1, impl:null};
   const impl = itemImpl(it), n = impCount(it.ex, impl);
   if (impl === 'db') return {full:n > 1 ? `Вес одной гантели, ${u}` : `Вес гантели, ${u}`, short:`Гантель, ${u}`, n, impl};
   if (impl === 'kb') return {full:n > 1 ? `Вес одной гири, ${u}` : `Вес гири, ${u}`, short:`Гиря, ${u}`, n, impl};
-  return lt === 'extra' ? {full:`Доп. вес, ${u}`, short:`Доп. ${u}`, n:1, impl} : {full:`Вес, ${u}`, short:`Вес, ${u}`, n:1, impl};
+  return lt === 'extra' ? {full:`Дополнительный вес, ${u}`, short:`+ ${u}`, n:1, impl} : {full:`Вес, ${u}`, short:`Вес, ${u}`, n:1, impl};
 }
 /* «×2 = 40 кг» — вес двух снарядов в руках */
 function pairTotalText(n, kg) { return n > 1 && kg > 0 ? `×${n} = ${fmtW(kg * n)}` : ''; }
@@ -237,13 +237,15 @@ function fmtTon(v) { return String(Math.round(toU(v))).replace(/\B(?=(\d{3})+(?!
 
 /* ---------- текст подхода ---------- */
 const pairText = p => (p[0] ? fmtKg(p[0]) + '×' : '') + p[1];
-/* «20×10», с Л/П — «Л 12×10 · П 12×8» */
-function setText(x, ex) { const sd = setSides(x, ex); return sd ? `${'Л'} ${pairText(sd.l)} · ${'П'} ${pairText(sd.r)}` : pairText(x); }
+/* «20×10», со сторонами — «лев. 12×10 · прав. 12×8» (4.112: было «Л 12×10 · П 12×8» — Галина 10) */
+function setText(x, ex) { const sd = setSides(x, ex); return sd ? `${'лев.'} ${pairText(sd.l)} · ${'прав.'} ${pairText(sd.r)}` : pairText(x); }
 /* подходы записи (разметка): через « · »; если есть подход с Л/П — через «; », чтобы стороны не путались с подходами;
    подход с Л/П не переносится посередине */
 function setsText(sets, ex) {
   const xs = sets.filter(Boolean), lr = xs.some(x => setSides(x, ex));
-  return xs.map(x => lr ? `<span class="h-lr">${setText(x, ex)}</span>` : setText(x, ex)).join(lr ? '; ' : ' · ');
+  /* «;» — внутри неразрывного куска: со словами «лев.» и «прав.» подход занимает всю строку, и точка с запятой не должна
+     переноситься на свою */
+  return xs.map((x, i) => lr ? `<span class="h-lr">${setText(x, ex)}${i < xs.length - 1 ? ';' : ''}</span>` : setText(x, ex)).join(lr ? ' ' : ' · ');
 }
 /* «слабая сторона — левая: догоняйте её» — если в записи стороны отличались и слабой всё время была одна и та же */
 function weakSideNote(ex, s) {

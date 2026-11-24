@@ -50,3 +50,12 @@
 /* разминка перед первым подходом упражнения — та же лесенка, что в карточке (4.108, Руслан 21) */
 .wv-warm { margin:0 0 10px; }
 .wv-warm .wu { border-top:0; padding-top:0; }
+
+/* ---------- «Подход выполнен» на экране отдыха (Руслан 9; 14-workout-mode.js: workoutQuick) ----------
+   Вторая кнопка под «Перейти к подходу»: во всю ширину, с рамкой акцента — заметна, но главная по-прежнему «Перейти к подходу».
+   Числа — как в полях подхода; длинная подпись («Подход выполнен: 22,5 кг × 12») переносится. */
+.wv-quick { width:100%; min-height:54px; margin-top:10px; border:2px solid var(--accent); border-radius:12px; background:var(--surface); color:var(--ink); padding:12px 16px; font:600 1rem/1.25 var(--f-body); cursor:pointer; overflow-wrap:anywhere; font-variant-numeric:tabular-nums; }
+.wv-quick:active { transform:translateY(1px); }
+.wv-quick-note { margin:8px 0 0; color:var(--muted); font-size:.8125rem; line-height:1.45; }
+/* название упражнения и «Тренировка завершена» получают фокус после перехода (диктор): рамка фокуса — только с клавиатуры */
+#wv-title:focus:not(:focus-visible), #wv-finish-heading:focus:not(:focus-visible) { outline:none; }

@@ -238,6 +238,8 @@ function planModel() {
     const fakeStage={figure(o){const h={key:o.key,layers:null,look:null,setLayers(b,a){h.layers=[!!b,!!a];},setLook(l){h.look=l;},release(){h.gone=true;},
       paint(c,t,i,cam){if(h.gone)return false;window.__paints.push({key:h.key,t,cam,w:c.width});return true;}};return h;},dispose(){window.__disposed=(window.__disposed||0)+1;}};
     window.GymVolume={cards:()=>fakeStage};Skeleton.data={bones:[]};Muscles.data={muscles:[]};motionPrefs.view='anatomy';
+    /* 4.112: у новых установок ракурс по умолчанию — «Сбоку» (motionPrefs.side); этот тест — о тех, у кого «Анатомия» сверху под углом, как было */
+    motionPrefs.side=false;
     const note=()=>({textContent:'',hidden:true});
     figs=['squat','pushup','dbcurl'].map((id,i)=>{const n=note(),cls=new Set();return{card:true,it:previewItem(id),vis:true,far:true,seen:i===0?1:0,active:false,paused:false,clock:0,durations:motionDurations(previewItem(id)),
       f:{at(){},svg:{getBoundingClientRect:()=>({width:130,height:130})}},note:n,

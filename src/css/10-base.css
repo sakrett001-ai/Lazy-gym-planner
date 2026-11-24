@@ -144,6 +144,8 @@ h1, h2, h3, h4 { text-wrap:balance; margin:0; }
 .p-head { background:var(--surface); border:1px solid var(--line); border-radius:var(--r); padding:18px 16px; display:grid; gap:18px; }
 @media (min-width:700px) { .p-head { grid-template-columns:minmax(0, 1fr) minmax(0, 1.05fr); padding:22px; } }
 .eyebrow { margin:0 0 6px; font:600 .75rem/1.2 var(--f-body); letter-spacing:.08em; text-transform:uppercase; color:var(--hot); }
+/* подзаголовок плана — спокойным цветом подписей: красный остаётся предупреждениям (4.112, Виктор 24, решение владельца 23.11.2026) */
+.p-head .eyebrow { color:var(--muted); }
 .p-title { font:400 clamp(1.625rem, 5vw, 2.25rem)/1.05 var(--f-display); letter-spacing:.005em; }
 .stats { display:flex; gap:22px; margin:18px 0 0; flex-wrap:wrap; }
 .stats div { display:grid; gap:2px; }
@@ -151,6 +153,8 @@ h1, h2, h3, h4 { text-wrap:balance; margin:0; }
 .stats dd { margin:0; font:600 1.625rem/1 var(--f-mono); font-variant-numeric:tabular-nums; order:1; }
 .stats dd small { font:500 .8125rem var(--f-body); color:var(--muted); margin-left:3px; }
 .p-btns { display:flex; gap:8px; flex-wrap:wrap; margin-top:18px; }
+.p-tail { margin-top:24px; }
+.p-tail ~ .p-hint:empty { display:none; }
 .btn { display:inline-flex; align-items:center; gap:7px; border:0; border-radius:10px; padding:9px 14px; background:var(--ink); color:var(--surface); font-weight:600; font-size:.875rem; }
 .btn svg { width:18px; height:18px; }
 .btn-2 { background:var(--surface-2); color:var(--ink); border:1px solid var(--line); }

@@ -92,7 +92,7 @@ test('a quarter more than last time (and at least 5 kg more) asks; without histo
   a.LOG.data = {};
   const lim = (id, eq, kg) => a.kgDoubt({ ...a.previewItem(id), eqIds: eq }, [kg], 0);
   for (const [id, eq, max, word] of [['dbbench', ['db', 'bench'], 100, 'одной гантели'], ['kbswing', ['kb'], 100, 'одной гири'], ['bbbench', ['bb', 'bench'], 500, 'штанги'],
-    ['legpress', ['legpress'], 1000, 'тренажёра'], ['latpull', ['cable'], 300, 'тренажёра'], ['pullup', ['bar'], 200, 'доп. веса'], ['assistpull', ['gravitron'], 150, 'противовеса']]) {
+    ['legpress', ['legpress'], 1000, 'тренажёра'], ['latpull', ['cable'], 300, 'тренажёра'], ['pullup', ['bar'], 200, 'дополнительного веса'] /* 4.112: «доп. вес» — полным словом (Галина 10) */, ['assistpull', ['gravitron'], 150, 'противовеса']]) {
     assert.equal(lim(id, eq, max), null, `${id}: ${max} kg is still fine`);
     assert.equal(lim(id, eq, max + 0.5).text, `Для ${word} это необычно много. Записать ${String(max + 0.5).replace('.', ',')}\u00a0кг?`, id);
   }

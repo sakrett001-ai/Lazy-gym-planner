@@ -17,7 +17,13 @@ const browser = await chromium.launch({ args: ['--use-gl=angle', '--use-angle=sw
 const skipFirstRun = () => addEventListener('DOMContentLoaded', () => { try { if (typeof firstRunClose === 'function') firstRunClose(); } catch (e) {} });
 {
   const newContext = browser.newContext.bind(browser);
-  browser.newContext = async (o = {}) => { const { firstRun, ...rest } = o; const c = await newContext(rest); if (!firstRun) await c.addInitScript(skipFirstRun); return c; };
+  /* 4.112: у тех, кто открывает приложение впервые, вид фигуры по умолчанию — «Манекен» сбоку (12-motion-player.js: motionFresh).
+     Прежние проверки написаны для «Анатомии» сверху под углом — она остаётся у всех, у кого настройки показа уже были: страницы
+     проверок открываются с такими (пустыми) настройками. Новое значение по умолчанию проверяется отдельно ({ freshMotion: true }). */
+  /* только при первом открытии страницы (отметка в sessionStorage): обращение к localStorage в самом начале перезагруженной
+     страницы изредка читало хранилище до записи, сделанной перед перезагрузкой, — проверки «прежних версий» теряли журнал */
+  const oldMotion = () => { try { if (sessionStorage.getItem('lgp-old-motion')) return; sessionStorage.setItem('lgp-old-motion', '1'); if (localStorage.getItem('podhod.motion.v2') == null) localStorage.setItem('podhod.motion.v2', '{}'); } catch (e) {} };
+  browser.newContext = async (o = {}) => { const { firstRun, freshMotion, ...rest } = o; const c = await newContext(rest); if (!freshMotion) await c.addInitScript(oldMotion); if (!firstRun) await c.addInitScript(skipFirstRun); return c; };
   browser.newPage = async (o = {}) => { const c = await browser.newContext(o), pg = await c.newPage(); pg.on('close', () => c.close().catch(() => {})); return pg; };
 }
 const fails = [], errors = [];
@@ -217,10 +223,12 @@ await page.close();
   const p = await open(390, 844);
   const head = await p.evaluate(() => {
     const q = s => { const r = document.querySelector(s).getBoundingClientRect(); return { t: r.top, b: r.bottom }; };
-    return { top: q('.top'), logo: q('.logo'), atlas: q('#motion-atlas'), views: q('#views'), lang: q('.lang'), tag: getComputedStyle(document.querySelector('.tag')).display };
+    return { top: q('.top'), logo: q('.logo'), atlas: q('#motion-atlas'), views: q('#views'), lang: q('.lang'), tag: getComputedStyle(document.querySelector('.tag')).display, tagR: q('.tag') };
   });
-  check(head.top.b - head.top.t <= 120 && head.tag === 'none' && head.atlas.t < head.logo.b && head.views.t >= head.atlas.b - 1 && head.lang.t < head.views.b && head.lang.b > head.views.t,
-    'телефон: шапка в две строки — логотип и атлас, под ними разделы и язык; подпись скрыта');
+  /* 4.112 (Кира 13): подпись «планировщик тренировок под ваш зал и цель» видна и на телефоне — строкой между логотипом и разделами
+     (было: скрыта, шапка ≤ 120 px; со строкой подписи — ≤ 150 px) */
+  check(head.top.b - head.top.t <= 150 && head.tag !== 'none' && head.atlas.t < head.logo.b && head.tagR.t >= head.atlas.b - 6 && head.views.t >= head.tagR.b - 1 && head.lang.t < head.views.b && head.lang.b > head.views.t,
+    `телефон: шапка — логотип и атлас, строка подписи, под ней разделы и язык (${JSON.stringify(head)})`);
   /* первый запуск теперь — мастер (проверка ниже, «первый запуск»); повторный запуск — параметры свёрнуты */
   await p.reload(); await p.waitForTimeout(500); await fakeFigures(p);
   check(await p.evaluate(() => !document.querySelector('#first-run').open && S.fold.setup === true && document.querySelector('.setup').classList.contains('folded') && document.querySelector('#plan').getBoundingClientRect().top < innerHeight * .6),
@@ -237,7 +245,9 @@ await page.close();
   check(mv.stage.t - mv.head.b < 24 && mv.stage.t < 200, 'разбор на телефоне: сцена сразу под заголовком');
   check(mv.stage.h >= mv.vh * .5 && mv.stage.h > 320, 'разбор на телефоне: сцена выше прежних 320 px — кадр «Сверху под углом» крупнее');
   check(mv.n === 5 && mv.rows === 1 && mv.fit && mv.cams.t >= mv.stage.b, 'ракурсы — одной строкой под сценой, все пять видны');
-  check(mv.select.t > mv.toggles.b && mv.tools.t > mv.select.t && mv.back, 'выбор упражнения и избранное — после управления движением, «← Все упражнения» — в шапке');
+  /* 4.112 (Дмитрий 6): «В избранное» и «+ В свой план» — сразу под сценой и ракурсами, в первом экране (было: после выбора
+     упражнения, в 2,7 экрана от верха); выбор упражнения — по-прежнему после управления движением */
+  check(mv.select.t > mv.toggles.b && mv.tools.t >= mv.cams.b - 1 && mv.tools.t < mv.toggles.t && mv.tools.b <= mv.vh * 1.1 && mv.back, `избранное и «+ В свой план» — под сценой и ракурсами; выбор упражнения — после управления движением, «← Все упражнения» — в шапке (${JSON.stringify(mv.tools)})`);
   check(await p.evaluate(() => document.documentElement.scrollWidth <= document.documentElement.clientWidth), 'разбор на телефоне без прокрутки вбок');
   /* нагрузка на суставы: без меток переключатель выключен и подписан, с метками — подписи нет */
   const stress = await p.evaluate(() => {
@@ -299,6 +309,10 @@ await page.close();
     const ctx = await browser.newContext({ viewport: { width, height }, firstRun: true });
     const p = await ctx.newPage(); p.on('pageerror', e => errors.push(String(e)));
     await p.goto('file://' + file); await p.waitForTimeout(500); await fakeFigures(p);
+    /* 4.112: нажатие в первые полсекунды после смены вопроса не считается (двойное касание, Артём 1, 2) — проверки, как
+       человек, отвечают на вопрос после этой паузы */
+    const click = p.click.bind(p);
+    p.click = async (sel, ...a) => { if (/fr-/.test(sel)) await p.waitForFunction(() => Date.now() - FR.at >= FR_GUARD); return click(sel, ...a); };
     return { ctx, p };
   };
   const st = p => p.evaluate(() => ({ open: $('#first-run').open, step: $('#first-run').dataset.step, count: $('#fr-count').textContent, title: $('#fr-title').textContent,
@@ -396,7 +410,9 @@ await page.close();
     const box = await rect(p, '#first-run');
     check(box && box.w <= 600 && box.l > 100, `компьютер: мастер — окно по центру (${JSON.stringify(box)})`);
     await p.click('[data-fr-place="gym"]');
-    check((await st(p)).count === 'Шаг 2 из 3', 'зал: вопроса об инвентаре нет — три шага');
+    /* 4.112: было «Шаг 2 из 3» — число шагов менялось на ходу, это заметили пятеро тестеров (Игорь 21, Руслан 18, Артём 8,
+       Mike 10, Кира 10). Теперь вопросов всегда четыре: в зале после первого идёт третий, и на нём сказано почему */
+    check((await st(p)).count === 'Шаг 3 из 4' && /вопрос об инвентаре пропущен/.test(await p.textContent('#fr-lead')), 'зал: вопроса об инвентаре нет — «Шаг 3 из 4» и пояснение');
     await p.click('[data-fr-goal="mass"]'); await p.click('#fr-next'); await p.waitForTimeout(300);
     check(await p.evaluate(() => !$('#first-run').open && S.fold.setup === false && !$('.setup').classList.contains('folded') && S.goal === 'mass' && S.level === 'beg' && S.dur === 'mid'),
       'компьютер: после мастера параметры в колонке раскрыты; невыбранное — по умолчанию');
@@ -703,11 +719,11 @@ await page.close();
   check(await v.evaluate(() => JSON.stringify(LOG.data.dbrow[0].s[1]) === '[28,12,null,{"l":[28,12],"r":[30,11]}]'), 'карточка: исправление стороны пересчитывает слабую');
   await v.click('.card[data-ex="dbrow"] [data-lr]');
   check(await v.evaluate(() => !S.lr.dbrow && !document.querySelector('.card[data-ex="dbrow"] .lt-r.lt-lr') && document.querySelector('.card[data-ex="dbrow"] .lt-r[data-k="1"] [data-f="reps"]').value === '12'), 'карточка: выключили Л/П — в строке слабая сторона');
-  /* журнал: последние тренировки с общим весом, история «Л … · П …» */
+  /* журнал: последние тренировки с общим весом, история «лев. … · прав. …» (4.112, Галина 10: было «Л … · П …») */
   await v.evaluate(() => { S.view = 'journal'; renderSetup(); renderPlan(); });
   const j = await v.evaluate(() => ({ day: document.querySelector('.j-days li')?.textContent || '', hist: [...document.querySelectorAll('.j-row')].find(li => li.querySelector('[data-del="dbrow"]'))?.textContent || '' }));
   check(/сегодня/.test(j.day) && /3 упражнения · 4 подхода/.test(j.day) && /1 846\s*кг/.test(j.day), `журнал: тренировка дня — упражнения, подходы, общий вес (${j.day})`);
-  check(/Л 30×10 · П 30×8; Л 28×12 · П 30×11/.test(j.hist) && /объём 1 206 кг/.test(j.hist), `журнал: история — «Л … · П …» и общий вес (${j.hist.replace(/\s+/g, ' ').slice(0, 200)})`);
+  check(/лев\. 30×10 · прав\. 30×8; лев\. 28×12 · прав\. 30×11/.test(j.hist) && /объём 1 206 кг/.test(j.hist), `журнал: история — «лев. … · прав. …» и общий вес (${j.hist.replace(/\s+/g, ' ').slice(0, 200)})`);
   await v.close();
 }
 
@@ -1568,10 +1584,11 @@ await page.close();
   check(s.first === 'low' && s.firstState === '✓ уже в плане' && !s.msg, 'последний выбранный план — первым; прежнее сообщение убрано');
   await k.click(`${box} [data-cp-to=""]`); s = await st();
   const made = await k.evaluate(() => { const c = S.customs.at(-1); return { n: S.customs.length, name: c.name, items: c.items.map(i => i.id).join(), id: c.id, last: S.cpLast }; });
-  check(made.n === 4 && made.name === 'План 4' && made.items === 'bbbench' && made.last === made.id && s.go === made.id && s.where === 'up,single,atlas' && s.msg === 'Создан план «План 4», упражнение добавлено. Открыть план →',
+  check(made.n === 4 && made.name === 'План 4' && made.items === 'bbbench' && made.last === made.id && s.go === made.id && s.where === 'up,single,atlas' && s.msg === 'Создан план «План 4», упражнение добавлено. Открыть и назвать →' /* 4.112 (Дмитрий 16): у нового плана — сразу к имени */,
     `«+ Новый план» создаёт «План 4» с упражнением и не открывает его (${JSON.stringify({ ...made, ...s })})`);
   await k.click('#at-keep [data-cp-go]');
-  check(await k.evaluate(id => S.custom === id && S.mode === 'custom' && S.view === 'plan' && document.querySelector('.p-title')?.textContent === 'План 4', made.id), '«Открыть план →» открывает именно этот план');
+  check(await k.evaluate(id => S.custom === id && S.mode === 'custom' && S.view === 'plan' && document.querySelector('.p-title')?.textContent === 'План 4', made.id), '«Открыть и назвать →» открывает именно этот план');
+  check(await k.evaluate(() => { const a = document.activeElement; return a?.id === 'cp-name' && a.value === 'План 4' && a.selectionStart === 0 && a.selectionEnd === a.value.length && !document.querySelector('.setup').classList.contains('folded'); }), '«Открыть и назвать →»: параметры раскрыты, курсор в поле имени, имя выделено');
   /* разбор движения поверх атласа: тот же список, Esc сворачивает его, а разбор остаётся открытым */
   await k.evaluate(() => { S.custom = 'up'; S.mode = 'single'; switchModeSettings('custom'); S.view = 'atlas'; regen(); openMotionItem(previewItem('dbcurl')); });
   const mv = ['#cp-pick-mv', '#mv-tools [data-cp-add]'];
@@ -1664,7 +1681,8 @@ for (const lang of ['ru', 'en']) {
    под планом 1ПМ назван только после простого объяснения. Строки нагрузки во всех режимах — tools/plain-words.test.js */
 {
   const JARGON = { ru: /1ПМ|отказ|базов|изолирующ|ЭМГ|региональн|изометри|в запасе|с запасом \d|выраженного жжения|двойной прогресс/i,
-    en: /1RM|failure|\bcompound\b|\bisolation\b|\bEMG\b|regional emphasis|isometr|in reserve|reserve of|educational|double progression|Another option|Load cue|Go to set|no main work/i };
+    /* 4.112 (Mike 6, план 4.112): compound / isolation — принятые слова зала (NSCA), из списка жаргона убраны; см. tools/plain-words.test.js */
+    en: /1RM|failure|\bEMG\b|regional emphasis|isometr|in reserve|reserve of|educational|double progression|Another option|Load cue|Go to set|no main work/i };
   const CODE = /\b\d{1,2}-\d{1,2}-[\dX]{1,2}-\d{1,2}\b/;
   for (const lang of ['ru', 'en']) {
     const g = await browser.newPage({ viewport: { width: 390, height: 844 } });
@@ -1857,13 +1875,19 @@ const fakeBluetooth = () => {
   const wv = await p.evaluate(() => ({ cap: $('#wv-weight-caption').textContent, hidden: $('#wv-weight-label').hidden }));
   check(wv.hidden || /lb/.test(wv.cap), `экран тренировки: «${wv.cap}»`);
   await p.evaluate(() => closeWorkout());
-  /* журнал: переключатель единиц, 135 lb; кг — вес шагом снаряда, а не «61,23», и строкой — вписанное: 135 фунтов (4.108, Mike 1) */
+  /* журнал: 135 lb; кг — вес шагом снаряда, а не «61,23», и строкой — вписанное: 135 фунтов (4.108, Mike 1).
+     4.112 (Mike 12): переключатель единиц — в параметрах (#f-units), в журнале его больше нет */
   await p.evaluate(() => { S.view = 'journal'; renderSetup(); renderPlan(); });
-  const j = await p.evaluate(() => ({ on: document.querySelector('[data-units="lb"]')?.getAttribute('aria-pressed'), text: document.querySelector('.j-list')?.textContent || '' }));
-  await p.click('[data-units="kg"]');
+  const j = await p.evaluate(() => ({ on: wu() === 'lb' && !document.querySelector('#plan [data-units]') ? 'true' : 'false', text: document.querySelector('.j-list')?.textContent || '' }));
+  await p.evaluate(() => { S.view = "plan"; if (S.fold) S.fold.setup = false; renderSetup(); renderPlan(); });
+  check(await p.evaluate(() => document.querySelector('#f-units-seg [data-units="lb"]')?.getAttribute('aria-pressed') === 'true' && document.querySelector('#units-l').textContent === 'Weight units'), 'единицы веса — в параметрах: Weight units, нажато lb');
+  await p.click('#f-units-seg [data-units="kg"]');
+  check(await p.evaluate(() => S.units === 'kg' && document.activeElement?.dataset.units === 'kg' && document.querySelector('#f-units-seg [data-units="kg"]').getAttribute('aria-pressed') === 'true'), 'единицы: выбор kg запомнен, фокус остаётся на кнопке');
+  await p.evaluate(() => { S.view = 'journal'; renderSetup(); renderPlan(); });
   const jk = await p.evaluate(() => ({ units: S.units, text: document.querySelector('.j-list')?.textContent || '' }));
   check(j.on === 'true' && /135\s*lb/.test(j.text) && jk.units === 'kg' && !/61\.23/.test(jk.text) && /logged in pounds: 135×8/.test(jk.text), `журнал: единицы lb → kg (${j.text.slice(0, 60)} → ${jk.text.slice(0, 60)})`);
-  await p.click('[data-units="lb"]');
+  await p.evaluate(() => { S.view = "plan"; if (S.fold) S.fold.setup = false; renderSetup(); renderPlan(); });
+  await p.click('#f-units-seg [data-units="lb"]');
   /* переключатель RU: выбор запоминается до перехода, корень больше не уводит на английский */
   await p.evaluate(() => { S.view = 'plan'; regen(); });
   await Promise.all([p.waitForURL(u => new URL(u).pathname === '/', { timeout: 15000 }), p.click('a.lang')]); await ready();
@@ -1982,6 +2006,221 @@ const fakeBluetooth = () => {
   check(/^lazy-gym-\d{4}-\d\d-\d\d\.png$/.test(dl.suggestedFilename()) && buf.readUInt32BE(16) === 1080 && buf.readUInt32BE(20) === 1350, `картинка итога сохранена: ${dl.suggestedFilename()} ${buf.readUInt32BE(16)}×${buf.readUInt32BE(20)}`);
   await W.ctx.close();
   srv.close();
+}
+
+/* ===================== 4.112, первая половина: диктор, экран тренировки, первый запуск, загрузка и подача =====================
+   (блок агента feat/a11y-4112; проверки «Слова и тон» и английской версии — отдельным блоком) */
+{
+  const say = pg => pg.evaluate(() => $('#wv-say').textContent);
+  const focusId = pg => pg.evaluate(() => document.activeElement.id || document.activeElement.tagName);
+  const fill = pg => pg.evaluate(() => { const r = $('#wv-reps'); if (!r.value) r.value = '8'; const k = $('#wv-kg'); if (!k.value) k.value = '20'; });
+  /* --- диктор и «Подход выполнен» на экране отдыха (Галина 1, 2; Руслан 9) --- */
+  {
+    const w = await open(390, 844);
+    /* у первого упражнения тренировки — прошлая запись: цель повторов — число, вес известен */
+    await w.evaluate(() => { const it = workoutQueue(plan)[0].it, d = new Date(); d.setDate(d.getDate() - 3); LOG.data[it.ex.id] = [{ d: dayKey(d), s: Array.from({ length: it.rx.sets }, () => [60, 8]) }]; regen(); window.__id = it.ex.id; window.__n = it.rx.sets; });
+    await w.click('#start-workout'); await w.waitForTimeout(200);
+    check(await w.evaluate(() => $('#workout-view').contains($('#wv-say')) && $('#wv-say').getAttribute('role') === 'status'), 'диктор: живая область — внутри окна тренировки');
+    await w.evaluate(() => $('#wv-done').click()); await w.waitForTimeout(150);
+    let t = await say(w);
+    check(/^Подход записан\. Отдых \d.* Далее: .+, подход 2 из \d\.$/.test(t) && await focusId(w) === 'wv-continue', `после подхода диктору — «Подход записан. Отдых … Далее: …», фокус на «Перейти к подходу» (${t})`);
+    const q = await w.evaluate(() => ({ shown: !$('#wv-quick').hidden, text: $('#wv-quick').textContent, note: !$('#wv-quick-note').hidden, below: $('#wv-quick').getBoundingClientRect().top >= $('#wv-continue').getBoundingClientRect().bottom, h: $('#wv-quick').getBoundingClientRect().height }));
+    check(q.shown && /^Подход выполнен: 60 кг × \d+$/.test(q.text) && q.note && q.below && q.h >= 44, `отдых: «Подход выполнен: вес × повторы» под «Перейти к подходу» (${JSON.stringify(q)})`);
+    /* двойное касание: нажатие в первые 1,5 с отдыха подход не записывает */
+    await w.evaluate(() => $('#wv-quick').click()); await w.waitForTimeout(100);
+    check(await w.evaluate(() => (LOG.data[window.__id].find(x => x.d === todayKey())?.s || []).filter(Boolean).length === 1 && !$('#wv-rest').hidden), '«Подход выполнен» сразу после начала отдыха (двойное касание) подход не записывает');
+    await w.waitForTimeout(1500);
+    await w.evaluate(() => $('#wv-quick').click()); await w.waitForTimeout(150);
+    t = await say(w);
+    const q2 = await w.evaluate(() => { const s = LOG.data[window.__id].find(x => x.d === todayKey()).s; return { n: s.filter(Boolean).length, first: s[0].length, rest: !$('#wv-rest').hidden, focus: document.activeElement.id, next: $('#wv-next-detail').textContent }; });
+    check(q2.n === 2 && q2.first === 2 && q2.rest && q2.focus === 'wv-quick' && /подход 3 из/.test(q2.next) && /^Подход записан: 60 кг × \d+\. Отдых /.test(t),
+      `«Подход выполнен» на отдыхе: подход записан, снова отдых, фокус на кнопке, фактический отдых не пишется (${JSON.stringify(q2)}; ${t})`);
+    /* «Перейти к подходу»: фокус на названии, диктору — «Следующее: …» */
+    await w.evaluate(() => $('#wv-continue').click()); await w.waitForTimeout(150);
+    t = await say(w);
+    check(await focusId(w) === 'wv-title' && /^Следующее: .+, подход 3 из \d\. Задание: .+\.$/.test(t), `после «Перейти к подходу»: фокус на названии упражнения, диктору — «Следующее: …» (${t})`);
+    /* последний подход упражнения → дальше первое другое упражнение: кнопки на отдыхе нет (первый подход — через его экран) */
+    for (let n = 0; n < 12 && await w.evaluate(() => workout.queue[workout.index].it.ex.id === window.__id && !($('#wv-active').hidden && workout.queue[workout.next]?.it.ex.id !== window.__id)); n++) {
+      if (await w.evaluate(() => !$('#wv-active').hidden)) { await fill(w); await w.evaluate(() => $('#wv-done').click()); } else await w.evaluate(() => $('#wv-continue').click());
+      await w.waitForTimeout(60);
+    }
+    check(await w.evaluate(() => !$('#wv-rest').hidden && $('#wv-quick').hidden && $('#wv-quick-note').hidden && workout.queue[workout.next].k === 0), 'первый подход следующего упражнения: «Подход выполнен» на отдыхе нет');
+    /* до конца тренировки */
+    for (let n = 0; n < 80 && await w.evaluate(() => $('#wv-finish').hidden); n++) {
+      if (await w.evaluate(() => !$('#wv-active').hidden)) { await fill(w); await w.evaluate(() => $('#wv-done').click()); } else await w.evaluate(() => $('#wv-continue').click());
+      await w.waitForTimeout(30);
+    }
+    await w.waitForTimeout(120); t = await say(w);
+    check(await focusId(w) === 'wv-finish-heading' && /^Тренировка завершена\. Выполнено \d+ /.test(t), `конец тренировки: фокус на «Тренировка завершена», итог — диктору (${t})`);
+    await w.close();
+  }
+  /* --- удержание: начало и достижение цели — словами (Галина 17) --- */
+  {
+    const w = await open(390, 844);
+    await w.clock.install();
+    const ok = await w.evaluate(() => { for (let seed = 1; seed < 80; seed++) { Object.assign(S, { goal: 'gentle', level: 'beg', groups: ['abs', 'glutes'], count: 4, seed }); regen(); if (plan.items.some(it => it.ex.id === 'plank')) return true; } return false; });
+    check(ok, 'для проверки удержания в плане есть планка');
+    await w.evaluate(() => startWorkout('plank')); await w.clock.runFor(200);
+    await w.evaluate(() => $('#wv-hold-go').click()); await w.clock.runFor(4200);
+    const a = await say(w); await w.clock.runFor(60000); const b = await say(w);
+    check(a === 'Удержание началось.' && /^Цель достигнута: \d+ с\. «Стоп» запишет подход\.$/.test(b), `удержание: диктору — начало и достижение цели («${a}», «${b}»)`);
+    await w.evaluate(() => $('#wv-hold-go').click()); await w.clock.runFor(300);
+    check(/^Подход записан\. Отдых /.test(await say(w)) && await w.evaluate(() => $('#wv-quick').hidden), 'удержание: «Стоп» — «Подход записан…»; «Подход выполнен» на отдыхе для удержаний нет');
+    await w.close();
+  }
+  /* --- атлас, выбор файла, пульсометр, заставка --- */
+  {
+    const w = await open(390, 844);
+    await w.click('#motion-atlas'); await w.waitForTimeout(200);
+    const inList = await w.evaluate(() => $('#mv-close').getAttribute('aria-label'));
+    await w.evaluate(() => $('#mv-gallery [data-gallery-open]').click()); await w.waitForTimeout(200);
+    const inDetail = await w.evaluate(() => $('#mv-close').getAttribute('aria-label'));
+    check(inList === 'Закрыть атлас' && inDetail === 'Закрыть разбор', `кнопка закрытия: в списке — «Закрыть атлас», в разборе — «Закрыть разбор» (${inList}, ${inDetail})`);
+    await w.evaluate(() => { closeMotion(); S.view = 'journal'; renderSetup(); renderPlan(); }); await w.waitForTimeout(150);
+    const pick = await w.evaluate(() => { let n = 0; const f = $('#imp-file'); f.click = () => { n++; }; const b = $('[data-file-pick="imp-file"]'); b.click(); return { tag: b.tagName, tab: b.tabIndex, text: b.textContent, clicks: n, hidden: f.hidden, label: !!$('label[for="imp-file"]') }; });
+    check(pick.tag === 'BUTTON' && pick.tab === 0 && pick.text === 'Восстановить из копии' && pick.clicks === 1 && pick.hidden && !pick.label, `«Восстановить из копии» — кнопка, доступная с клавиатуры, открывает выбор файла (${JSON.stringify(pick)})`);
+    /* пульсометр недоступен (в проверке нет Web Bluetooth): над подходом строки нет, она — в настройках конца отдыха */
+    await w.evaluate(() => { S.view = 'plan'; renderSetup(); renderPlan(); }); await w.click('#start-workout'); await w.waitForTimeout(200);
+    const hr = await w.evaluate(() => ({ row: $('#wv-hr').hidden, line: !$('#wv-hr-line').hidden, inRest: $('#wv-rest').contains($('#wv-hr-line')), inFinish: $('#wv-finish').contains($('#wv-hr-line')), safe: !!$('#wv-hr-safe') }));
+    check(hr.row && hr.line && hr.inRest && !hr.inFinish && hr.safe, `пульсометр недоступен: над подходом строки нет, одна строка — в настройках конца отдыха; строка о безопасности на месте (${JSON.stringify(hr)})`);
+    check(await w.evaluate(() => !$('#boot-splash') && !$('.wrap').hasAttribute('inert')), 'после запуска заставки загрузки нет, страница доступна');
+    const html = fs.readFileSync(file, 'utf8');
+    check(/<div id="boot-splash"[^>]*>.*Загружаем приложение…/s.test(html) && /<div class="wrap" inert>/.test(html) && html.indexOf('id="boot-splash"') < html.indexOf('class="wrap"'), 'в документе: заставка «Загружаем приложение…» перед каркасом, каркас недоступен до запуска');
+    await w.close();
+  }
+  /* --- первый запуск: двойное касание, выбранное по умолчанию, продолжение, «Пройти вопросы заново» --- */
+  {
+    const ctx = await browser.newContext({ viewport: { width: 390, height: 844 }, hasTouch: true, firstRun: true }), p = await ctx.newPage(); p.on('pageerror', e => errors.push(String(e)));
+    await p.goto('file://' + file); await p.waitForTimeout(500); await fakeFigures(p);
+    const ready = () => p.waitForFunction(() => Date.now() - FR.at >= FR_GUARD);
+    const tap2 = async sel => { const c = await p.evaluate(s => { const r = document.querySelector(s).getBoundingClientRect(); return [r.left + r.width / 2, r.top + r.height / 2]; }, sel); await p.touchscreen.tap(...c); await p.waitForTimeout(150); await p.touchscreen.tap(...c); await p.waitForTimeout(250); };
+    await ready();
+    await tap2('[data-fr-place="gym"]');
+    check(await p.evaluate(() => $('#first-run').dataset.step === 'goal' && !FR.A.goal), 'двойное касание «Зал»: открыт вопрос о цели, цель не выбрана');
+    await ready(); await p.click('#fr-back'); await ready();
+    await tap2('[data-fr-place="home"]');
+    check(await p.evaluate(() => $('#first-run').dataset.step === 'equip' && [...document.querySelectorAll('[data-fr-eq][aria-pressed="true"]')].map(b => b.dataset.frEq).sort().join() === placeOf(S, 'home').equip.slice().sort().join()), 'двойное касание «Дом»: галочки инвентаря на месте');
+    await ready(); await p.click('#fr-next'); await ready(); await p.click('[data-fr-goal="cut"]'); await ready();
+    check(await p.evaluate(() => $('[data-fr-dur][aria-pressed="true"]')?.dataset.frDur === 'mid' && $('[data-fr-level][aria-pressed="true"]')?.dataset.frLevel === 'beg' && !FR.A.dur && !FR.A.level), 'время и опыт: отмечено то, с чем соберётся план («45 мин», «Новичок»)');
+    /* закрыли вкладку посреди вопросов — продолжение с того же вопроса и с теми же ответами */
+    await p.reload(); await p.waitForTimeout(500); await fakeFigures(p);
+    check(await p.evaluate(() => $('#first-run').open && $('#first-run').dataset.step === 'more' && $('#fr-count').textContent === 'Шаг 4 из 4' && FR.A.place === 'home' && FR.A.goal === 'cut'), 'перезагрузка посреди вопросов: тот же вопрос, ответы на месте');
+    await ready(); await p.click('#fr-next'); await p.waitForTimeout(300);
+    check(await p.evaluate(() => !$('#first-run').open && S.goal === 'cut' && S.place === 'home' && localStorage.getItem('podhod.firstRun.v1') === null && S.fold.load === true && $('.p-load').classList.contains('folded')), 'вопросы пройдены: черновик ответов стёрт; на телефоне «Подходов на группу мышц» свёрнуто — карточки ближе к началу');
+    /* «Пройти вопросы заново» */
+    check(await p.evaluate(() => $('#fr-again').getClientRects().length === 0), 'параметры свёрнуты — «Пройти вопросы заново» не видно');
+    await p.evaluate(() => { setSetupFold(false); LOG.data = { squat: [{ d: '2026-11-01', s: [[60, 8]] }] }; });
+    const before = await p.evaluate(() => JSON.stringify([S.goal, S.level, S.place, S.dur, S.groups]));
+    await p.click('#fr-again'); await ready();
+    const again = await p.evaluate(() => ({ open: $('#first-run').open, count: $('#fr-count').textContent, skip: $('#fr-skip').textContent, lead: $('#fr-lead').textContent, place: $('[data-fr-place][aria-pressed="true"]')?.dataset.frPlace }));
+    check(again.open && again.count === 'Шаг 1 из 4' && again.skip === 'Отмена' && /Журнал и свои планы останутся/.test(again.lead) && again.place === 'home', `«Пройти вопросы заново»: те же вопросы, отмечены нынешние ответы, «Отмена» вместо «Пропустить» (${JSON.stringify(again)})`);
+    await p.click('#fr-skip'); await p.waitForTimeout(200);
+    check(await p.evaluate(b => !$('#first-run').open && JSON.stringify([S.goal, S.level, S.place, S.dur, S.groups]) === b && document.activeElement.id === 'fr-again', before), '«Отмена» повторных вопросов: параметры прежние, фокус на кнопке');
+    await p.click('#fr-again'); await ready(); await p.click('[data-fr-place="gym"]'); await ready(); await p.click('[data-fr-goal="mass"]'); await ready(); await p.click('[data-fr-level="mid"]'); await p.click('#fr-next'); await p.waitForTimeout(300);
+    check(await p.evaluate(() => !$('#first-run').open && S.goal === 'mass' && S.place === 'gym' && S.level === 'mid' && LOG.data.squat?.length === 1), 'повторные вопросы пройдены: параметры новые, журнал на месте');
+    await ctx.close();
+  }
+  /* --- «Манекен» сбоку по умолчанию — только у тех, кто открывает приложение впервые --- */
+  {
+    const ctx = await browser.newContext({ viewport: { width: 390, height: 844 }, freshMotion: true }), p = await ctx.newPage(); p.on('pageerror', e => errors.push(String(e)));
+    await p.goto('file://' + file); await p.waitForTimeout(500); await fakeFigures(p);
+    const d = await p.evaluate(() => ({ view: motionPrefs.view, fig: figureView(), cam: motionCamera(EXI.squat), saved: JSON.parse(localStorage.getItem('podhod.motion.v2')).view }));
+    check(d.view === 'mannequin' && d.fig === 'mannequin' && d.cam === 'side' && d.saved === 'mannequin', `первое открытие: «Манекен» сбоку (${JSON.stringify(d)})`);
+    await p.evaluate(() => { motionPrefs.view = 'anatomy'; rememberCamera(EXI.squat, 'front'); saveMotionPrefs(); }); await p.reload(); await p.waitForTimeout(400);
+    check(await p.evaluate(() => motionPrefs.view === 'anatomy' && motionCamera(EXI.squat) === 'front' && motionCamera(EXI.bbbench) === 'side'), 'выбор человека (вид и ракурс упражнения) после перезапуска остаётся');
+    await ctx.close();
+    const old = await open(390);
+    check(await old.evaluate(() => motionPrefs.view === 'anatomy' && !motionPrefs.side && motionCamera(EXI.squat) === 'above'), 'у тех, кто уже пользовался приложением, вид и ракурс прежние: «Анатомия», «Сверху под углом»');
+    await old.close();
+  }
+  /* --- фигура выше полей на телефоне; две колонки на компьютере; крупный шрифт и масштаб --- */
+  {
+    const w = await open(390, 844);
+    await w.click('#start-workout'); await w.waitForTimeout(200);
+    const L = await w.evaluate(() => { const r = s => $(s).getBoundingClientRect(); const order = [...document.querySelectorAll('.wv-grid > *')].map(e => e.className); return { order, title: r('#wv-title').top, stage: r('#wv-stage').top, stageB: r('#wv-stage').bottom, form: r('#wv-form').top, cams: r('#wv-cameras').top, done: r('#wv-done').bottom }; });
+    check(L.order.join() === 'wv-visual,wv-headline,wv-record,wv-more' && L.stageB <= L.title && L.title <= L.form && L.stageB < 620 && L.cams > L.done, `телефон: фигура → название → поля → ракурсы и мышцы, фигура целиком на первом экране (${JSON.stringify(L)})`);
+    await w.close();
+    const dsk = await open(1280, 900);
+    await dsk.click('#start-workout'); await dsk.waitForTimeout(200);
+    const D = await dsk.evaluate(() => { const r = s => { const b = $(s).getBoundingClientRect(); return { l: b.left, r: b.right, t: b.top, b: b.bottom }; }; return { v: r('.wv-visual'), h: r('.wv-headline'), rec: r('.wv-record'), more: r('.wv-more') }; });
+    check(D.v.r < D.h.l && Math.abs(D.v.t - D.h.t) < 2 && D.rec.t >= D.h.b - 1 && Math.abs(D.rec.l - D.h.l) < 1 && D.more.t >= D.v.b - 1 && Math.abs(D.more.l - D.v.l) < 1, `компьютер: слева фигура и остальное под ней, справа название и запись подхода (${JSON.stringify(D)})`);
+    await dsk.close();
+    /* масштаб 200 % (окно 195 px): названию упражнения в выборе — вся ширина; заголовок атласа не рвётся */
+    const z = await open(195, 422);
+    await z.click('#start-workout'); await z.waitForTimeout(200);
+    const zw = await z.evaluate(() => $('#wv-exercise-text').clientWidth);
+    await z.evaluate(() => { closeWorkout(); $('#motion-atlas').click(); }); await z.waitForTimeout(200);
+    const za = await z.evaluate(() => { const h = $('#mv-title'), c = document.createElement('canvas').getContext('2d'), cs = getComputedStyle(h); c.font = `${cs.fontWeight} ${cs.fontSize} ${cs.fontFamily}`; return { room: h.clientWidth, word: Math.ceil(Math.max(...h.textContent.split(/\s+/).map(x => c.measureText(x).width))), side: document.documentElement.scrollWidth <= innerWidth }; });
+    check(zw >= 110 && za.word <= za.room + 1 && za.side, `масштаб 200 %: названию упражнения ${zw} px (было 32), «Все упражнения» не рвётся (${JSON.stringify(za)})`);
+    await z.close();
+    /* шрифт 200 %: подсказка «цель …» помещается; заголовок отдыха не уезжает за верх; ряд ракурсов переносится; подписи карты мышц растут */
+    const b = await open(390, 844);
+    await b.addStyleTag({ content: 'html{font-size:200%}' }); await b.evaluate(() => regen());
+    const mm = await b.evaluate(() => parseFloat(getComputedStyle($('.p-map .mm-l')).fontSize));
+    await b.click('#start-workout'); await b.waitForTimeout(200);
+    const ph = await b.evaluate(() => { const i = $('#wv-reps'), cs = getComputedStyle(i), ps = getComputedStyle(i, '::placeholder'), c = document.createElement('canvas').getContext('2d'); c.font = `${ps.fontWeight} ${ps.fontSize} ${ps.fontFamily}`; return { text: Math.ceil(c.measureText(i.placeholder).width), room: Math.floor(i.clientWidth - parseFloat(cs.paddingLeft) - parseFloat(cs.paddingRight)) }; });
+    await fill(b); await b.evaluate(() => $('#wv-done').click()); await b.waitForTimeout(150);
+    await b.evaluate(() => { workout.restUntil = Date.now() - 12000; workoutTick(); }); await b.waitForTimeout(150);
+    const ro = await b.evaluate(() => ({ h: $('#wv-rest-heading').textContent, top: Math.round($('#wv-rest-heading').getBoundingClientRect().top), bottom: Math.round($('#wv-rest-heading').getBoundingClientRect().bottom), scrolled: $('#workout-view').scrollTop > 100, focus: document.activeElement.id }));
+    await b.evaluate(() => { closeWorkout(); openMotionItem(plan.items[0], 0); }); await b.waitForTimeout(250);
+    const cams = await b.evaluate(() => { const c = $('#mv-cameras'); return { fits: c.scrollWidth <= c.clientWidth + 1, cut: [...c.querySelectorAll('button')].filter(x => x.getBoundingClientRect().right > innerWidth).length }; });
+    check(ph.text <= ph.room && ro.h === 'Можно продолжать' && ro.top >= 0 && ro.bottom > 0 && ro.scrolled && cams.fits && !cams.cut && mm >= 18,
+      `шрифт 200 %: «цель …» помещается в поле (${JSON.stringify(ph)}); «Можно продолжать» у верха, когда экран отдыха прокручен (${JSON.stringify(ro)}); ряд ракурсов целиком (${JSON.stringify(cams)}); подписи карты мышц ${mm} px`);
+    await b.close();
+    /* палец: цели нажатия на плане и в тренировке не меньше 44 px */
+    const tctx = await browser.newContext({ viewport: { width: 390, height: 844 }, hasTouch: true, isMobile: true }), t = await tctx.newPage(); t.on('pageerror', e => errors.push(String(e)));
+    await t.goto('file://' + file); await t.waitForTimeout(500); await fakeFigures(t);
+    await t.evaluate(() => { Object.assign(S, { view: 'plan', mode: 'single', format: 'classic', goal: 'mass', level: 'mid', groups: ['chest', 'back', 'shoulders'], count: 5, seed: 3, fold: null, dur: null }); LOG.data = {}; regen(); });
+    const SMALL = () => { const top = document.querySelector('dialog[open]') || document, bad = [];
+      for (const e of top.querySelectorAll('button, a[href], select, summary')) { if (!e.getClientRects().length || (e.checkVisibility && !e.checkVisibility({ visibilityProperty: true }))) continue; const r = e.getBoundingClientRect(); if (r.width < 43.5 || r.height < 43.5) bad.push(`${(e.getAttribute('aria-label') || e.textContent).trim().slice(0, 20)} ${Math.round(r.width)}×${Math.round(r.height)}`); }
+      return [...new Set(bad)]; };
+    const sp = await t.evaluate(SMALL);
+    await t.evaluate(() => $('#start-workout').click()); await t.waitForTimeout(200);
+    const sw = await t.evaluate(SMALL);
+    await fill(t); await t.evaluate(() => $('#wv-done').click()); await t.waitForTimeout(150);
+    const sr = await t.evaluate(SMALL);
+    check(!sp.length && !sw.length && !sr.length, `сенсорный экран: кнопки не меньше 44 px — план: ${sp.join('; ') || 'все'}; подход: ${sw.join('; ') || 'все'}; отдых: ${sr.join('; ') || 'все'}`);
+    await tctx.close();
+  }
+}
+
+/* ---------- 4.112, слова и мелочи (Руслан 17, 19, Артём 10, Ольга 15, 17, Галина 10; названия мышц — решение владельца) ----------
+   Блок второго агента 4.112 (диктор, крупный шрифт) — отдельно; этот — только о словах и мелочах. */
+{
+  /* 412 px (Pixel 7): заголовок «ПОВТОРЫ» — в одну строку; точка-разделитель в строке темпа не висит отдельной строкой */
+  const w = await open(412, 900);
+  await w.evaluate(() => { Object.assign(S, { goal: 'strength', level: 'mid', groups: ['chest', 'back', 'quads'], count: 5, seed: 3 }); regen(); document.querySelector('.card [data-cfold="log"]').click(); });
+  const t = await w.evaluate(() => {
+    const h = [...document.querySelector('.card .lt-h').querySelectorAll('span')].map(s => ({ t: s.textContent, lines: Math.round(s.getBoundingClientRect().height / parseFloat(getComputedStyle(s).lineHeight)), cut: s.scrollWidth > s.clientWidth + 1 }));
+    const dots = [...document.querySelectorAll('.c-meta i')].map(i => { const prev = i.previousElementSibling.getClientRects(), last = prev[prev.length - 1], r = i.getBoundingClientRect(); return Math.abs(r.top - last.top) < 6 && r.left >= last.right - 2; });
+    return { h, dots, start: document.querySelector('.card [data-workout]').textContent.replace(/\s+/g, ' ').trim(), nb: /\d с/.test(document.querySelector('.c-meta').textContent) };
+  });
+  check(t.h.some(x => x.t === 'Повторы') && t.h.filter(x => x.t).every(x => x.t !== 'Повторы' || (x.lines === 1 && !x.cut)), `412 px: «Повторы» в заголовке таблицы — в одну строку и целиком (${JSON.stringify(t.h)})`);
+  check(t.dots.length > 0 && t.dots.every(Boolean) && t.nb, `строка темпа: точка-разделитель — за концом темпа, число и «с» не разрываются (${JSON.stringify(t.dots)})`);
+  check(/^Начать отсюда — начать тренировку с упражнения: .+ →$/.test(t.start), `кнопка карточки: «Начать отсюда →» (${t.start})`);
+  /* названия мышц в карточках: простые слова, пояснение — только при первом упоминании в плане */
+  const m = await w.evaluate(() => {
+    Object.assign(S, { goal: 'mass', groups: ['back', 'shoulders'], count: 4 }); regen();
+    const rows = [...document.querySelectorAll('.card .cg-mus')].map(e => e.textContent), all = rows.join(' | ');
+    const count = s => all.split(s).length - 1;
+    return { rows, between: count('между лопатками'), rear: count('задняя часть плеча'), old: /середина спины|Прямая мышца живота/.test(document.querySelector('#plan .cards').textContent) };
+  });
+  check(m.between === 1 && m.rear <= 1 && !m.old, `карточки: «Ромбовидные — между лопатками» — один раз на план, дальше без пояснения; терминов «середина спины» нет (${JSON.stringify(m.rows)})`);
+  /* «молот»: «Бицепс и плечевая» — в разборе; в разборе прочих — термины */
+  await w.evaluate(() => openMotionItem(previewItem('hammer'))); await w.waitForTimeout(150);
+  const hm = await w.evaluate(() => { const a = $('#mv-primary').textContent; openMotionItem(previewItem('bbrow')); return [a, $('#mv-primary').textContent, $('.mv-eyebrow').textContent]; });
+  check(hm[0] === 'Бицепс и плечевая, Предплечья' && /Ромбовидные и середина спины/.test(hm[1]), `разбор: «молот» — «Бицепс и плечевая», у тяги — термин «Ромбовидные и середина спины» (${hm.slice(0, 2).join(' / ')})`);
+  check(hm[2] === 'LAZY GYM PLANNER · АТЛАС ДВИЖЕНИЙ', `заголовок атласа без номера версии (${hm[2]})`);
+  await w.evaluate(() => closeMotion());
+  /* экран тренировки: «Подходы:» перед кнопками подходов; «3 повтора»; идёт тренировка — «Продолжить отсюда» */
+  await w.evaluate(() => { S.customs = [{ id: 'w1', name: 'Проверка', items: [{ id: 'dbbench', sets: 5, reps: '3' }, { id: 'dbrow', sets: 3, reps: '8' }] }]; S.custom = 'w1'; ensureCustoms(S); Object.assign(S, { mode: 'custom', goal: 'strength' }); LOG.data = {}; regen(); });
+  await w.click('#start-workout'); await w.waitForTimeout(250);
+  const wv = await w.evaluate(() => ({ cap: getComputedStyle($('#wv-set-chips'), '::before').content, target: $('#wv-target').textContent, lr: $('#wv-lr').textContent }));
+  check(wv.cap === '"Подходы:"' && wv.target === '3 повтора' && wv.lr === 'Левая и правая отдельно', `тренировка: подпись «Подходы:», «3 повтора», «Левая и правая отдельно» (${JSON.stringify(wv)})`);
+  await w.fill('#wv-kg', '20'); await w.fill('#wv-reps', '3'); await w.click('#wv-done'); await w.waitForTimeout(150);
+  await w.evaluate(() => closeWorkout()); await w.waitForTimeout(150);
+  check(await w.evaluate(() => [...document.querySelectorAll('.card [data-workout]')].every(b => /^Продолжить отсюда — продолжить тренировку с упражнения: /.test(b.textContent.replace(/\s+/g, ' ').trim()))), 'идёт тренировка: кнопки карточек — «Продолжить отсюда →»');
+  await w.close();
 }
 
 /* компьютер: параметры в боковой колонке не сворачиваются */

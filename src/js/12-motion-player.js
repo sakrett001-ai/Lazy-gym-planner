@@ -1,6 +1,8 @@
 /* ---------- Проигрыватель движений: карточки и увеличенный разбор ---------- */
 let figs = [], rafId = 0, io = null;
 const reduceMotion = !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+/* настроек показа ещё нет — приложение открыто здесь впервые (или хранилище недоступно): см. motionFresh ниже */
+const motionFresh = (() => {try {return localStorage.getItem('podhod.motion.v2') == null;}catch(e){return true;}})();
 const motionPrefs = (() => {try {return Object.assign({speed:.5,joints:true,trace:false,vectors:false,muscles:true,view:'anatomy'},JSON.parse(localStorage.getItem('podhod.motion.v2') || '{}'));}catch(e){return {speed:.5,joints:true,trace:false,vectors:false,muscles:true,view:'anatomy'};}})();
 /* с 4.29.0 векторы движения по умолчанию выключены (мешали разглядывать технику); сохранённое «включено» прежних версий
    было значением по умолчанию — выключаем один раз, дальше выбор человека запоминается как раньше */
@@ -11,6 +13,12 @@ if(typeof motionPrefs.stress!=='boolean')motionPrefs.stress=true;
 /* с 4.30.0 основной вид разбора — «Анатомия» (кости и мышцы в почти невидимом силуэте); прежние флажки «Скелет» и
    «Анатомия мышц» заменены выбором вида — один раз ставим анатомию, дальше выбор человека запоминается */
 if (motionPrefs.viewV !== 1) { motionPrefs.view = 'anatomy'; motionPrefs.viewV = 1; delete motionPrefs.skeleton; delete motionPrefs.anatomy; try { localStorage.setItem('podhod.motion.v2', JSON.stringify(motionPrefs)); } catch (e) {} }
+/* с 4.112 по умолчанию — «Манекен» сбоку: в карточках плана, первом разборе и на экране тренировки (решение владельца
+   15.11.2026; Кира, Галина 21, Ольга 8 — «Анатомия» сверху под углом новичку непонятна и пугает). Только для тех, кто
+   открывает приложение впервые: у остальных вид и ракурсы остаются как были — выбор, который человек уже сделал, не
+   трогается (а отличить его от прежнего значения по умолчанию нельзя). side — ракурс по умолчанию «Сбоку» там, где он есть
+   (motionCamera, 14-workout-mode.js); выбранный для упражнения ракурс запоминается, как раньше. */
+if (motionFresh) { motionPrefs.view = 'mannequin'; motionPrefs.side = true; try { localStorage.setItem('podhod.motion.v2', JSON.stringify(motionPrefs)); } catch (e) {} }
 let detailMotion = null, detailReturn = null, lastMotionNow = null;
 function saveMotionPrefs() {try {localStorage.setItem('podhod.motion.v2',JSON.stringify(motionPrefs));}catch(e){}}
 function motionDurations(it) {
@@ -425,8 +433,8 @@ function selectMotion(it, clock=0) {
   $('#mv-tempo').textContent=it.ex.anim.hold?'Удерживайте положение и дышите ровно.':it.ex.anim.timing||it.ex.g==='cardio'||it.ex.kind?'Ритм показан схематично. Замедление помогает разобрать движение.':it.rx.static?`Статодинамика: ${tempoWords(it.rx.tempo)}, без пауз; показана рабочая часть амплитуды — без выпрямления до конца и без расслабления внизу.`:tempoWords(it.rx.tempo)?`Темп по плану: ${tempoWords(it.rx.tempo)}. Скорость просмотра темп не меняет.`:'Темп — плавно, без рывков. Скорость просмотра темп не меняет.';
   const level={};it.ex.pri.forEach(m=>level[m]=1);it.ex.sec.forEach(m=>{if(!level[m])level[m]=.38;});
   $('#mv-muscles').innerHTML=muscleMapSvg(level,{labels:true,aria:'Основные и вспомогательные мышцы'});
-  $('#mv-primary').textContent=it.ex.pri.map(m=>MUSCLE_NAMES[m]).join(', ');
-  $('#mv-secondary').textContent=it.ex.sec.length?it.ex.sec.map(m=>MUSCLE_NAMES[m]).join(', '):'—';
+  $('#mv-primary').textContent=it.ex.pri.map(m=>muscleLabel(m,it.ex)).join(', ');
+  $('#mv-secondary').textContent=it.ex.sec.length?it.ex.sec.map(m=>muscleLabel(m,it.ex)).join(', '):'—';
   $('#mv-steps').innerHTML=it.ex.tech.map(x=>`<li>${esc(x)}</li>`).join('');
   $('#mv-errors').innerHTML=it.ex.err.map(x=>`<li>${esc(x)}</li>`).join('');
   $('#mv-breath').textContent=it.ex.breath;
